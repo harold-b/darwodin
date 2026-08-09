@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitChangeRegistration
 ///
 @(objc_class="UITraitChangeRegistration")
-TraitChangeRegistration :: struct { using _: intrinsics.objc_object, 
+TraitChangeRegistration :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
     using _: NS.Copying,
 }

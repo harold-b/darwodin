@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSIndexSet
 ///
 @(objc_class="NSIndexSet", objc_superclass=Object)
-IndexSet :: struct { using _: Object, 
+IndexSet :: struct {
+    using _: Object,
     using _: Copying,
     using _: MutableCopying,
     using _: SecureCoding,

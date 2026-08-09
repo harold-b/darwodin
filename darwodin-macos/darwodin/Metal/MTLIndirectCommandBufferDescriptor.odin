@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIndirectCommandBufferDescriptor
 ///
 @(objc_class="MTLIndirectCommandBufferDescriptor", objc_superclass=NS.Object)
-IndirectCommandBufferDescriptor :: struct { using _: NS.Object, 
+IndirectCommandBufferDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

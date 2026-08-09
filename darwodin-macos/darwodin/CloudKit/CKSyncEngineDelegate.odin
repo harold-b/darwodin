@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKSyncEngineDelegate
 ///
 @(objc_class="CKSyncEngineDelegate")
-SyncEngineDelegate :: struct { using _: intrinsics.objc_object, 
+SyncEngineDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

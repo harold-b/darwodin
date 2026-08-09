@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPageController
 ///
 @(objc_class="NSPageController", objc_superclass=ViewController)
-PageController :: struct { using _: ViewController, 
+PageController :: struct {
+    using _: ViewController,
     using _: AnimatablePropertyContainer,
     using _: NS.Coding,
 }

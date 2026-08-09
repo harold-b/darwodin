@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMultiPoint
 ///
 @(objc_class="MKMultiPoint", objc_superclass=Shape)
-MultiPoint :: struct { using _: Shape, }
+MultiPoint :: struct { using _: Shape}
 
 @(default_calling_convention="c")
 foreign lib {

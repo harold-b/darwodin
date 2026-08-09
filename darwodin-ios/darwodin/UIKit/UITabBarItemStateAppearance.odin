@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITabBarItemStateAppearance
 ///
 @(objc_class="UITabBarItemStateAppearance", objc_superclass=NS.Object)
-TabBarItemStateAppearance :: struct { using _: NS.Object, }
+TabBarItemStateAppearance :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

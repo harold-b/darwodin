@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSSortDescriptor
 ///
 @(objc_class="NSSortDescriptor", objc_superclass=Object)
-SortDescriptor :: struct { using _: Object, 
+SortDescriptor :: struct {
+    using _: Object,
     using _: SecureCoding,
     using _: Copying,
 }

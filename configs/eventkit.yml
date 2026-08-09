@@ -32,6 +32,7 @@ Odin:
   TargetPlatform : Darwin
   ExportTypeMapDir: ../exports
   ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
     - ../exports/AppKit.exports.yml
     - ../exports/CoreLocation.exports.yml
@@ -53,6 +54,13 @@ Odin:
         - |
           ABAddressBook:: NS.Object
           ABPerson::      NS.Object
+
+          ABAddressBookRef :: CF.TypeRef
+          when ODIN_PLATFORM_SUBTARGET_IOS {
+              ABRecordRef      :: CF.TypeRef
+          } else {
+              ABRecordRef      :: rawptr
+          }
 
       # TypeMap:
 

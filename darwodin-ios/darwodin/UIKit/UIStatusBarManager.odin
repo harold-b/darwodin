@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIStatusBarManager
 ///
 @(objc_class="UIStatusBarManager", objc_superclass=NS.Object)
-StatusBarManager :: struct { using _: NS.Object, }
+StatusBarManager :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

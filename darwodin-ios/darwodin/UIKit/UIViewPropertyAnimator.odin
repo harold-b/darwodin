@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIViewPropertyAnimator
 ///
 @(objc_class="UIViewPropertyAnimator", objc_superclass=NS.Object)
-ViewPropertyAnimator :: struct { using _: NS.Object, 
+ViewPropertyAnimator :: struct {
+    using _: NS.Object,
     using _: ViewImplicitlyAnimating,
     using _: NS.Copying,
 }

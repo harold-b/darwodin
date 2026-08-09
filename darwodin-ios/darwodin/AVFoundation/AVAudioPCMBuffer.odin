@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioPCMBuffer
 ///
 @(objc_class="AVAudioPCMBuffer", objc_superclass=AudioBuffer)
-AudioPCMBuffer :: struct { using _: AudioBuffer, }
+AudioPCMBuffer :: struct { using _: AudioBuffer}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -25,7 +25,7 @@ foreign lib {
     AudioPCMBuffer_initWithPCMFormat_frameCapacity :: proc(self: ^AudioPCMBuffer, format: ^AudioFormat, frameCapacity: AudioFrameCount) -> instancetype ---
 
     @(objc_type=AudioPCMBuffer, objc_selector="initWithPCMFormat:bufferListNoCopy:deallocator:", objc_name="initWithPCMFormat_bufferListNoCopy_deallocator")
-    AudioPCMBuffer_initWithPCMFormat_bufferListNoCopy_deallocator :: proc(self: ^AudioPCMBuffer, format: ^AudioFormat, bufferList: ^Audio.BufferList, deallocator: ^Objc_Block(proc "c" ( _0: ^Audio.BufferList ))) -> instancetype ---
+    AudioPCMBuffer_initWithPCMFormat_bufferListNoCopy_deallocator :: proc(self: ^AudioPCMBuffer, format: ^AudioFormat, bufferList: ^AT.BufferList, deallocator: ^Objc_Block(proc "c" ( _0: ^AT.BufferList ))) -> instancetype ---
 
     @(objc_type=AudioPCMBuffer, objc_selector="frameCapacity", objc_name="frameCapacity")
     AudioPCMBuffer_frameCapacity :: proc(self: ^AudioPCMBuffer) -> AudioFrameCount ---

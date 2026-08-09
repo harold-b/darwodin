@@ -1,47 +1,35 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSPDFImageRep
-///
+
+
 @(objc_class="NSPDFImageRep", objc_superclass=ImageRep)
-PDFImageRep :: struct { using _: ImageRep, }
+PDFImageRep :: struct { using _: ImageRep}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=PDFImageRep, objc_selector="imageRepWithData:", objc_name="imageRepWithData", objc_is_class_method=true)
-    PDFImageRep_imageRepWithData :: proc(pdfData: ^NS.Data) -> instancetype ---
+	@(objc_type=PDFImageRep, objc_selector="imageRepWithData:", objc_name="imageRepWithData", objc_is_class_method=true)
+	PDFImageRep_imageRepWithData :: proc(pdfData: ^NS.Data) -> instancetype ---
 
-    @(objc_type=PDFImageRep, objc_selector="initWithData:", objc_name="initWithData")
-    PDFImageRep_initWithData :: proc(self: ^PDFImageRep, pdfData: ^NS.Data) -> instancetype ---
+	@(objc_type=PDFImageRep, objc_selector="initWithData:", objc_name="initWithData")
+	PDFImageRep_initWithData :: proc(self: ^PDFImageRep, pdfData: ^NS.Data) -> instancetype ---
 
-    @(objc_type=PDFImageRep, objc_selector="PDFRepresentation", objc_name="PDFRepresentation")
-    PDFImageRep_PDFRepresentation :: proc(self: ^PDFImageRep) -> ^NS.Data ---
+	@(objc_type=PDFImageRep, objc_selector="PDFRepresentation", objc_name="PDFRepresentation")
+	PDFImageRep_PDFRepresentation :: proc(self: ^PDFImageRep) -> ^NS.Data ---
 
-    @(objc_type=PDFImageRep, objc_selector="bounds", objc_name="bounds")
-    PDFImageRep_bounds :: proc(self: ^PDFImageRep) -> NS.Rect ---
+	@(objc_type=PDFImageRep, objc_selector="bounds", objc_name="bounds")
+	PDFImageRep_bounds :: proc(self: ^PDFImageRep) -> NS.Rect ---
 
-    @(objc_type=PDFImageRep, objc_selector="currentPage", objc_name="currentPage")
-    PDFImageRep_currentPage :: proc(self: ^PDFImageRep) -> NS.Integer ---
+	@(objc_type=PDFImageRep, objc_selector="currentPage", objc_name="currentPage")
+	PDFImageRep_currentPage :: proc(self: ^PDFImageRep) -> NS.Integer ---
 
-    @(objc_type=PDFImageRep, objc_selector="setCurrentPage:", objc_name="setCurrentPage")
-    PDFImageRep_setCurrentPage :: proc(self: ^PDFImageRep, currentPage: NS.Integer) ---
+	@(objc_type=PDFImageRep, objc_selector="setCurrentPage:", objc_name="setCurrentPage")
+	PDFImageRep_setCurrentPage :: proc(self: ^PDFImageRep, currentPage: NS.Integer) ---
 
-    @(objc_type=PDFImageRep, objc_selector="pageCount", objc_name="pageCount")
-    PDFImageRep_pageCount :: proc(self: ^PDFImageRep) -> NS.Integer ---
+	@(objc_type=PDFImageRep, objc_selector="pageCount", objc_name="pageCount")
+	PDFImageRep_pageCount :: proc(self: ^PDFImageRep) -> NS.Integer ---
 }

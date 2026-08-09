@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CHHapticDynamicParameter
 ///
 @(objc_class="CHHapticDynamicParameter", objc_superclass=NS.Object)
-HapticDynamicParameter :: struct { using _: NS.Object, }
+HapticDynamicParameter :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

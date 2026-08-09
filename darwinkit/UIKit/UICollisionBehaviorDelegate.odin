@@ -1,46 +1,39 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UICollisionBehaviorDelegate
-///
+
+
 @(objc_class="UICollisionBehaviorDelegate")
-CollisionBehaviorDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+CollisionBehaviorDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:beganContactForItem:withItem:atPoint:", objc_name="collisionBehavior_beganContactForItem_withItem_atPoint")
-    CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withItem_atPoint :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item1: ^DynamicItem, item2: ^DynamicItem, p: CG.Point) ---
+	@(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:beganContactForItem:withItem:atPoint:", objc_name="collisionBehavior_beganContactForItem_withItem_atPoint")
+	CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withItem_atPoint :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item1: ^DynamicItem, item2: ^DynamicItem, p: CG.Point) ---
 
-    @(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:endedContactForItem:withItem:", objc_name="collisionBehavior_endedContactForItem_withItem")
-    CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withItem :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item1: ^DynamicItem, item2: ^DynamicItem) ---
+	@(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:endedContactForItem:withItem:", objc_name="collisionBehavior_endedContactForItem_withItem")
+	CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withItem :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item1: ^DynamicItem, item2: ^DynamicItem) ---
 
-    @(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:", objc_name="collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint")
-    CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item: ^DynamicItem, identifier: ^NS.Copying, p: CG.Point) ---
+	@(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:", objc_name="collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint")
+	CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item: ^DynamicItem, identifier: ^NS.Copying, p: CG.Point) ---
 
-    @(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:endedContactForItem:withBoundaryIdentifier:", objc_name="collisionBehavior_endedContactForItem_withBoundaryIdentifier")
-    CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withBoundaryIdentifier :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item: ^DynamicItem, identifier: ^NS.Copying) ---
+	@(objc_type=CollisionBehaviorDelegate, objc_selector="collisionBehavior:endedContactForItem:withBoundaryIdentifier:", objc_name="collisionBehavior_endedContactForItem_withBoundaryIdentifier")
+	CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withBoundaryIdentifier :: proc(self: ^CollisionBehaviorDelegate, behavior: ^CollisionBehavior, item: ^DynamicItem, identifier: ^NS.Copying) ---
 }
 
 @(objc_type=CollisionBehaviorDelegate, objc_name="collisionBehavior")
 CollisionBehaviorDelegate_collisionBehavior :: proc {
-    CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withItem_atPoint,
-    CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withItem,
-    CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint,
-    CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withBoundaryIdentifier,
+	CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withItem_atPoint,
+	CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withItem,
+	CollisionBehaviorDelegate_collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint,
+	CollisionBehaviorDelegate_collisionBehavior_endedContactForItem_withBoundaryIdentifier,
 }
-

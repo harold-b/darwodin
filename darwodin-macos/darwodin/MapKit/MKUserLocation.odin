@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKUserLocation
 ///
 @(objc_class="MKUserLocation", objc_superclass=NS.Object)
-UserLocation :: struct { using _: NS.Object, 
+UserLocation :: struct {
+    using _: NS.Object,
     using _: Annotation,
 }
 

@@ -1,24 +1,18 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKBasePlayer", objc_superclass=NS.Object)
-BasePlayer :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+BasePlayer :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=BasePlayer, objc_selector="playerID", objc_name="playerID")
-    BasePlayer_playerID :: proc(self: ^BasePlayer) -> ^NS.String ---
+	@(objc_type=BasePlayer, objc_selector="playerID", objc_name="playerID")
+	BasePlayer_playerID :: proc(self: ^BasePlayer) -> ^NS.String ---
 
-    @(objc_type=BasePlayer, objc_selector="displayName", objc_name="displayName")
-    BasePlayer_displayName :: proc(self: ^BasePlayer) -> ^NS.String ---
+	@(objc_type=BasePlayer, objc_selector="displayName", objc_name="displayName")
+	BasePlayer_displayName :: proc(self: ^BasePlayer) -> ^NS.String ---
 }
-
-
-

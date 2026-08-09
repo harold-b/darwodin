@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSStackViewDelegate
 ///
 @(objc_class="NSStackViewDelegate")
-StackViewDelegate :: struct { using _: intrinsics.objc_object, 
+StackViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

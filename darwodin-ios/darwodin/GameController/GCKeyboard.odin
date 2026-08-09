@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCKeyboard
 ///
 @(objc_class="GCKeyboard", objc_superclass=NS.Object)
-Keyboard :: struct { using _: NS.Object, 
+Keyboard :: struct {
+    using _: NS.Object,
     using _: Device,
 }
 

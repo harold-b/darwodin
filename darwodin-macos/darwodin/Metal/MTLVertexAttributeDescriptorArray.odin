@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLVertexAttributeDescriptorArray
 ///
 @(objc_class="MTLVertexAttributeDescriptorArray", objc_superclass=NS.Object)
-VertexAttributeDescriptorArray :: struct { using _: NS.Object, }
+VertexAttributeDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKUserIdentity
 ///
 @(objc_class="CKUserIdentity", objc_superclass=NS.Object)
-UserIdentity :: struct { using _: NS.Object, 
+UserIdentity :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

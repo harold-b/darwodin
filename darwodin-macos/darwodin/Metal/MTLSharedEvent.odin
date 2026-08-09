@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLSharedEvent
 ///
 @(objc_class="MTLSharedEvent")
-SharedEvent :: struct { using _: intrinsics.objc_object, 
+SharedEvent :: struct {
+    using _: intrinsics.objc_object,
     using _: Event,
 }
 

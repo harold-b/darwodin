@@ -1,24 +1,19 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKAgentDelegate")
-AgentDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+AgentDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=AgentDelegate, objc_selector="agentWillUpdate:", objc_name="agentWillUpdate")
-    AgentDelegate_agentWillUpdate :: proc(self: ^AgentDelegate, agent: ^Agent) ---
+	@(objc_type=AgentDelegate, objc_selector="agentWillUpdate:", objc_name="agentWillUpdate")
+	AgentDelegate_agentWillUpdate :: proc(self: ^AgentDelegate, agent: ^Agent) ---
 
-    @(objc_type=AgentDelegate, objc_selector="agentDidUpdate:", objc_name="agentDidUpdate")
-    AgentDelegate_agentDidUpdate :: proc(self: ^AgentDelegate, agent: ^Agent) ---
+	@(objc_type=AgentDelegate, objc_selector="agentDidUpdate:", objc_name="agentDidUpdate")
+	AgentDelegate_agentDidUpdate :: proc(self: ^AgentDelegate, agent: ^Agent) ---
 }
-
-
-

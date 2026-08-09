@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLFunctionConstant
 ///
 @(objc_class="MTLFunctionConstant", objc_superclass=NS.Object)
-FunctionConstant :: struct { using _: NS.Object, }
+FunctionConstant :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

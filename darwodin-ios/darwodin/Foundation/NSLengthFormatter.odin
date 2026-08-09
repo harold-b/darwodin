@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSLengthFormatter
 ///
 @(objc_class="NSLengthFormatter", objc_superclass=Formatter)
-LengthFormatter :: struct { using _: Formatter, }
+LengthFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

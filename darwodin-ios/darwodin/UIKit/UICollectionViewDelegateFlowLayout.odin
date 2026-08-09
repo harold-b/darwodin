@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDelegateFlowLayout
 ///
 @(objc_class="UICollectionViewDelegateFlowLayout")
-CollectionViewDelegateFlowLayout :: struct { using _: intrinsics.objc_object, 
+CollectionViewDelegateFlowLayout :: struct {
+    using _: intrinsics.objc_object,
     using _: CollectionViewDelegate,
 }
 

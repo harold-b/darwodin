@@ -1,31 +1,25 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="CKShareBlockedIdentity", objc_superclass=NS.Object)
-ShareBlockedIdentity :: struct { using _: NS.Object, 
-    using _: NS.SecureCoding,
-    using _: NS.Copying,
+ShareBlockedIdentity :: struct {
+	using _: NS.Object,
+	using _: NS.SecureCoding,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=ShareBlockedIdentity, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    ShareBlockedIdentity_new :: proc() -> ^ShareBlockedIdentity ---
+	@(objc_type=ShareBlockedIdentity, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	ShareBlockedIdentity_new :: proc() -> ^ShareBlockedIdentity ---
 
-    @(objc_type=ShareBlockedIdentity, objc_selector="init", objc_name="init")
-    ShareBlockedIdentity_init :: proc(self: ^ShareBlockedIdentity) -> instancetype ---
+	@(objc_type=ShareBlockedIdentity, objc_selector="init", objc_name="init")
+	ShareBlockedIdentity_init :: proc(self: ^ShareBlockedIdentity) -> instancetype ---
 
-    @(objc_type=ShareBlockedIdentity, objc_selector="userIdentity", objc_name="userIdentity")
-    ShareBlockedIdentity_userIdentity :: proc(self: ^ShareBlockedIdentity) -> ^UserIdentity ---
+	@(objc_type=ShareBlockedIdentity, objc_selector="userIdentity", objc_name="userIdentity")
+	ShareBlockedIdentity_userIdentity :: proc(self: ^ShareBlockedIdentity) -> ^UserIdentity ---
 
-    @(objc_type=ShareBlockedIdentity, objc_selector="contact", objc_name="contact")
-    ShareBlockedIdentity_contact :: proc(self: ^ShareBlockedIdentity) -> ^CNContact ---
+	@(objc_type=ShareBlockedIdentity, objc_selector="contact", objc_name="contact")
+	ShareBlockedIdentity_contact :: proc(self: ^ShareBlockedIdentity) -> ^CNContact ---
 }
-
-
-

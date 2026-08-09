@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCExtendedGamepadSnapshot
 ///
 @(objc_class="GCExtendedGamepadSnapshot", objc_superclass=ExtendedGamepad)
-ExtendedGamepadSnapshot :: struct { using _: ExtendedGamepad, }
+ExtendedGamepadSnapshot :: struct { using _: ExtendedGamepad}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKClusterAnnotation
 ///
 @(objc_class="MKClusterAnnotation", objc_superclass=NS.Object)
-ClusterAnnotation :: struct { using _: NS.Object, 
+ClusterAnnotation :: struct {
+    using _: NS.Object,
     using _: Annotation,
 }
 

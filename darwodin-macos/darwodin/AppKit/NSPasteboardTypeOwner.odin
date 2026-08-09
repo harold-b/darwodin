@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPasteboardTypeOwner
 ///
 @(objc_class="NSPasteboardTypeOwner")
-PasteboardTypeOwner :: struct { using _: intrinsics.objc_object, 
+PasteboardTypeOwner :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityList
 ///
 @(objc_class="NSAccessibilityList")
-AccessibilityList :: struct { using _: intrinsics.objc_object, 
+AccessibilityList :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityTable,
 }
 

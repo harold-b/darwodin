@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSWindow
 ///
 @(objc_class="NSWindow", objc_superclass=Responder)
-Window :: struct { using _: Responder, 
+Window :: struct {
+    using _: Responder,
     using _: AnimatablePropertyContainer,
     using _: MenuItemValidation,
     using _: UserInterfaceValidations,

@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSPurgeableData
 ///
 @(objc_class="NSPurgeableData", objc_superclass=MutableData)
-PurgeableData :: struct { using _: MutableData, 
+PurgeableData :: struct {
+    using _: MutableData,
     using _: DiscardableContent,
 }
 

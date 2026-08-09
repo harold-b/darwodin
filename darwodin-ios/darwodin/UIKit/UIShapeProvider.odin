@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIShapeProvider
 ///
 @(objc_class="UIShapeProvider")
-ShapeProvider :: struct { using _: intrinsics.objc_object, 
+ShapeProvider :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

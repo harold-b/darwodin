@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMapItemDetailSelectionAccessoryPresentationStyle
 ///
 @(objc_class="MKMapItemDetailSelectionAccessoryPresentationStyle", objc_superclass=NS.Object)
-MapItemDetailSelectionAccessoryPresentationStyle :: struct { using _: NS.Object, }
+MapItemDetailSelectionAccessoryPresentationStyle :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

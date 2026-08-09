@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBinding
 ///
 @(objc_class="MTLBinding")
-Binding :: struct { using _: intrinsics.objc_object, 
+Binding :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCAxisElementName
 ///
 @(objc_class="GCAxisElementName")
-AxisElementName :: struct { using _: intrinsics.objc_object, 
+AxisElementName :: struct {
+    using _: intrinsics.objc_object,
     using _: PhysicalInputElementName,
 }
 

@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCMouse
 ///
 @(objc_class="GCMouse", objc_superclass=NS.Object)
-Mouse :: struct { using _: NS.Object, 
+Mouse :: struct {
+    using _: NS.Object,
     using _: Device,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICollectionViewLayoutInvalidationContext
 ///
 @(objc_class="UICollectionViewLayoutInvalidationContext", objc_superclass=NS.Object)
-CollectionViewLayoutInvalidationContext :: struct { using _: NS.Object, }
+CollectionViewLayoutInvalidationContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCDeviceLight
 ///
 @(objc_class="GCDeviceLight", objc_superclass=NS.Object)
-DeviceLight :: struct { using _: NS.Object, }
+DeviceLight :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

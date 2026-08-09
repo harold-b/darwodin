@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIActivityItemsConfigurationReading
 ///
 @(objc_class="UIActivityItemsConfigurationReading")
-ActivityItemsConfigurationReading :: struct { using _: intrinsics.objc_object, 
+ActivityItemsConfigurationReading :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

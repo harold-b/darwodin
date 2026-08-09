@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIItemProviderReadingAugmentationDesignating
 ///
 @(objc_class="UIItemProviderReadingAugmentationDesignating")
-ItemProviderReadingAugmentationDesignating :: struct { using _: intrinsics.objc_object, 
+ItemProviderReadingAugmentationDesignating :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ItemProviderReading,
 }
 

@@ -3,6 +3,7 @@ package darwodin_EventKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
+import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
@@ -14,7 +15,8 @@ import MK "../MapKit"
 /// EKRecurrenceEnd
 ///
 @(objc_class="EKRecurrenceEnd", objc_superclass=NS.Object)
-RecurrenceEnd :: struct { using _: NS.Object, 
+RecurrenceEnd :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

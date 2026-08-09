@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLAccelerationStructurePassSampleBufferAttachmentDescriptor
 ///
 @(objc_class="MTLAccelerationStructurePassSampleBufferAttachmentDescriptor", objc_superclass=NS.Object)
-AccelerationStructurePassSampleBufferAttachmentDescriptor :: struct { using _: NS.Object, 
+AccelerationStructurePassSampleBufferAttachmentDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

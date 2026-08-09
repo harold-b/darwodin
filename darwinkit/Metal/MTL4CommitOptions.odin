@@ -1,23 +1,12 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTL4CommitOptions", objc_superclass=NS.Object)
-MTL4CommitOptions :: struct { using _: NS.Object, }
+MTL4CommitOptions :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=MTL4CommitOptions, objc_selector="addFeedbackHandler:", objc_name="addFeedbackHandler")
-    MTL4CommitOptions_addFeedbackHandler :: proc(self: ^MTL4CommitOptions, block: MTL4CommitFeedbackHandler) ---
+	@(objc_type=MTL4CommitOptions, objc_selector="addFeedbackHandler:", objc_name="addFeedbackHandler")
+	MTL4CommitOptions_addFeedbackHandler :: proc(self: ^MTL4CommitOptions, block: MTL4CommitFeedbackHandler) ---
 }
-
-
-

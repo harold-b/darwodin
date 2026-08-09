@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UINavigationItem
 ///
 @(objc_class="UINavigationItem", objc_superclass=NS.Object)
-NavigationItem :: struct { using _: NS.Object, 
+NavigationItem :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
 }
 

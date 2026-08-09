@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextPasteDelegate
 ///
 @(objc_class="UITextPasteDelegate")
-TextPasteDelegate :: struct { using _: intrinsics.objc_object, 
+TextPasteDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

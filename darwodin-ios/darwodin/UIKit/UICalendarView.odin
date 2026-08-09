@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICalendarView
 ///
 @(objc_class="UICalendarView", objc_superclass=View)
-CalendarView :: struct { using _: View, }
+CalendarView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

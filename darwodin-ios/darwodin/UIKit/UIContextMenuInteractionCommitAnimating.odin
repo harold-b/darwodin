@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIContextMenuInteractionCommitAnimating
 ///
 @(objc_class="UIContextMenuInteractionCommitAnimating")
-ContextMenuInteractionCommitAnimating :: struct { using _: intrinsics.objc_object, 
+ContextMenuInteractionCommitAnimating :: struct {
+    using _: intrinsics.objc_object,
     using _: ContextMenuInteractionAnimating,
 }
 

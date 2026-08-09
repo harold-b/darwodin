@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionLayoutListConfiguration
 ///
 @(objc_class="UICollectionLayoutListConfiguration", objc_superclass=NS.Object)
-CollectionLayoutListConfiguration :: struct { using _: NS.Object, 
+CollectionLayoutListConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapView
 ///
 @(objc_class="MKMapView", objc_superclass=NS.View)
-MapView :: struct { using _: NS.View, 
+MapView :: struct {
+    using _: NS.View,
     using _: NS.Coding,
 }
 

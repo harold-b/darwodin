@@ -1,59 +1,50 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UISimpleTextPrintFormatter
-///
+
+
 @(objc_class="UISimpleTextPrintFormatter", objc_superclass=PrintFormatter)
-SimpleTextPrintFormatter :: struct { using _: PrintFormatter, }
+SimpleTextPrintFormatter :: struct { using _: PrintFormatter}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="initWithText:", objc_name="initWithText")
-    SimpleTextPrintFormatter_initWithText :: proc(self: ^SimpleTextPrintFormatter, text: ^NS.String) -> instancetype ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="initWithText:", objc_name="initWithText")
+	SimpleTextPrintFormatter_initWithText :: proc(self: ^SimpleTextPrintFormatter, text: ^NS.String) -> instancetype ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="initWithAttributedText:", objc_name="initWithAttributedText")
-    SimpleTextPrintFormatter_initWithAttributedText :: proc(self: ^SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) -> instancetype ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="initWithAttributedText:", objc_name="initWithAttributedText")
+	SimpleTextPrintFormatter_initWithAttributedText :: proc(self: ^SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) -> instancetype ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="text", objc_name="text")
-    SimpleTextPrintFormatter_text :: proc(self: ^SimpleTextPrintFormatter) -> ^NS.String ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="text", objc_name="text")
+	SimpleTextPrintFormatter_text :: proc(self: ^SimpleTextPrintFormatter) -> ^NS.String ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="setText:", objc_name="setText")
-    SimpleTextPrintFormatter_setText :: proc(self: ^SimpleTextPrintFormatter, text: ^NS.String) ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="setText:", objc_name="setText")
+	SimpleTextPrintFormatter_setText :: proc(self: ^SimpleTextPrintFormatter, text: ^NS.String) ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="attributedText", objc_name="attributedText")
-    SimpleTextPrintFormatter_attributedText :: proc(self: ^SimpleTextPrintFormatter) -> ^NS.AttributedString ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="attributedText", objc_name="attributedText")
+	SimpleTextPrintFormatter_attributedText :: proc(self: ^SimpleTextPrintFormatter) -> ^NS.AttributedString ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="setAttributedText:", objc_name="setAttributedText")
-    SimpleTextPrintFormatter_setAttributedText :: proc(self: ^SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="setAttributedText:", objc_name="setAttributedText")
+	SimpleTextPrintFormatter_setAttributedText :: proc(self: ^SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="font", objc_name="font")
-    SimpleTextPrintFormatter_font :: proc(self: ^SimpleTextPrintFormatter) -> ^Font ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="font", objc_name="font")
+	SimpleTextPrintFormatter_font :: proc(self: ^SimpleTextPrintFormatter) -> ^Font ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="setFont:", objc_name="setFont")
-    SimpleTextPrintFormatter_setFont :: proc(self: ^SimpleTextPrintFormatter, font: ^Font) ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="setFont:", objc_name="setFont")
+	SimpleTextPrintFormatter_setFont :: proc(self: ^SimpleTextPrintFormatter, font: ^Font) ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="color", objc_name="color")
-    SimpleTextPrintFormatter_color :: proc(self: ^SimpleTextPrintFormatter) -> ^Color ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="color", objc_name="color")
+	SimpleTextPrintFormatter_color :: proc(self: ^SimpleTextPrintFormatter) -> ^Color ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="setColor:", objc_name="setColor")
-    SimpleTextPrintFormatter_setColor :: proc(self: ^SimpleTextPrintFormatter, color: ^Color) ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="setColor:", objc_name="setColor")
+	SimpleTextPrintFormatter_setColor :: proc(self: ^SimpleTextPrintFormatter, color: ^Color) ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="textAlignment", objc_name="textAlignment")
-    SimpleTextPrintFormatter_textAlignment :: proc(self: ^SimpleTextPrintFormatter) -> NSTextAlignment ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="textAlignment", objc_name="textAlignment")
+	SimpleTextPrintFormatter_textAlignment :: proc(self: ^SimpleTextPrintFormatter) -> NSTextAlignment ---
 
-    @(objc_type=SimpleTextPrintFormatter, objc_selector="setTextAlignment:", objc_name="setTextAlignment")
-    SimpleTextPrintFormatter_setTextAlignment :: proc(self: ^SimpleTextPrintFormatter, textAlignment: NSTextAlignment) ---
+	@(objc_type=SimpleTextPrintFormatter, objc_selector="setTextAlignment:", objc_name="setTextAlignment")
+	SimpleTextPrintFormatter_setTextAlignment :: proc(self: ^SimpleTextPrintFormatter, textAlignment: NSTextAlignment) ---
 }

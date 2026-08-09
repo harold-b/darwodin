@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLURLTexture
 ///
 @(objc_class="MDLURLTexture", objc_superclass=Texture)
-URLTexture :: struct { using _: Texture, }
+URLTexture :: struct { using _: Texture}
 
 @(default_calling_convention="c")
 foreign lib {

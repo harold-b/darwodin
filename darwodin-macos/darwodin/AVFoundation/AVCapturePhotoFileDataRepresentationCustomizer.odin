@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVCapturePhotoFileDataRepresentationCustomizer
 ///
 @(objc_class="AVCapturePhotoFileDataRepresentationCustomizer")
-CapturePhotoFileDataRepresentationCustomizer :: struct { using _: intrinsics.objc_object, 
+CapturePhotoFileDataRepresentationCustomizer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

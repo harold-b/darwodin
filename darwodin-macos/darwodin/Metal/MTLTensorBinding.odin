@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTensorBinding
 ///
 @(objc_class="MTLTensorBinding")
-TensorBinding :: struct { using _: intrinsics.objc_object, 
+TensorBinding :: struct {
+    using _: intrinsics.objc_object,
     using _: Binding,
 }
 

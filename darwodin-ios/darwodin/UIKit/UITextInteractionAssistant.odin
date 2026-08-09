@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextInteractionAssistant
 ///
 @(objc_class="UITextInteractionAssistant")
-TextInteractionAssistant :: struct { using _: intrinsics.objc_object, }
+TextInteractionAssistant :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLSkyCubeTexture
 ///
 @(objc_class="MDLSkyCubeTexture", objc_superclass=Texture)
-SkyCubeTexture :: struct { using _: Texture, }
+SkyCubeTexture :: struct { using _: Texture}
 
 @(default_calling_convention="c")
 foreign lib {

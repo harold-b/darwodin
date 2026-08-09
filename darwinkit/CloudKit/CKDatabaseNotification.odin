@@ -1,19 +1,11 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="CKDatabaseNotification", objc_superclass=Notification)
-DatabaseNotification :: struct { using _: Notification, }
+DatabaseNotification :: struct { using _: Notification}
 
 foreign lib {
-    @(objc_type=DatabaseNotification, objc_selector="databaseScope", objc_name="databaseScope")
-    DatabaseNotification_databaseScope :: proc(self: ^DatabaseNotification) -> DatabaseScope ---
+	@(objc_type=DatabaseNotification, objc_selector="databaseScope", objc_name="databaseScope")
+	DatabaseNotification_databaseScope :: proc(self: ^DatabaseNotification) -> DatabaseScope ---
 }
-
-
-

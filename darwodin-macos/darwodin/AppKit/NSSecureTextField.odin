@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSecureTextField
 ///
 @(objc_class="NSSecureTextField", objc_superclass=TextField)
-SecureTextField :: struct { using _: TextField, }
+SecureTextField :: struct { using _: TextField}
 
 @(default_calling_convention="c")
 foreign lib {}

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTransformRotateYOp
 ///
 @(objc_class="MDLTransformRotateYOp", objc_superclass=NS.Object)
-TransformRotateYOp :: struct { using _: NS.Object, 
+TransformRotateYOp :: struct {
+    using _: NS.Object,
     using _: TransformOp,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLLogicalToPhysicalColorAttachmentMap
 ///
 @(objc_class="MTLLogicalToPhysicalColorAttachmentMap", objc_superclass=NS.Object)
-LogicalToPhysicalColorAttachmentMap :: struct { using _: NS.Object, 
+LogicalToPhysicalColorAttachmentMap :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

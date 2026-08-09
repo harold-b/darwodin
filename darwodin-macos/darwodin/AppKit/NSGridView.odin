@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSGridView
 ///
 @(objc_class="NSGridView", objc_superclass=View)
-GridView :: struct { using _: View, }
+GridView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

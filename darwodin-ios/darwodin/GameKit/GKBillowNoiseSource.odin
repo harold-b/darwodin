@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKBillowNoiseSource
 ///
 @(objc_class="GKBillowNoiseSource", objc_superclass=CoherentNoiseSource)
-BillowNoiseSource :: struct { using _: CoherentNoiseSource, }
+BillowNoiseSource :: struct { using _: CoherentNoiseSource}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSDocumentController
 ///
 @(objc_class="NSDocumentController", objc_superclass=NS.Object)
-DocumentController :: struct { using _: NS.Object, 
+DocumentController :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: MenuItemValidation,
     using _: UserInterfaceValidations,

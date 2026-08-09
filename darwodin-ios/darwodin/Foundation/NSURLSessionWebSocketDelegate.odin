@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLSessionWebSocketDelegate
 ///
 @(objc_class="NSURLSessionWebSocketDelegate")
-URLSessionWebSocketDelegate :: struct { using _: intrinsics.objc_object, 
+URLSessionWebSocketDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: URLSessionTaskDelegate,
 }
 

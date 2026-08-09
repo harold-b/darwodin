@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// EAGLDrawable
 ///
 @(objc_class="EAGLDrawable")
-EAGLDrawable :: struct { using _: intrinsics.objc_object, }
+EAGLDrawable :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

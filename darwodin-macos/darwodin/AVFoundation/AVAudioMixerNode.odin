@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVAudioMixerNode
 ///
 @(objc_class="AVAudioMixerNode", objc_superclass=AudioNode)
-AudioMixerNode :: struct { using _: AudioNode, 
+AudioMixerNode :: struct {
+    using _: AudioNode,
     using _: AudioMixing,
 }
 

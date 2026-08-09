@@ -13,7 +13,7 @@ import CG "../CoreGraphics"
 /// CTAdaptiveImageProviding
 ///
 @(objc_class="CTAdaptiveImageProviding")
-AdaptiveImageProviding :: struct { using _: intrinsics.objc_object, }
+AdaptiveImageProviding :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

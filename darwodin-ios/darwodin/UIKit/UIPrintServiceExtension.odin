@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPrintServiceExtension
 ///
 @(objc_class="UIPrintServiceExtension", objc_superclass=NS.Object)
-PrintServiceExtension :: struct { using _: NS.Object, }
+PrintServiceExtension :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

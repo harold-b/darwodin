@@ -1,24 +1,19 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKGameModelUpdate")
-GameModelUpdate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+GameModelUpdate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=GameModelUpdate, objc_selector="value", objc_name="value")
-    GameModelUpdate_value :: proc(self: ^GameModelUpdate) -> NS.Integer ---
+	@(objc_type=GameModelUpdate, objc_selector="value", objc_name="value")
+	GameModelUpdate_value :: proc(self: ^GameModelUpdate) -> NS.Integer ---
 
-    @(objc_type=GameModelUpdate, objc_selector="setValue:", objc_name="setValue")
-    GameModelUpdate_setValue :: proc(self: ^GameModelUpdate, value: NS.Integer) ---
+	@(objc_type=GameModelUpdate, objc_selector="setValue:", objc_name="setValue")
+	GameModelUpdate_setValue :: proc(self: ^GameModelUpdate, value: NS.Integer) ---
 }
-
-
-

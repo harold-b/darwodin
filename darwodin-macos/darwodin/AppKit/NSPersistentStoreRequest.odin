@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPersistentStoreRequest
 ///
 @(objc_class="NSPersistentStoreRequest")
-PersistentStoreRequest :: struct { using _: intrinsics.objc_object, }
+PersistentStoreRequest :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

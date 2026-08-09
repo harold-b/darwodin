@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKPolygonObstacle
 ///
 @(objc_class="GKPolygonObstacle", objc_superclass=Obstacle)
-PolygonObstacle :: struct { using _: Obstacle, 
+PolygonObstacle :: struct {
+    using _: Obstacle,
     using _: NS.SecureCoding,
 }
 

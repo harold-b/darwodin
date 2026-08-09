@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICalendarViewDelegate
 ///
 @(objc_class="UICalendarViewDelegate")
-CalendarViewDelegate :: struct { using _: intrinsics.objc_object, 
+CalendarViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

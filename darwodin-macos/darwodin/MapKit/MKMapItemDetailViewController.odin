@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMapItemDetailViewController
 ///
 @(objc_class="MKMapItemDetailViewController", objc_superclass=NS.ViewController)
-MapItemDetailViewController :: struct { using _: NS.ViewController, }
+MapItemDetailViewController :: struct { using _: NS.ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIOCommandQueue
 ///
 @(objc_class="MTLIOCommandQueue")
-IOCommandQueue :: struct { using _: intrinsics.objc_object, 
+IOCommandQueue :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

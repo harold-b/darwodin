@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindow
 ///
 @(objc_class="UIWindow", objc_superclass=View)
-Window :: struct { using _: View, }
+Window :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

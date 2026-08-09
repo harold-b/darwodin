@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIAccessibilityContainerDataTableCell
 ///
 @(objc_class="UIAccessibilityContainerDataTableCell")
-AccessibilityContainerDataTableCell :: struct { using _: intrinsics.objc_object, 
+AccessibilityContainerDataTableCell :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

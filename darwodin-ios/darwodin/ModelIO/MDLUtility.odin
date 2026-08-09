@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLUtility
 ///
 @(objc_class="MDLUtility", objc_superclass=NS.Object)
-Utility :: struct { using _: NS.Object, }
+Utility :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSAssertionHandler
 ///
 @(objc_class="NSAssertionHandler", objc_superclass=Object)
-AssertionHandler :: struct { using _: Object, }
+AssertionHandler :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

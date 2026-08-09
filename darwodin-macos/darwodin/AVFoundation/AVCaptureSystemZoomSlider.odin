@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVCaptureSystemZoomSlider
 ///
 @(objc_class="AVCaptureSystemZoomSlider", objc_superclass=CaptureControl)
-CaptureSystemZoomSlider :: struct { using _: CaptureControl, }
+CaptureSystemZoomSlider :: struct { using _: CaptureControl}
 
 @(default_calling_convention="c")
 foreign lib {

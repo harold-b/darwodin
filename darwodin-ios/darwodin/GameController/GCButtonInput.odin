@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCButtonInput
 ///
 @(objc_class="GCButtonInput")
-ButtonInput :: struct { using _: intrinsics.objc_object, }
+ButtonInput :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

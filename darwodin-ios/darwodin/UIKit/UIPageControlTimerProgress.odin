@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPageControlTimerProgress
 ///
 @(objc_class="UIPageControlTimerProgress", objc_superclass=PageControlProgress)
-PageControlTimerProgress :: struct { using _: PageControlProgress, }
+PageControlTimerProgress :: struct { using _: PageControlProgress}
 
 @(default_calling_convention="c")
 foreign lib {

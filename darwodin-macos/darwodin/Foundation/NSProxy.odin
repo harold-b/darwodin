@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSProxy
 ///
 @(objc_class="NSProxy")
-Proxy :: struct { using _: intrinsics.objc_object, 
+Proxy :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

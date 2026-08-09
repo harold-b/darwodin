@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLSamplerState
 ///
 @(objc_class="MTLSamplerState")
-SamplerState :: struct { using _: intrinsics.objc_object, 
+SamplerState :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

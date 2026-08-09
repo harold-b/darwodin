@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKSyncEngineFetchChangesOptions
 ///
 @(objc_class="CKSyncEngineFetchChangesOptions", objc_superclass=NS.Object)
-SyncEngineFetchChangesOptions :: struct { using _: NS.Object, 
+SyncEngineFetchChangesOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

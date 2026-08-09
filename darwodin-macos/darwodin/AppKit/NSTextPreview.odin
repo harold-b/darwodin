@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextPreview
 ///
 @(objc_class="NSTextPreview", objc_superclass=NS.Object)
-TextPreview :: struct { using _: NS.Object, }
+TextPreview :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

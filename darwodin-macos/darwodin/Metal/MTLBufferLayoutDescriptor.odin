@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBufferLayoutDescriptor
 ///
 @(objc_class="MTLBufferLayoutDescriptor", objc_superclass=NS.Object)
-BufferLayoutDescriptor :: struct { using _: NS.Object, 
+BufferLayoutDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

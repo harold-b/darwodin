@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextStorageObserving
 ///
 @(objc_class="NSTextStorageObserving")
-TextStorageObserving :: struct { using _: intrinsics.objc_object, 
+TextStorageObserving :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

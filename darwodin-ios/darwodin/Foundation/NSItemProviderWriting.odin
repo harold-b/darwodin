@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSItemProviderWriting
 ///
 @(objc_class="NSItemProviderWriting")
-ItemProviderWriting :: struct { using _: intrinsics.objc_object, 
+ItemProviderWriting :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,8 @@ import UI "../UIKit"
 /// GKAchievement
 ///
 @(objc_class="GKAchievement", objc_superclass=NS.Object)
-Achievement :: struct { using _: NS.Object, 
+Achievement :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }
@@ -86,12 +88,6 @@ foreign lib {
     @(objc_type=Achievement, objc_selector="selectChallengeablePlayerIDs:withCompletionHandler:", objc_name="selectChallengeablePlayerIDs")
     Achievement_selectChallengeablePlayerIDs :: proc(self: ^Achievement, playerIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( challengeablePlayerIDs: ^NS.Array, error: ^NS.Error ))) ---
 
-    @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
-    Achievement_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^UI.ViewController ---
-
-    @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
-    Achievement_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^UI.ViewController ---
-
     @(objc_type=Achievement, objc_selector="challengeComposeControllerWithPlayers:message:completionHandler:", objc_name="challengeComposeControllerWithPlayers")
     Achievement_challengeComposeControllerWithPlayers :: proc(self: ^Achievement, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^UI.ViewController ---
 }
@@ -107,11 +103,5 @@ Achievement_initWithIdentifier :: proc {
 Achievement_reportAchievements :: proc {
     Achievement_reportAchievements_withCompletionHandler,
     Achievement_reportAchievements_withEligibleChallenges_withCompletionHandler,
-}
-
-@(objc_type=Achievement, objc_name="challengeComposeControllerWithMessage")
-Achievement_challengeComposeControllerWithMessage :: proc {
-    Achievement_challengeComposeControllerWithMessage_players_completionHandler,
-    Achievement_challengeComposeControllerWithMessage_players_completion,
 }
 

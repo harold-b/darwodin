@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKLookAroundScene
 ///
 @(objc_class="MKLookAroundScene", objc_superclass=NS.Object)
-LookAroundScene :: struct { using _: NS.Object, 
+LookAroundScene :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIZoomTransitionOptions
 ///
 @(objc_class="UIZoomTransitionOptions", objc_superclass=NS.Object)
-ZoomTransitionOptions :: struct { using _: NS.Object, 
+ZoomTransitionOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

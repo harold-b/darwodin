@@ -1,27 +1,14 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMetricPlayerItemSeekEvent", objc_superclass=MetricPlayerItemRateChangeEvent)
-MetricPlayerItemSeekEvent :: struct { using _: MetricPlayerItemRateChangeEvent, }
+MetricPlayerItemSeekEvent :: struct { using _: MetricPlayerItemRateChangeEvent}
 
 foreign lib {
-    @(objc_type=MetricPlayerItemSeekEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemSeekEvent_init :: proc(self: ^MetricPlayerItemSeekEvent) -> instancetype ---
+	@(objc_type=MetricPlayerItemSeekEvent, objc_selector="init", objc_name="init")
+	MetricPlayerItemSeekEvent_init :: proc(self: ^MetricPlayerItemSeekEvent) -> instancetype ---
 
-    @(objc_type=MetricPlayerItemSeekEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    MetricPlayerItemSeekEvent_new :: proc() -> ^MetricPlayerItemSeekEvent ---
+	@(objc_type=MetricPlayerItemSeekEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	MetricPlayerItemSeekEvent_new :: proc() -> ^MetricPlayerItemSeekEvent ---
 }
-
-
-

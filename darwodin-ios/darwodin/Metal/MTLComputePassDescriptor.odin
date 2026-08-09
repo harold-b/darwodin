@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLComputePassDescriptor
 ///
 @(objc_class="MTLComputePassDescriptor", objc_superclass=NS.Object)
-ComputePassDescriptor :: struct { using _: NS.Object, 
+ComputePassDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

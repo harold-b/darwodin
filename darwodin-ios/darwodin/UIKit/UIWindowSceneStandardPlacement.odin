@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowSceneStandardPlacement
 ///
 @(objc_class="UIWindowSceneStandardPlacement", objc_superclass=WindowScenePlacement)
-WindowSceneStandardPlacement :: struct { using _: WindowScenePlacement, }
+WindowSceneStandardPlacement :: struct { using _: WindowScenePlacement}
 
 @(default_calling_convention="c")
 foreign lib {

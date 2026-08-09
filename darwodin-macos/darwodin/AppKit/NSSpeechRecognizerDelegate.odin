@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSpeechRecognizerDelegate
 ///
 @(objc_class="NSSpeechRecognizerDelegate")
-SpeechRecognizerDelegate :: struct { using _: intrinsics.objc_object, 
+SpeechRecognizerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

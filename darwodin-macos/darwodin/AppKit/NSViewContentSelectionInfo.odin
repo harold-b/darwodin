@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSViewContentSelectionInfo
 ///
 @(objc_class="NSViewContentSelectionInfo")
-ViewContentSelectionInfo :: struct { using _: intrinsics.objc_object, 
+ViewContentSelectionInfo :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

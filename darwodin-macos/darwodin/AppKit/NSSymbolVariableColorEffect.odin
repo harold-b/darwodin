@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSymbolVariableColorEffect
 ///
 @(objc_class="NSSymbolVariableColorEffect", objc_superclass=SymbolEffect)
-SymbolVariableColorEffect :: struct { using _: SymbolEffect, }
+SymbolVariableColorEffect :: struct { using _: SymbolEffect}
 
 @(default_calling_convention="c")
 foreign lib {

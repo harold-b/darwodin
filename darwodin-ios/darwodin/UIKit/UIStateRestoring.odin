@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIStateRestoring
 ///
 @(objc_class="UIStateRestoring")
-StateRestoring :: struct { using _: intrinsics.objc_object, 
+StateRestoring :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

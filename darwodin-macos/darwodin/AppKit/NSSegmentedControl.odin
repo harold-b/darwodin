@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSegmentedControl
 ///
 @(objc_class="NSSegmentedControl", objc_superclass=Control)
-SegmentedControl :: struct { using _: Control, 
+SegmentedControl :: struct {
+    using _: Control,
     using _: UserInterfaceCompression,
 }
 

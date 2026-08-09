@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSColorPickingCustom
 ///
 @(objc_class="NSColorPickingCustom")
-ColorPickingCustom :: struct { using _: intrinsics.objc_object, 
+ColorPickingCustom :: struct {
+    using _: intrinsics.objc_object,
     using _: ColorPickingDefault,
 }
 

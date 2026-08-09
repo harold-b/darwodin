@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSInputManager
 ///
 @(objc_class="NSInputManager", objc_superclass=NS.Object)
-InputManager :: struct { using _: NS.Object, 
+InputManager :: struct {
+    using _: NS.Object,
     using _: TextInput,
 }
 

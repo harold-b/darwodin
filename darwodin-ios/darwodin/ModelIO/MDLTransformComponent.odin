@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTransformComponent
 ///
 @(objc_class="MDLTransformComponent")
-TransformComponent :: struct { using _: intrinsics.objc_object, 
+TransformComponent :: struct {
+    using _: intrinsics.objc_object,
     using _: Component,
 }
 

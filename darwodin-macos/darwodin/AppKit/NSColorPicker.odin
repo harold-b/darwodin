@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSColorPicker
 ///
 @(objc_class="NSColorPicker", objc_superclass=NS.Object)
-ColorPicker :: struct { using _: NS.Object, 
+ColorPicker :: struct {
+    using _: NS.Object,
     using _: ColorPickingDefault,
 }
 

@@ -8,6 +8,7 @@ import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
@@ -21,8 +22,11 @@ foreign import lib {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 CNPostalAddress :: NS.Object
 
+// -user-text-end
 
 
 FeatureDisplayPriorityRequired           :: 1000.000000

@@ -1,28 +1,18 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTL4CommandAllocatorDescriptor", objc_superclass=NS.Object)
-MTL4CommandAllocatorDescriptor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+MTL4CommandAllocatorDescriptor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=MTL4CommandAllocatorDescriptor, objc_selector="label", objc_name="label")
-    MTL4CommandAllocatorDescriptor_label :: proc(self: ^MTL4CommandAllocatorDescriptor) -> ^NS.String ---
+	@(objc_type=MTL4CommandAllocatorDescriptor, objc_selector="label", objc_name="label")
+	MTL4CommandAllocatorDescriptor_label :: proc(self: ^MTL4CommandAllocatorDescriptor) -> ^NS.String ---
 
-    @(objc_type=MTL4CommandAllocatorDescriptor, objc_selector="setLabel:", objc_name="setLabel")
-    MTL4CommandAllocatorDescriptor_setLabel :: proc(self: ^MTL4CommandAllocatorDescriptor, label: ^NS.String) ---
+	@(objc_type=MTL4CommandAllocatorDescriptor, objc_selector="setLabel:", objc_name="setLabel")
+	MTL4CommandAllocatorDescriptor_setLabel :: proc(self: ^MTL4CommandAllocatorDescriptor, label: ^NS.String) ---
 }
-
-
-

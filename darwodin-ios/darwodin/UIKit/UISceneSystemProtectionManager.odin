@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISceneSystemProtectionManager
 ///
 @(objc_class="UISceneSystemProtectionManager", objc_superclass=NS.Object)
-SceneSystemProtectionManager :: struct { using _: NS.Object, }
+SceneSystemProtectionManager :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

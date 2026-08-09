@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLRenderPipelineColorAttachmentDescriptor
 ///
 @(objc_class="MTLRenderPipelineColorAttachmentDescriptor", objc_superclass=NS.Object)
-RenderPipelineColorAttachmentDescriptor :: struct { using _: NS.Object, 
+RenderPipelineColorAttachmentDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

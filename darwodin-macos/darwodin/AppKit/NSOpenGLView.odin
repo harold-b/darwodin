@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSOpenGLView
 ///
 @(objc_class="NSOpenGLView", objc_superclass=View)
-OpenGLView :: struct { using _: View, }
+OpenGLView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

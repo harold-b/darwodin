@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSIgnoreMisspelledWords
 ///
 @(objc_class="NSIgnoreMisspelledWords")
-IgnoreMisspelledWords :: struct { using _: intrinsics.objc_object, }
+IgnoreMisspelledWords :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

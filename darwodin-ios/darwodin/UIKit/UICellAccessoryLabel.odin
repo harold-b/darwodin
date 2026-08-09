@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICellAccessoryLabel
 ///
 @(objc_class="UICellAccessoryLabel", objc_superclass=CellAccessory)
-CellAccessoryLabel :: struct { using _: CellAccessory, }
+CellAccessoryLabel :: struct { using _: CellAccessory}
 
 @(default_calling_convention="c")
 foreign lib {

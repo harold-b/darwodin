@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDeferredMenuElementProvider
 ///
 @(objc_class="UIDeferredMenuElementProvider", objc_superclass=NS.Object)
-DeferredMenuElementProvider :: struct { using _: NS.Object, }
+DeferredMenuElementProvider :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

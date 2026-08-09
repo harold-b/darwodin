@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSUserScriptTask
 ///
 @(objc_class="NSUserScriptTask", objc_superclass=Object)
-UserScriptTask :: struct { using _: Object, }
+UserScriptTask :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

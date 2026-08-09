@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVDelegatingPlaybackCoordinator
 ///
 @(objc_class="AVDelegatingPlaybackCoordinator", objc_superclass=PlaybackCoordinator)
-DelegatingPlaybackCoordinator :: struct { using _: PlaybackCoordinator, }
+DelegatingPlaybackCoordinator :: struct { using _: PlaybackCoordinator}
 
 @(default_calling_convention="c")
 foreign lib {

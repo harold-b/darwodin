@@ -1,28 +1,21 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="CKSyncEngineFailedRecordSave", objc_superclass=NS.Object)
-SyncEngineFailedRecordSave :: struct { using _: NS.Object, }
+SyncEngineFailedRecordSave :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=SyncEngineFailedRecordSave, objc_selector="init", objc_name="init")
-    SyncEngineFailedRecordSave_init :: proc(self: ^SyncEngineFailedRecordSave) -> instancetype ---
+	@(objc_type=SyncEngineFailedRecordSave, objc_selector="init", objc_name="init")
+	SyncEngineFailedRecordSave_init :: proc(self: ^SyncEngineFailedRecordSave) -> instancetype ---
 
-    @(objc_type=SyncEngineFailedRecordSave, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    SyncEngineFailedRecordSave_new :: proc() -> ^SyncEngineFailedRecordSave ---
+	@(objc_type=SyncEngineFailedRecordSave, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	SyncEngineFailedRecordSave_new :: proc() -> ^SyncEngineFailedRecordSave ---
 
-    @(objc_type=SyncEngineFailedRecordSave, objc_selector="record", objc_name="record")
-    SyncEngineFailedRecordSave_record :: proc(self: ^SyncEngineFailedRecordSave) -> ^Record ---
+	@(objc_type=SyncEngineFailedRecordSave, objc_selector="record", objc_name="record")
+	SyncEngineFailedRecordSave_record :: proc(self: ^SyncEngineFailedRecordSave) -> ^Record ---
 
-    @(objc_type=SyncEngineFailedRecordSave, objc_selector="error", objc_name="error")
-    SyncEngineFailedRecordSave_error :: proc(self: ^SyncEngineFailedRecordSave) -> ^NS.Error ---
+	@(objc_type=SyncEngineFailedRecordSave, objc_selector="error", objc_name="error")
+	SyncEngineFailedRecordSave_error :: proc(self: ^SyncEngineFailedRecordSave) -> ^NS.Error ---
 }
-
-
-

@@ -1,30 +1,21 @@
 #+build darwin
-package darwodin_ModelIO
+package darwin_ModelIO
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import MTL "../Metal"
 
 @(objc_class="MDLVertexBufferLayout", objc_superclass=NS.Object)
-VertexBufferLayout :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+VertexBufferLayout :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=VertexBufferLayout, objc_selector="initWithStride:", objc_name="initWithStride")
-    VertexBufferLayout_initWithStride :: proc(self: ^VertexBufferLayout, stride: NS.UInteger) -> instancetype ---
+	@(objc_type=VertexBufferLayout, objc_selector="initWithStride:", objc_name="initWithStride")
+	VertexBufferLayout_initWithStride :: proc(self: ^VertexBufferLayout, stride: NS.UInteger) -> instancetype ---
 
-    @(objc_type=VertexBufferLayout, objc_selector="stride", objc_name="stride")
-    VertexBufferLayout_stride :: proc(self: ^VertexBufferLayout) -> NS.UInteger ---
+	@(objc_type=VertexBufferLayout, objc_selector="stride", objc_name="stride")
+	VertexBufferLayout_stride :: proc(self: ^VertexBufferLayout) -> NS.UInteger ---
 
-    @(objc_type=VertexBufferLayout, objc_selector="setStride:", objc_name="setStride")
-    VertexBufferLayout_setStride :: proc(self: ^VertexBufferLayout, stride: NS.UInteger) ---
+	@(objc_type=VertexBufferLayout, objc_selector="setStride:", objc_name="setStride")
+	VertexBufferLayout_setStride :: proc(self: ^VertexBufferLayout, stride: NS.UInteger) ---
 }
-
-
-

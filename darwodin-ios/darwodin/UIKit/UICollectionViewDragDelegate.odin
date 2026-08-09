@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDragDelegate
 ///
 @(objc_class="UICollectionViewDragDelegate")
-CollectionViewDragDelegate :: struct { using _: intrinsics.objc_object, 
+CollectionViewDragDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

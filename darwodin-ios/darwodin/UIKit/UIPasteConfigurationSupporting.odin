@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPasteConfigurationSupporting
 ///
 @(objc_class="UIPasteConfigurationSupporting")
-PasteConfigurationSupporting :: struct { using _: intrinsics.objc_object, 
+PasteConfigurationSupporting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

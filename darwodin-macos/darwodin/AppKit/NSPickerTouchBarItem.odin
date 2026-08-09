@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPickerTouchBarItem
 ///
 @(objc_class="NSPickerTouchBarItem", objc_superclass=TouchBarItem)
-PickerTouchBarItem :: struct { using _: TouchBarItem, }
+PickerTouchBarItem :: struct { using _: TouchBarItem}
 
 @(default_calling_convention="c")
 foreign lib {

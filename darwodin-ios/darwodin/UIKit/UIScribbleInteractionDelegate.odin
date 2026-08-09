@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIScribbleInteractionDelegate
 ///
 @(objc_class="UIScribbleInteractionDelegate")
-ScribbleInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+ScribbleInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

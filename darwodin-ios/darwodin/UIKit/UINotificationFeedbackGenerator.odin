@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UINotificationFeedbackGenerator
 ///
 @(objc_class="UINotificationFeedbackGenerator", objc_superclass=FeedbackGenerator)
-NotificationFeedbackGenerator :: struct { using _: FeedbackGenerator, }
+NotificationFeedbackGenerator :: struct { using _: FeedbackGenerator}
 
 @(default_calling_convention="c")
 foreign lib {

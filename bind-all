@@ -4,29 +4,30 @@ cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 use_ios=
 lite=
-emit_markers=
+verbose=
+extra_args=()
 
 while true; do
   case $1 in
-    -ios)
+
+    -i|-ios)
       use_ios=1
     ;;
     -l|-lite)
-      lite=1
+      echo "Lite mode not supported anymore"
+      exit 1
     ;;
     -m|-markers)
-      emit_markers="-m"
+      extra_args+=(-m)
+    ;;
+    -v|-verbose|--verbose)
+      extra_args+=(-v)
     ;;
   esac
   shift || break
 done
 
 source ./config
-
-
-if [[ ${lite} -eq 1 ]]; then
-  lite_arg="-l"
-fi
 
 
 ios_args=()
@@ -38,7 +39,7 @@ else
 fi
 
 # Bind Frameworks
-./bind ${frameworks[@]} ${lite_arg} ${emit_markers} ${ios_args[@]}
+./bind ${frameworks[@]} ${lite_arg} ${extra_args[@]} ${ios_args[@]}
 
 
 # Copy Objective-C package

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTL4FXTemporalDenoisedScaler
 ///
 @(objc_class="MTL4FXTemporalDenoisedScaler")
-MTL4FXTemporalDenoisedScaler :: struct { using _: intrinsics.objc_object, 
+MTL4FXTemporalDenoisedScaler :: struct {
+    using _: intrinsics.objc_object,
     using _: TemporalDenoisedScalerBase,
 }
 

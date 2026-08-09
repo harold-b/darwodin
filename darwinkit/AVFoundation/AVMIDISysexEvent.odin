@@ -1,27 +1,16 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
 import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMIDISysexEvent", objc_superclass=MusicEvent)
-MIDISysexEvent :: struct { using _: MusicEvent, }
+MIDISysexEvent :: struct { using _: MusicEvent}
 
 foreign lib {
-    @(objc_type=MIDISysexEvent, objc_selector="initWithData:", objc_name="initWithData")
-    MIDISysexEvent_initWithData :: proc(self: ^MIDISysexEvent, data: ^NS.Data) -> instancetype ---
+	@(objc_type=MIDISysexEvent, objc_selector="initWithData:", objc_name="initWithData")
+	MIDISysexEvent_initWithData :: proc(self: ^MIDISysexEvent, data: ^NS.Data) -> instancetype ---
 
-    @(objc_type=MIDISysexEvent, objc_selector="sizeInBytes", objc_name="sizeInBytes")
-    MIDISysexEvent_sizeInBytes :: proc(self: ^MIDISysexEvent) -> CF.UInt32 ---
+	@(objc_type=MIDISysexEvent, objc_selector="sizeInBytes", objc_name="sizeInBytes")
+	MIDISysexEvent_sizeInBytes :: proc(self: ^MIDISysexEvent) -> CF.UInt32 ---
 }
-
-
-

@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LADomainStateBiometry
 ///
 @(objc_class="LADomainStateBiometry", objc_superclass=NS.Object)
-DomainStateBiometry :: struct { using _: NS.Object, }
+DomainStateBiometry :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

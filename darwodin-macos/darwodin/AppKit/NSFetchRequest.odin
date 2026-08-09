@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSFetchRequest
 ///
 @(objc_class="NSFetchRequest")
-FetchRequest :: struct { using _: intrinsics.objc_object, }
+FetchRequest :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

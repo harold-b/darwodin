@@ -1,27 +1,18 @@
 #+build darwin
-package darwodin_AudioToolbox
+package darwin_AudioToolbox
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CA "../CoreAudio"
-import CM "../CoreMedia"
 import NS "../Foundation"
 
 @(objc_class="AUParameterGroup", objc_superclass=AUParameterNode)
-AUParameterGroup :: struct { using _: AUParameterNode, 
-    using _: NS.SecureCoding,
+AUParameterGroup :: struct {
+	using _: AUParameterNode,
+	using _: NS.SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=AUParameterGroup, objc_selector="children", objc_name="children")
-    AUParameterGroup_children :: proc(self: ^AUParameterGroup) -> ^NS.Array ---
+	@(objc_type=AUParameterGroup, objc_selector="children", objc_name="children")
+	AUParameterGroup_children :: proc(self: ^AUParameterGroup) -> ^NS.Array ---
 
-    @(objc_type=AUParameterGroup, objc_selector="allParameters", objc_name="allParameters")
-    AUParameterGroup_allParameters :: proc(self: ^AUParameterGroup) -> ^NS.Array ---
+	@(objc_type=AUParameterGroup, objc_selector="allParameters", objc_name="allParameters")
+	AUParameterGroup_allParameters :: proc(self: ^AUParameterGroup) -> ^NS.Array ---
 }
-
-
-

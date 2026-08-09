@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVCaptureAudioDataOutput
 ///
 @(objc_class="AVCaptureAudioDataOutput", objc_superclass=CaptureOutput)
-CaptureAudioDataOutput :: struct { using _: CaptureOutput, }
+CaptureAudioDataOutput :: struct { using _: CaptureOutput}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -46,8 +46,8 @@ foreign lib {
     CaptureAudioDataOutput_setAudioSettings :: proc(self: ^CaptureAudioDataOutput, audioSettings: ^NS.Dictionary) ---
 
     @(objc_type=CaptureAudioDataOutput, objc_selector="spatialAudioChannelLayoutTag", objc_name="spatialAudioChannelLayoutTag")
-    CaptureAudioDataOutput_spatialAudioChannelLayoutTag :: proc(self: ^CaptureAudioDataOutput) -> Audio.ChannelLayoutTag ---
+    CaptureAudioDataOutput_spatialAudioChannelLayoutTag :: proc(self: ^CaptureAudioDataOutput) -> AT.ChannelLayoutTag ---
 
     @(objc_type=CaptureAudioDataOutput, objc_selector="setSpatialAudioChannelLayoutTag:", objc_name="setSpatialAudioChannelLayoutTag")
-    CaptureAudioDataOutput_setSpatialAudioChannelLayoutTag :: proc(self: ^CaptureAudioDataOutput, spatialAudioChannelLayoutTag: Audio.ChannelLayoutTag) ---
+    CaptureAudioDataOutput_setSpatialAudioChannelLayoutTag :: proc(self: ^CaptureAudioDataOutput, spatialAudioChannelLayoutTag: AT.ChannelLayoutTag) ---
 }

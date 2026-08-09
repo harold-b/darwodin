@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMIDIPolyPressureEvent
 ///
 @(objc_class="AVMIDIPolyPressureEvent", objc_superclass=MIDIChannelEvent)
-MIDIPolyPressureEvent :: struct { using _: MIDIChannelEvent, }
+MIDIPolyPressureEvent :: struct { using _: MIDIChannelEvent}
 
 @(default_calling_convention="c")
 foreign lib {

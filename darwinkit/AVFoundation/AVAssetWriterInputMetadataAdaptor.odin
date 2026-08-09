@@ -1,39 +1,27 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVAssetWriterInputMetadataAdaptor", objc_superclass=NS.Object)
-AssetWriterInputMetadataAdaptor :: struct { using _: NS.Object, }
+AssetWriterInputMetadataAdaptor :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="init", objc_name="init")
-    AssetWriterInputMetadataAdaptor_init :: proc(self: ^AssetWriterInputMetadataAdaptor) -> instancetype ---
+	@(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="init", objc_name="init")
+	AssetWriterInputMetadataAdaptor_init :: proc(self: ^AssetWriterInputMetadataAdaptor) -> instancetype ---
 
-    @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    AssetWriterInputMetadataAdaptor_new :: proc() -> ^AssetWriterInputMetadataAdaptor ---
+	@(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	AssetWriterInputMetadataAdaptor_new :: proc() -> ^AssetWriterInputMetadataAdaptor ---
 
-    @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="assetWriterInputMetadataAdaptorWithAssetWriterInput:", objc_name="assetWriterInputMetadataAdaptorWithAssetWriterInput", objc_is_class_method=true)
-    AssetWriterInputMetadataAdaptor_assetWriterInputMetadataAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput) -> instancetype ---
+	@(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="assetWriterInputMetadataAdaptorWithAssetWriterInput:", objc_name="assetWriterInputMetadataAdaptorWithAssetWriterInput", objc_is_class_method=true)
+	AssetWriterInputMetadataAdaptor_assetWriterInputMetadataAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput) -> instancetype ---
 
-    @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="initWithAssetWriterInput:", objc_name="initWithAssetWriterInput")
-    AssetWriterInputMetadataAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputMetadataAdaptor, input: ^AssetWriterInput) -> instancetype ---
+	@(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="initWithAssetWriterInput:", objc_name="initWithAssetWriterInput")
+	AssetWriterInputMetadataAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputMetadataAdaptor, input: ^AssetWriterInput) -> instancetype ---
 
-    @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="appendTimedMetadataGroup:", objc_name="appendTimedMetadataGroup")
-    AssetWriterInputMetadataAdaptor_appendTimedMetadataGroup :: proc(self: ^AssetWriterInputMetadataAdaptor, timedMetadataGroup: ^TimedMetadataGroup) -> bool ---
+	@(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="appendTimedMetadataGroup:", objc_name="appendTimedMetadataGroup")
+	AssetWriterInputMetadataAdaptor_appendTimedMetadataGroup :: proc(self: ^AssetWriterInputMetadataAdaptor, timedMetadataGroup: ^TimedMetadataGroup) -> bool ---
 
-    @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="assetWriterInput", objc_name="assetWriterInput")
-    AssetWriterInputMetadataAdaptor_assetWriterInput :: proc(self: ^AssetWriterInputMetadataAdaptor) -> ^AssetWriterInput ---
+	@(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="assetWriterInput", objc_name="assetWriterInput")
+	AssetWriterInputMetadataAdaptor_assetWriterInput :: proc(self: ^AssetWriterInputMetadataAdaptor) -> ^AssetWriterInput ---
 }
-
-
-

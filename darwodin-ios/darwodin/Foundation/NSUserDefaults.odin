@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSUserDefaults
 ///
 @(objc_class="NSUserDefaults", objc_superclass=Object)
-UserDefaults :: struct { using _: Object, }
+UserDefaults :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

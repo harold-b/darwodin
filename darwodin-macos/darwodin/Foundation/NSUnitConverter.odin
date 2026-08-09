@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSUnitConverter
 ///
 @(objc_class="NSUnitConverter", objc_superclass=Object)
-UnitConverter :: struct { using _: Object, }
+UnitConverter :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

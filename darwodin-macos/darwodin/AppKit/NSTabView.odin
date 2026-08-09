@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTabView
 ///
 @(objc_class="NSTabView", objc_superclass=View)
-TabView :: struct { using _: View, }
+TabView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

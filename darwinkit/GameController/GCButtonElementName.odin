@@ -1,15 +1,10 @@
 #+build darwin
-package darwodin_GameController
+package darwin_GameController
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import NS "../Foundation"
 
 @(objc_class="GCButtonElementName")
-ButtonElementName :: struct { using _: intrinsics.objc_object, 
-    using _: PhysicalInputElementName,
+ButtonElementName :: struct {
+	using _: intrinsics.objc_object,
+	using _: PhysicalInputElementName,
 }
-

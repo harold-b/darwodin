@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSCachedURLResponse
 ///
 @(objc_class="NSCachedURLResponse", objc_superclass=Object)
-CachedURLResponse :: struct { using _: Object, 
+CachedURLResponse :: struct {
+    using _: Object,
     using _: SecureCoding,
     using _: Copying,
 }

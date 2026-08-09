@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLAnimatedValue
 ///
 @(objc_class="MDLAnimatedValue", objc_superclass=NS.Object)
-AnimatedValue :: struct { using _: NS.Object, 
+AnimatedValue :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLPathAssetResolver
 ///
 @(objc_class="MDLPathAssetResolver", objc_superclass=NS.Object)
-PathAssetResolver :: struct { using _: NS.Object, 
+PathAssetResolver :: struct {
+    using _: NS.Object,
     using _: AssetResolver,
 }
 

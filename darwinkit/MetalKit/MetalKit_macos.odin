@@ -1,7 +1,8 @@
 #+build darwin:default
 #+private package
-package darwodin_MetalKit
+package darwin_MetalKit
 
-import _AK "../AppKit"
-AK ::_AK
+import NS "../AppKit"
 
+UI_DisplayGamut :: NS.DisplayGamut
+UI_View :: NS.View

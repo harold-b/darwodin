@@ -1,31 +1,21 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLFunctionStitchingInputNode", objc_superclass=NS.Object)
-FunctionStitchingInputNode :: struct { using _: NS.Object, 
-    using _: FunctionStitchingNode,
+FunctionStitchingInputNode :: struct {
+	using _: NS.Object,
+	using _: FunctionStitchingNode,
 }
 
 foreign lib {
-    @(objc_type=FunctionStitchingInputNode, objc_selector="initWithArgumentIndex:", objc_name="initWithArgumentIndex")
-    FunctionStitchingInputNode_initWithArgumentIndex :: proc(self: ^FunctionStitchingInputNode, argument: NS.UInteger) -> instancetype ---
+	@(objc_type=FunctionStitchingInputNode, objc_selector="initWithArgumentIndex:", objc_name="initWithArgumentIndex")
+	FunctionStitchingInputNode_initWithArgumentIndex :: proc(self: ^FunctionStitchingInputNode, argument: NS.UInteger) -> instancetype ---
 
-    @(objc_type=FunctionStitchingInputNode, objc_selector="argumentIndex", objc_name="argumentIndex")
-    FunctionStitchingInputNode_argumentIndex :: proc(self: ^FunctionStitchingInputNode) -> NS.UInteger ---
+	@(objc_type=FunctionStitchingInputNode, objc_selector="argumentIndex", objc_name="argumentIndex")
+	FunctionStitchingInputNode_argumentIndex :: proc(self: ^FunctionStitchingInputNode) -> NS.UInteger ---
 
-    @(objc_type=FunctionStitchingInputNode, objc_selector="setArgumentIndex:", objc_name="setArgumentIndex")
-    FunctionStitchingInputNode_setArgumentIndex :: proc(self: ^FunctionStitchingInputNode, argumentIndex: NS.UInteger) ---
+	@(objc_type=FunctionStitchingInputNode, objc_selector="setArgumentIndex:", objc_name="setArgumentIndex")
+	FunctionStitchingInputNode_setArgumentIndex :: proc(self: ^FunctionStitchingInputNode, argumentIndex: NS.UInteger) ---
 }
-
-
-

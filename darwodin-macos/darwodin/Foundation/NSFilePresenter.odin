@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSFilePresenter
 ///
 @(objc_class="NSFilePresenter")
-FilePresenter :: struct { using _: intrinsics.objc_object, 
+FilePresenter :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLTextureSampler
 ///
 @(objc_class="MDLTextureSampler", objc_superclass=NS.Object)
-TextureSampler :: struct { using _: NS.Object, }
+TextureSampler :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

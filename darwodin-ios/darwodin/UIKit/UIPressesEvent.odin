@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPressesEvent
 ///
 @(objc_class="UIPressesEvent", objc_superclass=Event)
-PressesEvent :: struct { using _: Event, }
+PressesEvent :: struct { using _: Event}
 
 @(default_calling_convention="c")
 foreign lib {

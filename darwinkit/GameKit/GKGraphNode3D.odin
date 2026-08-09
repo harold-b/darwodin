@@ -1,28 +1,20 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="GKGraphNode3D", objc_superclass=GraphNode)
-GraphNode3D :: struct { using _: GraphNode, }
+GraphNode3D :: struct { using _: GraphNode}
 
 foreign lib {
-    @(objc_type=GraphNode3D, objc_selector="nodeWithPoint:", objc_name="nodeWithPoint", objc_is_class_method=true)
-    GraphNode3D_nodeWithPoint :: proc(point: ^vector_float3) -> instancetype ---
+	@(objc_type=GraphNode3D, objc_selector="nodeWithPoint:", objc_name="nodeWithPoint", objc_is_class_method=true)
+	GraphNode3D_nodeWithPoint :: proc(point: ^vector_float3) -> instancetype ---
 
-    @(objc_type=GraphNode3D, objc_selector="initWithPoint:", objc_name="initWithPoint")
-    GraphNode3D_initWithPoint :: proc(self: ^GraphNode3D, point: ^vector_float3) -> instancetype ---
+	@(objc_type=GraphNode3D, objc_selector="initWithPoint:", objc_name="initWithPoint")
+	GraphNode3D_initWithPoint :: proc(self: ^GraphNode3D, point: ^vector_float3) -> instancetype ---
 
-    @(objc_type=GraphNode3D, objc_selector="position", objc_name="position")
-    GraphNode3D_position :: proc(self: ^GraphNode3D) -> vector_float3 ---
+	@(objc_type=GraphNode3D, objc_selector="position", objc_name="position")
+	GraphNode3D_position :: proc(self: ^GraphNode3D) -> vector_float3 ---
 
-    @(objc_type=GraphNode3D, objc_selector="setPosition:", objc_name="setPosition")
-    GraphNode3D_setPosition :: proc(self: ^GraphNode3D, position: ^vector_float3) ---
+	@(objc_type=GraphNode3D, objc_selector="setPosition:", objc_name="setPosition")
+	GraphNode3D_setPosition :: proc(self: ^GraphNode3D, position: ^vector_float3) ---
 }
-
-
-

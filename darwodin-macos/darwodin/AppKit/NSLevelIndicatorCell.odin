@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSLevelIndicatorCell
 ///
 @(objc_class="NSLevelIndicatorCell", objc_superclass=ActionCell)
-LevelIndicatorCell :: struct { using _: ActionCell, }
+LevelIndicatorCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

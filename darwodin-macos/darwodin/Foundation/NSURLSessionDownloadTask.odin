@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLSessionDownloadTask
 ///
 @(objc_class="NSURLSessionDownloadTask", objc_superclass=URLSessionTask)
-URLSessionDownloadTask :: struct { using _: URLSessionTask, }
+URLSessionDownloadTask :: struct { using _: URLSessionTask}
 
 @(default_calling_convention="c")
 foreign lib {

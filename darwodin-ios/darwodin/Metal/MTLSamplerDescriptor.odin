@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLSamplerDescriptor
 ///
 @(objc_class="MTLSamplerDescriptor", objc_superclass=NS.Object)
-SamplerDescriptor :: struct { using _: NS.Object, 
+SamplerDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

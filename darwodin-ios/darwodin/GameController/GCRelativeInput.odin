@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCRelativeInput
 ///
 @(objc_class="GCRelativeInput")
-RelativeInput :: struct { using _: intrinsics.objc_object, 
+RelativeInput :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

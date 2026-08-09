@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITabGroup
 ///
 @(objc_class="UITabGroup", objc_superclass=Tab)
-TabGroup :: struct { using _: Tab, }
+TabGroup :: struct { using _: Tab}
 
 @(default_calling_convention="c")
 foreign lib {

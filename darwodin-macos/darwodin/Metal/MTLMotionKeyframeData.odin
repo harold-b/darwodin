@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLMotionKeyframeData
 ///
 @(objc_class="MTLMotionKeyframeData", objc_superclass=NS.Object)
-MotionKeyframeData :: struct { using _: NS.Object, }
+MotionKeyframeData :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

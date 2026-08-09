@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSSymbolMagicReplaceContentTransition
 ///
 @(objc_class="NSSymbolMagicReplaceContentTransition", objc_superclass=NSSymbolContentTransition)
-NSSymbolMagicReplaceContentTransition :: struct { using _: NSSymbolContentTransition, }
+NSSymbolMagicReplaceContentTransition :: struct { using _: NSSymbolContentTransition}
 
 @(default_calling_convention="c")
 foreign lib {}

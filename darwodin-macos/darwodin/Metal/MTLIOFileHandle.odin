@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIOFileHandle
 ///
 @(objc_class="MTLIOFileHandle")
-IOFileHandle :: struct { using _: intrinsics.objc_object, 
+IOFileHandle :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

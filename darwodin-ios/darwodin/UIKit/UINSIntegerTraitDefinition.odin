@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UINSIntegerTraitDefinition
 ///
 @(objc_class="UINSIntegerTraitDefinition")
-NSIntegerTraitDefinition :: struct { using _: intrinsics.objc_object, 
+NSIntegerTraitDefinition :: struct {
+    using _: intrinsics.objc_object,
     using _: TraitDefinition,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowSceneActivationConfiguration
 ///
 @(objc_class="UIWindowSceneActivationConfiguration", objc_superclass=NS.Object)
-WindowSceneActivationConfiguration :: struct { using _: NS.Object, }
+WindowSceneActivationConfiguration :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

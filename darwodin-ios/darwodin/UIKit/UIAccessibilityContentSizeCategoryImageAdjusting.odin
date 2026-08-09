@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIAccessibilityContentSizeCategoryImageAdjusting
 ///
 @(objc_class="UIAccessibilityContentSizeCategoryImageAdjusting")
-AccessibilityContentSizeCategoryImageAdjusting :: struct { using _: intrinsics.objc_object, 
+AccessibilityContentSizeCategoryImageAdjusting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

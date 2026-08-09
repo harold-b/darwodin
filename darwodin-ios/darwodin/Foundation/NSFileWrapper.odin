@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSFileWrapper
 ///
 @(objc_class="NSFileWrapper", objc_superclass=Object)
-FileWrapper :: struct { using _: Object, 
+FileWrapper :: struct {
+    using _: Object,
     using _: SecureCoding,
 }
 

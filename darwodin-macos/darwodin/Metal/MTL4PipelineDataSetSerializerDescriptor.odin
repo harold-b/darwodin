@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4PipelineDataSetSerializerDescriptor
 ///
 @(objc_class="MTL4PipelineDataSetSerializerDescriptor", objc_superclass=NS.Object)
-MTL4PipelineDataSetSerializerDescriptor :: struct { using _: NS.Object, 
+MTL4PipelineDataSetSerializerDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

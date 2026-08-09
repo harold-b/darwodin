@@ -6,17 +6,13 @@ import cffi "core:c"
 import mach "../mach"
 import libc "../libc"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
-
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
 when ODIN_OS == .Darwin {
     @(export, require)
@@ -26,6 +22,8 @@ when ODIN_OS == .Darwin {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 FSRef             :: struct {}
 NSObject          :: intrinsics.objc_object
 NSString          :: NSObject
@@ -64,6 +62,7 @@ StringCopyToOdinString :: proc( theString: StringRef, allocator := context.alloc
     return string(buf[:n]), true
 }
 
+// -user-text-end
 
 
 OSUnknownByteOrder                          :: 0
@@ -5058,7 +5057,7 @@ __CFTree :: struct {}
 __CFUUID :: struct {}
 
 /// CFUUIDBytes
-UUIDBytes :: struct #align (1) {
+UUIDBytes :: struct #packed {
     byte0:  UInt8,
     byte1:  UInt8,
     byte2:  UInt8,

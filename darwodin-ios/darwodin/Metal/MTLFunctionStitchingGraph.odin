@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFunctionStitchingGraph
 ///
 @(objc_class="MTLFunctionStitchingGraph", objc_superclass=NS.Object)
-FunctionStitchingGraph :: struct { using _: NS.Object, 
+FunctionStitchingGraph :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

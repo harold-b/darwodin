@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCButtonElementName
 ///
 @(objc_class="GCButtonElementName")
-ButtonElementName :: struct { using _: intrinsics.objc_object, 
+ButtonElementName :: struct {
+    using _: intrinsics.objc_object,
     using _: PhysicalInputElementName,
 }
 

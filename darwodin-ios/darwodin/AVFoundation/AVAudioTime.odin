@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,12 +17,12 @@ import Audio "../AudioToolbox"
 /// AVAudioTime
 ///
 @(objc_class="AVAudioTime", objc_superclass=NS.Object)
-AudioTime :: struct { using _: NS.Object, }
+AudioTime :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioTime, objc_selector="initWithAudioTimeStamp:sampleRate:", objc_name="initWithAudioTimeStamp")
-    AudioTime_initWithAudioTimeStamp :: proc(self: ^AudioTime, ts: ^Audio.TimeStamp, sampleRate: cffi.double) -> instancetype ---
+    AudioTime_initWithAudioTimeStamp :: proc(self: ^AudioTime, ts: ^AT.TimeStamp, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="initWithHostTime:", objc_name="initWithHostTime_")
     AudioTime_initWithHostTime_ :: proc(self: ^AudioTime, hostTime: cffi.uint64_t) -> instancetype ---
@@ -34,7 +34,7 @@ foreign lib {
     AudioTime_initWithHostTime_sampleTime_atRate :: proc(self: ^AudioTime, hostTime: cffi.uint64_t, sampleTime: AudioFramePosition, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="timeWithAudioTimeStamp:sampleRate:", objc_name="timeWithAudioTimeStamp", objc_is_class_method=true)
-    AudioTime_timeWithAudioTimeStamp :: proc(ts: ^Audio.TimeStamp, sampleRate: cffi.double) -> instancetype ---
+    AudioTime_timeWithAudioTimeStamp :: proc(ts: ^AT.TimeStamp, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="timeWithHostTime:", objc_name="timeWithHostTime_", objc_is_class_method=true)
     AudioTime_timeWithHostTime_ :: proc(hostTime: cffi.uint64_t) -> instancetype ---
@@ -70,7 +70,7 @@ foreign lib {
     AudioTime_sampleRate :: proc(self: ^AudioTime) -> cffi.double ---
 
     @(objc_type=AudioTime, objc_selector="audioTimeStamp", objc_name="audioTimeStamp")
-    AudioTime_audioTimeStamp :: proc(self: ^AudioTime) -> Audio.TimeStamp ---
+    AudioTime_audioTimeStamp :: proc(self: ^AudioTime) -> AT.TimeStamp ---
 }
 
 @(objc_type=AudioTime, objc_name="initWithHostTime")

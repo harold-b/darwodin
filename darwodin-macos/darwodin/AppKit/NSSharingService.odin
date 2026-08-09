@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSharingService
 ///
 @(objc_class="NSSharingService", objc_superclass=NS.Object)
-SharingService :: struct { using _: NS.Object, }
+SharingService :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

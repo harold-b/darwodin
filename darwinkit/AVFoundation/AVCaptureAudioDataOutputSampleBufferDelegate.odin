@@ -1,26 +1,17 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVCaptureAudioDataOutputSampleBufferDelegate")
-CaptureAudioDataOutputSampleBufferDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+CaptureAudioDataOutputSampleBufferDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=CaptureAudioDataOutputSampleBufferDelegate, objc_selector="captureOutput:didOutputSampleBuffer:fromConnection:", objc_name="captureOutput")
-    CaptureAudioDataOutputSampleBufferDelegate_captureOutput :: proc(self: ^CaptureAudioDataOutputSampleBufferDelegate, output: ^CaptureOutput, sampleBuffer: CM.SampleBufferRef, connection: ^CaptureConnection) ---
+	@(objc_type=CaptureAudioDataOutputSampleBufferDelegate, objc_selector="captureOutput:didOutputSampleBuffer:fromConnection:", objc_name="captureOutput")
+	CaptureAudioDataOutputSampleBufferDelegate_captureOutput :: proc(self: ^CaptureAudioDataOutputSampleBufferDelegate, output: ^CaptureOutput, sampleBuffer: CM.SampleBufferRef, connection: ^CaptureConnection) ---
 }
-
-
-

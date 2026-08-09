@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapItemDetailViewControllerDelegate
 ///
 @(objc_class="MKMapItemDetailViewControllerDelegate")
-MapItemDetailViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+MapItemDetailViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

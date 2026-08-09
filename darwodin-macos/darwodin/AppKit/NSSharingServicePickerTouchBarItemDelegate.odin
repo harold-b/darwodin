@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSharingServicePickerTouchBarItemDelegate
 ///
 @(objc_class="NSSharingServicePickerTouchBarItemDelegate")
-SharingServicePickerTouchBarItemDelegate :: struct { using _: intrinsics.objc_object, 
+SharingServicePickerTouchBarItemDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: SharingServicePickerDelegate,
 }
 

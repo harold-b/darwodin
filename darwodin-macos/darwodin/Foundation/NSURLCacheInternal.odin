@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLCacheInternal
 ///
 @(objc_class="NSURLCacheInternal")
-URLCacheInternal :: struct { using _: intrinsics.objc_object, }
+URLCacheInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

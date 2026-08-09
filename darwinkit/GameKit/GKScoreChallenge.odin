@@ -1,22 +1,14 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="GKScoreChallenge", objc_superclass=Challenge)
-ScoreChallenge :: struct { using _: Challenge, }
+ScoreChallenge :: struct { using _: Challenge}
 
 foreign lib {
-    @(objc_type=ScoreChallenge, objc_selector="score", objc_name="score")
-    ScoreChallenge_score :: proc(self: ^ScoreChallenge) -> ^Score ---
+	@(objc_type=ScoreChallenge, objc_selector="score", objc_name="score")
+	ScoreChallenge_score :: proc(self: ^ScoreChallenge) -> ^Score ---
 
-    @(objc_type=ScoreChallenge, objc_selector="leaderboardEntry", objc_name="leaderboardEntry")
-    ScoreChallenge_leaderboardEntry :: proc(self: ^ScoreChallenge) -> ^LeaderboardEntry ---
+	@(objc_type=ScoreChallenge, objc_selector="leaderboardEntry", objc_name="leaderboardEntry")
+	ScoreChallenge_leaderboardEntry :: proc(self: ^ScoreChallenge) -> ^LeaderboardEntry ---
 }
-
-
-

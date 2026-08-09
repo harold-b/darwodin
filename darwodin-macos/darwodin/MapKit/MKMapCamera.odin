@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapCamera
 ///
 @(objc_class="MKMapCamera", objc_superclass=NS.Object)
-MapCamera :: struct { using _: NS.Object, 
+MapCamera :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

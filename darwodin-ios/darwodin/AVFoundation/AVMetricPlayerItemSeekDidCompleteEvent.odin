@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMetricPlayerItemSeekDidCompleteEvent
 ///
 @(objc_class="AVMetricPlayerItemSeekDidCompleteEvent", objc_superclass=MetricPlayerItemRateChangeEvent)
-MetricPlayerItemSeekDidCompleteEvent :: struct { using _: MetricPlayerItemRateChangeEvent, }
+MetricPlayerItemSeekDidCompleteEvent :: struct { using _: MetricPlayerItemRateChangeEvent}
 
 @(default_calling_convention="c")
 foreign lib {

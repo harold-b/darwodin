@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSMutableFontCollection
 ///
 @(objc_class="NSMutableFontCollection", objc_superclass=FontCollection)
-MutableFontCollection :: struct { using _: FontCollection, }
+MutableFontCollection :: struct { using _: FontCollection}
 
 @(default_calling_convention="c")
 foreign lib {

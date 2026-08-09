@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCButtonElement
 ///
 @(objc_class="GCButtonElement")
-ButtonElement :: struct { using _: intrinsics.objc_object, 
+ButtonElement :: struct {
+    using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 

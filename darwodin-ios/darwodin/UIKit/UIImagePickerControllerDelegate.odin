@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIImagePickerControllerDelegate
 ///
 @(objc_class="UIImagePickerControllerDelegate")
-ImagePickerControllerDelegate :: struct { using _: intrinsics.objc_object, 
+ImagePickerControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -1,75 +1,67 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSLayoutAnchor
-///
+
+
 @(objc_class="NSLayoutAnchor", objc_superclass=NS.Object)
-NSLayoutAnchor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
-    using _: NS.Coding,
+NSLayoutAnchor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
+	using _: NS.Coding,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=NSLayoutAnchor, objc_selector="constraintEqualToAnchor:", objc_name="constraintEqualToAnchor_")
-    NSLayoutAnchor_constraintEqualToAnchor_ :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor) -> ^NSLayoutConstraint ---
+	@(objc_type=NSLayoutAnchor, objc_selector="constraintEqualToAnchor:", objc_name="constraintEqualToAnchor_")
+	NSLayoutAnchor_constraintEqualToAnchor_ :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor) -> ^NSLayoutConstraint ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="constraintGreaterThanOrEqualToAnchor:", objc_name="constraintGreaterThanOrEqualToAnchor_")
-    NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_ :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor) -> ^NSLayoutConstraint ---
+	@(objc_type=NSLayoutAnchor, objc_selector="constraintGreaterThanOrEqualToAnchor:", objc_name="constraintGreaterThanOrEqualToAnchor_")
+	NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_ :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor) -> ^NSLayoutConstraint ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="constraintLessThanOrEqualToAnchor:", objc_name="constraintLessThanOrEqualToAnchor_")
-    NSLayoutAnchor_constraintLessThanOrEqualToAnchor_ :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor) -> ^NSLayoutConstraint ---
+	@(objc_type=NSLayoutAnchor, objc_selector="constraintLessThanOrEqualToAnchor:", objc_name="constraintLessThanOrEqualToAnchor_")
+	NSLayoutAnchor_constraintLessThanOrEqualToAnchor_ :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor) -> ^NSLayoutConstraint ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="constraintEqualToAnchor:constant:", objc_name="constraintEqualToAnchor_constant")
-    NSLayoutAnchor_constraintEqualToAnchor_constant :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor, c: CG.Float) -> ^NSLayoutConstraint ---
+	@(objc_type=NSLayoutAnchor, objc_selector="constraintEqualToAnchor:constant:", objc_name="constraintEqualToAnchor_constant")
+	NSLayoutAnchor_constraintEqualToAnchor_constant :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor, c: CG.Float) -> ^NSLayoutConstraint ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="constraintGreaterThanOrEqualToAnchor:constant:", objc_name="constraintGreaterThanOrEqualToAnchor_constant")
-    NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_constant :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor, c: CG.Float) -> ^NSLayoutConstraint ---
+	@(objc_type=NSLayoutAnchor, objc_selector="constraintGreaterThanOrEqualToAnchor:constant:", objc_name="constraintGreaterThanOrEqualToAnchor_constant")
+	NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_constant :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor, c: CG.Float) -> ^NSLayoutConstraint ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="constraintLessThanOrEqualToAnchor:constant:", objc_name="constraintLessThanOrEqualToAnchor_constant")
-    NSLayoutAnchor_constraintLessThanOrEqualToAnchor_constant :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor, c: CG.Float) -> ^NSLayoutConstraint ---
+	@(objc_type=NSLayoutAnchor, objc_selector="constraintLessThanOrEqualToAnchor:constant:", objc_name="constraintLessThanOrEqualToAnchor_constant")
+	NSLayoutAnchor_constraintLessThanOrEqualToAnchor_constant :: proc(self: ^NSLayoutAnchor, anchor: ^NSLayoutAnchor, c: CG.Float) -> ^NSLayoutConstraint ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="name", objc_name="name")
-    NSLayoutAnchor_name :: proc(self: ^NSLayoutAnchor) -> ^NS.String ---
+	@(objc_type=NSLayoutAnchor, objc_selector="name", objc_name="name")
+	NSLayoutAnchor_name :: proc(self: ^NSLayoutAnchor) -> ^NS.String ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="item", objc_name="item")
-    NSLayoutAnchor_item :: proc(self: ^NSLayoutAnchor) -> id ---
+	@(objc_type=NSLayoutAnchor, objc_selector="item", objc_name="item")
+	NSLayoutAnchor_item :: proc(self: ^NSLayoutAnchor) -> id ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="hasAmbiguousLayout", objc_name="hasAmbiguousLayout")
-    NSLayoutAnchor_hasAmbiguousLayout :: proc(self: ^NSLayoutAnchor) -> bool ---
+	@(objc_type=NSLayoutAnchor, objc_selector="hasAmbiguousLayout", objc_name="hasAmbiguousLayout")
+	NSLayoutAnchor_hasAmbiguousLayout :: proc(self: ^NSLayoutAnchor) -> bool ---
 
-    @(objc_type=NSLayoutAnchor, objc_selector="constraintsAffectingLayout", objc_name="constraintsAffectingLayout")
-    NSLayoutAnchor_constraintsAffectingLayout :: proc(self: ^NSLayoutAnchor) -> ^NS.Array ---
+	@(objc_type=NSLayoutAnchor, objc_selector="constraintsAffectingLayout", objc_name="constraintsAffectingLayout")
+	NSLayoutAnchor_constraintsAffectingLayout :: proc(self: ^NSLayoutAnchor) -> ^NS.Array ---
 }
 
 @(objc_type=NSLayoutAnchor, objc_name="constraintEqualToAnchor")
 NSLayoutAnchor_constraintEqualToAnchor :: proc {
-    NSLayoutAnchor_constraintEqualToAnchor_,
-    NSLayoutAnchor_constraintEqualToAnchor_constant,
+	NSLayoutAnchor_constraintEqualToAnchor_,
+	NSLayoutAnchor_constraintEqualToAnchor_constant,
 }
 
 @(objc_type=NSLayoutAnchor, objc_name="constraintGreaterThanOrEqualToAnchor")
 NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor :: proc {
-    NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_,
-    NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_constant,
+	NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_,
+	NSLayoutAnchor_constraintGreaterThanOrEqualToAnchor_constant,
 }
 
 @(objc_type=NSLayoutAnchor, objc_name="constraintLessThanOrEqualToAnchor")
 NSLayoutAnchor_constraintLessThanOrEqualToAnchor :: proc {
-    NSLayoutAnchor_constraintLessThanOrEqualToAnchor_,
-    NSLayoutAnchor_constraintLessThanOrEqualToAnchor_constant,
+	NSLayoutAnchor_constraintLessThanOrEqualToAnchor_,
+	NSLayoutAnchor_constraintLessThanOrEqualToAnchor_constant,
 }
-

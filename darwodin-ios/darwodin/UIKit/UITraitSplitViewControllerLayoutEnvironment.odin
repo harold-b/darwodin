@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitSplitViewControllerLayoutEnvironment
 ///
 @(objc_class="UITraitSplitViewControllerLayoutEnvironment", objc_superclass=NS.Object)
-TraitSplitViewControllerLayoutEnvironment :: struct { using _: NS.Object, 
+TraitSplitViewControllerLayoutEnvironment :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

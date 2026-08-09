@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPageControlProgressDelegate
 ///
 @(objc_class="UIPageControlProgressDelegate")
-PageControlProgressDelegate :: struct { using _: intrinsics.objc_object, 
+PageControlProgressDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

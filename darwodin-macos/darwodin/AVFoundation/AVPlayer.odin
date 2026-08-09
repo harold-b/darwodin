@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVPlayer
 ///
 @(objc_class="AVPlayer", objc_superclass=NS.Object)
-Player :: struct { using _: NS.Object, }
+Player :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -232,10 +232,10 @@ foreign lib {
     Player_setNetworkResourcePriority :: proc(self: ^Player, networkResourcePriority: PlayerNetworkResourcePriority) ---
 
     @(objc_type=Player, objc_selector="intendedSpatialAudioExperience", objc_name="intendedSpatialAudioExperience")
-    Player_intendedSpatialAudioExperience :: proc(self: ^Player) -> ^Audio.CASpatialAudioExperience ---
+    Player_intendedSpatialAudioExperience :: proc(self: ^Player) -> ^AT.SpatialAudioExperience ---
 
     @(objc_type=Player, objc_selector="setIntendedSpatialAudioExperience:", objc_name="setIntendedSpatialAudioExperience")
-    Player_setIntendedSpatialAudioExperience :: proc(self: ^Player, intendedSpatialAudioExperience: ^Audio.CASpatialAudioExperience) ---
+    Player_setIntendedSpatialAudioExperience :: proc(self: ^Player, intendedSpatialAudioExperience: ^AT.SpatialAudioExperience) ---
 
     @(objc_type=Player, objc_selector="audioOutputSuppressedDueToNonMixableAudioRoute", objc_name="audioOutputSuppressedDueToNonMixableAudioRoute")
     Player_audioOutputSuppressedDueToNonMixableAudioRoute :: proc(self: ^Player) -> bool ---

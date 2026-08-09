@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCPhysicalInputElementName
 ///
 @(objc_class="GCPhysicalInputElementName")
-PhysicalInputElementName :: struct { using _: intrinsics.objc_object, }
+PhysicalInputElementName :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

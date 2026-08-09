@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKAnnotation
 ///
 @(objc_class="MKAnnotation")
-Annotation :: struct { using _: intrinsics.objc_object, 
+Annotation :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

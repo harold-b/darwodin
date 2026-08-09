@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLCamera
 ///
 @(objc_class="MDLCamera", objc_superclass=Object)
-Camera :: struct { using _: Object, }
+Camera :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

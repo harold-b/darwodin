@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSNetService
 ///
 @(objc_class="NSNetService", objc_superclass=Object)
-NetService :: struct { using _: Object, }
+NetService :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

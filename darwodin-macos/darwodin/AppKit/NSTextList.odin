@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextList
 ///
 @(objc_class="NSTextList", objc_superclass=NS.Object)
-TextList :: struct { using _: NS.Object, 
+TextList :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

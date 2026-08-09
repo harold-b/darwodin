@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCloudSharingServiceDelegate
 ///
 @(objc_class="NSCloudSharingServiceDelegate")
-CloudSharingServiceDelegate :: struct { using _: intrinsics.objc_object, 
+CloudSharingServiceDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: SharingServiceDelegate,
 }
 

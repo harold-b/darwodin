@@ -24,7 +24,7 @@ safeRelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> instancetype {
 /// NSObject
 ///
 @(objc_class="NSObject")
-ObjectProtocol :: struct { using _: intrinsics.objc_object, }
+ObjectProtocol :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

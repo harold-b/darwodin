@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPasteboardItemDataProvider
 ///
 @(objc_class="NSPasteboardItemDataProvider")
-PasteboardItemDataProvider :: struct { using _: intrinsics.objc_object, 
+PasteboardItemDataProvider :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKRandomSource
 ///
 @(objc_class="GKRandomSource", objc_superclass=NS.Object)
-RandomSource :: struct { using _: NS.Object, 
+RandomSource :: struct {
+    using _: NS.Object,
     using _: Random,
     using _: NS.SecureCoding,
     using _: NS.Copying,

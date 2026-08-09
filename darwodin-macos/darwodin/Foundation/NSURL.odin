@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURL
 ///
 @(objc_class="NSURL", objc_superclass=Object)
-URL :: struct { using _: Object, 
+URL :: struct {
+    using _: Object,
     using _: SecureCoding,
     using _: Copying,
 }

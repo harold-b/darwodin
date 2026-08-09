@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKTurnBasedEventListener
 ///
 @(objc_class="GKTurnBasedEventListener")
-TurnBasedEventListener :: struct { using _: intrinsics.objc_object, }
+TurnBasedEventListener :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

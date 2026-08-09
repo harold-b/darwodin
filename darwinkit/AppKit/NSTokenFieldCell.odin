@@ -1,56 +1,44 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSTokenFieldCell
-///
+
+
 @(objc_class="NSTokenFieldCell", objc_superclass=TextFieldCell)
-TokenFieldCell :: struct { using _: TextFieldCell, }
+TokenFieldCell :: struct { using _: TextFieldCell}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=TokenFieldCell, objc_selector="tokenStyle", objc_name="tokenStyle")
-    TokenFieldCell_tokenStyle :: proc(self: ^TokenFieldCell) -> TokenStyle ---
+	@(objc_type=TokenFieldCell, objc_selector="tokenStyle", objc_name="tokenStyle")
+	TokenFieldCell_tokenStyle :: proc(self: ^TokenFieldCell) -> TokenStyle ---
 
-    @(objc_type=TokenFieldCell, objc_selector="setTokenStyle:", objc_name="setTokenStyle")
-    TokenFieldCell_setTokenStyle :: proc(self: ^TokenFieldCell, tokenStyle: TokenStyle) ---
+	@(objc_type=TokenFieldCell, objc_selector="setTokenStyle:", objc_name="setTokenStyle")
+	TokenFieldCell_setTokenStyle :: proc(self: ^TokenFieldCell, tokenStyle: TokenStyle) ---
 
-    @(objc_type=TokenFieldCell, objc_selector="completionDelay", objc_name="completionDelay")
-    TokenFieldCell_completionDelay :: proc(self: ^TokenFieldCell) -> NS.TimeInterval ---
+	@(objc_type=TokenFieldCell, objc_selector="completionDelay", objc_name="completionDelay")
+	TokenFieldCell_completionDelay :: proc(self: ^TokenFieldCell) -> NS.TimeInterval ---
 
-    @(objc_type=TokenFieldCell, objc_selector="setCompletionDelay:", objc_name="setCompletionDelay")
-    TokenFieldCell_setCompletionDelay :: proc(self: ^TokenFieldCell, completionDelay: NS.TimeInterval) ---
+	@(objc_type=TokenFieldCell, objc_selector="setCompletionDelay:", objc_name="setCompletionDelay")
+	TokenFieldCell_setCompletionDelay :: proc(self: ^TokenFieldCell, completionDelay: NS.TimeInterval) ---
 
-    @(objc_type=TokenFieldCell, objc_selector="defaultCompletionDelay", objc_name="defaultCompletionDelay", objc_is_class_method=true)
-    TokenFieldCell_defaultCompletionDelay :: proc() -> NS.TimeInterval ---
+	@(objc_type=TokenFieldCell, objc_selector="defaultCompletionDelay", objc_name="defaultCompletionDelay", objc_is_class_method=true)
+	TokenFieldCell_defaultCompletionDelay :: proc() -> NS.TimeInterval ---
 
-    @(objc_type=TokenFieldCell, objc_selector="tokenizingCharacterSet", objc_name="tokenizingCharacterSet")
-    TokenFieldCell_tokenizingCharacterSet :: proc(self: ^TokenFieldCell) -> ^NS.CharacterSet ---
+	@(objc_type=TokenFieldCell, objc_selector="tokenizingCharacterSet", objc_name="tokenizingCharacterSet")
+	TokenFieldCell_tokenizingCharacterSet :: proc(self: ^TokenFieldCell) -> ^NS.CharacterSet ---
 
-    @(objc_type=TokenFieldCell, objc_selector="setTokenizingCharacterSet:", objc_name="setTokenizingCharacterSet")
-    TokenFieldCell_setTokenizingCharacterSet :: proc(self: ^TokenFieldCell, tokenizingCharacterSet: ^NS.CharacterSet) ---
+	@(objc_type=TokenFieldCell, objc_selector="setTokenizingCharacterSet:", objc_name="setTokenizingCharacterSet")
+	TokenFieldCell_setTokenizingCharacterSet :: proc(self: ^TokenFieldCell, tokenizingCharacterSet: ^NS.CharacterSet) ---
 
-    @(objc_type=TokenFieldCell, objc_selector="defaultTokenizingCharacterSet", objc_name="defaultTokenizingCharacterSet", objc_is_class_method=true)
-    TokenFieldCell_defaultTokenizingCharacterSet :: proc() -> ^NS.CharacterSet ---
+	@(objc_type=TokenFieldCell, objc_selector="defaultTokenizingCharacterSet", objc_name="defaultTokenizingCharacterSet", objc_is_class_method=true)
+	TokenFieldCell_defaultTokenizingCharacterSet :: proc() -> ^NS.CharacterSet ---
 
-    @(objc_type=TokenFieldCell, objc_selector="delegate", objc_name="delegate")
-    TokenFieldCell_delegate :: proc(self: ^TokenFieldCell) -> ^TokenFieldCellDelegate ---
+	@(objc_type=TokenFieldCell, objc_selector="delegate", objc_name="delegate")
+	TokenFieldCell_delegate :: proc(self: ^TokenFieldCell) -> ^TokenFieldCellDelegate ---
 
-    @(objc_type=TokenFieldCell, objc_selector="setDelegate:", objc_name="setDelegate")
-    TokenFieldCell_setDelegate :: proc(self: ^TokenFieldCell, delegate: ^TokenFieldCellDelegate) ---
+	@(objc_type=TokenFieldCell, objc_selector="setDelegate:", objc_name="setDelegate")
+	TokenFieldCell_setDelegate :: proc(self: ^TokenFieldCell, delegate: ^TokenFieldCellDelegate) ---
 }

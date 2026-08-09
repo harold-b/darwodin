@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4MeshRenderPipelineDescriptor
 ///
 @(objc_class="MTL4MeshRenderPipelineDescriptor", objc_superclass=MTL4PipelineDescriptor)
-MTL4MeshRenderPipelineDescriptor :: struct { using _: MTL4PipelineDescriptor, }
+MTL4MeshRenderPipelineDescriptor :: struct { using _: MTL4PipelineDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

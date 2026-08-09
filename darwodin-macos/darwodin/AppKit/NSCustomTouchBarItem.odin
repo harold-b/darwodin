@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSCustomTouchBarItem
 ///
 @(objc_class="NSCustomTouchBarItem", objc_superclass=TouchBarItem)
-CustomTouchBarItem :: struct { using _: TouchBarItem, }
+CustomTouchBarItem :: struct { using _: TouchBarItem}
 
 @(default_calling_convention="c")
 foreign lib {

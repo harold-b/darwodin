@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLIndirectComputeCommandEncoder
 ///
 @(objc_class="MTLIndirectComputeCommandEncoder")
-IndirectComputeCommandEncoder :: struct { using _: intrinsics.objc_object, }
+IndirectComputeCommandEncoder :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

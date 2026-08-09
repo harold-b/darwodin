@@ -1,30 +1,18 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVCoordinatedPlaybackParticipant", objc_superclass=NS.Object)
-CoordinatedPlaybackParticipant :: struct { using _: NS.Object, }
+CoordinatedPlaybackParticipant :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=CoordinatedPlaybackParticipant, objc_selector="suspensionReasons", objc_name="suspensionReasons")
-    CoordinatedPlaybackParticipant_suspensionReasons :: proc(self: ^CoordinatedPlaybackParticipant) -> ^NS.Array ---
+	@(objc_type=CoordinatedPlaybackParticipant, objc_selector="suspensionReasons", objc_name="suspensionReasons")
+	CoordinatedPlaybackParticipant_suspensionReasons :: proc(self: ^CoordinatedPlaybackParticipant) -> ^NS.Array ---
 
-    @(objc_type=CoordinatedPlaybackParticipant, objc_selector="isReadyToPlay", objc_name="isReadyToPlay")
-    CoordinatedPlaybackParticipant_isReadyToPlay :: proc(self: ^CoordinatedPlaybackParticipant) -> bool ---
+	@(objc_type=CoordinatedPlaybackParticipant, objc_selector="isReadyToPlay", objc_name="isReadyToPlay")
+	CoordinatedPlaybackParticipant_isReadyToPlay :: proc(self: ^CoordinatedPlaybackParticipant) -> bool ---
 
-    @(objc_type=CoordinatedPlaybackParticipant, objc_selector="identifier", objc_name="identifier")
-    CoordinatedPlaybackParticipant_identifier :: proc(self: ^CoordinatedPlaybackParticipant) -> ^NS.UUID ---
+	@(objc_type=CoordinatedPlaybackParticipant, objc_selector="identifier", objc_name="identifier")
+	CoordinatedPlaybackParticipant_identifier :: proc(self: ^CoordinatedPlaybackParticipant) -> ^NS.UUID ---
 }
-
-
-

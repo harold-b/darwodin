@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSBitmapImageRep
 ///
 @(objc_class="NSBitmapImageRep", objc_superclass=ImageRep)
-BitmapImageRep :: struct { using _: ImageRep, 
+BitmapImageRep :: struct {
+    using _: ImageRep,
     using _: NS.SecureCoding,
 }
 

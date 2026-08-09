@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIFocusHaloEffect
 ///
 @(objc_class="UIFocusHaloEffect", objc_superclass=FocusEffect)
-FocusHaloEffect :: struct { using _: FocusEffect, }
+FocusHaloEffect :: struct { using _: FocusEffect}
 
 @(default_calling_convention="c")
 foreign lib {

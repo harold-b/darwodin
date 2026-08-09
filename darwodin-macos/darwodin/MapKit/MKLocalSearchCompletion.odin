@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKLocalSearchCompletion
 ///
 @(objc_class="MKLocalSearchCompletion", objc_superclass=NS.Object)
-LocalSearchCompletion :: struct { using _: NS.Object, }
+LocalSearchCompletion :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

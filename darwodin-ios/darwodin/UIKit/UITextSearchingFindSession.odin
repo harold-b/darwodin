@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextSearchingFindSession
 ///
 @(objc_class="UITextSearchingFindSession", objc_superclass=FindSession)
-TextSearchingFindSession :: struct { using _: FindSession, }
+TextSearchingFindSession :: struct { using _: FindSession}
 
 @(default_calling_convention="c")
 foreign lib {

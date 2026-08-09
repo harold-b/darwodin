@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSFileProviderExtension
 ///
 @(objc_class="NSFileProviderExtension", objc_superclass=NS.Object)
-NSFileProviderExtension :: struct { using _: NS.Object, }
+NSFileProviderExtension :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

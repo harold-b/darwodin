@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4ComputePipelineDescriptor
 ///
 @(objc_class="MTL4ComputePipelineDescriptor", objc_superclass=MTL4PipelineDescriptor)
-MTL4ComputePipelineDescriptor :: struct { using _: MTL4PipelineDescriptor, }
+MTL4ComputePipelineDescriptor :: struct { using _: MTL4PipelineDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

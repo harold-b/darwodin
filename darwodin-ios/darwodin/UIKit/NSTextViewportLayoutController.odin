@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSTextViewportLayoutController
 ///
 @(objc_class="NSTextViewportLayoutController", objc_superclass=NS.Object)
-NSTextViewportLayoutController :: struct { using _: NS.Object, }
+NSTextViewportLayoutController :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

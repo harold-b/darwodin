@@ -1,27 +1,17 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSFileAccessIntent", objc_superclass=Object)
-FileAccessIntent :: struct { using _: Object, }
+FileAccessIntent :: struct { using _: Object}
 
 foreign lib {
-    @(objc_type=FileAccessIntent, objc_selector="readingIntentWithURL:options:", objc_name="readingIntentWithURL", objc_is_class_method=true)
-    FileAccessIntent_readingIntentWithURL :: proc(url: ^URL, options: FileCoordinatorReadingOptions) -> instancetype ---
+	@(objc_type=FileAccessIntent, objc_selector="readingIntentWithURL:options:", objc_name="readingIntentWithURL", objc_is_class_method=true)
+	FileAccessIntent_readingIntentWithURL :: proc(url: ^URL, options: FileCoordinatorReadingOptions) -> instancetype ---
 
-    @(objc_type=FileAccessIntent, objc_selector="writingIntentWithURL:options:", objc_name="writingIntentWithURL", objc_is_class_method=true)
-    FileAccessIntent_writingIntentWithURL :: proc(url: ^URL, options: FileCoordinatorWritingOptions) -> instancetype ---
+	@(objc_type=FileAccessIntent, objc_selector="writingIntentWithURL:options:", objc_name="writingIntentWithURL", objc_is_class_method=true)
+	FileAccessIntent_writingIntentWithURL :: proc(url: ^URL, options: FileCoordinatorWritingOptions) -> instancetype ---
 
-    @(objc_type=FileAccessIntent, objc_selector="URL", objc_name="URL")
-    FileAccessIntent_URL :: proc(self: ^FileAccessIntent) -> ^URL ---
+	@(objc_type=FileAccessIntent, objc_selector="URL", objc_name="URL")
+	FileAccessIntent_URL :: proc(self: ^FileAccessIntent) -> ^URL ---
 }
-
-
-

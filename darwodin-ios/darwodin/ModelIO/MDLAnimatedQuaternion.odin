@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLAnimatedQuaternion
 ///
 @(objc_class="MDLAnimatedQuaternion", objc_superclass=AnimatedValue)
-AnimatedQuaternion :: struct { using _: AnimatedValue, }
+AnimatedQuaternion :: struct { using _: AnimatedValue}
 
 @(default_calling_convention="c")
 foreign lib {

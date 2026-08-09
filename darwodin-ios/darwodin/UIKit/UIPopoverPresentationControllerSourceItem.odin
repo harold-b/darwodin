@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPopoverPresentationControllerSourceItem
 ///
 @(objc_class="UIPopoverPresentationControllerSourceItem")
-PopoverPresentationControllerSourceItem :: struct { using _: intrinsics.objc_object, 
+PopoverPresentationControllerSourceItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

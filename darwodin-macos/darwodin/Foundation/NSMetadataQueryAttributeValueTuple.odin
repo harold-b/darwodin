@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMetadataQueryAttributeValueTuple
 ///
 @(objc_class="NSMetadataQueryAttributeValueTuple", objc_superclass=Object)
-MetadataQueryAttributeValueTuple :: struct { using _: Object, }
+MetadataQueryAttributeValueTuple :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

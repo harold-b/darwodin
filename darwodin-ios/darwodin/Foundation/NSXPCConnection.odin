@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSXPCConnection
 ///
 @(objc_class="NSXPCConnection", objc_superclass=Object)
-XPCConnection :: struct { using _: Object, 
+XPCConnection :: struct {
+    using _: Object,
     using _: XPCProxyCreating,
 }
 

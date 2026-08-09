@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIContentContainer
 ///
 @(objc_class="UIContentContainer")
-ContentContainer :: struct { using _: intrinsics.objc_object, 
+ContentContainer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

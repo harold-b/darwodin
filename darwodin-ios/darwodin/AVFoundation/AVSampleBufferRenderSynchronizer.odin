@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVSampleBufferRenderSynchronizer
 ///
 @(objc_class="AVSampleBufferRenderSynchronizer", objc_superclass=NS.Object)
-SampleBufferRenderSynchronizer :: struct { using _: NS.Object, }
+SampleBufferRenderSynchronizer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -64,10 +64,10 @@ foreign lib {
     SampleBufferRenderSynchronizer_removeTimeObserver :: proc(self: ^SampleBufferRenderSynchronizer, observer: id) ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="intendedSpatialAudioExperience", objc_name="intendedSpatialAudioExperience")
-    SampleBufferRenderSynchronizer_intendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer) -> ^Audio.CASpatialAudioExperience ---
+    SampleBufferRenderSynchronizer_intendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer) -> ^AT.SpatialAudioExperience ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="setIntendedSpatialAudioExperience:", objc_name="setIntendedSpatialAudioExperience")
-    SampleBufferRenderSynchronizer_setIntendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer, intendedSpatialAudioExperience: ^Audio.CASpatialAudioExperience) ---
+    SampleBufferRenderSynchronizer_setIntendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer, intendedSpatialAudioExperience: ^AT.SpatialAudioExperience) ---
 }
 
 @(objc_type=SampleBufferRenderSynchronizer, objc_name="setRate")

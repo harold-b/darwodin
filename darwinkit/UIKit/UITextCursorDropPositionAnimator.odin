@@ -1,44 +1,35 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UITextCursorDropPositionAnimator
-///
+
+
 @(objc_class="UITextCursorDropPositionAnimator", objc_superclass=NS.Object)
-TextCursorDropPositionAnimator :: struct { using _: NS.Object, }
+TextCursorDropPositionAnimator :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=TextCursorDropPositionAnimator, objc_selector="initWithTextCursorView:textInput:", objc_name="initWithTextCursorView")
-    TextCursorDropPositionAnimator_initWithTextCursorView :: proc(self: ^TextCursorDropPositionAnimator, cursorView: ^View, textInput: ^View) -> instancetype ---
+	@(objc_type=TextCursorDropPositionAnimator, objc_selector="initWithTextCursorView:textInput:", objc_name="initWithTextCursorView")
+	TextCursorDropPositionAnimator_initWithTextCursorView :: proc(self: ^TextCursorDropPositionAnimator, cursorView: ^View, textInput: ^View) -> instancetype ---
 
-    @(objc_type=TextCursorDropPositionAnimator, objc_selector="setCursorVisible:animated:", objc_name="setCursorVisible")
-    TextCursorDropPositionAnimator_setCursorVisible :: proc(self: ^TextCursorDropPositionAnimator, visible: bool, animated: bool) ---
+	@(objc_type=TextCursorDropPositionAnimator, objc_selector="setCursorVisible:animated:", objc_name="setCursorVisible")
+	TextCursorDropPositionAnimator_setCursorVisible :: proc(self: ^TextCursorDropPositionAnimator, visible: bool, animated: bool) ---
 
-    @(objc_type=TextCursorDropPositionAnimator, objc_selector="placeCursorAtPosition:animated:", objc_name="placeCursorAtPosition")
-    TextCursorDropPositionAnimator_placeCursorAtPosition :: proc(self: ^TextCursorDropPositionAnimator, position: ^TextPosition, animated: bool) ---
+	@(objc_type=TextCursorDropPositionAnimator, objc_selector="placeCursorAtPosition:animated:", objc_name="placeCursorAtPosition")
+	TextCursorDropPositionAnimator_placeCursorAtPosition :: proc(self: ^TextCursorDropPositionAnimator, position: ^TextPosition, animated: bool) ---
 
-    @(objc_type=TextCursorDropPositionAnimator, objc_selector="animateAlongsideChanges:completion:", objc_name="animateAlongsideChanges")
-    TextCursorDropPositionAnimator_animateAlongsideChanges :: proc(self: ^TextCursorDropPositionAnimator, animation: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) ---
+	@(objc_type=TextCursorDropPositionAnimator, objc_selector="animateAlongsideChanges:completion:", objc_name="animateAlongsideChanges")
+	TextCursorDropPositionAnimator_animateAlongsideChanges :: proc(self: ^TextCursorDropPositionAnimator, animation: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) ---
 
-    @(objc_type=TextCursorDropPositionAnimator, objc_selector="init", objc_name="init")
-    TextCursorDropPositionAnimator_init :: proc(self: ^TextCursorDropPositionAnimator) -> instancetype ---
+	@(objc_type=TextCursorDropPositionAnimator, objc_selector="init", objc_name="init")
+	TextCursorDropPositionAnimator_init :: proc(self: ^TextCursorDropPositionAnimator) -> instancetype ---
 
-    @(objc_type=TextCursorDropPositionAnimator, objc_selector="cursorView", objc_name="cursorView")
-    TextCursorDropPositionAnimator_cursorView :: proc(self: ^TextCursorDropPositionAnimator) -> ^View ---
+	@(objc_type=TextCursorDropPositionAnimator, objc_selector="cursorView", objc_name="cursorView")
+	TextCursorDropPositionAnimator_cursorView :: proc(self: ^TextCursorDropPositionAnimator) -> ^View ---
 
-    @(objc_type=TextCursorDropPositionAnimator, objc_selector="textInput", objc_name="textInput")
-    TextCursorDropPositionAnimator_textInput :: proc(self: ^TextCursorDropPositionAnimator) -> ^View ---
+	@(objc_type=TextCursorDropPositionAnimator, objc_selector="textInput", objc_name="textInput")
+	TextCursorDropPositionAnimator_textInput :: proc(self: ^TextCursorDropPositionAnimator) -> ^View ---
 }

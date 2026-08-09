@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSplitViewDelegate
 ///
 @(objc_class="NSSplitViewDelegate")
-SplitViewDelegate :: struct { using _: intrinsics.objc_object, 
+SplitViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

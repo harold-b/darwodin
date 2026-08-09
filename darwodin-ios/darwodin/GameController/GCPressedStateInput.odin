@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCPressedStateInput
 ///
 @(objc_class="GCPressedStateInput")
-PressedStateInput :: struct { using _: intrinsics.objc_object, 
+PressedStateInput :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

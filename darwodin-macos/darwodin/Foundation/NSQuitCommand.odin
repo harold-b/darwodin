@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSQuitCommand
 ///
 @(objc_class="NSQuitCommand", objc_superclass=ScriptCommand)
-QuitCommand :: struct { using _: ScriptCommand, }
+QuitCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {

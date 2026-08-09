@@ -1,7 +1,7 @@
 #+build darwin:ios
 #+private package
-package darwodin_MetalKit
+package darwin_MetalKit
 
-import _UI "../UIKit"
-UI ::_UI
+import UI "../UIKit"
 
+UI_View :: UI.View

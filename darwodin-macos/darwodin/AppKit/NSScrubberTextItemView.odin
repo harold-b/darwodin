@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSScrubberTextItemView
 ///
 @(objc_class="NSScrubberTextItemView", objc_superclass=ScrubberItemView)
-ScrubberTextItemView :: struct { using _: ScrubberItemView, }
+ScrubberTextItemView :: struct { using _: ScrubberItemView}
 
 @(default_calling_convention="c")
 foreign lib {

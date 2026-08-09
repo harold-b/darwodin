@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLVisibleFunctionTableDescriptor
 ///
 @(objc_class="MTLVisibleFunctionTableDescriptor", objc_superclass=NS.Object)
-VisibleFunctionTableDescriptor :: struct { using _: NS.Object, 
+VisibleFunctionTableDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

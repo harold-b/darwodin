@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextView
 ///
 @(objc_class="NSTextView", objc_superclass=Text)
-TextView :: struct { using _: Text, 
+TextView :: struct {
+    using _: Text,
     using _: ColorChanging,
     using _: MenuItemValidation,
     using _: UserInterfaceValidations,

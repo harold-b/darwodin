@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKShareRequestAccessOperation
 ///
 @(objc_class="CKShareRequestAccessOperation", objc_superclass=Operation)
-ShareRequestAccessOperation :: struct { using _: Operation, }
+ShareRequestAccessOperation :: struct { using _: Operation}
 
 @(default_calling_convention="c")
 foreign lib {

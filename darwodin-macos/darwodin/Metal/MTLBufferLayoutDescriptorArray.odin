@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLBufferLayoutDescriptorArray
 ///
 @(objc_class="MTLBufferLayoutDescriptorArray", objc_superclass=NS.Object)
-BufferLayoutDescriptorArray :: struct { using _: NS.Object, }
+BufferLayoutDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

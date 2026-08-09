@@ -1,62 +1,53 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSCollectionLayoutItem
-///
+
+
 @(objc_class="NSCollectionLayoutItem", objc_superclass=NS.Object)
-NSCollectionLayoutItem :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+NSCollectionLayoutItem :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=NSCollectionLayoutItem, objc_selector="itemWithLayoutSize:", objc_name="itemWithLayoutSize_", objc_is_class_method=true)
-    NSCollectionLayoutItem_itemWithLayoutSize_ :: proc(layoutSize: ^NSCollectionLayoutSize) -> instancetype ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="itemWithLayoutSize:", objc_name="itemWithLayoutSize_", objc_is_class_method=true)
+	NSCollectionLayoutItem_itemWithLayoutSize_ :: proc(layoutSize: ^NSCollectionLayoutSize) -> instancetype ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="itemWithLayoutSize:supplementaryItems:", objc_name="itemWithLayoutSize_supplementaryItems", objc_is_class_method=true)
-    NSCollectionLayoutItem_itemWithLayoutSize_supplementaryItems :: proc(layoutSize: ^NSCollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="itemWithLayoutSize:supplementaryItems:", objc_name="itemWithLayoutSize_supplementaryItems", objc_is_class_method=true)
+	NSCollectionLayoutItem_itemWithLayoutSize_supplementaryItems :: proc(layoutSize: ^NSCollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="init", objc_name="init")
-    NSCollectionLayoutItem_init :: proc(self: ^NSCollectionLayoutItem) -> instancetype ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="init", objc_name="init")
+	NSCollectionLayoutItem_init :: proc(self: ^NSCollectionLayoutItem) -> instancetype ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    NSCollectionLayoutItem_new :: proc() -> ^NSCollectionLayoutItem ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	NSCollectionLayoutItem_new :: proc() -> ^NSCollectionLayoutItem ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="contentInsets", objc_name="contentInsets")
-    NSCollectionLayoutItem_contentInsets :: proc(self: ^NSCollectionLayoutItem) -> NSDirectionalEdgeInsets ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="contentInsets", objc_name="contentInsets")
+	NSCollectionLayoutItem_contentInsets :: proc(self: ^NSCollectionLayoutItem) -> NSDirectionalEdgeInsets ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="setContentInsets:", objc_name="setContentInsets")
-    NSCollectionLayoutItem_setContentInsets :: proc(self: ^NSCollectionLayoutItem, contentInsets: NSDirectionalEdgeInsets) ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="setContentInsets:", objc_name="setContentInsets")
+	NSCollectionLayoutItem_setContentInsets :: proc(self: ^NSCollectionLayoutItem, contentInsets: NSDirectionalEdgeInsets) ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="edgeSpacing", objc_name="edgeSpacing")
-    NSCollectionLayoutItem_edgeSpacing :: proc(self: ^NSCollectionLayoutItem) -> ^NSCollectionLayoutEdgeSpacing ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="edgeSpacing", objc_name="edgeSpacing")
+	NSCollectionLayoutItem_edgeSpacing :: proc(self: ^NSCollectionLayoutItem) -> ^NSCollectionLayoutEdgeSpacing ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="setEdgeSpacing:", objc_name="setEdgeSpacing")
-    NSCollectionLayoutItem_setEdgeSpacing :: proc(self: ^NSCollectionLayoutItem, edgeSpacing: ^NSCollectionLayoutEdgeSpacing) ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="setEdgeSpacing:", objc_name="setEdgeSpacing")
+	NSCollectionLayoutItem_setEdgeSpacing :: proc(self: ^NSCollectionLayoutItem, edgeSpacing: ^NSCollectionLayoutEdgeSpacing) ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="layoutSize", objc_name="layoutSize")
-    NSCollectionLayoutItem_layoutSize :: proc(self: ^NSCollectionLayoutItem) -> ^NSCollectionLayoutSize ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="layoutSize", objc_name="layoutSize")
+	NSCollectionLayoutItem_layoutSize :: proc(self: ^NSCollectionLayoutItem) -> ^NSCollectionLayoutSize ---
 
-    @(objc_type=NSCollectionLayoutItem, objc_selector="supplementaryItems", objc_name="supplementaryItems")
-    NSCollectionLayoutItem_supplementaryItems :: proc(self: ^NSCollectionLayoutItem) -> ^NS.Array ---
+	@(objc_type=NSCollectionLayoutItem, objc_selector="supplementaryItems", objc_name="supplementaryItems")
+	NSCollectionLayoutItem_supplementaryItems :: proc(self: ^NSCollectionLayoutItem) -> ^NS.Array ---
 }
 
 @(objc_type=NSCollectionLayoutItem, objc_name="itemWithLayoutSize")
 NSCollectionLayoutItem_itemWithLayoutSize :: proc {
-    NSCollectionLayoutItem_itemWithLayoutSize_,
-    NSCollectionLayoutItem_itemWithLayoutSize_supplementaryItems,
+	NSCollectionLayoutItem_itemWithLayoutSize_,
+	NSCollectionLayoutItem_itemWithLayoutSize_supplementaryItems,
 }
-

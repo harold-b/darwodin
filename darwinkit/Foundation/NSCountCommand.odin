@@ -1,21 +1,13 @@
 #+build darwin:default
-package darwodin_Foundation
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
+package darwin_Foundation
 
 
 
-///
-/// NSCountCommand
-///
+
+
+
 @(objc_class="NSCountCommand", objc_superclass=ScriptCommand)
-CountCommand :: struct { using _: ScriptCommand, }
+CountCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {}

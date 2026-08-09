@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPopoverControllerDelegate
 ///
 @(objc_class="UIPopoverControllerDelegate")
-PopoverControllerDelegate :: struct { using _: intrinsics.objc_object, 
+PopoverControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

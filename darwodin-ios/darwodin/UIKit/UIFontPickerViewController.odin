@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIFontPickerViewController
 ///
 @(objc_class="UIFontPickerViewController", objc_superclass=ViewController)
-FontPickerViewController :: struct { using _: ViewController, }
+FontPickerViewController :: struct { using _: ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

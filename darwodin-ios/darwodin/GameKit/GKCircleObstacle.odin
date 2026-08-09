@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKCircleObstacle
 ///
 @(objc_class="GKCircleObstacle", objc_superclass=Obstacle)
-CircleObstacle :: struct { using _: Obstacle, }
+CircleObstacle :: struct { using _: Obstacle}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSTextAlternatives
 ///
 @(objc_class="NSTextAlternatives")
-NSTextAlternatives :: struct { using _: intrinsics.objc_object, }
+NSTextAlternatives :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

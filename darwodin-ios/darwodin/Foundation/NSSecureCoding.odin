@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSSecureCoding
 ///
 @(objc_class="NSSecureCoding")
-SecureCoding :: struct { using _: intrinsics.objc_object, 
+SecureCoding :: struct {
+    using _: intrinsics.objc_object,
     using _: Coding,
 }
 

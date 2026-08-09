@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISpringTimingParameters
 ///
 @(objc_class="UISpringTimingParameters", objc_superclass=NS.Object)
-SpringTimingParameters :: struct { using _: NS.Object, 
+SpringTimingParameters :: struct {
+    using _: NS.Object,
     using _: TimingCurveProvider,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSymbolDisappearEffect
 ///
 @(objc_class="NSSymbolDisappearEffect", objc_superclass=SymbolEffect)
-SymbolDisappearEffect :: struct { using _: SymbolEffect, }
+SymbolDisappearEffect :: struct { using _: SymbolEffect}
 
 @(default_calling_convention="c")
 foreign lib {

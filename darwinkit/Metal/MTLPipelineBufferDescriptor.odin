@@ -1,28 +1,18 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLPipelineBufferDescriptor", objc_superclass=NS.Object)
-PipelineBufferDescriptor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+PipelineBufferDescriptor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=PipelineBufferDescriptor, objc_selector="mutability", objc_name="mutability")
-    PipelineBufferDescriptor_mutability :: proc(self: ^PipelineBufferDescriptor) -> Mutability ---
+	@(objc_type=PipelineBufferDescriptor, objc_selector="mutability", objc_name="mutability")
+	PipelineBufferDescriptor_mutability :: proc(self: ^PipelineBufferDescriptor) -> Mutability ---
 
-    @(objc_type=PipelineBufferDescriptor, objc_selector="setMutability:", objc_name="setMutability")
-    PipelineBufferDescriptor_setMutability :: proc(self: ^PipelineBufferDescriptor, mutability: Mutability) ---
+	@(objc_type=PipelineBufferDescriptor, objc_selector="setMutability:", objc_name="setMutability")
+	PipelineBufferDescriptor_setMutability :: proc(self: ^PipelineBufferDescriptor, mutability: Mutability) ---
 }
-
-
-

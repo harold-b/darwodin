@@ -11,7 +11,7 @@ while true; do
     -macos)
       kind="macos"
       ;;
-    -ios)
+    -i|-ios)
       kind="ios"
       ;;
   esac

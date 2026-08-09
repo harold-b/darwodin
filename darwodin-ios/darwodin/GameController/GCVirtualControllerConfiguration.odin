@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCVirtualControllerConfiguration
 ///
 @(objc_class="GCVirtualControllerConfiguration", objc_superclass=NS.Object)
-VirtualControllerConfiguration :: struct { using _: NS.Object, }
+VirtualControllerConfiguration :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

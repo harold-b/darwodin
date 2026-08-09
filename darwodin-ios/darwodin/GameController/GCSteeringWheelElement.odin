@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCSteeringWheelElement
 ///
 @(objc_class="GCSteeringWheelElement", objc_superclass=NS.Object)
-SteeringWheelElement :: struct { using _: NS.Object, 
+SteeringWheelElement :: struct {
+    using _: NS.Object,
     using _: AxisElement,
 }
 

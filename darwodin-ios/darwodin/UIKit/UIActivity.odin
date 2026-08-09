@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIActivity
 ///
 @(objc_class="UIActivity", objc_superclass=NS.Object)
-Activity :: struct { using _: NS.Object, }
+Activity :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

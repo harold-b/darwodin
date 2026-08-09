@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSXPCCoder
 ///
 @(objc_class="NSXPCCoder", objc_superclass=Coder)
-XPCCoder :: struct { using _: Coder, }
+XPCCoder :: struct { using _: Coder}
 
 @(default_calling_convention="c")
 foreign lib {

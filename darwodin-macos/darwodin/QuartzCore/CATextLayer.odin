@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CATextLayer
 ///
 @(objc_class="CATextLayer", objc_superclass=Layer)
-TextLayer :: struct { using _: Layer, }
+TextLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSWorkspace
 ///
 @(objc_class="NSWorkspace", objc_superclass=NS.Object)
-Workspace :: struct { using _: NS.Object, }
+Workspace :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

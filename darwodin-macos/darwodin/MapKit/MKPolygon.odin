@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKPolygon
 ///
 @(objc_class="MKPolygon", objc_superclass=MultiPoint)
-Polygon :: struct { using _: MultiPoint, 
+Polygon :: struct {
+    using _: MultiPoint,
     using _: Overlay,
 }
 

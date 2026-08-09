@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSPortMessage
 ///
 @(objc_class="NSPortMessage")
-PortMessage :: struct { using _: intrinsics.objc_object, }
+PortMessage :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

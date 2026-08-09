@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSCollectionViewTransitionLayout
 ///
 @(objc_class="NSCollectionViewTransitionLayout", objc_superclass=CollectionViewLayout)
-CollectionViewTransitionLayout :: struct { using _: CollectionViewLayout, }
+CollectionViewTransitionLayout :: struct { using _: CollectionViewLayout}
 
 @(default_calling_convention="c")
 foreign lib {

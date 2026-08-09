@@ -5,11 +5,11 @@ import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import NS "../Foundation"
 import CA "../QuartzCore"
+import NS "../Foundation"
+import UI "../UIKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import UI "../UIKit"
 
 
 
@@ -17,7 +17,8 @@ import UI "../UIKit"
 /// MTKMeshBufferAllocator
 ///
 @(objc_class="MTKMeshBufferAllocator", objc_superclass=NS.Object)
-MeshBufferAllocator :: struct { using _: NS.Object, 
+MeshBufferAllocator :: struct {
+    using _: NS.Object,
     using _: MDL.MeshBufferAllocator,
 }
 

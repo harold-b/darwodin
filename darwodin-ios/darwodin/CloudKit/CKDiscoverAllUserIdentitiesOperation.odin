@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKDiscoverAllUserIdentitiesOperation
 ///
 @(objc_class="CKDiscoverAllUserIdentitiesOperation", objc_superclass=Operation)
-DiscoverAllUserIdentitiesOperation :: struct { using _: Operation, }
+DiscoverAllUserIdentitiesOperation :: struct { using _: Operation}
 
 @(default_calling_convention="c")
 foreign lib {

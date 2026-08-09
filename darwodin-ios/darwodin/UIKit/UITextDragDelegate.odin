@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDragDelegate
 ///
 @(objc_class="UITextDragDelegate")
-TextDragDelegate :: struct { using _: intrinsics.objc_object, 
+TextDragDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

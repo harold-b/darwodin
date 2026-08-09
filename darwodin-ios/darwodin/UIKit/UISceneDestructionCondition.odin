@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISceneDestructionCondition
 ///
 @(objc_class="UISceneDestructionCondition", objc_superclass=NS.Object)
-SceneDestructionCondition :: struct { using _: NS.Object, 
+SceneDestructionCondition :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

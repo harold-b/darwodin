@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKFetchWebAuthTokenOperation
 ///
 @(objc_class="CKFetchWebAuthTokenOperation", objc_superclass=DatabaseOperation)
-FetchWebAuthTokenOperation :: struct { using _: DatabaseOperation, }
+FetchWebAuthTokenOperation :: struct { using _: DatabaseOperation}
 
 @(default_calling_convention="c")
 foreign lib {

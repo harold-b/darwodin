@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSLocalizedNumberFormatRule
 ///
 @(objc_class="NSLocalizedNumberFormatRule", objc_superclass=Object)
-LocalizedNumberFormatRule :: struct { using _: Object, 
+LocalizedNumberFormatRule :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

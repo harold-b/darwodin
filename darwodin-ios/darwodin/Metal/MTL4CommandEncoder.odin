@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CommandEncoder
 ///
 @(objc_class="MTL4CommandEncoder")
-MTL4CommandEncoder :: struct { using _: intrinsics.objc_object, 
+MTL4CommandEncoder :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

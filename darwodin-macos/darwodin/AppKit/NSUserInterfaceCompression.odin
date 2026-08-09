@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSUserInterfaceCompression
 ///
 @(objc_class="NSUserInterfaceCompression")
-UserInterfaceCompression :: struct { using _: intrinsics.objc_object, }
+UserInterfaceCompression :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

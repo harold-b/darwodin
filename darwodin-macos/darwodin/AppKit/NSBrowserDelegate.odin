@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSBrowserDelegate
 ///
 @(objc_class="NSBrowserDelegate")
-BrowserDelegate :: struct { using _: intrinsics.objc_object, 
+BrowserDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

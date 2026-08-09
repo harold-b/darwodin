@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCXboxGamepad
 ///
 @(objc_class="GCXboxGamepad", objc_superclass=ExtendedGamepad)
-XboxGamepad :: struct { using _: ExtendedGamepad, }
+XboxGamepad :: struct { using _: ExtendedGamepad}
 
 @(default_calling_convention="c")
 foreign lib {

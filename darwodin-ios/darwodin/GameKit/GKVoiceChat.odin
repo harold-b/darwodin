@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKVoiceChat
 ///
 @(objc_class="GKVoiceChat", objc_superclass=NS.Object)
-VoiceChat :: struct { using _: NS.Object, }
+VoiceChat :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

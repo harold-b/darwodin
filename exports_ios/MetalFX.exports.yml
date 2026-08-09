@@ -1,0 +1,40 @@
+PackageName: "MetalFX"
+ImportName: "MTLFX"
+
+Structs:
+
+Typedefs:
+
+Enums:
+    'MTLFXSpatialScalerColorProcessingMode': 'MTLFX.SpatialScalerColorProcessingMode'
+
+ObjCClasses:
+    'MTLFXTemporalScalerDescriptor': 'MTLFX.TemporalScalerDescriptor'
+    'MTLFXTemporalDenoisedScalerDescriptor': 'MTLFX.TemporalDenoisedScalerDescriptor'
+    'MTLFXSpatialScalerDescriptor': 'MTLFX.SpatialScalerDescriptor'
+    'MTLFXFrameInterpolatorDescriptor': 'MTLFX.FrameInterpolatorDescriptor'
+
+ObjCProtocols:
+    'MTL4FXTemporalScaler': 'MTLFX.MTL4FXTemporalScaler'
+    'MTLFXTemporalScaler': 'MTLFX.TemporalScaler'
+    'MTLFXFrameInterpolatableScaler': 'MTLFX.FrameInterpolatableScaler'
+    'MTLFXTemporalScalerBase': 'MTLFX.TemporalScalerBase'
+    'MTL4FXTemporalDenoisedScaler': 'MTLFX.MTL4FXTemporalDenoisedScaler'
+    'MTLFXTemporalDenoisedScaler': 'MTLFX.TemporalDenoisedScaler'
+    'MTLFXTemporalDenoisedScalerBase': 'MTLFX.TemporalDenoisedScalerBase'
+    'MTL4FXSpatialScaler': 'MTLFX.MTL4FXSpatialScaler'
+    'MTLFXSpatialScaler': 'MTLFX.SpatialScaler'
+    'MTLFXSpatialScalerBase': 'MTLFX.SpatialScalerBase'
+    'MTL4FXFrameInterpolator': 'MTLFX.MTL4FXFrameInterpolator'
+    'MTLFXFrameInterpolator': 'MTLFX.FrameInterpolator'
+    'MTLFXFrameInterpolatorBase': 'MTLFX.FrameInterpolatorBase'
+
+
+Functions:
+
+ExternVars:
+
+ExternTypes:
+
+ConstVars:
+

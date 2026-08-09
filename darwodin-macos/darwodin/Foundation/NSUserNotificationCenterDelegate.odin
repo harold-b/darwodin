@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUserNotificationCenterDelegate
 ///
 @(objc_class="NSUserNotificationCenterDelegate")
-UserNotificationCenterDelegate :: struct { using _: intrinsics.objc_object, 
+UserNotificationCenterDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityNavigableStaticText
 ///
 @(objc_class="NSAccessibilityNavigableStaticText")
-AccessibilityNavigableStaticText :: struct { using _: intrinsics.objc_object, 
+AccessibilityNavigableStaticText :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityStaticText,
 }
 

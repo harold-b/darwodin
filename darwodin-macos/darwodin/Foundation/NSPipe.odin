@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSPipe
 ///
 @(objc_class="NSPipe", objc_superclass=Object)
-Pipe :: struct { using _: Object, }
+Pipe :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLTransformOp
 ///
 @(objc_class="MDLTransformOp")
-TransformOp :: struct { using _: intrinsics.objc_object, }
+TransformOp :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

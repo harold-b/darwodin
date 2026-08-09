@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFunctionStitchingAttribute
 ///
 @(objc_class="MTLFunctionStitchingAttribute")
-FunctionStitchingAttribute :: struct { using _: intrinsics.objc_object, 
+FunctionStitchingAttribute :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

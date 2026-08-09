@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTokenFieldCell
 ///
 @(objc_class="NSTokenFieldCell", objc_superclass=TextFieldCell)
-TokenFieldCell :: struct { using _: TextFieldCell, }
+TokenFieldCell :: struct { using _: TextFieldCell}
 
 @(default_calling_convention="c")
 foreign lib {

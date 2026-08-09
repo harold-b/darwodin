@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAssetWriterInputGroup
 ///
 @(objc_class="AVAssetWriterInputGroup", objc_superclass=MediaSelectionGroup)
-AssetWriterInputGroup :: struct { using _: MediaSelectionGroup, }
+AssetWriterInputGroup :: struct { using _: MediaSelectionGroup}
 
 @(default_calling_convention="c")
 foreign lib {

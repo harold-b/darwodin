@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSAnimationContext
 ///
 @(objc_class="NSAnimationContext", objc_superclass=NS.Object)
-AnimationContext :: struct { using _: NS.Object, }
+AnimationContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

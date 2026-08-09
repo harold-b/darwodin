@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKMatchmakerViewController
 ///
 @(objc_class="GKMatchmakerViewController", objc_superclass=NS.ViewController)
-MatchmakerViewController :: struct { using _: NS.ViewController, 
+MatchmakerViewController :: struct {
+    using _: NS.ViewController,
     using _: ViewController,
 }
 

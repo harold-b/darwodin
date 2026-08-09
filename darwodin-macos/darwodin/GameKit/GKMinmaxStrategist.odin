@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKMinmaxStrategist
 ///
 @(objc_class="GKMinmaxStrategist", objc_superclass=NS.Object)
-MinmaxStrategist :: struct { using _: NS.Object, 
+MinmaxStrategist :: struct {
+    using _: NS.Object,
     using _: Strategist,
 }
 

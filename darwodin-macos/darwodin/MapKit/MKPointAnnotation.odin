@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKPointAnnotation
 ///
 @(objc_class="MKPointAnnotation", objc_superclass=Shape)
-PointAnnotation :: struct { using _: Shape, }
+PointAnnotation :: struct { using _: Shape}
 
 @(default_calling_convention="c")
 foreign lib {

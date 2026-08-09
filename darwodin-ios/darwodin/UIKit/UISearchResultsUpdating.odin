@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISearchResultsUpdating
 ///
 @(objc_class="UISearchResultsUpdating")
-SearchResultsUpdating :: struct { using _: intrinsics.objc_object, 
+SearchResultsUpdating :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

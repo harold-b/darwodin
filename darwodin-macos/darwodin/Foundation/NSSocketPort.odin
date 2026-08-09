@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSSocketPort
 ///
 @(objc_class="NSSocketPort", objc_superclass=Port)
-SocketPort :: struct { using _: Port, }
+SocketPort :: struct { using _: Port}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLResponseInternal
 ///
 @(objc_class="NSURLResponseInternal")
-URLResponseInternal :: struct { using _: intrinsics.objc_object, }
+URLResponseInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

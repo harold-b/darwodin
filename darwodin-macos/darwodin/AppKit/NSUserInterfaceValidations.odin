@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSUserInterfaceValidations
 ///
 @(objc_class="NSUserInterfaceValidations")
-UserInterfaceValidations :: struct { using _: intrinsics.objc_object, }
+UserInterfaceValidations :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

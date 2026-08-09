@@ -1,23 +1,13 @@
 #+build darwin:ios
-package darwodin_UIKit
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
+package darwin_UIKit
 
 
 
-///
-/// UIEventAttributionView
-///
+
+
+
 @(objc_class="UIEventAttributionView", objc_superclass=View)
-EventAttributionView :: struct { using _: View, }
+EventAttributionView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {}

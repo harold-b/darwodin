@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISearchBarDelegate
 ///
 @(objc_class="UISearchBarDelegate")
-SearchBarDelegate :: struct { using _: intrinsics.objc_object, 
+SearchBarDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 

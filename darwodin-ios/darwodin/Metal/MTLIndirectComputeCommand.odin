@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIndirectComputeCommand
 ///
 @(objc_class="MTLIndirectComputeCommand")
-IndirectComputeCommand :: struct { using _: intrinsics.objc_object, 
+IndirectComputeCommand :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKLookAroundViewControllerDelegate
 ///
 @(objc_class="MKLookAroundViewControllerDelegate")
-LookAroundViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+LookAroundViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

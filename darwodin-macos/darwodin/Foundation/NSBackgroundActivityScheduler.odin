@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSBackgroundActivityScheduler
 ///
 @(objc_class="NSBackgroundActivityScheduler", objc_superclass=Object)
-BackgroundActivityScheduler :: struct { using _: Object, }
+BackgroundActivityScheduler :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

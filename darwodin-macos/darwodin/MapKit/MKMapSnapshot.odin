@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMapSnapshot
 ///
 @(objc_class="MKMapSnapshot", objc_superclass=NS.Object)
-MapSnapshot :: struct { using _: NS.Object, }
+MapSnapshot :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

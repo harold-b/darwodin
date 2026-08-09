@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMIDIPitchBendEvent
 ///
 @(objc_class="AVMIDIPitchBendEvent", objc_superclass=MIDIChannelEvent)
-MIDIPitchBendEvent :: struct { using _: MIDIChannelEvent, }
+MIDIPitchBendEvent :: struct { using _: MIDIChannelEvent}
 
 @(default_calling_convention="c")
 foreign lib {

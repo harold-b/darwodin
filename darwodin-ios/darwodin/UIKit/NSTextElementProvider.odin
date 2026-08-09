@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSTextElementProvider
 ///
 @(objc_class="NSTextElementProvider")
-NSTextElementProvider :: struct { using _: intrinsics.objc_object, 
+NSTextElementProvider :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

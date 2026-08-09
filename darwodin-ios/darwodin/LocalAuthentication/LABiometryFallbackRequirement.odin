@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LABiometryFallbackRequirement
 ///
 @(objc_class="LABiometryFallbackRequirement", objc_superclass=NS.Object)
-BiometryFallbackRequirement :: struct { using _: NS.Object, }
+BiometryFallbackRequirement :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

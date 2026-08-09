@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISceneConnectionOptions
 ///
 @(objc_class="UISceneConnectionOptions", objc_superclass=NS.Object)
-SceneConnectionOptions :: struct { using _: NS.Object, }
+SceneConnectionOptions :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

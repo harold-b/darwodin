@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAEmitterLayer
 ///
 @(objc_class="CAEmitterLayer", objc_superclass=Layer)
-EmitterLayer :: struct { using _: Layer, }
+EmitterLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

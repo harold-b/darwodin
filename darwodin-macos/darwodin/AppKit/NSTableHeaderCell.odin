@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTableHeaderCell
 ///
 @(objc_class="NSTableHeaderCell", objc_superclass=TextFieldCell)
-TableHeaderCell :: struct { using _: TextFieldCell, }
+TableHeaderCell :: struct { using _: TextFieldCell}
 
 @(default_calling_convention="c")
 foreign lib {

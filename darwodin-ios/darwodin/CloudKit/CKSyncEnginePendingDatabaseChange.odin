@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKSyncEnginePendingDatabaseChange
 ///
 @(objc_class="CKSyncEnginePendingDatabaseChange", objc_superclass=NS.Object)
-SyncEnginePendingDatabaseChange :: struct { using _: NS.Object, }
+SyncEnginePendingDatabaseChange :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

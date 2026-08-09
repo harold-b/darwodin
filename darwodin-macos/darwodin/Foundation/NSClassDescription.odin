@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSClassDescription
 ///
 @(objc_class="NSClassDescription", objc_superclass=Object)
-ClassDescription :: struct { using _: Object, }
+ClassDescription :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

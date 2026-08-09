@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKAllowedSharingOptions
 ///
 @(objc_class="CKAllowedSharingOptions", objc_superclass=NS.Object)
-AllowedSharingOptions :: struct { using _: NS.Object, 
+AllowedSharingOptions :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

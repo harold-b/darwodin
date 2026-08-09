@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKQueryOperation
 ///
 @(objc_class="CKQueryOperation", objc_superclass=DatabaseOperation)
-QueryOperation :: struct { using _: DatabaseOperation, }
+QueryOperation :: struct { using _: DatabaseOperation}
 
 @(default_calling_convention="c")
 foreign lib {

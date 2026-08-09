@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSScrubberDelegate
 ///
 @(objc_class="NSScrubberDelegate")
-ScrubberDelegate :: struct { using _: intrinsics.objc_object, 
+ScrubberDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

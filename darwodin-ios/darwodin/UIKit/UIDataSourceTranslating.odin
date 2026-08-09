@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDataSourceTranslating
 ///
 @(objc_class="UIDataSourceTranslating")
-DataSourceTranslating :: struct { using _: intrinsics.objc_object, 
+DataSourceTranslating :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CASpringAnimation
 ///
 @(objc_class="CASpringAnimation", objc_superclass=BasicAnimation)
-SpringAnimation :: struct { using _: BasicAnimation, }
+SpringAnimation :: struct { using _: BasicAnimation}
 
 @(default_calling_convention="c")
 foreign lib {

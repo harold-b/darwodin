@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextSearching
 ///
 @(objc_class="UITextSearching")
-TextSearching :: struct { using _: intrinsics.objc_object, 
+TextSearching :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

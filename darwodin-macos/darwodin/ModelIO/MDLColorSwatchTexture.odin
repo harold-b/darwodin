@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLColorSwatchTexture
 ///
 @(objc_class="MDLColorSwatchTexture", objc_superclass=Texture)
-ColorSwatchTexture :: struct { using _: Texture, }
+ColorSwatchTexture :: struct { using _: Texture}
 
 @(default_calling_convention="c")
 foreign lib {

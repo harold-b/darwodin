@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIScrollViewDelegate
 ///
 @(objc_class="UIScrollViewDelegate")
-ScrollViewDelegate :: struct { using _: intrinsics.objc_object, 
+ScrollViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

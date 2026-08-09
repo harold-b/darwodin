@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVCaptureMultiCamSession
 ///
 @(objc_class="AVCaptureMultiCamSession", objc_superclass=CaptureSession)
-CaptureMultiCamSession :: struct { using _: CaptureSession, }
+CaptureMultiCamSession :: struct { using _: CaptureSession}
 
 @(default_calling_convention="c")
 foreign lib {

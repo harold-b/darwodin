@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextLayoutFragment
 ///
 @(objc_class="NSTextLayoutFragment", objc_superclass=NS.Object)
-TextLayoutFragment :: struct { using _: NS.Object, 
+TextLayoutFragment :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

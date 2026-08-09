@@ -1,0 +1,166 @@
+---
+
+Defs: ../definitions/macos/audiotoolbox.json
+
+Cpp:
+  Emit:                      false
+  ExportInternals:           true
+  DontWrapCFunctions:        true
+  ExportForwardDeclarations: true
+  KeepAnonymousEnums:        true
+
+  ExportTypes:
+    - ^Audio.+
+    - ^AU.+
+    - '^CA.+'
+    - ^OpaqueA[uU].+
+    - ^ComponentInstanceRecord$
+    - ^MIDI.+
+    - ^SMPT.+$
+    - ^TimeStamp$
+    - .+FDF$
+    - ^CallHostBlock$
+    - ^CASpatialAudioExperience$
+    - ^SystemSoundID$
+    - ^(Opaque)?MusicSequence$
+
+  ExportMethods:
+    - ^::Audio.+
+    - ^::AU.+
+
+  ExportVars:
+    - ^::k?Audio.+
+    - ^::k?AU.+
+
+  IgnoreTypes:
+    - ^AudioFormatID$
+    - ^AudioFormatFlags$
+
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../global.exports.yml
+    - ../mach/exports/mach.exports.yml
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/Foundation.exports.yml
+
+  NoDistinctTypedefs: true
+  ResolvedTypedefs:
+    - '[su]?int.*'
+    - ^Float32$
+    - ^Float64$
+    - ^Byte$
+
+  Packages:
+    - Name:     AudioToolbox
+      Export:   AT
+      LinkLibs: [system:AudioToolbox.framework]
+      Filter:   .*
+
+      Imports:
+        - |
+          AVAudioFormat     :: struct {}
+          OpaqueAudioFileID :: struct {}
+          FSRef             :: struct {}
+          NSImage           :: struct {}
+          UIImage           :: struct {}
+          OpaqueCAClock     :: struct {}
+
+      # TypeMap:
+      #   AudioFormatFlags: FormatFlags
+
+      IgnoreEnumItems:
+        - ^AudioFormatFlag::kLinearPCMFormatFlag.+'
+
+      MacroFilter: [{ Match: ^(Audio|AU).+ }]
+
+
+  # Symbol Transformers
+  SyntheticEnums:
+    - Name: AudioFormatID
+      FieldMatch: [ ^kAudioFormat(?!Flag|Property|.+Error$).+ ]
+
+    - Name: AudioFormatFlag
+      FieldMatch: [ ^(kAudioFormatFlag(Is|sAre)|kLinearPCMFormatFlag|kAppleLosslessFormatFlag_).+ ]
+
+    - Name: AudioFormatFlags
+      FieldMatch: [ ^kAudioFormatFlags(?!Are).+ ]
+
+  TypeTransforms:
+    - Type: ^(CA).+
+      Transforms:
+        - Kind:   RemovePrefix
+          Source: $group0
+
+    - Type: ^(Audio).+
+      Transforms:
+        - Kind: RemovePrefix
+          Source: $group0
+
+    # Name mapping
+    - { Type: ^FormatFlags$, Transforms: [{ Kind: Map, Target: FormatFlagsPreset }] }
+    - { Type: ^FormatFlag$,  Transforms: [{ Kind: Map, Target: FormatFlags }] }
+
+    # Transforms for bit_set types
+    - { Type: (Mask|(?<!Format)Flag|Option)$, Transforms: [{ Kind: AppendSuffix, Source: s   }] }
+    - { Type: ^ChannelBitmap$,                Transforms: [{ Kind: RemoveSuffix, Source: Bit }] }
+
+  BitSetMap:
+    # - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
+    #   Transforms:
+    #     - Kind  : RemoveSuffix
+    #       Source: s
+
+    - Type: ^AudioFormatFlag$
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
+
+    # Transforms the enum that will generate a bit_set to not have a collision type
+    - Type: (Mask|(?<!Format)Flags?|Options?)$
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
+
+      # Transforms the enum that will generate a bit_set to not have a collision type
+    - Type: ^AudioChannelBitmap$
+      Transforms: [{ Kind: AppendSuffix, Source: Bit }]
+
+
+  EnumTransforms:
+    - Type: .*
+      Transforms:
+      - Kind: RemoveCommonPrefix
+      - Kind: RemoveTypeWordsFromElements
+      - Kind: RemovePartialTypeNamePrefix
+      - Kind: RemoveUnderscorePrefix
+      - Kind: UnderscoreNumbers
+
+    - Type: ^AudioFormatFlag
+      Transforms:
+      - Kind: ReplacePrefix
+        Source: sAre
+        Target: Are
+ 
+  ProcTransforms:
+    - Type: ^(_*Audio).+
+      Transforms:
+        - Kind:   RemovePrefix
+          Source: $group0
+
+  VarTransforms:
+    - Type: ^(_?kAudio).+
+      Transforms:
+        - Kind:   ReplacePrefix
+          Source: $group0
+          Target: k
+
+    - Type: ^(_*Audio).+
+      Transforms:
+        - Kind:   RemovePrefix
+          Source: $group0
+

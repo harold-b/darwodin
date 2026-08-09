@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSRangeSpecifier
 ///
 @(objc_class="NSRangeSpecifier", objc_superclass=ScriptObjectSpecifier)
-RangeSpecifier :: struct { using _: ScriptObjectSpecifier, }
+RangeSpecifier :: struct { using _: ScriptObjectSpecifier}
 
 @(default_calling_convention="c")
 foreign lib {

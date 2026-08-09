@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCControllerButtonInput
 ///
 @(objc_class="GCControllerButtonInput", objc_superclass=ControllerElement)
-ControllerButtonInput :: struct { using _: ControllerElement, }
+ControllerButtonInput :: struct { using _: ControllerElement}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewController
 ///
 @(objc_class="UICollectionViewController", objc_superclass=ViewController)
-CollectionViewController :: struct { using _: ViewController, 
+CollectionViewController :: struct {
+    using _: ViewController,
     using _: CollectionViewDelegate,
     using _: CollectionViewDataSource,
 }

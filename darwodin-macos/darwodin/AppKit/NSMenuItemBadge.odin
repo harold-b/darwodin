@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSMenuItemBadge
 ///
 @(objc_class="NSMenuItemBadge", objc_superclass=NS.Object)
-MenuItemBadge :: struct { using _: NS.Object, 
+MenuItemBadge :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

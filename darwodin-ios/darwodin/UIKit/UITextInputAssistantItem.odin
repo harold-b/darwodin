@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextInputAssistantItem
 ///
 @(objc_class="UITextInputAssistantItem", objc_superclass=NS.Object)
-TextInputAssistantItem :: struct { using _: NS.Object, }
+TextInputAssistantItem :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIActivityItemsConfigurationProviding
 ///
 @(objc_class="UIActivityItemsConfigurationProviding")
-ActivityItemsConfigurationProviding :: struct { using _: intrinsics.objc_object, 
+ActivityItemsConfigurationProviding :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

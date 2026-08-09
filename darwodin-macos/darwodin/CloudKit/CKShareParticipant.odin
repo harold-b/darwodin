@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKShareParticipant
 ///
 @(objc_class="CKShareParticipant", objc_superclass=NS.Object)
-ShareParticipant :: struct { using _: NS.Object, 
+ShareParticipant :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

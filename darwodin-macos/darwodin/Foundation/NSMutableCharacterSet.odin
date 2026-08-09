@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSMutableCharacterSet
 ///
 @(objc_class="NSMutableCharacterSet", objc_superclass=CharacterSet)
-MutableCharacterSet :: struct { using _: CharacterSet, 
+MutableCharacterSet :: struct {
+    using _: CharacterSet,
     using _: Copying,
     using _: MutableCopying,
     using _: SecureCoding,

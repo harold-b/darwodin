@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,8 @@ import UI "../UIKit"
 /// GKSavedGameListener
 ///
 @(objc_class="GKSavedGameListener")
-SavedGameListener :: struct { using _: intrinsics.objc_object, 
+SavedGameListener :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

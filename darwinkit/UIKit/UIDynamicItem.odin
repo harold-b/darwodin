@@ -1,46 +1,40 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UIDynamicItem
-///
+
+
 @(objc_class="UIDynamicItem")
-DynamicItem :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+DynamicItem :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=DynamicItem, objc_selector="center", objc_name="center")
-    DynamicItem_center :: proc(self: ^DynamicItem) -> CG.Point ---
+	@(objc_type=DynamicItem, objc_selector="center", objc_name="center")
+	DynamicItem_center :: proc(self: ^DynamicItem) -> CG.Point ---
 
-    @(objc_type=DynamicItem, objc_selector="setCenter:", objc_name="setCenter")
-    DynamicItem_setCenter :: proc(self: ^DynamicItem, center: CG.Point) ---
+	@(objc_type=DynamicItem, objc_selector="setCenter:", objc_name="setCenter")
+	DynamicItem_setCenter :: proc(self: ^DynamicItem, center: CG.Point) ---
 
-    @(objc_type=DynamicItem, objc_selector="bounds", objc_name="bounds")
-    DynamicItem_bounds :: proc(self: ^DynamicItem) -> CG.Rect ---
+	@(objc_type=DynamicItem, objc_selector="bounds", objc_name="bounds")
+	DynamicItem_bounds :: proc(self: ^DynamicItem) -> CG.Rect ---
 
-    @(objc_type=DynamicItem, objc_selector="transform", objc_name="transform")
-    DynamicItem_transform :: proc(self: ^DynamicItem) -> CG.AffineTransform ---
+	@(objc_type=DynamicItem, objc_selector="transform", objc_name="transform")
+	DynamicItem_transform :: proc(self: ^DynamicItem) -> CG.AffineTransform ---
 
-    @(objc_type=DynamicItem, objc_selector="setTransform:", objc_name="setTransform")
-    DynamicItem_setTransform :: proc(self: ^DynamicItem, transform: CG.AffineTransform) ---
+	@(objc_type=DynamicItem, objc_selector="setTransform:", objc_name="setTransform")
+	DynamicItem_setTransform :: proc(self: ^DynamicItem, transform: CG.AffineTransform) ---
 
-    @(objc_type=DynamicItem, objc_selector="collisionBoundsType", objc_name="collisionBoundsType")
-    DynamicItem_collisionBoundsType :: proc(self: ^DynamicItem) -> DynamicItemCollisionBoundsType ---
+	@(objc_type=DynamicItem, objc_selector="collisionBoundsType", objc_name="collisionBoundsType")
+	DynamicItem_collisionBoundsType :: proc(self: ^DynamicItem) -> DynamicItemCollisionBoundsType ---
 
-    @(objc_type=DynamicItem, objc_selector="collisionBoundingPath", objc_name="collisionBoundingPath")
-    DynamicItem_collisionBoundingPath :: proc(self: ^DynamicItem) -> ^BezierPath ---
+	@(objc_type=DynamicItem, objc_selector="collisionBoundingPath", objc_name="collisionBoundingPath")
+	DynamicItem_collisionBoundingPath :: proc(self: ^DynamicItem) -> ^BezierPath ---
 }

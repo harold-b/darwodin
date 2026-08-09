@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTransformMatrixOp
 ///
 @(objc_class="MDLTransformMatrixOp", objc_superclass=NS.Object)
-TransformMatrixOp :: struct { using _: NS.Object, 
+TransformMatrixOp :: struct {
+    using _: NS.Object,
     using _: TransformOp,
 }
 

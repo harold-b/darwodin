@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSMorphology
 ///
 @(objc_class="NSMorphology", objc_superclass=Object)
-Morphology :: struct { using _: Object, 
+Morphology :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

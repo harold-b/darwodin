@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSGradient
 ///
 @(objc_class="NSGradient", objc_superclass=NS.Object)
-Gradient :: struct { using _: NS.Object, 
+Gradient :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

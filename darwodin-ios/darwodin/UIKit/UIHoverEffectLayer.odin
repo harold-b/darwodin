@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIHoverEffectLayer
 ///
 @(objc_class="UIHoverEffectLayer", objc_superclass=CA.Layer)
-HoverEffectLayer :: struct { using _: CA.Layer, }
+HoverEffectLayer :: struct { using _: CA.Layer}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVQueuePlayer
 ///
 @(objc_class="AVQueuePlayer", objc_superclass=Player)
-QueuePlayer :: struct { using _: Player, }
+QueuePlayer :: struct { using _: Player}
 
 @(default_calling_convention="c")
 foreign lib {

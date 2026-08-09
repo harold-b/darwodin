@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CHHapticEngine
 ///
 @(objc_class="CHHapticEngine", objc_superclass=NS.Object)
-HapticEngine :: struct { using _: NS.Object, }
+HapticEngine :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

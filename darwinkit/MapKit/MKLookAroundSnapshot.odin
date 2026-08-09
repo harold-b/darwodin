@@ -1,0 +1,12 @@
+#+build darwin
+package darwin_MapKit
+
+import NS "../Foundation"
+
+@(objc_class="MKLookAroundSnapshot", objc_superclass=NS.Object)
+LookAroundSnapshot :: struct { using _: NS.Object}
+
+foreign lib {
+	@(objc_type=LookAroundSnapshot, objc_selector="image", objc_name="image")
+	LookAroundSnapshot_image :: proc(self: ^LookAroundSnapshot) -> ^UI_Image ---
+}

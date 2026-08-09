@@ -3,6 +3,7 @@ package darwodin_EventKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
+import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
@@ -14,7 +15,7 @@ import MK "../MapKit"
 /// EKVirtualConferenceDescriptor
 ///
 @(objc_class="EKVirtualConferenceDescriptor", objc_superclass=NS.Object)
-VirtualConferenceDescriptor :: struct { using _: NS.Object, }
+VirtualConferenceDescriptor :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

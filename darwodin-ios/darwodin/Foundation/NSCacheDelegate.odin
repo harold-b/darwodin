@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSCacheDelegate
 ///
 @(objc_class="NSCacheDelegate")
-CacheDelegate :: struct { using _: intrinsics.objc_object, 
+CacheDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

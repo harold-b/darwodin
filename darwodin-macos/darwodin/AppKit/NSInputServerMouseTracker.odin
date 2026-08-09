@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSInputServerMouseTracker
 ///
 @(objc_class="NSInputServerMouseTracker")
-InputServerMouseTracker :: struct { using _: intrinsics.objc_object, }
+InputServerMouseTracker :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

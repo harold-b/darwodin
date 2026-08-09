@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLMesh
 ///
 @(objc_class="MDLMesh", objc_superclass=Object)
-Mesh :: struct { using _: Object, }
+Mesh :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

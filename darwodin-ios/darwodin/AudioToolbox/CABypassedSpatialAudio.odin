@@ -5,8 +5,6 @@ import "base:runtime"
 import cffi "core:c"
 import mach "../mach"
 import CF "../CoreFoundation"
-import CA "../CoreAudio"
-import CM "../CoreMedia"
 import NS "../Foundation"
 
 
@@ -14,14 +12,14 @@ import NS "../Foundation"
 ///
 /// CABypassedSpatialAudio
 ///
-@(objc_class="CABypassedSpatialAudio", objc_superclass=CASpatialAudioExperience)
-CABypassedSpatialAudio :: struct { using _: CASpatialAudioExperience, }
+@(objc_class="CABypassedSpatialAudio", objc_superclass=SpatialAudioExperience)
+BypassedSpatialAudio :: struct { using _: SpatialAudioExperience}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=CABypassedSpatialAudio, objc_selector="init", objc_name="init")
-    CABypassedSpatialAudio_init :: proc(self: ^CABypassedSpatialAudio) -> instancetype ---
+    @(objc_type=BypassedSpatialAudio, objc_selector="init", objc_name="init")
+    BypassedSpatialAudio_init :: proc(self: ^BypassedSpatialAudio) -> instancetype ---
 
-    @(objc_type=CABypassedSpatialAudio, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    CABypassedSpatialAudio_new :: proc() -> ^CABypassedSpatialAudio ---
+    @(objc_type=BypassedSpatialAudio, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    BypassedSpatialAudio_new :: proc() -> ^BypassedSpatialAudio ---
 }

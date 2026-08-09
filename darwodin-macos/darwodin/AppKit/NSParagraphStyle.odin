@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSParagraphStyle
 ///
 @(objc_class="NSParagraphStyle", objc_superclass=NS.Object)
-ParagraphStyle :: struct { using _: NS.Object, 
+ParagraphStyle :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.MutableCopying,
     using _: NS.SecureCoding,

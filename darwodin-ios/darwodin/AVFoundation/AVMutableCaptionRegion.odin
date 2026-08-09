@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMutableCaptionRegion
 ///
 @(objc_class="AVMutableCaptionRegion", objc_superclass=CaptionRegion)
-MutableCaptionRegion :: struct { using _: CaptionRegion, }
+MutableCaptionRegion :: struct { using _: CaptionRegion}
 
 @(default_calling_convention="c")
 foreign lib {

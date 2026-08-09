@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CommandQueue
 ///
 @(objc_class="MTL4CommandQueue")
-MTL4CommandQueue :: struct { using _: intrinsics.objc_object, 
+MTL4CommandQueue :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

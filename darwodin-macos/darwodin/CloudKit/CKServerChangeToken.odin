@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKServerChangeToken
 ///
 @(objc_class="CKServerChangeToken", objc_superclass=NS.Object)
-ServerChangeToken :: struct { using _: NS.Object, 
+ServerChangeToken :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCControllerLiveInput
 ///
 @(objc_class="GCControllerLiveInput", objc_superclass=ControllerInputState)
-ControllerLiveInput :: struct { using _: ControllerInputState, 
+ControllerLiveInput :: struct {
+    using _: ControllerInputState,
     using _: DevicePhysicalInput,
 }
 

@@ -1,12 +1,9 @@
 #+build darwin
-package darwodin_IOKit
-
-
+package darwin_IOKit
 
 import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import mach "../mach"
+import mach "../../mach"
 import CF "../CoreFoundation"
 
 id            :: ^intrinsics.objc_object
@@ -16,22 +13,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
-
 when ODIN_OS == .Darwin {
-    @(export)
-    foreign import lib {
-        "system:IOKit.framework",
-    }
+	@(export)
+	foreign import lib {
+		"system:IOKit.framework",
+	}
 }
 
 
-// +user-text-begin
 
-// IOBSD.h
+
+
 kBSDKey      :: "IOBSD"     // (BSD subsystem resource)
 kBSDNameKey  :: "BSD Name"  // (an OSString)
 kBSDNamesKey :: "BSD Names" // (an OSDictionary of OSString's, for links)
@@ -39,7 +31,6 @@ kBSDMajorKey :: "BSD Major" // (an OSNumber)
 kBSDMinorKey :: "BSD Minor" // (an OSNumber)
 kBSDUnitKey  :: "BSD Unit"  // (an OSNumber)
 
-// <IOKit/storage/IOStorageDeviceCharacteristics.h>
 kPropertyDeviceCharacteristicsKey  :: "Device Characteristics"
 kPropertyVendorNameKey             :: "Vendor Name"
 kPropertyProductNameKey            :: "Product Name"
@@ -63,7 +54,6 @@ kPropertyMediumTypeSolidStateKey   :: "Solid State"
 kPropertyMediumRotationRateKey     :: "Rotation Rate"
 
 
-// <IOKit/storage/IOBlockStorageDevice.h>
 /*!
  * @defined kIOBlockStorageDeviceClass
  * @abstract
@@ -81,7 +71,6 @@ kBlockStorageDeviceClass :: "IOBlockStorageDevice"
 kBlockStorageDeviceWriteCacheStateKey :: "WriteCacheState"
 
 
-// <IOKit/storage/IOMedia.h>
 
 kMediaClass :: "IOMedia"
 
@@ -276,317 +265,317 @@ kMediaInvalidStartupDiskKey :: "Invalid Startup Disk"
  */
 
 IOMediaAttributeMask :: enum u32 {
-    EjectableMask = 0x00000001,
-    RemovableMask = 0x00000002,
-    ReservedMask  = 0xFFFFFFFC,
+	EjectableMask = 0x00000001,
+	RemovableMask = 0x00000002,
+	ReservedMask  = 0xFFFFFFFC,
 }
 
 
 
 
 foreign lib {
-    @(link_name="kIOMainPortDefault")
-    kMainPortDefault: mach.port_t
+	@(link_name="kIOMainPortDefault")
+	kMainPortDefault: mach.port_t
 
-    @(link_name="kIOMasterPortDefault")
-    kMasterPortDefault: mach.port_t
+	@(link_name="kIOMasterPortDefault")
+	kMasterPortDefault: mach.port_t
 
-    @(link_name="IOMainPort")
-    MainPort :: proc(bootstrapPort: mach.port_t, mainPort: ^mach.port_t) -> mach.kern_return_t ---
+	@(link_name="IOMainPort")
+	MainPort :: proc(bootstrapPort: mach.port_t, mainPort: ^mach.port_t) -> mach.kern_return_t ---
 
-    @(link_name="IOMasterPort")
-    MasterPort :: proc(bootstrapPort: mach.port_t, mainPort: ^mach.port_t) -> mach.kern_return_t ---
+	@(link_name="IOMasterPort")
+	MasterPort :: proc(bootstrapPort: mach.port_t, mainPort: ^mach.port_t) -> mach.kern_return_t ---
 
-    @(link_name="IONotificationPortCreate")
-    NotificationPortCreate :: proc(mainPort: mach.port_t) -> NotificationPortRef ---
+	@(link_name="IONotificationPortCreate")
+	NotificationPortCreate :: proc(mainPort: mach.port_t) -> NotificationPortRef ---
 
-    @(link_name="IONotificationPortDestroy")
-    NotificationPortDestroy :: proc(notify: NotificationPortRef) ---
+	@(link_name="IONotificationPortDestroy")
+	NotificationPortDestroy :: proc(notify: NotificationPortRef) ---
 
-    @(link_name="IONotificationPortGetRunLoopSource")
-    NotificationPortGetRunLoopSource :: proc(notify: NotificationPortRef) -> CF.RunLoopSourceRef ---
+	@(link_name="IONotificationPortGetRunLoopSource")
+	NotificationPortGetRunLoopSource :: proc(notify: NotificationPortRef) -> CF.RunLoopSourceRef ---
 
-    @(link_name="IONotificationPortGetMachPort")
-    NotificationPortGetMachPort :: proc(notify: NotificationPortRef) -> mach.port_t ---
+	@(link_name="IONotificationPortGetMachPort")
+	NotificationPortGetMachPort :: proc(notify: NotificationPortRef) -> mach.port_t ---
 
-    @(link_name="IONotificationPortSetImportanceReceiver")
-    NotificationPortSetImportanceReceiver :: proc(notify: NotificationPortRef) -> mach.kern_return_t ---
+	@(link_name="IONotificationPortSetImportanceReceiver")
+	NotificationPortSetImportanceReceiver :: proc(notify: NotificationPortRef) -> mach.kern_return_t ---
 
-    @(link_name="IONotificationPortSetDispatchQueue")
-    NotificationPortSetDispatchQueue :: proc(notify: NotificationPortRef, queue: CF.dispatch_queue_t) ---
+	@(link_name="IONotificationPortSetDispatchQueue")
+	NotificationPortSetDispatchQueue :: proc(notify: NotificationPortRef, queue: CF.dispatch_queue_t) ---
 
-    @(link_name="IODispatchCalloutFromMessage")
-    DispatchCalloutFromMessage :: proc(unused: rawptr, msg: ^mach.msg_header_t, reference: rawptr) ---
+	@(link_name="IODispatchCalloutFromMessage")
+	DispatchCalloutFromMessage :: proc(unused: rawptr, msg: ^mach.msg_header_t, reference: rawptr) ---
 
-    @(link_name="IOCreateReceivePort")
-    CreateReceivePort :: proc(msgType: cffi.uint32_t, recvPort: ^mach.port_t) -> mach.kern_return_t ---
+	@(link_name="IOCreateReceivePort")
+	CreateReceivePort :: proc(msgType: cffi.uint32_t, recvPort: ^mach.port_t) -> mach.kern_return_t ---
 
-    @(link_name="IOObjectRelease")
-    ObjectRelease :: proc(object: object_t) -> mach.kern_return_t ---
+	@(link_name="IOObjectRelease")
+	ObjectRelease :: proc(object: object_t) -> mach.kern_return_t ---
 
-    @(link_name="IOObjectRetain")
-    ObjectRetain :: proc(object: object_t) -> mach.kern_return_t ---
+	@(link_name="IOObjectRetain")
+	ObjectRetain :: proc(object: object_t) -> mach.kern_return_t ---
 
-    @(link_name="IOObjectGetClass")
-    ObjectGetClass :: proc(object: object_t, className: ^name_t) -> mach.kern_return_t ---
+	@(link_name="IOObjectGetClass")
+	ObjectGetClass :: proc(object: object_t, className: ^name_t) -> mach.kern_return_t ---
 
-    @(link_name="IOObjectCopyClass")
-    ObjectCopyClass :: proc(object: object_t) -> CF.StringRef ---
+	@(link_name="IOObjectCopyClass")
+	ObjectCopyClass :: proc(object: object_t) -> CF.StringRef ---
 
-    @(link_name="IOObjectCopySuperclassForClass")
-    ObjectCopySuperclassForClass :: proc(classname: CF.StringRef) -> CF.StringRef ---
+	@(link_name="IOObjectCopySuperclassForClass")
+	ObjectCopySuperclassForClass :: proc(classname: CF.StringRef) -> CF.StringRef ---
 
-    @(link_name="IOObjectCopyBundleIdentifierForClass")
-    ObjectCopyBundleIdentifierForClass :: proc(classname: CF.StringRef) -> CF.StringRef ---
+	@(link_name="IOObjectCopyBundleIdentifierForClass")
+	ObjectCopyBundleIdentifierForClass :: proc(classname: CF.StringRef) -> CF.StringRef ---
 
-    @(link_name="IOObjectConformsTo")
-    ObjectConformsTo :: proc(object: object_t, className: ^name_t) -> CF.boolean_t ---
+	@(link_name="IOObjectConformsTo")
+	ObjectConformsTo :: proc(object: object_t, className: ^name_t) -> CF.boolean_t ---
 
-    @(link_name="IOObjectIsEqualTo")
-    ObjectIsEqualTo :: proc(object: object_t, anObject: object_t) -> CF.boolean_t ---
+	@(link_name="IOObjectIsEqualTo")
+	ObjectIsEqualTo :: proc(object: object_t, anObject: object_t) -> CF.boolean_t ---
 
-    @(link_name="IOObjectGetKernelRetainCount")
-    ObjectGetKernelRetainCount :: proc(object: object_t) -> cffi.uint32_t ---
+	@(link_name="IOObjectGetKernelRetainCount")
+	ObjectGetKernelRetainCount :: proc(object: object_t) -> cffi.uint32_t ---
 
-    @(link_name="IOObjectGetUserRetainCount")
-    ObjectGetUserRetainCount :: proc(object: object_t) -> cffi.uint32_t ---
+	@(link_name="IOObjectGetUserRetainCount")
+	ObjectGetUserRetainCount :: proc(object: object_t) -> cffi.uint32_t ---
 
-    @(link_name="IOObjectGetRetainCount")
-    ObjectGetRetainCount :: proc(object: object_t) -> cffi.uint32_t ---
+	@(link_name="IOObjectGetRetainCount")
+	ObjectGetRetainCount :: proc(object: object_t) -> cffi.uint32_t ---
 
-    @(link_name="IOIteratorNext")
-    IteratorNext :: proc(iterator: iterator_t) -> object_t ---
+	@(link_name="IOIteratorNext")
+	IteratorNext :: proc(iterator: iterator_t) -> object_t ---
 
-    @(link_name="IOIteratorReset")
-    IteratorReset :: proc(iterator: iterator_t) ---
+	@(link_name="IOIteratorReset")
+	IteratorReset :: proc(iterator: iterator_t) ---
 
-    @(link_name="IOIteratorIsValid")
-    IteratorIsValid :: proc(iterator: iterator_t) -> CF.boolean_t ---
+	@(link_name="IOIteratorIsValid")
+	IteratorIsValid :: proc(iterator: iterator_t) -> CF.boolean_t ---
 
-    @(link_name="IOServiceGetMatchingService")
-    ServiceGetMatchingService :: proc(mainPort: mach.port_t, matching: CF.DictionaryRef) -> service_t ---
+	@(link_name="IOServiceGetMatchingService")
+	ServiceGetMatchingService :: proc(mainPort: mach.port_t, matching: CF.DictionaryRef) -> service_t ---
 
-    @(link_name="IOServiceGetMatchingServices")
-    ServiceGetMatchingServices :: proc(mainPort: mach.port_t, matching: CF.DictionaryRef, existing: ^iterator_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceGetMatchingServices")
+	ServiceGetMatchingServices :: proc(mainPort: mach.port_t, matching: CF.DictionaryRef, existing: ^iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceAddNotification")
-    ServiceAddNotification :: proc(mainPort: mach.port_t, notificationType: ^name_t, matching: CF.DictionaryRef, wakePort: mach.port_t, reference: cffi.uintptr_t, notification: ^iterator_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceAddNotification")
+	ServiceAddNotification :: proc(mainPort: mach.port_t, notificationType: ^name_t, matching: CF.DictionaryRef, wakePort: mach.port_t, reference: cffi.uintptr_t, notification: ^iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceAddMatchingNotification")
-    ServiceAddMatchingNotification :: proc(notifyPort: NotificationPortRef, notificationType: ^name_t, matching: CF.DictionaryRef, callback: ServiceMatchingCallback, refCon: rawptr, notification: ^iterator_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceAddMatchingNotification")
+	ServiceAddMatchingNotification :: proc(notifyPort: NotificationPortRef, notificationType: ^name_t, matching: CF.DictionaryRef, callback: ServiceMatchingCallback, refCon: rawptr, notification: ^iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceAddInterestNotification")
-    ServiceAddInterestNotification :: proc(notifyPort: NotificationPortRef, service: service_t, interestType: ^name_t, callback: ServiceInterestCallback, refCon: rawptr, notification: ^object_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceAddInterestNotification")
+	ServiceAddInterestNotification :: proc(notifyPort: NotificationPortRef, service: service_t, interestType: ^name_t, callback: ServiceInterestCallback, refCon: rawptr, notification: ^object_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceMatchPropertyTable")
-    ServiceMatchPropertyTable :: proc(service: service_t, matching: CF.DictionaryRef, matches: ^CF.boolean_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceMatchPropertyTable")
+	ServiceMatchPropertyTable :: proc(service: service_t, matching: CF.DictionaryRef, matches: ^CF.boolean_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceGetBusyState")
-    ServiceGetBusyState :: proc(service: service_t, busyState: ^cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceGetBusyState")
+	ServiceGetBusyState :: proc(service: service_t, busyState: ^cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceWaitQuiet")
-    ServiceWaitQuiet :: proc(service: service_t, waitTime: ^mach.timespec_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceWaitQuiet")
+	ServiceWaitQuiet :: proc(service: service_t, waitTime: ^mach.timespec_t) -> mach.kern_return_t ---
 
-    @(link_name="IOKitGetBusyState")
-    KitGetBusyState :: proc(mainPort: mach.port_t, busyState: ^cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOKitGetBusyState")
+	KitGetBusyState :: proc(mainPort: mach.port_t, busyState: ^cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOKitWaitQuietWithOptions")
-    KitWaitQuietWithOptions :: proc(mainPort: mach.port_t, waitTime: ^mach.timespec_t, options: OptionBits) -> mach.kern_return_t ---
+	@(link_name="IOKitWaitQuietWithOptions")
+	KitWaitQuietWithOptions :: proc(mainPort: mach.port_t, waitTime: ^mach.timespec_t, options: OptionBits) -> mach.kern_return_t ---
 
-    @(link_name="IOKitWaitQuiet")
-    KitWaitQuiet :: proc(mainPort: mach.port_t, waitTime: ^mach.timespec_t) -> mach.kern_return_t ---
+	@(link_name="IOKitWaitQuiet")
+	KitWaitQuiet :: proc(mainPort: mach.port_t, waitTime: ^mach.timespec_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceOpen")
-    ServiceOpen :: proc(service: service_t, owningTask: mach.task_port_t, type: cffi.uint32_t, connect: ^connect_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceOpen")
+	ServiceOpen :: proc(service: service_t, owningTask: mach.task_port_t, type: cffi.uint32_t, connect: ^connect_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceRequestProbe")
-    ServiceRequestProbe :: proc(service: service_t, options: cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceRequestProbe")
+	ServiceRequestProbe :: proc(service: service_t, options: cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceAuthorize")
-    ServiceAuthorize :: proc(service: service_t, options: cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceAuthorize")
+	ServiceAuthorize :: proc(service: service_t, options: cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOServiceOpenAsFileDescriptor")
-    ServiceOpenAsFileDescriptor :: proc(service: service_t, oflag: cffi.int) -> cffi.int ---
+	@(link_name="IOServiceOpenAsFileDescriptor")
+	ServiceOpenAsFileDescriptor :: proc(service: service_t, oflag: cffi.int) -> cffi.int ---
 
-    @(link_name="IOServiceClose")
-    ServiceClose :: proc(connect: connect_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceClose")
+	ServiceClose :: proc(connect: connect_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectAddRef")
-    ConnectAddRef :: proc(connect: connect_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectAddRef")
+	ConnectAddRef :: proc(connect: connect_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectRelease")
-    ConnectRelease :: proc(connect: connect_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectRelease")
+	ConnectRelease :: proc(connect: connect_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectGetService")
-    ConnectGetService :: proc(connect: connect_t, service: ^service_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectGetService")
+	ConnectGetService :: proc(connect: connect_t, service: ^service_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectSetNotificationPort")
-    ConnectSetNotificationPort :: proc(connect: connect_t, type: cffi.uint32_t, port: mach.port_t, reference: cffi.uintptr_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectSetNotificationPort")
+	ConnectSetNotificationPort :: proc(connect: connect_t, type: cffi.uint32_t, port: mach.port_t, reference: cffi.uintptr_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectMapMemory")
-    ConnectMapMemory :: proc(connect: connect_t, memoryType: cffi.uint32_t, intoTask: mach.task_port_t, atAddress: ^mach.mach_vm_address_t, ofSize: ^mach.mach_vm_size_t, options: OptionBits) -> mach.kern_return_t ---
+	@(link_name="IOConnectMapMemory")
+	ConnectMapMemory :: proc(connect: connect_t, memoryType: cffi.uint32_t, intoTask: mach.task_port_t, atAddress: ^mach.mach_vm_address_t, ofSize: ^mach.mach_vm_size_t, options: OptionBits) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectMapMemory64")
-    ConnectMapMemory64 :: proc(connect: connect_t, memoryType: cffi.uint32_t, intoTask: mach.task_port_t, atAddress: ^mach.mach_vm_address_t, ofSize: ^mach.mach_vm_size_t, options: OptionBits) -> mach.kern_return_t ---
+	@(link_name="IOConnectMapMemory64")
+	ConnectMapMemory64 :: proc(connect: connect_t, memoryType: cffi.uint32_t, intoTask: mach.task_port_t, atAddress: ^mach.mach_vm_address_t, ofSize: ^mach.mach_vm_size_t, options: OptionBits) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectUnmapMemory")
-    ConnectUnmapMemory :: proc(connect: connect_t, memoryType: cffi.uint32_t, fromTask: mach.task_port_t, atAddress: mach.mach_vm_address_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectUnmapMemory")
+	ConnectUnmapMemory :: proc(connect: connect_t, memoryType: cffi.uint32_t, fromTask: mach.task_port_t, atAddress: mach.mach_vm_address_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectUnmapMemory64")
-    ConnectUnmapMemory64 :: proc(connect: connect_t, memoryType: cffi.uint32_t, fromTask: mach.task_port_t, atAddress: mach.mach_vm_address_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectUnmapMemory64")
+	ConnectUnmapMemory64 :: proc(connect: connect_t, memoryType: cffi.uint32_t, fromTask: mach.task_port_t, atAddress: mach.mach_vm_address_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectSetCFProperties")
-    ConnectSetCFProperties :: proc(connect: connect_t, properties: CF.TypeRef) -> mach.kern_return_t ---
+	@(link_name="IOConnectSetCFProperties")
+	ConnectSetCFProperties :: proc(connect: connect_t, properties: CF.TypeRef) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectSetCFProperty")
-    ConnectSetCFProperty :: proc(connect: connect_t, propertyName: CF.StringRef, property: CF.TypeRef) -> mach.kern_return_t ---
+	@(link_name="IOConnectSetCFProperty")
+	ConnectSetCFProperty :: proc(connect: connect_t, propertyName: CF.StringRef, property: CF.TypeRef) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectCallMethod")
-    ConnectCallMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectCallMethod")
+	ConnectCallMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectCallAsyncMethod")
-    ConnectCallAsyncMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, wake_port: mach.port_t, reference: ^cffi.uint64_t, referenceCnt: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectCallAsyncMethod")
+	ConnectCallAsyncMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, wake_port: mach.port_t, reference: ^cffi.uint64_t, referenceCnt: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectCallStructMethod")
-    ConnectCallStructMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectCallStructMethod")
+	ConnectCallStructMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectCallAsyncStructMethod")
-    ConnectCallAsyncStructMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, wake_port: mach.port_t, reference: ^cffi.uint64_t, referenceCnt: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectCallAsyncStructMethod")
+	ConnectCallAsyncStructMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, wake_port: mach.port_t, reference: ^cffi.uint64_t, referenceCnt: cffi.uint32_t, inputStruct: rawptr, inputStructCnt: cffi.size_t, outputStruct: rawptr, outputStructCnt: ^cffi.size_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectCallScalarMethod")
-    ConnectCallScalarMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectCallScalarMethod")
+	ConnectCallScalarMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectCallAsyncScalarMethod")
-    ConnectCallAsyncScalarMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, wake_port: mach.port_t, reference: ^cffi.uint64_t, referenceCnt: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectCallAsyncScalarMethod")
+	ConnectCallAsyncScalarMethod :: proc(connection: mach.port_t, selector: cffi.uint32_t, wake_port: mach.port_t, reference: ^cffi.uint64_t, referenceCnt: cffi.uint32_t, input: ^cffi.uint64_t, inputCnt: cffi.uint32_t, output: ^cffi.uint64_t, outputCnt: ^cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectTrap0")
-    ConnectTrap0 :: proc(connect: connect_t, index: cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectTrap0")
+	ConnectTrap0 :: proc(connect: connect_t, index: cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectTrap1")
-    ConnectTrap1 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectTrap1")
+	ConnectTrap1 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectTrap2")
-    ConnectTrap2 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectTrap2")
+	ConnectTrap2 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectTrap3")
-    ConnectTrap3 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectTrap3")
+	ConnectTrap3 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectTrap4")
-    ConnectTrap4 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t, p4: cffi.uintptr_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectTrap4")
+	ConnectTrap4 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t, p4: cffi.uintptr_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectTrap5")
-    ConnectTrap5 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t, p4: cffi.uintptr_t, p5: cffi.uintptr_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectTrap5")
+	ConnectTrap5 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t, p4: cffi.uintptr_t, p5: cffi.uintptr_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectTrap6")
-    ConnectTrap6 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t, p4: cffi.uintptr_t, p5: cffi.uintptr_t, p6: cffi.uintptr_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectTrap6")
+	ConnectTrap6 :: proc(connect: connect_t, index: cffi.uint32_t, p1: cffi.uintptr_t, p2: cffi.uintptr_t, p3: cffi.uintptr_t, p4: cffi.uintptr_t, p5: cffi.uintptr_t, p6: cffi.uintptr_t) -> mach.kern_return_t ---
 
-    @(link_name="IOConnectAddClient")
-    ConnectAddClient :: proc(connect: connect_t, client: connect_t) -> mach.kern_return_t ---
+	@(link_name="IOConnectAddClient")
+	ConnectAddClient :: proc(connect: connect_t, client: connect_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryGetRootEntry")
-    RegistryGetRootEntry :: proc(mainPort: mach.port_t) -> registry_entry_t ---
+	@(link_name="IORegistryGetRootEntry")
+	RegistryGetRootEntry :: proc(mainPort: mach.port_t) -> registry_entry_t ---
 
-    @(link_name="IORegistryEntryFromPath")
-    RegistryEntryFromPath :: proc(mainPort: mach.port_t, path: ^string_t) -> registry_entry_t ---
+	@(link_name="IORegistryEntryFromPath")
+	RegistryEntryFromPath :: proc(mainPort: mach.port_t, path: ^string_t) -> registry_entry_t ---
 
-    @(link_name="IORegistryEntryCopyFromPath")
-    RegistryEntryCopyFromPath :: proc(mainPort: mach.port_t, path: CF.StringRef) -> registry_entry_t ---
+	@(link_name="IORegistryEntryCopyFromPath")
+	RegistryEntryCopyFromPath :: proc(mainPort: mach.port_t, path: CF.StringRef) -> registry_entry_t ---
 
-    @(link_name="IORegistryCreateIterator")
-    RegistryCreateIterator :: proc(mainPort: mach.port_t, plane: ^name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryCreateIterator")
+	RegistryCreateIterator :: proc(mainPort: mach.port_t, plane: ^name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryCreateIterator")
-    RegistryEntryCreateIterator :: proc(entry: registry_entry_t, plane: ^name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryCreateIterator")
+	RegistryEntryCreateIterator :: proc(entry: registry_entry_t, plane: ^name_t, options: OptionBits, iterator: ^iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryIteratorEnterEntry")
-    RegistryIteratorEnterEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryIteratorEnterEntry")
+	RegistryIteratorEnterEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryIteratorExitEntry")
-    RegistryIteratorExitEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryIteratorExitEntry")
+	RegistryIteratorExitEntry :: proc(iterator: iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetName")
-    RegistryEntryGetName :: proc(entry: registry_entry_t, name: ^name_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetName")
+	RegistryEntryGetName :: proc(entry: registry_entry_t, name: ^name_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetNameInPlane")
-    RegistryEntryGetNameInPlane :: proc(entry: registry_entry_t, plane: ^name_t, name: ^name_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetNameInPlane")
+	RegistryEntryGetNameInPlane :: proc(entry: registry_entry_t, plane: ^name_t, name: ^name_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetLocationInPlane")
-    RegistryEntryGetLocationInPlane :: proc(entry: registry_entry_t, plane: ^name_t, location: ^name_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetLocationInPlane")
+	RegistryEntryGetLocationInPlane :: proc(entry: registry_entry_t, plane: ^name_t, location: ^name_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetPath")
-    RegistryEntryGetPath :: proc(entry: registry_entry_t, plane: ^name_t, path: ^string_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetPath")
+	RegistryEntryGetPath :: proc(entry: registry_entry_t, plane: ^name_t, path: ^string_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryCopyPath")
-    RegistryEntryCopyPath :: proc(entry: registry_entry_t, plane: ^name_t) -> CF.StringRef ---
+	@(link_name="IORegistryEntryCopyPath")
+	RegistryEntryCopyPath :: proc(entry: registry_entry_t, plane: ^name_t) -> CF.StringRef ---
 
-    @(link_name="IORegistryEntryGetRegistryEntryID")
-    RegistryEntryGetRegistryEntryID :: proc(entry: registry_entry_t, entryID: ^cffi.uint64_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetRegistryEntryID")
+	RegistryEntryGetRegistryEntryID :: proc(entry: registry_entry_t, entryID: ^cffi.uint64_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryCreateCFProperties")
-    RegistryEntryCreateCFProperties :: proc(entry: registry_entry_t, properties: ^CF.MutableDictionaryRef, allocator: CF.AllocatorRef, options: OptionBits) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryCreateCFProperties")
+	RegistryEntryCreateCFProperties :: proc(entry: registry_entry_t, properties: ^CF.MutableDictionaryRef, allocator: CF.AllocatorRef, options: OptionBits) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryCreateCFProperty")
-    RegistryEntryCreateCFProperty :: proc(entry: registry_entry_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
+	@(link_name="IORegistryEntryCreateCFProperty")
+	RegistryEntryCreateCFProperty :: proc(entry: registry_entry_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
 
-    @(link_name="IORegistryEntrySearchCFProperty")
-    RegistryEntrySearchCFProperty :: proc(entry: registry_entry_t, plane: ^name_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
+	@(link_name="IORegistryEntrySearchCFProperty")
+	RegistryEntrySearchCFProperty :: proc(entry: registry_entry_t, plane: ^name_t, key: CF.StringRef, allocator: CF.AllocatorRef, options: OptionBits) -> CF.TypeRef ---
 
-    @(link_name="IORegistryEntryGetProperty")
-    RegistryEntryGetProperty :: proc(entry: registry_entry_t, propertyName: ^name_t, buffer: ^struct_inband_t, size: ^cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetProperty")
+	RegistryEntryGetProperty :: proc(entry: registry_entry_t, propertyName: ^name_t, buffer: ^struct_inband_t, size: ^cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntrySetCFProperties")
-    RegistryEntrySetCFProperties :: proc(entry: registry_entry_t, properties: CF.TypeRef) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntrySetCFProperties")
+	RegistryEntrySetCFProperties :: proc(entry: registry_entry_t, properties: CF.TypeRef) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntrySetCFProperty")
-    RegistryEntrySetCFProperty :: proc(entry: registry_entry_t, propertyName: CF.StringRef, property: CF.TypeRef) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntrySetCFProperty")
+	RegistryEntrySetCFProperty :: proc(entry: registry_entry_t, propertyName: CF.StringRef, property: CF.TypeRef) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetChildIterator")
-    RegistryEntryGetChildIterator :: proc(entry: registry_entry_t, plane: ^name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetChildIterator")
+	RegistryEntryGetChildIterator :: proc(entry: registry_entry_t, plane: ^name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetChildEntry")
-    RegistryEntryGetChildEntry :: proc(entry: registry_entry_t, plane: ^name_t, child: ^registry_entry_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetChildEntry")
+	RegistryEntryGetChildEntry :: proc(entry: registry_entry_t, plane: ^name_t, child: ^registry_entry_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetParentIterator")
-    RegistryEntryGetParentIterator :: proc(entry: registry_entry_t, plane: ^name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetParentIterator")
+	RegistryEntryGetParentIterator :: proc(entry: registry_entry_t, plane: ^name_t, iterator: ^iterator_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryGetParentEntry")
-    RegistryEntryGetParentEntry :: proc(entry: registry_entry_t, plane: ^name_t, parent: ^registry_entry_t) -> mach.kern_return_t ---
+	@(link_name="IORegistryEntryGetParentEntry")
+	RegistryEntryGetParentEntry :: proc(entry: registry_entry_t, plane: ^name_t, parent: ^registry_entry_t) -> mach.kern_return_t ---
 
-    @(link_name="IORegistryEntryInPlane")
-    RegistryEntryInPlane :: proc(entry: registry_entry_t, plane: ^name_t) -> CF.boolean_t ---
+	@(link_name="IORegistryEntryInPlane")
+	RegistryEntryInPlane :: proc(entry: registry_entry_t, plane: ^name_t) -> CF.boolean_t ---
 
-    @(link_name="IOServiceMatching")
-    ServiceMatching :: proc(name: cstring) -> CF.MutableDictionaryRef ---
+	@(link_name="IOServiceMatching")
+	ServiceMatching :: proc(name: cstring) -> CF.MutableDictionaryRef ---
 
-    @(link_name="IOServiceNameMatching")
-    ServiceNameMatching :: proc(name: cstring) -> CF.MutableDictionaryRef ---
+	@(link_name="IOServiceNameMatching")
+	ServiceNameMatching :: proc(name: cstring) -> CF.MutableDictionaryRef ---
 
-    @(link_name="IOBSDNameMatching")
-    BSDNameMatching :: proc(mainPort: mach.port_t, options: cffi.uint32_t, bsdName: cstring) -> CF.MutableDictionaryRef ---
+	@(link_name="IOBSDNameMatching")
+	BSDNameMatching :: proc(mainPort: mach.port_t, options: cffi.uint32_t, bsdName: cstring) -> CF.MutableDictionaryRef ---
 
-    @(link_name="IOOpenFirmwarePathMatching")
-    OpenFirmwarePathMatching :: proc(mainPort: mach.port_t, options: cffi.uint32_t, path: cstring) -> CF.MutableDictionaryRef ---
+	@(link_name="IOOpenFirmwarePathMatching")
+	OpenFirmwarePathMatching :: proc(mainPort: mach.port_t, options: cffi.uint32_t, path: cstring) -> CF.MutableDictionaryRef ---
 
-    @(link_name="IORegistryEntryIDMatching")
-    RegistryEntryIDMatching :: proc(entryID: cffi.uint64_t) -> CF.MutableDictionaryRef ---
+	@(link_name="IORegistryEntryIDMatching")
+	RegistryEntryIDMatching :: proc(entryID: cffi.uint64_t) -> CF.MutableDictionaryRef ---
 
-    @(link_name="IOServiceOFPathToBSDName")
-    ServiceOFPathToBSDName :: proc(mainPort: mach.port_t, openFirmwarePath: ^name_t, bsdName: ^name_t) -> mach.kern_return_t ---
+	@(link_name="IOServiceOFPathToBSDName")
+	ServiceOFPathToBSDName :: proc(mainPort: mach.port_t, openFirmwarePath: ^name_t, bsdName: ^name_t) -> mach.kern_return_t ---
 
-    @(link_name="IOCatalogueSendData")
-    CatalogueSendData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: cstring, size: cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOCatalogueSendData")
+	CatalogueSendData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: cstring, size: cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOCatalogueTerminate")
-    CatalogueTerminate :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, description: ^name_t) -> mach.kern_return_t ---
+	@(link_name="IOCatalogueTerminate")
+	CatalogueTerminate :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, description: ^name_t) -> mach.kern_return_t ---
 
-    @(link_name="IOCatalogueGetData")
-    CatalogueGetData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: ^cstring, size: ^cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOCatalogueGetData")
+	CatalogueGetData :: proc(mainPort: mach.port_t, flag: cffi.uint32_t, buffer: ^cstring, size: ^cffi.uint32_t) -> mach.kern_return_t ---
 
-    @(link_name="IOCatalogueModuleLoaded")
-    CatalogueModuleLoaded :: proc(mainPort: mach.port_t, name: ^name_t) -> mach.kern_return_t ---
+	@(link_name="IOCatalogueModuleLoaded")
+	CatalogueModuleLoaded :: proc(mainPort: mach.port_t, name: ^name_t) -> mach.kern_return_t ---
 
-    @(link_name="IOCatalogueReset")
-    CatalogueReset :: proc(mainPort: mach.port_t, flag: cffi.uint32_t) -> mach.kern_return_t ---
+	@(link_name="IOCatalogueReset")
+	CatalogueReset :: proc(mainPort: mach.port_t, flag: cffi.uint32_t) -> mach.kern_return_t ---
 }
 
 
@@ -843,47 +832,46 @@ AsyncCallback2 :: proc "c" ( refcon: rawptr, result: Return, arg0: rawptr, arg1:
 AsyncCallback :: proc "c" ( refcon: rawptr, result: Return, args: ^rawptr, numArgs: cffi.uint32_t )
 
 stat_entry :: struct #align (8) {
-    count: cffi.uint64_t,
-    size:  cffi.uint64_t,
+	count: cffi.uint64_t,
+	size:  cffi.uint64_t,
 }
 
 stat_info :: struct #align (8) {
-    disk_reads:  stat_entry,
-    io_priority: [4]stat_entry,
-    paging:      stat_entry,
-    metadata:    stat_entry,
-    total_io:    stat_entry,
+	disk_reads:  stat_entry,
+	io_priority: [4]stat_entry,
+	paging:      stat_entry,
+	metadata:    stat_entry,
+	total_io:    stat_entry,
 }
 
 PhysicalRange :: struct #align (8) {
-    address: PhysicalAddress,
-    length:  ByteCount,
+	address: PhysicalAddress,
+	length:  ByteCount,
 }
 
 VirtualRange :: struct #align (8) {
-    address: VirtualAddress,
-    length:  ByteCount,
+	address: VirtualAddress,
+	length:  ByteCount,
 }
 
 NamedValue :: struct #align (8) {
-    value: cffi.int,
-    name:  cstring,
+	value: cffi.int,
+	name:  cstring,
 }
 
 ServiceInterestContent64 :: struct #align (4) #max_field_align(4) {
-    messageType:     mach.natural_t,
-    messageArgument: [1]user_reference_t,
+	messageType:     mach.natural_t,
+	messageArgument: [1]user_reference_t,
 }
 
 ServiceInterestContent :: struct #align (4) #max_field_align(4) {
-    messageType:     mach.natural_t,
-    messageArgument: [1]rawptr,
+	messageType:     mach.natural_t,
+	messageArgument: [1]rawptr,
 }
 
 AsyncCompletionContent :: struct #align (4) #max_field_align(4) {
-    result: Return,
-    // args:   [^]rawptr,
+	result: Return,
+	// args:   [^]rawptr,
 }
 
 NotificationPort :: struct {}
-

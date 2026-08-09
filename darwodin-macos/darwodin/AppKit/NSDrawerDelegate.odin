@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSDrawerDelegate
 ///
 @(objc_class="NSDrawerDelegate")
-DrawerDelegate :: struct { using _: intrinsics.objc_object, 
+DrawerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

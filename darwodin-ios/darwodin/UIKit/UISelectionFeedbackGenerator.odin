@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISelectionFeedbackGenerator
 ///
 @(objc_class="UISelectionFeedbackGenerator", objc_superclass=FeedbackGenerator)
-SelectionFeedbackGenerator :: struct { using _: FeedbackGenerator, }
+SelectionFeedbackGenerator :: struct { using _: FeedbackGenerator}
 
 @(default_calling_convention="c")
 foreign lib {

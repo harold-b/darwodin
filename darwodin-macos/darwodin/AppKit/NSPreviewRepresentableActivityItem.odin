@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPreviewRepresentableActivityItem
 ///
 @(objc_class="NSPreviewRepresentableActivityItem")
-PreviewRepresentableActivityItem :: struct { using _: intrinsics.objc_object, 
+PreviewRepresentableActivityItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

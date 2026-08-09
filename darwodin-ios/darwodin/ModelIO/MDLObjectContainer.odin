@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLObjectContainer
 ///
 @(objc_class="MDLObjectContainer", objc_superclass=NS.Object)
-ObjectContainer :: struct { using _: NS.Object, 
+ObjectContainer :: struct {
+    using _: NS.Object,
     using _: ObjectContainerComponent,
 }
 

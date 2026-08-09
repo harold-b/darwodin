@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSScrubberLayoutAttributes
 ///
 @(objc_class="NSScrubberLayoutAttributes", objc_superclass=NS.Object)
-ScrubberLayoutAttributes :: struct { using _: NS.Object, 
+ScrubberLayoutAttributes :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

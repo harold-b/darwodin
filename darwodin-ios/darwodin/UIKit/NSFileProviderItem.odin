@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSFileProviderItem
 ///
 @(objc_class="NSFileProviderItem")
-NSFileProviderItem :: struct { using _: intrinsics.objc_object, 
+NSFileProviderItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

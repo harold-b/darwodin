@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPathControlDelegate
 ///
 @(objc_class="NSPathControlDelegate")
-PathControlDelegate :: struct { using _: intrinsics.objc_object, 
+PathControlDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

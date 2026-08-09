@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIZoomTransitionAlignmentRectContext
 ///
 @(objc_class="UIZoomTransitionAlignmentRectContext", objc_superclass=NS.Object)
-ZoomTransitionAlignmentRectContext :: struct { using _: NS.Object, }
+ZoomTransitionAlignmentRectContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

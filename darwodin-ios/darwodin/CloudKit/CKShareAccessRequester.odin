@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKShareAccessRequester
 ///
 @(objc_class="CKShareAccessRequester", objc_superclass=NS.Object)
-ShareAccessRequester :: struct { using _: NS.Object, 
+ShareAccessRequester :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

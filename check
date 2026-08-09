@@ -9,12 +9,22 @@ cd "${_dir}"
 source ./config
 
 targets=()
+merged=false
+args=()
 
 while true; do
   case $1 in
 
     -ios|--ios|-i)
       is_ios=true
+      args+=(
+        -target:darwin_arm64 
+        -subtarget:iphone
+      )
+      ;;
+
+    -m|-merged|--merged)
+      merged=true
       ;;
 
     *)
@@ -32,11 +42,16 @@ fi
 
 
 frameworks_path="darwodin-macos/darwodin"
+
 if [[ ${is_ios} ]]; then
   frameworks_path="darwodin-ios/darwodin"
 fi
 
+if $merged ; then
+  frameworks_path="darwinkit"
+fi
+
 for t in ${targets[@]}; do
   echo "${t}"
-  odin check "${frameworks_path}/${t}" -no-entry-point
+  odin check "${frameworks_path}/${t}" ${args[@]} -no-entry-point
 done

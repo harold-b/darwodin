@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKTileOverlay
 ///
 @(objc_class="MKTileOverlay", objc_superclass=NS.Object)
-TileOverlay :: struct { using _: NS.Object, 
+TileOverlay :: struct {
+    using _: NS.Object,
     using _: Overlay,
 }
 

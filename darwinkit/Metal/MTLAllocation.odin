@@ -1,25 +1,16 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLAllocation")
-Allocation :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+Allocation :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=Allocation, objc_selector="allocatedSize", objc_name="allocatedSize")
-    Allocation_allocatedSize :: proc(self: ^Allocation) -> NS.UInteger ---
+	@(objc_type=Allocation, objc_selector="allocatedSize", objc_name="allocatedSize")
+	Allocation_allocatedSize :: proc(self: ^Allocation) -> NS.UInteger ---
 }
-
-
-

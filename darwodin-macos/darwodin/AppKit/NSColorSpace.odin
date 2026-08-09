@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSColorSpace
 ///
 @(objc_class="NSColorSpace", objc_superclass=NS.Object)
-ColorSpace :: struct { using _: NS.Object, 
+ColorSpace :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

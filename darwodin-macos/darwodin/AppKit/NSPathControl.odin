@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPathControl
 ///
 @(objc_class="NSPathControl", objc_superclass=Control)
-PathControl :: struct { using _: Control, }
+PathControl :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

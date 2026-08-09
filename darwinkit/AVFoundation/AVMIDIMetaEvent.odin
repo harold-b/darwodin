@@ -1,27 +1,15 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMIDIMetaEvent", objc_superclass=MusicEvent)
-MIDIMetaEvent :: struct { using _: MusicEvent, }
+MIDIMetaEvent :: struct { using _: MusicEvent}
 
 foreign lib {
-    @(objc_type=MIDIMetaEvent, objc_selector="initWithType:data:", objc_name="initWithType")
-    MIDIMetaEvent_initWithType :: proc(self: ^MIDIMetaEvent, type: MIDIMetaEventType, data: ^NS.Data) -> instancetype ---
+	@(objc_type=MIDIMetaEvent, objc_selector="initWithType:data:", objc_name="initWithType")
+	MIDIMetaEvent_initWithType :: proc(self: ^MIDIMetaEvent, type: MIDIMetaEventType, data: ^NS.Data) -> instancetype ---
 
-    @(objc_type=MIDIMetaEvent, objc_selector="type", objc_name="type")
-    MIDIMetaEvent_type :: proc(self: ^MIDIMetaEvent) -> MIDIMetaEventType ---
+	@(objc_type=MIDIMetaEvent, objc_selector="type", objc_name="type")
+	MIDIMetaEvent_type :: proc(self: ^MIDIMetaEvent) -> MIDIMetaEventType ---
 }
-
-
-

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLTextureReferenceType
 ///
 @(objc_class="MTLTextureReferenceType", objc_superclass=Type)
-TextureReferenceType :: struct { using _: Type, }
+TextureReferenceType :: struct { using _: Type}
 
 @(default_calling_convention="c")
 foreign lib {

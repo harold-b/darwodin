@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKRidgedNoiseSource
 ///
 @(objc_class="GKRidgedNoiseSource", objc_superclass=CoherentNoiseSource)
-RidgedNoiseSource :: struct { using _: CoherentNoiseSource, }
+RidgedNoiseSource :: struct { using _: CoherentNoiseSource}
 
 @(default_calling_convention="c")
 foreign lib {

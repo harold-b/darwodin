@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIImageConfiguration
 ///
 @(objc_class="UIImageConfiguration")
-ImageConfigurationProtocol :: struct { using _: intrinsics.objc_object, }
+ImageConfigurationProtocol :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

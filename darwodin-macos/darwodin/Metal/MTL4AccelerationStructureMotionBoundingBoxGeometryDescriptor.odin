@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor
 ///
 @(objc_class="MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor", objc_superclass=MTL4AccelerationStructureGeometryDescriptor)
-MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor :: struct { using _: MTL4AccelerationStructureGeometryDescriptor, }
+MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor :: struct { using _: MTL4AccelerationStructureGeometryDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

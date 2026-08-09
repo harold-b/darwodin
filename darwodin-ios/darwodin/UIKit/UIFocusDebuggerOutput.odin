@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIFocusDebuggerOutput
 ///
 @(objc_class="UIFocusDebuggerOutput")
-FocusDebuggerOutput :: struct { using _: intrinsics.objc_object, 
+FocusDebuggerOutput :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

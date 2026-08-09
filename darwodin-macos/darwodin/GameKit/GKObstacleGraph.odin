@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKObstacleGraph
 ///
 @(objc_class="GKObstacleGraph", objc_superclass=Graph)
-ObstacleGraph :: struct { using _: Graph, }
+ObstacleGraph :: struct { using _: Graph}
 
 @(default_calling_convention="c")
 foreign lib {

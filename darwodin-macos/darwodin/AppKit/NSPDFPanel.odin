@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPDFPanel
 ///
 @(objc_class="NSPDFPanel", objc_superclass=NS.Object)
-PDFPanel :: struct { using _: NS.Object, }
+PDFPanel :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

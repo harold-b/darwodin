@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextInputTraits
 ///
 @(objc_class="NSTextInputTraits")
-TextInputTraits :: struct { using _: intrinsics.objc_object, }
+TextInputTraits :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

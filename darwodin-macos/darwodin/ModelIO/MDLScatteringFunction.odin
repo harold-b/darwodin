@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLScatteringFunction
 ///
 @(objc_class="MDLScatteringFunction", objc_superclass=NS.Object)
-ScatteringFunction :: struct { using _: NS.Object, 
+ScatteringFunction :: struct {
+    using _: NS.Object,
     using _: Named,
 }
 

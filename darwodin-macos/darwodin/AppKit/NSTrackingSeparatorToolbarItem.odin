@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTrackingSeparatorToolbarItem
 ///
 @(objc_class="NSTrackingSeparatorToolbarItem", objc_superclass=ToolbarItem)
-TrackingSeparatorToolbarItem :: struct { using _: ToolbarItem, }
+TrackingSeparatorToolbarItem :: struct { using _: ToolbarItem}
 
 @(default_calling_convention="c")
 foreign lib {

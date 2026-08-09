@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIOScratchBufferAllocator
 ///
 @(objc_class="MTLIOScratchBufferAllocator")
-IOScratchBufferAllocator :: struct { using _: intrinsics.objc_object, 
+IOScratchBufferAllocator :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

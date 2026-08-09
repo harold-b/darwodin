@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSFileManager
 ///
 @(objc_class="NSFileManager", objc_superclass=Object)
-FileManager :: struct { using _: Object, }
+FileManager :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

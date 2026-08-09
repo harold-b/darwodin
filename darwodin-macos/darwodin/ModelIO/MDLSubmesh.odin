@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLSubmesh
 ///
 @(objc_class="MDLSubmesh", objc_superclass=NS.Object)
-Submesh :: struct { using _: NS.Object, 
+Submesh :: struct {
+    using _: NS.Object,
     using _: Named,
 }
 

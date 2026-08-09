@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSMenuItemCell
 ///
 @(objc_class="NSMenuItemCell", objc_superclass=ButtonCell)
-MenuItemCell :: struct { using _: ButtonCell, }
+MenuItemCell :: struct { using _: ButtonCell}
 
 @(default_calling_convention="c")
 foreign lib {

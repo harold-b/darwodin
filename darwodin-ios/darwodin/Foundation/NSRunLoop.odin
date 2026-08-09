@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSRunLoop
 ///
 @(objc_class="NSRunLoop", objc_superclass=Object)
-RunLoop :: struct { using _: Object, }
+RunLoop :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

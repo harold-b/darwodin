@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSBundle
 ///
 @(objc_class="NSBundle", objc_superclass=Object)
-Bundle :: struct { using _: Object, }
+Bundle :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

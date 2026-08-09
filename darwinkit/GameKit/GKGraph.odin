@@ -1,40 +1,34 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKGraph", objc_superclass=NS.Object)
-Graph :: struct { using _: NS.Object, 
-    using _: NS.Copying,
-    using _: NS.SecureCoding,
+Graph :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
+	using _: NS.SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=Graph, objc_selector="graphWithNodes:", objc_name="graphWithNodes", objc_is_class_method=true)
-    Graph_graphWithNodes :: proc(nodes: ^NS.Array) -> instancetype ---
+	@(objc_type=Graph, objc_selector="graphWithNodes:", objc_name="graphWithNodes", objc_is_class_method=true)
+	Graph_graphWithNodes :: proc(nodes: ^NS.Array) -> instancetype ---
 
-    @(objc_type=Graph, objc_selector="initWithNodes:", objc_name="initWithNodes")
-    Graph_initWithNodes :: proc(self: ^Graph, nodes: ^NS.Array) -> instancetype ---
+	@(objc_type=Graph, objc_selector="initWithNodes:", objc_name="initWithNodes")
+	Graph_initWithNodes :: proc(self: ^Graph, nodes: ^NS.Array) -> instancetype ---
 
-    @(objc_type=Graph, objc_selector="connectNodeToLowestCostNode:bidirectional:", objc_name="connectNodeToLowestCostNode")
-    Graph_connectNodeToLowestCostNode :: proc(self: ^Graph, node: ^GraphNode, bidirectional: bool) ---
+	@(objc_type=Graph, objc_selector="connectNodeToLowestCostNode:bidirectional:", objc_name="connectNodeToLowestCostNode")
+	Graph_connectNodeToLowestCostNode :: proc(self: ^Graph, node: ^GraphNode, bidirectional: bool) ---
 
-    @(objc_type=Graph, objc_selector="removeNodes:", objc_name="removeNodes")
-    Graph_removeNodes :: proc(self: ^Graph, nodes: ^NS.Array) ---
+	@(objc_type=Graph, objc_selector="removeNodes:", objc_name="removeNodes")
+	Graph_removeNodes :: proc(self: ^Graph, nodes: ^NS.Array) ---
 
-    @(objc_type=Graph, objc_selector="addNodes:", objc_name="addNodes")
-    Graph_addNodes :: proc(self: ^Graph, nodes: ^NS.Array) ---
+	@(objc_type=Graph, objc_selector="addNodes:", objc_name="addNodes")
+	Graph_addNodes :: proc(self: ^Graph, nodes: ^NS.Array) ---
 
-    @(objc_type=Graph, objc_selector="findPathFromNode:toNode:", objc_name="findPathFromNode")
-    Graph_findPathFromNode :: proc(self: ^Graph, startNode: ^GraphNode, endNode: ^GraphNode) -> ^NS.Array ---
+	@(objc_type=Graph, objc_selector="findPathFromNode:toNode:", objc_name="findPathFromNode")
+	Graph_findPathFromNode :: proc(self: ^Graph, startNode: ^GraphNode, endNode: ^GraphNode) -> ^NS.Array ---
 
-    @(objc_type=Graph, objc_selector="nodes", objc_name="nodes")
-    Graph_nodes :: proc(self: ^Graph) -> ^NS.Array ---
+	@(objc_type=Graph, objc_selector="nodes", objc_name="nodes")
+	Graph_nodes :: proc(self: ^Graph) -> ^NS.Array ---
 }
-
-
-

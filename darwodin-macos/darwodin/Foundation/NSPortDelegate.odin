@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSPortDelegate
 ///
 @(objc_class="NSPortDelegate")
-PortDelegate :: struct { using _: intrinsics.objc_object, 
+PortDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

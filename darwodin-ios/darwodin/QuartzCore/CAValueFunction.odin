@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CAValueFunction
 ///
 @(objc_class="CAValueFunction", objc_superclass=NS.Object)
-ValueFunction :: struct { using _: NS.Object, 
+ValueFunction :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

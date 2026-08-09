@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAssetWriterInputPixelBufferAdaptorInternal
 ///
 @(objc_class="AVAssetWriterInputPixelBufferAdaptorInternal")
-AssetWriterInputPixelBufferAdaptorInternal :: struct { using _: intrinsics.objc_object, }
+AssetWriterInputPixelBufferAdaptorInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

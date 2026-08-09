@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextBlock
 ///
 @(objc_class="NSTextBlock", objc_superclass=NS.Object)
-TextBlock :: struct { using _: NS.Object, 
+TextBlock :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

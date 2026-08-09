@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSArray
 ///
 @(objc_class="NSArray", objc_superclass=Object)
-Array :: struct { using _: Object, 
+Array :: struct {
+    using _: Object,
     using _: Copying,
     using _: MutableCopying,
     using _: SecureCoding,

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIFocusUpdateContext
 ///
 @(objc_class="UIFocusUpdateContext", objc_superclass=NS.Object)
-FocusUpdateContext :: struct { using _: NS.Object, }
+FocusUpdateContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

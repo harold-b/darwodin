@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIContextMenuSystem
 ///
 @(objc_class="UIContextMenuSystem", objc_superclass=MenuSystem)
-ContextMenuSystem :: struct { using _: MenuSystem, }
+ContextMenuSystem :: struct { using _: MenuSystem}
 
 @(default_calling_convention="c")
 foreign lib {

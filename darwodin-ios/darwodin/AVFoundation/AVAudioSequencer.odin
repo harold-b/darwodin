@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioSequencer
 ///
 @(objc_class="AVAudioSequencer", objc_superclass=NS.Object)
-AudioSequencer :: struct { using _: NS.Object, }
+AudioSequencer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

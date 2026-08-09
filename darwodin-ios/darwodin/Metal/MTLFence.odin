@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFence
 ///
 @(objc_class="MTLFence")
-Fence :: struct { using _: intrinsics.objc_object, 
+Fence :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

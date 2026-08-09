@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAssetReaderAudioMixOutput
 ///
 @(objc_class="AVAssetReaderAudioMixOutput", objc_superclass=AssetReaderOutput)
-AssetReaderAudioMixOutput :: struct { using _: AssetReaderOutput, }
+AssetReaderAudioMixOutput :: struct { using _: AssetReaderOutput}
 
 @(default_calling_convention="c")
 foreign lib {

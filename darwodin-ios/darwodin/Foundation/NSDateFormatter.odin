@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSDateFormatter
 ///
 @(objc_class="NSDateFormatter", objc_superclass=Formatter)
-DateFormatter :: struct { using _: Formatter, }
+DateFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

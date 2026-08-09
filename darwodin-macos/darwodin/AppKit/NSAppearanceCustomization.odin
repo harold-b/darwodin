@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAppearanceCustomization
 ///
 @(objc_class="NSAppearanceCustomization")
-AppearanceCustomization :: struct { using _: intrinsics.objc_object, 
+AppearanceCustomization :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

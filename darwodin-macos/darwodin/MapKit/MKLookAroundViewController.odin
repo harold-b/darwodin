@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKLookAroundViewController
 ///
 @(objc_class="MKLookAroundViewController", objc_superclass=NS.ViewController)
-LookAroundViewController :: struct { using _: NS.ViewController, 
+LookAroundViewController :: struct {
+    using _: NS.ViewController,
     using _: NS.SecureCoding,
     using _: NS.Coding,
 }

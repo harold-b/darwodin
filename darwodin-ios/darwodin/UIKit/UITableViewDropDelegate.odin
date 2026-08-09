@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITableViewDropDelegate
 ///
 @(objc_class="UITableViewDropDelegate")
-TableViewDropDelegate :: struct { using _: intrinsics.objc_object, 
+TableViewDropDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

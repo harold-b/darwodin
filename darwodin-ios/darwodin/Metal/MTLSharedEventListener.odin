@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLSharedEventListener
 ///
 @(objc_class="MTLSharedEventListener", objc_superclass=NS.Object)
-SharedEventListener :: struct { using _: NS.Object, }
+SharedEventListener :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

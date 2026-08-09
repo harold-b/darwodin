@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISceneWindowingControlStyle
 ///
 @(objc_class="UISceneWindowingControlStyle", objc_superclass=NS.Object)
-SceneWindowingControlStyle :: struct { using _: NS.Object, }
+SceneWindowingControlStyle :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

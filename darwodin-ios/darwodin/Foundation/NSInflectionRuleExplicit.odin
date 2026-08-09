@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSInflectionRuleExplicit
 ///
 @(objc_class="NSInflectionRuleExplicit", objc_superclass=InflectionRule)
-InflectionRuleExplicit :: struct { using _: InflectionRule, }
+InflectionRuleExplicit :: struct { using _: InflectionRule}
 
 @(default_calling_convention="c")
 foreign lib {

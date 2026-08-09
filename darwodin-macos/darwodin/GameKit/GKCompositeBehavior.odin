@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKCompositeBehavior
 ///
 @(objc_class="GKCompositeBehavior", objc_superclass=Behavior)
-CompositeBehavior :: struct { using _: Behavior, }
+CompositeBehavior :: struct { using _: Behavior}
 
 @(default_calling_convention="c")
 foreign lib {

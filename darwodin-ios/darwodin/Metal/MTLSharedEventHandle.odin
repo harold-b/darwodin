@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLSharedEventHandle
 ///
 @(objc_class="MTLSharedEventHandle", objc_superclass=NS.Object)
-SharedEventHandle :: struct { using _: NS.Object, 
+SharedEventHandle :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

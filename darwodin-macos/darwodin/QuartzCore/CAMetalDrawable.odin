@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CAMetalDrawable
 ///
 @(objc_class="CAMetalDrawable")
-MetalDrawable :: struct { using _: intrinsics.objc_object, 
+MetalDrawable :: struct {
+    using _: intrinsics.objc_object,
     using _: MTLDrawable,
 }
 

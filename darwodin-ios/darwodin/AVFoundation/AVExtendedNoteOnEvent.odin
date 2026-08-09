@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVExtendedNoteOnEvent
 ///
 @(objc_class="AVExtendedNoteOnEvent", objc_superclass=MusicEvent)
-ExtendedNoteOnEvent :: struct { using _: MusicEvent, }
+ExtendedNoteOnEvent :: struct { using _: MusicEvent}
 
 @(default_calling_convention="c")
 foreign lib {

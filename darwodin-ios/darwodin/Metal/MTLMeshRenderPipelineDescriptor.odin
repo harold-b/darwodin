@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLMeshRenderPipelineDescriptor
 ///
 @(objc_class="MTLMeshRenderPipelineDescriptor", objc_superclass=NS.Object)
-MeshRenderPipelineDescriptor :: struct { using _: NS.Object, 
+MeshRenderPipelineDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

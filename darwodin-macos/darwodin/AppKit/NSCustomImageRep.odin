@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSCustomImageRep
 ///
 @(objc_class="NSCustomImageRep", objc_superclass=ImageRep)
-CustomImageRep :: struct { using _: ImageRep, }
+CustomImageRep :: struct { using _: ImageRep}
 
 @(default_calling_convention="c")
 foreign lib {

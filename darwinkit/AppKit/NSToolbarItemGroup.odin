@@ -1,63 +1,50 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSToolbarItemGroup
-///
+
+
 @(objc_class="NSToolbarItemGroup", objc_superclass=ToolbarItem)
-ToolbarItemGroup :: struct { using _: ToolbarItem, }
+ToolbarItemGroup :: struct { using _: ToolbarItem}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=ToolbarItemGroup, objc_selector="groupWithItemIdentifier:titles:selectionMode:labels:target:action:", objc_name="groupWithItemIdentifier_titles_selectionMode_labels_target_action", objc_is_class_method=true)
-    ToolbarItemGroup_groupWithItemIdentifier_titles_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype ---
+	@(objc_type=ToolbarItemGroup, objc_selector="groupWithItemIdentifier:titles:selectionMode:labels:target:action:", objc_name="groupWithItemIdentifier_titles_selectionMode_labels_target_action", objc_is_class_method=true)
+	ToolbarItemGroup_groupWithItemIdentifier_titles_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="groupWithItemIdentifier:images:selectionMode:labels:target:action:", objc_name="groupWithItemIdentifier_images_selectionMode_labels_target_action", objc_is_class_method=true)
-    ToolbarItemGroup_groupWithItemIdentifier_images_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype ---
+	@(objc_type=ToolbarItemGroup, objc_selector="groupWithItemIdentifier:images:selectionMode:labels:target:action:", objc_name="groupWithItemIdentifier_images_selectionMode_labels_target_action", objc_is_class_method=true)
+	ToolbarItemGroup_groupWithItemIdentifier_images_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="setSelected:atIndex:", objc_name="setSelected")
-    ToolbarItemGroup_setSelected :: proc(self: ^ToolbarItemGroup, selected: bool, index: NS.Integer) ---
+	@(objc_type=ToolbarItemGroup, objc_selector="setSelected:atIndex:", objc_name="setSelected")
+	ToolbarItemGroup_setSelected :: proc(self: ^ToolbarItemGroup, selected: bool, index: NS.Integer) ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="isSelectedAtIndex:", objc_name="isSelectedAtIndex")
-    ToolbarItemGroup_isSelectedAtIndex :: proc(self: ^ToolbarItemGroup, index: NS.Integer) -> bool ---
+	@(objc_type=ToolbarItemGroup, objc_selector="isSelectedAtIndex:", objc_name="isSelectedAtIndex")
+	ToolbarItemGroup_isSelectedAtIndex :: proc(self: ^ToolbarItemGroup, index: NS.Integer) -> bool ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="subitems", objc_name="subitems")
-    ToolbarItemGroup_subitems :: proc(self: ^ToolbarItemGroup) -> ^NS.Array ---
+	@(objc_type=ToolbarItemGroup, objc_selector="subitems", objc_name="subitems")
+	ToolbarItemGroup_subitems :: proc(self: ^ToolbarItemGroup) -> ^NS.Array ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="setSubitems:", objc_name="setSubitems")
-    ToolbarItemGroup_setSubitems :: proc(self: ^ToolbarItemGroup, subitems: ^NS.Array) ---
+	@(objc_type=ToolbarItemGroup, objc_selector="setSubitems:", objc_name="setSubitems")
+	ToolbarItemGroup_setSubitems :: proc(self: ^ToolbarItemGroup, subitems: ^NS.Array) ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="controlRepresentation", objc_name="controlRepresentation")
-    ToolbarItemGroup_controlRepresentation :: proc(self: ^ToolbarItemGroup) -> ToolbarItemGroupControlRepresentation ---
+	@(objc_type=ToolbarItemGroup, objc_selector="controlRepresentation", objc_name="controlRepresentation")
+	ToolbarItemGroup_controlRepresentation :: proc(self: ^ToolbarItemGroup) -> ToolbarItemGroupControlRepresentation ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="setControlRepresentation:", objc_name="setControlRepresentation")
-    ToolbarItemGroup_setControlRepresentation :: proc(self: ^ToolbarItemGroup, controlRepresentation: ToolbarItemGroupControlRepresentation) ---
+	@(objc_type=ToolbarItemGroup, objc_selector="setControlRepresentation:", objc_name="setControlRepresentation")
+	ToolbarItemGroup_setControlRepresentation :: proc(self: ^ToolbarItemGroup, controlRepresentation: ToolbarItemGroupControlRepresentation) ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="selectionMode", objc_name="selectionMode")
-    ToolbarItemGroup_selectionMode :: proc(self: ^ToolbarItemGroup) -> ToolbarItemGroupSelectionMode ---
+	@(objc_type=ToolbarItemGroup, objc_selector="selectionMode", objc_name="selectionMode")
+	ToolbarItemGroup_selectionMode :: proc(self: ^ToolbarItemGroup) -> ToolbarItemGroupSelectionMode ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="setSelectionMode:", objc_name="setSelectionMode")
-    ToolbarItemGroup_setSelectionMode :: proc(self: ^ToolbarItemGroup, selectionMode: ToolbarItemGroupSelectionMode) ---
+	@(objc_type=ToolbarItemGroup, objc_selector="setSelectionMode:", objc_name="setSelectionMode")
+	ToolbarItemGroup_setSelectionMode :: proc(self: ^ToolbarItemGroup, selectionMode: ToolbarItemGroupSelectionMode) ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="selectedIndex", objc_name="selectedIndex")
-    ToolbarItemGroup_selectedIndex :: proc(self: ^ToolbarItemGroup) -> NS.Integer ---
+	@(objc_type=ToolbarItemGroup, objc_selector="selectedIndex", objc_name="selectedIndex")
+	ToolbarItemGroup_selectedIndex :: proc(self: ^ToolbarItemGroup) -> NS.Integer ---
 
-    @(objc_type=ToolbarItemGroup, objc_selector="setSelectedIndex:", objc_name="setSelectedIndex")
-    ToolbarItemGroup_setSelectedIndex :: proc(self: ^ToolbarItemGroup, selectedIndex: NS.Integer) ---
+	@(objc_type=ToolbarItemGroup, objc_selector="setSelectedIndex:", objc_name="setSelectedIndex")
+	ToolbarItemGroup_setSelectedIndex :: proc(self: ^ToolbarItemGroup, selectedIndex: NS.Integer) ---
 }
-

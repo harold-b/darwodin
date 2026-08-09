@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKShareMetadata
 ///
 @(objc_class="CKShareMetadata", objc_superclass=NS.Object)
-ShareMetadata :: struct { using _: NS.Object, 
+ShareMetadata :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

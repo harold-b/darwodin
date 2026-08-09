@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPointerStyle
 ///
 @(objc_class="UIPointerStyle", objc_superclass=HoverStyle)
-PointerStyle :: struct { using _: HoverStyle, 
+PointerStyle :: struct {
+    using _: HoverStyle,
     using _: NS.Copying,
 }
 

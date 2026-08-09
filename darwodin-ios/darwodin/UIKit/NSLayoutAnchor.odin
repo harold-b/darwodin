@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSLayoutAnchor
 ///
 @(objc_class="NSLayoutAnchor", objc_superclass=NS.Object)
-NSLayoutAnchor :: struct { using _: NS.Object, 
+NSLayoutAnchor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
 }

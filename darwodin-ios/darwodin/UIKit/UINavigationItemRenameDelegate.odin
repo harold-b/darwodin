@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UINavigationItemRenameDelegate
 ///
 @(objc_class="UINavigationItemRenameDelegate")
-NavigationItemRenameDelegate :: struct { using _: intrinsics.objc_object, 
+NavigationItemRenameDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

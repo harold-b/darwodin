@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSColorList
 ///
 @(objc_class="NSColorList", objc_superclass=NS.Object)
-ColorList :: struct { using _: NS.Object, 
+ColorList :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

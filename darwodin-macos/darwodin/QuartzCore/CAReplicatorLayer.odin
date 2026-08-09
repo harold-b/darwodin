@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAReplicatorLayer
 ///
 @(objc_class="CAReplicatorLayer", objc_superclass=Layer)
-ReplicatorLayer :: struct { using _: Layer, }
+ReplicatorLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

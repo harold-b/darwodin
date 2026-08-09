@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPushBehavior
 ///
 @(objc_class="UIPushBehavior", objc_superclass=DynamicBehavior)
-PushBehavior :: struct { using _: DynamicBehavior, }
+PushBehavior :: struct { using _: DynamicBehavior}
 
 @(default_calling_convention="c")
 foreign lib {

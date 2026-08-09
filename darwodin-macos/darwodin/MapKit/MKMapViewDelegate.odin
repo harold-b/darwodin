@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapViewDelegate
 ///
 @(objc_class="MKMapViewDelegate")
-MapViewDelegate :: struct { using _: intrinsics.objc_object, 
+MapViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

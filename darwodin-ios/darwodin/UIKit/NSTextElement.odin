@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSTextElement
 ///
 @(objc_class="NSTextElement", objc_superclass=NS.Object)
-NSTextElement :: struct { using _: NS.Object, }
+NSTextElement :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

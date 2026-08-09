@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSWindowTabGroup
 ///
 @(objc_class="NSWindowTabGroup", objc_superclass=NS.Object)
-WindowTabGroup :: struct { using _: NS.Object, }
+WindowTabGroup :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

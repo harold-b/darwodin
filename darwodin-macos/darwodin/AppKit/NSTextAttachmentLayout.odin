@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextAttachmentLayout
 ///
 @(objc_class="NSTextAttachmentLayout")
-TextAttachmentLayout :: struct { using _: intrinsics.objc_object, 
+TextAttachmentLayout :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

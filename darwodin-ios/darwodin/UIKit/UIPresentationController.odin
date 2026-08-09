@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPresentationController
 ///
 @(objc_class="UIPresentationController", objc_superclass=NS.Object)
-PresentationController :: struct { using _: NS.Object, 
+PresentationController :: struct {
+    using _: NS.Object,
     using _: AppearanceContainer,
     using _: TraitEnvironment,
     using _: ContentContainer,

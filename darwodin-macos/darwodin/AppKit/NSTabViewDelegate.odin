@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTabViewDelegate
 ///
 @(objc_class="NSTabViewDelegate")
-TabViewDelegate :: struct { using _: intrinsics.objc_object, 
+TabViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

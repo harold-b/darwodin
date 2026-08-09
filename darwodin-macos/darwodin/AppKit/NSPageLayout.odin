@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPageLayout
 ///
 @(objc_class="NSPageLayout", objc_superclass=NS.Object)
-PageLayout :: struct { using _: NS.Object, }
+PageLayout :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

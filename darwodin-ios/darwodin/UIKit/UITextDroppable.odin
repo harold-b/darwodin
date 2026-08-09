@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDroppable
 ///
 @(objc_class="UITextDroppable")
-TextDroppable :: struct { using _: intrinsics.objc_object, 
+TextDroppable :: struct {
+    using _: intrinsics.objc_object,
     using _: TextInput,
     using _: TextPasteConfigurationSupporting,
 }

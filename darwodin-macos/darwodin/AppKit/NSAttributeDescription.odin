@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSAttributeDescription
 ///
 @(objc_class="NSAttributeDescription", objc_superclass=PropertyDescription)
-AttributeDescription :: struct { using _: PropertyDescription, }
+AttributeDescription :: struct { using _: PropertyDescription}
 
 @(default_calling_convention="c")
 foreign lib {

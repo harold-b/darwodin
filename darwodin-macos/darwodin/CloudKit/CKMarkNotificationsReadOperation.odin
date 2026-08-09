@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKMarkNotificationsReadOperation
 ///
 @(objc_class="CKMarkNotificationsReadOperation", objc_superclass=Operation)
-MarkNotificationsReadOperation :: struct { using _: Operation, }
+MarkNotificationsReadOperation :: struct { using _: Operation}
 
 @(default_calling_convention="c")
 foreign lib {}

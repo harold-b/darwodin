@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionViewDelegate
 ///
 @(objc_class="NSCollectionViewDelegate")
-CollectionViewDelegate :: struct { using _: intrinsics.objc_object, 
+CollectionViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

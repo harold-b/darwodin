@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVPlayerLayer
 ///
 @(objc_class="AVPlayerLayer", objc_superclass=CA.Layer)
-PlayerLayer :: struct { using _: CA.Layer, }
+PlayerLayer :: struct { using _: CA.Layer}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -9,15 +9,15 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
 ///
 /// AVSpeechSynthesisProviderAudioUnit
 ///
-@(objc_class="AVSpeechSynthesisProviderAudioUnit", objc_superclass=Audio.AUAudioUnit)
-SpeechSynthesisProviderAudioUnit :: struct { using _: Audio.AUAudioUnit, }
+@(objc_class="AVSpeechSynthesisProviderAudioUnit", objc_superclass=AT.AUAudioUnit)
+SpeechSynthesisProviderAudioUnit :: struct { using _: AT.AUAudioUnit}
 
 @(default_calling_convention="c")
 foreign lib {

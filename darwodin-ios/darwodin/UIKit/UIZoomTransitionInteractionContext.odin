@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIZoomTransitionInteractionContext
 ///
 @(objc_class="UIZoomTransitionInteractionContext", objc_superclass=NS.Object)
-ZoomTransitionInteractionContext :: struct { using _: NS.Object, }
+ZoomTransitionInteractionContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

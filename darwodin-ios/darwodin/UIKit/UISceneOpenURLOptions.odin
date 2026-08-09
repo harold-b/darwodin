@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISceneOpenURLOptions
 ///
 @(objc_class="UISceneOpenURLOptions", objc_superclass=NS.Object)
-SceneOpenURLOptions :: struct { using _: NS.Object, }
+SceneOpenURLOptions :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFunctionDescriptor
 ///
 @(objc_class="MTLFunctionDescriptor", objc_superclass=NS.Object)
-FunctionDescriptor :: struct { using _: NS.Object, 
+FunctionDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

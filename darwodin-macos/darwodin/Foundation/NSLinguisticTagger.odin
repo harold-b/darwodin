@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSLinguisticTagger
 ///
 @(objc_class="NSLinguisticTagger", objc_superclass=Object)
-LinguisticTagger :: struct { using _: Object, }
+LinguisticTagger :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

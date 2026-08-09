@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKAsset
 ///
 @(objc_class="CKAsset", objc_superclass=NS.Object)
-Asset :: struct { using _: NS.Object, }
+Asset :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

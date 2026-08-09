@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLRasterizationRateMap
 ///
 @(objc_class="MTLRasterizationRateMap")
-RasterizationRateMap :: struct { using _: intrinsics.objc_object, 
+RasterizationRateMap :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

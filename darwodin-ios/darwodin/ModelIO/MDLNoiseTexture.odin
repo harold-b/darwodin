@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLNoiseTexture
 ///
 @(objc_class="MDLNoiseTexture", objc_superclass=Texture)
-NoiseTexture :: struct { using _: Texture, }
+NoiseTexture :: struct { using _: Texture}
 
 @(default_calling_convention="c")
 foreign lib {

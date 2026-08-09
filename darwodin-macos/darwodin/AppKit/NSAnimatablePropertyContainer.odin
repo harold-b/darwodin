@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSAnimatablePropertyContainer
 ///
 @(objc_class="NSAnimatablePropertyContainer")
-AnimatablePropertyContainer :: struct { using _: intrinsics.objc_object, }
+AnimatablePropertyContainer :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

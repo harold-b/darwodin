@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPickerViewAccessibilityDelegate
 ///
 @(objc_class="UIPickerViewAccessibilityDelegate")
-PickerViewAccessibilityDelegate :: struct { using _: intrinsics.objc_object, 
+PickerViewAccessibilityDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: PickerViewDelegate,
 }
 

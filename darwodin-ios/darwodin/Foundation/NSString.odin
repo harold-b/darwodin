@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSString
 ///
 @(objc_class="NSString", objc_superclass=Object)
-String :: struct { using _: Object, 
+String :: struct {
+    using _: Object,
     using _: Copying,
     using _: MutableCopying,
     using _: SecureCoding,

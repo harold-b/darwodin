@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIToolTipInteractionDelegate
 ///
 @(objc_class="UIToolTipInteractionDelegate")
-ToolTipInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+ToolTipInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

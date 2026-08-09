@@ -1,38 +1,25 @@
 #+build darwin:default
-package darwodin_AppKit
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
+package darwin_AppKit
 
 
 
-///
-/// NSCollectionViewFlowLayoutInvalidationContext
-///
+
+
+
 @(objc_class="NSCollectionViewFlowLayoutInvalidationContext", objc_superclass=CollectionViewLayoutInvalidationContext)
-CollectionViewFlowLayoutInvalidationContext :: struct { using _: CollectionViewLayoutInvalidationContext, }
+CollectionViewFlowLayoutInvalidationContext :: struct { using _: CollectionViewLayoutInvalidationContext}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="invalidateFlowLayoutDelegateMetrics", objc_name="invalidateFlowLayoutDelegateMetrics")
-    CollectionViewFlowLayoutInvalidationContext_invalidateFlowLayoutDelegateMetrics :: proc(self: ^CollectionViewFlowLayoutInvalidationContext) -> bool ---
+	@(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="invalidateFlowLayoutDelegateMetrics", objc_name="invalidateFlowLayoutDelegateMetrics")
+	CollectionViewFlowLayoutInvalidationContext_invalidateFlowLayoutDelegateMetrics :: proc(self: ^CollectionViewFlowLayoutInvalidationContext) -> bool ---
 
-    @(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="setInvalidateFlowLayoutDelegateMetrics:", objc_name="setInvalidateFlowLayoutDelegateMetrics")
-    CollectionViewFlowLayoutInvalidationContext_setInvalidateFlowLayoutDelegateMetrics :: proc(self: ^CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutDelegateMetrics: bool) ---
+	@(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="setInvalidateFlowLayoutDelegateMetrics:", objc_name="setInvalidateFlowLayoutDelegateMetrics")
+	CollectionViewFlowLayoutInvalidationContext_setInvalidateFlowLayoutDelegateMetrics :: proc(self: ^CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutDelegateMetrics: bool) ---
 
-    @(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="invalidateFlowLayoutAttributes", objc_name="invalidateFlowLayoutAttributes")
-    CollectionViewFlowLayoutInvalidationContext_invalidateFlowLayoutAttributes :: proc(self: ^CollectionViewFlowLayoutInvalidationContext) -> bool ---
+	@(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="invalidateFlowLayoutAttributes", objc_name="invalidateFlowLayoutAttributes")
+	CollectionViewFlowLayoutInvalidationContext_invalidateFlowLayoutAttributes :: proc(self: ^CollectionViewFlowLayoutInvalidationContext) -> bool ---
 
-    @(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="setInvalidateFlowLayoutAttributes:", objc_name="setInvalidateFlowLayoutAttributes")
-    CollectionViewFlowLayoutInvalidationContext_setInvalidateFlowLayoutAttributes :: proc(self: ^CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutAttributes: bool) ---
+	@(objc_type=CollectionViewFlowLayoutInvalidationContext, objc_selector="setInvalidateFlowLayoutAttributes:", objc_name="setInvalidateFlowLayoutAttributes")
+	CollectionViewFlowLayoutInvalidationContext_setInvalidateFlowLayoutAttributes :: proc(self: ^CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutAttributes: bool) ---
 }

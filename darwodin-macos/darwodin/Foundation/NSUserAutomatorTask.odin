@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSUserAutomatorTask
 ///
 @(objc_class="NSUserAutomatorTask", objc_superclass=UserScriptTask)
-UserAutomatorTask :: struct { using _: UserScriptTask, }
+UserAutomatorTask :: struct { using _: UserScriptTask}
 
 @(default_calling_convention="c")
 foreign lib {

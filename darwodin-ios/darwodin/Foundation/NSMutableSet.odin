@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableSet
 ///
 @(objc_class="NSMutableSet", objc_superclass=Set)
-MutableSet :: struct { using _: Set, }
+MutableSet :: struct { using _: Set}
 
 @(default_calling_convention="c")
 foreign lib {

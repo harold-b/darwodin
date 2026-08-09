@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSManagedObjectContext
 ///
 @(objc_class="NSManagedObjectContext")
-NSManagedObjectContext :: struct { using _: intrinsics.objc_object, }
+NSManagedObjectContext :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

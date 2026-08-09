@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIControl
 ///
 @(objc_class="UIControl", objc_superclass=View)
-Control :: struct { using _: View, }
+Control :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

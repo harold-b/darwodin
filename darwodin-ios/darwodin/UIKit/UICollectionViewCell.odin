@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICollectionViewCell
 ///
 @(objc_class="UICollectionViewCell", objc_superclass=CollectionReusableView)
-CollectionViewCell :: struct { using _: CollectionReusableView, }
+CollectionViewCell :: struct { using _: CollectionReusableView}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSRulerView
 ///
 @(objc_class="NSRulerView", objc_superclass=View)
-RulerView :: struct { using _: View, }
+RulerView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

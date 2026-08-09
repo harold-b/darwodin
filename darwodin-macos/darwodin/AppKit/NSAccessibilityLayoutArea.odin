@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityLayoutArea
 ///
 @(objc_class="NSAccessibilityLayoutArea")
-AccessibilityLayoutArea :: struct { using _: intrinsics.objc_object, 
+AccessibilityLayoutArea :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 

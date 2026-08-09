@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISearchDisplayController
 ///
 @(objc_class="UISearchDisplayController", objc_superclass=NS.Object)
-SearchDisplayController :: struct { using _: NS.Object, }
+SearchDisplayController :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

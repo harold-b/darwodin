@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTexture
 ///
 @(objc_class="MDLTexture", objc_superclass=NS.Object)
-Texture :: struct { using _: NS.Object, 
+Texture :: struct {
+    using _: NS.Object,
     using _: Named,
 }
 

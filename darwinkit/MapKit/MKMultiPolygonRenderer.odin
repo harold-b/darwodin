@@ -1,0 +1,14 @@
+#+build darwin
+package darwin_MapKit
+
+
+@(objc_class="MKMultiPolygonRenderer", objc_superclass=OverlayPathRenderer)
+MultiPolygonRenderer :: struct { using _: OverlayPathRenderer}
+
+foreign lib {
+	@(objc_type=MultiPolygonRenderer, objc_selector="initWithMultiPolygon:", objc_name="initWithMultiPolygon")
+	MultiPolygonRenderer_initWithMultiPolygon :: proc(self: ^MultiPolygonRenderer, multiPolygon: ^MultiPolygon) -> instancetype ---
+
+	@(objc_type=MultiPolygonRenderer, objc_selector="multiPolygon", objc_name="multiPolygon")
+	MultiPolygonRenderer_multiPolygon :: proc(self: ^MultiPolygonRenderer) -> ^MultiPolygon ---
+}

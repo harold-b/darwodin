@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKLeaderboardViewControllerDelegate
 ///
 @(objc_class="GKLeaderboardViewControllerDelegate")
-LeaderboardViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+LeaderboardViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

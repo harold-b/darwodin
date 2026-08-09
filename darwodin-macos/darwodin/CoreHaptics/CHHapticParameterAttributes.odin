@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CHHapticParameterAttributes
 ///
 @(objc_class="CHHapticParameterAttributes")
-HapticParameterAttributes :: struct { using _: intrinsics.objc_object, 
+HapticParameterAttributes :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

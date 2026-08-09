@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIEditMenuInteractionAnimating
 ///
 @(objc_class="UIEditMenuInteractionAnimating")
-EditMenuInteractionAnimating :: struct { using _: intrinsics.objc_object, 
+EditMenuInteractionAnimating :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

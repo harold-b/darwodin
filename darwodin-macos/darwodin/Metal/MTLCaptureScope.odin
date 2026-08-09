@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCaptureScope
 ///
 @(objc_class="MTLCaptureScope")
-CaptureScope :: struct { using _: intrinsics.objc_object, 
+CaptureScope :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

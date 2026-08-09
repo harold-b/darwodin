@@ -1,0 +1,54 @@
+package darwodin_MapKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import UI "../UIKit"
+import CL "../CoreLocation"
+
+
+
+///
+/// MKMapItemRequest
+///
+@(objc_class="MKMapItemRequest", objc_superclass=NS.Object)
+MapItemRequest :: struct { using _: NS.Object}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MapItemRequest, objc_selector="init", objc_name="init")
+    MapItemRequest_init :: proc(self: ^MapItemRequest) -> instancetype ---
+
+    @(objc_type=MapItemRequest, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    MapItemRequest_new :: proc() -> ^MapItemRequest ---
+
+    @(objc_type=MapItemRequest, objc_selector="initWithMapItemIdentifier:", objc_name="initWithMapItemIdentifier")
+    MapItemRequest_initWithMapItemIdentifier :: proc(self: ^MapItemRequest, identifier: ^MapItemIdentifier) -> instancetype ---
+
+    @(objc_type=MapItemRequest, objc_selector="initWithMapFeatureAnnotation:", objc_name="initWithMapFeatureAnnotation")
+    MapItemRequest_initWithMapFeatureAnnotation :: proc(self: ^MapItemRequest, mapFeatureAnnotation: ^MapFeatureAnnotation) -> instancetype ---
+
+    @(objc_type=MapItemRequest, objc_selector="getMapItemWithCompletionHandler:", objc_name="getMapItemWithCompletionHandler")
+    MapItemRequest_getMapItemWithCompletionHandler :: proc(self: ^MapItemRequest, completionHandler: ^Objc_Block(proc "c" ( mapItem: ^MapItem, error: ^NS.Error ))) ---
+
+    @(objc_type=MapItemRequest, objc_selector="cancel", objc_name="cancel")
+    MapItemRequest_cancel :: proc(self: ^MapItemRequest) ---
+
+    @(objc_type=MapItemRequest, objc_selector="mapItemIdentifier", objc_name="mapItemIdentifier")
+    MapItemRequest_mapItemIdentifier :: proc(self: ^MapItemRequest) -> ^MapItemIdentifier ---
+
+    @(objc_type=MapItemRequest, objc_selector="mapFeatureAnnotation", objc_name="mapFeatureAnnotation")
+    MapItemRequest_mapFeatureAnnotation :: proc(self: ^MapItemRequest) -> ^MapFeatureAnnotation ---
+
+    @(objc_type=MapItemRequest, objc_selector="featureAnnotation", objc_name="featureAnnotation")
+    MapItemRequest_featureAnnotation :: proc(self: ^MapItemRequest) -> ^MapFeatureAnnotation ---
+
+    @(objc_type=MapItemRequest, objc_selector="isCancelled", objc_name="isCancelled")
+    MapItemRequest_isCancelled :: proc(self: ^MapItemRequest) -> bool ---
+
+    @(objc_type=MapItemRequest, objc_selector="isLoading", objc_name="isLoading")
+    MapItemRequest_isLoading :: proc(self: ^MapItemRequest) -> bool ---
+}

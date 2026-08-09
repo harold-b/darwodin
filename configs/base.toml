@@ -3,5 +3,5 @@ Emit             = true
 ExportPath       = '..'
 BasePackageName  = 'darwodin'
 SingleFile       = false
-TargetPlatform   = 'Darwin'
+# TargetPlatform   = 'Darwin'
 ExportTypeMapDir = '../exports'

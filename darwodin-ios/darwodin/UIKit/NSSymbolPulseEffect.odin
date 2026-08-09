@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSSymbolPulseEffect
 ///
 @(objc_class="NSSymbolPulseEffect", objc_superclass=NSSymbolEffect)
-NSSymbolPulseEffect :: struct { using _: NSSymbolEffect, }
+NSSymbolPulseEffect :: struct { using _: NSSymbolEffect}
 
 @(default_calling_convention="c")
 foreign lib {

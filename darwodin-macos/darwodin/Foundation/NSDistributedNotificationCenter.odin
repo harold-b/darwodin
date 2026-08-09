@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSDistributedNotificationCenter
 ///
 @(objc_class="NSDistributedNotificationCenter", objc_superclass=NotificationCenter)
-DistributedNotificationCenter :: struct { using _: NotificationCenter, }
+DistributedNotificationCenter :: struct { using _: NotificationCenter}
 
 @(default_calling_convention="c")
 foreign lib {

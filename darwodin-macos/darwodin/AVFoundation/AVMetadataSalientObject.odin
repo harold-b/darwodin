@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVMetadataSalientObject
 ///
 @(objc_class="AVMetadataSalientObject", objc_superclass=MetadataObject)
-MetadataSalientObject :: struct { using _: MetadataObject, 
+MetadataSalientObject :: struct {
+    using _: MetadataObject,
     using _: NS.Copying,
 }
 

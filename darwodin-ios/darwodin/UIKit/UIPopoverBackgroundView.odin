@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPopoverBackgroundView
 ///
 @(objc_class="UIPopoverBackgroundView", objc_superclass=View)
-PopoverBackgroundView :: struct { using _: View, 
+PopoverBackgroundView :: struct {
+    using _: View,
     using _: PopoverBackgroundViewMethods,
 }
 

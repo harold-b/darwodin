@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLAttributeDescriptorArray
 ///
 @(objc_class="MTLAttributeDescriptorArray", objc_superclass=NS.Object)
-AttributeDescriptorArray :: struct { using _: NS.Object, }
+AttributeDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

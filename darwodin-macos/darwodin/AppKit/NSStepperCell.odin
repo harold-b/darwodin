@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSStepperCell
 ///
 @(objc_class="NSStepperCell", objc_superclass=ActionCell)
-StepperCell :: struct { using _: ActionCell, }
+StepperCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

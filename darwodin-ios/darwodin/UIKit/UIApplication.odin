@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIApplication
 ///
 @(objc_class="UIApplication", objc_superclass=Responder)
-Application :: struct { using _: Responder, }
+Application :: struct { using _: Responder}
 
 @(default_calling_convention="c")
 foreign lib {

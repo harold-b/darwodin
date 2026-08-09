@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextFormattingCoordinator
 ///
 @(objc_class="UITextFormattingCoordinator", objc_superclass=NS.Object)
-TextFormattingCoordinator :: struct { using _: NS.Object, 
+TextFormattingCoordinator :: struct {
+    using _: NS.Object,
     using _: FontPickerViewControllerDelegate,
 }
 

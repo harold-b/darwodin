@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSplitView
 ///
 @(objc_class="NSSplitView", objc_superclass=View)
-SplitView :: struct { using _: View, }
+SplitView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

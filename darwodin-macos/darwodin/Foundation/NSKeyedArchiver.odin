@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSKeyedArchiver
 ///
 @(objc_class="NSKeyedArchiver", objc_superclass=Coder)
-KeyedArchiver :: struct { using _: Coder, }
+KeyedArchiver :: struct { using _: Coder}
 
 @(default_calling_convention="c")
 foreign lib {

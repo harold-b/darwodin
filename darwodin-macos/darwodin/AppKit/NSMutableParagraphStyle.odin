@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSMutableParagraphStyle
 ///
 @(objc_class="NSMutableParagraphStyle", objc_superclass=ParagraphStyle)
-MutableParagraphStyle :: struct { using _: ParagraphStyle, }
+MutableParagraphStyle :: struct { using _: ParagraphStyle}
 
 @(default_calling_convention="c")
 foreign lib {

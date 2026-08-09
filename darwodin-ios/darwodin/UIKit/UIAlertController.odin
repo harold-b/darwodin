@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIAlertController
 ///
 @(objc_class="UIAlertController", objc_superclass=ViewController)
-AlertController :: struct { using _: ViewController, }
+AlertController :: struct { using _: ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

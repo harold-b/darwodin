@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4LibraryDescriptor
 ///
 @(objc_class="MTL4LibraryDescriptor", objc_superclass=NS.Object)
-MTL4LibraryDescriptor :: struct { using _: NS.Object, 
+MTL4LibraryDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

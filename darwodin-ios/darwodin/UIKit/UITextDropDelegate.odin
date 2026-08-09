@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDropDelegate
 ///
 @(objc_class="UITextDropDelegate")
-TextDropDelegate :: struct { using _: intrinsics.objc_object, 
+TextDropDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

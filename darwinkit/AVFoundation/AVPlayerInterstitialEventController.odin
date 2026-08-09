@@ -1,51 +1,40 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVPlayerInterstitialEventController", objc_superclass=PlayerInterstitialEventMonitor)
-PlayerInterstitialEventController :: struct { using _: PlayerInterstitialEventMonitor, }
+PlayerInterstitialEventController :: struct { using _: PlayerInterstitialEventMonitor}
 
 foreign lib {
-    @(objc_type=PlayerInterstitialEventController, objc_selector="interstitialEventControllerWithPrimaryPlayer:", objc_name="interstitialEventControllerWithPrimaryPlayer", objc_is_class_method=true)
-    PlayerInterstitialEventController_interstitialEventControllerWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> instancetype ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="interstitialEventControllerWithPrimaryPlayer:", objc_name="interstitialEventControllerWithPrimaryPlayer", objc_is_class_method=true)
+	PlayerInterstitialEventController_interstitialEventControllerWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> instancetype ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="initWithPrimaryPlayer:", objc_name="initWithPrimaryPlayer")
-    PlayerInterstitialEventController_initWithPrimaryPlayer :: proc(self: ^PlayerInterstitialEventController, primaryPlayer: ^Player) -> instancetype ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="initWithPrimaryPlayer:", objc_name="initWithPrimaryPlayer")
+	PlayerInterstitialEventController_initWithPrimaryPlayer :: proc(self: ^PlayerInterstitialEventController, primaryPlayer: ^Player) -> instancetype ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="cancelCurrentEventWithResumptionOffset:", objc_name="cancelCurrentEventWithResumptionOffset")
-    PlayerInterstitialEventController_cancelCurrentEventWithResumptionOffset :: proc(self: ^PlayerInterstitialEventController, resumptionOffset: CM.Time) ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="cancelCurrentEventWithResumptionOffset:", objc_name="cancelCurrentEventWithResumptionOffset")
+	PlayerInterstitialEventController_cancelCurrentEventWithResumptionOffset :: proc(self: ^PlayerInterstitialEventController, resumptionOffset: CM.Time) ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="skipCurrentEvent", objc_name="skipCurrentEvent")
-    PlayerInterstitialEventController_skipCurrentEvent :: proc(self: ^PlayerInterstitialEventController) ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="skipCurrentEvent", objc_name="skipCurrentEvent")
+	PlayerInterstitialEventController_skipCurrentEvent :: proc(self: ^PlayerInterstitialEventController) ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="events", objc_name="events")
-    PlayerInterstitialEventController_events :: proc(self: ^PlayerInterstitialEventController) -> ^NS.Array ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="events", objc_name="events")
+	PlayerInterstitialEventController_events :: proc(self: ^PlayerInterstitialEventController) -> ^NS.Array ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="setEvents:", objc_name="setEvents")
-    PlayerInterstitialEventController_setEvents :: proc(self: ^PlayerInterstitialEventController, events: ^NS.Array) ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="setEvents:", objc_name="setEvents")
+	PlayerInterstitialEventController_setEvents :: proc(self: ^PlayerInterstitialEventController, events: ^NS.Array) ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="localizedStringsBundle", objc_name="localizedStringsBundle")
-    PlayerInterstitialEventController_localizedStringsBundle :: proc(self: ^PlayerInterstitialEventController) -> ^NS.Bundle ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="localizedStringsBundle", objc_name="localizedStringsBundle")
+	PlayerInterstitialEventController_localizedStringsBundle :: proc(self: ^PlayerInterstitialEventController) -> ^NS.Bundle ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="setLocalizedStringsBundle:", objc_name="setLocalizedStringsBundle")
-    PlayerInterstitialEventController_setLocalizedStringsBundle :: proc(self: ^PlayerInterstitialEventController, localizedStringsBundle: ^NS.Bundle) ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="setLocalizedStringsBundle:", objc_name="setLocalizedStringsBundle")
+	PlayerInterstitialEventController_setLocalizedStringsBundle :: proc(self: ^PlayerInterstitialEventController, localizedStringsBundle: ^NS.Bundle) ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="localizedStringsTableName", objc_name="localizedStringsTableName")
-    PlayerInterstitialEventController_localizedStringsTableName :: proc(self: ^PlayerInterstitialEventController) -> ^NS.String ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="localizedStringsTableName", objc_name="localizedStringsTableName")
+	PlayerInterstitialEventController_localizedStringsTableName :: proc(self: ^PlayerInterstitialEventController) -> ^NS.String ---
 
-    @(objc_type=PlayerInterstitialEventController, objc_selector="setLocalizedStringsTableName:", objc_name="setLocalizedStringsTableName")
-    PlayerInterstitialEventController_setLocalizedStringsTableName :: proc(self: ^PlayerInterstitialEventController, localizedStringsTableName: ^NS.String) ---
+	@(objc_type=PlayerInterstitialEventController, objc_selector="setLocalizedStringsTableName:", objc_name="setLocalizedStringsTableName")
+	PlayerInterstitialEventController_setLocalizedStringsTableName :: proc(self: ^PlayerInterstitialEventController, localizedStringsTableName: ^NS.String) ---
 }
-
-
-

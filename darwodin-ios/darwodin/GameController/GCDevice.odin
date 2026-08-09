@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCDevice
 ///
 @(objc_class="GCDevice")
-Device :: struct { using _: intrinsics.objc_object, 
+Device :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

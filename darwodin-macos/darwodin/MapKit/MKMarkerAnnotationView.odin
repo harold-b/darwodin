@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMarkerAnnotationView
 ///
 @(objc_class="MKMarkerAnnotationView", objc_superclass=AnnotationView)
-MarkerAnnotationView :: struct { using _: AnnotationView, }
+MarkerAnnotationView :: struct { using _: AnnotationView}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSDate
 ///
 @(objc_class="NSDate", objc_superclass=Object)
-Date :: struct { using _: Object, 
+Date :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSProgress
 ///
 @(objc_class="NSProgress", objc_superclass=Object)
-Progress :: struct { using _: Object, }
+Progress :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

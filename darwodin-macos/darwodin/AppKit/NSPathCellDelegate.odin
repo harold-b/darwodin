@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPathCellDelegate
 ///
 @(objc_class="NSPathCellDelegate")
-PathCellDelegate :: struct { using _: intrinsics.objc_object, 
+PathCellDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBinaryArchiveDescriptor
 ///
 @(objc_class="MTLBinaryArchiveDescriptor", objc_superclass=NS.Object)
-BinaryArchiveDescriptor :: struct { using _: NS.Object, 
+BinaryArchiveDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

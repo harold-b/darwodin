@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLParallelRenderCommandEncoder
 ///
 @(objc_class="MTLParallelRenderCommandEncoder")
-ParallelRenderCommandEncoder :: struct { using _: intrinsics.objc_object, 
+ParallelRenderCommandEncoder :: struct {
+    using _: intrinsics.objc_object,
     using _: CommandEncoder,
 }
 

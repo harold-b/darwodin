@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCDualShockGamepad
 ///
 @(objc_class="GCDualShockGamepad", objc_superclass=ExtendedGamepad)
-DualShockGamepad :: struct { using _: ExtendedGamepad, }
+DualShockGamepad :: struct { using _: ExtendedGamepad}
 
 @(default_calling_convention="c")
 foreign lib {

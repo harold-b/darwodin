@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSExtensionItem
 ///
 @(objc_class="NSExtensionItem", objc_superclass=Object)
-ExtensionItem :: struct { using _: Object, 
+ExtensionItem :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

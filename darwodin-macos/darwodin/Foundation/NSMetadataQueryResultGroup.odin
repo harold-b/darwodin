@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMetadataQueryResultGroup
 ///
 @(objc_class="NSMetadataQueryResultGroup", objc_superclass=Object)
-MetadataQueryResultGroup :: struct { using _: Object, }
+MetadataQueryResultGroup :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

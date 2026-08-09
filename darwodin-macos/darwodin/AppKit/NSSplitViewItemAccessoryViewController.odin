@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSplitViewItemAccessoryViewController
 ///
 @(objc_class="NSSplitViewItemAccessoryViewController", objc_superclass=ViewController)
-SplitViewItemAccessoryViewController :: struct { using _: ViewController, 
+SplitViewItemAccessoryViewController :: struct {
+    using _: ViewController,
     using _: AnimatablePropertyContainer,
 }
 

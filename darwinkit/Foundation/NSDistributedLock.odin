@@ -1,42 +1,34 @@
 #+build darwin:default
-package darwodin_Foundation
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
+package darwin_Foundation
 
 
 
-///
-/// NSDistributedLock
-///
+
+
+
 @(objc_class="NSDistributedLock", objc_superclass=Object)
-DistributedLock :: struct { using _: Object, }
+DistributedLock :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=DistributedLock, objc_selector="lockWithPath:", objc_name="lockWithPath", objc_is_class_method=true)
-    DistributedLock_lockWithPath :: proc(path: ^String) -> ^DistributedLock ---
+	@(objc_type=DistributedLock, objc_selector="lockWithPath:", objc_name="lockWithPath", objc_is_class_method=true)
+	DistributedLock_lockWithPath :: proc(path: ^String) -> ^DistributedLock ---
 
-    @(objc_type=DistributedLock, objc_selector="init", objc_name="init")
-    DistributedLock_init :: proc(self: ^DistributedLock) -> instancetype ---
+	@(objc_type=DistributedLock, objc_selector="init", objc_name="init")
+	DistributedLock_init :: proc(self: ^DistributedLock) -> instancetype ---
 
-    @(objc_type=DistributedLock, objc_selector="initWithPath:", objc_name="initWithPath")
-    DistributedLock_initWithPath :: proc(self: ^DistributedLock, path: ^String) -> instancetype ---
+	@(objc_type=DistributedLock, objc_selector="initWithPath:", objc_name="initWithPath")
+	DistributedLock_initWithPath :: proc(self: ^DistributedLock, path: ^String) -> instancetype ---
 
-    @(objc_type=DistributedLock, objc_selector="tryLock", objc_name="tryLock")
-    DistributedLock_tryLock :: proc(self: ^DistributedLock) -> bool ---
+	@(objc_type=DistributedLock, objc_selector="tryLock", objc_name="tryLock")
+	DistributedLock_tryLock :: proc(self: ^DistributedLock) -> bool ---
 
-    @(objc_type=DistributedLock, objc_selector="unlock", objc_name="unlock")
-    DistributedLock_unlock :: proc(self: ^DistributedLock) ---
+	@(objc_type=DistributedLock, objc_selector="unlock", objc_name="unlock")
+	DistributedLock_unlock :: proc(self: ^DistributedLock) ---
 
-    @(objc_type=DistributedLock, objc_selector="breakLock", objc_name="breakLock")
-    DistributedLock_breakLock :: proc(self: ^DistributedLock) ---
+	@(objc_type=DistributedLock, objc_selector="breakLock", objc_name="breakLock")
+	DistributedLock_breakLock :: proc(self: ^DistributedLock) ---
 
-    @(objc_type=DistributedLock, objc_selector="lockDate", objc_name="lockDate")
-    DistributedLock_lockDate :: proc(self: ^DistributedLock) -> ^Date ---
+	@(objc_type=DistributedLock, objc_selector="lockDate", objc_name="lockDate")
+	DistributedLock_lockDate :: proc(self: ^DistributedLock) -> ^Date ---
 }

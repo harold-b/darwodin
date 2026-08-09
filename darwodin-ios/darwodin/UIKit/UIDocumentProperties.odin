@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDocumentProperties
 ///
 @(objc_class="UIDocumentProperties", objc_superclass=NS.Object)
-DocumentProperties :: struct { using _: NS.Object, }
+DocumentProperties :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

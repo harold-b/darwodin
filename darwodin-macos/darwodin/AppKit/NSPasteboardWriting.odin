@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPasteboardWriting
 ///
 @(objc_class="NSPasteboardWriting")
-PasteboardWriting :: struct { using _: intrinsics.objc_object, 
+PasteboardWriting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

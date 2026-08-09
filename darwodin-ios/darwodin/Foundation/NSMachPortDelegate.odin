@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSMachPortDelegate
 ///
 @(objc_class="NSMachPortDelegate")
-MachPortDelegate :: struct { using _: intrinsics.objc_object, 
+MachPortDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: PortDelegate,
 }
 

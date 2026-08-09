@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKSelectionAccessory
 ///
 @(objc_class="MKSelectionAccessory", objc_superclass=NS.Object)
-SelectionAccessory :: struct { using _: NS.Object, }
+SelectionAccessory :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

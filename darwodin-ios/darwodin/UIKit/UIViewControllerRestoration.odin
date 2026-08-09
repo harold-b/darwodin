@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIViewControllerRestoration
 ///
 @(objc_class="UIViewControllerRestoration")
-ViewControllerRestoration :: struct { using _: intrinsics.objc_object, }
+ViewControllerRestoration :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

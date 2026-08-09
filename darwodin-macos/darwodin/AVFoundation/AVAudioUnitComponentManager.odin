@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioUnitComponentManager
 ///
 @(objc_class="AVAudioUnitComponentManager", objc_superclass=NS.Object)
-AudioUnitComponentManager :: struct { using _: NS.Object, }
+AudioUnitComponentManager :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -31,7 +31,7 @@ foreign lib {
     AudioUnitComponentManager_componentsPassingTest :: proc(self: ^AudioUnitComponentManager, testHandler: ^Objc_Block(proc "c" ( comp: ^AudioUnitComponent, stop: ^bool ) -> bool)) -> ^NS.Array ---
 
     @(objc_type=AudioUnitComponentManager, objc_selector="componentsMatchingDescription:", objc_name="componentsMatchingDescription")
-    AudioUnitComponentManager_componentsMatchingDescription :: proc(self: ^AudioUnitComponentManager, desc: Audio.ComponentDescription) -> ^NS.Array ---
+    AudioUnitComponentManager_componentsMatchingDescription :: proc(self: ^AudioUnitComponentManager, desc: AT.ComponentDescription) -> ^NS.Array ---
 
     @(objc_type=AudioUnitComponentManager, objc_selector="tagNames", objc_name="tagNames")
     AudioUnitComponentManager_tagNames :: proc(self: ^AudioUnitComponentManager) -> ^NS.Array ---

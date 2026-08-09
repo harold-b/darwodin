@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSPositionalSpecifier
 ///
 @(objc_class="NSPositionalSpecifier", objc_superclass=Object)
-PositionalSpecifier :: struct { using _: Object, }
+PositionalSpecifier :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

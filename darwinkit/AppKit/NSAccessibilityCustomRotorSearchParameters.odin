@@ -1,44 +1,32 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSAccessibilityCustomRotorSearchParameters
-///
+
+
 @(objc_class="NSAccessibilityCustomRotorSearchParameters", objc_superclass=NS.Object)
-AccessibilityCustomRotorSearchParameters :: struct { using _: NS.Object, }
+AccessibilityCustomRotorSearchParameters :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="currentItem", objc_name="currentItem")
-    AccessibilityCustomRotorSearchParameters_currentItem :: proc(self: ^AccessibilityCustomRotorSearchParameters) -> ^AccessibilityCustomRotorItemResult ---
+	@(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="currentItem", objc_name="currentItem")
+	AccessibilityCustomRotorSearchParameters_currentItem :: proc(self: ^AccessibilityCustomRotorSearchParameters) -> ^AccessibilityCustomRotorItemResult ---
 
-    @(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="setCurrentItem:", objc_name="setCurrentItem")
-    AccessibilityCustomRotorSearchParameters_setCurrentItem :: proc(self: ^AccessibilityCustomRotorSearchParameters, currentItem: ^AccessibilityCustomRotorItemResult) ---
+	@(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="setCurrentItem:", objc_name="setCurrentItem")
+	AccessibilityCustomRotorSearchParameters_setCurrentItem :: proc(self: ^AccessibilityCustomRotorSearchParameters, currentItem: ^AccessibilityCustomRotorItemResult) ---
 
-    @(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="searchDirection", objc_name="searchDirection")
-    AccessibilityCustomRotorSearchParameters_searchDirection :: proc(self: ^AccessibilityCustomRotorSearchParameters) -> AccessibilityCustomRotorSearchDirection ---
+	@(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="searchDirection", objc_name="searchDirection")
+	AccessibilityCustomRotorSearchParameters_searchDirection :: proc(self: ^AccessibilityCustomRotorSearchParameters) -> AccessibilityCustomRotorSearchDirection ---
 
-    @(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="setSearchDirection:", objc_name="setSearchDirection")
-    AccessibilityCustomRotorSearchParameters_setSearchDirection :: proc(self: ^AccessibilityCustomRotorSearchParameters, searchDirection: AccessibilityCustomRotorSearchDirection) ---
+	@(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="setSearchDirection:", objc_name="setSearchDirection")
+	AccessibilityCustomRotorSearchParameters_setSearchDirection :: proc(self: ^AccessibilityCustomRotorSearchParameters, searchDirection: AccessibilityCustomRotorSearchDirection) ---
 
-    @(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="filterString", objc_name="filterString")
-    AccessibilityCustomRotorSearchParameters_filterString :: proc(self: ^AccessibilityCustomRotorSearchParameters) -> ^NS.String ---
+	@(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="filterString", objc_name="filterString")
+	AccessibilityCustomRotorSearchParameters_filterString :: proc(self: ^AccessibilityCustomRotorSearchParameters) -> ^NS.String ---
 
-    @(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="setFilterString:", objc_name="setFilterString")
-    AccessibilityCustomRotorSearchParameters_setFilterString :: proc(self: ^AccessibilityCustomRotorSearchParameters, filterString: ^NS.String) ---
+	@(objc_type=AccessibilityCustomRotorSearchParameters, objc_selector="setFilterString:", objc_name="setFilterString")
+	AccessibilityCustomRotorSearchParameters_setFilterString :: proc(self: ^AccessibilityCustomRotorSearchParameters, filterString: ^NS.String) ---
 }

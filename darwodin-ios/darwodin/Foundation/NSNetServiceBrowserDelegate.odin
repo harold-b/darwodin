@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSNetServiceBrowserDelegate
 ///
 @(objc_class="NSNetServiceBrowserDelegate")
-NetServiceBrowserDelegate :: struct { using _: intrinsics.objc_object, 
+NetServiceBrowserDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

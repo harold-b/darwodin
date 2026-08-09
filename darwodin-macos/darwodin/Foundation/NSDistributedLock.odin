@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSDistributedLock
 ///
 @(objc_class="NSDistributedLock", objc_superclass=Object)
-DistributedLock :: struct { using _: Object, }
+DistributedLock :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

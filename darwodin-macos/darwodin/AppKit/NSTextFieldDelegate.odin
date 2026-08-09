@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextFieldDelegate
 ///
 @(objc_class="NSTextFieldDelegate")
-TextFieldDelegate :: struct { using _: intrinsics.objc_object, 
+TextFieldDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 

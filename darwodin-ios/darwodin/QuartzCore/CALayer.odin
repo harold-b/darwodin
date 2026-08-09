@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CALayer
 ///
 @(objc_class="CALayer", objc_superclass=NS.Object)
-Layer :: struct { using _: NS.Object, 
+Layer :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: MediaTiming,
 }

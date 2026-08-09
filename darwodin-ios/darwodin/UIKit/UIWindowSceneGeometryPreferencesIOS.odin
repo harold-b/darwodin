@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowSceneGeometryPreferencesIOS
 ///
 @(objc_class="UIWindowSceneGeometryPreferencesIOS", objc_superclass=WindowSceneGeometryPreferences)
-WindowSceneGeometryPreferencesIOS :: struct { using _: WindowSceneGeometryPreferences, }
+WindowSceneGeometryPreferencesIOS :: struct { using _: WindowSceneGeometryPreferences}
 
 @(default_calling_convention="c")
 foreign lib {

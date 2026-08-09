@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLAnimationBindComponent
 ///
 @(objc_class="MDLAnimationBindComponent", objc_superclass=NS.Object)
-AnimationBindComponent :: struct { using _: NS.Object, 
+AnimationBindComponent :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: Component,
 }

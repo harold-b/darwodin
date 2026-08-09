@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITabSidebarItemRequest
 ///
 @(objc_class="UITabSidebarItemRequest", objc_superclass=NS.Object)
-TabSidebarItemRequest :: struct { using _: NS.Object, }
+TabSidebarItemRequest :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

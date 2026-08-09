@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSNumber
 ///
 @(objc_class="NSNumber", objc_superclass=Value)
-Number :: struct { using _: Value, }
+Number :: struct { using _: Value}
 
 @(default_calling_convention="c")
 foreign lib {

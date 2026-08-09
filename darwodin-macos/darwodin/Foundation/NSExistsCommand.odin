@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSExistsCommand
 ///
 @(objc_class="NSExistsCommand", objc_superclass=ScriptCommand)
-ExistsCommand :: struct { using _: ScriptCommand, }
+ExistsCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {}

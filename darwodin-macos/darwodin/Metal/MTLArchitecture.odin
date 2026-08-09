@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLArchitecture
 ///
 @(objc_class="MTLArchitecture", objc_superclass=NS.Object)
-Architecture :: struct { using _: NS.Object, 
+Architecture :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSpeechRecognizer
 ///
 @(objc_class="NSSpeechRecognizer", objc_superclass=NS.Object)
-SpeechRecognizer :: struct { using _: NS.Object, }
+SpeechRecognizer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

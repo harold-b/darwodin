@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCounterSampleBuffer
 ///
 @(objc_class="MTLCounterSampleBuffer")
-CounterSampleBuffer :: struct { using _: intrinsics.objc_object, 
+CounterSampleBuffer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

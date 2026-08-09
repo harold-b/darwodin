@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIResolvedShape
 ///
 @(objc_class="UIResolvedShape", objc_superclass=NS.Object)
-ResolvedShape :: struct { using _: NS.Object, 
+ResolvedShape :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

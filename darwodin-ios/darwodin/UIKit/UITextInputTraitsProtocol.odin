@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextInputTraits
 ///
 @(objc_class="UITextInputTraits")
-TextInputTraitsProtocol :: struct { using _: intrinsics.objc_object, 
+TextInputTraitsProtocol :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSScroller
 ///
 @(objc_class="NSScroller", objc_superclass=Control)
-Scroller :: struct { using _: Control, }
+Scroller :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

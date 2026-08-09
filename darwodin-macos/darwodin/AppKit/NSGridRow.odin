@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSGridRow
 ///
 @(objc_class="NSGridRow", objc_superclass=NS.Object)
-GridRow :: struct { using _: NS.Object, 
+GridRow :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
 }
 

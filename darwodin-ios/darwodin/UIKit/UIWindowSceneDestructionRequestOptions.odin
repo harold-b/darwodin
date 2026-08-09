@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowSceneDestructionRequestOptions
 ///
 @(objc_class="UIWindowSceneDestructionRequestOptions", objc_superclass=SceneDestructionRequestOptions)
-WindowSceneDestructionRequestOptions :: struct { using _: SceneDestructionRequestOptions, }
+WindowSceneDestructionRequestOptions :: struct { using _: SceneDestructionRequestOptions}
 
 @(default_calling_convention="c")
 foreign lib {

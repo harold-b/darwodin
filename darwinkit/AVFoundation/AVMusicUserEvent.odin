@@ -1,27 +1,16 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
 import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMusicUserEvent", objc_superclass=MusicEvent)
-MusicUserEvent :: struct { using _: MusicEvent, }
+MusicUserEvent :: struct { using _: MusicEvent}
 
 foreign lib {
-    @(objc_type=MusicUserEvent, objc_selector="initWithData:", objc_name="initWithData")
-    MusicUserEvent_initWithData :: proc(self: ^MusicUserEvent, data: ^NS.Data) -> instancetype ---
+	@(objc_type=MusicUserEvent, objc_selector="initWithData:", objc_name="initWithData")
+	MusicUserEvent_initWithData :: proc(self: ^MusicUserEvent, data: ^NS.Data) -> instancetype ---
 
-    @(objc_type=MusicUserEvent, objc_selector="sizeInBytes", objc_name="sizeInBytes")
-    MusicUserEvent_sizeInBytes :: proc(self: ^MusicUserEvent) -> CF.UInt32 ---
+	@(objc_type=MusicUserEvent, objc_selector="sizeInBytes", objc_name="sizeInBytes")
+	MusicUserEvent_sizeInBytes :: proc(self: ^MusicUserEvent) -> CF.UInt32 ---
 }
-
-
-

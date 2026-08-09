@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSEnumerator
 ///
 @(objc_class="NSEnumerator", objc_superclass=Object)
-Enumerator :: struct { using _: Object, 
+Enumerator :: struct {
+    using _: Object,
     using _: FastEnumeration,
 }
 

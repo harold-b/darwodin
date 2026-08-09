@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIWindowSceneDelegate
 ///
 @(objc_class="UIWindowSceneDelegate")
-WindowSceneDelegateProtocol :: struct { using _: intrinsics.objc_object, 
+WindowSceneDelegateProtocol :: struct {
+    using _: intrinsics.objc_object,
     using _: SceneDelegate,
 }
 

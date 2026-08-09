@@ -5,8 +5,6 @@ import "base:runtime"
 import cffi "core:c"
 import mach "../mach"
 import CF "../CoreFoundation"
-import CA "../CoreAudio"
-import CM "../CoreMedia"
 import NS "../Foundation"
 
 
@@ -15,7 +13,8 @@ import NS "../Foundation"
 /// AUParameterTree
 ///
 @(objc_class="AUParameterTree", objc_superclass=AUParameterGroup)
-AUParameterTree :: struct { using _: AUParameterGroup, 
+AUParameterTree :: struct {
+    using _: AUParameterGroup,
     using _: NS.SecureCoding,
 }
 

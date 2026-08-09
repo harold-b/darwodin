@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSInvocationOperation
 ///
 @(objc_class="NSInvocationOperation", objc_superclass=Operation)
-InvocationOperation :: struct { using _: Operation, }
+InvocationOperation :: struct { using _: Operation}
 
 @(default_calling_convention="c")
 foreign lib {

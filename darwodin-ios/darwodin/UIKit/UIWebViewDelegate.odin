@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIWebViewDelegate
 ///
 @(objc_class="UIWebViewDelegate")
-WebViewDelegate :: struct { using _: intrinsics.objc_object, 
+WebViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

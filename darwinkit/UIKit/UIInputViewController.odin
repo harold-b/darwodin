@@ -1,64 +1,56 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UIInputViewController
-///
+
+
 @(objc_class="UIInputViewController", objc_superclass=ViewController)
-InputViewController :: struct { using _: ViewController, 
-    using _: TextInputDelegate,
+InputViewController :: struct {
+	using _: ViewController,
+	using _: TextInputDelegate,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=InputViewController, objc_selector="dismissKeyboard", objc_name="dismissKeyboard")
-    InputViewController_dismissKeyboard :: proc(self: ^InputViewController) ---
+	@(objc_type=InputViewController, objc_selector="dismissKeyboard", objc_name="dismissKeyboard")
+	InputViewController_dismissKeyboard :: proc(self: ^InputViewController) ---
 
-    @(objc_type=InputViewController, objc_selector="advanceToNextInputMode", objc_name="advanceToNextInputMode")
-    InputViewController_advanceToNextInputMode :: proc(self: ^InputViewController) ---
+	@(objc_type=InputViewController, objc_selector="advanceToNextInputMode", objc_name="advanceToNextInputMode")
+	InputViewController_advanceToNextInputMode :: proc(self: ^InputViewController) ---
 
-    @(objc_type=InputViewController, objc_selector="handleInputModeListFromView:withEvent:", objc_name="handleInputModeListFromView")
-    InputViewController_handleInputModeListFromView :: proc(self: ^InputViewController, view: ^View, event: ^Event) ---
+	@(objc_type=InputViewController, objc_selector="handleInputModeListFromView:withEvent:", objc_name="handleInputModeListFromView")
+	InputViewController_handleInputModeListFromView :: proc(self: ^InputViewController, view: ^View, event: ^Event) ---
 
-    @(objc_type=InputViewController, objc_selector="requestSupplementaryLexiconWithCompletion:", objc_name="requestSupplementaryLexiconWithCompletion")
-    InputViewController_requestSupplementaryLexiconWithCompletion :: proc(self: ^InputViewController, completionHandler: ^Objc_Block(proc "c" ( _0: ^Lexicon ))) ---
+	@(objc_type=InputViewController, objc_selector="requestSupplementaryLexiconWithCompletion:", objc_name="requestSupplementaryLexiconWithCompletion")
+	InputViewController_requestSupplementaryLexiconWithCompletion :: proc(self: ^InputViewController, completionHandler: ^Objc_Block(proc "c" ( _0: ^Lexicon ))) ---
 
-    @(objc_type=InputViewController, objc_selector="inputView", objc_name="inputView")
-    InputViewController_inputView :: proc(self: ^InputViewController) -> ^InputView ---
+	@(objc_type=InputViewController, objc_selector="inputView", objc_name="inputView")
+	InputViewController_inputView :: proc(self: ^InputViewController) -> ^InputView ---
 
-    @(objc_type=InputViewController, objc_selector="setInputView:", objc_name="setInputView")
-    InputViewController_setInputView :: proc(self: ^InputViewController, inputView: ^InputView) ---
+	@(objc_type=InputViewController, objc_selector="setInputView:", objc_name="setInputView")
+	InputViewController_setInputView :: proc(self: ^InputViewController, inputView: ^InputView) ---
 
-    @(objc_type=InputViewController, objc_selector="textDocumentProxy", objc_name="textDocumentProxy")
-    InputViewController_textDocumentProxy :: proc(self: ^InputViewController) -> ^TextDocumentProxy ---
+	@(objc_type=InputViewController, objc_selector="textDocumentProxy", objc_name="textDocumentProxy")
+	InputViewController_textDocumentProxy :: proc(self: ^InputViewController) -> ^TextDocumentProxy ---
 
-    @(objc_type=InputViewController, objc_selector="primaryLanguage", objc_name="primaryLanguage")
-    InputViewController_primaryLanguage :: proc(self: ^InputViewController) -> ^NS.String ---
+	@(objc_type=InputViewController, objc_selector="primaryLanguage", objc_name="primaryLanguage")
+	InputViewController_primaryLanguage :: proc(self: ^InputViewController) -> ^NS.String ---
 
-    @(objc_type=InputViewController, objc_selector="setPrimaryLanguage:", objc_name="setPrimaryLanguage")
-    InputViewController_setPrimaryLanguage :: proc(self: ^InputViewController, primaryLanguage: ^NS.String) ---
+	@(objc_type=InputViewController, objc_selector="setPrimaryLanguage:", objc_name="setPrimaryLanguage")
+	InputViewController_setPrimaryLanguage :: proc(self: ^InputViewController, primaryLanguage: ^NS.String) ---
 
-    @(objc_type=InputViewController, objc_selector="hasDictationKey", objc_name="hasDictationKey")
-    InputViewController_hasDictationKey :: proc(self: ^InputViewController) -> bool ---
+	@(objc_type=InputViewController, objc_selector="hasDictationKey", objc_name="hasDictationKey")
+	InputViewController_hasDictationKey :: proc(self: ^InputViewController) -> bool ---
 
-    @(objc_type=InputViewController, objc_selector="setHasDictationKey:", objc_name="setHasDictationKey")
-    InputViewController_setHasDictationKey :: proc(self: ^InputViewController, hasDictationKey: bool) ---
+	@(objc_type=InputViewController, objc_selector="setHasDictationKey:", objc_name="setHasDictationKey")
+	InputViewController_setHasDictationKey :: proc(self: ^InputViewController, hasDictationKey: bool) ---
 
-    @(objc_type=InputViewController, objc_selector="hasFullAccess", objc_name="hasFullAccess")
-    InputViewController_hasFullAccess :: proc(self: ^InputViewController) -> bool ---
+	@(objc_type=InputViewController, objc_selector="hasFullAccess", objc_name="hasFullAccess")
+	InputViewController_hasFullAccess :: proc(self: ^InputViewController) -> bool ---
 
-    @(objc_type=InputViewController, objc_selector="needsInputModeSwitchKey", objc_name="needsInputModeSwitchKey")
-    InputViewController_needsInputModeSwitchKey :: proc(self: ^InputViewController) -> bool ---
+	@(objc_type=InputViewController, objc_selector="needsInputModeSwitchKey", objc_name="needsInputModeSwitchKey")
+	InputViewController_needsInputModeSwitchKey :: proc(self: ^InputViewController) -> bool ---
 }

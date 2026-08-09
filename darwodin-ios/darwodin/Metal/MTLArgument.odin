@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLArgument
 ///
 @(objc_class="MTLArgument", objc_superclass=NS.Object)
-Argument :: struct { using _: NS.Object, }
+Argument :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

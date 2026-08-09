@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLResourceStateCommandEncoder
 ///
 @(objc_class="MTLResourceStateCommandEncoder")
-ResourceStateCommandEncoder :: struct { using _: intrinsics.objc_object, 
+ResourceStateCommandEncoder :: struct {
+    using _: intrinsics.objc_object,
     using _: CommandEncoder,
 }
 

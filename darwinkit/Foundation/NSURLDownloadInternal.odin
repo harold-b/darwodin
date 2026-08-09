@@ -1,21 +1,14 @@
 #+build darwin:default
-package darwodin_Foundation
+package darwin_Foundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 
 
-///
-/// NSURLDownloadInternal
-///
+
+
 @(objc_class="NSURLDownloadInternal")
-URLDownloadInternal :: struct { using _: intrinsics.objc_object, }
+URLDownloadInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

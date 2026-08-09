@@ -5,8 +5,6 @@ import "base:runtime"
 import cffi "core:c"
 import mach "../mach"
 import CF "../CoreFoundation"
-import CA "../CoreAudio"
-import CM "../CoreMedia"
 import NS "../Foundation"
 
 
@@ -15,7 +13,8 @@ import NS "../Foundation"
 /// AUAudioUnitBusArray
 ///
 @(objc_class="AUAudioUnitBusArray", objc_superclass=NS.Object)
-AUAudioUnitBusArray :: struct { using _: NS.Object, 
+AUAudioUnitBusArray :: struct {
+    using _: NS.Object,
     using _: NS.FastEnumeration,
 }
 

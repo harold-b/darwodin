@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSMetadataQueryDelegate
 ///
 @(objc_class="NSMetadataQueryDelegate")
-MetadataQueryDelegate :: struct { using _: intrinsics.objc_object, 
+MetadataQueryDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

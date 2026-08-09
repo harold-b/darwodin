@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDiffableDataSourceReorderingHandlers
 ///
 @(objc_class="UICollectionViewDiffableDataSourceReorderingHandlers", objc_superclass=NS.Object)
-CollectionViewDiffableDataSourceReorderingHandlers :: struct { using _: NS.Object, 
+CollectionViewDiffableDataSourceReorderingHandlers :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

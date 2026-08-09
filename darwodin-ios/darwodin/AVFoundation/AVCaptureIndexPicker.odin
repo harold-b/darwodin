@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVCaptureIndexPicker
 ///
 @(objc_class="AVCaptureIndexPicker", objc_superclass=CaptureControl)
-CaptureIndexPicker :: struct { using _: CaptureControl, }
+CaptureIndexPicker :: struct { using _: CaptureControl}
 
 @(default_calling_convention="c")
 foreign lib {

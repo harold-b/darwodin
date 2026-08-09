@@ -1,38 +1,29 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSUnitElectricCharge", objc_superclass=Dimension)
-UnitElectricCharge :: struct { using _: Dimension, 
-    using _: SecureCoding,
+UnitElectricCharge :: struct {
+	using _: Dimension,
+	using _: SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=UnitElectricCharge, objc_selector="coulombs", objc_name="coulombs", objc_is_class_method=true)
-    UnitElectricCharge_coulombs :: proc() -> ^UnitElectricCharge ---
+	@(objc_type=UnitElectricCharge, objc_selector="coulombs", objc_name="coulombs", objc_is_class_method=true)
+	UnitElectricCharge_coulombs :: proc() -> ^UnitElectricCharge ---
 
-    @(objc_type=UnitElectricCharge, objc_selector="megaampereHours", objc_name="megaampereHours", objc_is_class_method=true)
-    UnitElectricCharge_megaampereHours :: proc() -> ^UnitElectricCharge ---
+	@(objc_type=UnitElectricCharge, objc_selector="megaampereHours", objc_name="megaampereHours", objc_is_class_method=true)
+	UnitElectricCharge_megaampereHours :: proc() -> ^UnitElectricCharge ---
 
-    @(objc_type=UnitElectricCharge, objc_selector="kiloampereHours", objc_name="kiloampereHours", objc_is_class_method=true)
-    UnitElectricCharge_kiloampereHours :: proc() -> ^UnitElectricCharge ---
+	@(objc_type=UnitElectricCharge, objc_selector="kiloampereHours", objc_name="kiloampereHours", objc_is_class_method=true)
+	UnitElectricCharge_kiloampereHours :: proc() -> ^UnitElectricCharge ---
 
-    @(objc_type=UnitElectricCharge, objc_selector="ampereHours", objc_name="ampereHours", objc_is_class_method=true)
-    UnitElectricCharge_ampereHours :: proc() -> ^UnitElectricCharge ---
+	@(objc_type=UnitElectricCharge, objc_selector="ampereHours", objc_name="ampereHours", objc_is_class_method=true)
+	UnitElectricCharge_ampereHours :: proc() -> ^UnitElectricCharge ---
 
-    @(objc_type=UnitElectricCharge, objc_selector="milliampereHours", objc_name="milliampereHours", objc_is_class_method=true)
-    UnitElectricCharge_milliampereHours :: proc() -> ^UnitElectricCharge ---
+	@(objc_type=UnitElectricCharge, objc_selector="milliampereHours", objc_name="milliampereHours", objc_is_class_method=true)
+	UnitElectricCharge_milliampereHours :: proc() -> ^UnitElectricCharge ---
 
-    @(objc_type=UnitElectricCharge, objc_selector="microampereHours", objc_name="microampereHours", objc_is_class_method=true)
-    UnitElectricCharge_microampereHours :: proc() -> ^UnitElectricCharge ---
+	@(objc_type=UnitElectricCharge, objc_selector="microampereHours", objc_name="microampereHours", objc_is_class_method=true)
+	UnitElectricCharge_microampereHours :: proc() -> ^UnitElectricCharge ---
 }
-
-
-

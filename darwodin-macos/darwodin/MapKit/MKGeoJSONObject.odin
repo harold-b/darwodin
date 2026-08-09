@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKGeoJSONObject
 ///
 @(objc_class="MKGeoJSONObject")
-GeoJSONObject :: struct { using _: intrinsics.objc_object, 
+GeoJSONObject :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

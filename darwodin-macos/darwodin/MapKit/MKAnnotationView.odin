@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKAnnotationView
 ///
 @(objc_class="MKAnnotationView", objc_superclass=NS.View)
-AnnotationView :: struct { using _: NS.View, }
+AnnotationView :: struct { using _: NS.View}
 
 @(default_calling_convention="c")
 foreign lib {

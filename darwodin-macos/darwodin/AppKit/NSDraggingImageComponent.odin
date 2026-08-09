@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSDraggingImageComponent
 ///
 @(objc_class="NSDraggingImageComponent", objc_superclass=NS.Object)
-DraggingImageComponent :: struct { using _: NS.Object, }
+DraggingImageComponent :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

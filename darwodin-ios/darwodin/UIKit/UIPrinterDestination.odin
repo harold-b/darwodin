@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPrinterDestination
 ///
 @(objc_class="UIPrinterDestination", objc_superclass=NS.Object)
-PrinterDestination :: struct { using _: NS.Object, 
+PrinterDestination :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

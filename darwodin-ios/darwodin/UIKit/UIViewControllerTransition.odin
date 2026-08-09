@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIViewControllerTransition
 ///
 @(objc_class="UIViewControllerTransition", objc_superclass=NS.Object)
-ViewControllerTransition :: struct { using _: NS.Object, }
+ViewControllerTransition :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

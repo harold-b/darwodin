@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKUserIdentityLookupInfo
 ///
 @(objc_class="CKUserIdentityLookupInfo", objc_superclass=NS.Object)
-UserIdentityLookupInfo :: struct { using _: NS.Object, 
+UserIdentityLookupInfo :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

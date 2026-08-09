@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLVoxelArray
 ///
 @(objc_class="MDLVoxelArray", objc_superclass=Object)
-VoxelArray :: struct { using _: Object, }
+VoxelArray :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

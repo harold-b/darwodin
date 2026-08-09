@@ -1,31 +1,21 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSSharingServicePickerToolbarItemDelegate
-///
+
+
 @(objc_class="NSSharingServicePickerToolbarItemDelegate")
-SharingServicePickerToolbarItemDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: SharingServicePickerDelegate,
+SharingServicePickerToolbarItemDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: SharingServicePickerDelegate,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=SharingServicePickerToolbarItemDelegate, objc_selector="itemsForSharingServicePickerToolbarItem:", objc_name="itemsForSharingServicePickerToolbarItem")
-    SharingServicePickerToolbarItemDelegate_itemsForSharingServicePickerToolbarItem :: proc(self: ^SharingServicePickerToolbarItemDelegate, pickerToolbarItem: ^SharingServicePickerToolbarItem) -> ^NS.Array ---
+	@(objc_type=SharingServicePickerToolbarItemDelegate, objc_selector="itemsForSharingServicePickerToolbarItem:", objc_name="itemsForSharingServicePickerToolbarItem")
+	SharingServicePickerToolbarItemDelegate_itemsForSharingServicePickerToolbarItem :: proc(self: ^SharingServicePickerToolbarItemDelegate, pickerToolbarItem: ^SharingServicePickerToolbarItem) -> ^NS.Array ---
 }

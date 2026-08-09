@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSStepper
 ///
 @(objc_class="NSStepper", objc_superclass=Control)
-Stepper :: struct { using _: Control, 
+Stepper :: struct {
+    using _: Control,
     using _: AccessibilityStepper,
 }
 

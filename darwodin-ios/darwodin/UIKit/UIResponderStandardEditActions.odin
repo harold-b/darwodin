@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIResponderStandardEditActions
 ///
 @(objc_class="UIResponderStandardEditActions")
-ResponderStandardEditActions :: struct { using _: intrinsics.objc_object, 
+ResponderStandardEditActions :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

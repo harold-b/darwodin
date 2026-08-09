@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSFormCell
 ///
 @(objc_class="NSFormCell", objc_superclass=ActionCell)
-FormCell :: struct { using _: ActionCell, }
+FormCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

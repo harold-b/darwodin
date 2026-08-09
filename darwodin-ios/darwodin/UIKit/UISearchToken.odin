@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISearchToken
 ///
 @(objc_class="UISearchToken", objc_superclass=NS.Object)
-SearchToken :: struct { using _: NS.Object, }
+SearchToken :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLComponent
 ///
 @(objc_class="MDLComponent")
-Component :: struct { using _: intrinsics.objc_object, 
+Component :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

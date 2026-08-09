@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIBarItem
 ///
 @(objc_class="UIBarItem", objc_superclass=NS.Object)
-BarItem :: struct { using _: NS.Object, 
+BarItem :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: Appearance,
 }

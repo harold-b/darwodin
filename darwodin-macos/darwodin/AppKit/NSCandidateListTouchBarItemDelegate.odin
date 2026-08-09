@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCandidateListTouchBarItemDelegate
 ///
 @(objc_class="NSCandidateListTouchBarItemDelegate")
-CandidateListTouchBarItemDelegate :: struct { using _: intrinsics.objc_object, 
+CandidateListTouchBarItemDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

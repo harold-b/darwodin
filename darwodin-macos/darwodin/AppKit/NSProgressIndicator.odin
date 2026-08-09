@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSProgressIndicator
 ///
 @(objc_class="NSProgressIndicator", objc_superclass=View)
-ProgressIndicator :: struct { using _: View, 
+ProgressIndicator :: struct {
+    using _: View,
     using _: AccessibilityProgressIndicator,
 }
 

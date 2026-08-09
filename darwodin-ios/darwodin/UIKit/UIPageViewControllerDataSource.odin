@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPageViewControllerDataSource
 ///
 @(objc_class="UIPageViewControllerDataSource")
-PageViewControllerDataSource :: struct { using _: intrinsics.objc_object, 
+PageViewControllerDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

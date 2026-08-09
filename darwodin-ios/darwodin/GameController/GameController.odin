@@ -8,17 +8,13 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
-
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
 when ODIN_OS == .Darwin {
     @(export)
@@ -28,6 +24,7 @@ when ODIN_OS == .Darwin {
 }
 
 
+// -auto-text-end
 // +user-text-begin
 
   CHHapticEngine :: NS.Object
@@ -625,7 +622,7 @@ Quaternion :: struct #align (8) {
 #assert(size_of(Quaternion) == 32)
 
 /// GCGamepadSnapShotDataV100
-GamepadSnapShotDataV100 :: struct #align (1) {
+GamepadSnapShotDataV100 :: struct #packed {
     version:       cffi.uint16_t,
     size:          cffi.uint16_t,
     dpadX:         cffi.float,
@@ -640,7 +637,7 @@ GamepadSnapShotDataV100 :: struct #align (1) {
 #assert(size_of(GamepadSnapShotDataV100) == 36)
 
 /// GCExtendedGamepadSnapshotData
-ExtendedGamepadSnapshotData :: struct #align (1) {
+ExtendedGamepadSnapshotData :: struct #packed {
     version:                      cffi.uint16_t,
     size:                         cffi.uint16_t,
     dpadX:                        cffi.float,
@@ -685,7 +682,7 @@ ExtendedGamepadSnapShotDataV100 :: struct #align (4) {
 #assert(size_of(ExtendedGamepadSnapShotDataV100) == 60)
 
 /// GCMicroGamepadSnapshotData
-MicroGamepadSnapshotData :: struct #align (1) {
+MicroGamepadSnapshotData :: struct #packed {
     version: cffi.uint16_t,
     size:    cffi.uint16_t,
     dpadX:   cffi.float,
@@ -696,7 +693,7 @@ MicroGamepadSnapshotData :: struct #align (1) {
 #assert(size_of(MicroGamepadSnapshotData) == 20)
 
 /// GCMicroGamepadSnapShotDataV100
-MicroGamepadSnapShotDataV100 :: struct #align (1) {
+MicroGamepadSnapShotDataV100 :: struct #packed {
     version: cffi.uint16_t,
     size:    cffi.uint16_t,
     dpadX:   cffi.float,

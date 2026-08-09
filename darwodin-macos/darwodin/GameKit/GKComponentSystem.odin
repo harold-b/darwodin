@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKComponentSystem
 ///
 @(objc_class="GKComponentSystem", objc_superclass=NS.Object)
-ComponentSystem :: struct { using _: NS.Object, 
+ComponentSystem :: struct {
+    using _: NS.Object,
     using _: NS.FastEnumeration,
 }
 

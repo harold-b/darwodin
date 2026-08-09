@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVSynchronizedLayer
 ///
 @(objc_class="AVSynchronizedLayer", objc_superclass=CA.Layer)
-SynchronizedLayer :: struct { using _: CA.Layer, }
+SynchronizedLayer :: struct { using _: CA.Layer}
 
 @(default_calling_convention="c")
 foreign lib {

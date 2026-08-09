@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollisionBehaviorDelegate
 ///
 @(objc_class="UICollisionBehaviorDelegate")
-CollisionBehaviorDelegate :: struct { using _: intrinsics.objc_object, 
+CollisionBehaviorDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKZoomControl
 ///
 @(objc_class="MKZoomControl", objc_superclass=NS.View)
-ZoomControl :: struct { using _: NS.View, }
+ZoomControl :: struct { using _: NS.View}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCloudSharingValidation
 ///
 @(objc_class="NSCloudSharingValidation")
-CloudSharingValidation :: struct { using _: intrinsics.objc_object, 
+CloudSharingValidation :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

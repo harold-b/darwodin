@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPrintInteractionController
 ///
 @(objc_class="UIPrintInteractionController", objc_superclass=NS.Object)
-PrintInteractionController :: struct { using _: NS.Object, }
+PrintInteractionController :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

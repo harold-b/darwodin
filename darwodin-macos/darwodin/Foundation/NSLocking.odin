@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSLocking
 ///
 @(objc_class="NSLocking")
-Locking :: struct { using _: intrinsics.objc_object, }
+Locking :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

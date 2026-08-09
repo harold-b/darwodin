@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLDownloadInternal
 ///
 @(objc_class="NSURLDownloadInternal")
-URLDownloadInternal :: struct { using _: intrinsics.objc_object, }
+URLDownloadInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

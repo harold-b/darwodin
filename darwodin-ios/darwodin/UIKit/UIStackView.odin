@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIStackView
 ///
 @(objc_class="UIStackView", objc_superclass=View)
-StackView :: struct { using _: View, }
+StackView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

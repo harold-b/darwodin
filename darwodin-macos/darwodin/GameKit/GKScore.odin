@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKScore
 ///
 @(objc_class="GKScore", objc_superclass=NS.Object)
-Score :: struct { using _: NS.Object, 
+Score :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }
@@ -91,12 +93,6 @@ foreign lib {
     @(objc_type=Score, objc_selector="issueChallengeToPlayers:message:", objc_name="issueChallengeToPlayers")
     Score_issueChallengeToPlayers :: proc(self: ^Score, playerIDs: ^NS.Array, message: ^NS.String) ---
 
-    @(objc_type=Score, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
-    Score_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^Score, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^NS.ViewController ---
-
-    @(objc_type=Score, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
-    Score_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Score, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^NS.ViewController ---
-
     @(objc_type=Score, objc_selector="challengeComposeControllerWithPlayers:message:completionHandler:", objc_name="challengeComposeControllerWithPlayers")
     Score_challengeComposeControllerWithPlayers :: proc(self: ^Score, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^NS.ViewController ---
 }
@@ -112,11 +108,5 @@ Score_initWithLeaderboardIdentifier :: proc {
 Score_reportScores :: proc {
     Score_reportScores_withCompletionHandler,
     Score_reportScores_withEligibleChallenges_withCompletionHandler,
-}
-
-@(objc_type=Score, objc_name="challengeComposeControllerWithMessage")
-Score_challengeComposeControllerWithMessage :: proc {
-    Score_challengeComposeControllerWithMessage_players_completionHandler,
-    Score_challengeComposeControllerWithMessage_players_completion,
 }
 

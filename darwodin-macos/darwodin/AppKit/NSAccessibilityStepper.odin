@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityStepper
 ///
 @(objc_class="NSAccessibilityStepper")
-AccessibilityStepper :: struct { using _: intrinsics.objc_object, 
+AccessibilityStepper :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 

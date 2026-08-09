@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKRandom
 ///
 @(objc_class="GKRandom")
-Random :: struct { using _: intrinsics.objc_object, }
+Random :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

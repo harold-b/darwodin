@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextFormattingViewControllerChangeValue
 ///
 @(objc_class="UITextFormattingViewControllerChangeValue", objc_superclass=NS.Object)
-TextFormattingViewControllerChangeValue :: struct { using _: NS.Object, 
+TextFormattingViewControllerChangeValue :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKSyncEngine
 ///
 @(objc_class="CKSyncEngine", objc_superclass=NS.Object)
-SyncEngine :: struct { using _: NS.Object, }
+SyncEngine :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIViewController
 ///
 @(objc_class="UIViewController", objc_superclass=Responder)
-ViewController :: struct { using _: Responder, 
+ViewController :: struct {
+    using _: Responder,
     using _: NS.Coding,
     using _: AppearanceContainer,
     using _: TraitEnvironment,

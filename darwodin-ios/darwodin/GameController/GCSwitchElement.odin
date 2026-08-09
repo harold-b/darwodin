@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCSwitchElement
 ///
 @(objc_class="GCSwitchElement")
-SwitchElement :: struct { using _: intrinsics.objc_object, 
+SwitchElement :: struct {
+    using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 

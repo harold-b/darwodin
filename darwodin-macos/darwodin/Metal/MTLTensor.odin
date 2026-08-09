@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTensor
 ///
 @(objc_class="MTLTensor")
-Tensor :: struct { using _: intrinsics.objc_object, 
+Tensor :: struct {
+    using _: intrinsics.objc_object,
     using _: Resource,
 }
 

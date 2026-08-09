@@ -1,0 +1,19 @@
+#+build darwin
+package darwin_MapKit
+
+import CL "../CoreLocation"
+import NS "../Foundation"
+
+@(objc_class="MKPolyline", objc_superclass=MultiPoint)
+Polyline :: struct {
+	using _: MultiPoint,
+	using _: Overlay,
+}
+
+foreign lib {
+	@(objc_type=Polyline, objc_selector="polylineWithPoints:count:", objc_name="polylineWithPoints", objc_is_class_method=true)
+	Polyline_polylineWithPoints :: proc(points: ^MapPoint, count: NS.UInteger) -> instancetype ---
+
+	@(objc_type=Polyline, objc_selector="polylineWithCoordinates:count:", objc_name="polylineWithCoordinates", objc_is_class_method=true)
+	Polyline_polylineWithCoordinates :: proc(coords: ^CL.LocationCoordinate2D, count: NS.UInteger) -> instancetype ---
+}

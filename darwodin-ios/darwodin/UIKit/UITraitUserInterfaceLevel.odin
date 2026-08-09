@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitUserInterfaceLevel
 ///
 @(objc_class="UITraitUserInterfaceLevel", objc_superclass=NS.Object)
-TraitUserInterfaceLevel :: struct { using _: NS.Object, 
+TraitUserInterfaceLevel :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

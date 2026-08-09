@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitEnvironment
 ///
 @(objc_class="UITraitEnvironment")
-TraitEnvironment :: struct { using _: intrinsics.objc_object, 
+TraitEnvironment :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

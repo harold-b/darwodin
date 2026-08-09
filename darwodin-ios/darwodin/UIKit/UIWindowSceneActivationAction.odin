@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowSceneActivationAction
 ///
 @(objc_class="UIWindowSceneActivationAction", objc_superclass=Action)
-WindowSceneActivationAction :: struct { using _: Action, }
+WindowSceneActivationAction :: struct { using _: Action}
 
 @(default_calling_convention="c")
 foreign lib {

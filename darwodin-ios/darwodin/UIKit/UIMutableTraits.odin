@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIMutableTraits
 ///
 @(objc_class="UIMutableTraits")
-MutableTraits :: struct { using _: intrinsics.objc_object, 
+MutableTraits :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -1,0 +1,108 @@
+PackageName: "CoreLocation"
+ImportName: "CL"
+
+Structs:
+    'CLLocationCoordinate2D': 'CL.LocationCoordinate2D'
+
+Typedefs:
+    'CLLocationDegrees': 'CL.LocationDegrees'
+    'CLLocationAccuracy': 'CL.LocationAccuracy'
+    'CLLocationSpeed': 'CL.LocationSpeed'
+    'CLLocationSpeedAccuracy': 'CL.LocationSpeedAccuracy'
+    'CLLocationDirection': 'CL.LocationDirection'
+    'CLLocationDirectionAccuracy': 'CL.LocationDirectionAccuracy'
+    'CLLocationDistance': 'CL.LocationDistance'
+    'CLBeaconMajorValue': 'CL.BeaconMajorValue'
+    'CLBeaconMinorValue': 'CL.BeaconMinorValue'
+    'CLHeadingComponentValue': 'CL.HeadingComponentValue'
+    'CLGeocodeCompletionHandler': 'CL.GeocodeCompletionHandler'
+
+Enums:
+    'CLError': 'CL.Error'
+    'CLRegionState': 'CL.RegionState'
+    'CLProximity': 'CL.Proximity'
+    'CLLiveUpdateConfiguration': 'CL.LiveUpdateConfiguration'
+    'CLMonitoringState': 'CL.MonitoringState'
+    'CLDeviceOrientation': 'CL.DeviceOrientation'
+    'CLAuthorizationStatus': 'CL.AuthorizationStatus'
+    'CLAccuracyAuthorization': 'CL.AccuracyAuthorization'
+    'CLActivityType': 'CL.ActivityType'
+    'CLLocationPushServiceError': 'CL.LocationPushServiceError'
+    'CLServiceSessionAuthorizationRequirement': 'CL.ServiceSessionAuthorizationRequirement'
+
+ObjCClasses:
+    'CLFloor': 'CL.Floor'
+    'CLLocationSourceInformation': 'CL.LocationSourceInformation'
+    'CLLocation': 'CL.Location'
+    'CLRegion': 'CL.Region'
+    'CLCondition': 'CL.Condition'
+    'CLCircularRegion': 'CL.CircularRegion'
+    'CLCircularGeographicCondition': 'CL.CircularGeographicCondition'
+    'CLBeaconIdentityCondition': 'CL.BeaconIdentityCondition'
+    'CLBeaconIdentityConstraint': 'CL.BeaconIdentityConstraint'
+    'CLBeaconRegion': 'CL.BeaconRegion'
+    'CLBeaconInternal': 'CL.BeaconInternal'
+    'CLBeacon': 'CL.Beacon'
+    'CLHeading': 'CL.Heading'
+    'CLUpdate': 'CL.Update'
+    'CLLocationUpdater': 'CL.LocationUpdater'
+    'CLMonitoringEvent': 'CL.MonitoringEvent'
+    'CLMonitoringRecord': 'CL.MonitoringRecord'
+    'CLLocationManager': 'CL.LocationManager'
+    'CLMonitor': 'CL.Monitor'
+    'CLMonitorConfiguration': 'CL.MonitorConfiguration'
+    'CLBackgroundActivitySession': 'CL.BackgroundActivitySession'
+    'CLVisit': 'CL.Visit'
+    'CLPlacemarkInternal': 'CL.PlacemarkInternal'
+    'CLPlacemark': 'CL.Placemark'
+    'CLGeocoderInternal': 'CL.GeocoderInternal'
+    'CLGeocoder': 'CL.Geocoder'
+    'CLBackgroundActivitySessionDiagnostic': 'CL.BackgroundActivitySessionDiagnostic'
+    'CLServiceSessionDiagnostic': 'CL.ServiceSessionDiagnostic'
+    'CLServiceSession': 'CL.ServiceSession'
+
+ObjCProtocols:
+    'CLLocationManagerDelegate': 'CL.LocationManagerDelegate'
+    'CLLocationPushServiceExtension': 'CL.LocationPushServiceExtension'
+
+
+Functions:
+    '::CLLocationCoordinate2DIsValid': 'CL.LocationCoordinate2DIsValid'
+    '::CLLocationCoordinate2DMake': 'CL.LocationCoordinate2DMake'
+
+ExternVars:
+    '::kCLErrorDomain': 'CL.kCLErrorDomain'
+    '::kCLErrorUserInfoAlternateRegionKey': 'CL.kCLErrorUserInfoAlternateRegionKey'
+    '::kCLDistanceFilterNone': 'CL.kCLDistanceFilterNone'
+    '::kCLLocationAccuracyBestForNavigation': 'CL.kCLLocationAccuracyBestForNavigation'
+    '::kCLLocationAccuracyBest': 'CL.kCLLocationAccuracyBest'
+    '::kCLLocationAccuracyNearestTenMeters': 'CL.kCLLocationAccuracyNearestTenMeters'
+    '::kCLLocationAccuracyHundredMeters': 'CL.kCLLocationAccuracyHundredMeters'
+    '::kCLLocationAccuracyKilometer': 'CL.kCLLocationAccuracyKilometer'
+    '::kCLLocationAccuracyThreeKilometers': 'CL.kCLLocationAccuracyThreeKilometers'
+    '::kCLLocationAccuracyReduced': 'CL.kCLLocationAccuracyReduced'
+    '::CLLocationDistanceMax': 'CL.LocationDistanceMax'
+    '::CLTimeIntervalMax': 'CL.TimeIntervalMax'
+    '::kCLLocationCoordinate2DInvalid': 'CL.kCLLocationCoordinate2DInvalid'
+    '::kCLHeadingFilterNone': 'CL.kCLHeadingFilterNone'
+    '::CLLocationPushServiceErrorDomain': 'CL.LocationPushServiceErrorDomain'
+
+ExternTypes:
+    '::kCLErrorDomain': '^NS.String'
+    '::kCLErrorUserInfoAlternateRegionKey': '^NS.String'
+    '::kCLDistanceFilterNone': 'LocationDistance'
+    '::kCLLocationAccuracyBestForNavigation': 'LocationAccuracy'
+    '::kCLLocationAccuracyBest': 'LocationAccuracy'
+    '::kCLLocationAccuracyNearestTenMeters': 'LocationAccuracy'
+    '::kCLLocationAccuracyHundredMeters': 'LocationAccuracy'
+    '::kCLLocationAccuracyKilometer': 'LocationAccuracy'
+    '::kCLLocationAccuracyThreeKilometers': 'LocationAccuracy'
+    '::kCLLocationAccuracyReduced': 'LocationAccuracy'
+    '::CLLocationDistanceMax': 'LocationDistance'
+    '::CLTimeIntervalMax': 'NS.TimeInterval'
+    '::kCLLocationCoordinate2DInvalid': 'LocationCoordinate2D'
+    '::kCLHeadingFilterNone': 'LocationDegrees'
+    '::CLLocationPushServiceErrorDomain': '^NS.String'
+
+ConstVars:
+

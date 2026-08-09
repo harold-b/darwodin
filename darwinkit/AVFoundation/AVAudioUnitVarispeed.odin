@@ -1,27 +1,15 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVAudioUnitVarispeed", objc_superclass=AudioUnitTimeEffect)
-AudioUnitVarispeed :: struct { using _: AudioUnitTimeEffect, }
+AudioUnitVarispeed :: struct { using _: AudioUnitTimeEffect}
 
 foreign lib {
-    @(objc_type=AudioUnitVarispeed, objc_selector="rate", objc_name="rate")
-    AudioUnitVarispeed_rate :: proc(self: ^AudioUnitVarispeed) -> cffi.float ---
+	@(objc_type=AudioUnitVarispeed, objc_selector="rate", objc_name="rate")
+	AudioUnitVarispeed_rate :: proc(self: ^AudioUnitVarispeed) -> cffi.float ---
 
-    @(objc_type=AudioUnitVarispeed, objc_selector="setRate:", objc_name="setRate")
-    AudioUnitVarispeed_setRate :: proc(self: ^AudioUnitVarispeed, rate: cffi.float) ---
+	@(objc_type=AudioUnitVarispeed, objc_selector="setRate:", objc_name="setRate")
+	AudioUnitVarispeed_setRate :: proc(self: ^AudioUnitVarispeed, rate: cffi.float) ---
 }
-
-
-

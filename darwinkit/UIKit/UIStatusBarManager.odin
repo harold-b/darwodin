@@ -1,38 +1,30 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UIStatusBarManager
-///
+
+
 @(objc_class="UIStatusBarManager", objc_superclass=NS.Object)
-StatusBarManager :: struct { using _: NS.Object, }
+StatusBarManager :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=StatusBarManager, objc_selector="init", objc_name="init")
-    StatusBarManager_init :: proc(self: ^StatusBarManager) -> instancetype ---
+	@(objc_type=StatusBarManager, objc_selector="init", objc_name="init")
+	StatusBarManager_init :: proc(self: ^StatusBarManager) -> instancetype ---
 
-    @(objc_type=StatusBarManager, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    StatusBarManager_new :: proc() -> ^StatusBarManager ---
+	@(objc_type=StatusBarManager, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	StatusBarManager_new :: proc() -> ^StatusBarManager ---
 
-    @(objc_type=StatusBarManager, objc_selector="statusBarStyle", objc_name="statusBarStyle")
-    StatusBarManager_statusBarStyle :: proc(self: ^StatusBarManager) -> StatusBarStyle ---
+	@(objc_type=StatusBarManager, objc_selector="statusBarStyle", objc_name="statusBarStyle")
+	StatusBarManager_statusBarStyle :: proc(self: ^StatusBarManager) -> StatusBarStyle ---
 
-    @(objc_type=StatusBarManager, objc_selector="isStatusBarHidden", objc_name="isStatusBarHidden")
-    StatusBarManager_isStatusBarHidden :: proc(self: ^StatusBarManager) -> bool ---
+	@(objc_type=StatusBarManager, objc_selector="isStatusBarHidden", objc_name="isStatusBarHidden")
+	StatusBarManager_isStatusBarHidden :: proc(self: ^StatusBarManager) -> bool ---
 
-    @(objc_type=StatusBarManager, objc_selector="statusBarFrame", objc_name="statusBarFrame")
-    StatusBarManager_statusBarFrame :: proc(self: ^StatusBarManager) -> CG.Rect ---
+	@(objc_type=StatusBarManager, objc_selector="statusBarFrame", objc_name="statusBarFrame")
+	StatusBarManager_statusBarFrame :: proc(self: ^StatusBarManager) -> CG.Rect ---
 }

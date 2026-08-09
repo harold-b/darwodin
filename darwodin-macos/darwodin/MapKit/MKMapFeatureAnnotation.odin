@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMapFeatureAnnotation
 ///
 @(objc_class="MKMapFeatureAnnotation")
-MapFeatureAnnotation :: struct { using _: intrinsics.objc_object, }
+MapFeatureAnnotation :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSFontPanel
 ///
 @(objc_class="NSFontPanel", objc_superclass=Panel)
-FontPanel :: struct { using _: Panel, }
+FontPanel :: struct { using _: Panel}
 
 @(default_calling_convention="c")
 foreign lib {

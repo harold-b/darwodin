@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICellAccessoryOutlineDisclosure
 ///
 @(objc_class="UICellAccessoryOutlineDisclosure", objc_superclass=CellAccessory)
-CellAccessoryOutlineDisclosure :: struct { using _: CellAccessory, }
+CellAccessoryOutlineDisclosure :: struct { using _: CellAccessory}
 
 @(default_calling_convention="c")
 foreign lib {

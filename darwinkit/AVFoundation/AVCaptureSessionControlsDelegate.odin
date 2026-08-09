@@ -1,35 +1,25 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVCaptureSessionControlsDelegate")
-CaptureSessionControlsDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+CaptureSessionControlsDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsDidBecomeActive:", objc_name="sessionControlsDidBecomeActive")
-    CaptureSessionControlsDelegate_sessionControlsDidBecomeActive :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
+	@(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsDidBecomeActive:", objc_name="sessionControlsDidBecomeActive")
+	CaptureSessionControlsDelegate_sessionControlsDidBecomeActive :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
 
-    @(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsWillEnterFullscreenAppearance:", objc_name="sessionControlsWillEnterFullscreenAppearance")
-    CaptureSessionControlsDelegate_sessionControlsWillEnterFullscreenAppearance :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
+	@(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsWillEnterFullscreenAppearance:", objc_name="sessionControlsWillEnterFullscreenAppearance")
+	CaptureSessionControlsDelegate_sessionControlsWillEnterFullscreenAppearance :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
 
-    @(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsWillExitFullscreenAppearance:", objc_name="sessionControlsWillExitFullscreenAppearance")
-    CaptureSessionControlsDelegate_sessionControlsWillExitFullscreenAppearance :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
+	@(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsWillExitFullscreenAppearance:", objc_name="sessionControlsWillExitFullscreenAppearance")
+	CaptureSessionControlsDelegate_sessionControlsWillExitFullscreenAppearance :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
 
-    @(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsDidBecomeInactive:", objc_name="sessionControlsDidBecomeInactive")
-    CaptureSessionControlsDelegate_sessionControlsDidBecomeInactive :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
+	@(objc_type=CaptureSessionControlsDelegate, objc_selector="sessionControlsDidBecomeInactive:", objc_name="sessionControlsDidBecomeInactive")
+	CaptureSessionControlsDelegate_sessionControlsDidBecomeInactive :: proc(self: ^CaptureSessionControlsDelegate, session: ^CaptureSession) ---
 }
-
-
-

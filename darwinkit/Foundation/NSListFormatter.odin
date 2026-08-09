@@ -1,39 +1,29 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSListFormatter", objc_superclass=Formatter)
-ListFormatter :: struct { using _: Formatter, }
+ListFormatter :: struct { using _: Formatter}
 
 foreign lib {
-    @(objc_type=ListFormatter, objc_selector="localizedStringByJoiningStrings:", objc_name="localizedStringByJoiningStrings", objc_is_class_method=true)
-    ListFormatter_localizedStringByJoiningStrings :: proc(strings: ^Array) -> ^String ---
+	@(objc_type=ListFormatter, objc_selector="localizedStringByJoiningStrings:", objc_name="localizedStringByJoiningStrings", objc_is_class_method=true)
+	ListFormatter_localizedStringByJoiningStrings :: proc(strings: ^Array) -> ^String ---
 
-    @(objc_type=ListFormatter, objc_selector="stringFromItems:", objc_name="stringFromItems")
-    ListFormatter_stringFromItems :: proc(self: ^ListFormatter, items: ^Array) -> ^String ---
+	@(objc_type=ListFormatter, objc_selector="stringFromItems:", objc_name="stringFromItems")
+	ListFormatter_stringFromItems :: proc(self: ^ListFormatter, items: ^Array) -> ^String ---
 
-    @(objc_type=ListFormatter, objc_selector="stringForObjectValue:", objc_name="stringForObjectValue")
-    ListFormatter_stringForObjectValue :: proc(self: ^ListFormatter, obj: id) -> ^String ---
+	@(objc_type=ListFormatter, objc_selector="stringForObjectValue:", objc_name="stringForObjectValue")
+	ListFormatter_stringForObjectValue :: proc(self: ^ListFormatter, obj: id) -> ^String ---
 
-    @(objc_type=ListFormatter, objc_selector="locale", objc_name="locale")
-    ListFormatter_locale :: proc(self: ^ListFormatter) -> ^Locale ---
+	@(objc_type=ListFormatter, objc_selector="locale", objc_name="locale")
+	ListFormatter_locale :: proc(self: ^ListFormatter) -> ^Locale ---
 
-    @(objc_type=ListFormatter, objc_selector="setLocale:", objc_name="setLocale")
-    ListFormatter_setLocale :: proc(self: ^ListFormatter, locale: ^Locale) ---
+	@(objc_type=ListFormatter, objc_selector="setLocale:", objc_name="setLocale")
+	ListFormatter_setLocale :: proc(self: ^ListFormatter, locale: ^Locale) ---
 
-    @(objc_type=ListFormatter, objc_selector="itemFormatter", objc_name="itemFormatter")
-    ListFormatter_itemFormatter :: proc(self: ^ListFormatter) -> ^Formatter ---
+	@(objc_type=ListFormatter, objc_selector="itemFormatter", objc_name="itemFormatter")
+	ListFormatter_itemFormatter :: proc(self: ^ListFormatter) -> ^Formatter ---
 
-    @(objc_type=ListFormatter, objc_selector="setItemFormatter:", objc_name="setItemFormatter")
-    ListFormatter_setItemFormatter :: proc(self: ^ListFormatter, itemFormatter: ^Formatter) ---
+	@(objc_type=ListFormatter, objc_selector="setItemFormatter:", objc_name="setItemFormatter")
+	ListFormatter_setItemFormatter :: proc(self: ^ListFormatter, itemFormatter: ^Formatter) ---
 }
-
-
-

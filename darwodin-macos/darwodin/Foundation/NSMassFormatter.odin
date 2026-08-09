@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMassFormatter
 ///
 @(objc_class="NSMassFormatter", objc_superclass=Formatter)
-MassFormatter :: struct { using _: Formatter, }
+MassFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -1,40 +1,32 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVVideoCompositionLayerInstruction", objc_superclass=NS.Object)
-VideoCompositionLayerInstruction :: struct { using _: NS.Object, 
-    using _: NS.SecureCoding,
-    using _: NS.Copying,
-    using _: NS.MutableCopying,
+VideoCompositionLayerInstruction :: struct {
+	using _: NS.Object,
+	using _: NS.SecureCoding,
+	using _: NS.Copying,
+	using _: NS.MutableCopying,
 }
 
 foreign lib {
-    @(objc_type=VideoCompositionLayerInstruction, objc_selector="videoCompositionLayerInstructionWithLayerInstruction:", objc_name="videoCompositionLayerInstructionWithLayerInstruction", objc_is_class_method=true)
-    VideoCompositionLayerInstruction_videoCompositionLayerInstructionWithLayerInstruction :: proc(instruction: ^VideoCompositionLayerInstruction) -> ^VideoCompositionLayerInstruction ---
+	@(objc_type=VideoCompositionLayerInstruction, objc_selector="videoCompositionLayerInstructionWithLayerInstruction:", objc_name="videoCompositionLayerInstructionWithLayerInstruction", objc_is_class_method=true)
+	VideoCompositionLayerInstruction_videoCompositionLayerInstructionWithLayerInstruction :: proc(instruction: ^VideoCompositionLayerInstruction) -> ^VideoCompositionLayerInstruction ---
 
-    @(objc_type=VideoCompositionLayerInstruction, objc_selector="getTransformRampForTime:startTransform:endTransform:timeRange:", objc_name="getTransformRampForTime")
-    VideoCompositionLayerInstruction_getTransformRampForTime :: proc(self: ^VideoCompositionLayerInstruction, time: CM.Time, startTransform: ^CG.AffineTransform, endTransform: ^CG.AffineTransform, timeRange: ^CM.TimeRange) -> bool ---
+	@(objc_type=VideoCompositionLayerInstruction, objc_selector="getTransformRampForTime:startTransform:endTransform:timeRange:", objc_name="getTransformRampForTime")
+	VideoCompositionLayerInstruction_getTransformRampForTime :: proc(self: ^VideoCompositionLayerInstruction, time: CM.Time, startTransform: ^CG.AffineTransform, endTransform: ^CG.AffineTransform, timeRange: ^CM.TimeRange) -> bool ---
 
-    @(objc_type=VideoCompositionLayerInstruction, objc_selector="getOpacityRampForTime:startOpacity:endOpacity:timeRange:", objc_name="getOpacityRampForTime")
-    VideoCompositionLayerInstruction_getOpacityRampForTime :: proc(self: ^VideoCompositionLayerInstruction, time: CM.Time, startOpacity: ^cffi.float, endOpacity: ^cffi.float, timeRange: ^CM.TimeRange) -> bool ---
+	@(objc_type=VideoCompositionLayerInstruction, objc_selector="getOpacityRampForTime:startOpacity:endOpacity:timeRange:", objc_name="getOpacityRampForTime")
+	VideoCompositionLayerInstruction_getOpacityRampForTime :: proc(self: ^VideoCompositionLayerInstruction, time: CM.Time, startOpacity: ^cffi.float, endOpacity: ^cffi.float, timeRange: ^CM.TimeRange) -> bool ---
 
-    @(objc_type=VideoCompositionLayerInstruction, objc_selector="getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:", objc_name="getCropRectangleRampForTime")
-    VideoCompositionLayerInstruction_getCropRectangleRampForTime :: proc(self: ^VideoCompositionLayerInstruction, time: CM.Time, startCropRectangle: ^CG.Rect, endCropRectangle: ^CG.Rect, timeRange: ^CM.TimeRange) -> bool ---
+	@(objc_type=VideoCompositionLayerInstruction, objc_selector="getCropRectangleRampForTime:startCropRectangle:endCropRectangle:timeRange:", objc_name="getCropRectangleRampForTime")
+	VideoCompositionLayerInstruction_getCropRectangleRampForTime :: proc(self: ^VideoCompositionLayerInstruction, time: CM.Time, startCropRectangle: ^CG.Rect, endCropRectangle: ^CG.Rect, timeRange: ^CM.TimeRange) -> bool ---
 
-    @(objc_type=VideoCompositionLayerInstruction, objc_selector="trackID", objc_name="trackID")
-    VideoCompositionLayerInstruction_trackID :: proc(self: ^VideoCompositionLayerInstruction) -> CM.PersistentTrackID ---
+	@(objc_type=VideoCompositionLayerInstruction, objc_selector="trackID", objc_name="trackID")
+	VideoCompositionLayerInstruction_trackID :: proc(self: ^VideoCompositionLayerInstruction) -> CM.PersistentTrackID ---
 }
-
-
-

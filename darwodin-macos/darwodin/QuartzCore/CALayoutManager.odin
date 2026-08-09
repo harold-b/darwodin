@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CALayoutManager
 ///
 @(objc_class="CALayoutManager")
-LayoutManager :: struct { using _: intrinsics.objc_object, 
+LayoutManager :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

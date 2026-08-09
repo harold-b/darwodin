@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLComputePipelineState
 ///
 @(objc_class="MTLComputePipelineState")
-ComputePipelineState :: struct { using _: intrinsics.objc_object, 
+ComputePipelineState :: struct {
+    using _: intrinsics.objc_object,
     using _: Allocation,
     using _: NS.ObjectProtocol,
 }

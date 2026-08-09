@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKGridGraph
 ///
 @(objc_class="GKGridGraph", objc_superclass=Graph)
-GridGraph :: struct { using _: Graph, }
+GridGraph :: struct { using _: Graph}
 
 @(default_calling_convention="c")
 foreign lib {

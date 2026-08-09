@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDocumentBrowserViewControllerDelegate
 ///
 @(objc_class="UIDocumentBrowserViewControllerDelegate")
-DocumentBrowserViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+DocumentBrowserViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSDiscardableContent
 ///
 @(objc_class="NSDiscardableContent")
-DiscardableContent :: struct { using _: intrinsics.objc_object, }
+DiscardableContent :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

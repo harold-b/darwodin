@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSInvocation
 ///
 @(objc_class="NSInvocation", objc_superclass=Object)
-Invocation :: struct { using _: Object, }
+Invocation :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

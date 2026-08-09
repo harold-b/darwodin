@@ -1,60 +1,53 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSIndexPath", objc_superclass=Object)
-IndexPath :: struct { using _: Object, 
-    using _: Copying,
-    using _: SecureCoding,
+IndexPath :: struct {
+	using _: Object,
+	using _: Copying,
+	using _: SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=IndexPath, objc_selector="indexPathWithIndex:", objc_name="indexPathWithIndex", objc_is_class_method=true)
-    IndexPath_indexPathWithIndex :: proc(index: UInteger) -> instancetype ---
+	@(objc_type=IndexPath, objc_selector="indexPathWithIndex:", objc_name="indexPathWithIndex", objc_is_class_method=true)
+	IndexPath_indexPathWithIndex :: proc(index: UInteger) -> instancetype ---
 
-    @(objc_type=IndexPath, objc_selector="indexPathWithIndexes:length:", objc_name="indexPathWithIndexes", objc_is_class_method=true)
-    IndexPath_indexPathWithIndexes :: proc(indexes: ^UInteger, length: UInteger) -> instancetype ---
+	@(objc_type=IndexPath, objc_selector="indexPathWithIndexes:length:", objc_name="indexPathWithIndexes", objc_is_class_method=true)
+	IndexPath_indexPathWithIndexes :: proc(indexes: ^UInteger, length: UInteger) -> instancetype ---
 
-    @(objc_type=IndexPath, objc_selector="initWithIndexes:length:", objc_name="initWithIndexes")
-    IndexPath_initWithIndexes :: proc(self: ^IndexPath, indexes: ^UInteger, length: UInteger) -> instancetype ---
+	@(objc_type=IndexPath, objc_selector="initWithIndexes:length:", objc_name="initWithIndexes")
+	IndexPath_initWithIndexes :: proc(self: ^IndexPath, indexes: ^UInteger, length: UInteger) -> instancetype ---
 
-    @(objc_type=IndexPath, objc_selector="initWithIndex:", objc_name="initWithIndex")
-    IndexPath_initWithIndex :: proc(self: ^IndexPath, index: UInteger) -> instancetype ---
+	@(objc_type=IndexPath, objc_selector="initWithIndex:", objc_name="initWithIndex")
+	IndexPath_initWithIndex :: proc(self: ^IndexPath, index: UInteger) -> instancetype ---
 
-    @(objc_type=IndexPath, objc_selector="indexPathByAddingIndex:", objc_name="indexPathByAddingIndex")
-    IndexPath_indexPathByAddingIndex :: proc(self: ^IndexPath, index: UInteger) -> ^IndexPath ---
+	@(objc_type=IndexPath, objc_selector="indexPathByAddingIndex:", objc_name="indexPathByAddingIndex")
+	IndexPath_indexPathByAddingIndex :: proc(self: ^IndexPath, index: UInteger) -> ^IndexPath ---
 
-    @(objc_type=IndexPath, objc_selector="indexPathByRemovingLastIndex", objc_name="indexPathByRemovingLastIndex")
-    IndexPath_indexPathByRemovingLastIndex :: proc(self: ^IndexPath) -> ^IndexPath ---
+	@(objc_type=IndexPath, objc_selector="indexPathByRemovingLastIndex", objc_name="indexPathByRemovingLastIndex")
+	IndexPath_indexPathByRemovingLastIndex :: proc(self: ^IndexPath) -> ^IndexPath ---
 
-    @(objc_type=IndexPath, objc_selector="indexAtPosition:", objc_name="indexAtPosition")
-    IndexPath_indexAtPosition :: proc(self: ^IndexPath, position: UInteger) -> UInteger ---
+	@(objc_type=IndexPath, objc_selector="indexAtPosition:", objc_name="indexAtPosition")
+	IndexPath_indexAtPosition :: proc(self: ^IndexPath, position: UInteger) -> UInteger ---
 
-    @(objc_type=IndexPath, objc_selector="getIndexes:range:", objc_name="getIndexes_range")
-    IndexPath_getIndexes_range :: proc(self: ^IndexPath, indexes: ^UInteger, positionRange: _NSRange) ---
+	@(objc_type=IndexPath, objc_selector="getIndexes:range:", objc_name="getIndexes_range")
+	IndexPath_getIndexes_range :: proc(self: ^IndexPath, indexes: ^UInteger, positionRange: _NSRange) ---
 
-    @(objc_type=IndexPath, objc_selector="compare:", objc_name="compare")
-    IndexPath_compare :: proc(self: ^IndexPath, otherObject: ^IndexPath) -> ComparisonResult ---
+	@(objc_type=IndexPath, objc_selector="compare:", objc_name="compare")
+	IndexPath_compare :: proc(self: ^IndexPath, otherObject: ^IndexPath) -> ComparisonResult ---
 
-    @(objc_type=IndexPath, objc_selector="length", objc_name="length")
-    IndexPath_length :: proc(self: ^IndexPath) -> UInteger ---
+	@(objc_type=IndexPath, objc_selector="length", objc_name="length")
+	IndexPath_length :: proc(self: ^IndexPath) -> UInteger ---
 
-    @(objc_type=IndexPath, objc_selector="getIndexes:", objc_name="getIndexes_")
-    IndexPath_getIndexes_ :: proc(self: ^IndexPath, indexes: ^UInteger) ---
+	@(objc_type=IndexPath, objc_selector="getIndexes:", objc_name="getIndexes_")
+	IndexPath_getIndexes_ :: proc(self: ^IndexPath, indexes: ^UInteger) ---
 }
 
 
 
 @(objc_type=IndexPath, objc_name="getIndexes")
 IndexPath_getIndexes :: proc {
-    IndexPath_getIndexes_range,
-    IndexPath_getIndexes_,
+	IndexPath_getIndexes_range,
+	IndexPath_getIndexes_,
 }
-

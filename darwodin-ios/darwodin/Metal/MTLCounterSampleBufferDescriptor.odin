@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCounterSampleBufferDescriptor
 ///
 @(objc_class="MTLCounterSampleBufferDescriptor", objc_superclass=NS.Object)
-CounterSampleBufferDescriptor :: struct { using _: NS.Object, 
+CounterSampleBufferDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

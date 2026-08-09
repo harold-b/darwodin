@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICGFloatTraitDefinition
 ///
 @(objc_class="UICGFloatTraitDefinition")
-CGFloatTraitDefinition :: struct { using _: intrinsics.objc_object, 
+CGFloatTraitDefinition :: struct {
+    using _: intrinsics.objc_object,
     using _: TraitDefinition,
 }
 

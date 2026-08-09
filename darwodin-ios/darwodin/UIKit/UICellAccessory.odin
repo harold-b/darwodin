@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICellAccessory
 ///
 @(objc_class="UICellAccessory", objc_superclass=NS.Object)
-CellAccessory :: struct { using _: NS.Object, 
+CellAccessory :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

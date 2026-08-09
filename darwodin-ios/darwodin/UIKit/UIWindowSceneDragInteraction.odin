@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIWindowSceneDragInteraction
 ///
 @(objc_class="UIWindowSceneDragInteraction", objc_superclass=NS.Object)
-WindowSceneDragInteraction :: struct { using _: NS.Object, 
+WindowSceneDragInteraction :: struct {
+    using _: NS.Object,
     using _: Interaction,
 }
 

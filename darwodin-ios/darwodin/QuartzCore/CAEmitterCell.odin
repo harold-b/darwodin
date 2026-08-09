@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CAEmitterCell
 ///
 @(objc_class="CAEmitterCell", objc_superclass=NS.Object)
-EmitterCell :: struct { using _: NS.Object, 
+EmitterCell :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: MediaTiming,
 }

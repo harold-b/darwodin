@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSOpenGLContext
 ///
 @(objc_class="NSOpenGLContext", objc_superclass=NS.Object)
-OpenGLContext :: struct { using _: NS.Object, 
+OpenGLContext :: struct {
+    using _: NS.Object,
     using _: NS.Locking,
 }
 

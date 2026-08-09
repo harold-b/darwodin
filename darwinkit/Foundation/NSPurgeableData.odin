@@ -1,16 +1,9 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSPurgeableData", objc_superclass=MutableData)
-PurgeableData :: struct { using _: MutableData, 
-    using _: DiscardableContent,
+PurgeableData :: struct {
+	using _: MutableData,
+	using _: DiscardableContent,
 }
-

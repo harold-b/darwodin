@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPropertyDescription
 ///
 @(objc_class="NSPropertyDescription", objc_superclass=NS.Object)
-PropertyDescription :: struct { using _: NS.Object, 
+PropertyDescription :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: NS.Copying,
 }

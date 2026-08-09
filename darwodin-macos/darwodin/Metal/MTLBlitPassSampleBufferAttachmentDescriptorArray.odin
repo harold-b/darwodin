@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLBlitPassSampleBufferAttachmentDescriptorArray
 ///
 @(objc_class="MTLBlitPassSampleBufferAttachmentDescriptorArray", objc_superclass=NS.Object)
-BlitPassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object, }
+BlitPassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

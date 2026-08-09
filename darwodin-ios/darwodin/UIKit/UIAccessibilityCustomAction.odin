@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIAccessibilityCustomAction
 ///
 @(objc_class="UIAccessibilityCustomAction", objc_superclass=NS.Object)
-AccessibilityCustomAction :: struct { using _: NS.Object, }
+AccessibilityCustomAction :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

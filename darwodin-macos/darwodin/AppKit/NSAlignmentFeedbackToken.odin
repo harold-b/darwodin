@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAlignmentFeedbackToken
 ///
 @(objc_class="NSAlignmentFeedbackToken")
-AlignmentFeedbackToken :: struct { using _: intrinsics.objc_object, 
+AlignmentFeedbackToken :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

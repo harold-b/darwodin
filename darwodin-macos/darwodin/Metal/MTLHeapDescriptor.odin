@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLHeapDescriptor
 ///
 @(objc_class="MTLHeapDescriptor", objc_superclass=NS.Object)
-HeapDescriptor :: struct { using _: NS.Object, 
+HeapDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

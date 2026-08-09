@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityProgressIndicator
 ///
 @(objc_class="NSAccessibilityProgressIndicator")
-AccessibilityProgressIndicator :: struct { using _: intrinsics.objc_object, 
+AccessibilityProgressIndicator :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 

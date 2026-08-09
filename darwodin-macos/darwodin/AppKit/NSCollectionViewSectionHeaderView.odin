@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionViewSectionHeaderView
 ///
 @(objc_class="NSCollectionViewSectionHeaderView")
-CollectionViewSectionHeaderView :: struct { using _: intrinsics.objc_object, 
+CollectionViewSectionHeaderView :: struct {
+    using _: intrinsics.objc_object,
     using _: CollectionViewElement,
 }
 

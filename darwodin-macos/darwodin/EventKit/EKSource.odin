@@ -3,6 +3,7 @@ package darwodin_EventKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
+import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
@@ -14,7 +15,7 @@ import MK "../MapKit"
 /// EKSource
 ///
 @(objc_class="EKSource", objc_superclass=Object)
-Source :: struct { using _: Object, }
+Source :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

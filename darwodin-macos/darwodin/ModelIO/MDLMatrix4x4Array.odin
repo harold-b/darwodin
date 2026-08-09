@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLMatrix4x4Array
 ///
 @(objc_class="MDLMatrix4x4Array", objc_superclass=NS.Object)
-Matrix4x4Array :: struct { using _: NS.Object, 
+Matrix4x4Array :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

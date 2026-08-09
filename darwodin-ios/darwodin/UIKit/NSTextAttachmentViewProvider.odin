@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSTextAttachmentViewProvider
 ///
 @(objc_class="NSTextAttachmentViewProvider", objc_superclass=NS.Object)
-NSTextAttachmentViewProvider :: struct { using _: NS.Object, }
+NSTextAttachmentViewProvider :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

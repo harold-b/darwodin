@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSXPCListener
 ///
 @(objc_class="NSXPCListener", objc_superclass=Object)
-XPCListener :: struct { using _: Object, }
+XPCListener :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

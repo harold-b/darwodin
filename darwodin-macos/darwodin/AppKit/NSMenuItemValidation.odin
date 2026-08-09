@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSMenuItemValidation
 ///
 @(objc_class="NSMenuItemValidation")
-MenuItemValidation :: struct { using _: intrinsics.objc_object, 
+MenuItemValidation :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

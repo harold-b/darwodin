@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLStructType
 ///
 @(objc_class="MTLStructType", objc_superclass=Type)
-StructType :: struct { using _: Type, }
+StructType :: struct { using _: Type}
 
 @(default_calling_convention="c")
 foreign lib {

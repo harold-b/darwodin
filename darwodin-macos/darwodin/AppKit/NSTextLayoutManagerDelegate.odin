@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextLayoutManagerDelegate
 ///
 @(objc_class="NSTextLayoutManagerDelegate")
-TextLayoutManagerDelegate :: struct { using _: intrinsics.objc_object, 
+TextLayoutManagerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

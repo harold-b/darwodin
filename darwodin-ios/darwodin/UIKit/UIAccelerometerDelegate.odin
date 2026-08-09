@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIAccelerometerDelegate
 ///
 @(objc_class="UIAccelerometerDelegate")
-AccelerometerDelegate :: struct { using _: intrinsics.objc_object, 
+AccelerometerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

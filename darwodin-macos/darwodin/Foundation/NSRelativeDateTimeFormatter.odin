@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSRelativeDateTimeFormatter
 ///
 @(objc_class="NSRelativeDateTimeFormatter", objc_superclass=Formatter)
-RelativeDateTimeFormatter :: struct { using _: Formatter, }
+RelativeDateTimeFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

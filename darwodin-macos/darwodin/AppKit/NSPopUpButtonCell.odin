@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPopUpButtonCell
 ///
 @(objc_class="NSPopUpButtonCell", objc_superclass=MenuItemCell)
-PopUpButtonCell :: struct { using _: MenuItemCell, 
+PopUpButtonCell :: struct {
+    using _: MenuItemCell,
     using _: MenuItemValidation,
 }
 

@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapCameraZoomRange
 ///
 @(objc_class="MKMapCameraZoomRange", objc_superclass=NS.Object)
-MapCameraZoomRange :: struct { using _: NS.Object, 
+MapCameraZoomRange :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

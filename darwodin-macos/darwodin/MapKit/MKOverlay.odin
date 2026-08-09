@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKOverlay
 ///
 @(objc_class="MKOverlay")
-Overlay :: struct { using _: intrinsics.objc_object, 
+Overlay :: struct {
+    using _: intrinsics.objc_object,
     using _: Annotation,
 }
 

@@ -6,9 +6,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CA "../QuartzCore"
+import NS "../AppKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import NS "../AppKit"
 
 
 
@@ -16,7 +16,8 @@ import NS "../AppKit"
 /// MTKViewDelegate
 ///
 @(objc_class="MTKViewDelegate")
-ViewDelegate :: struct { using _: intrinsics.objc_object, 
+ViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

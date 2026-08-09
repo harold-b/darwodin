@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDropCoordinator
 ///
 @(objc_class="UICollectionViewDropCoordinator")
-CollectionViewDropCoordinator :: struct { using _: intrinsics.objc_object, 
+CollectionViewDropCoordinator :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSStepperTouchBarItem
 ///
 @(objc_class="NSStepperTouchBarItem", objc_superclass=TouchBarItem)
-StepperTouchBarItem :: struct { using _: TouchBarItem, }
+StepperTouchBarItem :: struct { using _: TouchBarItem}
 
 @(default_calling_convention="c")
 foreign lib {

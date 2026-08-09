@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSComboBoxDelegate
 ///
 @(objc_class="NSComboBoxDelegate")
-ComboBoxDelegate :: struct { using _: intrinsics.objc_object, 
+ComboBoxDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: TextFieldDelegate,
 }
 

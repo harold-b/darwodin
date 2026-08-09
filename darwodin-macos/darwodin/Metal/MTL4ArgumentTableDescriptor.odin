@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4ArgumentTableDescriptor
 ///
 @(objc_class="MTL4ArgumentTableDescriptor", objc_superclass=NS.Object)
-MTL4ArgumentTableDescriptor :: struct { using _: NS.Object, 
+MTL4ArgumentTableDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

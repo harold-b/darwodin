@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSBrowserCell
 ///
 @(objc_class="NSBrowserCell", objc_superclass=Cell)
-BrowserCell :: struct { using _: Cell, }
+BrowserCell :: struct { using _: Cell}
 
 @(default_calling_convention="c")
 foreign lib {

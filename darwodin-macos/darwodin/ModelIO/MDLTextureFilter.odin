@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLTextureFilter
 ///
 @(objc_class="MDLTextureFilter", objc_superclass=NS.Object)
-TextureFilter :: struct { using _: NS.Object, }
+TextureFilter :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

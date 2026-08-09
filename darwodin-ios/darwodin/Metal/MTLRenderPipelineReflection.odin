@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLRenderPipelineReflection
 ///
 @(objc_class="MTLRenderPipelineReflection", objc_superclass=NS.Object)
-RenderPipelineReflection :: struct { using _: NS.Object, }
+RenderPipelineReflection :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

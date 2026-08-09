@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKGameActivity
 ///
 @(objc_class="GKGameActivity", objc_superclass=NS.Object)
-GameActivity :: struct { using _: NS.Object, }
+GameActivity :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

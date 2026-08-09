@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKReverseGeocodingRequest
 ///
 @(objc_class="MKReverseGeocodingRequest", objc_superclass=NS.Object)
-ReverseGeocodingRequest :: struct { using _: NS.Object, }
+ReverseGeocodingRequest :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAMetalDisplayLinkUpdate
 ///
 @(objc_class="CAMetalDisplayLinkUpdate", objc_superclass=NS.Object)
-MetalDisplayLinkUpdate :: struct { using _: NS.Object, }
+MetalDisplayLinkUpdate :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

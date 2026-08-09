@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UILayoutGuideAspectFitting
 ///
 @(objc_class="UILayoutGuideAspectFitting")
-LayoutGuideAspectFitting :: struct { using _: intrinsics.objc_object, 
+LayoutGuideAspectFitting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

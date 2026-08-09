@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLTensorReferenceType
 ///
 @(objc_class="MTLTensorReferenceType", objc_superclass=Type)
-TensorReferenceType :: struct { using _: Type, }
+TensorReferenceType :: struct { using _: Type}
 
 @(default_calling_convention="c")
 foreign lib {

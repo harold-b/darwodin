@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKRecordKeyValueSetting
 ///
 @(objc_class="CKRecordKeyValueSetting")
-RecordKeyValueSetting :: struct { using _: intrinsics.objc_object, 
+RecordKeyValueSetting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

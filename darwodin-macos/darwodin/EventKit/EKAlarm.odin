@@ -3,6 +3,7 @@ package darwodin_EventKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
+import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
@@ -14,7 +15,8 @@ import MK "../MapKit"
 /// EKAlarm
 ///
 @(objc_class="EKAlarm", objc_superclass=Object)
-Alarm :: struct { using _: Object, 
+Alarm :: struct {
+    using _: Object,
     using _: NS.Copying,
 }
 

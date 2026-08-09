@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CHHapticParameterCurve
 ///
 @(objc_class="CHHapticParameterCurve", objc_superclass=NS.Object)
-HapticParameterCurve :: struct { using _: NS.Object, }
+HapticParameterCurve :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

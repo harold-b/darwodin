@@ -1,26 +1,18 @@
 #+build darwin
-package darwodin_GameController
+package darwin_GameController
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
 
 @(objc_class="GCDeviceHaptics", objc_superclass=NS.Object)
-DeviceHaptics :: struct { using _: NS.Object, }
+DeviceHaptics :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=DeviceHaptics, objc_selector="init", objc_name="init")
-    DeviceHaptics_init :: proc(self: ^DeviceHaptics) -> instancetype ---
+	@(objc_type=DeviceHaptics, objc_selector="init", objc_name="init")
+	DeviceHaptics_init :: proc(self: ^DeviceHaptics) -> instancetype ---
 
-    @(objc_type=DeviceHaptics, objc_selector="createEngineWithLocality:", objc_name="createEngineWithLocality")
-    DeviceHaptics_createEngineWithLocality :: proc(self: ^DeviceHaptics, locality: ^NS.String) -> ^CHHapticEngine ---
+	@(objc_type=DeviceHaptics, objc_selector="createEngineWithLocality:", objc_name="createEngineWithLocality")
+	DeviceHaptics_createEngineWithLocality :: proc(self: ^DeviceHaptics, locality: ^NS.String) -> ^CHHapticEngine ---
 
-    @(objc_type=DeviceHaptics, objc_selector="supportedLocalities", objc_name="supportedLocalities")
-    DeviceHaptics_supportedLocalities :: proc(self: ^DeviceHaptics) -> ^NS.Set ---
+	@(objc_type=DeviceHaptics, objc_selector="supportedLocalities", objc_name="supportedLocalities")
+	DeviceHaptics_supportedLocalities :: proc(self: ^DeviceHaptics) -> ^NS.Set ---
 }
-
-
-

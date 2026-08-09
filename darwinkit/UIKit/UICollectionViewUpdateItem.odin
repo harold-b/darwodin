@@ -1,32 +1,23 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UICollectionViewUpdateItem
-///
+
+
 @(objc_class="UICollectionViewUpdateItem", objc_superclass=NS.Object)
-CollectionViewUpdateItem :: struct { using _: NS.Object, }
+CollectionViewUpdateItem :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=CollectionViewUpdateItem, objc_selector="indexPathBeforeUpdate", objc_name="indexPathBeforeUpdate")
-    CollectionViewUpdateItem_indexPathBeforeUpdate :: proc(self: ^CollectionViewUpdateItem) -> ^NS.IndexPath ---
+	@(objc_type=CollectionViewUpdateItem, objc_selector="indexPathBeforeUpdate", objc_name="indexPathBeforeUpdate")
+	CollectionViewUpdateItem_indexPathBeforeUpdate :: proc(self: ^CollectionViewUpdateItem) -> ^NS.IndexPath ---
 
-    @(objc_type=CollectionViewUpdateItem, objc_selector="indexPathAfterUpdate", objc_name="indexPathAfterUpdate")
-    CollectionViewUpdateItem_indexPathAfterUpdate :: proc(self: ^CollectionViewUpdateItem) -> ^NS.IndexPath ---
+	@(objc_type=CollectionViewUpdateItem, objc_selector="indexPathAfterUpdate", objc_name="indexPathAfterUpdate")
+	CollectionViewUpdateItem_indexPathAfterUpdate :: proc(self: ^CollectionViewUpdateItem) -> ^NS.IndexPath ---
 
-    @(objc_type=CollectionViewUpdateItem, objc_selector="updateAction", objc_name="updateAction")
-    CollectionViewUpdateItem_updateAction :: proc(self: ^CollectionViewUpdateItem) -> CollectionUpdateAction ---
+	@(objc_type=CollectionViewUpdateItem, objc_selector="updateAction", objc_name="updateAction")
+	CollectionViewUpdateItem_updateAction :: proc(self: ^CollectionViewUpdateItem) -> CollectionUpdateAction ---
 }

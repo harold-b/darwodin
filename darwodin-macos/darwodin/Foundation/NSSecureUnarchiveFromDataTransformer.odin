@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSSecureUnarchiveFromDataTransformer
 ///
 @(objc_class="NSSecureUnarchiveFromDataTransformer", objc_superclass=ValueTransformer)
-SecureUnarchiveFromDataTransformer :: struct { using _: ValueTransformer, }
+SecureUnarchiveFromDataTransformer :: struct { using _: ValueTransformer}
 
 @(default_calling_convention="c")
 foreign lib {

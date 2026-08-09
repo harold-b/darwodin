@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKLocalSearchRequest
 ///
 @(objc_class="MKLocalSearchRequest", objc_superclass=NS.Object)
-LocalSearchRequest :: struct { using _: NS.Object, 
+LocalSearchRequest :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

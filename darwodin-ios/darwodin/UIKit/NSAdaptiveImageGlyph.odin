@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSAdaptiveImageGlyph
 ///
 @(objc_class="NSAdaptiveImageGlyph", objc_superclass=NS.Object)
-NSAdaptiveImageGlyph :: struct { using _: NS.Object, 
+NSAdaptiveImageGlyph :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
     using _: CT.AdaptiveImageProviding,

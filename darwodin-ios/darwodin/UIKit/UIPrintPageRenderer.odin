@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPrintPageRenderer
 ///
 @(objc_class="UIPrintPageRenderer", objc_superclass=NS.Object)
-PrintPageRenderer :: struct { using _: NS.Object, }
+PrintPageRenderer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

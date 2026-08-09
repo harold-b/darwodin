@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSManagedObjectContext
 ///
 @(objc_class="NSManagedObjectContext", objc_superclass=NS.Object)
-ManagedObjectContext :: struct { using _: NS.Object, 
+ManagedObjectContext :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: NS.Locking,
 }

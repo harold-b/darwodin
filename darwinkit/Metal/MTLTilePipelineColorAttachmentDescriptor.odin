@@ -1,16 +1,7 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLTilePipelineColorAttachmentDescriptor")
-TilePipelineColorAttachmentDescriptor :: struct { using _: intrinsics.objc_object, }
-
+TilePipelineColorAttachmentDescriptor :: struct { using _: intrinsics.objc_object}

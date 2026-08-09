@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMIDIControlChangeEvent
 ///
 @(objc_class="AVMIDIControlChangeEvent", objc_superclass=MIDIChannelEvent)
-MIDIControlChangeEvent :: struct { using _: MIDIChannelEvent, }
+MIDIControlChangeEvent :: struct { using _: MIDIChannelEvent}
 
 @(default_calling_convention="c")
 foreign lib {

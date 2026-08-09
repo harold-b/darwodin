@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitImageDynamicRange
 ///
 @(objc_class="UITraitImageDynamicRange", objc_superclass=NS.Object)
-TraitImageDynamicRange :: struct { using _: NS.Object, 
+TraitImageDynamicRange :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

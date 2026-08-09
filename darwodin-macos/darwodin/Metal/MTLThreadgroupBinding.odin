@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLThreadgroupBinding
 ///
 @(objc_class="MTLThreadgroupBinding")
-ThreadgroupBinding :: struct { using _: intrinsics.objc_object, 
+ThreadgroupBinding :: struct {
+    using _: intrinsics.objc_object,
     using _: Binding,
 }
 

@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLAuthenticationChallengeSender
 ///
 @(objc_class="NSURLAuthenticationChallengeSender")
-URLAuthenticationChallengeSender :: struct { using _: intrinsics.objc_object, 
+URLAuthenticationChallengeSender :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

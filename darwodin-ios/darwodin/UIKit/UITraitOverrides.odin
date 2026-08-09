@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitOverrides
 ///
 @(objc_class="UITraitOverrides")
-TraitOverrides :: struct { using _: intrinsics.objc_object, 
+TraitOverrides :: struct {
+    using _: intrinsics.objc_object,
     using _: MutableTraits,
 }
 

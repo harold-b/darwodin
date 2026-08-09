@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTabViewItem
 ///
 @(objc_class="NSTabViewItem", objc_superclass=NS.Object)
-TabViewItem :: struct { using _: NS.Object, 
+TabViewItem :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
 }
 

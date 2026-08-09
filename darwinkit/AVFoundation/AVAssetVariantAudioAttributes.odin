@@ -1,33 +1,21 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVAssetVariantAudioAttributes", objc_superclass=NS.Object)
-AssetVariantAudioAttributes :: struct { using _: NS.Object, }
+AssetVariantAudioAttributes :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=AssetVariantAudioAttributes, objc_selector="init", objc_name="init")
-    AssetVariantAudioAttributes_init :: proc(self: ^AssetVariantAudioAttributes) -> instancetype ---
+	@(objc_type=AssetVariantAudioAttributes, objc_selector="init", objc_name="init")
+	AssetVariantAudioAttributes_init :: proc(self: ^AssetVariantAudioAttributes) -> instancetype ---
 
-    @(objc_type=AssetVariantAudioAttributes, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    AssetVariantAudioAttributes_new :: proc() -> ^AssetVariantAudioAttributes ---
+	@(objc_type=AssetVariantAudioAttributes, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	AssetVariantAudioAttributes_new :: proc() -> ^AssetVariantAudioAttributes ---
 
-    @(objc_type=AssetVariantAudioAttributes, objc_selector="renditionSpecificAttributesForMediaOption:", objc_name="renditionSpecificAttributesForMediaOption")
-    AssetVariantAudioAttributes_renditionSpecificAttributesForMediaOption :: proc(self: ^AssetVariantAudioAttributes, mediaSelectionOption: ^MediaSelectionOptions) -> ^AssetVariantAudioRenditionSpecificAttributes ---
+	@(objc_type=AssetVariantAudioAttributes, objc_selector="renditionSpecificAttributesForMediaOption:", objc_name="renditionSpecificAttributesForMediaOption")
+	AssetVariantAudioAttributes_renditionSpecificAttributesForMediaOption :: proc(self: ^AssetVariantAudioAttributes, mediaSelectionOption: ^MediaSelectionOptions) -> ^AssetVariantAudioRenditionSpecificAttributes ---
 
-    @(objc_type=AssetVariantAudioAttributes, objc_selector="formatIDs", objc_name="formatIDs")
-    AssetVariantAudioAttributes_formatIDs :: proc(self: ^AssetVariantAudioAttributes) -> ^NS.Array ---
+	@(objc_type=AssetVariantAudioAttributes, objc_selector="formatIDs", objc_name="formatIDs")
+	AssetVariantAudioAttributes_formatIDs :: proc(self: ^AssetVariantAudioAttributes) -> ^NS.Array ---
 }
-
-
-

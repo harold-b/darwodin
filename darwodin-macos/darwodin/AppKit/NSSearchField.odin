@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSearchField
 ///
 @(objc_class="NSSearchField", objc_superclass=TextField)
-SearchField :: struct { using _: TextField, }
+SearchField :: struct { using _: TextField}
 
 @(default_calling_convention="c")
 foreign lib {

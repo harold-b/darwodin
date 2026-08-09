@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIFocusAnimationCoordinator
 ///
 @(objc_class="UIFocusAnimationCoordinator", objc_superclass=NS.Object)
-FocusAnimationCoordinator :: struct { using _: NS.Object, }
+FocusAnimationCoordinator :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

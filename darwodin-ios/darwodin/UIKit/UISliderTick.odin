@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISliderTick
 ///
 @(objc_class="UISliderTick", objc_superclass=NS.Object)
-SliderTick :: struct { using _: NS.Object, 
+SliderTick :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
 }

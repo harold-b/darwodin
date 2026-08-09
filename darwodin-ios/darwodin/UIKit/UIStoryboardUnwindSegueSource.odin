@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIStoryboardUnwindSegueSource
 ///
 @(objc_class="UIStoryboardUnwindSegueSource", objc_superclass=NS.Object)
-StoryboardUnwindSegueSource :: struct { using _: NS.Object, }
+StoryboardUnwindSegueSource :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

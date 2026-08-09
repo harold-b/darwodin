@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIBarButtonItemStateAppearance
 ///
 @(objc_class="UIBarButtonItemStateAppearance", objc_superclass=NS.Object)
-BarButtonItemStateAppearance :: struct { using _: NS.Object, }
+BarButtonItemStateAppearance :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

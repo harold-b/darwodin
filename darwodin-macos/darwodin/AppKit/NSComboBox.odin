@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSComboBox
 ///
 @(objc_class="NSComboBox", objc_superclass=TextField)
-ComboBox :: struct { using _: TextField, }
+ComboBox :: struct { using _: TextField}
 
 @(default_calling_convention="c")
 foreign lib {

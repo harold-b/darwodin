@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIBarPositioningDelegate
 ///
 @(objc_class="UIBarPositioningDelegate")
-BarPositioningDelegate :: struct { using _: intrinsics.objc_object, 
+BarPositioningDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

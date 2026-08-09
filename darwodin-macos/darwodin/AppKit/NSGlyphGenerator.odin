@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSGlyphGenerator
 ///
 @(objc_class="NSGlyphGenerator", objc_superclass=NS.Object)
-GlyphGenerator :: struct { using _: NS.Object, }
+GlyphGenerator :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

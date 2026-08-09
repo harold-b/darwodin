@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextFormattingViewControllerDelegate
 ///
 @(objc_class="UITextFormattingViewControllerDelegate")
-TextFormattingViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+TextFormattingViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

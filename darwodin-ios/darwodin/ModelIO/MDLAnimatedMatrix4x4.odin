@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLAnimatedMatrix4x4
 ///
 @(objc_class="MDLAnimatedMatrix4x4", objc_superclass=AnimatedValue)
-AnimatedMatrix4x4 :: struct { using _: AnimatedValue, }
+AnimatedMatrix4x4 :: struct { using _: AnimatedValue}
 
 @(default_calling_convention="c")
 foreign lib {

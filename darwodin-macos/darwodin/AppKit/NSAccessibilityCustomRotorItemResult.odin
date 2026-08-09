@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSAccessibilityCustomRotorItemResult
 ///
 @(objc_class="NSAccessibilityCustomRotorItemResult", objc_superclass=NS.Object)
-AccessibilityCustomRotorItemResult :: struct { using _: NS.Object, }
+AccessibilityCustomRotorItemResult :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

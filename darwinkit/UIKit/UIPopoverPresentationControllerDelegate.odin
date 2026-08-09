@@ -1,37 +1,30 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UIPopoverPresentationControllerDelegate
-///
+
+
 @(objc_class="UIPopoverPresentationControllerDelegate")
-PopoverPresentationControllerDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: AdaptivePresentationControllerDelegate,
+PopoverPresentationControllerDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: AdaptivePresentationControllerDelegate,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="prepareForPopoverPresentation:", objc_name="prepareForPopoverPresentation")
-    PopoverPresentationControllerDelegate_prepareForPopoverPresentation :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) ---
+	@(objc_type=PopoverPresentationControllerDelegate, objc_selector="prepareForPopoverPresentation:", objc_name="prepareForPopoverPresentation")
+	PopoverPresentationControllerDelegate_prepareForPopoverPresentation :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) ---
 
-    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationControllerShouldDismissPopover:", objc_name="popoverPresentationControllerShouldDismissPopover")
-    PopoverPresentationControllerDelegate_popoverPresentationControllerShouldDismissPopover :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) -> bool ---
+	@(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationControllerShouldDismissPopover:", objc_name="popoverPresentationControllerShouldDismissPopover")
+	PopoverPresentationControllerDelegate_popoverPresentationControllerShouldDismissPopover :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) -> bool ---
 
-    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationControllerDidDismissPopover:", objc_name="popoverPresentationControllerDidDismissPopover")
-    PopoverPresentationControllerDelegate_popoverPresentationControllerDidDismissPopover :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) ---
+	@(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationControllerDidDismissPopover:", objc_name="popoverPresentationControllerDidDismissPopover")
+	PopoverPresentationControllerDelegate_popoverPresentationControllerDidDismissPopover :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController) ---
 
-    @(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationController:willRepositionPopoverToRect:inView:", objc_name="popoverPresentationController")
-    PopoverPresentationControllerDelegate_popoverPresentationController :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController, rect: ^CG.Rect, view: ^^View) ---
+	@(objc_type=PopoverPresentationControllerDelegate, objc_selector="popoverPresentationController:willRepositionPopoverToRect:inView:", objc_name="popoverPresentationController")
+	PopoverPresentationControllerDelegate_popoverPresentationController :: proc(self: ^PopoverPresentationControllerDelegate, popoverPresentationController: ^PopoverPresentationController, rect: ^CG.Rect, view: ^^View) ---
 }

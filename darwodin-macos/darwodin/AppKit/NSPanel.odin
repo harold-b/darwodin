@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPanel
 ///
 @(objc_class="NSPanel", objc_superclass=Window)
-Panel :: struct { using _: Window, }
+Panel :: struct { using _: Window}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSStream
 ///
 @(objc_class="NSStream", objc_superclass=Object)
-Stream :: struct { using _: Object, }
+Stream :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

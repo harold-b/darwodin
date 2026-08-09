@@ -1,37 +1,28 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLBufferBinding")
-BufferBinding :: struct { using _: intrinsics.objc_object, 
-    using _: Binding,
+BufferBinding :: struct {
+	using _: intrinsics.objc_object,
+	using _: Binding,
 }
 
 foreign lib {
-    @(objc_type=BufferBinding, objc_selector="bufferAlignment", objc_name="bufferAlignment")
-    BufferBinding_bufferAlignment :: proc(self: ^BufferBinding) -> NS.UInteger ---
+	@(objc_type=BufferBinding, objc_selector="bufferAlignment", objc_name="bufferAlignment")
+	BufferBinding_bufferAlignment :: proc(self: ^BufferBinding) -> NS.UInteger ---
 
-    @(objc_type=BufferBinding, objc_selector="bufferDataSize", objc_name="bufferDataSize")
-    BufferBinding_bufferDataSize :: proc(self: ^BufferBinding) -> NS.UInteger ---
+	@(objc_type=BufferBinding, objc_selector="bufferDataSize", objc_name="bufferDataSize")
+	BufferBinding_bufferDataSize :: proc(self: ^BufferBinding) -> NS.UInteger ---
 
-    @(objc_type=BufferBinding, objc_selector="bufferDataType", objc_name="bufferDataType")
-    BufferBinding_bufferDataType :: proc(self: ^BufferBinding) -> DataType ---
+	@(objc_type=BufferBinding, objc_selector="bufferDataType", objc_name="bufferDataType")
+	BufferBinding_bufferDataType :: proc(self: ^BufferBinding) -> DataType ---
 
-    @(objc_type=BufferBinding, objc_selector="bufferStructType", objc_name="bufferStructType")
-    BufferBinding_bufferStructType :: proc(self: ^BufferBinding) -> ^StructType ---
+	@(objc_type=BufferBinding, objc_selector="bufferStructType", objc_name="bufferStructType")
+	BufferBinding_bufferStructType :: proc(self: ^BufferBinding) -> ^StructType ---
 
-    @(objc_type=BufferBinding, objc_selector="bufferPointerType", objc_name="bufferPointerType")
-    BufferBinding_bufferPointerType :: proc(self: ^BufferBinding) -> ^PointerType ---
+	@(objc_type=BufferBinding, objc_selector="bufferPointerType", objc_name="bufferPointerType")
+	BufferBinding_bufferPointerType :: proc(self: ^BufferBinding) -> ^PointerType ---
 }
-
-
-

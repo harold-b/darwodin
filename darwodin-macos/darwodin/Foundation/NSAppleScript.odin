@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSAppleScript
 ///
 @(objc_class="NSAppleScript", objc_superclass=Object)
-AppleScript :: struct { using _: Object, 
+AppleScript :: struct {
+    using _: Object,
     using _: Copying,
 }
 

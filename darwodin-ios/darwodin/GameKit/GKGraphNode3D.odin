@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKGraphNode3D
 ///
 @(objc_class="GKGraphNode3D", objc_superclass=GraphNode)
-GraphNode3D :: struct { using _: GraphNode, }
+GraphNode3D :: struct { using _: GraphNode}
 
 @(default_calling_convention="c")
 foreign lib {

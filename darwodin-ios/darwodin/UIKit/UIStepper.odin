@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIStepper
 ///
 @(objc_class="UIStepper", objc_superclass=Control)
-Stepper :: struct { using _: Control, }
+Stepper :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

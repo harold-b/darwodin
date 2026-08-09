@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioUnitEQ
 ///
 @(objc_class="AVAudioUnitEQ", objc_superclass=AudioUnitEffect)
-AudioUnitEQ :: struct { using _: AudioUnitEffect, }
+AudioUnitEQ :: struct { using _: AudioUnitEffect}
 
 @(default_calling_convention="c")
 foreign lib {

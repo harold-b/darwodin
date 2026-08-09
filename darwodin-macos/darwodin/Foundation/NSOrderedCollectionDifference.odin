@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSOrderedCollectionDifference
 ///
 @(objc_class="NSOrderedCollectionDifference", objc_superclass=Object)
-OrderedCollectionDifference :: struct { using _: Object, 
+OrderedCollectionDifference :: struct {
+    using _: Object,
     using _: FastEnumeration,
 }
 

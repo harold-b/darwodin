@@ -1,0 +1,30 @@
+package darwodin_MapKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import UI "../UIKit"
+import CL "../CoreLocation"
+
+
+
+///
+/// MKUserTrackingBarButtonItem
+///
+@(objc_class="MKUserTrackingBarButtonItem", objc_superclass=UI.BarButtonItem)
+UserTrackingBarButtonItem :: struct { using _: UI.BarButtonItem}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=UserTrackingBarButtonItem, objc_selector="initWithMapView:", objc_name="initWithMapView")
+    UserTrackingBarButtonItem_initWithMapView :: proc(self: ^UserTrackingBarButtonItem, mapView: ^MapView) -> instancetype ---
+
+    @(objc_type=UserTrackingBarButtonItem, objc_selector="mapView", objc_name="mapView")
+    UserTrackingBarButtonItem_mapView :: proc(self: ^UserTrackingBarButtonItem) -> ^MapView ---
+
+    @(objc_type=UserTrackingBarButtonItem, objc_selector="setMapView:", objc_name="setMapView")
+    UserTrackingBarButtonItem_setMapView :: proc(self: ^UserTrackingBarButtonItem, mapView: ^MapView) ---
+}

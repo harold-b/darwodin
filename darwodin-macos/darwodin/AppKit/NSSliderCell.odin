@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSliderCell
 ///
 @(objc_class="NSSliderCell", objc_superclass=ActionCell)
-SliderCell :: struct { using _: ActionCell, }
+SliderCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

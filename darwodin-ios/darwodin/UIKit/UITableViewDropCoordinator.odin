@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITableViewDropCoordinator
 ///
 @(objc_class="UITableViewDropCoordinator")
-TableViewDropCoordinator :: struct { using _: intrinsics.objc_object, 
+TableViewDropCoordinator :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

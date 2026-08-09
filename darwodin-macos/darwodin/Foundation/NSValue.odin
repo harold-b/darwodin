@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSValue
 ///
 @(objc_class="NSValue", objc_superclass=Object)
-Value :: struct { using _: Object, 
+Value :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

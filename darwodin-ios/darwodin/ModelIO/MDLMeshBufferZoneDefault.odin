@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLMeshBufferZoneDefault
 ///
 @(objc_class="MDLMeshBufferZoneDefault", objc_superclass=NS.Object)
-MeshBufferZoneDefault :: struct { using _: NS.Object, 
+MeshBufferZoneDefault :: struct {
+    using _: NS.Object,
     using _: MeshBufferZone,
 }
 

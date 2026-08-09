@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CompilerTaskOptions
 ///
 @(objc_class="MTL4CompilerTaskOptions", objc_superclass=NS.Object)
-MTL4CompilerTaskOptions :: struct { using _: NS.Object, 
+MTL4CompilerTaskOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

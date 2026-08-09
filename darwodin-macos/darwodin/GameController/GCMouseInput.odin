@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCMouseInput
 ///
 @(objc_class="GCMouseInput", objc_superclass=PhysicalInputProfile)
-MouseInput :: struct { using _: PhysicalInputProfile, }
+MouseInput :: struct { using _: PhysicalInputProfile}
 
 @(default_calling_convention="c")
 foreign lib {

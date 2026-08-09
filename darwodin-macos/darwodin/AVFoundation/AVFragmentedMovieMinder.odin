@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVFragmentedMovieMinder
 ///
 @(objc_class="AVFragmentedMovieMinder", objc_superclass=FragmentedAssetMinder)
-FragmentedMovieMinder :: struct { using _: FragmentedAssetMinder, }
+FragmentedMovieMinder :: struct { using _: FragmentedAssetMinder}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPasteboard
 ///
 @(objc_class="UIPasteboard", objc_superclass=NS.Object)
-Pasteboard :: struct { using _: NS.Object, }
+Pasteboard :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

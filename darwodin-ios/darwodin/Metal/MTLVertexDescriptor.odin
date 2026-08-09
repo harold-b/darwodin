@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLVertexDescriptor
 ///
 @(objc_class="MTLVertexDescriptor", objc_superclass=NS.Object)
-VertexDescriptor :: struct { using _: NS.Object, 
+VertexDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLAccelerationStructureCurveGeometryDescriptor
 ///
 @(objc_class="MTLAccelerationStructureCurveGeometryDescriptor", objc_superclass=AccelerationStructureGeometryDescriptor)
-AccelerationStructureCurveGeometryDescriptor :: struct { using _: AccelerationStructureGeometryDescriptor, }
+AccelerationStructureCurveGeometryDescriptor :: struct { using _: AccelerationStructureGeometryDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

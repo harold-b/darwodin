@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCMicroGamepadSnapshot
 ///
 @(objc_class="GCMicroGamepadSnapshot", objc_superclass=MicroGamepad)
-MicroGamepadSnapshot :: struct { using _: MicroGamepad, }
+MicroGamepadSnapshot :: struct { using _: MicroGamepad}
 
 @(default_calling_convention="c")
 foreign lib {

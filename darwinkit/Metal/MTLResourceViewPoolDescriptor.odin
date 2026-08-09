@@ -1,34 +1,24 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLResourceViewPoolDescriptor", objc_superclass=NS.Object)
-ResourceViewPoolDescriptor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+ResourceViewPoolDescriptor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=ResourceViewPoolDescriptor, objc_selector="resourceViewCount", objc_name="resourceViewCount")
-    ResourceViewPoolDescriptor_resourceViewCount :: proc(self: ^ResourceViewPoolDescriptor) -> NS.UInteger ---
+	@(objc_type=ResourceViewPoolDescriptor, objc_selector="resourceViewCount", objc_name="resourceViewCount")
+	ResourceViewPoolDescriptor_resourceViewCount :: proc(self: ^ResourceViewPoolDescriptor) -> NS.UInteger ---
 
-    @(objc_type=ResourceViewPoolDescriptor, objc_selector="setResourceViewCount:", objc_name="setResourceViewCount")
-    ResourceViewPoolDescriptor_setResourceViewCount :: proc(self: ^ResourceViewPoolDescriptor, resourceViewCount: NS.UInteger) ---
+	@(objc_type=ResourceViewPoolDescriptor, objc_selector="setResourceViewCount:", objc_name="setResourceViewCount")
+	ResourceViewPoolDescriptor_setResourceViewCount :: proc(self: ^ResourceViewPoolDescriptor, resourceViewCount: NS.UInteger) ---
 
-    @(objc_type=ResourceViewPoolDescriptor, objc_selector="label", objc_name="label")
-    ResourceViewPoolDescriptor_label :: proc(self: ^ResourceViewPoolDescriptor) -> ^NS.String ---
+	@(objc_type=ResourceViewPoolDescriptor, objc_selector="label", objc_name="label")
+	ResourceViewPoolDescriptor_label :: proc(self: ^ResourceViewPoolDescriptor) -> ^NS.String ---
 
-    @(objc_type=ResourceViewPoolDescriptor, objc_selector="setLabel:", objc_name="setLabel")
-    ResourceViewPoolDescriptor_setLabel :: proc(self: ^ResourceViewPoolDescriptor, label: ^NS.String) ---
+	@(objc_type=ResourceViewPoolDescriptor, objc_selector="setLabel:", objc_name="setLabel")
+	ResourceViewPoolDescriptor_setLabel :: proc(self: ^ResourceViewPoolDescriptor, label: ^NS.String) ---
 }
-
-
-

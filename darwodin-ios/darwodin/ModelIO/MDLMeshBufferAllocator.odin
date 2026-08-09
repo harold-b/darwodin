@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLMeshBufferAllocator
 ///
 @(objc_class="MDLMeshBufferAllocator")
-MeshBufferAllocator :: struct { using _: intrinsics.objc_object, 
+MeshBufferAllocator :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

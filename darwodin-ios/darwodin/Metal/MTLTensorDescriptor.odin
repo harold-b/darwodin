@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTensorDescriptor
 ///
 @(objc_class="MTLTensorDescriptor", objc_superclass=NS.Object)
-TensorDescriptor :: struct { using _: NS.Object, 
+TensorDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CHHapticEventParameter
 ///
 @(objc_class="CHHapticEventParameter", objc_superclass=NS.Object)
-HapticEventParameter :: struct { using _: NS.Object, }
+HapticEventParameter :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

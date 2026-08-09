@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCompileOptions
 ///
 @(objc_class="MTLCompileOptions", objc_superclass=NS.Object)
-CompileOptions :: struct { using _: NS.Object, 
+CompileOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

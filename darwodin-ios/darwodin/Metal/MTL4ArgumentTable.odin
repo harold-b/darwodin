@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4ArgumentTable
 ///
 @(objc_class="MTL4ArgumentTable")
-MTL4ArgumentTable :: struct { using _: intrinsics.objc_object, 
+MTL4ArgumentTable :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

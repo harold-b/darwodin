@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSTask
 ///
 @(objc_class="NSTask", objc_superclass=Object)
-Task :: struct { using _: Object, }
+Task :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

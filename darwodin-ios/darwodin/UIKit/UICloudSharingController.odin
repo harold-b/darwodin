@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICloudSharingController
 ///
 @(objc_class="UICloudSharingController", objc_superclass=ViewController)
-CloudSharingController :: struct { using _: ViewController, }
+CloudSharingController :: struct { using _: ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

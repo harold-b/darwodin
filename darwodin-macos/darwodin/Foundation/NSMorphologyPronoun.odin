@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSMorphologyPronoun
 ///
 @(objc_class="NSMorphologyPronoun", objc_superclass=Object)
-MorphologyPronoun :: struct { using _: Object, 
+MorphologyPronoun :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

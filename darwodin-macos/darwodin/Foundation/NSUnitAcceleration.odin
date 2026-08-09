@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitAcceleration
 ///
 @(objc_class="NSUnitAcceleration", objc_superclass=Dimension)
-UnitAcceleration :: struct { using _: Dimension, 
+UnitAcceleration :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

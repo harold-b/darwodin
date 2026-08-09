@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKSyncEnginePendingRecordZoneChange
 ///
 @(objc_class="CKSyncEnginePendingRecordZoneChange", objc_superclass=NS.Object)
-SyncEnginePendingRecordZoneChange :: struct { using _: NS.Object, }
+SyncEnginePendingRecordZoneChange :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

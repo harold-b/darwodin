@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSCollectionViewCompositionalLayout
 ///
 @(objc_class="NSCollectionViewCompositionalLayout", objc_superclass=CollectionViewLayout)
-CollectionViewCompositionalLayout :: struct { using _: CollectionViewLayout, }
+CollectionViewCompositionalLayout :: struct { using _: CollectionViewLayout}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDynamicBehavior
 ///
 @(objc_class="UIDynamicBehavior", objc_superclass=NS.Object)
-DynamicBehavior :: struct { using _: NS.Object, }
+DynamicBehavior :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

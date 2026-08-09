@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBlitPassDescriptor
 ///
 @(objc_class="MTLBlitPassDescriptor", objc_superclass=NS.Object)
-BlitPassDescriptor :: struct { using _: NS.Object, 
+BlitPassDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

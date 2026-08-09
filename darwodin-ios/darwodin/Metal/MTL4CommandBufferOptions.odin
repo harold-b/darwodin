@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CommandBufferOptions
 ///
 @(objc_class="MTL4CommandBufferOptions", objc_superclass=NS.Object)
-MTL4CommandBufferOptions :: struct { using _: NS.Object, 
+MTL4CommandBufferOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

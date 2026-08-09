@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSRelativeSpecifier
 ///
 @(objc_class="NSRelativeSpecifier", objc_superclass=ScriptObjectSpecifier)
-RelativeSpecifier :: struct { using _: ScriptObjectSpecifier, }
+RelativeSpecifier :: struct { using _: ScriptObjectSpecifier}
 
 @(default_calling_convention="c")
 foreign lib {

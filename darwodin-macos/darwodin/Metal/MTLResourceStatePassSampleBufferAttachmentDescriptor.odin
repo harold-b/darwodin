@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLResourceStatePassSampleBufferAttachmentDescriptor
 ///
 @(objc_class="MTLResourceStatePassSampleBufferAttachmentDescriptor", objc_superclass=NS.Object)
-ResourceStatePassSampleBufferAttachmentDescriptor :: struct { using _: NS.Object, 
+ResourceStatePassSampleBufferAttachmentDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

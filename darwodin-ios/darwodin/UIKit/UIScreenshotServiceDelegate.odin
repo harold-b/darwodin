@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIScreenshotServiceDelegate
 ///
 @(objc_class="UIScreenshotServiceDelegate")
-ScreenshotServiceDelegate :: struct { using _: intrinsics.objc_object, 
+ScreenshotServiceDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

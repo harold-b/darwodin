@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITargetedPreview
 ///
 @(objc_class="UITargetedPreview", objc_superclass=NS.Object)
-TargetedPreview :: struct { using _: NS.Object, 
+TargetedPreview :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

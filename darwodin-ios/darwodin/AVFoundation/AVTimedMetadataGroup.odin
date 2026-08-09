@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVTimedMetadataGroup
 ///
 @(objc_class="AVTimedMetadataGroup", objc_superclass=MetadataGroup)
-TimedMetadataGroup :: struct { using _: MetadataGroup, 
+TimedMetadataGroup :: struct {
+    using _: MetadataGroup,
     using _: NS.Copying,
     using _: NS.MutableCopying,
 }

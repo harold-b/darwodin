@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKPinAnnotationView
 ///
 @(objc_class="MKPinAnnotationView", objc_superclass=AnnotationView)
-PinAnnotationView :: struct { using _: AnnotationView, }
+PinAnnotationView :: struct { using _: AnnotationView}
 
 @(default_calling_convention="c")
 foreign lib {

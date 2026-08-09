@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIMutableUserNotificationAction
 ///
 @(objc_class="UIMutableUserNotificationAction", objc_superclass=UserNotificationAction)
-MutableUserNotificationAction :: struct { using _: UserNotificationAction, }
+MutableUserNotificationAction :: struct { using _: UserNotificationAction}
 
 @(default_calling_convention="c")
 foreign lib {

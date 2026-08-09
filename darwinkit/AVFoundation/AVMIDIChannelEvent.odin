@@ -1,27 +1,15 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
 import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMIDIChannelEvent", objc_superclass=MusicEvent)
-MIDIChannelEvent :: struct { using _: MusicEvent, }
+MIDIChannelEvent :: struct { using _: MusicEvent}
 
 foreign lib {
-    @(objc_type=MIDIChannelEvent, objc_selector="channel", objc_name="channel")
-    MIDIChannelEvent_channel :: proc(self: ^MIDIChannelEvent) -> CF.UInt32 ---
+	@(objc_type=MIDIChannelEvent, objc_selector="channel", objc_name="channel")
+	MIDIChannelEvent_channel :: proc(self: ^MIDIChannelEvent) -> CF.UInt32 ---
 
-    @(objc_type=MIDIChannelEvent, objc_selector="setChannel:", objc_name="setChannel")
-    MIDIChannelEvent_setChannel :: proc(self: ^MIDIChannelEvent, channel: CF.UInt32) ---
+	@(objc_type=MIDIChannelEvent, objc_selector="setChannel:", objc_name="setChannel")
+	MIDIChannelEvent_setChannel :: proc(self: ^MIDIChannelEvent, channel: CF.UInt32) ---
 }
-
-
-

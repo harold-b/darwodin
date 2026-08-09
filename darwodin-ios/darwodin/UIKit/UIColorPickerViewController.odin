@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIColorPickerViewController
 ///
 @(objc_class="UIColorPickerViewController", objc_superclass=ViewController)
-ColorPickerViewController :: struct { using _: ViewController, }
+ColorPickerViewController :: struct { using _: ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

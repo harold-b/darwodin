@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISliderTrackConfiguration
 ///
 @(objc_class="UISliderTrackConfiguration", objc_superclass=NS.Object)
-SliderTrackConfiguration :: struct { using _: NS.Object, 
+SliderTrackConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
 }

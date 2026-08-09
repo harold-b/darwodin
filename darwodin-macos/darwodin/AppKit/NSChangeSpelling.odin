@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSChangeSpelling
 ///
 @(objc_class="NSChangeSpelling")
-ChangeSpelling :: struct { using _: intrinsics.objc_object, }
+ChangeSpelling :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSScriptClassDescription
 ///
 @(objc_class="NSScriptClassDescription", objc_superclass=ClassDescription)
-ScriptClassDescription :: struct { using _: ClassDescription, }
+ScriptClassDescription :: struct { using _: ClassDescription}
 
 @(default_calling_convention="c")
 foreign lib {

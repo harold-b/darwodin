@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLAssetResolver
 ///
 @(objc_class="MDLAssetResolver")
-AssetResolver :: struct { using _: intrinsics.objc_object, 
+AssetResolver :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

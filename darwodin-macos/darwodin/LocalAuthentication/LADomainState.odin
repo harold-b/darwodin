@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LADomainState
 ///
 @(objc_class="LADomainState", objc_superclass=NS.Object)
-DomainState :: struct { using _: NS.Object, }
+DomainState :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

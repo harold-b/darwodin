@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBinaryArchive
 ///
 @(objc_class="MTLBinaryArchive")
-BinaryArchive :: struct { using _: intrinsics.objc_object, 
+BinaryArchive :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

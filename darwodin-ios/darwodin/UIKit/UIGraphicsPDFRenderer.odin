@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIGraphicsPDFRenderer
 ///
 @(objc_class="UIGraphicsPDFRenderer", objc_superclass=GraphicsRenderer)
-GraphicsPDFRenderer :: struct { using _: GraphicsRenderer, }
+GraphicsPDFRenderer :: struct { using _: GraphicsRenderer}
 
 @(default_calling_convention="c")
 foreign lib {

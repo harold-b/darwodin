@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSUserActivityRestoring
 ///
 @(objc_class="NSUserActivityRestoring")
-UserActivityRestoring :: struct { using _: intrinsics.objc_object, 
+UserActivityRestoring :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

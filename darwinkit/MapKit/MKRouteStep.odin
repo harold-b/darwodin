@@ -1,0 +1,25 @@
+#+build darwin
+package darwin_MapKit
+
+import CL "../CoreLocation"
+import NS "../Foundation"
+
+@(objc_class="MKRouteStep", objc_superclass=NS.Object)
+RouteStep :: struct { using _: NS.Object}
+
+foreign lib {
+	@(objc_type=RouteStep, objc_selector="instructions", objc_name="instructions")
+	RouteStep_instructions :: proc(self: ^RouteStep) -> ^NS.String ---
+
+	@(objc_type=RouteStep, objc_selector="notice", objc_name="notice")
+	RouteStep_notice :: proc(self: ^RouteStep) -> ^NS.String ---
+
+	@(objc_type=RouteStep, objc_selector="polyline", objc_name="polyline")
+	RouteStep_polyline :: proc(self: ^RouteStep) -> ^Polyline ---
+
+	@(objc_type=RouteStep, objc_selector="distance", objc_name="distance")
+	RouteStep_distance :: proc(self: ^RouteStep) -> CL.LocationDistance ---
+
+	@(objc_type=RouteStep, objc_selector="transportType", objc_name="transportType")
+	RouteStep_transportType :: proc(self: ^RouteStep) -> DirectionsTransportType ---
+}

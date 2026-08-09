@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSDockTilePlugIn
 ///
 @(objc_class="NSDockTilePlugIn")
-DockTilePlugIn :: struct { using _: intrinsics.objc_object, 
+DockTilePlugIn :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

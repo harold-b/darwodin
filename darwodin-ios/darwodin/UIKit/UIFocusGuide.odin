@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIFocusGuide
 ///
 @(objc_class="UIFocusGuide", objc_superclass=LayoutGuide)
-FocusGuide :: struct { using _: LayoutGuide, }
+FocusGuide :: struct { using _: LayoutGuide}
 
 @(default_calling_convention="c")
 foreign lib {

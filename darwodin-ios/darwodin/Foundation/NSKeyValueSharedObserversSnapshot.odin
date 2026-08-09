@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSKeyValueSharedObserversSnapshot
 ///
 @(objc_class="NSKeyValueSharedObserversSnapshot", objc_superclass=Object)
-KeyValueSharedObserversSnapshot :: struct { using _: Object, }
+KeyValueSharedObserversSnapshot :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLStructMember
 ///
 @(objc_class="MTLStructMember", objc_superclass=NS.Object)
-StructMember :: struct { using _: NS.Object, }
+StructMember :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

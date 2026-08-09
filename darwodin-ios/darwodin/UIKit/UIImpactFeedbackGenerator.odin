@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIImpactFeedbackGenerator
 ///
 @(objc_class="UIImpactFeedbackGenerator", objc_superclass=FeedbackGenerator)
-ImpactFeedbackGenerator :: struct { using _: FeedbackGenerator, }
+ImpactFeedbackGenerator :: struct { using _: FeedbackGenerator}
 
 @(default_calling_convention="c")
 foreign lib {

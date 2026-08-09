@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UINavigationBarDelegate
 ///
 @(objc_class="UINavigationBarDelegate")
-NavigationBarDelegate :: struct { using _: intrinsics.objc_object, 
+NavigationBarDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 

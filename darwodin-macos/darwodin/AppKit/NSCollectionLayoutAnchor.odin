@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionLayoutAnchor
 ///
 @(objc_class="NSCollectionLayoutAnchor", objc_superclass=NS.Object)
-CollectionLayoutAnchor :: struct { using _: NS.Object, 
+CollectionLayoutAnchor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

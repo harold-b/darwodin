@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVMetadataFaceObject
 ///
 @(objc_class="AVMetadataFaceObject", objc_superclass=MetadataObject)
-MetadataFaceObject :: struct { using _: MetadataObject, 
+MetadataFaceObject :: struct {
+    using _: MetadataObject,
     using _: NS.Copying,
 }
 

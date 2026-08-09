@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSToolbarDelegate
 ///
 @(objc_class="NSToolbarDelegate")
-ToolbarDelegate :: struct { using _: intrinsics.objc_object, 
+ToolbarDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

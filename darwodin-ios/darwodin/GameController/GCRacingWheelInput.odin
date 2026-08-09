@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCRacingWheelInput
 ///
 @(objc_class="GCRacingWheelInput", objc_superclass=RacingWheelInputState)
-RacingWheelInput :: struct { using _: RacingWheelInputState, 
+RacingWheelInput :: struct {
+    using _: RacingWheelInputState,
     using _: DevicePhysicalInput,
 }
 

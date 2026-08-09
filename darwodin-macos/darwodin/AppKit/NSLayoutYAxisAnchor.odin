@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSLayoutYAxisAnchor
 ///
 @(objc_class="NSLayoutYAxisAnchor", objc_superclass=LayoutAnchor)
-LayoutYAxisAnchor :: struct { using _: LayoutAnchor, }
+LayoutYAxisAnchor :: struct { using _: LayoutAnchor}
 
 @(default_calling_convention="c")
 foreign lib {

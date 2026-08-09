@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTransformOrientOp
 ///
 @(objc_class="MDLTransformOrientOp", objc_superclass=NS.Object)
-TransformOrientOp :: struct { using _: NS.Object, 
+TransformOrientOp :: struct {
+    using _: NS.Object,
     using _: TransformOp,
 }
 

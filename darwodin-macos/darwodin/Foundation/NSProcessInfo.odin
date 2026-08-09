@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSProcessInfo
 ///
 @(objc_class="NSProcessInfo", objc_superclass=Object)
-ProcessInfo :: struct { using _: Object, }
+ProcessInfo :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

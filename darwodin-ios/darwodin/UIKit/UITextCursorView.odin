@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextCursorView
 ///
 @(objc_class="UITextCursorView")
-TextCursorView :: struct { using _: intrinsics.objc_object, 
+TextCursorView :: struct {
+    using _: intrinsics.objc_object,
     using _: CoordinateSpace,
 }
 

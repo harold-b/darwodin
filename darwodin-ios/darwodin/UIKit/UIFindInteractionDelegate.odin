@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIFindInteractionDelegate
 ///
 @(objc_class="UIFindInteractionDelegate")
-FindInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+FindInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

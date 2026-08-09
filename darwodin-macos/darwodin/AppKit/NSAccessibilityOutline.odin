@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityOutline
 ///
 @(objc_class="NSAccessibilityOutline")
-AccessibilityOutline :: struct { using _: intrinsics.objc_object, 
+AccessibilityOutline :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityTable,
 }
 

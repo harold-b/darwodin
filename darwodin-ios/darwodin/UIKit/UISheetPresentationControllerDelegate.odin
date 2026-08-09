@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISheetPresentationControllerDelegate
 ///
 @(objc_class="UISheetPresentationControllerDelegate")
-SheetPresentationControllerDelegate :: struct { using _: intrinsics.objc_object, 
+SheetPresentationControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: AdaptivePresentationControllerDelegate,
 }
 

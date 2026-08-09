@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKCircle
 ///
 @(objc_class="MKCircle", objc_superclass=Shape)
-Circle :: struct { using _: Shape, 
+Circle :: struct {
+    using _: Shape,
     using _: Overlay,
 }
 

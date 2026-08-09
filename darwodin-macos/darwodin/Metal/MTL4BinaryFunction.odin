@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4BinaryFunction
 ///
 @(objc_class="MTL4BinaryFunction")
-MTL4BinaryFunction :: struct { using _: intrinsics.objc_object, }
+MTL4BinaryFunction :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

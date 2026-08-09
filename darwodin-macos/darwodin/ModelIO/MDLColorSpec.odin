@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLColorSpec
 ///
 @(objc_class="MDLColorSpec")
-ColorSpec :: struct { using _: intrinsics.objc_object, }
+ColorSpec :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

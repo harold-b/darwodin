@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAAnimationGroup
 ///
 @(objc_class="CAAnimationGroup", objc_superclass=Animation)
-AnimationGroup :: struct { using _: Animation, }
+AnimationGroup :: struct { using _: Animation}
 
 @(default_calling_convention="c")
 foreign lib {

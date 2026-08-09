@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioIONode
 ///
 @(objc_class="AVAudioIONode", objc_superclass=AudioNode)
-AudioIONode :: struct { using _: AudioNode, }
+AudioIONode :: struct { using _: AudioNode}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -28,7 +28,7 @@ foreign lib {
     AudioIONode_presentationLatency :: proc(self: ^AudioIONode) -> NS.TimeInterval ---
 
     @(objc_type=AudioIONode, objc_selector="audioUnit", objc_name="audioUnit")
-    AudioIONode_audioUnit :: proc(self: ^AudioIONode) -> Audio.Unit ---
+    AudioIONode_audioUnit :: proc(self: ^AudioIONode) -> AT.Unit ---
 
     @(objc_type=AudioIONode, objc_selector="isVoiceProcessingEnabled", objc_name="isVoiceProcessingEnabled")
     AudioIONode_isVoiceProcessingEnabled :: proc(self: ^AudioIONode) -> bool ---

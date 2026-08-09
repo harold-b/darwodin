@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFunctionStitchingInputNode
 ///
 @(objc_class="MTLFunctionStitchingInputNode", objc_superclass=NS.Object)
-FunctionStitchingInputNode :: struct { using _: NS.Object, 
+FunctionStitchingInputNode :: struct {
+    using _: NS.Object,
     using _: FunctionStitchingNode,
 }
 

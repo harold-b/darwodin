@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITraitChangeObservable
 ///
 @(objc_class="UITraitChangeObservable")
-TraitChangeObservable :: struct { using _: intrinsics.objc_object, }
+TraitChangeObservable :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

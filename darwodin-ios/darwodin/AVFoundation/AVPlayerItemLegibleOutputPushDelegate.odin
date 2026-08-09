@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVPlayerItemLegibleOutputPushDelegate
 ///
 @(objc_class="AVPlayerItemLegibleOutputPushDelegate")
-PlayerItemLegibleOutputPushDelegate :: struct { using _: intrinsics.objc_object, 
+PlayerItemLegibleOutputPushDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: PlayerItemOutputPushDelegate,
 }
 

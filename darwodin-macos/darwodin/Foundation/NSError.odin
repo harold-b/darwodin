@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSError
 ///
 @(objc_class="NSError", objc_superclass=Object)
-Error :: struct { using _: Object, 
+Error :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

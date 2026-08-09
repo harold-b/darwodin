@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIInputViewAudioFeedback
 ///
 @(objc_class="UIInputViewAudioFeedback")
-InputViewAudioFeedback :: struct { using _: intrinsics.objc_object, 
+InputViewAudioFeedback :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

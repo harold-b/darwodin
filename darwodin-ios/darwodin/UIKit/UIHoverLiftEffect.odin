@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIHoverLiftEffect
 ///
 @(objc_class="UIHoverLiftEffect", objc_superclass=NS.Object)
-HoverLiftEffect :: struct { using _: NS.Object, 
+HoverLiftEffect :: struct {
+    using _: NS.Object,
     using _: HoverEffect,
 }
 

@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCExtendedGamepad
 ///
 @(objc_class="GCExtendedGamepad", objc_superclass=PhysicalInputProfile)
-ExtendedGamepad :: struct { using _: PhysicalInputProfile, }
+ExtendedGamepad :: struct { using _: PhysicalInputProfile}
 
 @(default_calling_convention="c")
 foreign lib {

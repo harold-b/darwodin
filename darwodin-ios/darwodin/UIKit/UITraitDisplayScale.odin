@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitDisplayScale
 ///
 @(objc_class="UITraitDisplayScale", objc_superclass=NS.Object)
-TraitDisplayScale :: struct { using _: NS.Object, 
+TraitDisplayScale :: struct {
+    using _: NS.Object,
     using _: CGFloatTraitDefinition,
 }
 

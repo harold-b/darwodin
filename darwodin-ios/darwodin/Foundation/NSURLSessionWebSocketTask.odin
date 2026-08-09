@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLSessionWebSocketTask
 ///
 @(objc_class="NSURLSessionWebSocketTask", objc_superclass=URLSessionTask)
-URLSessionWebSocketTask :: struct { using _: URLSessionTask, }
+URLSessionWebSocketTask :: struct { using _: URLSessionTask}
 
 @(default_calling_convention="c")
 foreign lib {

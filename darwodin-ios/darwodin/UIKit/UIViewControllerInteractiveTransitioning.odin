@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIViewControllerInteractiveTransitioning
 ///
 @(objc_class="UIViewControllerInteractiveTransitioning")
-ViewControllerInteractiveTransitioning :: struct { using _: intrinsics.objc_object, 
+ViewControllerInteractiveTransitioning :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

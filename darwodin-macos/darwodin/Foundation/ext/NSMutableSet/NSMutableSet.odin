@@ -8,13 +8,6 @@ import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import Sec "../../../Security"
 
-id            :: ^intrinsics.objc_object
-SEL           :: ^intrinsics.objc_selector
-Class         :: ^intrinsics.objc_class
-IMP           :: rawptr
-Protocol      :: distinct id
-instancetype  :: intrinsics.objc_instancetype
-
 import NS "../../"
 
 import "../NSSet"

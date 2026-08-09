@@ -1,25 +1,17 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="CKSyncEngineAccountChangeEvent", objc_superclass=SyncEngineEvent)
-SyncEngineAccountChangeEvent :: struct { using _: SyncEngineEvent, }
+SyncEngineAccountChangeEvent :: struct { using _: SyncEngineEvent}
 
 foreign lib {
-    @(objc_type=SyncEngineAccountChangeEvent, objc_selector="changeType", objc_name="changeType")
-    SyncEngineAccountChangeEvent_changeType :: proc(self: ^SyncEngineAccountChangeEvent) -> SyncEngineAccountChangeType ---
+	@(objc_type=SyncEngineAccountChangeEvent, objc_selector="changeType", objc_name="changeType")
+	SyncEngineAccountChangeEvent_changeType :: proc(self: ^SyncEngineAccountChangeEvent) -> SyncEngineAccountChangeType ---
 
-    @(objc_type=SyncEngineAccountChangeEvent, objc_selector="previousUser", objc_name="previousUser")
-    SyncEngineAccountChangeEvent_previousUser :: proc(self: ^SyncEngineAccountChangeEvent) -> ^RecordID ---
+	@(objc_type=SyncEngineAccountChangeEvent, objc_selector="previousUser", objc_name="previousUser")
+	SyncEngineAccountChangeEvent_previousUser :: proc(self: ^SyncEngineAccountChangeEvent) -> ^RecordID ---
 
-    @(objc_type=SyncEngineAccountChangeEvent, objc_selector="currentUser", objc_name="currentUser")
-    SyncEngineAccountChangeEvent_currentUser :: proc(self: ^SyncEngineAccountChangeEvent) -> ^RecordID ---
+	@(objc_type=SyncEngineAccountChangeEvent, objc_selector="currentUser", objc_name="currentUser")
+	SyncEngineAccountChangeEvent_currentUser :: proc(self: ^SyncEngineAccountChangeEvent) -> ^RecordID ---
 }
-
-
-

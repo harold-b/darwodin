@@ -1,37 +1,30 @@
 #+build darwin
-package darwodin_LocalAuthentication
+package darwin_LocalAuthentication
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
-import Sec "../Security"
 
 @(objc_class="LAEnvironmentState", objc_superclass=NS.Object)
-EnvironmentState :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+EnvironmentState :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=EnvironmentState, objc_selector="init", objc_name="init")
-    EnvironmentState_init :: proc(self: ^EnvironmentState) -> instancetype ---
+	@(objc_type=EnvironmentState, objc_selector="init", objc_name="init")
+	EnvironmentState_init :: proc(self: ^EnvironmentState) -> instancetype ---
 
-    @(objc_type=EnvironmentState, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    EnvironmentState_new :: proc() -> ^EnvironmentState ---
+	@(objc_type=EnvironmentState, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	EnvironmentState_new :: proc() -> ^EnvironmentState ---
 
-    @(objc_type=EnvironmentState, objc_selector="biometry", objc_name="biometry")
-    EnvironmentState_biometry :: proc(self: ^EnvironmentState) -> ^EnvironmentMechanismBiometry ---
+	@(objc_type=EnvironmentState, objc_selector="biometry", objc_name="biometry")
+	EnvironmentState_biometry :: proc(self: ^EnvironmentState) -> ^EnvironmentMechanismBiometry ---
 
-    @(objc_type=EnvironmentState, objc_selector="userPassword", objc_name="userPassword")
-    EnvironmentState_userPassword :: proc(self: ^EnvironmentState) -> ^EnvironmentMechanismUserPassword ---
+	@(objc_type=EnvironmentState, objc_selector="userPassword", objc_name="userPassword")
+	EnvironmentState_userPassword :: proc(self: ^EnvironmentState) -> ^EnvironmentMechanismUserPassword ---
 
-    @(objc_type=EnvironmentState, objc_selector="companions", objc_name="companions")
-    EnvironmentState_companions :: proc(self: ^EnvironmentState) -> ^NS.Array ---
+	@(objc_type=EnvironmentState, objc_selector="companions", objc_name="companions")
+	EnvironmentState_companions :: proc(self: ^EnvironmentState) -> ^NS.Array ---
 
-    @(objc_type=EnvironmentState, objc_selector="allMechanisms", objc_name="allMechanisms")
-    EnvironmentState_allMechanisms :: proc(self: ^EnvironmentState) -> ^NS.Array ---
+	@(objc_type=EnvironmentState, objc_selector="allMechanisms", objc_name="allMechanisms")
+	EnvironmentState_allMechanisms :: proc(self: ^EnvironmentState) -> ^NS.Array ---
 }
-
-
-

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSLayoutDimension
 ///
 @(objc_class="NSLayoutDimension", objc_superclass=LayoutAnchor)
-LayoutDimension :: struct { using _: LayoutAnchor, }
+LayoutDimension :: struct { using _: LayoutAnchor}
 
 @(default_calling_convention="c")
 foreign lib {

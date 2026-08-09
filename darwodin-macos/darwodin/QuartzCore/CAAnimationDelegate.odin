@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CAAnimationDelegate
 ///
 @(objc_class="CAAnimationDelegate")
-AnimationDelegate :: struct { using _: intrinsics.objc_object, 
+AnimationDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

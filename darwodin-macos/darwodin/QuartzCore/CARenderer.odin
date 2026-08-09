@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CARenderer
 ///
 @(objc_class="CARenderer", objc_superclass=NS.Object)
-Renderer :: struct { using _: NS.Object, }
+Renderer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

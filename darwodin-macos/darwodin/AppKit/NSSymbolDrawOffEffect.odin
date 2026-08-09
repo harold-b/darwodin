@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSymbolDrawOffEffect
 ///
 @(objc_class="NSSymbolDrawOffEffect", objc_superclass=SymbolEffect)
-SymbolDrawOffEffect :: struct { using _: SymbolEffect, }
+SymbolDrawOffEffect :: struct { using _: SymbolEffect}
 
 @(default_calling_convention="c")
 foreign lib {

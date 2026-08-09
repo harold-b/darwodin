@@ -1,28 +1,22 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKPerlinNoiseSource", objc_superclass=CoherentNoiseSource)
-PerlinNoiseSource :: struct { using _: CoherentNoiseSource, }
+PerlinNoiseSource :: struct { using _: CoherentNoiseSource}
 
 foreign lib {
-    @(objc_type=PerlinNoiseSource, objc_selector="perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="perlinNoiseSourceWithFrequency", objc_is_class_method=true)
-    PerlinNoiseSource_perlinNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
+	@(objc_type=PerlinNoiseSource, objc_selector="perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="perlinNoiseSourceWithFrequency", objc_is_class_method=true)
+	PerlinNoiseSource_perlinNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 
-    @(objc_type=PerlinNoiseSource, objc_selector="initWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="initWithFrequency")
-    PerlinNoiseSource_initWithFrequency :: proc(self: ^PerlinNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
+	@(objc_type=PerlinNoiseSource, objc_selector="initWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="initWithFrequency")
+	PerlinNoiseSource_initWithFrequency :: proc(self: ^PerlinNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 
-    @(objc_type=PerlinNoiseSource, objc_selector="persistence", objc_name="persistence")
-    PerlinNoiseSource_persistence :: proc(self: ^PerlinNoiseSource) -> cffi.double ---
+	@(objc_type=PerlinNoiseSource, objc_selector="persistence", objc_name="persistence")
+	PerlinNoiseSource_persistence :: proc(self: ^PerlinNoiseSource) -> cffi.double ---
 
-    @(objc_type=PerlinNoiseSource, objc_selector="setPersistence:", objc_name="setPersistence")
-    PerlinNoiseSource_setPersistence :: proc(self: ^PerlinNoiseSource, persistence: cffi.double) ---
+	@(objc_type=PerlinNoiseSource, objc_selector="setPersistence:", objc_name="setPersistence")
+	PerlinNoiseSource_setPersistence :: proc(self: ^PerlinNoiseSource, persistence: cffi.double) ---
 }
-
-
-

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSDirectoryEnumerator
 ///
 @(objc_class="NSDirectoryEnumerator", objc_superclass=Enumerator)
-DirectoryEnumerator :: struct { using _: Enumerator, }
+DirectoryEnumerator :: struct { using _: Enumerator}
 
 @(default_calling_convention="c")
 foreign lib {

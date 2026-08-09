@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLVertexAttribute
 ///
 @(objc_class="MTLVertexAttribute", objc_superclass=NS.Object)
-VertexAttribute :: struct { using _: NS.Object, }
+VertexAttribute :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

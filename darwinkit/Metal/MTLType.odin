@@ -1,23 +1,12 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLType", objc_superclass=NS.Object)
-Type :: struct { using _: NS.Object, }
+Type :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=Type, objc_selector="dataType", objc_name="dataType")
-    Type_dataType :: proc(self: ^Type) -> DataType ---
+	@(objc_type=Type, objc_selector="dataType", objc_name="dataType")
+	Type_dataType :: proc(self: ^Type) -> DataType ---
 }
-
-
-

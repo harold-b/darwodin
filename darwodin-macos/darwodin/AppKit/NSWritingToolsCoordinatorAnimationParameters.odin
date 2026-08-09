@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSWritingToolsCoordinatorAnimationParameters
 ///
 @(objc_class="NSWritingToolsCoordinatorAnimationParameters", objc_superclass=NS.Object)
-WritingToolsCoordinatorAnimationParameters :: struct { using _: NS.Object, }
+WritingToolsCoordinatorAnimationParameters :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

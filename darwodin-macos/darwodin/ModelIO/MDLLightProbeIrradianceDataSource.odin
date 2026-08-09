@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLLightProbeIrradianceDataSource
 ///
 @(objc_class="MDLLightProbeIrradianceDataSource")
-LightProbeIrradianceDataSource :: struct { using _: intrinsics.objc_object, 
+LightProbeIrradianceDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

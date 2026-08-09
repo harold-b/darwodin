@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSObject
 ///
 @(objc_class="NSObject")
-Object :: struct { using _: intrinsics.objc_object, 
+Object :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

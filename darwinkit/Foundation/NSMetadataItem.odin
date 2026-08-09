@@ -1,30 +1,20 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSMetadataItem", objc_superclass=Object)
-MetadataItem :: struct { using _: Object, }
+MetadataItem :: struct { using _: Object}
 
 foreign lib {
-    @(objc_type=MetadataItem, objc_selector="initWithURL:", objc_name="initWithURL")
-    MetadataItem_initWithURL :: proc(self: ^MetadataItem, url: ^URL) -> instancetype ---
+	@(objc_type=MetadataItem, objc_selector="initWithURL:", objc_name="initWithURL")
+	MetadataItem_initWithURL :: proc(self: ^MetadataItem, url: ^URL) -> instancetype ---
 
-    @(objc_type=MetadataItem, objc_selector="valueForAttribute:", objc_name="valueForAttribute")
-    MetadataItem_valueForAttribute :: proc(self: ^MetadataItem, key: ^String) -> id ---
+	@(objc_type=MetadataItem, objc_selector="valueForAttribute:", objc_name="valueForAttribute")
+	MetadataItem_valueForAttribute :: proc(self: ^MetadataItem, key: ^String) -> id ---
 
-    @(objc_type=MetadataItem, objc_selector="valuesForAttributes:", objc_name="valuesForAttributes")
-    MetadataItem_valuesForAttributes :: proc(self: ^MetadataItem, keys: ^Array) -> ^Dictionary ---
+	@(objc_type=MetadataItem, objc_selector="valuesForAttributes:", objc_name="valuesForAttributes")
+	MetadataItem_valuesForAttributes :: proc(self: ^MetadataItem, keys: ^Array) -> ^Dictionary ---
 
-    @(objc_type=MetadataItem, objc_selector="attributes", objc_name="attributes")
-    MetadataItem_attributes :: proc(self: ^MetadataItem) -> ^Array ---
+	@(objc_type=MetadataItem, objc_selector="attributes", objc_name="attributes")
+	MetadataItem_attributes :: proc(self: ^MetadataItem) -> ^Array ---
 }
-
-
-

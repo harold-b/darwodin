@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSSet
 ///
 @(objc_class="NSSet", objc_superclass=Object)
-Set :: struct { using _: Object, 
+Set :: struct {
+    using _: Object,
     using _: Copying,
     using _: MutableCopying,
     using _: SecureCoding,

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSGlassEffectView
 ///
 @(objc_class="NSGlassEffectView", objc_superclass=View)
-GlassEffectView :: struct { using _: View, }
+GlassEffectView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

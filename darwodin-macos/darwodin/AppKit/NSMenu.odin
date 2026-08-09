@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSMenu
 ///
 @(objc_class="NSMenu", objc_superclass=NS.Object)
-Menu :: struct { using _: NS.Object, 
+Menu :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
     using _: UserInterfaceItemIdentification,

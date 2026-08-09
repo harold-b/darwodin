@@ -1,33 +1,24 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSInflectionRule", objc_superclass=Object)
-InflectionRule :: struct { using _: Object, 
-    using _: Copying,
-    using _: SecureCoding,
+InflectionRule :: struct {
+	using _: Object,
+	using _: Copying,
+	using _: SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=InflectionRule, objc_selector="init", objc_name="init")
-    InflectionRule_init :: proc(self: ^InflectionRule) -> id ---
+	@(objc_type=InflectionRule, objc_selector="init", objc_name="init")
+	InflectionRule_init :: proc(self: ^InflectionRule) -> id ---
 
-    @(objc_type=InflectionRule, objc_selector="automaticRule", objc_name="automaticRule", objc_is_class_method=true)
-    InflectionRule_automaticRule :: proc() -> ^InflectionRule ---
+	@(objc_type=InflectionRule, objc_selector="automaticRule", objc_name="automaticRule", objc_is_class_method=true)
+	InflectionRule_automaticRule :: proc() -> ^InflectionRule ---
 
-    @(objc_type=InflectionRule, objc_selector="canInflectLanguage:", objc_name="canInflectLanguage", objc_is_class_method=true)
-    InflectionRule_canInflectLanguage :: proc(language: ^String) -> bool ---
+	@(objc_type=InflectionRule, objc_selector="canInflectLanguage:", objc_name="canInflectLanguage", objc_is_class_method=true)
+	InflectionRule_canInflectLanguage :: proc(language: ^String) -> bool ---
 
-    @(objc_type=InflectionRule, objc_selector="canInflectPreferredLocalization", objc_name="canInflectPreferredLocalization", objc_is_class_method=true)
-    InflectionRule_canInflectPreferredLocalization :: proc() -> bool ---
+	@(objc_type=InflectionRule, objc_selector="canInflectPreferredLocalization", objc_name="canInflectPreferredLocalization", objc_is_class_method=true)
+	InflectionRule_canInflectPreferredLocalization :: proc() -> bool ---
 }
-
-
-

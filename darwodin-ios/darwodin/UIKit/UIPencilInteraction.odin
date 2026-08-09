@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPencilInteraction
 ///
 @(objc_class="UIPencilInteraction", objc_superclass=NS.Object)
-PencilInteraction :: struct { using _: NS.Object, 
+PencilInteraction :: struct {
+    using _: NS.Object,
     using _: Interaction,
 }
 

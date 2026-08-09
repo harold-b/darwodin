@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSIndexSpecifier
 ///
 @(objc_class="NSIndexSpecifier", objc_superclass=ScriptObjectSpecifier)
-IndexSpecifier :: struct { using _: ScriptObjectSpecifier, }
+IndexSpecifier :: struct { using _: ScriptObjectSpecifier}
 
 @(default_calling_convention="c")
 foreign lib {

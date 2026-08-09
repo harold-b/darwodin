@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAGradientLayer
 ///
 @(objc_class="CAGradientLayer", objc_superclass=Layer)
-GradientLayer :: struct { using _: Layer, }
+GradientLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

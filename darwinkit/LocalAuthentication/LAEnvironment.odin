@@ -1,35 +1,27 @@
 #+build darwin
-package darwodin_LocalAuthentication
+package darwin_LocalAuthentication
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
-import Sec "../Security"
 
 @(objc_class="LAEnvironment", objc_superclass=NS.Object)
-Environment :: struct { using _: NS.Object, }
+Environment :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=Environment, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    Environment_new :: proc() -> ^Environment ---
+	@(objc_type=Environment, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	Environment_new :: proc() -> ^Environment ---
 
-    @(objc_type=Environment, objc_selector="init", objc_name="init")
-    Environment_init :: proc(self: ^Environment) -> instancetype ---
+	@(objc_type=Environment, objc_selector="init", objc_name="init")
+	Environment_init :: proc(self: ^Environment) -> instancetype ---
 
-    @(objc_type=Environment, objc_selector="addObserver:", objc_name="addObserver")
-    Environment_addObserver :: proc(self: ^Environment, observer: ^EnvironmentObserver) ---
+	@(objc_type=Environment, objc_selector="addObserver:", objc_name="addObserver")
+	Environment_addObserver :: proc(self: ^Environment, observer: ^EnvironmentObserver) ---
 
-    @(objc_type=Environment, objc_selector="removeObserver:", objc_name="removeObserver")
-    Environment_removeObserver :: proc(self: ^Environment, observer: ^EnvironmentObserver) ---
+	@(objc_type=Environment, objc_selector="removeObserver:", objc_name="removeObserver")
+	Environment_removeObserver :: proc(self: ^Environment, observer: ^EnvironmentObserver) ---
 
-    @(objc_type=Environment, objc_selector="currentUser", objc_name="currentUser", objc_is_class_method=true)
-    Environment_currentUser :: proc() -> ^Environment ---
+	@(objc_type=Environment, objc_selector="currentUser", objc_name="currentUser", objc_is_class_method=true)
+	Environment_currentUser :: proc() -> ^Environment ---
 
-    @(objc_type=Environment, objc_selector="state", objc_name="state")
-    Environment_state :: proc(self: ^Environment) -> ^EnvironmentState ---
+	@(objc_type=Environment, objc_selector="state", objc_name="state")
+	Environment_state :: proc(self: ^Environment) -> ^EnvironmentState ---
 }
-
-
-

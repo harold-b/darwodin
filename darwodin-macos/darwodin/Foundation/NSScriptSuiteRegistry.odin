@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSScriptSuiteRegistry
 ///
 @(objc_class="NSScriptSuiteRegistry", objc_superclass=Object)
-ScriptSuiteRegistry :: struct { using _: Object, }
+ScriptSuiteRegistry :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCRacingWheel
 ///
 @(objc_class="GCRacingWheel", objc_superclass=NS.Object)
-RacingWheel :: struct { using _: NS.Object, 
+RacingWheel :: struct {
+    using _: NS.Object,
     using _: Device,
 }
 

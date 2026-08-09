@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKFetchRecordZoneChangesOptions
 ///
 @(objc_class="CKFetchRecordZoneChangesOptions", objc_superclass=NS.Object)
-FetchRecordZoneChangesOptions :: struct { using _: NS.Object, 
+FetchRecordZoneChangesOptions :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

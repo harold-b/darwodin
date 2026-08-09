@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLRasterizationRateLayerDescriptor
 ///
 @(objc_class="MTLRasterizationRateLayerDescriptor", objc_superclass=NS.Object)
-RasterizationRateLayerDescriptor :: struct { using _: NS.Object, 
+RasterizationRateLayerDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

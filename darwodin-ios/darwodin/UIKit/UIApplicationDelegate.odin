@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIApplicationDelegate
 ///
 @(objc_class="UIApplicationDelegate")
-ApplicationDelegate :: struct { using _: intrinsics.objc_object, 
+ApplicationDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

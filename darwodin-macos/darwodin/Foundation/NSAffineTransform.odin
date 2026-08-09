@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSAffineTransform
 ///
 @(objc_class="NSAffineTransform", objc_superclass=Object)
-AffineTransform :: struct { using _: Object, 
+AffineTransform :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIVisualEffectView
 ///
 @(objc_class="UIVisualEffectView", objc_superclass=View)
-VisualEffectView :: struct { using _: View, 
+VisualEffectView :: struct {
+    using _: View,
     using _: NS.SecureCoding,
 }
 

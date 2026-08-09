@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLStructType", objc_superclass=Type)
-StructType :: struct { using _: Type, }
+StructType :: struct { using _: Type}
 
 foreign lib {
-    @(objc_type=StructType, objc_selector="memberByName:", objc_name="memberByName")
-    StructType_memberByName :: proc(self: ^StructType, name: ^NS.String) -> ^StructMember ---
+	@(objc_type=StructType, objc_selector="memberByName:", objc_name="memberByName")
+	StructType_memberByName :: proc(self: ^StructType, name: ^NS.String) -> ^StructMember ---
 
-    @(objc_type=StructType, objc_selector="members", objc_name="members")
-    StructType_members :: proc(self: ^StructType) -> ^NS.Array ---
+	@(objc_type=StructType, objc_selector="members", objc_name="members")
+	StructType_members :: proc(self: ^StructType) -> ^NS.Array ---
 }
-
-
-

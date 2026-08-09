@@ -1,29 +1,20 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVCaptureFileOutputDelegate")
-CaptureFileOutputDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+CaptureFileOutputDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=CaptureFileOutputDelegate, objc_selector="captureOutputShouldProvideSampleAccurateRecordingStart:", objc_name="captureOutputShouldProvideSampleAccurateRecordingStart")
-    CaptureFileOutputDelegate_captureOutputShouldProvideSampleAccurateRecordingStart :: proc(self: ^CaptureFileOutputDelegate, output: ^CaptureOutput) -> bool ---
+	@(objc_type=CaptureFileOutputDelegate, objc_selector="captureOutputShouldProvideSampleAccurateRecordingStart:", objc_name="captureOutputShouldProvideSampleAccurateRecordingStart")
+	CaptureFileOutputDelegate_captureOutputShouldProvideSampleAccurateRecordingStart :: proc(self: ^CaptureFileOutputDelegate, output: ^CaptureOutput) -> bool ---
 
-    @(objc_type=CaptureFileOutputDelegate, objc_selector="captureOutput:didOutputSampleBuffer:fromConnection:", objc_name="captureOutput")
-    CaptureFileOutputDelegate_captureOutput :: proc(self: ^CaptureFileOutputDelegate, output: ^CaptureFileOutput, sampleBuffer: CM.SampleBufferRef, connection: ^CaptureConnection) ---
+	@(objc_type=CaptureFileOutputDelegate, objc_selector="captureOutput:didOutputSampleBuffer:fromConnection:", objc_name="captureOutput")
+	CaptureFileOutputDelegate_captureOutput :: proc(self: ^CaptureFileOutputDelegate, output: ^CaptureFileOutput, sampleBuffer: CM.SampleBufferRef, connection: ^CaptureConnection) ---
 }
-
-
-

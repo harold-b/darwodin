@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIFocusItemScrollableContainer
 ///
 @(objc_class="UIFocusItemScrollableContainer")
-FocusItemScrollableContainer :: struct { using _: intrinsics.objc_object, 
+FocusItemScrollableContainer :: struct {
+    using _: intrinsics.objc_object,
     using _: FocusItemContainer,
 }
 

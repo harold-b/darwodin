@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LAExtendedRequirement
 ///
 @(objc_class="LAExtendedRequirement")
-ExtendedRequirement :: struct { using _: intrinsics.objc_object, }
+ExtendedRequirement :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

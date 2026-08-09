@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4RenderPipelineBinaryFunctionsDescriptor
 ///
 @(objc_class="MTL4RenderPipelineBinaryFunctionsDescriptor", objc_superclass=NS.Object)
-MTL4RenderPipelineBinaryFunctionsDescriptor :: struct { using _: NS.Object, 
+MTL4RenderPipelineBinaryFunctionsDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

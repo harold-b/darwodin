@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPointerHoverEffect
 ///
 @(objc_class="UIPointerHoverEffect", objc_superclass=PointerEffect)
-PointerHoverEffect :: struct { using _: PointerEffect, }
+PointerHoverEffect :: struct { using _: PointerEffect}
 
 @(default_calling_convention="c")
 foreign lib {

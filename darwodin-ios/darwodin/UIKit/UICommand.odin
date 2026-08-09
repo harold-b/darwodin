@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICommand
 ///
 @(objc_class="UICommand", objc_superclass=MenuElement)
-Command :: struct { using _: MenuElement, 
+Command :: struct {
+    using _: MenuElement,
     using _: MenuLeaf,
 }
 

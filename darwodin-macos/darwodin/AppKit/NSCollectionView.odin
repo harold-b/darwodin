@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionView
 ///
 @(objc_class="NSCollectionView", objc_superclass=View)
-CollectionView :: struct { using _: View, 
+CollectionView :: struct {
+    using _: View,
     using _: DraggingSource,
     using _: DraggingDestination,
 }

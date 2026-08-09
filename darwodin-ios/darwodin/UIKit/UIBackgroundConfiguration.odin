@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIBackgroundConfiguration
 ///
 @(objc_class="UIBackgroundConfiguration", objc_superclass=NS.Object)
-BackgroundConfiguration :: struct { using _: NS.Object, 
+BackgroundConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

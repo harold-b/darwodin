@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIManagedDocument
 ///
 @(objc_class="UIManagedDocument", objc_superclass=Document)
-ManagedDocument :: struct { using _: Document, }
+ManagedDocument :: struct { using _: Document}
 
 @(default_calling_convention="c")
 foreign lib {

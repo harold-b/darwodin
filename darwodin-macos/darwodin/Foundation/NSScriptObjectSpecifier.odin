@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSScriptObjectSpecifier
 ///
 @(objc_class="NSScriptObjectSpecifier", objc_superclass=Object)
-ScriptObjectSpecifier :: struct { using _: Object, 
+ScriptObjectSpecifier :: struct {
+    using _: Object,
     using _: Coding,
 }
 

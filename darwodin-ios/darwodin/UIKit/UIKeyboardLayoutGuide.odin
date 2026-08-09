@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIKeyboardLayoutGuide
 ///
 @(objc_class="UIKeyboardLayoutGuide", objc_superclass=TrackingLayoutGuide)
-KeyboardLayoutGuide :: struct { using _: TrackingLayoutGuide, }
+KeyboardLayoutGuide :: struct { using _: TrackingLayoutGuide}
 
 @(default_calling_convention="c")
 foreign lib {

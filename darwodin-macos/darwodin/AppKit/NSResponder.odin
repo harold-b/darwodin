@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSResponder
 ///
 @(objc_class="NSResponder", objc_superclass=NS.Object)
-Responder :: struct { using _: NS.Object, 
+Responder :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
 }
 

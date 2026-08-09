@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSDeleteCommand
 ///
 @(objc_class="NSDeleteCommand", objc_superclass=ScriptCommand)
-DeleteCommand :: struct { using _: ScriptCommand, }
+DeleteCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {

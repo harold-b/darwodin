@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIViewPrintFormatter
 ///
 @(objc_class="UIViewPrintFormatter", objc_superclass=PrintFormatter)
-ViewPrintFormatter :: struct { using _: PrintFormatter, }
+ViewPrintFormatter :: struct { using _: PrintFormatter}
 
 @(default_calling_convention="c")
 foreign lib {

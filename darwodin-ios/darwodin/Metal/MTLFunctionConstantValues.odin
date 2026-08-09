@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFunctionConstantValues
 ///
 @(objc_class="MTLFunctionConstantValues", objc_superclass=NS.Object)
-FunctionConstantValues :: struct { using _: NS.Object, 
+FunctionConstantValues :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

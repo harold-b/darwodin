@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLSkeleton
 ///
 @(objc_class="MDLSkeleton", objc_superclass=Object)
-Skeleton :: struct { using _: Object, 
+Skeleton :: struct {
+    using _: Object,
     using _: NS.Copying,
 }
 

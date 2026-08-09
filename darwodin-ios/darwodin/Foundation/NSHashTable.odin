@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSHashTable
 ///
 @(objc_class="NSHashTable", objc_superclass=Object)
-HashTable :: struct { using _: Object, 
+HashTable :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
     using _: FastEnumeration,

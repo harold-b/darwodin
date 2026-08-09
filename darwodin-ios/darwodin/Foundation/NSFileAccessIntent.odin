@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSFileAccessIntent
 ///
 @(objc_class="NSFileAccessIntent", objc_superclass=Object)
-FileAccessIntent :: struct { using _: Object, }
+FileAccessIntent :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

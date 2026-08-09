@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMutableVideoCompositionInstruction
 ///
 @(objc_class="AVMutableVideoCompositionInstruction", objc_superclass=VideoCompositionInstruction)
-MutableVideoCompositionInstruction :: struct { using _: VideoCompositionInstruction, }
+MutableVideoCompositionInstruction :: struct { using _: VideoCompositionInstruction}
 
 @(default_calling_convention="c")
 foreign lib {

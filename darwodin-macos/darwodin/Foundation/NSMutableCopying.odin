@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableCopying
 ///
 @(objc_class="NSMutableCopying")
-MutableCopying :: struct { using _: intrinsics.objc_object, }
+MutableCopying :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

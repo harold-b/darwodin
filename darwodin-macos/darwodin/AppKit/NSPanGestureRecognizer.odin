@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPanGestureRecognizer
 ///
 @(objc_class="NSPanGestureRecognizer", objc_superclass=GestureRecognizer)
-PanGestureRecognizer :: struct { using _: GestureRecognizer, 
+PanGestureRecognizer :: struct {
+    using _: GestureRecognizer,
     using _: NS.Coding,
 }
 

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLSessionTaskTransactionMetrics
 ///
 @(objc_class="NSURLSessionTaskTransactionMetrics", objc_superclass=Object)
-URLSessionTaskTransactionMetrics :: struct { using _: Object, }
+URLSessionTaskTransactionMetrics :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

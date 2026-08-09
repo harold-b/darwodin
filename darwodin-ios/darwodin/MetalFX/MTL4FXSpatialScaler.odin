@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTL4FXSpatialScaler
 ///
 @(objc_class="MTL4FXSpatialScaler")
-MTL4FXSpatialScaler :: struct { using _: intrinsics.objc_object, 
+MTL4FXSpatialScaler :: struct {
+    using _: intrinsics.objc_object,
     using _: SpatialScalerBase,
 }
 

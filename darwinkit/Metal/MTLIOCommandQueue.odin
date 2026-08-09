@@ -1,37 +1,28 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLIOCommandQueue")
-IOCommandQueue :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+IOCommandQueue :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=IOCommandQueue, objc_selector="enqueueBarrier", objc_name="enqueueBarrier")
-    IOCommandQueue_enqueueBarrier :: proc(self: ^IOCommandQueue) ---
+	@(objc_type=IOCommandQueue, objc_selector="enqueueBarrier", objc_name="enqueueBarrier")
+	IOCommandQueue_enqueueBarrier :: proc(self: ^IOCommandQueue) ---
 
-    @(objc_type=IOCommandQueue, objc_selector="commandBuffer", objc_name="commandBuffer")
-    IOCommandQueue_commandBuffer :: proc(self: ^IOCommandQueue) -> ^IOCommandBuffer ---
+	@(objc_type=IOCommandQueue, objc_selector="commandBuffer", objc_name="commandBuffer")
+	IOCommandQueue_commandBuffer :: proc(self: ^IOCommandQueue) -> ^IOCommandBuffer ---
 
-    @(objc_type=IOCommandQueue, objc_selector="commandBufferWithUnretainedReferences", objc_name="commandBufferWithUnretainedReferences")
-    IOCommandQueue_commandBufferWithUnretainedReferences :: proc(self: ^IOCommandQueue) -> ^IOCommandBuffer ---
+	@(objc_type=IOCommandQueue, objc_selector="commandBufferWithUnretainedReferences", objc_name="commandBufferWithUnretainedReferences")
+	IOCommandQueue_commandBufferWithUnretainedReferences :: proc(self: ^IOCommandQueue) -> ^IOCommandBuffer ---
 
-    @(objc_type=IOCommandQueue, objc_selector="label", objc_name="label")
-    IOCommandQueue_label :: proc(self: ^IOCommandQueue) -> ^NS.String ---
+	@(objc_type=IOCommandQueue, objc_selector="label", objc_name="label")
+	IOCommandQueue_label :: proc(self: ^IOCommandQueue) -> ^NS.String ---
 
-    @(objc_type=IOCommandQueue, objc_selector="setLabel:", objc_name="setLabel")
-    IOCommandQueue_setLabel :: proc(self: ^IOCommandQueue, label: ^NS.String) ---
+	@(objc_type=IOCommandQueue, objc_selector="setLabel:", objc_name="setLabel")
+	IOCommandQueue_setLabel :: proc(self: ^IOCommandQueue, label: ^NS.String) ---
 }
-
-
-

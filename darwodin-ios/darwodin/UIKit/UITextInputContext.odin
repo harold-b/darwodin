@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextInputContext
 ///
 @(objc_class="UITextInputContext", objc_superclass=NS.Object)
-TextInputContext :: struct { using _: NS.Object, }
+TextInputContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

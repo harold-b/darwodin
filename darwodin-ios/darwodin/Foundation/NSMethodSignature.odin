@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMethodSignature
 ///
 @(objc_class="NSMethodSignature", objc_superclass=Object)
-MethodSignature :: struct { using _: Object, }
+MethodSignature :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

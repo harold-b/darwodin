@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFunction
 ///
 @(objc_class="MTLFunction")
-Function :: struct { using _: intrinsics.objc_object, 
+Function :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

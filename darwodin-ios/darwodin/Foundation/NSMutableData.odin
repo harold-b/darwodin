@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableData
 ///
 @(objc_class="NSMutableData", objc_superclass=Data)
-MutableData :: struct { using _: Data, }
+MutableData :: struct { using _: Data}
 
 @(default_calling_convention="c")
 foreign lib {

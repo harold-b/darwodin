@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSException
 ///
 @(objc_class="NSException", objc_superclass=Object)
-Exception :: struct { using _: Object, 
+Exception :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

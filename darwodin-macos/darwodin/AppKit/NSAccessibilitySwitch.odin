@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilitySwitch
 ///
 @(objc_class="NSAccessibilitySwitch")
-AccessibilitySwitch :: struct { using _: intrinsics.objc_object, 
+AccessibilitySwitch :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityButton,
 }
 

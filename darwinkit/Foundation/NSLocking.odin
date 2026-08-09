@@ -1,24 +1,15 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSLocking")
-Locking :: struct { using _: intrinsics.objc_object, }
+Locking :: struct { using _: intrinsics.objc_object}
 
 foreign lib {
-    @(objc_type=Locking, objc_selector="lock", objc_name="lock")
-    Locking_lock :: proc(self: ^Locking) ---
+	@(objc_type=Locking, objc_selector="lock", objc_name="lock")
+	Locking_lock :: proc(self: ^Locking) ---
 
-    @(objc_type=Locking, objc_selector="unlock", objc_name="unlock")
-    Locking_unlock :: proc(self: ^Locking) ---
+	@(objc_type=Locking, objc_selector="unlock", objc_name="unlock")
+	Locking_unlock :: proc(self: ^Locking) ---
 }
-
-
-

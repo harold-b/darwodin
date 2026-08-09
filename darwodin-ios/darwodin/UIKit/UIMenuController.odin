@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIMenuController
 ///
 @(objc_class="UIMenuController", objc_superclass=NS.Object)
-MenuController :: struct { using _: NS.Object, }
+MenuController :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

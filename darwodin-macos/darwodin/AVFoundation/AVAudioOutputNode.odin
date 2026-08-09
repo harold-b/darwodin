@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioOutputNode
 ///
 @(objc_class="AVAudioOutputNode", objc_superclass=AudioIONode)
-AudioOutputNode :: struct { using _: AudioIONode, }
+AudioOutputNode :: struct { using _: AudioIONode}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -25,8 +25,8 @@ foreign lib {
     AudioOutputNode_init :: proc(self: ^AudioOutputNode) -> instancetype ---
 
     @(objc_type=AudioOutputNode, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
-    AudioOutputNode_intendedSpatialExperience :: proc(self: ^AudioOutputNode) -> ^Audio.CASpatialAudioExperience ---
+    AudioOutputNode_intendedSpatialExperience :: proc(self: ^AudioOutputNode) -> ^AT.SpatialAudioExperience ---
 
     @(objc_type=AudioOutputNode, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
-    AudioOutputNode_setIntendedSpatialExperience :: proc(self: ^AudioOutputNode, intendedSpatialExperience: ^Audio.CASpatialAudioExperience) ---
+    AudioOutputNode_setIntendedSpatialExperience :: proc(self: ^AudioOutputNode, intendedSpatialExperience: ^AT.SpatialAudioExperience) ---
 }

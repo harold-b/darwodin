@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPopoverTouchBarItem
 ///
 @(objc_class="NSPopoverTouchBarItem", objc_superclass=TouchBarItem)
-PopoverTouchBarItem :: struct { using _: TouchBarItem, }
+PopoverTouchBarItem :: struct { using _: TouchBarItem}
 
 @(default_calling_convention="c")
 foreign lib {

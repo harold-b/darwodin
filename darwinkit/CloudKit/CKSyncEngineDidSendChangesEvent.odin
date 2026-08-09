@@ -1,19 +1,11 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="CKSyncEngineDidSendChangesEvent", objc_superclass=SyncEngineEvent)
-SyncEngineDidSendChangesEvent :: struct { using _: SyncEngineEvent, }
+SyncEngineDidSendChangesEvent :: struct { using _: SyncEngineEvent}
 
 foreign lib {
-    @(objc_type=SyncEngineDidSendChangesEvent, objc_selector="context", objc_name="context")
-    SyncEngineDidSendChangesEvent_context :: proc(self: ^SyncEngineDidSendChangesEvent) -> ^SyncEngineSendChangesContext ---
+	@(objc_type=SyncEngineDidSendChangesEvent, objc_selector="context", objc_name="context")
+	SyncEngineDidSendChangesEvent_context :: proc(self: ^SyncEngineDidSendChangesEvent) -> ^SyncEngineSendChangesContext ---
 }
-
-
-

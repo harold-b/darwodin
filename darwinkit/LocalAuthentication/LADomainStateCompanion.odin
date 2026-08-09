@@ -1,32 +1,24 @@
 #+build darwin
-package darwodin_LocalAuthentication
+package darwin_LocalAuthentication
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
-import Sec "../Security"
 
 @(objc_class="LADomainStateCompanion", objc_superclass=NS.Object)
-DomainStateCompanion :: struct { using _: NS.Object, }
+DomainStateCompanion :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=DomainStateCompanion, objc_selector="stateHashForCompanionType:", objc_name="stateHashForCompanionType")
-    DomainStateCompanion_stateHashForCompanionType :: proc(self: ^DomainStateCompanion, companionType: CompanionType) -> ^NS.Data ---
+	@(objc_type=DomainStateCompanion, objc_selector="stateHashForCompanionType:", objc_name="stateHashForCompanionType")
+	DomainStateCompanion_stateHashForCompanionType :: proc(self: ^DomainStateCompanion, companionType: CompanionType) -> ^NS.Data ---
 
-    @(objc_type=DomainStateCompanion, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    DomainStateCompanion_new :: proc() -> ^DomainStateCompanion ---
+	@(objc_type=DomainStateCompanion, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	DomainStateCompanion_new :: proc() -> ^DomainStateCompanion ---
 
-    @(objc_type=DomainStateCompanion, objc_selector="init", objc_name="init")
-    DomainStateCompanion_init :: proc(self: ^DomainStateCompanion) -> instancetype ---
+	@(objc_type=DomainStateCompanion, objc_selector="init", objc_name="init")
+	DomainStateCompanion_init :: proc(self: ^DomainStateCompanion) -> instancetype ---
 
-    @(objc_type=DomainStateCompanion, objc_selector="availableCompanionTypes", objc_name="availableCompanionTypes")
-    DomainStateCompanion_availableCompanionTypes :: proc(self: ^DomainStateCompanion) -> ^NS.Set ---
+	@(objc_type=DomainStateCompanion, objc_selector="availableCompanionTypes", objc_name="availableCompanionTypes")
+	DomainStateCompanion_availableCompanionTypes :: proc(self: ^DomainStateCompanion) -> ^NS.Set ---
 
-    @(objc_type=DomainStateCompanion, objc_selector="stateHash", objc_name="stateHash")
-    DomainStateCompanion_stateHash :: proc(self: ^DomainStateCompanion) -> ^NS.Data ---
+	@(objc_type=DomainStateCompanion, objc_selector="stateHash", objc_name="stateHash")
+	DomainStateCompanion_stateHash :: proc(self: ^DomainStateCompanion) -> ^NS.Data ---
 }
-
-
-

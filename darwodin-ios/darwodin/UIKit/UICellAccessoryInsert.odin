@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICellAccessoryInsert
 ///
 @(objc_class="UICellAccessoryInsert", objc_superclass=CellAccessory)
-CellAccessoryInsert :: struct { using _: CellAccessory, }
+CellAccessoryInsert :: struct { using _: CellAccessory}
 
 @(default_calling_convention="c")
 foreign lib {

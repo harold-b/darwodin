@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLTensorExtents
 ///
 @(objc_class="MTLTensorExtents", objc_superclass=NS.Object)
-TensorExtents :: struct { using _: NS.Object, }
+TensorExtents :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

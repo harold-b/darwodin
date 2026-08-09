@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKETAResponse
 ///
 @(objc_class="MKETAResponse", objc_superclass=NS.Object)
-ETAResponse :: struct { using _: NS.Object, }
+ETAResponse :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

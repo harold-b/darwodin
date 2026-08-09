@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITabBar
 ///
 @(objc_class="UITabBar", objc_superclass=View)
-TabBar :: struct { using _: View, }
+TabBar :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

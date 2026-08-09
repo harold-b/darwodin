@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSWindowRestoration
 ///
 @(objc_class="NSWindowRestoration")
-WindowRestoration :: struct { using _: intrinsics.objc_object, 
+WindowRestoration :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

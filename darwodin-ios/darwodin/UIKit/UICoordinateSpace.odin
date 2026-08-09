@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICoordinateSpace
 ///
 @(objc_class="UICoordinateSpace")
-CoordinateSpace :: struct { using _: intrinsics.objc_object, 
+CoordinateSpace :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

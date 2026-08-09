@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSValueTransformer
 ///
 @(objc_class="NSValueTransformer", objc_superclass=Object)
-ValueTransformer :: struct { using _: Object, }
+ValueTransformer :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

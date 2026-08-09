@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4TileRenderPipelineDescriptor
 ///
 @(objc_class="MTL4TileRenderPipelineDescriptor", objc_superclass=MTL4PipelineDescriptor)
-MTL4TileRenderPipelineDescriptor :: struct { using _: MTL4PipelineDescriptor, }
+MTL4TileRenderPipelineDescriptor :: struct { using _: MTL4PipelineDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

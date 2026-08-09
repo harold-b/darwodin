@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSComboBoxCellDataSource
 ///
 @(objc_class="NSComboBoxCellDataSource")
-ComboBoxCellDataSource :: struct { using _: intrinsics.objc_object, 
+ComboBoxCellDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

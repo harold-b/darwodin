@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIColorPickerViewControllerDelegate
 ///
 @(objc_class="UIColorPickerViewControllerDelegate")
-ColorPickerViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+ColorPickerViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

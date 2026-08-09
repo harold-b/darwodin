@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSToolbar
 ///
 @(objc_class="NSToolbar", objc_superclass=NS.Object)
-Toolbar :: struct { using _: NS.Object, }
+Toolbar :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

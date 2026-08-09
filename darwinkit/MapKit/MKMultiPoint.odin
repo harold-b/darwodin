@@ -1,0 +1,26 @@
+#+build darwin
+package darwin_MapKit
+
+import CG "../CoreGraphics"
+import CL "../CoreLocation"
+import NS "../Foundation"
+
+@(objc_class="MKMultiPoint", objc_superclass=Shape)
+MultiPoint :: struct { using _: Shape}
+
+foreign lib {
+	@(objc_type=MultiPoint, objc_selector="points", objc_name="points")
+	MultiPoint_points :: proc(self: ^MultiPoint) -> ^MapPoint ---
+
+	@(objc_type=MultiPoint, objc_selector="getCoordinates:range:", objc_name="getCoordinates")
+	MultiPoint_getCoordinates :: proc(self: ^MultiPoint, coords: ^CL.LocationCoordinate2D, range: NS._NSRange) ---
+
+	@(objc_type=MultiPoint, objc_selector="locationAtPointIndex:", objc_name="locationAtPointIndex")
+	MultiPoint_locationAtPointIndex :: proc(self: ^MultiPoint, index: NS.UInteger) -> CG.Float ---
+
+	@(objc_type=MultiPoint, objc_selector="locationsAtPointIndexes:", objc_name="locationsAtPointIndexes")
+	MultiPoint_locationsAtPointIndexes :: proc(self: ^MultiPoint, indexes: ^NS.IndexSet) -> ^NS.Array ---
+
+	@(objc_type=MultiPoint, objc_selector="pointCount", objc_name="pointCount")
+	MultiPoint_pointCount :: proc(self: ^MultiPoint) -> NS.UInteger ---
+}

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIVideoEditorController
 ///
 @(objc_class="UIVideoEditorController", objc_superclass=NavigationController)
-VideoEditorController :: struct { using _: NavigationController, }
+VideoEditorController :: struct { using _: NavigationController}
 
 @(default_calling_convention="c")
 foreign lib {

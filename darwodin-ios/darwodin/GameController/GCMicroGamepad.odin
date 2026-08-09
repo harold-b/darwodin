@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCMicroGamepad
 ///
 @(objc_class="GCMicroGamepad", objc_superclass=PhysicalInputProfile)
-MicroGamepad :: struct { using _: PhysicalInputProfile, }
+MicroGamepad :: struct { using _: PhysicalInputProfile}
 
 @(default_calling_convention="c")
 foreign lib {

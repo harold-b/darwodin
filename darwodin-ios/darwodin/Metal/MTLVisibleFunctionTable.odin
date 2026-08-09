@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLVisibleFunctionTable
 ///
 @(objc_class="MTLVisibleFunctionTable")
-VisibleFunctionTable :: struct { using _: intrinsics.objc_object, 
+VisibleFunctionTable :: struct {
+    using _: intrinsics.objc_object,
     using _: Resource,
 }
 

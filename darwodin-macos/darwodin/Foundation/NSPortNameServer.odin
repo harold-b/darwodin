@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSPortNameServer
 ///
 @(objc_class="NSPortNameServer", objc_superclass=Object)
-PortNameServer :: struct { using _: Object, }
+PortNameServer :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

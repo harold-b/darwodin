@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSPointerFunctions
 ///
 @(objc_class="NSPointerFunctions", objc_superclass=Object)
-PointerFunctions :: struct { using _: Object, 
+PointerFunctions :: struct {
+    using _: Object,
     using _: Copying,
 }
 

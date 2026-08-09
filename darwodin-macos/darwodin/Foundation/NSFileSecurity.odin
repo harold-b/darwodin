@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSFileSecurity
 ///
 @(objc_class="NSFileSecurity", objc_superclass=Object)
-FileSecurity :: struct { using _: Object, 
+FileSecurity :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIUserNotificationSettings
 ///
 @(objc_class="UIUserNotificationSettings", objc_superclass=NS.Object)
-UserNotificationSettings :: struct { using _: NS.Object, }
+UserNotificationSettings :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

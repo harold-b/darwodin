@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLVertexAttribute
 ///
 @(objc_class="MDLVertexAttribute", objc_superclass=NS.Object)
-VertexAttribute :: struct { using _: NS.Object, 
+VertexAttribute :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UILocalizedIndexedCollation
 ///
 @(objc_class="UILocalizedIndexedCollation", objc_superclass=NS.Object)
-LocalizedIndexedCollation :: struct { using _: NS.Object, }
+LocalizedIndexedCollation :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

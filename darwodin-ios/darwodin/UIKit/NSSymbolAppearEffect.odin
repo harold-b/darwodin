@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSSymbolAppearEffect
 ///
 @(objc_class="NSSymbolAppearEffect", objc_superclass=NSSymbolEffect)
-NSSymbolAppearEffect :: struct { using _: NSSymbolEffect, }
+NSSymbolAppearEffect :: struct { using _: NSSymbolEffect}
 
 @(default_calling_convention="c")
 foreign lib {

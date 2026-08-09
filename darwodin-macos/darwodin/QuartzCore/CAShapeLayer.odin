@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAShapeLayer
 ///
 @(objc_class="CAShapeLayer", objc_superclass=Layer)
-ShapeLayer :: struct { using _: Layer, }
+ShapeLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPreviewInteractionDelegate
 ///
 @(objc_class="UIPreviewInteractionDelegate")
-PreviewInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+PreviewInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

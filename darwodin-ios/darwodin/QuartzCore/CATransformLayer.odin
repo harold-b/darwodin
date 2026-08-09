@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CATransformLayer
 ///
 @(objc_class="CATransformLayer", objc_superclass=Layer)
-TransformLayer :: struct { using _: Layer, }
+TransformLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {}

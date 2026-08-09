@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitDisplayGamut
 ///
 @(objc_class="UITraitDisplayGamut", objc_superclass=NS.Object)
-TraitDisplayGamut :: struct { using _: NS.Object, 
+TraitDisplayGamut :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

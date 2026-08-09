@@ -1,19 +1,11 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="GKAchievementChallenge", objc_superclass=Challenge)
-AchievementChallenge :: struct { using _: Challenge, }
+AchievementChallenge :: struct { using _: Challenge}
 
 foreign lib {
-    @(objc_type=AchievementChallenge, objc_selector="achievement", objc_name="achievement")
-    AchievementChallenge_achievement :: proc(self: ^AchievementChallenge) -> ^Achievement ---
+	@(objc_type=AchievementChallenge, objc_selector="achievement", objc_name="achievement")
+	AchievementChallenge_achievement :: proc(self: ^AchievementChallenge) -> ^Achievement ---
 }
-
-
-

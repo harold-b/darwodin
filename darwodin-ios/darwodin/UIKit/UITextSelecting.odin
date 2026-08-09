@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextSelecting
 ///
 @(objc_class="UITextSelecting")
-TextSelecting :: struct { using _: intrinsics.objc_object, }
+TextSelecting :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

@@ -1,21 +1,12 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSFastEnumeration")
-FastEnumeration :: struct { using _: intrinsics.objc_object, }
+FastEnumeration :: struct { using _: intrinsics.objc_object}
 
 foreign lib {
-    @(objc_type=FastEnumeration, objc_selector="countByEnumeratingWithState:objects:count:", objc_name="countByEnumeratingWithState")
-    FastEnumeration_countByEnumeratingWithState :: proc(self: ^FastEnumeration, state: ^FastEnumerationState, buffer: ^id, len: UInteger) -> UInteger ---
+	@(objc_type=FastEnumeration, objc_selector="countByEnumeratingWithState:objects:count:", objc_name="countByEnumeratingWithState")
+	FastEnumeration_countByEnumeratingWithState :: proc(self: ^FastEnumeration, state: ^FastEnumerationState, buffer: ^id, len: UInteger) -> UInteger ---
 }
-
-
-

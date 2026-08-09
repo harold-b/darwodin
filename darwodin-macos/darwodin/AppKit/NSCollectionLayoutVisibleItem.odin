@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionLayoutVisibleItem
 ///
 @(objc_class="NSCollectionLayoutVisibleItem")
-CollectionLayoutVisibleItem :: struct { using _: intrinsics.objc_object, 
+CollectionLayoutVisibleItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

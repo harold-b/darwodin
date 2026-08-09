@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMetadataSalientObject", objc_superclass=MetadataObject)
-MetadataSalientObject :: struct { using _: MetadataObject, 
-    using _: NS.Copying,
+MetadataSalientObject :: struct {
+	using _: MetadataObject,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=MetadataSalientObject, objc_selector="objectID", objc_name="objectID")
-    MetadataSalientObject_objectID :: proc(self: ^MetadataSalientObject) -> NS.Integer ---
+	@(objc_type=MetadataSalientObject, objc_selector="objectID", objc_name="objectID")
+	MetadataSalientObject_objectID :: proc(self: ^MetadataSalientObject) -> NS.Integer ---
 }
-
-
-

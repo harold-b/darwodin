@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPointerInteractionAnimating
 ///
 @(objc_class="UIPointerInteractionAnimating")
-PointerInteractionAnimating :: struct { using _: intrinsics.objc_object, 
+PointerInteractionAnimating :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

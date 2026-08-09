@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIMarkupTextPrintFormatter
 ///
 @(objc_class="UIMarkupTextPrintFormatter", objc_superclass=PrintFormatter)
-MarkupTextPrintFormatter :: struct { using _: PrintFormatter, }
+MarkupTextPrintFormatter :: struct { using _: PrintFormatter}
 
 @(default_calling_convention="c")
 foreign lib {

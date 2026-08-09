@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPathCell
 ///
 @(objc_class="NSPathCell", objc_superclass=ActionCell)
-PathCell :: struct { using _: ActionCell, 
+PathCell :: struct {
+    using _: ActionCell,
     using _: MenuItemValidation,
     using _: OpenSavePanelDelegate,
 }

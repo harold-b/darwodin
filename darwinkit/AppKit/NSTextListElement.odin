@@ -1,56 +1,44 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSTextListElement
-///
+
+
 @(objc_class="NSTextListElement", objc_superclass=TextParagraph)
-TextListElement :: struct { using _: TextParagraph, }
+TextListElement :: struct { using _: TextParagraph}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=TextListElement, objc_selector="initWithParentElement:textList:contents:markerAttributes:childElements:", objc_name="initWithParentElement")
-    TextListElement_initWithParentElement :: proc(self: ^TextListElement, parent: ^TextListElement, textList: ^TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> instancetype ---
+	@(objc_type=TextListElement, objc_selector="initWithParentElement:textList:contents:markerAttributes:childElements:", objc_name="initWithParentElement")
+	TextListElement_initWithParentElement :: proc(self: ^TextListElement, parent: ^TextListElement, textList: ^TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> instancetype ---
 
-    @(objc_type=TextListElement, objc_selector="initWithAttributedString:", objc_name="initWithAttributedString")
-    TextListElement_initWithAttributedString :: proc(self: ^TextListElement, attributedString: ^NS.AttributedString) -> instancetype ---
+	@(objc_type=TextListElement, objc_selector="initWithAttributedString:", objc_name="initWithAttributedString")
+	TextListElement_initWithAttributedString :: proc(self: ^TextListElement, attributedString: ^NS.AttributedString) -> instancetype ---
 
-    @(objc_type=TextListElement, objc_selector="textListElementWithContents:markerAttributes:textList:childElements:", objc_name="textListElementWithContents", objc_is_class_method=true)
-    TextListElement_textListElementWithContents :: proc(contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^TextList, children: ^NS.Array) -> instancetype ---
+	@(objc_type=TextListElement, objc_selector="textListElementWithContents:markerAttributes:textList:childElements:", objc_name="textListElementWithContents", objc_is_class_method=true)
+	TextListElement_textListElementWithContents :: proc(contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^TextList, children: ^NS.Array) -> instancetype ---
 
-    @(objc_type=TextListElement, objc_selector="textListElementWithChildElements:textList:nestingLevel:", objc_name="textListElementWithChildElements", objc_is_class_method=true)
-    TextListElement_textListElementWithChildElements :: proc(children: ^NS.Array, textList: ^TextList, nestingLevel: NS.Integer) -> instancetype ---
+	@(objc_type=TextListElement, objc_selector="textListElementWithChildElements:textList:nestingLevel:", objc_name="textListElementWithChildElements", objc_is_class_method=true)
+	TextListElement_textListElementWithChildElements :: proc(children: ^NS.Array, textList: ^TextList, nestingLevel: NS.Integer) -> instancetype ---
 
-    @(objc_type=TextListElement, objc_selector="textList", objc_name="textList")
-    TextListElement_textList :: proc(self: ^TextListElement) -> ^TextList ---
+	@(objc_type=TextListElement, objc_selector="textList", objc_name="textList")
+	TextListElement_textList :: proc(self: ^TextListElement) -> ^TextList ---
 
-    @(objc_type=TextListElement, objc_selector="contents", objc_name="contents")
-    TextListElement_contents :: proc(self: ^TextListElement) -> ^NS.AttributedString ---
+	@(objc_type=TextListElement, objc_selector="contents", objc_name="contents")
+	TextListElement_contents :: proc(self: ^TextListElement) -> ^NS.AttributedString ---
 
-    @(objc_type=TextListElement, objc_selector="markerAttributes", objc_name="markerAttributes")
-    TextListElement_markerAttributes :: proc(self: ^TextListElement) -> ^NS.Dictionary ---
+	@(objc_type=TextListElement, objc_selector="markerAttributes", objc_name="markerAttributes")
+	TextListElement_markerAttributes :: proc(self: ^TextListElement) -> ^NS.Dictionary ---
 
-    @(objc_type=TextListElement, objc_selector="attributedString", objc_name="attributedString")
-    TextListElement_attributedString :: proc(self: ^TextListElement) -> ^NS.AttributedString ---
+	@(objc_type=TextListElement, objc_selector="attributedString", objc_name="attributedString")
+	TextListElement_attributedString :: proc(self: ^TextListElement) -> ^NS.AttributedString ---
 
-    @(objc_type=TextListElement, objc_selector="childElements", objc_name="childElements")
-    TextListElement_childElements :: proc(self: ^TextListElement) -> ^NS.Array ---
+	@(objc_type=TextListElement, objc_selector="childElements", objc_name="childElements")
+	TextListElement_childElements :: proc(self: ^TextListElement) -> ^NS.Array ---
 
-    @(objc_type=TextListElement, objc_selector="parentElement", objc_name="parentElement")
-    TextListElement_parentElement :: proc(self: ^TextListElement) -> ^TextListElement ---
+	@(objc_type=TextListElement, objc_selector="parentElement", objc_name="parentElement")
+	TextListElement_parentElement :: proc(self: ^TextListElement) -> ^TextListElement ---
 }

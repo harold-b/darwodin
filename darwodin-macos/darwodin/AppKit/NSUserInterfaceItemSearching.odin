@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSUserInterfaceItemSearching
 ///
 @(objc_class="NSUserInterfaceItemSearching")
-UserInterfaceItemSearching :: struct { using _: intrinsics.objc_object, 
+UserInterfaceItemSearching :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUserActivityDelegate
 ///
 @(objc_class="NSUserActivityDelegate")
-UserActivityDelegate :: struct { using _: intrinsics.objc_object, 
+UserActivityDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

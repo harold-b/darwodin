@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitElectricPotentialDifference
 ///
 @(objc_class="NSUnitElectricPotentialDifference", objc_superclass=Dimension)
-UnitElectricPotentialDifference :: struct { using _: Dimension, 
+UnitElectricPotentialDifference :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

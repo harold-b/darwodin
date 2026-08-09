@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLHandleClient
 ///
 @(objc_class="NSURLHandleClient")
-URLHandleClient :: struct { using _: intrinsics.objc_object, }
+URLHandleClient :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

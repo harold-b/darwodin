@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKAchievementChallenge
 ///
 @(objc_class="GKAchievementChallenge", objc_superclass=Challenge)
-AchievementChallenge :: struct { using _: Challenge, }
+AchievementChallenge :: struct { using _: Challenge}
 
 @(default_calling_convention="c")
 foreign lib {

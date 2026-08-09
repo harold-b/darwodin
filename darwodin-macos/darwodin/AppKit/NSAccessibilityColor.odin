@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSAccessibilityColor
 ///
 @(objc_class="NSAccessibilityColor")
-AccessibilityColor :: struct { using _: intrinsics.objc_object, }
+AccessibilityColor :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

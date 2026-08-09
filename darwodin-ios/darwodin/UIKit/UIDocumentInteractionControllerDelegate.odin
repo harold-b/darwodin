@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDocumentInteractionControllerDelegate
 ///
 @(objc_class="UIDocumentInteractionControllerDelegate")
-DocumentInteractionControllerDelegate :: struct { using _: intrinsics.objc_object, 
+DocumentInteractionControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

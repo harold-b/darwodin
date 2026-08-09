@@ -1,29 +1,20 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSDimension", objc_superclass=Unit)
-Dimension :: struct { using _: Unit, 
-    using _: SecureCoding,
+Dimension :: struct {
+	using _: Unit,
+	using _: SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=Dimension, objc_selector="initWithSymbol:converter:", objc_name="initWithSymbol")
-    Dimension_initWithSymbol :: proc(self: ^Dimension, symbol: ^String, converter: ^UnitConverter) -> instancetype ---
+	@(objc_type=Dimension, objc_selector="initWithSymbol:converter:", objc_name="initWithSymbol")
+	Dimension_initWithSymbol :: proc(self: ^Dimension, symbol: ^String, converter: ^UnitConverter) -> instancetype ---
 
-    @(objc_type=Dimension, objc_selector="baseUnit", objc_name="baseUnit", objc_is_class_method=true)
-    Dimension_baseUnit :: proc() -> instancetype ---
+	@(objc_type=Dimension, objc_selector="baseUnit", objc_name="baseUnit", objc_is_class_method=true)
+	Dimension_baseUnit :: proc() -> instancetype ---
 
-    @(objc_type=Dimension, objc_selector="converter", objc_name="converter")
-    Dimension_converter :: proc(self: ^Dimension) -> ^UnitConverter ---
+	@(objc_type=Dimension, objc_selector="converter", objc_name="converter")
+	Dimension_converter :: proc(self: ^Dimension) -> ^UnitConverter ---
 }
-
-
-

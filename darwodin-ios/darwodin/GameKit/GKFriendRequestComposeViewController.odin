@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKFriendRequestComposeViewController
 ///
 @(objc_class="GKFriendRequestComposeViewController", objc_superclass=UI.NavigationController)
-FriendRequestComposeViewController :: struct { using _: UI.NavigationController, }
+FriendRequestComposeViewController :: struct { using _: UI.NavigationController}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMetadataItem
 ///
 @(objc_class="NSMetadataItem", objc_superclass=Object)
-MetadataItem :: struct { using _: Object, }
+MetadataItem :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

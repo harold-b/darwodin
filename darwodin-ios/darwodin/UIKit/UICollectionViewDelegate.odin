@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDelegate
 ///
 @(objc_class="UICollectionViewDelegate")
-CollectionViewDelegate :: struct { using _: intrinsics.objc_object, 
+CollectionViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ScrollViewDelegate,
 }
 

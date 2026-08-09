@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSArrayController
 ///
 @(objc_class="NSArrayController", objc_superclass=ObjectController)
-ArrayController :: struct { using _: ObjectController, }
+ArrayController :: struct { using _: ObjectController}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,8 @@ import UI "../UIKit"
 /// GKAgent
 ///
 @(objc_class="GKAgent", objc_superclass=Component)
-Agent :: struct { using _: Component, 
+Agent :: struct {
+    using _: Component,
     using _: NS.SecureCoding,
 }
 

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSComparisonPredicate
 ///
 @(objc_class="NSComparisonPredicate", objc_superclass=Predicate)
-ComparisonPredicate :: struct { using _: Predicate, }
+ComparisonPredicate :: struct { using _: Predicate}
 
 @(default_calling_convention="c")
 foreign lib {

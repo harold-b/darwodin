@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSDatePickerCellDelegate
 ///
 @(objc_class="NSDatePickerCellDelegate")
-DatePickerCellDelegate :: struct { using _: intrinsics.objc_object, 
+DatePickerCellDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

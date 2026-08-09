@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPageViewController
 ///
 @(objc_class="UIPageViewController", objc_superclass=ViewController)
-PageViewController :: struct { using _: ViewController, }
+PageViewController :: struct { using _: ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKAgent3D
 ///
 @(objc_class="GKAgent3D", objc_superclass=Agent)
-Agent3D :: struct { using _: Agent, }
+Agent3D :: struct { using _: Agent}
 
 @(default_calling_convention="c")
 foreign lib {

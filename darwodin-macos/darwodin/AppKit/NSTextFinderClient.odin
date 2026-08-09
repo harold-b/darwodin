@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextFinderClient
 ///
 @(objc_class="NSTextFinderClient")
-TextFinderClient :: struct { using _: intrinsics.objc_object, 
+TextFinderClient :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

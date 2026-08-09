@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITabBarControllerSidebarDelegate
 ///
 @(objc_class="UITabBarControllerSidebarDelegate")
-TabBarControllerSidebarDelegate :: struct { using _: intrinsics.objc_object, 
+TabBarControllerSidebarDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

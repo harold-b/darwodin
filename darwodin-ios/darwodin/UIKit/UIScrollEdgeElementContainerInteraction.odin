@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIScrollEdgeElementContainerInteraction
 ///
 @(objc_class="UIScrollEdgeElementContainerInteraction", objc_superclass=NS.Object)
-ScrollEdgeElementContainerInteraction :: struct { using _: NS.Object, 
+ScrollEdgeElementContainerInteraction :: struct {
+    using _: NS.Object,
     using _: Interaction,
 }
 

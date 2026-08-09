@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitTabAccessoryEnvironment
 ///
 @(objc_class="UITraitTabAccessoryEnvironment", objc_superclass=NS.Object)
-TraitTabAccessoryEnvironment :: struct { using _: NS.Object, 
+TraitTabAccessoryEnvironment :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

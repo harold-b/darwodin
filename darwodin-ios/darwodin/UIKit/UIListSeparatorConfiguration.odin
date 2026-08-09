@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIListSeparatorConfiguration
 ///
 @(objc_class="UIListSeparatorConfiguration", objc_superclass=NS.Object)
-ListSeparatorConfiguration :: struct { using _: NS.Object, 
+ListSeparatorConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

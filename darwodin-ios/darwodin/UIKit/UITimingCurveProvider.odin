@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITimingCurveProvider
 ///
 @(objc_class="UITimingCurveProvider")
-TimingCurveProvider :: struct { using _: intrinsics.objc_object, 
+TimingCurveProvider :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.Coding,
     using _: NS.Copying,
 }

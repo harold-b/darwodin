@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UINavigationControllerDelegate
 ///
 @(objc_class="UINavigationControllerDelegate")
-NavigationControllerDelegate :: struct { using _: intrinsics.objc_object, 
+NavigationControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -5,21 +5,17 @@ import "base:runtime"
 import cffi "core:c"
 import mach "../mach"
 import CF "../CoreFoundation"
-import CA "../CoreAudio"
 import CG "../CoreGraphics"
 import Sec "../Security"
+import AT "../AudioToolbox"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
-
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
 when ODIN_OS == .Darwin {
     @(export)
@@ -29,12 +25,15 @@ when ODIN_OS == .Darwin {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 
 NCMDeviceProfileInfo :: struct {}
 CVImageBufferRef     :: struct {}
 CVPixelBufferPoolRef :: struct {}
 CVPixelBufferRef     :: struct {}
 
+// -user-text-end
 
 ASK                             :: 22
 BITMAPCALLBACKPROCPTR_DEFINED   :: 1
@@ -947,25 +946,25 @@ foreign lib {
     FormatDescriptionGetExtension :: proc(desc: FormatDescriptionRef, extensionKey: CF.StringRef) -> CF.PropertyListRef ---
 
     @(link_name="CMAudioFormatDescriptionCreate")
-    AudioFormatDescriptionCreate :: proc(allocator: CF.AllocatorRef, asbd: ^CA.StreamBasicDescription, layoutSize: cffi.size_t, layout: ^CA.ChannelLayout, magicCookieSize: cffi.size_t, magicCookie: rawptr, extensions: CF.DictionaryRef, formatDescriptionOut: ^AudioFormatDescriptionRef) -> CF.OSStatus ---
+    AudioFormatDescriptionCreate :: proc(allocator: CF.AllocatorRef, asbd: ^AT.StreamBasicDescription, layoutSize: cffi.size_t, layout: ^AT.ChannelLayout, magicCookieSize: cffi.size_t, magicCookie: rawptr, extensions: CF.DictionaryRef, formatDescriptionOut: ^AudioFormatDescriptionRef) -> CF.OSStatus ---
 
     @(link_name="CMAudioFormatDescriptionGetStreamBasicDescription")
-    AudioFormatDescriptionGetStreamBasicDescription :: proc(desc: AudioFormatDescriptionRef) -> ^CA.StreamBasicDescription ---
+    AudioFormatDescriptionGetStreamBasicDescription :: proc(desc: AudioFormatDescriptionRef) -> ^AT.StreamBasicDescription ---
 
     @(link_name="CMAudioFormatDescriptionGetMagicCookie")
     AudioFormatDescriptionGetMagicCookie :: proc(desc: AudioFormatDescriptionRef, sizeOut: ^cffi.size_t) -> rawptr ---
 
     @(link_name="CMAudioFormatDescriptionGetChannelLayout")
-    AudioFormatDescriptionGetChannelLayout :: proc(desc: AudioFormatDescriptionRef, sizeOut: ^cffi.size_t) -> ^CA.ChannelLayout ---
+    AudioFormatDescriptionGetChannelLayout :: proc(desc: AudioFormatDescriptionRef, sizeOut: ^cffi.size_t) -> ^AT.ChannelLayout ---
 
     @(link_name="CMAudioFormatDescriptionGetFormatList")
-    AudioFormatDescriptionGetFormatList :: proc(desc: AudioFormatDescriptionRef, sizeOut: ^cffi.size_t) -> ^CA.FormatListItem ---
+    AudioFormatDescriptionGetFormatList :: proc(desc: AudioFormatDescriptionRef, sizeOut: ^cffi.size_t) -> ^AT.FormatListItem ---
 
     @(link_name="CMAudioFormatDescriptionGetRichestDecodableFormat")
-    AudioFormatDescriptionGetRichestDecodableFormat :: proc(desc: AudioFormatDescriptionRef) -> ^CA.FormatListItem ---
+    AudioFormatDescriptionGetRichestDecodableFormat :: proc(desc: AudioFormatDescriptionRef) -> ^AT.FormatListItem ---
 
     @(link_name="CMAudioFormatDescriptionGetMostCompatibleFormat")
-    AudioFormatDescriptionGetMostCompatibleFormat :: proc(desc: AudioFormatDescriptionRef) -> ^CA.FormatListItem ---
+    AudioFormatDescriptionGetMostCompatibleFormat :: proc(desc: AudioFormatDescriptionRef) -> ^AT.FormatListItem ---
 
     @(link_name="CMAudioFormatDescriptionCreateSummary")
     AudioFormatDescriptionCreateSummary :: proc(allocator: CF.AllocatorRef, formatDescriptionArray: CF.ArrayRef, flags: cffi.uint32_t, formatDescriptionOut: ^AudioFormatDescriptionRef) -> CF.OSStatus ---
@@ -1331,13 +1330,13 @@ foreign lib {
     SampleBufferCreateReady :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, formatDescription: FormatDescriptionRef, numSamples: ItemCount, numSampleTimingEntries: ItemCount, sampleTimingArray: ^SampleTimingInfo, numSampleSizeEntries: ItemCount, sampleSizeArray: ^cffi.size_t, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
 
     @(link_name="CMAudioSampleBufferCreateWithPacketDescriptions")
-    AudioSampleBufferCreateWithPacketDescriptions :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, dataReady: CF.Boolean, makeDataReadyCallback: SampleBufferMakeDataReadyCallback, makeDataReadyRefcon: rawptr, formatDescription: FormatDescriptionRef, numSamples: ItemCount, presentationTimeStamp: Time, packetDescriptions: ^CA.StreamPacketDescription, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
+    AudioSampleBufferCreateWithPacketDescriptions :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, dataReady: CF.Boolean, makeDataReadyCallback: SampleBufferMakeDataReadyCallback, makeDataReadyRefcon: rawptr, formatDescription: FormatDescriptionRef, numSamples: ItemCount, presentationTimeStamp: Time, packetDescriptions: ^AT.StreamPacketDescription, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
 
     @(link_name="CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler")
-    AudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, dataReady: CF.Boolean, formatDescription: FormatDescriptionRef, numSamples: ItemCount, presentationTimeStamp: Time, packetDescriptions: ^CA.StreamPacketDescription, sampleBufferOut: ^SampleBufferRef, makeDataReadyHandler: SampleBufferMakeDataReadyHandler) -> CF.OSStatus ---
+    AudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, dataReady: CF.Boolean, formatDescription: FormatDescriptionRef, numSamples: ItemCount, presentationTimeStamp: Time, packetDescriptions: ^AT.StreamPacketDescription, sampleBufferOut: ^SampleBufferRef, makeDataReadyHandler: SampleBufferMakeDataReadyHandler) -> CF.OSStatus ---
 
     @(link_name="CMAudioSampleBufferCreateReadyWithPacketDescriptions")
-    AudioSampleBufferCreateReadyWithPacketDescriptions :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, formatDescription: FormatDescriptionRef, numSamples: ItemCount, presentationTimeStamp: Time, packetDescriptions: ^CA.StreamPacketDescription, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
+    AudioSampleBufferCreateReadyWithPacketDescriptions :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, formatDescription: FormatDescriptionRef, numSamples: ItemCount, presentationTimeStamp: Time, packetDescriptions: ^AT.StreamPacketDescription, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferCreateForImageBuffer")
     SampleBufferCreateForImageBuffer :: proc(allocator: CF.AllocatorRef, imageBuffer: CVImageBufferRef, dataReady: CF.Boolean, makeDataReadyCallback: SampleBufferMakeDataReadyCallback, makeDataReadyRefcon: rawptr, formatDescription: VideoFormatDescriptionRef, sampleTiming: ^SampleTimingInfo, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
@@ -1370,19 +1369,19 @@ foreign lib {
     SampleBufferGetImageBuffer :: proc(sbuf: SampleBufferRef) -> CVImageBufferRef ---
 
     @(link_name="CMSampleBufferSetDataBufferFromAudioBufferList")
-    SampleBufferSetDataBufferFromAudioBufferList :: proc(sbuf: SampleBufferRef, blockBufferStructureAllocator: CF.AllocatorRef, blockBufferBlockAllocator: CF.AllocatorRef, flags: cffi.uint32_t, bufferList: ^CA.BufferList) -> CF.OSStatus ---
+    SampleBufferSetDataBufferFromAudioBufferList :: proc(sbuf: SampleBufferRef, blockBufferStructureAllocator: CF.AllocatorRef, blockBufferBlockAllocator: CF.AllocatorRef, flags: cffi.uint32_t, bufferList: ^AT.BufferList) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer")
-    SampleBufferGetAudioBufferListWithRetainedBlockBuffer :: proc(sbuf: SampleBufferRef, bufferListSizeNeededOut: ^cffi.size_t, bufferListOut: ^CA.BufferList, bufferListSize: cffi.size_t, blockBufferStructureAllocator: CF.AllocatorRef, blockBufferBlockAllocator: CF.AllocatorRef, flags: cffi.uint32_t, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+    SampleBufferGetAudioBufferListWithRetainedBlockBuffer :: proc(sbuf: SampleBufferRef, bufferListSizeNeededOut: ^cffi.size_t, bufferListOut: ^AT.BufferList, bufferListSize: cffi.size_t, blockBufferStructureAllocator: CF.AllocatorRef, blockBufferBlockAllocator: CF.AllocatorRef, flags: cffi.uint32_t, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferGetAudioStreamPacketDescriptions")
-    SampleBufferGetAudioStreamPacketDescriptions :: proc(sbuf: SampleBufferRef, packetDescriptionsSize: cffi.size_t, packetDescriptionsOut: ^CA.StreamPacketDescription, packetDescriptionsSizeNeededOut: ^cffi.size_t) -> CF.OSStatus ---
+    SampleBufferGetAudioStreamPacketDescriptions :: proc(sbuf: SampleBufferRef, packetDescriptionsSize: cffi.size_t, packetDescriptionsOut: ^AT.StreamPacketDescription, packetDescriptionsSizeNeededOut: ^cffi.size_t) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferGetAudioStreamPacketDescriptionsPtr")
-    SampleBufferGetAudioStreamPacketDescriptionsPtr :: proc(sbuf: SampleBufferRef, packetDescriptionsPointerOut: ^^CA.StreamPacketDescription, packetDescriptionsSizeOut: ^cffi.size_t) -> CF.OSStatus ---
+    SampleBufferGetAudioStreamPacketDescriptionsPtr :: proc(sbuf: SampleBufferRef, packetDescriptionsPointerOut: ^^AT.StreamPacketDescription, packetDescriptionsSizeOut: ^cffi.size_t) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferCopyPCMDataIntoAudioBufferList")
-    SampleBufferCopyPCMDataIntoAudioBufferList :: proc(sbuf: SampleBufferRef, frameOffset: cffi.int32_t, numFrames: cffi.int32_t, bufferList: ^CA.BufferList) -> CF.OSStatus ---
+    SampleBufferCopyPCMDataIntoAudioBufferList :: proc(sbuf: SampleBufferRef, frameOffset: cffi.int32_t, numFrames: cffi.int32_t, bufferList: ^AT.BufferList) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferSetDataReady")
     SampleBufferSetDataReady :: proc(sbuf: SampleBufferRef) -> CF.OSStatus ---
@@ -1892,16 +1891,16 @@ foreign lib {
     AudioDeviceClockCreate :: proc(allocator: CF.AllocatorRef, deviceUID: CF.StringRef, clockOut: ^ClockRef) -> CF.OSStatus ---
 
     @(link_name="CMAudioDeviceClockCreateFromAudioDeviceID")
-    AudioDeviceClockCreateFromAudioDeviceID :: proc(allocator: CF.AllocatorRef, deviceID: CA.DeviceID, clockOut: ^ClockRef) -> CF.OSStatus ---
+    AudioDeviceClockCreateFromAudioDeviceID :: proc(allocator: CF.AllocatorRef, deviceID: AT.DeviceID, clockOut: ^ClockRef) -> CF.OSStatus ---
 
     @(link_name="CMAudioDeviceClockSetAudioDeviceUID")
     AudioDeviceClockSetAudioDeviceUID :: proc(clock: ClockRef, deviceUID: CF.StringRef) -> CF.OSStatus ---
 
     @(link_name="CMAudioDeviceClockSetAudioDeviceID")
-    AudioDeviceClockSetAudioDeviceID :: proc(clock: ClockRef, deviceID: CA.DeviceID) -> CF.OSStatus ---
+    AudioDeviceClockSetAudioDeviceID :: proc(clock: ClockRef, deviceID: AT.DeviceID) -> CF.OSStatus ---
 
     @(link_name="CMAudioDeviceClockGetAudioDevice")
-    AudioDeviceClockGetAudioDevice :: proc(clock: ClockRef, deviceUIDOut: ^CF.StringRef, deviceIDOut: ^CA.DeviceID, trackingDefaultDeviceOut: ^CF.Boolean) -> CF.OSStatus ---
+    AudioDeviceClockGetAudioDevice :: proc(clock: ClockRef, deviceUIDOut: ^CF.StringRef, deviceIDOut: ^AT.DeviceID, trackingDefaultDeviceOut: ^CF.Boolean) -> CF.OSStatus ---
 
 }
 
@@ -2461,7 +2460,7 @@ _CMSEncoder :: struct {}
 OpaqueIconRef :: struct {}
 
 /// ColorSyncMD5
-ColorSyncMD5 :: struct #align (1) {
+ColorSyncMD5 :: struct #packed {
     digest: [16]cffi.uint8_t,
 }
 #assert(size_of(ColorSyncMD5) == 16)
@@ -2653,7 +2652,7 @@ MultiFunctLutType :: struct #align (2) {
 #assert(size_of(MultiFunctLutType) == 34)
 
 /// CMMultiFunctCLUTType
-MultiFunctCLUTType :: struct #align (1) {
+MultiFunctCLUTType :: struct #packed {
     gridPoints: [16]CF.UInt8,
     entrySize:  CF.UInt8,
     reserved:   [3]CF.UInt8,
@@ -3056,25 +3055,25 @@ GrayColor :: struct #align (2) {
 #assert(size_of(GrayColor) == 2)
 
 /// CMMultichannel5Color
-Multichannel5Color :: struct #align (1) {
+Multichannel5Color :: struct #packed {
     components: [5]CF.UInt8,
 }
 #assert(size_of(Multichannel5Color) == 5)
 
 /// CMMultichannel6Color
-Multichannel6Color :: struct #align (1) {
+Multichannel6Color :: struct #packed {
     components: [6]CF.UInt8,
 }
 #assert(size_of(Multichannel6Color) == 6)
 
 /// CMMultichannel7Color
-Multichannel7Color :: struct #align (1) {
+Multichannel7Color :: struct #packed {
     components: [7]CF.UInt8,
 }
 #assert(size_of(Multichannel7Color) == 7)
 
 /// CMMultichannel8Color
-Multichannel8Color :: struct #align (1) {
+Multichannel8Color :: struct #packed {
     components: [8]CF.UInt8,
 }
 #assert(size_of(Multichannel8Color) == 8)
@@ -3120,7 +3119,7 @@ HandleLocation :: struct #align (8) {
 #assert(size_of(HandleLocation) == 8)
 
 /// CMPathLocation
-PathLocation :: struct #align (1) {
+PathLocation :: struct #packed {
     path: [1024]cffi.char,
 }
 #assert(size_of(PathLocation) == 1024)

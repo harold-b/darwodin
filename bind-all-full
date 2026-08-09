@@ -2,8 +2,21 @@
 set -eo pipefail
 cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+extra_args=()
+while true; do
+  case $1 in
+    -m|-markers)
+      extra_args+=(-m)
+    ;;
+    -v|-verbose|--verbose)
+      extra_args+=(-v)
+    ;;
+  esac
+  shift || break
+done
+
 echo "=== Binding macOS ==="
-./bind-all
+./bind-all ${extra_args[@]}
 
 # echo ""
 # echo "=== Binding macOS Lite ==="
@@ -11,8 +24,5 @@ echo "=== Binding macOS ==="
 
 echo ""
 echo "=== Binding iOS ==="
-./bind-all -ios
+./bind-all -ios "${extra_args[@]}"
 
-# echo ""
-# echo "=== Binding iOS Lite ==="
-# ./bind-all -ios -lite

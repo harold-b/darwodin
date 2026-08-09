@@ -1,29 +1,21 @@
 #+build darwin
-package darwodin_LocalAuthentication
+package darwin_LocalAuthentication
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
-import Sec "../Security"
 
 @(objc_class="LAAuthenticationRequirement", objc_superclass=NS.Object)
-AuthenticationRequirement :: struct { using _: NS.Object, }
+AuthenticationRequirement :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=AuthenticationRequirement, objc_selector="biometryRequirementWithFallback:", objc_name="biometryRequirementWithFallback", objc_is_class_method=true)
-    AuthenticationRequirement_biometryRequirementWithFallback :: proc(fallback: ^BiometryFallbackRequirement) -> instancetype ---
+	@(objc_type=AuthenticationRequirement, objc_selector="biometryRequirementWithFallback:", objc_name="biometryRequirementWithFallback", objc_is_class_method=true)
+	AuthenticationRequirement_biometryRequirementWithFallback :: proc(fallback: ^BiometryFallbackRequirement) -> instancetype ---
 
-    @(objc_type=AuthenticationRequirement, objc_selector="defaultRequirement", objc_name="defaultRequirement", objc_is_class_method=true)
-    AuthenticationRequirement_defaultRequirement :: proc() -> ^AuthenticationRequirement ---
+	@(objc_type=AuthenticationRequirement, objc_selector="defaultRequirement", objc_name="defaultRequirement", objc_is_class_method=true)
+	AuthenticationRequirement_defaultRequirement :: proc() -> ^AuthenticationRequirement ---
 
-    @(objc_type=AuthenticationRequirement, objc_selector="biometryRequirement", objc_name="biometryRequirement", objc_is_class_method=true)
-    AuthenticationRequirement_biometryRequirement :: proc() -> ^AuthenticationRequirement ---
+	@(objc_type=AuthenticationRequirement, objc_selector="biometryRequirement", objc_name="biometryRequirement", objc_is_class_method=true)
+	AuthenticationRequirement_biometryRequirement :: proc() -> ^AuthenticationRequirement ---
 
-    @(objc_type=AuthenticationRequirement, objc_selector="biometryCurrentSetRequirement", objc_name="biometryCurrentSetRequirement", objc_is_class_method=true)
-    AuthenticationRequirement_biometryCurrentSetRequirement :: proc() -> ^AuthenticationRequirement ---
+	@(objc_type=AuthenticationRequirement, objc_selector="biometryCurrentSetRequirement", objc_name="biometryCurrentSetRequirement", objc_is_class_method=true)
+	AuthenticationRequirement_biometryCurrentSetRequirement :: proc() -> ^AuthenticationRequirement ---
 }
-
-
-

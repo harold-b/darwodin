@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapItemAnnotation
 ///
 @(objc_class="MKMapItemAnnotation", objc_superclass=NS.Object)
-MapItemAnnotation :: struct { using _: NS.Object, 
+MapItemAnnotation :: struct {
+    using _: NS.Object,
     using _: Annotation,
 }
 

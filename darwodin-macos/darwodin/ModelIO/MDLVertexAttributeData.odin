@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLVertexAttributeData
 ///
 @(objc_class="MDLVertexAttributeData", objc_superclass=NS.Object)
-VertexAttributeData :: struct { using _: NS.Object, }
+VertexAttributeData :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKAccessPoint
 ///
 @(objc_class="GKAccessPoint", objc_superclass=NS.Object)
-AccessPoint :: struct { using _: NS.Object, }
+AccessPoint :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -90,7 +91,7 @@ foreign lib {
     AccessPoint_setLocation :: proc(self: ^AccessPoint, location: AccessPointLocation) ---
 
     @(objc_type=AccessPoint, objc_selector="frameInScreenCoordinates", objc_name="frameInScreenCoordinates")
-    AccessPoint_frameInScreenCoordinates :: proc(self: ^AccessPoint) -> CGRect ---
+    AccessPoint_frameInScreenCoordinates :: proc(self: ^AccessPoint) -> CG.Rect ---
 
     @(objc_type=AccessPoint, objc_selector="parentWindow", objc_name="parentWindow")
     AccessPoint_parentWindow :: proc(self: ^AccessPoint) -> ^UI.Window ---

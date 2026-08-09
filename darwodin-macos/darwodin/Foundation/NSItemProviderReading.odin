@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSItemProviderReading
 ///
 @(objc_class="NSItemProviderReading")
-ItemProviderReading :: struct { using _: intrinsics.objc_object, 
+ItemProviderReading :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

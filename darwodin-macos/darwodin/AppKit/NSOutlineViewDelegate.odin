@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSOutlineViewDelegate
 ///
 @(objc_class="NSOutlineViewDelegate")
-OutlineViewDelegate :: struct { using _: intrinsics.objc_object, 
+OutlineViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSLogicalTest
 ///
 @(objc_class="NSLogicalTest", objc_superclass=ScriptWhoseTest)
-LogicalTest :: struct { using _: ScriptWhoseTest, }
+LogicalTest :: struct { using _: ScriptWhoseTest}
 
 @(default_calling_convention="c")
 foreign lib {

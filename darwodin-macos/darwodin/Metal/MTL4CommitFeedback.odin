@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CommitFeedback
 ///
 @(objc_class="MTL4CommitFeedback")
-MTL4CommitFeedback :: struct { using _: intrinsics.objc_object, 
+MTL4CommitFeedback :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

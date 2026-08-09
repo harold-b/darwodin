@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSMatrixDelegate
 ///
 @(objc_class="NSMatrixDelegate")
-MatrixDelegate :: struct { using _: intrinsics.objc_object, 
+MatrixDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 

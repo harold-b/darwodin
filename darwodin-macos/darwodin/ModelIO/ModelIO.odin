@@ -9,17 +9,13 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
-
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
 when ODIN_OS == .Darwin {
     @(export)
@@ -29,6 +25,8 @@ when ODIN_OS == .Darwin {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 Boolean :: CF.Boolean
 simd_char1       :: struct #align (1 ) { v: [1 ]i8   } // size = 1  | align = 1
 simd_char2       :: struct #align (2 ) { v: [2 ]i8   } // size = 2  | align = 2
@@ -100,6 +98,7 @@ vector_double2   :: simd_double2
 vector_double3   :: simd_double3
 vector_double4   :: simd_double4
 
+// -user-text-end
 
 
 foreign lib {

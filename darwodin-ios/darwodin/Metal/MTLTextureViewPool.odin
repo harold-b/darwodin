@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTextureViewPool
 ///
 @(objc_class="MTLTextureViewPool")
-TextureViewPool :: struct { using _: intrinsics.objc_object, 
+TextureViewPool :: struct {
+    using _: intrinsics.objc_object,
     using _: ResourceViewPool,
 }
 

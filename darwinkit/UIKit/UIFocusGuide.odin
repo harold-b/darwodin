@@ -1,41 +1,32 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UIFocusGuide
-///
+
+
 @(objc_class="UIFocusGuide", objc_superclass=LayoutGuide)
-FocusGuide :: struct { using _: LayoutGuide, }
+FocusGuide :: struct { using _: LayoutGuide}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=FocusGuide, objc_selector="isEnabled", objc_name="isEnabled")
-    FocusGuide_isEnabled :: proc(self: ^FocusGuide) -> bool ---
+	@(objc_type=FocusGuide, objc_selector="isEnabled", objc_name="isEnabled")
+	FocusGuide_isEnabled :: proc(self: ^FocusGuide) -> bool ---
 
-    @(objc_type=FocusGuide, objc_selector="setEnabled:", objc_name="setEnabled")
-    FocusGuide_setEnabled :: proc(self: ^FocusGuide, enabled: bool) ---
+	@(objc_type=FocusGuide, objc_selector="setEnabled:", objc_name="setEnabled")
+	FocusGuide_setEnabled :: proc(self: ^FocusGuide, enabled: bool) ---
 
-    @(objc_type=FocusGuide, objc_selector="preferredFocusEnvironments", objc_name="preferredFocusEnvironments")
-    FocusGuide_preferredFocusEnvironments :: proc(self: ^FocusGuide) -> ^NS.Array ---
+	@(objc_type=FocusGuide, objc_selector="preferredFocusEnvironments", objc_name="preferredFocusEnvironments")
+	FocusGuide_preferredFocusEnvironments :: proc(self: ^FocusGuide) -> ^NS.Array ---
 
-    @(objc_type=FocusGuide, objc_selector="setPreferredFocusEnvironments:", objc_name="setPreferredFocusEnvironments")
-    FocusGuide_setPreferredFocusEnvironments :: proc(self: ^FocusGuide, preferredFocusEnvironments: ^NS.Array) ---
+	@(objc_type=FocusGuide, objc_selector="setPreferredFocusEnvironments:", objc_name="setPreferredFocusEnvironments")
+	FocusGuide_setPreferredFocusEnvironments :: proc(self: ^FocusGuide, preferredFocusEnvironments: ^NS.Array) ---
 
-    @(objc_type=FocusGuide, objc_selector="preferredFocusedView", objc_name="preferredFocusedView")
-    FocusGuide_preferredFocusedView :: proc(self: ^FocusGuide) -> ^View ---
+	@(objc_type=FocusGuide, objc_selector="preferredFocusedView", objc_name="preferredFocusedView")
+	FocusGuide_preferredFocusedView :: proc(self: ^FocusGuide) -> ^View ---
 
-    @(objc_type=FocusGuide, objc_selector="setPreferredFocusedView:", objc_name="setPreferredFocusedView")
-    FocusGuide_setPreferredFocusedView :: proc(self: ^FocusGuide, preferredFocusedView: ^View) ---
+	@(objc_type=FocusGuide, objc_selector="setPreferredFocusedView:", objc_name="setPreferredFocusedView")
+	FocusGuide_setPreferredFocusedView :: proc(self: ^FocusGuide, preferredFocusedView: ^View) ---
 }

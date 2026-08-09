@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextCheckingClient
 ///
 @(objc_class="NSTextCheckingClient")
-TextCheckingClient :: struct { using _: intrinsics.objc_object, 
+TextCheckingClient :: struct {
+    using _: intrinsics.objc_object,
     using _: TextInputClient,
     using _: TextInputTraits,
 }

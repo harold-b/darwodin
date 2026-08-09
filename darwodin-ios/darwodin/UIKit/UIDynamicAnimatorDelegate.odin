@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDynamicAnimatorDelegate
 ///
 @(objc_class="UIDynamicAnimatorDelegate")
-DynamicAnimatorDelegate :: struct { using _: intrinsics.objc_object, 
+DynamicAnimatorDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

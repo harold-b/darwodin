@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSVisualEffectView
 ///
 @(objc_class="NSVisualEffectView", objc_superclass=View)
-VisualEffectView :: struct { using _: View, }
+VisualEffectView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

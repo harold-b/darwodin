@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSTextSelectionDataSource
 ///
 @(objc_class="NSTextSelectionDataSource")
-NSTextSelectionDataSource :: struct { using _: intrinsics.objc_object, 
+NSTextSelectionDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

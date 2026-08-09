@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSRegularExpression
 ///
 @(objc_class="NSRegularExpression", objc_superclass=Object)
-RegularExpression :: struct { using _: Object, 
+RegularExpression :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

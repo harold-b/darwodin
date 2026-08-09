@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSharingCollaborationModeRestriction
 ///
 @(objc_class="NSSharingCollaborationModeRestriction", objc_superclass=NS.Object)
-SharingCollaborationModeRestriction :: struct { using _: NS.Object, 
+SharingCollaborationModeRestriction :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

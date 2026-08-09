@@ -1,43 +1,35 @@
 #+build darwin:default
-package darwodin_Foundation
+package darwin_Foundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 
 
-///
-/// NSURLHandleClient
-///
+
+
 @(objc_class="NSURLHandleClient")
-URLHandleClient :: struct { using _: intrinsics.objc_object, }
+URLHandleClient :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=URLHandleClient, objc_selector="URLHandle:resourceDataDidBecomeAvailable:", objc_name="URLHandle_resourceDataDidBecomeAvailable")
-    URLHandleClient_URLHandle_resourceDataDidBecomeAvailable :: proc(self: ^URLHandleClient, sender: ^URLHandle, newBytes: ^Data) ---
+	@(objc_type=URLHandleClient, objc_selector="URLHandle:resourceDataDidBecomeAvailable:", objc_name="URLHandle_resourceDataDidBecomeAvailable")
+	URLHandleClient_URLHandle_resourceDataDidBecomeAvailable :: proc(self: ^URLHandleClient, sender: ^URLHandle, newBytes: ^Data) ---
 
-    @(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidBeginLoading:", objc_name="URLHandleResourceDidBeginLoading")
-    URLHandleClient_URLHandleResourceDidBeginLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
+	@(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidBeginLoading:", objc_name="URLHandleResourceDidBeginLoading")
+	URLHandleClient_URLHandleResourceDidBeginLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
 
-    @(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidFinishLoading:", objc_name="URLHandleResourceDidFinishLoading")
-    URLHandleClient_URLHandleResourceDidFinishLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
+	@(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidFinishLoading:", objc_name="URLHandleResourceDidFinishLoading")
+	URLHandleClient_URLHandleResourceDidFinishLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
 
-    @(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidCancelLoading:", objc_name="URLHandleResourceDidCancelLoading")
-    URLHandleClient_URLHandleResourceDidCancelLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
+	@(objc_type=URLHandleClient, objc_selector="URLHandleResourceDidCancelLoading:", objc_name="URLHandleResourceDidCancelLoading")
+	URLHandleClient_URLHandleResourceDidCancelLoading :: proc(self: ^URLHandleClient, sender: ^URLHandle) ---
 
-    @(objc_type=URLHandleClient, objc_selector="URLHandle:resourceDidFailLoadingWithReason:", objc_name="URLHandle_resourceDidFailLoadingWithReason")
-    URLHandleClient_URLHandle_resourceDidFailLoadingWithReason :: proc(self: ^URLHandleClient, sender: ^URLHandle, reason: ^String) ---
+	@(objc_type=URLHandleClient, objc_selector="URLHandle:resourceDidFailLoadingWithReason:", objc_name="URLHandle_resourceDidFailLoadingWithReason")
+	URLHandleClient_URLHandle_resourceDidFailLoadingWithReason :: proc(self: ^URLHandleClient, sender: ^URLHandle, reason: ^String) ---
 }
 
 @(objc_type=URLHandleClient, objc_name="URLHandle")
 URLHandleClient_URLHandle :: proc {
-    URLHandleClient_URLHandle_resourceDataDidBecomeAvailable,
-    URLHandleClient_URLHandle_resourceDidFailLoadingWithReason,
+	URLHandleClient_URLHandle_resourceDataDidBecomeAvailable,
+	URLHandleClient_URLHandle_resourceDidFailLoadingWithReason,
 }
-

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLHeap
 ///
 @(objc_class="MTLHeap")
-Heap :: struct { using _: intrinsics.objc_object, 
+Heap :: struct {
+    using _: intrinsics.objc_object,
     using _: Allocation,
 }
 

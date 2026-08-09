@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIActivityItemSource
 ///
 @(objc_class="UIActivityItemSource")
-ActivityItemSource :: struct { using _: intrinsics.objc_object, 
+ActivityItemSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

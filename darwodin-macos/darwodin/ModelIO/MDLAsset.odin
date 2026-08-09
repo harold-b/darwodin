@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLAsset
 ///
 @(objc_class="MDLAsset", objc_superclass=NS.Object)
-Asset :: struct { using _: NS.Object, 
+Asset :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.FastEnumeration,
 }

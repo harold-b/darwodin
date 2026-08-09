@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LAPublicKey
 ///
 @(objc_class="LAPublicKey", objc_superclass=NS.Object)
-PublicKey :: struct { using _: NS.Object, }
+PublicKey :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

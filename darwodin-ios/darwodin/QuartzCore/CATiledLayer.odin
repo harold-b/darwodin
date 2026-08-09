@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CATiledLayer
 ///
 @(objc_class="CATiledLayer", objc_superclass=Layer)
-TiledLayer :: struct { using _: Layer, }
+TiledLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

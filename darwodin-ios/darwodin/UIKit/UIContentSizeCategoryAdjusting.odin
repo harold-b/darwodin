@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIContentSizeCategoryAdjusting
 ///
 @(objc_class="UIContentSizeCategoryAdjusting")
-ContentSizeCategoryAdjusting :: struct { using _: intrinsics.objc_object, 
+ContentSizeCategoryAdjusting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

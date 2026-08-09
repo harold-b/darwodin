@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKDatabaseSubscription
 ///
 @(objc_class="CKDatabaseSubscription", objc_superclass=Subscription)
-DatabaseSubscription :: struct { using _: Subscription, 
+DatabaseSubscription :: struct {
+    using _: Subscription,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIAdaptivePresentationControllerDelegate
 ///
 @(objc_class="UIAdaptivePresentationControllerDelegate")
-AdaptivePresentationControllerDelegate :: struct { using _: intrinsics.objc_object, 
+AdaptivePresentationControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

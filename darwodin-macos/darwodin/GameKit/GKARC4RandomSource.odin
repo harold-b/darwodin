@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKARC4RandomSource
 ///
 @(objc_class="GKARC4RandomSource", objc_superclass=RandomSource)
-ARC4RandomSource :: struct { using _: RandomSource, }
+ARC4RandomSource :: struct { using _: RandomSource}
 
 @(default_calling_convention="c")
 foreign lib {

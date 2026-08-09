@@ -6,9 +6,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CA "../QuartzCore"
+import NS "../AppKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import NS "../AppKit"
 
 
 
@@ -16,7 +16,7 @@ import NS "../AppKit"
 /// MTKSubmesh
 ///
 @(objc_class="MTKSubmesh", objc_superclass=NS.Object)
-Submesh :: struct { using _: NS.Object, }
+Submesh :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

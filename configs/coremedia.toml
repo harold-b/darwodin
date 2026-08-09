@@ -28,12 +28,12 @@ ExportVars = [
 
 [Odin]
 ExternalTypes = [
-  '../exports/global.exports.yml',
+  '../global.exports.yml',
   '../mach/exports/mach.exports.yml',
   '../exports/CoreFoundation.exports.yml',
-  '../exports/CoreAudio.exports.yml',
   '../exports/CoreGraphics.exports.yml',
   '../exports/Security.exports.yml',
+  '../exports/AudioToolbox.exports.yml',
 ]
 
 ResolvedTypedefs = [

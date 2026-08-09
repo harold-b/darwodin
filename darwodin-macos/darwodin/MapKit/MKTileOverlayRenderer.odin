@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKTileOverlayRenderer
 ///
 @(objc_class="MKTileOverlayRenderer", objc_superclass=OverlayRenderer)
-TileOverlayRenderer :: struct { using _: OverlayRenderer, }
+TileOverlayRenderer :: struct { using _: OverlayRenderer}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPrinterPickerControllerDelegate
 ///
 @(objc_class="UIPrinterPickerControllerDelegate")
-PrinterPickerControllerDelegate :: struct { using _: intrinsics.objc_object, 
+PrinterPickerControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

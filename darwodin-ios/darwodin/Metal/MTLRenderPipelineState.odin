@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLRenderPipelineState
 ///
 @(objc_class="MTLRenderPipelineState")
-RenderPipelineState :: struct { using _: intrinsics.objc_object, 
+RenderPipelineState :: struct {
+    using _: intrinsics.objc_object,
     using _: Allocation,
     using _: NS.ObjectProtocol,
 }

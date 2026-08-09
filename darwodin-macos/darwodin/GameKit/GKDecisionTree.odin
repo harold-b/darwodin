@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKDecisionTree
 ///
 @(objc_class="GKDecisionTree", objc_superclass=NS.Object)
-DecisionTree :: struct { using _: NS.Object, 
+DecisionTree :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

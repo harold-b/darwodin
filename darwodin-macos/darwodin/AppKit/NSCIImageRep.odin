@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSCIImageRep
 ///
 @(objc_class="NSCIImageRep", objc_superclass=ImageRep)
-CIImageRep :: struct { using _: ImageRep, }
+CIImageRep :: struct { using _: ImageRep}
 
 @(default_calling_convention="c")
 foreign lib {

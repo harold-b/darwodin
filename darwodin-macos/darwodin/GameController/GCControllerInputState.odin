@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCControllerInputState
 ///
 @(objc_class="GCControllerInputState", objc_superclass=NS.Object)
-ControllerInputState :: struct { using _: NS.Object, 
+ControllerInputState :: struct {
+    using _: NS.Object,
     using _: DevicePhysicalInputState,
 }
 

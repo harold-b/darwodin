@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionLayoutSize
 ///
 @(objc_class="NSCollectionLayoutSize", objc_superclass=NS.Object)
-CollectionLayoutSize :: struct { using _: NS.Object, 
+CollectionLayoutSize :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

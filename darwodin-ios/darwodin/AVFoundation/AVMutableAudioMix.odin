@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMutableAudioMix
 ///
 @(objc_class="AVMutableAudioMix", objc_superclass=AudioMix)
-MutableAudioMix :: struct { using _: AudioMix, }
+MutableAudioMix :: struct { using _: AudioMix}
 
 @(default_calling_convention="c")
 foreign lib {

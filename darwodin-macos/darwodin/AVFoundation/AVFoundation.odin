@@ -9,19 +9,15 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
-
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
 when ODIN_OS == .Darwin {
     @(export)
@@ -31,6 +27,8 @@ when ODIN_OS == .Darwin {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 
 // Avoiding binding CoreImage & CoreVideo for now, opaque references for the moment
 CVImageBufferRef     :: struct {}
@@ -50,6 +48,7 @@ DepthData                  :: ^NS.Object
 PortraitEffectsMatte       :: ^NS.Object
 SemanticSegmentationMatte  :: ^NS.Object
 
+// -user-text-end
 
 AUDIOFORMAT_HAVE_CMFORMATDESCRIPTION   :: 1
 AUDIONODE_HAVE_AUAUDIOUNIT             :: 1
@@ -1459,10 +1458,10 @@ AudioConverterInputBlock :: ^Objc_Block(proc "c" ( inNumberOfPackets: AudioPacke
 AudioNodeTapBlock :: ^Objc_Block(proc "c" ( buffer: ^AudioPCMBuffer, _when: ^AudioTime ))
 
 /// AVAudioIONodeInputBlock
-AudioIONodeInputBlock :: ^Objc_Block(proc "c" ( inNumberOfFrames: AudioFrameCount ) -> ^Audio.BufferList)
+AudioIONodeInputBlock :: ^Objc_Block(proc "c" ( inNumberOfFrames: AudioFrameCount ) -> ^AT.BufferList)
 
 /// AVAudioEngineManualRenderingBlock
-AudioEngineManualRenderingBlock :: ^Objc_Block(proc "c" ( numberOfFrames: AudioFrameCount, outBuffer: ^Audio.BufferList, outError: ^CF.OSStatus ) -> AudioEngineManualRenderingStatus)
+AudioEngineManualRenderingBlock :: ^Objc_Block(proc "c" ( numberOfFrames: AudioFrameCount, outBuffer: ^AT.BufferList, outError: ^CF.OSStatus ) -> AudioEngineManualRenderingStatus)
 
 /// AVAudioSessionPort
 AudioSessionPort :: ^NS.String
@@ -1498,10 +1497,10 @@ AudioSequencerUserCallback :: ^Objc_Block(proc "c" ( track: ^MusicTrack, userDat
 MusicEventEnumerationBlock :: ^Objc_Block(proc "c" ( event: ^MusicEvent, timeStamp: ^MusicTimeStamp, removeEvent: ^bool ))
 
 /// AVAudioSinkNodeReceiverBlock
-AudioSinkNodeReceiverBlock :: ^Objc_Block(proc "c" ( timestamp: ^Audio.TimeStamp, frameCount: AudioFrameCount, inputData: ^Audio.BufferList ) -> CF.OSStatus)
+AudioSinkNodeReceiverBlock :: ^Objc_Block(proc "c" ( timestamp: ^AT.TimeStamp, frameCount: AudioFrameCount, inputData: ^AT.BufferList ) -> CF.OSStatus)
 
 /// AVAudioSourceNodeRenderBlock
-AudioSourceNodeRenderBlock :: ^Objc_Block(proc "c" ( isSilence: ^bool, timestamp: ^Audio.TimeStamp, frameCount: AudioFrameCount, outputData: ^Audio.BufferList ) -> CF.OSStatus)
+AudioSourceNodeRenderBlock :: ^Objc_Block(proc "c" ( isSilence: ^bool, timestamp: ^AT.TimeStamp, frameCount: AudioFrameCount, outputData: ^AT.BufferList ) -> CF.OSStatus)
 
 /// AVMIDIPlayerCompletionHandler
 MIDIPlayerCompletionHandler :: ^Objc_Block(proc "c" ())
@@ -2802,7 +2801,7 @@ CaptionSize :: struct #align (8) {
 #assert(size_of(CaptionSize) == 32)
 
 /// AVSampleCursorSyncInfo
-SampleCursorSyncInfo :: struct #align (1) {
+SampleCursorSyncInfo :: struct #packed {
     sampleIsFullSync:    bool,
     sampleIsPartialSync: bool,
     sampleIsDroppable:   bool,
@@ -2810,7 +2809,7 @@ SampleCursorSyncInfo :: struct #align (1) {
 #assert(size_of(SampleCursorSyncInfo) == 3)
 
 /// AVSampleCursorDependencyInfo
-SampleCursorDependencyInfo :: struct #align (1) {
+SampleCursorDependencyInfo :: struct #packed {
     sampleIndicatesWhetherItHasDependentSamples: bool,
     sampleHasDependentSamples:       bool,
     sampleIndicatesWhetherItDependsOnOthers: bool,

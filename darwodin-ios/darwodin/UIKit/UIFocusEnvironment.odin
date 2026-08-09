@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIFocusEnvironment
 ///
 @(objc_class="UIFocusEnvironment")
-FocusEnvironment :: struct { using _: intrinsics.objc_object, 
+FocusEnvironment :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

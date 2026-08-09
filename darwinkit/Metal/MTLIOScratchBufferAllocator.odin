@@ -1,25 +1,16 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLIOScratchBufferAllocator")
-IOScratchBufferAllocator :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+IOScratchBufferAllocator :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=IOScratchBufferAllocator, objc_selector="newScratchBufferWithMinimumSize:", objc_name="newScratchBufferWithMinimumSize")
-    IOScratchBufferAllocator_newScratchBufferWithMinimumSize :: proc(self: ^IOScratchBufferAllocator, minimumSize: NS.UInteger) -> ^IOScratchBuffer ---
+	@(objc_type=IOScratchBufferAllocator, objc_selector="newScratchBufferWithMinimumSize:", objc_name="newScratchBufferWithMinimumSize")
+	IOScratchBufferAllocator_newScratchBufferWithMinimumSize :: proc(self: ^IOScratchBufferAllocator, minimumSize: NS.UInteger) -> ^IOScratchBuffer ---
 }
-
-
-

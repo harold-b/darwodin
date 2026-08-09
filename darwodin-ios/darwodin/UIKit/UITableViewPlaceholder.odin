@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITableViewPlaceholder
 ///
 @(objc_class="UITableViewPlaceholder", objc_superclass=NS.Object)
-TableViewPlaceholder :: struct { using _: NS.Object, }
+TableViewPlaceholder :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

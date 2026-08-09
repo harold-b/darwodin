@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSavePanel
 ///
 @(objc_class="NSSavePanel", objc_superclass=Panel)
-SavePanel :: struct { using _: Panel, }
+SavePanel :: struct { using _: Panel}
 
 @(default_calling_convention="c")
 foreign lib {

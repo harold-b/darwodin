@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIColorEffect
 ///
 @(objc_class="UIColorEffect", objc_superclass=VisualEffect)
-ColorEffect :: struct { using _: VisualEffect, }
+ColorEffect :: struct { using _: VisualEffect}
 
 @(default_calling_convention="c")
 foreign lib {

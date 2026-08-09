@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIAccessibilityLocationDescriptor
 ///
 @(objc_class="UIAccessibilityLocationDescriptor", objc_superclass=NS.Object)
-AccessibilityLocationDescriptor :: struct { using _: NS.Object, }
+AccessibilityLocationDescriptor :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

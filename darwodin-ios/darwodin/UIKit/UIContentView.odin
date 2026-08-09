@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIContentView
 ///
 @(objc_class="UIContentView")
-ContentView :: struct { using _: intrinsics.objc_object, 
+ContentView :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

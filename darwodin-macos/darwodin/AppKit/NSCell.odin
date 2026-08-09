@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCell
 ///
 @(objc_class="NSCell", objc_superclass=NS.Object)
-Cell :: struct { using _: NS.Object, 
+Cell :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
     using _: UserInterfaceItemIdentification,

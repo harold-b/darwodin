@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAssetDownloadTask
 ///
 @(objc_class="AVAssetDownloadTask", objc_superclass=NS.URLSessionTask)
-AssetDownloadTask :: struct { using _: NS.URLSessionTask, }
+AssetDownloadTask :: struct { using _: NS.URLSessionTask}
 
 @(default_calling_convention="c")
 foreign lib {

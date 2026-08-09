@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextInputDelegate
 ///
 @(objc_class="UITextInputDelegate")
-TextInputDelegate :: struct { using _: intrinsics.objc_object, 
+TextInputDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

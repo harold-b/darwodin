@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowSceneDelegate
 ///
 @(objc_class="UIWindowSceneDelegate")
-WindowSceneDelegate :: struct { using _: intrinsics.objc_object, }
+WindowSceneDelegate :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

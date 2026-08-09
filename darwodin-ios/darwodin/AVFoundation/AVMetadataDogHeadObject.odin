@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVMetadataDogHeadObject
 ///
 @(objc_class="AVMetadataDogHeadObject", objc_superclass=MetadataObject)
-MetadataDogHeadObject :: struct { using _: MetadataObject, 
+MetadataDogHeadObject :: struct {
+    using _: MetadataObject,
     using _: NS.Copying,
 }
 

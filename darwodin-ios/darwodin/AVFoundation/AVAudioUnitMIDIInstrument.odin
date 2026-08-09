@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,14 +17,15 @@ import Audio "../AudioToolbox"
 /// AVAudioUnitMIDIInstrument
 ///
 @(objc_class="AVAudioUnitMIDIInstrument", objc_superclass=AudioUnit)
-AudioUnitMIDIInstrument :: struct { using _: AudioUnit, 
+AudioUnitMIDIInstrument :: struct {
+    using _: AudioUnit,
     using _: AudioMixing,
 }
 
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitMIDIInstrument, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
-    AudioUnitMIDIInstrument_initWithAudioComponentDescription :: proc(self: ^AudioUnitMIDIInstrument, description: Audio.ComponentDescription) -> instancetype ---
+    AudioUnitMIDIInstrument_initWithAudioComponentDescription :: proc(self: ^AudioUnitMIDIInstrument, description: AT.ComponentDescription) -> instancetype ---
 
     @(objc_type=AudioUnitMIDIInstrument, objc_selector="startNote:withVelocity:onChannel:", objc_name="startNote")
     AudioUnitMIDIInstrument_startNote :: proc(self: ^AudioUnitMIDIInstrument, note: cffi.uint8_t, velocity: cffi.uint8_t, channel: cffi.uint8_t) ---
@@ -60,7 +61,7 @@ foreign lib {
     AudioUnitMIDIInstrument_sendMIDISysExEvent :: proc(self: ^AudioUnitMIDIInstrument, midiData: ^NS.Data) ---
 
     @(objc_type=AudioUnitMIDIInstrument, objc_selector="sendMIDIEventList:", objc_name="sendMIDIEventList")
-    AudioUnitMIDIInstrument_sendMIDIEventList :: proc(self: ^AudioUnitMIDIInstrument, eventList: ^Audio.MIDIEventList) ---
+    AudioUnitMIDIInstrument_sendMIDIEventList :: proc(self: ^AudioUnitMIDIInstrument, eventList: ^AT.MIDIEventList) ---
 }
 
 @(objc_type=AudioUnitMIDIInstrument, objc_name="sendProgramChange")

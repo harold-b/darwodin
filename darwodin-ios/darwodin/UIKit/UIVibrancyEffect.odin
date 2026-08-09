@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIVibrancyEffect
 ///
 @(objc_class="UIVibrancyEffect", objc_superclass=VisualEffect)
-VibrancyEffect :: struct { using _: VisualEffect, }
+VibrancyEffect :: struct { using _: VisualEffect}
 
 @(default_calling_convention="c")
 foreign lib {

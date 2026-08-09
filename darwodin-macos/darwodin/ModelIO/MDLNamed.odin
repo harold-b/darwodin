@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLNamed
 ///
 @(objc_class="MDLNamed")
-Named :: struct { using _: intrinsics.objc_object, }
+Named :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

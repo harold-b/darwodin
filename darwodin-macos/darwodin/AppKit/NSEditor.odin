@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSEditor
 ///
 @(objc_class="NSEditor")
-Editor :: struct { using _: intrinsics.objc_object, 
+Editor :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLRenderPassDepthAttachmentDescriptor
 ///
 @(objc_class="MTLRenderPassDepthAttachmentDescriptor", objc_superclass=RenderPassAttachmentDescriptor)
-RenderPassDepthAttachmentDescriptor :: struct { using _: RenderPassAttachmentDescriptor, }
+RenderPassDepthAttachmentDescriptor :: struct { using _: RenderPassAttachmentDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

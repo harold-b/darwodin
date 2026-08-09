@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitIlluminance
 ///
 @(objc_class="NSUnitIlluminance", objc_superclass=Dimension)
-UnitIlluminance :: struct { using _: Dimension, 
+UnitIlluminance :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

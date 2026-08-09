@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLCache
 ///
 @(objc_class="NSURLCache", objc_superclass=Object)
-URLCache :: struct { using _: Object, }
+URLCache :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

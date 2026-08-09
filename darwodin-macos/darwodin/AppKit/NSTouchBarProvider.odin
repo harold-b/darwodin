@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTouchBarProvider
 ///
 @(objc_class="NSTouchBarProvider")
-TouchBarProvider :: struct { using _: intrinsics.objc_object, 
+TouchBarProvider :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

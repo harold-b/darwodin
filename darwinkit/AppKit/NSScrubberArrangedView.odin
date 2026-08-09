@@ -1,41 +1,28 @@
 #+build darwin:default
-package darwodin_AppKit
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
+package darwin_AppKit
 
 
 
-///
-/// NSScrubberArrangedView
-///
+
+
+
 @(objc_class="NSScrubberArrangedView", objc_superclass=View)
-ScrubberArrangedView :: struct { using _: View, }
+ScrubberArrangedView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=ScrubberArrangedView, objc_selector="applyLayoutAttributes:", objc_name="applyLayoutAttributes")
-    ScrubberArrangedView_applyLayoutAttributes :: proc(self: ^ScrubberArrangedView, layoutAttributes: ^ScrubberLayoutAttributes) ---
+	@(objc_type=ScrubberArrangedView, objc_selector="applyLayoutAttributes:", objc_name="applyLayoutAttributes")
+	ScrubberArrangedView_applyLayoutAttributes :: proc(self: ^ScrubberArrangedView, layoutAttributes: ^ScrubberLayoutAttributes) ---
 
-    @(objc_type=ScrubberArrangedView, objc_selector="isSelected", objc_name="isSelected")
-    ScrubberArrangedView_isSelected :: proc(self: ^ScrubberArrangedView) -> bool ---
+	@(objc_type=ScrubberArrangedView, objc_selector="isSelected", objc_name="isSelected")
+	ScrubberArrangedView_isSelected :: proc(self: ^ScrubberArrangedView) -> bool ---
 
-    @(objc_type=ScrubberArrangedView, objc_selector="setSelected:", objc_name="setSelected")
-    ScrubberArrangedView_setSelected :: proc(self: ^ScrubberArrangedView, selected: bool) ---
+	@(objc_type=ScrubberArrangedView, objc_selector="setSelected:", objc_name="setSelected")
+	ScrubberArrangedView_setSelected :: proc(self: ^ScrubberArrangedView, selected: bool) ---
 
-    @(objc_type=ScrubberArrangedView, objc_selector="isHighlighted", objc_name="isHighlighted")
-    ScrubberArrangedView_isHighlighted :: proc(self: ^ScrubberArrangedView) -> bool ---
+	@(objc_type=ScrubberArrangedView, objc_selector="isHighlighted", objc_name="isHighlighted")
+	ScrubberArrangedView_isHighlighted :: proc(self: ^ScrubberArrangedView) -> bool ---
 
-    @(objc_type=ScrubberArrangedView, objc_selector="setHighlighted:", objc_name="setHighlighted")
-    ScrubberArrangedView_setHighlighted :: proc(self: ^ScrubberArrangedView, highlighted: bool) ---
+	@(objc_type=ScrubberArrangedView, objc_selector="setHighlighted:", objc_name="setHighlighted")
+	ScrubberArrangedView_setHighlighted :: proc(self: ^ScrubberArrangedView, highlighted: bool) ---
 }

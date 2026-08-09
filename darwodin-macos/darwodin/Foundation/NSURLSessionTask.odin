@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLSessionTask
 ///
 @(objc_class="NSURLSessionTask", objc_superclass=Object)
-URLSessionTask :: struct { using _: Object, 
+URLSessionTask :: struct {
+    using _: Object,
     using _: Copying,
     using _: ProgressReporting,
 }

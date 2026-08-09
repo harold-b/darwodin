@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWebViewInternal
 ///
 @(objc_class="UIWebViewInternal")
-WebViewInternal :: struct { using _: intrinsics.objc_object, }
+WebViewInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

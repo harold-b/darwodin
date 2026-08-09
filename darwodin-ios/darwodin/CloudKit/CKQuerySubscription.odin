@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKQuerySubscription
 ///
 @(objc_class="CKQuerySubscription", objc_superclass=Subscription)
-QuerySubscription :: struct { using _: Subscription, 
+QuerySubscription :: struct {
+    using _: Subscription,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

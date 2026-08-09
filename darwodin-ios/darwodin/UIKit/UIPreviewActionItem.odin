@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPreviewActionItem
 ///
 @(objc_class="UIPreviewActionItem")
-PreviewActionItem :: struct { using _: intrinsics.objc_object, 
+PreviewActionItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

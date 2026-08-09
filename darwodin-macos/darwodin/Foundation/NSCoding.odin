@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSCoding
 ///
 @(objc_class="NSCoding")
-Coding :: struct { using _: intrinsics.objc_object, }
+Coding :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

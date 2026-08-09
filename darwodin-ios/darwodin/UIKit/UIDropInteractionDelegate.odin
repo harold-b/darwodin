@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDropInteractionDelegate
 ///
 @(objc_class="UIDropInteractionDelegate")
-DropInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+DropInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

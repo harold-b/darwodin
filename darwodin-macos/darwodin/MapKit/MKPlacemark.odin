@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKPlacemark
 ///
 @(objc_class="MKPlacemark", objc_superclass=CL.Placemark)
-Placemark :: struct { using _: CL.Placemark, 
+Placemark :: struct {
+    using _: CL.Placemark,
     using _: Annotation,
 }
 

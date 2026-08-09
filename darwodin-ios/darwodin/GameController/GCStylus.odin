@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCStylus
 ///
 @(objc_class="GCStylus", objc_superclass=NS.Object)
-Stylus :: struct { using _: NS.Object, 
+Stylus :: struct {
+    using _: NS.Object,
     using _: Device,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPageViewControllerDelegate
 ///
 @(objc_class="UIPageViewControllerDelegate")
-PageViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+PageViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

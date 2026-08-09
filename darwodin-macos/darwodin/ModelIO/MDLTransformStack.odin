@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTransformStack
 ///
 @(objc_class="MDLTransformStack", objc_superclass=NS.Object)
-TransformStack :: struct { using _: NS.Object, 
+TransformStack :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: TransformComponent,
 }

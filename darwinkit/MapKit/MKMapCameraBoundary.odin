@@ -1,0 +1,28 @@
+#+build darwin
+package darwin_MapKit
+
+import NS "../Foundation"
+
+@(objc_class="MKMapCameraBoundary", objc_superclass=NS.Object)
+MapCameraBoundary :: struct {
+	using _: NS.Object,
+	using _: NS.SecureCoding,
+	using _: NS.Copying,
+}
+
+foreign lib {
+	@(objc_type=MapCameraBoundary, objc_selector="initWithMapRect:", objc_name="initWithMapRect")
+	MapCameraBoundary_initWithMapRect :: proc(self: ^MapCameraBoundary, mapRect: MapRect) -> instancetype ---
+
+	@(objc_type=MapCameraBoundary, objc_selector="initWithCoordinateRegion:", objc_name="initWithCoordinateRegion")
+	MapCameraBoundary_initWithCoordinateRegion :: proc(self: ^MapCameraBoundary, region: CoordinateRegion) -> instancetype ---
+
+	@(objc_type=MapCameraBoundary, objc_selector="initWithCoder:", objc_name="initWithCoder")
+	MapCameraBoundary_initWithCoder :: proc(self: ^MapCameraBoundary, coder: ^NS.Coder) -> instancetype ---
+
+	@(objc_type=MapCameraBoundary, objc_selector="mapRect", objc_name="mapRect")
+	MapCameraBoundary_mapRect :: proc(self: ^MapCameraBoundary) -> MapRect ---
+
+	@(objc_type=MapCameraBoundary, objc_selector="region", objc_name="region")
+	MapCameraBoundary_region :: proc(self: ^MapCameraBoundary) -> CoordinateRegion ---
+}

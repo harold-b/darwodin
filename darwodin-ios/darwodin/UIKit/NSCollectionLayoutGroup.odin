@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSCollectionLayoutGroup
 ///
 @(objc_class="NSCollectionLayoutGroup", objc_superclass=NSCollectionLayoutItem)
-NSCollectionLayoutGroup :: struct { using _: NSCollectionLayoutItem, 
+NSCollectionLayoutGroup :: struct {
+    using _: NSCollectionLayoutItem,
     using _: NS.Copying,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPointerHighlightEffect
 ///
 @(objc_class="UIPointerHighlightEffect", objc_superclass=PointerEffect)
-PointerHighlightEffect :: struct { using _: PointerEffect, }
+PointerHighlightEffect :: struct { using _: PointerEffect}
 
 @(default_calling_convention="c")
 foreign lib {}

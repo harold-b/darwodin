@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKAcceptSharesOperation
 ///
 @(objc_class="CKAcceptSharesOperation", objc_superclass=Operation)
-AcceptSharesOperation :: struct { using _: Operation, }
+AcceptSharesOperation :: struct { using _: Operation}
 
 @(default_calling_convention="c")
 foreign lib {

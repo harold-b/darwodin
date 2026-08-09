@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIGraphicsRendererContext
 ///
 @(objc_class="UIGraphicsRendererContext", objc_superclass=NS.Object)
-GraphicsRendererContext :: struct { using _: NS.Object, }
+GraphicsRendererContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

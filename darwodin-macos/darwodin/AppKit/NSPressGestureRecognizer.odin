@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPressGestureRecognizer
 ///
 @(objc_class="NSPressGestureRecognizer", objc_superclass=GestureRecognizer)
-PressGestureRecognizer :: struct { using _: GestureRecognizer, 
+PressGestureRecognizer :: struct {
+    using _: GestureRecognizer,
     using _: NS.Coding,
 }
 

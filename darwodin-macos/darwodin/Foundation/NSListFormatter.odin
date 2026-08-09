@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSListFormatter
 ///
 @(objc_class="NSListFormatter", objc_superclass=Formatter)
-ListFormatter :: struct { using _: Formatter, }
+ListFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityContainsTransientUI
 ///
 @(objc_class="NSAccessibilityContainsTransientUI")
-AccessibilityContainsTransientUI :: struct { using _: intrinsics.objc_object, 
+AccessibilityContainsTransientUI :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 

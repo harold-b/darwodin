@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLResidencySet
 ///
 @(objc_class="MTLResidencySet")
-ResidencySet :: struct { using _: intrinsics.objc_object, 
+ResidencySet :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -1,89 +1,82 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UITextFormattingViewControllerFormattingDescriptor
-///
+
+
 @(objc_class="UITextFormattingViewControllerFormattingDescriptor", objc_superclass=NS.Object)
-TextFormattingViewControllerFormattingDescriptor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
-    using _: NS.SecureCoding,
+TextFormattingViewControllerFormattingDescriptor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
+	using _: NS.SecureCoding,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="init", objc_name="init")
-    TextFormattingViewControllerFormattingDescriptor_init :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> instancetype ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="init", objc_name="init")
+	TextFormattingViewControllerFormattingDescriptor_init :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> instancetype ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="initWithString:range:", objc_name="initWithString")
-    TextFormattingViewControllerFormattingDescriptor_initWithString :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, string: ^NS.AttributedString, range: NS._NSRange) -> instancetype ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="initWithString:range:", objc_name="initWithString")
+	TextFormattingViewControllerFormattingDescriptor_initWithString :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, string: ^NS.AttributedString, range: NS._NSRange) -> instancetype ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="initWithAttributes:", objc_name="initWithAttributes")
-    TextFormattingViewControllerFormattingDescriptor_initWithAttributes :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, attributes: ^NS.Dictionary) -> instancetype ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="initWithAttributes:", objc_name="initWithAttributes")
+	TextFormattingViewControllerFormattingDescriptor_initWithAttributes :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, attributes: ^NS.Dictionary) -> instancetype ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="fonts", objc_name="fonts")
-    TextFormattingViewControllerFormattingDescriptor_fonts :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Array ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="fonts", objc_name="fonts")
+	TextFormattingViewControllerFormattingDescriptor_fonts :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Array ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setFonts:", objc_name="setFonts")
-    TextFormattingViewControllerFormattingDescriptor_setFonts :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, fonts: ^NS.Array) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setFonts:", objc_name="setFonts")
+	TextFormattingViewControllerFormattingDescriptor_setFonts :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, fonts: ^NS.Array) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="textColors", objc_name="textColors")
-    TextFormattingViewControllerFormattingDescriptor_textColors :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Array ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="textColors", objc_name="textColors")
+	TextFormattingViewControllerFormattingDescriptor_textColors :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Array ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setTextColors:", objc_name="setTextColors")
-    TextFormattingViewControllerFormattingDescriptor_setTextColors :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, textColors: ^NS.Array) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setTextColors:", objc_name="setTextColors")
+	TextFormattingViewControllerFormattingDescriptor_setTextColors :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, textColors: ^NS.Array) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="lineHeight", objc_name="lineHeight")
-    TextFormattingViewControllerFormattingDescriptor_lineHeight :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> CG.Float ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="lineHeight", objc_name="lineHeight")
+	TextFormattingViewControllerFormattingDescriptor_lineHeight :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> CG.Float ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setLineHeight:", objc_name="setLineHeight")
-    TextFormattingViewControllerFormattingDescriptor_setLineHeight :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, lineHeight: CG.Float) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setLineHeight:", objc_name="setLineHeight")
+	TextFormattingViewControllerFormattingDescriptor_setLineHeight :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, lineHeight: CG.Float) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="underlinePresent", objc_name="underlinePresent")
-    TextFormattingViewControllerFormattingDescriptor_underlinePresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> bool ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="underlinePresent", objc_name="underlinePresent")
+	TextFormattingViewControllerFormattingDescriptor_underlinePresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> bool ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setUnderlinePresent:", objc_name="setUnderlinePresent")
-    TextFormattingViewControllerFormattingDescriptor_setUnderlinePresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, underlinePresent: bool) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setUnderlinePresent:", objc_name="setUnderlinePresent")
+	TextFormattingViewControllerFormattingDescriptor_setUnderlinePresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, underlinePresent: bool) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="strikethroughPresent", objc_name="strikethroughPresent")
-    TextFormattingViewControllerFormattingDescriptor_strikethroughPresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> bool ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="strikethroughPresent", objc_name="strikethroughPresent")
+	TextFormattingViewControllerFormattingDescriptor_strikethroughPresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> bool ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setStrikethroughPresent:", objc_name="setStrikethroughPresent")
-    TextFormattingViewControllerFormattingDescriptor_setStrikethroughPresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, strikethroughPresent: bool) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setStrikethroughPresent:", objc_name="setStrikethroughPresent")
+	TextFormattingViewControllerFormattingDescriptor_setStrikethroughPresent :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, strikethroughPresent: bool) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="textAlignments", objc_name="textAlignments")
-    TextFormattingViewControllerFormattingDescriptor_textAlignments :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Set ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="textAlignments", objc_name="textAlignments")
+	TextFormattingViewControllerFormattingDescriptor_textAlignments :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Set ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setTextAlignments:", objc_name="setTextAlignments")
-    TextFormattingViewControllerFormattingDescriptor_setTextAlignments :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, textAlignments: ^NS.Set) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setTextAlignments:", objc_name="setTextAlignments")
+	TextFormattingViewControllerFormattingDescriptor_setTextAlignments :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, textAlignments: ^NS.Set) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="textLists", objc_name="textLists")
-    TextFormattingViewControllerFormattingDescriptor_textLists :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Set ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="textLists", objc_name="textLists")
+	TextFormattingViewControllerFormattingDescriptor_textLists :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Set ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setTextLists:", objc_name="setTextLists")
-    TextFormattingViewControllerFormattingDescriptor_setTextLists :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, textLists: ^NS.Set) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setTextLists:", objc_name="setTextLists")
+	TextFormattingViewControllerFormattingDescriptor_setTextLists :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, textLists: ^NS.Set) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="highlights", objc_name="highlights")
-    TextFormattingViewControllerFormattingDescriptor_highlights :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Set ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="highlights", objc_name="highlights")
+	TextFormattingViewControllerFormattingDescriptor_highlights :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Set ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setHighlights:", objc_name="setHighlights")
-    TextFormattingViewControllerFormattingDescriptor_setHighlights :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, highlights: ^NS.Set) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setHighlights:", objc_name="setHighlights")
+	TextFormattingViewControllerFormattingDescriptor_setHighlights :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, highlights: ^NS.Set) ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="formattingStyleKey", objc_name="formattingStyleKey")
-    TextFormattingViewControllerFormattingDescriptor_formattingStyleKey :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.String ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="formattingStyleKey", objc_name="formattingStyleKey")
+	TextFormattingViewControllerFormattingDescriptor_formattingStyleKey :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.String ---
 
-    @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setFormattingStyleKey:", objc_name="setFormattingStyleKey")
-    TextFormattingViewControllerFormattingDescriptor_setFormattingStyleKey :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, formattingStyleKey: ^NS.String) ---
+	@(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="setFormattingStyleKey:", objc_name="setFormattingStyleKey")
+	TextFormattingViewControllerFormattingDescriptor_setFormattingStyleKey :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, formattingStyleKey: ^NS.String) ---
 }

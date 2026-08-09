@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLPipelineBufferDescriptorArray
 ///
 @(objc_class="MTLPipelineBufferDescriptorArray", objc_superclass=NS.Object)
-PipelineBufferDescriptorArray :: struct { using _: NS.Object, }
+PipelineBufferDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

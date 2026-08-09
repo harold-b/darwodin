@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKGradientPolylineRenderer
 ///
 @(objc_class="MKGradientPolylineRenderer", objc_superclass=PolylineRenderer)
-GradientPolylineRenderer :: struct { using _: PolylineRenderer, }
+GradientPolylineRenderer :: struct { using _: PolylineRenderer}
 
 @(default_calling_convention="c")
 foreign lib {

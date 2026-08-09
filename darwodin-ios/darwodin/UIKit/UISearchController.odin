@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISearchController
 ///
 @(objc_class="UISearchController", objc_superclass=ViewController)
-SearchController :: struct { using _: ViewController, 
+SearchController :: struct {
+    using _: ViewController,
     using _: ViewControllerTransitioningDelegate,
     using _: ViewControllerAnimatedTransitioning,
 }

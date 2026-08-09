@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLPhysicallyPlausibleScatteringFunction
 ///
 @(objc_class="MDLPhysicallyPlausibleScatteringFunction", objc_superclass=ScatteringFunction)
-PhysicallyPlausibleScatteringFunction :: struct { using _: ScatteringFunction, }
+PhysicallyPlausibleScatteringFunction :: struct { using _: ScatteringFunction}
 
 @(default_calling_convention="c")
 foreign lib {

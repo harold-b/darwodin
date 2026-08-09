@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CAMediaTimingFunction
 ///
 @(objc_class="CAMediaTimingFunction", objc_superclass=NS.Object)
-MediaTimingFunction :: struct { using _: NS.Object, 
+MediaTimingFunction :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

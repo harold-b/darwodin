@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKAchievementViewController
 ///
 @(objc_class="GKAchievementViewController", objc_superclass=GameCenterViewController)
-AchievementViewController :: struct { using _: GameCenterViewController, }
+AchievementViewController :: struct { using _: GameCenterViewController}
 
 @(default_calling_convention="c")
 foreign lib {

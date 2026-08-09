@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIInteraction
 ///
 @(objc_class="UIInteraction")
-Interaction :: struct { using _: intrinsics.objc_object, 
+Interaction :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

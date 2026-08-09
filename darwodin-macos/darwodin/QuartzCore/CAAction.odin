@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAAction
 ///
 @(objc_class="CAAction")
-Action :: struct { using _: intrinsics.objc_object, }
+Action :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

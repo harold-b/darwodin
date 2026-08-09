@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLObjectContainerComponent
 ///
 @(objc_class="MDLObjectContainerComponent")
-ObjectContainerComponent :: struct { using _: intrinsics.objc_object, 
+ObjectContainerComponent :: struct {
+    using _: intrinsics.objc_object,
     using _: Component,
     using _: NS.FastEnumeration,
 }

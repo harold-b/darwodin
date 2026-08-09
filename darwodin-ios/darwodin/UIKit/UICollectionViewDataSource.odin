@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDataSource
 ///
 @(objc_class="UICollectionViewDataSource")
-CollectionViewDataSource :: struct { using _: intrinsics.objc_object, 
+CollectionViewDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSGlyphStorage
 ///
 @(objc_class="NSGlyphStorage")
-GlyphStorage :: struct { using _: intrinsics.objc_object, }
+GlyphStorage :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

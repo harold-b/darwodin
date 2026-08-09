@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPopoverPresentationControllerDelegate
 ///
 @(objc_class="UIPopoverPresentationControllerDelegate")
-PopoverPresentationControllerDelegate :: struct { using _: intrinsics.objc_object, 
+PopoverPresentationControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: AdaptivePresentationControllerDelegate,
 }
 

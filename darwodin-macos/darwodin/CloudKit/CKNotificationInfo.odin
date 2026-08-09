@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKNotificationInfo
 ///
 @(objc_class="CKNotificationInfo", objc_superclass=NS.Object)
-NotificationInfo :: struct { using _: NS.Object, 
+NotificationInfo :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKPitchControl
 ///
 @(objc_class="MKPitchControl", objc_superclass=NS.View)
-PitchControl :: struct { using _: NS.View, }
+PitchControl :: struct { using _: NS.View}
 
 @(default_calling_convention="c")
 foreign lib {

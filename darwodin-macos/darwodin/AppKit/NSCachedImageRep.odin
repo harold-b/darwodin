@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSCachedImageRep
 ///
 @(objc_class="NSCachedImageRep", objc_superclass=ImageRep)
-CachedImageRep :: struct { using _: ImageRep, }
+CachedImageRep :: struct { using _: ImageRep}
 
 @(default_calling_convention="c")
 foreign lib {

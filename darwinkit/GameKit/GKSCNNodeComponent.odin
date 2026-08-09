@@ -1,27 +1,20 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="GKSCNNodeComponent", objc_superclass=Component)
-SCNNodeComponent :: struct { using _: Component, 
-    using _: AgentDelegate,
+SCNNodeComponent :: struct {
+	using _: Component,
+	using _: AgentDelegate,
 }
 
 foreign lib {
-    @(objc_type=SCNNodeComponent, objc_selector="componentWithNode:", objc_name="componentWithNode", objc_is_class_method=true)
-    SCNNodeComponent_componentWithNode :: proc(node: ^SCNNode) -> instancetype ---
+	@(objc_type=SCNNodeComponent, objc_selector="componentWithNode:", objc_name="componentWithNode", objc_is_class_method=true)
+	SCNNodeComponent_componentWithNode :: proc(node: ^SCNNode) -> instancetype ---
 
-    @(objc_type=SCNNodeComponent, objc_selector="initWithNode:", objc_name="initWithNode")
-    SCNNodeComponent_initWithNode :: proc(self: ^SCNNodeComponent, node: ^SCNNode) -> instancetype ---
+	@(objc_type=SCNNodeComponent, objc_selector="initWithNode:", objc_name="initWithNode")
+	SCNNodeComponent_initWithNode :: proc(self: ^SCNNodeComponent, node: ^SCNNode) -> instancetype ---
 
-    @(objc_type=SCNNodeComponent, objc_selector="node", objc_name="node")
-    SCNNodeComponent_node :: proc(self: ^SCNNodeComponent) -> ^SCNNode ---
+	@(objc_type=SCNNodeComponent, objc_selector="node", objc_name="node")
+	SCNNodeComponent_node :: proc(self: ^SCNNodeComponent) -> ^SCNNode ---
 }
-
-
-

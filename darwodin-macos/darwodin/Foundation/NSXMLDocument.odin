@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSXMLDocument
 ///
 @(objc_class="NSXMLDocument", objc_superclass=XMLNode)
-XMLDocument :: struct { using _: XMLNode, }
+XMLDocument :: struct { using _: XMLNode}
 
 @(default_calling_convention="c")
 foreign lib {

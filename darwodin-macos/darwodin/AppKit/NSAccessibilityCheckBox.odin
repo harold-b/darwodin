@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityCheckBox
 ///
 @(objc_class="NSAccessibilityCheckBox")
-AccessibilityCheckBox :: struct { using _: intrinsics.objc_object, 
+AccessibilityCheckBox :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityButton,
 }
 

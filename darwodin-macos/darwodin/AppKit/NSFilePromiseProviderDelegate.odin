@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSFilePromiseProviderDelegate
 ///
 @(objc_class="NSFilePromiseProviderDelegate")
-FilePromiseProviderDelegate :: struct { using _: intrinsics.objc_object, 
+FilePromiseProviderDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

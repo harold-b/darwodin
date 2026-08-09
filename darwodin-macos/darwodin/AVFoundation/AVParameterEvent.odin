@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVParameterEvent
 ///
 @(objc_class="AVParameterEvent", objc_superclass=MusicEvent)
-ParameterEvent :: struct { using _: MusicEvent, }
+ParameterEvent :: struct { using _: MusicEvent}
 
 @(default_calling_convention="c")
 foreign lib {

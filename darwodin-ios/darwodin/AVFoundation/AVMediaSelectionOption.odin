@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVMediaSelectionOption
 ///
 @(objc_class="AVMediaSelectionOption", objc_superclass=NS.Object)
-MediaSelectionOptions :: struct { using _: NS.Object, 
+MediaSelectionOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

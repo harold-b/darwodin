@@ -7,17 +7,13 @@ import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
-
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
 when ODIN_OS == .Darwin {
     @(export, require)
@@ -27,6 +23,8 @@ when ODIN_OS == .Darwin {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 // FSEventStreamCreateFlags
 EventStreamCreateFlag :: enum CF.UInt32 {
 
@@ -76,6 +74,7 @@ EventStreamEventFlag :: enum CF.UInt32 {
 
 EventStreamEventFlags :: bit_set[EventStreamEventFlag; CF.UInt32]
 
+// -user-text-end
 
 
 kTextUnsupportedEncodingErr              :: -8738
@@ -1137,7 +1136,7 @@ ConstFSEventStreamRef :: distinct ^__FSEventStream
 EventStreamCallback :: proc "c" ( streamRef: ConstFSEventStreamRef, clientCallBackInfo: rawptr, numEvents: cffi.size_t, eventPaths: rawptr, eventFlags: ^EventStreamEventFlags, eventIds: ^EventStreamEventId )
 
 /// FSRef
-Ref :: struct #align (1) {
+Ref :: struct #packed {
     hidden: [80]CF.UInt8,
 }
 #assert(size_of(Ref) == 80)
@@ -1186,7 +1185,7 @@ CatPositionRec :: struct #align (2) {
 #assert(size_of(CatPositionRec) == 16)
 
 /// FSSpec
-Spec :: struct #align (1) {
+Spec :: struct #packed {
     hidden: [70]CF.UInt8,
 }
 #assert(size_of(Spec) == 70)
@@ -1468,7 +1467,7 @@ FileOperationClientContext :: struct #align (2) {
 #assert(size_of(FileOperationClientContext) == 40)
 
 /// AliasRecord
-AliasRecord :: struct #align (1) {
+AliasRecord :: struct #packed {
     hidden: [6]CF.UInt8,
 }
 #assert(size_of(AliasRecord) == 6)

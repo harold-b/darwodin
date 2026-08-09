@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLObject
 ///
 @(objc_class="MDLObject", objc_superclass=NS.Object)
-Object :: struct { using _: NS.Object, 
+Object :: struct {
+    using _: NS.Object,
     using _: Named,
 }
 

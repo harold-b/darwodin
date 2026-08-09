@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLStitchedLibraryDescriptor
 ///
 @(objc_class="MTLStitchedLibraryDescriptor", objc_superclass=NS.Object)
-StitchedLibraryDescriptor :: struct { using _: NS.Object, 
+StitchedLibraryDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSStatusItem
 ///
 @(objc_class="NSStatusItem", objc_superclass=NS.Object)
-StatusItem :: struct { using _: NS.Object, }
+StatusItem :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLDepthStencilDescriptor
 ///
 @(objc_class="MTLDepthStencilDescriptor", objc_superclass=NS.Object)
-DepthStencilDescriptor :: struct { using _: NS.Object, 
+DepthStencilDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

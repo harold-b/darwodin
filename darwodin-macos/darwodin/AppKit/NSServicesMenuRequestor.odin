@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSServicesMenuRequestor
 ///
 @(objc_class="NSServicesMenuRequestor")
-ServicesMenuRequestor :: struct { using _: intrinsics.objc_object, 
+ServicesMenuRequestor :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDictationPhrase
 ///
 @(objc_class="UIDictationPhrase", objc_superclass=NS.Object)
-DictationPhrase :: struct { using _: NS.Object, }
+DictationPhrase :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

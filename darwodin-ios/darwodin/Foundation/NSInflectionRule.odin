@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSInflectionRule
 ///
 @(objc_class="NSInflectionRule", objc_superclass=Object)
-InflectionRule :: struct { using _: Object, 
+InflectionRule :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

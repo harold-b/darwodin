@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIntersectionFunctionDescriptor
 ///
 @(objc_class="MTLIntersectionFunctionDescriptor", objc_superclass=FunctionDescriptor)
-IntersectionFunctionDescriptor :: struct { using _: FunctionDescriptor, 
+IntersectionFunctionDescriptor :: struct {
+    using _: FunctionDescriptor,
     using _: NS.Copying,
 }
 

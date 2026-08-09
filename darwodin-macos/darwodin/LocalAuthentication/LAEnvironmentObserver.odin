@@ -13,7 +13,8 @@ import Sec "../Security"
 /// LAEnvironmentObserver
 ///
 @(objc_class="LAEnvironmentObserver")
-EnvironmentObserver :: struct { using _: intrinsics.objc_object, 
+EnvironmentObserver :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

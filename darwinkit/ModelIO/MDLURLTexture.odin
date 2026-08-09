@@ -1,28 +1,18 @@
 #+build darwin
-package darwodin_ModelIO
+package darwin_ModelIO
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import MTL "../Metal"
 
 @(objc_class="MDLURLTexture", objc_superclass=Texture)
-URLTexture :: struct { using _: Texture, }
+URLTexture :: struct { using _: Texture}
 
 foreign lib {
-    @(objc_type=URLTexture, objc_selector="initWithURL:name:", objc_name="initWithURL")
-    URLTexture_initWithURL :: proc(self: ^URLTexture, _URL: ^NS.URL, name: ^NS.String) -> instancetype ---
+	@(objc_type=URLTexture, objc_selector="initWithURL:name:", objc_name="initWithURL")
+	URLTexture_initWithURL :: proc(self: ^URLTexture, _URL: ^NS.URL, name: ^NS.String) -> instancetype ---
 
-    @(objc_type=URLTexture, objc_selector="URL", objc_name="URL")
-    URLTexture_URL :: proc(self: ^URLTexture) -> ^NS.URL ---
+	@(objc_type=URLTexture, objc_selector="URL", objc_name="URL")
+	URLTexture_URL :: proc(self: ^URLTexture) -> ^NS.URL ---
 
-    @(objc_type=URLTexture, objc_selector="setURL:", objc_name="setURL")
-    URLTexture_setURL :: proc(self: ^URLTexture, _URL: ^NS.URL) ---
+	@(objc_type=URLTexture, objc_selector="setURL:", objc_name="setURL")
+	URLTexture_setURL :: proc(self: ^URLTexture, _URL: ^NS.URL) ---
 }
-
-
-

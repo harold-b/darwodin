@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLEvent
 ///
 @(objc_class="MTLEvent")
-Event :: struct { using _: intrinsics.objc_object, 
+Event :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

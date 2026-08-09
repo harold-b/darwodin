@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLVertexBufferLayoutDescriptor
 ///
 @(objc_class="MTLVertexBufferLayoutDescriptor", objc_superclass=NS.Object)
-VertexBufferLayoutDescriptor :: struct { using _: NS.Object, 
+VertexBufferLayoutDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

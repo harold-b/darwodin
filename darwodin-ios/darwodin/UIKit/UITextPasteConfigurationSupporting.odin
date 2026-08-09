@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextPasteConfigurationSupporting
 ///
 @(objc_class="UITextPasteConfigurationSupporting")
-TextPasteConfigurationSupporting :: struct { using _: intrinsics.objc_object, 
+TextPasteConfigurationSupporting :: struct {
+    using _: intrinsics.objc_object,
     using _: PasteConfigurationSupporting,
 }
 

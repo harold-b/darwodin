@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKLeaderboardViewController
 ///
 @(objc_class="GKLeaderboardViewController", objc_superclass=GameCenterViewController)
-LeaderboardViewController :: struct { using _: GameCenterViewController, }
+LeaderboardViewController :: struct { using _: GameCenterViewController}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSOrthography
 ///
 @(objc_class="NSOrthography", objc_superclass=Object)
-Orthography :: struct { using _: Object, 
+Orthography :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

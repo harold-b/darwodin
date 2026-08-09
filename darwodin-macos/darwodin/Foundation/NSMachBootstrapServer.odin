@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMachBootstrapServer
 ///
 @(objc_class="NSMachBootstrapServer", objc_superclass=PortNameServer)
-MachBootstrapServer :: struct { using _: PortNameServer, }
+MachBootstrapServer :: struct { using _: PortNameServer}
 
 @(default_calling_convention="c")
 foreign lib {

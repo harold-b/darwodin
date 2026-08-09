@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioNode
 ///
 @(objc_class="AVAudioNode", objc_superclass=NS.Object)
-AudioNode :: struct { using _: NS.Object, }
+AudioNode :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -55,7 +55,7 @@ foreign lib {
     AudioNode_lastRenderTime :: proc(self: ^AudioNode) -> ^AudioTime ---
 
     @(objc_type=AudioNode, objc_selector="AUAudioUnit", objc_name="AUAudioUnit")
-    AudioNode_AUAudioUnit :: proc(self: ^AudioNode) -> ^Audio.AUAudioUnit ---
+    AudioNode_AUAudioUnit :: proc(self: ^AudioNode) -> ^AT.AUAudioUnit ---
 
     @(objc_type=AudioNode, objc_selector="latency", objc_name="latency")
     AudioNode_latency :: proc(self: ^AudioNode) -> NS.TimeInterval ---

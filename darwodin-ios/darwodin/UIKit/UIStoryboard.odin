@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIStoryboard
 ///
 @(objc_class="UIStoryboard", objc_superclass=NS.Object)
-Storyboard :: struct { using _: NS.Object, }
+Storyboard :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

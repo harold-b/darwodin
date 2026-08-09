@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSScreen
 ///
 @(objc_class="NSScreen", objc_superclass=NS.Object)
-Screen :: struct { using _: NS.Object, }
+Screen :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

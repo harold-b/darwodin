@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UILayoutSupport
 ///
 @(objc_class="UILayoutSupport")
-LayoutSupport :: struct { using _: intrinsics.objc_object, 
+LayoutSupport :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

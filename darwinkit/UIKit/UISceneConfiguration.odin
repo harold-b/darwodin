@@ -1,56 +1,48 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UISceneConfiguration
-///
+
+
 @(objc_class="UISceneConfiguration", objc_superclass=NS.Object)
-SceneConfiguration :: struct { using _: NS.Object, 
-    using _: NS.Copying,
-    using _: NS.SecureCoding,
+SceneConfiguration :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
+	using _: NS.SecureCoding,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=SceneConfiguration, objc_selector="configurationWithName:sessionRole:", objc_name="configurationWithName", objc_is_class_method=true)
-    SceneConfiguration_configurationWithName :: proc(name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
+	@(objc_type=SceneConfiguration, objc_selector="configurationWithName:sessionRole:", objc_name="configurationWithName", objc_is_class_method=true)
+	SceneConfiguration_configurationWithName :: proc(name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
 
-    @(objc_type=SceneConfiguration, objc_selector="initWithName:sessionRole:", objc_name="initWithName")
-    SceneConfiguration_initWithName :: proc(self: ^SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
+	@(objc_type=SceneConfiguration, objc_selector="initWithName:sessionRole:", objc_name="initWithName")
+	SceneConfiguration_initWithName :: proc(self: ^SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
 
-    @(objc_type=SceneConfiguration, objc_selector="name", objc_name="name")
-    SceneConfiguration_name :: proc(self: ^SceneConfiguration) -> ^NS.String ---
+	@(objc_type=SceneConfiguration, objc_selector="name", objc_name="name")
+	SceneConfiguration_name :: proc(self: ^SceneConfiguration) -> ^NS.String ---
 
-    @(objc_type=SceneConfiguration, objc_selector="role", objc_name="role")
-    SceneConfiguration_role :: proc(self: ^SceneConfiguration) -> ^NS.String ---
+	@(objc_type=SceneConfiguration, objc_selector="role", objc_name="role")
+	SceneConfiguration_role :: proc(self: ^SceneConfiguration) -> ^NS.String ---
 
-    @(objc_type=SceneConfiguration, objc_selector="sceneClass", objc_name="sceneClass")
-    SceneConfiguration_sceneClass :: proc(self: ^SceneConfiguration) -> Class ---
+	@(objc_type=SceneConfiguration, objc_selector="sceneClass", objc_name="sceneClass")
+	SceneConfiguration_sceneClass :: proc(self: ^SceneConfiguration) -> Class ---
 
-    @(objc_type=SceneConfiguration, objc_selector="setSceneClass:", objc_name="setSceneClass")
-    SceneConfiguration_setSceneClass :: proc(self: ^SceneConfiguration, sceneClass: Class) ---
+	@(objc_type=SceneConfiguration, objc_selector="setSceneClass:", objc_name="setSceneClass")
+	SceneConfiguration_setSceneClass :: proc(self: ^SceneConfiguration, sceneClass: Class) ---
 
-    @(objc_type=SceneConfiguration, objc_selector="delegateClass", objc_name="delegateClass")
-    SceneConfiguration_delegateClass :: proc(self: ^SceneConfiguration) -> Class ---
+	@(objc_type=SceneConfiguration, objc_selector="delegateClass", objc_name="delegateClass")
+	SceneConfiguration_delegateClass :: proc(self: ^SceneConfiguration) -> Class ---
 
-    @(objc_type=SceneConfiguration, objc_selector="setDelegateClass:", objc_name="setDelegateClass")
-    SceneConfiguration_setDelegateClass :: proc(self: ^SceneConfiguration, delegateClass: Class) ---
+	@(objc_type=SceneConfiguration, objc_selector="setDelegateClass:", objc_name="setDelegateClass")
+	SceneConfiguration_setDelegateClass :: proc(self: ^SceneConfiguration, delegateClass: Class) ---
 
-    @(objc_type=SceneConfiguration, objc_selector="storyboard", objc_name="storyboard")
-    SceneConfiguration_storyboard :: proc(self: ^SceneConfiguration) -> ^Storyboard ---
+	@(objc_type=SceneConfiguration, objc_selector="storyboard", objc_name="storyboard")
+	SceneConfiguration_storyboard :: proc(self: ^SceneConfiguration) -> ^Storyboard ---
 
-    @(objc_type=SceneConfiguration, objc_selector="setStoryboard:", objc_name="setStoryboard")
-    SceneConfiguration_setStoryboard :: proc(self: ^SceneConfiguration, storyboard: ^Storyboard) ---
+	@(objc_type=SceneConfiguration, objc_selector="setStoryboard:", objc_name="setStoryboard")
+	SceneConfiguration_setStoryboard :: proc(self: ^SceneConfiguration, storyboard: ^Storyboard) ---
 }

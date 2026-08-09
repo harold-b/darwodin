@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTreeNode
 ///
 @(objc_class="NSTreeNode", objc_superclass=NS.Object)
-TreeNode :: struct { using _: NS.Object, }
+TreeNode :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

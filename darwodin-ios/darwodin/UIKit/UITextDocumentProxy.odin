@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDocumentProxy
 ///
 @(objc_class="UITextDocumentProxy")
-TextDocumentProxy :: struct { using _: intrinsics.objc_object, 
+TextDocumentProxy :: struct {
+    using _: intrinsics.objc_object,
     using _: KeyInput,
 }
 

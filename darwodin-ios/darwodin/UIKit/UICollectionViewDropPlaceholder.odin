@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICollectionViewDropPlaceholder
 ///
 @(objc_class="UICollectionViewDropPlaceholder", objc_superclass=CollectionViewPlaceholder)
-CollectionViewDropPlaceholder :: struct { using _: CollectionViewPlaceholder, }
+CollectionViewDropPlaceholder :: struct { using _: CollectionViewPlaceholder}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -1,0 +1,14 @@
+#+build darwin
+package darwin_MapKit
+
+
+@(objc_class="MKMultiPolylineRenderer", objc_superclass=OverlayPathRenderer)
+MultiPolylineRenderer :: struct { using _: OverlayPathRenderer}
+
+foreign lib {
+	@(objc_type=MultiPolylineRenderer, objc_selector="initWithMultiPolyline:", objc_name="initWithMultiPolyline")
+	MultiPolylineRenderer_initWithMultiPolyline :: proc(self: ^MultiPolylineRenderer, multiPolyline: ^MultiPolyline) -> instancetype ---
+
+	@(objc_type=MultiPolylineRenderer, objc_selector="multiPolyline", objc_name="multiPolyline")
+	MultiPolylineRenderer_multiPolyline :: proc(self: ^MultiPolylineRenderer) -> ^MultiPolyline ---
+}

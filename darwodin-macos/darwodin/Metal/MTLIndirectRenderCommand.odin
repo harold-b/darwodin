@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIndirectRenderCommand
 ///
 @(objc_class="MTLIndirectRenderCommand")
-IndirectRenderCommand :: struct { using _: intrinsics.objc_object, 
+IndirectRenderCommand :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

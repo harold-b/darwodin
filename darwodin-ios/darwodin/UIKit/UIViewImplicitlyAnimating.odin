@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIViewImplicitlyAnimating
 ///
 @(objc_class="UIViewImplicitlyAnimating")
-ViewImplicitlyAnimating :: struct { using _: intrinsics.objc_object, 
+ViewImplicitlyAnimating :: struct {
+    using _: intrinsics.objc_object,
     using _: ViewAnimating,
 }
 

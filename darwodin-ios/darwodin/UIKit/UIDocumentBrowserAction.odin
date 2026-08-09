@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDocumentBrowserAction
 ///
 @(objc_class="UIDocumentBrowserAction", objc_superclass=NS.Object)
-DocumentBrowserAction :: struct { using _: NS.Object, }
+DocumentBrowserAction :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

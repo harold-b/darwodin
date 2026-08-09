@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4BinaryFunction
 ///
 @(objc_class="MTL4BinaryFunction")
-MTL4BinaryFunctionProtocol :: struct { using _: intrinsics.objc_object, 
+MTL4BinaryFunctionProtocol :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

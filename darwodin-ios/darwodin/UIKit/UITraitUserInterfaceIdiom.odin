@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitUserInterfaceIdiom
 ///
 @(objc_class="UITraitUserInterfaceIdiom", objc_superclass=NS.Object)
-TraitUserInterfaceIdiom :: struct { using _: NS.Object, 
+TraitUserInterfaceIdiom :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

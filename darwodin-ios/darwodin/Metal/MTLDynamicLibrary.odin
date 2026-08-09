@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLDynamicLibrary
 ///
 @(objc_class="MTLDynamicLibrary")
-DynamicLibrary :: struct { using _: intrinsics.objc_object, }
+DynamicLibrary :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

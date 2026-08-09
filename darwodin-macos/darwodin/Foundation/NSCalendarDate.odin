@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSCalendarDate
 ///
 @(objc_class="NSCalendarDate", objc_superclass=Date)
-CalendarDate :: struct { using _: Date, }
+CalendarDate :: struct { using _: Date}
 
 @(default_calling_convention="c")
 foreign lib {

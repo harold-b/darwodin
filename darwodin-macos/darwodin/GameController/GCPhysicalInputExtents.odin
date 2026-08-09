@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCPhysicalInputExtents
 ///
 @(objc_class="GCPhysicalInputExtents")
-PhysicalInputExtents :: struct { using _: intrinsics.objc_object, 
+PhysicalInputExtents :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

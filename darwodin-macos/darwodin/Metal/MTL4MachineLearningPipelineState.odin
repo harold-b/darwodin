@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4MachineLearningPipelineState
 ///
 @(objc_class="MTL4MachineLearningPipelineState")
-MTL4MachineLearningPipelineState :: struct { using _: intrinsics.objc_object, 
+MTL4MachineLearningPipelineState :: struct {
+    using _: intrinsics.objc_object,
     using _: Allocation,
     using _: NS.ObjectProtocol,
 }

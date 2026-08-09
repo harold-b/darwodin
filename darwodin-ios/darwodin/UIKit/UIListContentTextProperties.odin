@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIListContentTextProperties
 ///
 @(objc_class="UIListContentTextProperties", objc_superclass=NS.Object)
-ListContentTextProperties :: struct { using _: NS.Object, 
+ListContentTextProperties :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

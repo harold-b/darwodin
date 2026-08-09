@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextInteractionDelegate
 ///
 @(objc_class="UITextInteractionDelegate")
-TextInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+TextInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

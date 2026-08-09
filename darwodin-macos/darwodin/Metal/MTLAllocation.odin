@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLAllocation
 ///
 @(objc_class="MTLAllocation")
-Allocation :: struct { using _: intrinsics.objc_object, 
+Allocation :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

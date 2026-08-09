@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapConfiguration
 ///
 @(objc_class="MKMapConfiguration", objc_superclass=NS.Object)
-MapConfiguration :: struct { using _: NS.Object, 
+MapConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAssetResourceRenewalRequest
 ///
 @(objc_class="AVAssetResourceRenewalRequest", objc_superclass=AssetResourceLoadingRequest)
-AssetResourceRenewalRequest :: struct { using _: AssetResourceLoadingRequest, }
+AssetResourceRenewalRequest :: struct { using _: AssetResourceLoadingRequest}
 
 @(default_calling_convention="c")
 foreign lib {}

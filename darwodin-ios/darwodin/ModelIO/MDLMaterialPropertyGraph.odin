@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLMaterialPropertyGraph
 ///
 @(objc_class="MDLMaterialPropertyGraph", objc_superclass=MaterialPropertyNode)
-MaterialPropertyGraph :: struct { using _: MaterialPropertyNode, }
+MaterialPropertyGraph :: struct { using _: MaterialPropertyNode}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CARemoteLayerClient
 ///
 @(objc_class="CARemoteLayerClient", objc_superclass=NS.Object)
-RemoteLayerClient :: struct { using _: NS.Object, }
+RemoteLayerClient :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

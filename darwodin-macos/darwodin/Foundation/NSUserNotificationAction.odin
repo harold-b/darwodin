@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUserNotificationAction
 ///
 @(objc_class="NSUserNotificationAction", objc_superclass=Object)
-UserNotificationAction :: struct { using _: Object, 
+UserNotificationAction :: struct {
+    using _: Object,
     using _: Copying,
 }
 

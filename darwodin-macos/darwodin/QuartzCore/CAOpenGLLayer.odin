@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAOpenGLLayer
 ///
 @(objc_class="CAOpenGLLayer", objc_superclass=Layer)
-OpenGLLayer :: struct { using _: Layer, }
+OpenGLLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

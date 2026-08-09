@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPencilHoverPose
 ///
 @(objc_class="UIPencilHoverPose", objc_superclass=NS.Object)
-PencilHoverPose :: struct { using _: NS.Object, }
+PencilHoverPose :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

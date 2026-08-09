@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSFastEnumeration
 ///
 @(objc_class="NSFastEnumeration")
-FastEnumeration :: struct { using _: intrinsics.objc_object, }
+FastEnumeration :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

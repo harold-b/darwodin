@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCKeyboardInput
 ///
 @(objc_class="GCKeyboardInput", objc_superclass=PhysicalInputProfile)
-KeyboardInput :: struct { using _: PhysicalInputProfile, }
+KeyboardInput :: struct { using _: PhysicalInputProfile}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSViewToolTipOwner
 ///
 @(objc_class="NSViewToolTipOwner")
-ViewToolTipOwner :: struct { using _: intrinsics.objc_object, 
+ViewToolTipOwner :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

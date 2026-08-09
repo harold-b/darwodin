@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSForm
 ///
 @(objc_class="NSForm", objc_superclass=Matrix)
-Form :: struct { using _: Matrix, }
+Form :: struct { using _: Matrix}
 
 @(default_calling_convention="c")
 foreign lib {

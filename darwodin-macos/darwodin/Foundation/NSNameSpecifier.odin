@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSNameSpecifier
 ///
 @(objc_class="NSNameSpecifier", objc_superclass=ScriptObjectSpecifier)
-NameSpecifier :: struct { using _: ScriptObjectSpecifier, }
+NameSpecifier :: struct { using _: ScriptObjectSpecifier}
 
 @(default_calling_convention="c")
 foreign lib {

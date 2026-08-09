@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioEngine
 ///
 @(objc_class="AVAudioEngine", objc_superclass=NS.Object)
-AudioEngine :: struct { using _: NS.Object, }
+AudioEngine :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -82,16 +82,16 @@ foreign lib {
     AudioEngine_renderOffline :: proc(self: ^AudioEngine, numberOfFrames: AudioFrameCount, buffer: ^AudioPCMBuffer, outError: ^^NS.Error) -> AudioEngineManualRenderingStatus ---
 
     @(objc_type=AudioEngine, objc_selector="connectMIDI:to:format:block:", objc_name="connectMIDI_to_format_block")
-    AudioEngine_connectMIDI_to_format_block :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode, format: ^AudioFormat, tapBlock: Audio.AUMIDIOutputEventBlock) ---
+    AudioEngine_connectMIDI_to_format_block :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode, format: ^AudioFormat, tapBlock: AT.AUMIDIOutputEventBlock) ---
 
     @(objc_type=AudioEngine, objc_selector="connectMIDI:to:format:eventListBlock:", objc_name="connectMIDI_to_format_eventListBlock")
-    AudioEngine_connectMIDI_to_format_eventListBlock :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode, format: ^AudioFormat, tapBlock: Audio.AUMIDIEventListBlock) ---
+    AudioEngine_connectMIDI_to_format_eventListBlock :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode, format: ^AudioFormat, tapBlock: AT.AUMIDIEventListBlock) ---
 
     @(objc_type=AudioEngine, objc_selector="connectMIDI:toNodes:format:block:", objc_name="connectMIDI_toNodes_format_block")
-    AudioEngine_connectMIDI_toNodes_format_block :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNodes: ^NS.Array, format: ^AudioFormat, tapBlock: Audio.AUMIDIOutputEventBlock) ---
+    AudioEngine_connectMIDI_toNodes_format_block :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNodes: ^NS.Array, format: ^AudioFormat, tapBlock: AT.AUMIDIOutputEventBlock) ---
 
     @(objc_type=AudioEngine, objc_selector="connectMIDI:toNodes:format:eventListBlock:", objc_name="connectMIDI_toNodes_format_eventListBlock")
-    AudioEngine_connectMIDI_toNodes_format_eventListBlock :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNodes: ^NS.Array, format: ^AudioFormat, tapBlock: Audio.AUMIDIEventListBlock) ---
+    AudioEngine_connectMIDI_toNodes_format_eventListBlock :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNodes: ^NS.Array, format: ^AudioFormat, tapBlock: AT.AUMIDIEventListBlock) ---
 
     @(objc_type=AudioEngine, objc_selector="disconnectMIDI:from:", objc_name="disconnectMIDI_from")
     AudioEngine_disconnectMIDI_from :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode) ---
@@ -106,10 +106,10 @@ foreign lib {
     AudioEngine_disconnectMIDIOutput :: proc(self: ^AudioEngine, node: ^AudioNode) ---
 
     @(objc_type=AudioEngine, objc_selector="musicSequence", objc_name="musicSequence")
-    AudioEngine_musicSequence :: proc(self: ^AudioEngine) -> Audio.MusicSequence ---
+    AudioEngine_musicSequence :: proc(self: ^AudioEngine) -> AT.MusicSequence ---
 
     @(objc_type=AudioEngine, objc_selector="setMusicSequence:", objc_name="setMusicSequence")
-    AudioEngine_setMusicSequence :: proc(self: ^AudioEngine, musicSequence: Audio.MusicSequence) ---
+    AudioEngine_setMusicSequence :: proc(self: ^AudioEngine, musicSequence: AT.MusicSequence) ---
 
     @(objc_type=AudioEngine, objc_selector="outputNode", objc_name="outputNode")
     AudioEngine_outputNode :: proc(self: ^AudioEngine) -> ^AudioOutputNode ---

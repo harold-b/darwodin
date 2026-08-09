@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIToolTipConfiguration
 ///
 @(objc_class="UIToolTipConfiguration", objc_superclass=NS.Object)
-ToolTipConfiguration :: struct { using _: NS.Object, }
+ToolTipConfiguration :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

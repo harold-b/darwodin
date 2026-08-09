@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLResidencySetDescriptor
 ///
 @(objc_class="MTLResidencySetDescriptor", objc_superclass=NS.Object)
-ResidencySetDescriptor :: struct { using _: NS.Object, 
+ResidencySetDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

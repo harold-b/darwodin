@@ -5,11 +5,11 @@ import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import NS "../Foundation"
 import CA "../QuartzCore"
+import NS "../Foundation"
+import UI "../UIKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import UI "../UIKit"
 
 
 
@@ -17,7 +17,7 @@ import UI "../UIKit"
 /// MTKSubmesh
 ///
 @(objc_class="MTKSubmesh", objc_superclass=NS.Object)
-Submesh :: struct { using _: NS.Object, }
+Submesh :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

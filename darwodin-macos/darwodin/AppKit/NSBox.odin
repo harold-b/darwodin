@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSBox
 ///
 @(objc_class="NSBox", objc_superclass=View)
-Box :: struct { using _: View, }
+Box :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

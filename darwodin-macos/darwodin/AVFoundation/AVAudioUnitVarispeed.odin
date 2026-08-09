@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioUnitVarispeed
 ///
 @(objc_class="AVAudioUnitVarispeed", objc_superclass=AudioUnitTimeEffect)
-AudioUnitVarispeed :: struct { using _: AudioUnitTimeEffect, }
+AudioUnitVarispeed :: struct { using _: AudioUnitTimeEffect}
 
 @(default_calling_convention="c")
 foreign lib {

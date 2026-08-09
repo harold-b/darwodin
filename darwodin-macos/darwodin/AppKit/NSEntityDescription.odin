@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSEntityDescription
 ///
 @(objc_class="NSEntityDescription")
-EntityDescription :: struct { using _: intrinsics.objc_object, }
+EntityDescription :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

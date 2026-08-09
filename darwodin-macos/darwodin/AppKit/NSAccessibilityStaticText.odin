@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityStaticText
 ///
 @(objc_class="NSAccessibilityStaticText")
-AccessibilityStaticText :: struct { using _: intrinsics.objc_object, 
+AccessibilityStaticText :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSTextStorage
 ///
 @(objc_class="NSTextStorage", objc_superclass=NS.MutableAttributedString)
-NSTextStorage :: struct { using _: NS.MutableAttributedString, 
+NSTextStorage :: struct {
+    using _: NS.MutableAttributedString,
     using _: NS.SecureCoding,
 }
 

@@ -1,29 +1,17 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSUserInterfaceValidations
-///
+
+
 @(objc_class="NSUserInterfaceValidations")
-UserInterfaceValidations :: struct { using _: intrinsics.objc_object, }
+UserInterfaceValidations :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=UserInterfaceValidations, objc_selector="validateUserInterfaceItem:", objc_name="validateUserInterfaceItem")
-    UserInterfaceValidations_validateUserInterfaceItem :: proc(self: ^UserInterfaceValidations, item: ^ValidatedUserInterfaceItem) -> bool ---
+	@(objc_type=UserInterfaceValidations, objc_selector="validateUserInterfaceItem:", objc_name="validateUserInterfaceItem")
+	UserInterfaceValidations_validateUserInterfaceItem :: proc(self: ^UserInterfaceValidations, item: ^ValidatedUserInterfaceItem) -> bool ---
 }

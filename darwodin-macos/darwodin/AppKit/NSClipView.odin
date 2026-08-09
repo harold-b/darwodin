@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSClipView
 ///
 @(objc_class="NSClipView", objc_superclass=View)
-ClipView :: struct { using _: View, }
+ClipView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

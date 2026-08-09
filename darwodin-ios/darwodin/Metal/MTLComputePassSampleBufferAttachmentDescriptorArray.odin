@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLComputePassSampleBufferAttachmentDescriptorArray
 ///
 @(objc_class="MTLComputePassSampleBufferAttachmentDescriptorArray", objc_superclass=NS.Object)
-ComputePassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object, }
+ComputePassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

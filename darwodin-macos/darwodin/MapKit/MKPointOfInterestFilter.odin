@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKPointOfInterestFilter
 ///
 @(objc_class="MKPointOfInterestFilter", objc_superclass=NS.Object)
-PointOfInterestFilter :: struct { using _: NS.Object, 
+PointOfInterestFilter :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTransformTranslateOp
 ///
 @(objc_class="MDLTransformTranslateOp", objc_superclass=NS.Object)
-TransformTranslateOp :: struct { using _: NS.Object, 
+TransformTranslateOp :: struct {
+    using _: NS.Object,
     using _: TransformOp,
 }
 

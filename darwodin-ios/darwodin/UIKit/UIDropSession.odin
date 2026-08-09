@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDropSession
 ///
 @(objc_class="UIDropSession")
-DropSession :: struct { using _: intrinsics.objc_object, 
+DropSession :: struct {
+    using _: intrinsics.objc_object,
     using _: DragDropSession,
     using _: NS.ProgressReporting,
 }

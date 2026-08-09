@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPersistentStoreCoordinator
 ///
 @(objc_class="NSPersistentStoreCoordinator")
-PersistentStoreCoordinator :: struct { using _: intrinsics.objc_object, }
+PersistentStoreCoordinator :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

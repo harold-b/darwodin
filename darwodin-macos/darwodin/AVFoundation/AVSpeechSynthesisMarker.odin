@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVSpeechSynthesisMarker
 ///
 @(objc_class="AVSpeechSynthesisMarker", objc_superclass=NS.Object)
-SpeechSynthesisMarker :: struct { using _: NS.Object, 
+SpeechSynthesisMarker :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

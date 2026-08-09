@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITableViewDelegate
 ///
 @(objc_class="UITableViewDelegate")
-TableViewDelegate :: struct { using _: intrinsics.objc_object, 
+TableViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
     using _: ScrollViewDelegate,
 }

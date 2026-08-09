@@ -1,5 +1,3 @@
----
-
 Defs: ../definitions/macos/gamekit.json
 
 Mono  : { Emit: false }
@@ -21,7 +19,9 @@ Cpp:
     - ^::k?GK.+
 
   IgnoreTypes  : []
-  IgnoreMethods: []
+  IgnoreMethods:
+    # These are deprecated and cause a overload conflicts anyway
+    - ^(GKAchievement|GKLeaderboardEntry|GKScore)::challengeComposeControllerWithMessage
 
 
 Odin:
@@ -33,7 +33,8 @@ Odin:
   ExportTypeMapDir: ../exports
   ExternalTypes:
     - ../exports/CoreFoundation.exports.yml
-    # - ../exports/Foundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/AppKit.exports.yml
 
   ResolvedTypedefs:
     - '[su]?int.*'

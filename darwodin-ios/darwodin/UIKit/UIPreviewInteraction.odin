@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPreviewInteraction
 ///
 @(objc_class="UIPreviewInteraction", objc_superclass=NS.Object)
-PreviewInteraction :: struct { using _: NS.Object, }
+PreviewInteraction :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLResourceViewPoolDescriptor
 ///
 @(objc_class="MTLResourceViewPoolDescriptor", objc_superclass=NS.Object)
-ResourceViewPoolDescriptor :: struct { using _: NS.Object, 
+ResourceViewPoolDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

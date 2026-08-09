@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSSymbolScaleEffect
 ///
 @(objc_class="NSSymbolScaleEffect", objc_superclass=NSSymbolEffect)
-NSSymbolScaleEffect :: struct { using _: NSSymbolEffect, }
+NSSymbolScaleEffect :: struct { using _: NSSymbolEffect}
 
 @(default_calling_convention="c")
 foreign lib {

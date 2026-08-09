@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIItemProviderPresentationSizeProviding
 ///
 @(objc_class="UIItemProviderPresentationSizeProviding")
-ItemProviderPresentationSizeProviding :: struct { using _: intrinsics.objc_object, 
+ItemProviderPresentationSizeProviding :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

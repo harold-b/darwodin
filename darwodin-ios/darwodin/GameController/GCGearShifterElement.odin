@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCGearShifterElement
 ///
 @(objc_class="GCGearShifterElement", objc_superclass=NS.Object)
-GearShifterElement :: struct { using _: NS.Object, 
+GearShifterElement :: struct {
+    using _: NS.Object,
     using _: PhysicalInputElement,
 }
 

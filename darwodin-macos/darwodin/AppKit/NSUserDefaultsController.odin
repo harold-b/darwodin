@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSUserDefaultsController
 ///
 @(objc_class="NSUserDefaultsController", objc_superclass=Controller)
-UserDefaultsController :: struct { using _: Controller, }
+UserDefaultsController :: struct { using _: Controller}
 
 @(default_calling_convention="c")
 foreign lib {

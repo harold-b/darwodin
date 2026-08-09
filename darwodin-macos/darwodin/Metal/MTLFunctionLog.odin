@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLFunctionLog
 ///
 @(objc_class="MTLFunctionLog")
-FunctionLog :: struct { using _: intrinsics.objc_object, 
+FunctionLog :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

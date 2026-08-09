@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSJSONSerialization
 ///
 @(objc_class="NSJSONSerialization", objc_superclass=Object)
-JSONSerialization :: struct { using _: Object, }
+JSONSerialization :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICellAccessoryReorder
 ///
 @(objc_class="UICellAccessoryReorder", objc_superclass=CellAccessory)
-CellAccessoryReorder :: struct { using _: CellAccessory, }
+CellAccessoryReorder :: struct { using _: CellAccessory}
 
 @(default_calling_convention="c")
 foreign lib {

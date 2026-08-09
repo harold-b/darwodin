@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSlider
 ///
 @(objc_class="NSSlider", objc_superclass=Control)
-Slider :: struct { using _: Control, 
+Slider :: struct {
+    using _: Control,
     using _: AccessibilitySlider,
 }
 

@@ -1,35 +1,27 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSKeyedArchiverDelegate")
-KeyedArchiverDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: ObjectProtocol,
+KeyedArchiverDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=KeyedArchiverDelegate, objc_selector="archiver:willEncodeObject:", objc_name="archiver_willEncodeObject")
-    KeyedArchiverDelegate_archiver_willEncodeObject :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver, object: id) -> id ---
+	@(objc_type=KeyedArchiverDelegate, objc_selector="archiver:willEncodeObject:", objc_name="archiver_willEncodeObject")
+	KeyedArchiverDelegate_archiver_willEncodeObject :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver, object: id) -> id ---
 
-    @(objc_type=KeyedArchiverDelegate, objc_selector="archiver:didEncodeObject:", objc_name="archiver_didEncodeObject")
-    KeyedArchiverDelegate_archiver_didEncodeObject :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver, object: id) ---
+	@(objc_type=KeyedArchiverDelegate, objc_selector="archiver:didEncodeObject:", objc_name="archiver_didEncodeObject")
+	KeyedArchiverDelegate_archiver_didEncodeObject :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver, object: id) ---
 
-    @(objc_type=KeyedArchiverDelegate, objc_selector="archiver:willReplaceObject:withObject:", objc_name="archiver_willReplaceObject_withObject")
-    KeyedArchiverDelegate_archiver_willReplaceObject_withObject :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver, object: id, newObject: id) ---
+	@(objc_type=KeyedArchiverDelegate, objc_selector="archiver:willReplaceObject:withObject:", objc_name="archiver_willReplaceObject_withObject")
+	KeyedArchiverDelegate_archiver_willReplaceObject_withObject :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver, object: id, newObject: id) ---
 
-    @(objc_type=KeyedArchiverDelegate, objc_selector="archiverWillFinish:", objc_name="archiverWillFinish")
-    KeyedArchiverDelegate_archiverWillFinish :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver) ---
+	@(objc_type=KeyedArchiverDelegate, objc_selector="archiverWillFinish:", objc_name="archiverWillFinish")
+	KeyedArchiverDelegate_archiverWillFinish :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver) ---
 
-    @(objc_type=KeyedArchiverDelegate, objc_selector="archiverDidFinish:", objc_name="archiverDidFinish")
-    KeyedArchiverDelegate_archiverDidFinish :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver) ---
+	@(objc_type=KeyedArchiverDelegate, objc_selector="archiverDidFinish:", objc_name="archiverDidFinish")
+	KeyedArchiverDelegate_archiverDidFinish :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver) ---
 }
-
-
-

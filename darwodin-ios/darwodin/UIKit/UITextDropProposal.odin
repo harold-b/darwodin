@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDropProposal
 ///
 @(objc_class="UITextDropProposal", objc_superclass=DropProposal)
-TextDropProposal :: struct { using _: DropProposal, 
+TextDropProposal :: struct {
+    using _: DropProposal,
     using _: NS.Copying,
 }
 

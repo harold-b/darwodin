@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSToolbarItem
 ///
 @(objc_class="NSToolbarItem", objc_superclass=NS.Object)
-ToolbarItem :: struct { using _: NS.Object, 
+ToolbarItem :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

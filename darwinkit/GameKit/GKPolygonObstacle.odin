@@ -1,30 +1,25 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKPolygonObstacle", objc_superclass=Obstacle)
-PolygonObstacle :: struct { using _: Obstacle, 
-    using _: NS.SecureCoding,
+PolygonObstacle :: struct {
+	using _: Obstacle,
+	using _: NS.SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=PolygonObstacle, objc_selector="obstacleWithPoints:count:", objc_name="obstacleWithPoints", objc_is_class_method=true)
-    PolygonObstacle_obstacleWithPoints :: proc(points: ^^vector_float2, numPoints: cffi.size_t) -> instancetype ---
+	@(objc_type=PolygonObstacle, objc_selector="obstacleWithPoints:count:", objc_name="obstacleWithPoints", objc_is_class_method=true)
+	PolygonObstacle_obstacleWithPoints :: proc(points: ^^vector_float2, numPoints: cffi.size_t) -> instancetype ---
 
-    @(objc_type=PolygonObstacle, objc_selector="initWithPoints:count:", objc_name="initWithPoints")
-    PolygonObstacle_initWithPoints :: proc(self: ^PolygonObstacle, points: ^^vector_float2, numPoints: cffi.size_t) -> instancetype ---
+	@(objc_type=PolygonObstacle, objc_selector="initWithPoints:count:", objc_name="initWithPoints")
+	PolygonObstacle_initWithPoints :: proc(self: ^PolygonObstacle, points: ^^vector_float2, numPoints: cffi.size_t) -> instancetype ---
 
-    @(objc_type=PolygonObstacle, objc_selector="vertexAtIndex:", objc_name="vertexAtIndex")
-    PolygonObstacle_vertexAtIndex :: proc(self: ^PolygonObstacle, index: NS.UInteger) -> vector_float2 ---
+	@(objc_type=PolygonObstacle, objc_selector="vertexAtIndex:", objc_name="vertexAtIndex")
+	PolygonObstacle_vertexAtIndex :: proc(self: ^PolygonObstacle, index: NS.UInteger) -> vector_float2 ---
 
-    @(objc_type=PolygonObstacle, objc_selector="vertexCount", objc_name="vertexCount")
-    PolygonObstacle_vertexCount :: proc(self: ^PolygonObstacle) -> NS.UInteger ---
+	@(objc_type=PolygonObstacle, objc_selector="vertexCount", objc_name="vertexCount")
+	PolygonObstacle_vertexCount :: proc(self: ^PolygonObstacle) -> NS.UInteger ---
 }
-
-
-

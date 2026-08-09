@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKGeoJSONDecoder
 ///
 @(objc_class="MKGeoJSONDecoder", objc_superclass=NS.Object)
-GeoJSONDecoder :: struct { using _: NS.Object, }
+GeoJSONDecoder :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

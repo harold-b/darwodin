@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAScrollLayer
 ///
 @(objc_class="CAScrollLayer", objc_superclass=Layer)
-ScrollLayer :: struct { using _: Layer, }
+ScrollLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

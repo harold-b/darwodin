@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIAlertAction
 ///
 @(objc_class="UIAlertAction", objc_superclass=NS.Object)
-AlertAction :: struct { using _: NS.Object, 
+AlertAction :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

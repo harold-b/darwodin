@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIFocusSystem
 ///
 @(objc_class="UIFocusSystem", objc_superclass=NS.Object)
-FocusSystem :: struct { using _: NS.Object, }
+FocusSystem :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLSessionWebSocketMessage
 ///
 @(objc_class="NSURLSessionWebSocketMessage", objc_superclass=Object)
-URLSessionWebSocketMessage :: struct { using _: Object, }
+URLSessionWebSocketMessage :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVCaptureManualExposureBracketedStillImageSettings
 ///
 @(objc_class="AVCaptureManualExposureBracketedStillImageSettings", objc_superclass=CaptureBracketedStillImageSettings)
-CaptureManualExposureBracketedStillImageSettings :: struct { using _: CaptureBracketedStillImageSettings, }
+CaptureManualExposureBracketedStillImageSettings :: struct { using _: CaptureBracketedStillImageSettings}
 
 @(default_calling_convention="c")
 foreign lib {

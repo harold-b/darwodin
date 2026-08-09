@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSColorChanging
 ///
 @(objc_class="NSColorChanging")
-ColorChanging :: struct { using _: intrinsics.objc_object, 
+ColorChanging :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

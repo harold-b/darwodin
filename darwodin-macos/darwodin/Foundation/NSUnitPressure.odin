@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitPressure
 ///
 @(objc_class="NSUnitPressure", objc_superclass=Dimension)
-UnitPressure :: struct { using _: Dimension, 
+UnitPressure :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSProtocolChecker
 ///
 @(objc_class="NSProtocolChecker", objc_superclass=Proxy)
-ProtocolChecker :: struct { using _: Proxy, }
+ProtocolChecker :: struct { using _: Proxy}
 
 @(default_calling_convention="c")
 foreign lib {

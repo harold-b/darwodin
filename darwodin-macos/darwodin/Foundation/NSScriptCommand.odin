@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSScriptCommand
 ///
 @(objc_class="NSScriptCommand", objc_superclass=Object)
-ScriptCommand :: struct { using _: Object, 
+ScriptCommand :: struct {
+    using _: Object,
     using _: Coding,
 }
 

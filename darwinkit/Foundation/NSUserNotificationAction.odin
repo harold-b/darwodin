@@ -1,32 +1,25 @@
 #+build darwin:default
-package darwodin_Foundation
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
+package darwin_Foundation
 
 
 
-///
-/// NSUserNotificationAction
-///
+
+
+
 @(objc_class="NSUserNotificationAction", objc_superclass=Object)
-UserNotificationAction :: struct { using _: Object, 
-    using _: Copying,
+UserNotificationAction :: struct {
+	using _: Object,
+	using _: Copying,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=UserNotificationAction, objc_selector="actionWithIdentifier:title:", objc_name="actionWithIdentifier", objc_is_class_method=true)
-    UserNotificationAction_actionWithIdentifier :: proc(identifier: ^String, title: ^String) -> instancetype ---
+	@(objc_type=UserNotificationAction, objc_selector="actionWithIdentifier:title:", objc_name="actionWithIdentifier", objc_is_class_method=true)
+	UserNotificationAction_actionWithIdentifier :: proc(identifier: ^String, title: ^String) -> instancetype ---
 
-    @(objc_type=UserNotificationAction, objc_selector="identifier", objc_name="identifier")
-    UserNotificationAction_identifier :: proc(self: ^UserNotificationAction) -> ^String ---
+	@(objc_type=UserNotificationAction, objc_selector="identifier", objc_name="identifier")
+	UserNotificationAction_identifier :: proc(self: ^UserNotificationAction) -> ^String ---
 
-    @(objc_type=UserNotificationAction, objc_selector="title", objc_name="title")
-    UserNotificationAction_title :: proc(self: ^UserNotificationAction) -> ^String ---
+	@(objc_type=UserNotificationAction, objc_selector="title", objc_name="title")
+	UserNotificationAction_title :: proc(self: ^UserNotificationAction) -> ^String ---
 }

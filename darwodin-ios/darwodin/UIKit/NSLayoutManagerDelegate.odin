@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSLayoutManagerDelegate
 ///
 @(objc_class="NSLayoutManagerDelegate")
-NSLayoutManagerDelegate :: struct { using _: intrinsics.objc_object, 
+NSLayoutManagerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

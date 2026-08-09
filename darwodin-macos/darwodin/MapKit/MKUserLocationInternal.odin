@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKUserLocationInternal
 ///
 @(objc_class="MKUserLocationInternal")
-UserLocationInternal :: struct { using _: intrinsics.objc_object, }
+UserLocationInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

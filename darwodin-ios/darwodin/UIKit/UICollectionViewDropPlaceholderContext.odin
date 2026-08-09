@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDropPlaceholderContext
 ///
 @(objc_class="UICollectionViewDropPlaceholderContext")
-CollectionViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object, 
+CollectionViewDropPlaceholderContext :: struct {
+    using _: intrinsics.objc_object,
     using _: DragAnimating,
 }
 

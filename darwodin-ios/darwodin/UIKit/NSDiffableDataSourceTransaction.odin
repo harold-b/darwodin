@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSDiffableDataSourceTransaction
 ///
 @(objc_class="NSDiffableDataSourceTransaction", objc_superclass=NS.Object)
-NSDiffableDataSourceTransaction :: struct { using _: NS.Object, }
+NSDiffableDataSourceTransaction :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

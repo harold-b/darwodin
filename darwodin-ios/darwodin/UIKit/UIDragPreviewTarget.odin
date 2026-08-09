@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDragPreviewTarget
 ///
 @(objc_class="UIDragPreviewTarget", objc_superclass=PreviewTarget)
-DragPreviewTarget :: struct { using _: PreviewTarget, }
+DragPreviewTarget :: struct { using _: PreviewTarget}
 
 @(default_calling_convention="c")
 foreign lib {}

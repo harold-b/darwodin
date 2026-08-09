@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLNormalMapTexture
 ///
 @(objc_class="MDLNormalMapTexture", objc_superclass=Texture)
-NormalMapTexture :: struct { using _: Texture, }
+NormalMapTexture :: struct { using _: Texture}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPrintInteractionControllerDelegate
 ///
 @(objc_class="UIPrintInteractionControllerDelegate")
-PrintInteractionControllerDelegate :: struct { using _: intrinsics.objc_object, 
+PrintInteractionControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

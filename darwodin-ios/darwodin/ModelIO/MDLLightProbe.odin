@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLLightProbe
 ///
 @(objc_class="MDLLightProbe", objc_superclass=Light)
-LightProbe :: struct { using _: Light, }
+LightProbe :: struct { using _: Light}
 
 @(default_calling_convention="c")
 foreign lib {

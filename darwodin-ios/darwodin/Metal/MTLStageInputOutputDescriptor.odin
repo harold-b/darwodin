@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLStageInputOutputDescriptor
 ///
 @(objc_class="MTLStageInputOutputDescriptor", objc_superclass=NS.Object)
-StageInputOutputDescriptor :: struct { using _: NS.Object, 
+StageInputOutputDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

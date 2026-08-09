@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIViewControllerPreviewing
 ///
 @(objc_class="UIViewControllerPreviewing")
-ViewControllerPreviewing :: struct { using _: intrinsics.objc_object, 
+ViewControllerPreviewing :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

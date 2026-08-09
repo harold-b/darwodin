@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSThread
 ///
 @(objc_class="NSThread", objc_superclass=Object)
-Thread :: struct { using _: Object, }
+Thread :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

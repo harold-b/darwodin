@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIAccessibilityReadingContent
 ///
 @(objc_class="UIAccessibilityReadingContent")
-AccessibilityReadingContent :: struct { using _: intrinsics.objc_object, }
+AccessibilityReadingContent :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

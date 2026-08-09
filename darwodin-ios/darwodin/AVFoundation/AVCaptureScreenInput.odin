@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVCaptureScreenInput
 ///
 @(objc_class="AVCaptureScreenInput", objc_superclass=CaptureInput)
-CaptureScreenInput :: struct { using _: CaptureInput, }
+CaptureScreenInput :: struct { using _: CaptureInput}
 
 @(default_calling_convention="c")
 foreign lib {

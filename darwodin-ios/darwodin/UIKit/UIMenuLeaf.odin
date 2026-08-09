@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIMenuLeaf
 ///
 @(objc_class="UIMenuLeaf")
-MenuLeaf :: struct { using _: intrinsics.objc_object, 
+MenuLeaf :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

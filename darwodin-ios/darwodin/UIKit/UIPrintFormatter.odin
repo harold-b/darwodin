@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPrintFormatter
 ///
 @(objc_class="UIPrintFormatter", objc_superclass=NS.Object)
-PrintFormatter :: struct { using _: NS.Object, 
+PrintFormatter :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

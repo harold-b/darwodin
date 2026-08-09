@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLBlitPassSampleBufferAttachmentDescriptorArray", objc_superclass=NS.Object)
-BlitPassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object, }
+BlitPassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=BlitPassSampleBufferAttachmentDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
-    BlitPassSampleBufferAttachmentDescriptorArray_objectAtIndexedSubscript :: proc(self: ^BlitPassSampleBufferAttachmentDescriptorArray, attachmentIndex: NS.UInteger) -> ^BlitPassSampleBufferAttachmentDescriptor ---
+	@(objc_type=BlitPassSampleBufferAttachmentDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+	BlitPassSampleBufferAttachmentDescriptorArray_objectAtIndexedSubscript :: proc(self: ^BlitPassSampleBufferAttachmentDescriptorArray, attachmentIndex: NS.UInteger) -> ^BlitPassSampleBufferAttachmentDescriptor ---
 
-    @(objc_type=BlitPassSampleBufferAttachmentDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
-    BlitPassSampleBufferAttachmentDescriptorArray_setObject :: proc(self: ^BlitPassSampleBufferAttachmentDescriptorArray, attachment: ^BlitPassSampleBufferAttachmentDescriptor, attachmentIndex: NS.UInteger) ---
+	@(objc_type=BlitPassSampleBufferAttachmentDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
+	BlitPassSampleBufferAttachmentDescriptorArray_setObject :: proc(self: ^BlitPassSampleBufferAttachmentDescriptorArray, attachment: ^BlitPassSampleBufferAttachmentDescriptor, attachmentIndex: NS.UInteger) ---
 }
-
-
-

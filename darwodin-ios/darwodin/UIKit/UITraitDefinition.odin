@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITraitDefinition
 ///
 @(objc_class="UITraitDefinition")
-TraitDefinition :: struct { using _: intrinsics.objc_object, }
+TraitDefinition :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

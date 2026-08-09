@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSData
 ///
 @(objc_class="NSData", objc_superclass=Object)
-Data :: struct { using _: Object, 
+Data :: struct {
+    using _: Object,
     using _: Copying,
     using _: MutableCopying,
     using _: SecureCoding,

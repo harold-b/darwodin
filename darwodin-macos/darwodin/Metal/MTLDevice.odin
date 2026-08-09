@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLDevice
 ///
 @(objc_class="MTLDevice")
-Device :: struct { using _: intrinsics.objc_object, 
+Device :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISearchSuggestion
 ///
 @(objc_class="UISearchSuggestion")
-SearchSuggestion :: struct { using _: intrinsics.objc_object, 
+SearchSuggestion :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

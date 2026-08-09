@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLAttributeDescriptor
 ///
 @(objc_class="MTLAttributeDescriptor", objc_superclass=NS.Object)
-AttributeDescriptor :: struct { using _: NS.Object, 
+AttributeDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

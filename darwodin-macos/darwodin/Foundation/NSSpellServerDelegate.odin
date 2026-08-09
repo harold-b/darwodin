@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSSpellServerDelegate
 ///
 @(objc_class="NSSpellServerDelegate")
-SpellServerDelegate :: struct { using _: intrinsics.objc_object, 
+SpellServerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

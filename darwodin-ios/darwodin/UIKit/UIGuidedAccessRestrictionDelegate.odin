@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIGuidedAccessRestrictionDelegate
 ///
 @(objc_class="UIGuidedAccessRestrictionDelegate")
-GuidedAccessRestrictionDelegate :: struct { using _: intrinsics.objc_object, 
+GuidedAccessRestrictionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

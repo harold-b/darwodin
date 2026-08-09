@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISearchControllerDelegate
 ///
 @(objc_class="UISearchControllerDelegate")
-SearchControllerDelegate :: struct { using _: intrinsics.objc_object, 
+SearchControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

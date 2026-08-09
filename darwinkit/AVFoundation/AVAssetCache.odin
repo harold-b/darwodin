@@ -1,39 +1,27 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVAssetCache", objc_superclass=NS.Object)
-AssetCache :: struct { using _: NS.Object, }
+AssetCache :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=AssetCache, objc_selector="mediaSelectionOptionsInMediaSelectionGroup:", objc_name="mediaSelectionOptionsInMediaSelectionGroup")
-    AssetCache_mediaSelectionOptionsInMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
+	@(objc_type=AssetCache, objc_selector="mediaSelectionOptionsInMediaSelectionGroup:", objc_name="mediaSelectionOptionsInMediaSelectionGroup")
+	AssetCache_mediaSelectionOptionsInMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
 
-    @(objc_type=AssetCache, objc_selector="init", objc_name="init")
-    AssetCache_init :: proc(self: ^AssetCache) -> instancetype ---
+	@(objc_type=AssetCache, objc_selector="init", objc_name="init")
+	AssetCache_init :: proc(self: ^AssetCache) -> instancetype ---
 
-    @(objc_type=AssetCache, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    AssetCache_new :: proc() -> ^AssetCache ---
+	@(objc_type=AssetCache, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	AssetCache_new :: proc() -> ^AssetCache ---
 
-    @(objc_type=AssetCache, objc_selector="isPlayableOffline", objc_name="isPlayableOffline")
-    AssetCache_isPlayableOffline :: proc(self: ^AssetCache) -> bool ---
+	@(objc_type=AssetCache, objc_selector="isPlayableOffline", objc_name="isPlayableOffline")
+	AssetCache_isPlayableOffline :: proc(self: ^AssetCache) -> bool ---
 
-    @(objc_type=AssetCache, objc_selector="mediaPresentationSettingsForMediaSelectionGroup:", objc_name="mediaPresentationSettingsForMediaSelectionGroup")
-    AssetCache_mediaPresentationSettingsForMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Dictionary ---
+	@(objc_type=AssetCache, objc_selector="mediaPresentationSettingsForMediaSelectionGroup:", objc_name="mediaPresentationSettingsForMediaSelectionGroup")
+	AssetCache_mediaPresentationSettingsForMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Dictionary ---
 
-    @(objc_type=AssetCache, objc_selector="mediaPresentationLanguagesForMediaSelectionGroup:", objc_name="mediaPresentationLanguagesForMediaSelectionGroup")
-    AssetCache_mediaPresentationLanguagesForMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
+	@(objc_type=AssetCache, objc_selector="mediaPresentationLanguagesForMediaSelectionGroup:", objc_name="mediaPresentationLanguagesForMediaSelectionGroup")
+	AssetCache_mediaPresentationLanguagesForMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
 }
-
-
-

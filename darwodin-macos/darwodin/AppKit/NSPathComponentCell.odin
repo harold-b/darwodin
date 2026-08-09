@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPathComponentCell
 ///
 @(objc_class="NSPathComponentCell", objc_superclass=TextFieldCell)
-PathComponentCell :: struct { using _: TextFieldCell, }
+PathComponentCell :: struct { using _: TextFieldCell}
 
 @(default_calling_convention="c")
 foreign lib {

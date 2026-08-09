@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityElementLoading
 ///
 @(objc_class="NSAccessibilityElementLoading")
-AccessibilityElementLoading :: struct { using _: intrinsics.objc_object, 
+AccessibilityElementLoading :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

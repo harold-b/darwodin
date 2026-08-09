@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSDrawer
 ///
 @(objc_class="NSDrawer", objc_superclass=Responder)
-Drawer :: struct { using _: Responder, 
+Drawer :: struct {
+    using _: Responder,
     using _: AccessibilityElementProtocol,
     using _: Accessibility,
 }

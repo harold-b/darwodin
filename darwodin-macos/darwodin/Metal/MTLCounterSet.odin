@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCounterSet
 ///
 @(objc_class="MTLCounterSet")
-CounterSet :: struct { using _: intrinsics.objc_object, 
+CounterSet :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

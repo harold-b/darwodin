@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextAttachmentContainer
 ///
 @(objc_class="NSTextAttachmentContainer")
-TextAttachmentContainer :: struct { using _: intrinsics.objc_object, 
+TextAttachmentContainer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

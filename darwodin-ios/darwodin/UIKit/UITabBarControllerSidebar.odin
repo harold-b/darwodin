@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITabBarControllerSidebar
 ///
 @(objc_class="UITabBarControllerSidebar", objc_superclass=NS.Object)
-TabBarControllerSidebar :: struct { using _: NS.Object, }
+TabBarControllerSidebar :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

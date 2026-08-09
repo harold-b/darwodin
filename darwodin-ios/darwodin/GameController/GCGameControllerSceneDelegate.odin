@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCGameControllerSceneDelegate
 ///
 @(objc_class="GCGameControllerSceneDelegate")
-GameControllerSceneDelegate :: struct { using _: intrinsics.objc_object, 
+GameControllerSceneDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

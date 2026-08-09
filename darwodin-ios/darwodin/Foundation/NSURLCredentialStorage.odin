@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLCredentialStorage
 ///
 @(objc_class="NSURLCredentialStorage", objc_superclass=Object)
-URLCredentialStorage :: struct { using _: Object, }
+URLCredentialStorage :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,8 @@ import UI "../UIKit"
 /// GKMonteCarloStrategist
 ///
 @(objc_class="GKMonteCarloStrategist", objc_superclass=NS.Object)
-MonteCarloStrategist :: struct { using _: NS.Object, 
+MonteCarloStrategist :: struct {
+    using _: NS.Object,
     using _: Strategist,
 }
 

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSAppleEventManager
 ///
 @(objc_class="NSAppleEventManager", objc_superclass=Object)
-AppleEventManager :: struct { using _: Object, }
+AppleEventManager :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

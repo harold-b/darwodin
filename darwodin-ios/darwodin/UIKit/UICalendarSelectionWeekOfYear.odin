@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICalendarSelectionWeekOfYear
 ///
 @(objc_class="UICalendarSelectionWeekOfYear", objc_superclass=CalendarSelection)
-CalendarSelectionWeekOfYear :: struct { using _: CalendarSelection, }
+CalendarSelectionWeekOfYear :: struct { using _: CalendarSelection}
 
 @(default_calling_convention="c")
 foreign lib {

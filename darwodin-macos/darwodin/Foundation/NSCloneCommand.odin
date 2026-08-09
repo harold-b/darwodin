@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSCloneCommand
 ///
 @(objc_class="NSCloneCommand", objc_superclass=ScriptCommand)
-CloneCommand :: struct { using _: ScriptCommand, }
+CloneCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {

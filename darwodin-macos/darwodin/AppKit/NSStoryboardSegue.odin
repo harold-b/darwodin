@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSStoryboardSegue
 ///
 @(objc_class="NSStoryboardSegue", objc_superclass=NS.Object)
-StoryboardSegue :: struct { using _: NS.Object, }
+StoryboardSegue :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

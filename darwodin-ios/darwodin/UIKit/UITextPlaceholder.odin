@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextPlaceholder
 ///
 @(objc_class="UITextPlaceholder", objc_superclass=NS.Object)
-TextPlaceholder :: struct { using _: NS.Object, }
+TextPlaceholder :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

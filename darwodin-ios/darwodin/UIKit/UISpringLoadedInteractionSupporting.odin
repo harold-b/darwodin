@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISpringLoadedInteractionSupporting
 ///
 @(objc_class="UISpringLoadedInteractionSupporting")
-SpringLoadedInteractionSupporting :: struct { using _: intrinsics.objc_object, 
+SpringLoadedInteractionSupporting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

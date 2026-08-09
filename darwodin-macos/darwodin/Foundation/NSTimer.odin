@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSTimer
 ///
 @(objc_class="NSTimer", objc_superclass=Object)
-Timer :: struct { using _: Object, }
+Timer :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

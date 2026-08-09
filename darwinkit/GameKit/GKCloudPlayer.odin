@@ -1,19 +1,12 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKCloudPlayer", objc_superclass=BasePlayer)
-CloudPlayer :: struct { using _: BasePlayer, }
+CloudPlayer :: struct { using _: BasePlayer}
 
 foreign lib {
-    @(objc_type=CloudPlayer, objc_selector="getCurrentSignedInPlayerForContainer:completionHandler:", objc_name="getCurrentSignedInPlayerForContainer", objc_is_class_method=true)
-    CloudPlayer_getCurrentSignedInPlayerForContainer :: proc(containerName: ^NS.String, handler: ^Objc_Block(proc "c" ( player: ^CloudPlayer, error: ^NS.Error ))) ---
+	@(objc_type=CloudPlayer, objc_selector="getCurrentSignedInPlayerForContainer:completionHandler:", objc_name="getCurrentSignedInPlayerForContainer", objc_is_class_method=true)
+	CloudPlayer_getCurrentSignedInPlayerForContainer :: proc(containerName: ^NS.String, handler: ^Objc_Block(proc "c" ( player: ^CloudPlayer, error: ^NS.Error ))) ---
 }
-
-
-

@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAMetalLayer
 ///
 @(objc_class="CAMetalLayer", objc_superclass=Layer)
-MetalLayer :: struct { using _: Layer, }
+MetalLayer :: struct { using _: Layer}
 
 @(default_calling_convention="c")
 foreign lib {

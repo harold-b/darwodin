@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLComputePipelineDescriptor
 ///
 @(objc_class="MTLComputePipelineDescriptor", objc_superclass=NS.Object)
-ComputePipelineDescriptor :: struct { using _: NS.Object, 
+ComputePipelineDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

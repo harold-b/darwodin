@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LAEnvironmentMechanismUserPassword
 ///
 @(objc_class="LAEnvironmentMechanismUserPassword", objc_superclass=EnvironmentMechanism)
-EnvironmentMechanismUserPassword :: struct { using _: EnvironmentMechanism, }
+EnvironmentMechanismUserPassword :: struct { using _: EnvironmentMechanism}
 
 @(default_calling_convention="c")
 foreign lib {

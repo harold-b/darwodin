@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLLibrary
 ///
 @(objc_class="MTLLibrary")
-Library :: struct { using _: intrinsics.objc_object, 
+Library :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

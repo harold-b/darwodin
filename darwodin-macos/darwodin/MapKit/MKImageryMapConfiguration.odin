@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKImageryMapConfiguration
 ///
 @(objc_class="MKImageryMapConfiguration", objc_superclass=MapConfiguration)
-ImageryMapConfiguration :: struct { using _: MapConfiguration, }
+ImageryMapConfiguration :: struct { using _: MapConfiguration}
 
 @(default_calling_convention="c")
 foreign lib {

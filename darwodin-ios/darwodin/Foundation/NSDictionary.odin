@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSDictionary
 ///
 @(objc_class="NSDictionary", objc_superclass=Object)
-Dictionary :: struct { using _: Object, 
+Dictionary :: struct {
+    using _: Object,
     using _: Copying,
     using _: MutableCopying,
     using _: SecureCoding,

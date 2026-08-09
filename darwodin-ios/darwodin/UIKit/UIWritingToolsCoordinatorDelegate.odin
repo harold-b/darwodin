@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIWritingToolsCoordinatorDelegate
 ///
 @(objc_class="UIWritingToolsCoordinatorDelegate")
-WritingToolsCoordinatorDelegate :: struct { using _: intrinsics.objc_object, 
+WritingToolsCoordinatorDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

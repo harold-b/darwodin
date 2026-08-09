@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPDFImageRep
 ///
 @(objc_class="NSPDFImageRep", objc_superclass=ImageRep)
-PDFImageRep :: struct { using _: ImageRep, }
+PDFImageRep :: struct { using _: ImageRep}
 
 @(default_calling_convention="c")
 foreign lib {

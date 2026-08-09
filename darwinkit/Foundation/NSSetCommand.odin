@@ -1,27 +1,19 @@
 #+build darwin:default
-package darwodin_Foundation
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
+package darwin_Foundation
 
 
 
-///
-/// NSSetCommand
-///
+
+
+
 @(objc_class="NSSetCommand", objc_superclass=ScriptCommand)
-SetCommand :: struct { using _: ScriptCommand, }
+SetCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=SetCommand, objc_selector="setReceiversSpecifier:", objc_name="setReceiversSpecifier")
-    SetCommand_setReceiversSpecifier :: proc(self: ^SetCommand, receiversRef: ^ScriptObjectSpecifier) ---
+	@(objc_type=SetCommand, objc_selector="setReceiversSpecifier:", objc_name="setReceiversSpecifier")
+	SetCommand_setReceiversSpecifier :: proc(self: ^SetCommand, receiversRef: ^ScriptObjectSpecifier) ---
 
-    @(objc_type=SetCommand, objc_selector="keySpecifier", objc_name="keySpecifier")
-    SetCommand_keySpecifier :: proc(self: ^SetCommand) -> ^ScriptObjectSpecifier ---
+	@(objc_type=SetCommand, objc_selector="keySpecifier", objc_name="keySpecifier")
+	SetCommand_keySpecifier :: proc(self: ^SetCommand) -> ^ScriptObjectSpecifier ---
 }

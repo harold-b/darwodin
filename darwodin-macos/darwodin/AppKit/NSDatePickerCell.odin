@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSDatePickerCell
 ///
 @(objc_class="NSDatePickerCell", objc_superclass=ActionCell)
-DatePickerCell :: struct { using _: ActionCell, }
+DatePickerCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

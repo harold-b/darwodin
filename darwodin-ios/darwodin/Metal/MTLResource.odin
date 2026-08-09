@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLResource
 ///
 @(objc_class="MTLResource")
-Resource :: struct { using _: intrinsics.objc_object, 
+Resource :: struct {
+    using _: intrinsics.objc_object,
     using _: Allocation,
 }
 

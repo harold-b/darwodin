@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextFinderBarContainer
 ///
 @(objc_class="NSTextFinderBarContainer")
-TextFinderBarContainer :: struct { using _: intrinsics.objc_object, 
+TextFinderBarContainer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTokenFieldCellDelegate
 ///
 @(objc_class="NSTokenFieldCellDelegate")
-TokenFieldCellDelegate :: struct { using _: intrinsics.objc_object, 
+TokenFieldCellDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

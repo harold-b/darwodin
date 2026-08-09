@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CHHapticPatternPlayer
 ///
 @(objc_class="CHHapticPatternPlayer")
-HapticPatternPlayer :: struct { using _: intrinsics.objc_object, 
+HapticPatternPlayer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

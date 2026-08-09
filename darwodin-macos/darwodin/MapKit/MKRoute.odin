@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKRoute
 ///
 @(objc_class="MKRoute", objc_superclass=NS.Object)
-Route :: struct { using _: NS.Object, }
+Route :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

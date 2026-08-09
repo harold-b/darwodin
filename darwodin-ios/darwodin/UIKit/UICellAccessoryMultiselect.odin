@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICellAccessoryMultiselect
 ///
 @(objc_class="UICellAccessoryMultiselect", objc_superclass=CellAccessory)
-CellAccessoryMultiselect :: struct { using _: CellAccessory, }
+CellAccessoryMultiselect :: struct { using _: CellAccessory}
 
 @(default_calling_convention="c")
 foreign lib {

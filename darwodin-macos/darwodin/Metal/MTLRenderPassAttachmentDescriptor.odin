@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLRenderPassAttachmentDescriptor
 ///
 @(objc_class="MTLRenderPassAttachmentDescriptor", objc_superclass=NS.Object)
-RenderPassAttachmentDescriptor :: struct { using _: NS.Object, 
+RenderPassAttachmentDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

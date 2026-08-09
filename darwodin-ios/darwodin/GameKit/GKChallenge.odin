@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,8 @@ import UI "../UIKit"
 /// GKChallenge
 ///
 @(objc_class="GKChallenge", objc_superclass=NS.Object)
-Challenge :: struct { using _: NS.Object, 
+Challenge :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }

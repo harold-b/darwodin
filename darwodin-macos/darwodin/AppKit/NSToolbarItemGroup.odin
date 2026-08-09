@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSToolbarItemGroup
 ///
 @(objc_class="NSToolbarItemGroup", objc_superclass=ToolbarItem)
-ToolbarItemGroup :: struct { using _: ToolbarItem, }
+ToolbarItemGroup :: struct { using _: ToolbarItem}
 
 @(default_calling_convention="c")
 foreign lib {

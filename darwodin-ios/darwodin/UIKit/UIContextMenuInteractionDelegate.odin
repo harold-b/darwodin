@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIContextMenuInteractionDelegate
 ///
 @(objc_class="UIContextMenuInteractionDelegate")
-ContextMenuInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+ContextMenuInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

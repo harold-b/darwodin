@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTouch
 ///
 @(objc_class="NSTouch", objc_superclass=NS.Object)
-Touch :: struct { using _: NS.Object, 
+Touch :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

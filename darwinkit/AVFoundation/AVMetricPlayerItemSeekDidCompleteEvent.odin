@@ -1,30 +1,17 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMetricPlayerItemSeekDidCompleteEvent", objc_superclass=MetricPlayerItemRateChangeEvent)
-MetricPlayerItemSeekDidCompleteEvent :: struct { using _: MetricPlayerItemRateChangeEvent, }
+MetricPlayerItemSeekDidCompleteEvent :: struct { using _: MetricPlayerItemRateChangeEvent}
 
 foreign lib {
-    @(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemSeekDidCompleteEvent_init :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> instancetype ---
+	@(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="init", objc_name="init")
+	MetricPlayerItemSeekDidCompleteEvent_init :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> instancetype ---
 
-    @(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    MetricPlayerItemSeekDidCompleteEvent_new :: proc() -> ^MetricPlayerItemSeekDidCompleteEvent ---
+	@(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	MetricPlayerItemSeekDidCompleteEvent_new :: proc() -> ^MetricPlayerItemSeekDidCompleteEvent ---
 
-    @(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="didSeekInBuffer", objc_name="didSeekInBuffer")
-    MetricPlayerItemSeekDidCompleteEvent_didSeekInBuffer :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> bool ---
+	@(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="didSeekInBuffer", objc_name="didSeekInBuffer")
+	MetricPlayerItemSeekDidCompleteEvent_didSeekInBuffer :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> bool ---
 }
-
-
-

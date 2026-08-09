@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextInputMode
 ///
 @(objc_class="UITextInputMode", objc_superclass=NS.Object)
-TextInputMode :: struct { using _: NS.Object, 
+TextInputMode :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

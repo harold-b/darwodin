@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionViewElement
 ///
 @(objc_class="NSCollectionViewElement")
-CollectionViewElement :: struct { using _: intrinsics.objc_object, 
+CollectionViewElement :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
     using _: UserInterfaceItemIdentification,
 }

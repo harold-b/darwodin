@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapSnapshotOptions
 ///
 @(objc_class="MKMapSnapshotOptions", objc_superclass=NS.Object)
-MapSnapshotOptions :: struct { using _: NS.Object, 
+MapSnapshotOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

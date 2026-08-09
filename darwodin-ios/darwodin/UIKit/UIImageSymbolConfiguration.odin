@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIImageSymbolConfiguration
 ///
 @(objc_class="UIImageSymbolConfiguration", objc_superclass=ImageConfiguration)
-ImageSymbolConfiguration :: struct { using _: ImageConfiguration, }
+ImageSymbolConfiguration :: struct { using _: ImageConfiguration}
 
 @(default_calling_convention="c")
 foreign lib {

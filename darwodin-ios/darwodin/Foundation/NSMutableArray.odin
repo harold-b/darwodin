@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableArray
 ///
 @(objc_class="NSMutableArray", objc_superclass=Array)
-MutableArray :: struct { using _: Array, }
+MutableArray :: struct { using _: Array}
 
 @(default_calling_convention="c")
 foreign lib {

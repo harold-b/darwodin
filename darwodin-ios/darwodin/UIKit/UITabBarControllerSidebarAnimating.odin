@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITabBarControllerSidebarAnimating
 ///
 @(objc_class="UITabBarControllerSidebarAnimating")
-TabBarControllerSidebarAnimating :: struct { using _: intrinsics.objc_object, 
+TabBarControllerSidebarAnimating :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -1,24 +1,16 @@
 #+build darwin:default
-package darwodin_Foundation
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
+package darwin_Foundation
 
 
 
-///
-/// NSUserAppleScriptTask
-///
+
+
+
 @(objc_class="NSUserAppleScriptTask", objc_superclass=UserScriptTask)
-UserAppleScriptTask :: struct { using _: UserScriptTask, }
+UserAppleScriptTask :: struct { using _: UserScriptTask}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=UserAppleScriptTask, objc_selector="executeWithAppleEvent:completionHandler:", objc_name="executeWithAppleEvent")
-    UserAppleScriptTask_executeWithAppleEvent :: proc(self: ^UserAppleScriptTask, event: ^AppleEventDescriptor, handler: UserAppleScriptTaskCompletionHandler) ---
+	@(objc_type=UserAppleScriptTask, objc_selector="executeWithAppleEvent:completionHandler:", objc_name="executeWithAppleEvent")
+	UserAppleScriptTask_executeWithAppleEvent :: proc(self: ^UserAppleScriptTask, event: ^AppleEventDescriptor, handler: UserAppleScriptTaskCompletionHandler) ---
 }

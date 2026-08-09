@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableAttributedString
 ///
 @(objc_class="NSMutableAttributedString", objc_superclass=AttributedString)
-MutableAttributedString :: struct { using _: AttributedString, }
+MutableAttributedString :: struct { using _: AttributedString}
 
 @(default_calling_convention="c")
 foreign lib {

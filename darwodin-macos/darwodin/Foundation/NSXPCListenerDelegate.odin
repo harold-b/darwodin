@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSXPCListenerDelegate
 ///
 @(objc_class="NSXPCListenerDelegate")
-XPCListenerDelegate :: struct { using _: intrinsics.objc_object, 
+XPCListenerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTLFXFrameInterpolator
 ///
 @(objc_class="MTLFXFrameInterpolator")
-FrameInterpolator :: struct { using _: intrinsics.objc_object, 
+FrameInterpolator :: struct {
+    using _: intrinsics.objc_object,
     using _: FrameInterpolatorBase,
 }
 

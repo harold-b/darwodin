@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLFunctionReflection", objc_superclass=NS.Object)
-FunctionReflection :: struct { using _: NS.Object, }
+FunctionReflection :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=FunctionReflection, objc_selector="bindings", objc_name="bindings")
-    FunctionReflection_bindings :: proc(self: ^FunctionReflection) -> ^NS.Array ---
+	@(objc_type=FunctionReflection, objc_selector="bindings", objc_name="bindings")
+	FunctionReflection_bindings :: proc(self: ^FunctionReflection) -> ^NS.Array ---
 
-    @(objc_type=FunctionReflection, objc_selector="userAnnotation", objc_name="userAnnotation")
-    FunctionReflection_userAnnotation :: proc(self: ^FunctionReflection) -> ^NS.String ---
+	@(objc_type=FunctionReflection, objc_selector="userAnnotation", objc_name="userAnnotation")
+	FunctionReflection_userAnnotation :: proc(self: ^FunctionReflection) -> ^NS.String ---
 }
-
-
-

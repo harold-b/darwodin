@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITabBarItemAppearance
 ///
 @(objc_class="UITabBarItemAppearance", objc_superclass=NS.Object)
-TabBarItemAppearance :: struct { using _: NS.Object, 
+TabBarItemAppearance :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

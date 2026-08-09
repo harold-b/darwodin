@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSImageSymbolConfiguration
 ///
 @(objc_class="NSImageSymbolConfiguration", objc_superclass=NS.Object)
-ImageSymbolConfiguration :: struct { using _: NS.Object, 
+ImageSymbolConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

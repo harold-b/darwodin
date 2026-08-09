@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSImageDelegate
 ///
 @(objc_class="NSImageDelegate")
-ImageDelegate :: struct { using _: intrinsics.objc_object, 
+ImageDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSTextSelection
 ///
 @(objc_class="NSTextSelection", objc_superclass=NS.Object)
-NSTextSelection :: struct { using _: NS.Object, 
+NSTextSelection :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

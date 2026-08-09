@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPrintOperation
 ///
 @(objc_class="NSPrintOperation", objc_superclass=NS.Object)
-PrintOperation :: struct { using _: NS.Object, }
+PrintOperation :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

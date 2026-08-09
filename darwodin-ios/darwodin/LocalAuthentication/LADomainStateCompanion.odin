@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LADomainStateCompanion
 ///
 @(objc_class="LADomainStateCompanion", objc_superclass=NS.Object)
-DomainStateCompanion :: struct { using _: NS.Object, }
+DomainStateCompanion :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

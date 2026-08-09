@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSWindowDelegate
 ///
 @(objc_class="NSWindowDelegate")
-WindowDelegate :: struct { using _: intrinsics.objc_object, 
+WindowDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

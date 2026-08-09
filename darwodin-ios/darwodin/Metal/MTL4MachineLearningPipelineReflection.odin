@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4MachineLearningPipelineReflection
 ///
 @(objc_class="MTL4MachineLearningPipelineReflection", objc_superclass=NS.Object)
-MTL4MachineLearningPipelineReflection :: struct { using _: NS.Object, }
+MTL4MachineLearningPipelineReflection :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

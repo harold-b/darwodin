@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CABasicAnimation
 ///
 @(objc_class="CABasicAnimation", objc_superclass=PropertyAnimation)
-BasicAnimation :: struct { using _: PropertyAnimation, }
+BasicAnimation :: struct { using _: PropertyAnimation}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionLayoutContainer
 ///
 @(objc_class="NSCollectionLayoutContainer")
-CollectionLayoutContainer :: struct { using _: intrinsics.objc_object, 
+CollectionLayoutContainer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

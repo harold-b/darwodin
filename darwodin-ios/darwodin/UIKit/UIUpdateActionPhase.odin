@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIUpdateActionPhase
 ///
 @(objc_class="UIUpdateActionPhase", objc_superclass=NS.Object)
-UpdateActionPhase :: struct { using _: NS.Object, }
+UpdateActionPhase :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

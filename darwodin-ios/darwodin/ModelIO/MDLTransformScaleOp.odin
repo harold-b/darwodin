@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLTransformScaleOp
 ///
 @(objc_class="MDLTransformScaleOp", objc_superclass=NS.Object)
-TransformScaleOp :: struct { using _: NS.Object, 
+TransformScaleOp :: struct {
+    using _: NS.Object,
     using _: TransformOp,
 }
 

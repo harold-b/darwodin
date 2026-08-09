@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioUnitComponent
 ///
 @(objc_class="AVAudioUnitComponent", objc_superclass=NS.Object)
-AudioUnitComponent :: struct { using _: NS.Object, }
+AudioUnitComponent :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -58,7 +58,7 @@ foreign lib {
     AudioUnitComponent_hasMIDIOutput :: proc(self: ^AudioUnitComponent) -> bool ---
 
     @(objc_type=AudioUnitComponent, objc_selector="audioComponent", objc_name="audioComponent")
-    AudioUnitComponent_audioComponent :: proc(self: ^AudioUnitComponent) -> Audio.Component ---
+    AudioUnitComponent_audioComponent :: proc(self: ^AudioUnitComponent) -> AT.Component ---
 
     @(objc_type=AudioUnitComponent, objc_selector="userTagNames", objc_name="userTagNames")
     AudioUnitComponent_userTagNames :: proc(self: ^AudioUnitComponent) -> ^NS.Array ---
@@ -70,7 +70,7 @@ foreign lib {
     AudioUnitComponent_allTagNames :: proc(self: ^AudioUnitComponent) -> ^NS.Array ---
 
     @(objc_type=AudioUnitComponent, objc_selector="audioComponentDescription", objc_name="audioComponentDescription")
-    AudioUnitComponent_audioComponentDescription :: proc(self: ^AudioUnitComponent) -> Audio.ComponentDescription ---
+    AudioUnitComponent_audioComponentDescription :: proc(self: ^AudioUnitComponent) -> AT.ComponentDescription ---
 
     @(objc_type=AudioUnitComponent, objc_selector="iconURL", objc_name="iconURL")
     AudioUnitComponent_iconURL :: proc(self: ^AudioUnitComponent) -> ^NS.URL ---

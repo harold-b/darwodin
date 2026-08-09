@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKCloudPlayer
 ///
 @(objc_class="GKCloudPlayer", objc_superclass=BasePlayer)
-CloudPlayer :: struct { using _: BasePlayer, }
+CloudPlayer :: struct { using _: BasePlayer}
 
 @(default_calling_convention="c")
 foreign lib {

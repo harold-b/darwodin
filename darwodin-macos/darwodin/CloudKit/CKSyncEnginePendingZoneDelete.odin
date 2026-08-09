@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKSyncEnginePendingZoneDelete
 ///
 @(objc_class="CKSyncEnginePendingZoneDelete", objc_superclass=SyncEnginePendingDatabaseChange)
-SyncEnginePendingZoneDelete :: struct { using _: SyncEnginePendingDatabaseChange, }
+SyncEnginePendingZoneDelete :: struct { using _: SyncEnginePendingDatabaseChange}
 
 @(default_calling_convention="c")
 foreign lib {

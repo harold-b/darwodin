@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UILookToDictateCapable
 ///
 @(objc_class="UILookToDictateCapable")
-LookToDictateCapable :: struct { using _: intrinsics.objc_object, 
+LookToDictateCapable :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

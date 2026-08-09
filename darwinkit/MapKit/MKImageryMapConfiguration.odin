@@ -1,0 +1,14 @@
+#+build darwin
+package darwin_MapKit
+
+
+@(objc_class="MKImageryMapConfiguration", objc_superclass=MapConfiguration)
+ImageryMapConfiguration :: struct { using _: MapConfiguration}
+
+foreign lib {
+	@(objc_type=ImageryMapConfiguration, objc_selector="init", objc_name="init")
+	ImageryMapConfiguration_init :: proc(self: ^ImageryMapConfiguration) -> instancetype ---
+
+	@(objc_type=ImageryMapConfiguration, objc_selector="initWithElevationStyle:", objc_name="initWithElevationStyle")
+	ImageryMapConfiguration_initWithElevationStyle :: proc(self: ^ImageryMapConfiguration, elevationStyle: MapElevationStyle) -> instancetype ---
+}

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKLeaderboardEntry
 ///
 @(objc_class="GKLeaderboardEntry", objc_superclass=NS.Object)
-LeaderboardEntry :: struct { using _: NS.Object, }
+LeaderboardEntry :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -36,17 +37,4 @@ foreign lib {
 
     @(objc_type=LeaderboardEntry, objc_selector="date", objc_name="date")
     LeaderboardEntry_date :: proc(self: ^LeaderboardEntry) -> ^NS.Date ---
-
-    @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
-    LeaderboardEntry_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^NS.ViewController ---
-
-    @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
-    LeaderboardEntry_challengeComposeControllerWithMessage_players_completion :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^NS.ViewController ---
 }
-
-@(objc_type=LeaderboardEntry, objc_name="challengeComposeControllerWithMessage")
-LeaderboardEntry_challengeComposeControllerWithMessage :: proc {
-    LeaderboardEntry_challengeComposeControllerWithMessage_players_completionHandler,
-    LeaderboardEntry_challengeComposeControllerWithMessage_players_completion,
-}
-

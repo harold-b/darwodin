@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDragInteractionDelegate
 ///
 @(objc_class="UIDragInteractionDelegate")
-DragInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+DragInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -6,9 +6,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CA "../QuartzCore"
+import NS "../AppKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import NS "../AppKit"
 
 
 
@@ -16,7 +16,8 @@ import NS "../AppKit"
 /// MTKMeshBufferAllocator
 ///
 @(objc_class="MTKMeshBufferAllocator", objc_superclass=NS.Object)
-MeshBufferAllocator :: struct { using _: NS.Object, 
+MeshBufferAllocator :: struct {
+    using _: NS.Object,
     using _: MDL.MeshBufferAllocator,
 }
 

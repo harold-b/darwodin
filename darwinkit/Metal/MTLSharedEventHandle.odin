@@ -1,25 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLSharedEventHandle", objc_superclass=NS.Object)
-SharedEventHandle :: struct { using _: NS.Object, 
-    using _: NS.SecureCoding,
+SharedEventHandle :: struct {
+	using _: NS.Object,
+	using _: NS.SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=SharedEventHandle, objc_selector="label", objc_name="label")
-    SharedEventHandle_label :: proc(self: ^SharedEventHandle) -> ^NS.String ---
+	@(objc_type=SharedEventHandle, objc_selector="label", objc_name="label")
+	SharedEventHandle_label :: proc(self: ^SharedEventHandle) -> ^NS.String ---
 }
-
-
-

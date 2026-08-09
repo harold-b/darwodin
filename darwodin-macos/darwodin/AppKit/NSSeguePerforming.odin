@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSeguePerforming
 ///
 @(objc_class="NSSeguePerforming")
-SeguePerforming :: struct { using _: intrinsics.objc_object, 
+SeguePerforming :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

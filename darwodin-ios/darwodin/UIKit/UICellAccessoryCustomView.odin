@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICellAccessoryCustomView
 ///
 @(objc_class="UICellAccessoryCustomView", objc_superclass=CellAccessory)
-CellAccessoryCustomView :: struct { using _: CellAccessory, }
+CellAccessoryCustomView :: struct { using _: CellAccessory}
 
 @(default_calling_convention="c")
 foreign lib {

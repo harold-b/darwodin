@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKQuery
 ///
 @(objc_class="CKQuery", objc_superclass=NS.Object)
-Query :: struct { using _: NS.Object, 
+Query :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

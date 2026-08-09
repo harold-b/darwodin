@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKSyncEngineFetchedZoneDeletion
 ///
 @(objc_class="CKSyncEngineFetchedZoneDeletion", objc_superclass=NS.Object)
-SyncEngineFetchedZoneDeletion :: struct { using _: NS.Object, }
+SyncEngineFetchedZoneDeletion :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

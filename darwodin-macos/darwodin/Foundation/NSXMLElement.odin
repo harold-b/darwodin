@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSXMLElement
 ///
 @(objc_class="NSXMLElement", objc_superclass=XMLNode)
-XMLElement :: struct { using _: XMLNode, }
+XMLElement :: struct { using _: XMLNode}
 
 @(default_calling_convention="c")
 foreign lib {

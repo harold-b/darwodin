@@ -1,52 +1,45 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UIContentUnavailableView
-///
+
+
 @(objc_class="UIContentUnavailableView", objc_superclass=View)
-ContentUnavailableView :: struct { using _: View, 
-    using _: ContentView,
+ContentUnavailableView :: struct {
+	using _: View,
+	using _: ContentView,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=ContentUnavailableView, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    ContentUnavailableView_initWithConfiguration :: proc(self: ^ContentUnavailableView, configuration: ^ContentUnavailableConfiguration) -> instancetype ---
+	@(objc_type=ContentUnavailableView, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
+	ContentUnavailableView_initWithConfiguration :: proc(self: ^ContentUnavailableView, configuration: ^ContentUnavailableConfiguration) -> instancetype ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ContentUnavailableView_initWithCoder :: proc(self: ^ContentUnavailableView, coder: ^NS.Coder) -> instancetype ---
+	@(objc_type=ContentUnavailableView, objc_selector="initWithCoder:", objc_name="initWithCoder")
+	ContentUnavailableView_initWithCoder :: proc(self: ^ContentUnavailableView, coder: ^NS.Coder) -> instancetype ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    ContentUnavailableView_initWithFrame :: proc(self: ^ContentUnavailableView, frame: CG.Rect) -> instancetype ---
+	@(objc_type=ContentUnavailableView, objc_selector="initWithFrame:", objc_name="initWithFrame")
+	ContentUnavailableView_initWithFrame :: proc(self: ^ContentUnavailableView, frame: CG.Rect) -> instancetype ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="init", objc_name="init")
-    ContentUnavailableView_init :: proc(self: ^ContentUnavailableView) -> instancetype ---
+	@(objc_type=ContentUnavailableView, objc_selector="init", objc_name="init")
+	ContentUnavailableView_init :: proc(self: ^ContentUnavailableView) -> instancetype ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    ContentUnavailableView_new :: proc() -> ^ContentUnavailableView ---
+	@(objc_type=ContentUnavailableView, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	ContentUnavailableView_new :: proc() -> ^ContentUnavailableView ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="configuration", objc_name="configuration")
-    ContentUnavailableView_configuration :: proc(self: ^ContentUnavailableView) -> ^ContentUnavailableConfiguration ---
+	@(objc_type=ContentUnavailableView, objc_selector="configuration", objc_name="configuration")
+	ContentUnavailableView_configuration :: proc(self: ^ContentUnavailableView) -> ^ContentUnavailableConfiguration ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="setConfiguration:", objc_name="setConfiguration")
-    ContentUnavailableView_setConfiguration :: proc(self: ^ContentUnavailableView, configuration: ^ContentUnavailableConfiguration) ---
+	@(objc_type=ContentUnavailableView, objc_selector="setConfiguration:", objc_name="setConfiguration")
+	ContentUnavailableView_setConfiguration :: proc(self: ^ContentUnavailableView, configuration: ^ContentUnavailableConfiguration) ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="isScrollEnabled", objc_name="isScrollEnabled")
-    ContentUnavailableView_isScrollEnabled :: proc(self: ^ContentUnavailableView) -> bool ---
+	@(objc_type=ContentUnavailableView, objc_selector="isScrollEnabled", objc_name="isScrollEnabled")
+	ContentUnavailableView_isScrollEnabled :: proc(self: ^ContentUnavailableView) -> bool ---
 
-    @(objc_type=ContentUnavailableView, objc_selector="setScrollEnabled:", objc_name="setScrollEnabled")
-    ContentUnavailableView_setScrollEnabled :: proc(self: ^ContentUnavailableView, scrollEnabled: bool) ---
+	@(objc_type=ContentUnavailableView, objc_selector="setScrollEnabled:", objc_name="setScrollEnabled")
+	ContentUnavailableView_setScrollEnabled :: proc(self: ^ContentUnavailableView, scrollEnabled: bool) ---
 }

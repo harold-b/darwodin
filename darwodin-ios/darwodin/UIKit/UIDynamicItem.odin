@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDynamicItem
 ///
 @(objc_class="UIDynamicItem")
-DynamicItem :: struct { using _: intrinsics.objc_object, 
+DynamicItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

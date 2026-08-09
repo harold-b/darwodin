@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMetadataQuery
 ///
 @(objc_class="NSMetadataQuery", objc_superclass=Object)
-MetadataQuery :: struct { using _: Object, }
+MetadataQuery :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

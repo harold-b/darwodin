@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSGarbageCollector
 ///
 @(objc_class="NSGarbageCollector", objc_superclass=Object)
-GarbageCollector :: struct { using _: Object, }
+GarbageCollector :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

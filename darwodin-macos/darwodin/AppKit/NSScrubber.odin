@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSScrubber
 ///
 @(objc_class="NSScrubber", objc_superclass=View)
-Scrubber :: struct { using _: View, }
+Scrubber :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

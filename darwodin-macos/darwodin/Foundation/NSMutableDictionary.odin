@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableDictionary
 ///
 @(objc_class="NSMutableDictionary", objc_superclass=Dictionary)
-MutableDictionary :: struct { using _: Dictionary, }
+MutableDictionary :: struct { using _: Dictionary}
 
 @(default_calling_convention="c")
 foreign lib {

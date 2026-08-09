@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCEventViewController
 ///
 @(objc_class="GCEventViewController", objc_superclass=NS.ViewController)
-EventViewController :: struct { using _: NS.ViewController, }
+EventViewController :: struct { using _: NS.ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

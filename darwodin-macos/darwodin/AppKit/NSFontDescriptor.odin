@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSFontDescriptor
 ///
 @(objc_class="NSFontDescriptor", objc_superclass=NS.Object)
-FontDescriptor :: struct { using _: NS.Object, 
+FontDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

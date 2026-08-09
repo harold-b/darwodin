@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSNetServiceBrowser
 ///
 @(objc_class="NSNetServiceBrowser", objc_superclass=Object)
-NetServiceBrowser :: struct { using _: Object, }
+NetServiceBrowser :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

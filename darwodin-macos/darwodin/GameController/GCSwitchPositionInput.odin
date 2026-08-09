@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCSwitchPositionInput
 ///
 @(objc_class="GCSwitchPositionInput")
-SwitchPositionInput :: struct { using _: intrinsics.objc_object, 
+SwitchPositionInput :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

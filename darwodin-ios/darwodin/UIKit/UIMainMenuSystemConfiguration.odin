@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIMainMenuSystemConfiguration
 ///
 @(objc_class="UIMainMenuSystemConfiguration", objc_superclass=NS.Object)
-MainMenuSystemConfiguration :: struct { using _: NS.Object, 
+MainMenuSystemConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

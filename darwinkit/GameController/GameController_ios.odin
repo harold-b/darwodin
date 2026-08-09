@@ -1,7 +1,7 @@
 #+build darwin:ios
 #+private package
-package darwodin_GameController
+package darwin_GameController
 
-import _UI "../UIKit"
-UI ::_UI
+import UI "../UIKit"
 
+UI_ViewController :: UI.ViewController

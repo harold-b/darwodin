@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIColorWell
 ///
 @(objc_class="UIColorWell", objc_superclass=Control)
-ColorWell :: struct { using _: Control, }
+ColorWell :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

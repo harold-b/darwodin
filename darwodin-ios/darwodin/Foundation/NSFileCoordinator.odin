@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSFileCoordinator
 ///
 @(objc_class="NSFileCoordinator", objc_superclass=Object)
-FileCoordinator :: struct { using _: Object, }
+FileCoordinator :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

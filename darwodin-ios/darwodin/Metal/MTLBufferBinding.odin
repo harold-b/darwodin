@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBufferBinding
 ///
 @(objc_class="MTLBufferBinding")
-BufferBinding :: struct { using _: intrinsics.objc_object, 
+BufferBinding :: struct {
+    using _: intrinsics.objc_object,
     using _: Binding,
 }
 

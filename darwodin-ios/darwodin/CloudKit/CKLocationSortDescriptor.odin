@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKLocationSortDescriptor
 ///
 @(objc_class="CKLocationSortDescriptor", objc_superclass=NS.SortDescriptor)
-LocationSortDescriptor :: struct { using _: NS.SortDescriptor, 
+LocationSortDescriptor :: struct {
+    using _: NS.SortDescriptor,
     using _: NS.SecureCoding,
 }
 

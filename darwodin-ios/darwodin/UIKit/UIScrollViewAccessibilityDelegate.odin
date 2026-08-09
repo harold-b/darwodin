@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIScrollViewAccessibilityDelegate
 ///
 @(objc_class="UIScrollViewAccessibilityDelegate")
-ScrollViewAccessibilityDelegate :: struct { using _: intrinsics.objc_object, 
+ScrollViewAccessibilityDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ScrollViewDelegate,
 }
 

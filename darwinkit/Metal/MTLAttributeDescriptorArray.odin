@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLAttributeDescriptorArray", objc_superclass=NS.Object)
-AttributeDescriptorArray :: struct { using _: NS.Object, }
+AttributeDescriptorArray :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=AttributeDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
-    AttributeDescriptorArray_objectAtIndexedSubscript :: proc(self: ^AttributeDescriptorArray, index: NS.UInteger) -> ^AttributeDescriptor ---
+	@(objc_type=AttributeDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+	AttributeDescriptorArray_objectAtIndexedSubscript :: proc(self: ^AttributeDescriptorArray, index: NS.UInteger) -> ^AttributeDescriptor ---
 
-    @(objc_type=AttributeDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
-    AttributeDescriptorArray_setObject :: proc(self: ^AttributeDescriptorArray, attributeDesc: ^AttributeDescriptor, index: NS.UInteger) ---
+	@(objc_type=AttributeDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
+	AttributeDescriptorArray_setObject :: proc(self: ^AttributeDescriptorArray, attributeDesc: ^AttributeDescriptor, index: NS.UInteger) ---
 }
-
-
-

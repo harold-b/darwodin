@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCommandBuffer
 ///
 @(objc_class="MTLCommandBuffer")
-CommandBuffer :: struct { using _: intrinsics.objc_object, 
+CommandBuffer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

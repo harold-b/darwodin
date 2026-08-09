@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLAccelerationStructureCommandEncoder
 ///
 @(objc_class="MTLAccelerationStructureCommandEncoder")
-AccelerationStructureCommandEncoder :: struct { using _: intrinsics.objc_object, 
+AccelerationStructureCommandEncoder :: struct {
+    using _: intrinsics.objc_object,
     using _: CommandEncoder,
 }
 

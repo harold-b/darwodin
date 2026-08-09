@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSGlyphInfo
 ///
 @(objc_class="NSGlyphInfo", objc_superclass=NS.Object)
-GlyphInfo :: struct { using _: NS.Object, 
+GlyphInfo :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

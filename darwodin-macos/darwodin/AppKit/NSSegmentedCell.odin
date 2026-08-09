@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSegmentedCell
 ///
 @(objc_class="NSSegmentedCell", objc_superclass=ActionCell)
-SegmentedCell :: struct { using _: ActionCell, }
+SegmentedCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

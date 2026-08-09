@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKFetchShareParticipantsOperation
 ///
 @(objc_class="CKFetchShareParticipantsOperation", objc_superclass=Operation)
-FetchShareParticipantsOperation :: struct { using _: Operation, }
+FetchShareParticipantsOperation :: struct { using _: Operation}
 
 @(default_calling_convention="c")
 foreign lib {

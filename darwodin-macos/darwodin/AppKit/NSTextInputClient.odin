@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextInputClient
 ///
 @(objc_class="NSTextInputClient")
-TextInputClient :: struct { using _: intrinsics.objc_object, }
+TextInputClient :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLMaterialPropertyNode
 ///
 @(objc_class="MDLMaterialPropertyNode", objc_superclass=NS.Object)
-MaterialPropertyNode :: struct { using _: NS.Object, 
+MaterialPropertyNode :: struct {
+    using _: NS.Object,
     using _: Named,
 }
 

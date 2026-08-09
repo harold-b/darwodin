@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextTableBlock
 ///
 @(objc_class="NSTextTableBlock", objc_superclass=TextBlock)
-TextTableBlock :: struct { using _: TextBlock, }
+TextTableBlock :: struct { using _: TextBlock}
 
 @(default_calling_convention="c")
 foreign lib {

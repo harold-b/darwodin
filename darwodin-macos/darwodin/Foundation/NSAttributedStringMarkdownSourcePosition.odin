@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSAttributedStringMarkdownSourcePosition
 ///
 @(objc_class="NSAttributedStringMarkdownSourcePosition", objc_superclass=Object)
-AttributedStringMarkdownSourcePosition :: struct { using _: Object, 
+AttributedStringMarkdownSourcePosition :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
 }

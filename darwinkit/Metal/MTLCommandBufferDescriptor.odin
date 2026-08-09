@@ -1,40 +1,30 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLCommandBufferDescriptor", objc_superclass=NS.Object)
-CommandBufferDescriptor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+CommandBufferDescriptor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=CommandBufferDescriptor, objc_selector="retainedReferences", objc_name="retainedReferences")
-    CommandBufferDescriptor_retainedReferences :: proc(self: ^CommandBufferDescriptor) -> bool ---
+	@(objc_type=CommandBufferDescriptor, objc_selector="retainedReferences", objc_name="retainedReferences")
+	CommandBufferDescriptor_retainedReferences :: proc(self: ^CommandBufferDescriptor) -> bool ---
 
-    @(objc_type=CommandBufferDescriptor, objc_selector="setRetainedReferences:", objc_name="setRetainedReferences")
-    CommandBufferDescriptor_setRetainedReferences :: proc(self: ^CommandBufferDescriptor, retainedReferences: bool) ---
+	@(objc_type=CommandBufferDescriptor, objc_selector="setRetainedReferences:", objc_name="setRetainedReferences")
+	CommandBufferDescriptor_setRetainedReferences :: proc(self: ^CommandBufferDescriptor, retainedReferences: bool) ---
 
-    @(objc_type=CommandBufferDescriptor, objc_selector="errorOptions", objc_name="errorOptions")
-    CommandBufferDescriptor_errorOptions :: proc(self: ^CommandBufferDescriptor) -> CommandBufferErrorOptions ---
+	@(objc_type=CommandBufferDescriptor, objc_selector="errorOptions", objc_name="errorOptions")
+	CommandBufferDescriptor_errorOptions :: proc(self: ^CommandBufferDescriptor) -> CommandBufferErrorOptions ---
 
-    @(objc_type=CommandBufferDescriptor, objc_selector="setErrorOptions:", objc_name="setErrorOptions")
-    CommandBufferDescriptor_setErrorOptions :: proc(self: ^CommandBufferDescriptor, errorOptions: CommandBufferErrorOptions) ---
+	@(objc_type=CommandBufferDescriptor, objc_selector="setErrorOptions:", objc_name="setErrorOptions")
+	CommandBufferDescriptor_setErrorOptions :: proc(self: ^CommandBufferDescriptor, errorOptions: CommandBufferErrorOptions) ---
 
-    @(objc_type=CommandBufferDescriptor, objc_selector="logState", objc_name="logState")
-    CommandBufferDescriptor_logState :: proc(self: ^CommandBufferDescriptor) -> ^LogState ---
+	@(objc_type=CommandBufferDescriptor, objc_selector="logState", objc_name="logState")
+	CommandBufferDescriptor_logState :: proc(self: ^CommandBufferDescriptor) -> ^LogState ---
 
-    @(objc_type=CommandBufferDescriptor, objc_selector="setLogState:", objc_name="setLogState")
-    CommandBufferDescriptor_setLogState :: proc(self: ^CommandBufferDescriptor, logState: ^LogState) ---
+	@(objc_type=CommandBufferDescriptor, objc_selector="setLogState:", objc_name="setLogState")
+	CommandBufferDescriptor_setLogState :: proc(self: ^CommandBufferDescriptor, logState: ^LogState) ---
 }
-
-
-

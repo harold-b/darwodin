@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICalendarSelectionMultiDate
 ///
 @(objc_class="UICalendarSelectionMultiDate", objc_superclass=CalendarSelection)
-CalendarSelectionMultiDate :: struct { using _: CalendarSelection, }
+CalendarSelectionMultiDate :: struct { using _: CalendarSelection}
 
 @(default_calling_convention="c")
 foreign lib {

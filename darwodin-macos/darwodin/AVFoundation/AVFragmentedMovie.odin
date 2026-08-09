@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVFragmentedMovie
 ///
 @(objc_class="AVFragmentedMovie", objc_superclass=Movie)
-FragmentedMovie :: struct { using _: Movie, 
+FragmentedMovie :: struct {
+    using _: Movie,
     using _: FragmentMinding,
 }
 

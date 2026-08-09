@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSXMLDTD
 ///
 @(objc_class="NSXMLDTD", objc_superclass=XMLNode)
-XMLDTD :: struct { using _: XMLNode, }
+XMLDTD :: struct { using _: XMLNode}
 
 @(default_calling_convention="c")
 foreign lib {

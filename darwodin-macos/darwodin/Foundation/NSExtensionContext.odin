@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSExtensionContext
 ///
 @(objc_class="NSExtensionContext", objc_superclass=Object)
-ExtensionContext :: struct { using _: Object, }
+ExtensionContext :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

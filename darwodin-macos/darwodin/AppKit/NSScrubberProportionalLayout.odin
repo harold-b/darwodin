@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSScrubberProportionalLayout
 ///
 @(objc_class="NSScrubberProportionalLayout", objc_superclass=ScrubberLayout)
-ScrubberProportionalLayout :: struct { using _: ScrubberLayout, }
+ScrubberProportionalLayout :: struct { using _: ScrubberLayout}
 
 @(default_calling_convention="c")
 foreign lib {

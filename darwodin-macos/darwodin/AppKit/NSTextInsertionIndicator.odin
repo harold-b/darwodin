@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextInsertionIndicator
 ///
 @(objc_class="NSTextInsertionIndicator", objc_superclass=View)
-TextInsertionIndicator :: struct { using _: View, }
+TextInsertionIndicator :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

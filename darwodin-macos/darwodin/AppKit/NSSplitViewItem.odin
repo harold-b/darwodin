@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSplitViewItem
 ///
 @(objc_class="NSSplitViewItem", objc_superclass=NS.Object)
-SplitViewItem :: struct { using _: NS.Object, 
+SplitViewItem :: struct {
+    using _: NS.Object,
     using _: AnimatablePropertyContainer,
     using _: NS.Coding,
 }

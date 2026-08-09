@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICollectionViewFlowLayoutInvalidationContext
 ///
 @(objc_class="UICollectionViewFlowLayoutInvalidationContext", objc_superclass=CollectionViewLayoutInvalidationContext)
-CollectionViewFlowLayoutInvalidationContext :: struct { using _: CollectionViewLayoutInvalidationContext, }
+CollectionViewFlowLayoutInvalidationContext :: struct { using _: CollectionViewLayoutInvalidationContext}
 
 @(default_calling_convention="c")
 foreign lib {

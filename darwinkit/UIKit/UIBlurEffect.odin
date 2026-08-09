@@ -1,26 +1,16 @@
 #+build darwin:ios
-package darwodin_UIKit
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
+package darwin_UIKit
 
 
 
-///
-/// UIBlurEffect
-///
+
+
+
 @(objc_class="UIBlurEffect", objc_superclass=VisualEffect)
-BlurEffect :: struct { using _: VisualEffect, }
+BlurEffect :: struct { using _: VisualEffect}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=BlurEffect, objc_selector="effectWithStyle:", objc_name="effectWithStyle", objc_is_class_method=true)
-    BlurEffect_effectWithStyle :: proc(style: BlurEffectStyle) -> ^BlurEffect ---
+	@(objc_type=BlurEffect, objc_selector="effectWithStyle:", objc_name="effectWithStyle", objc_is_class_method=true)
+	BlurEffect_effectWithStyle :: proc(style: BlurEffectStyle) -> ^BlurEffect ---
 }

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIntersectionFunctionTable
 ///
 @(objc_class="MTLIntersectionFunctionTable")
-IntersectionFunctionTable :: struct { using _: intrinsics.objc_object, 
+IntersectionFunctionTable :: struct {
+    using _: intrinsics.objc_object,
     using _: Resource,
 }
 

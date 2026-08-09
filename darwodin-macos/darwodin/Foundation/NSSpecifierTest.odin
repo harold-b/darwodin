@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSSpecifierTest
 ///
 @(objc_class="NSSpecifierTest", objc_superclass=ScriptWhoseTest)
-SpecifierTest :: struct { using _: ScriptWhoseTest, }
+SpecifierTest :: struct { using _: ScriptWhoseTest}
 
 @(default_calling_convention="c")
 foreign lib {

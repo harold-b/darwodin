@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDropProposal
 ///
 @(objc_class="UIDropProposal", objc_superclass=NS.Object)
-DropProposal :: struct { using _: NS.Object, 
+DropProposal :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

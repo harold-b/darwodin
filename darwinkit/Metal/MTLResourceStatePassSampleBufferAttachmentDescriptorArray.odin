@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLResourceStatePassSampleBufferAttachmentDescriptorArray", objc_superclass=NS.Object)
-ResourceStatePassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object, }
+ResourceStatePassSampleBufferAttachmentDescriptorArray :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=ResourceStatePassSampleBufferAttachmentDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
-    ResourceStatePassSampleBufferAttachmentDescriptorArray_objectAtIndexedSubscript :: proc(self: ^ResourceStatePassSampleBufferAttachmentDescriptorArray, attachmentIndex: NS.UInteger) -> ^ResourceStatePassSampleBufferAttachmentDescriptor ---
+	@(objc_type=ResourceStatePassSampleBufferAttachmentDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+	ResourceStatePassSampleBufferAttachmentDescriptorArray_objectAtIndexedSubscript :: proc(self: ^ResourceStatePassSampleBufferAttachmentDescriptorArray, attachmentIndex: NS.UInteger) -> ^ResourceStatePassSampleBufferAttachmentDescriptor ---
 
-    @(objc_type=ResourceStatePassSampleBufferAttachmentDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
-    ResourceStatePassSampleBufferAttachmentDescriptorArray_setObject :: proc(self: ^ResourceStatePassSampleBufferAttachmentDescriptorArray, attachment: ^ResourceStatePassSampleBufferAttachmentDescriptor, attachmentIndex: NS.UInteger) ---
+	@(objc_type=ResourceStatePassSampleBufferAttachmentDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
+	ResourceStatePassSampleBufferAttachmentDescriptorArray_setObject :: proc(self: ^ResourceStatePassSampleBufferAttachmentDescriptorArray, attachment: ^ResourceStatePassSampleBufferAttachmentDescriptor, attachmentIndex: NS.UInteger) ---
 }
-
-
-

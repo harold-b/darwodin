@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSApplication
 ///
 @(objc_class="NSApplication", objc_superclass=Responder)
-Application :: struct { using _: Responder, 
+Application :: struct {
+    using _: Responder,
     using _: UserInterfaceValidations,
     using _: MenuItemValidation,
     using _: AccessibilityElementProtocol,

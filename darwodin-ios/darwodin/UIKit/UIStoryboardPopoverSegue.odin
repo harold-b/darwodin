@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIStoryboardPopoverSegue
 ///
 @(objc_class="UIStoryboardPopoverSegue", objc_superclass=StoryboardSegue)
-StoryboardPopoverSegue :: struct { using _: StoryboardSegue, }
+StoryboardPopoverSegue :: struct { using _: StoryboardSegue}
 
 @(default_calling_convention="c")
 foreign lib {

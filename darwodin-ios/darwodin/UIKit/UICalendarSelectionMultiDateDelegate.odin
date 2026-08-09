@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICalendarSelectionMultiDateDelegate
 ///
 @(objc_class="UICalendarSelectionMultiDateDelegate")
-CalendarSelectionMultiDateDelegate :: struct { using _: intrinsics.objc_object, 
+CalendarSelectionMultiDateDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

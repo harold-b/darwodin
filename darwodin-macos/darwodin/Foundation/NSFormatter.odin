@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSFormatter
 ///
 @(objc_class="NSFormatter", objc_superclass=Object)
-Formatter :: struct { using _: Object, 
+Formatter :: struct {
+    using _: Object,
     using _: Copying,
     using _: Coding,
 }

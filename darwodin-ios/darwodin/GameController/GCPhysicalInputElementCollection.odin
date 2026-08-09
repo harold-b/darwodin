@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCPhysicalInputElementCollection
 ///
 @(objc_class="GCPhysicalInputElementCollection", objc_superclass=NS.Object)
-PhysicalInputElementCollection :: struct { using _: NS.Object, 
+PhysicalInputElementCollection :: struct {
+    using _: NS.Object,
     using _: NS.FastEnumeration,
 }
 

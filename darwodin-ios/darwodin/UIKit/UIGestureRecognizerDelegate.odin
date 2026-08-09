@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIGestureRecognizerDelegate
 ///
 @(objc_class="UIGestureRecognizerDelegate")
-GestureRecognizerDelegate :: struct { using _: intrinsics.objc_object, 
+GestureRecognizerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIHoverHighlightEffect
 ///
 @(objc_class="UIHoverHighlightEffect", objc_superclass=NS.Object)
-HoverHighlightEffect :: struct { using _: NS.Object, 
+HoverHighlightEffect :: struct {
+    using _: NS.Object,
     using _: HoverEffect,
 }
 

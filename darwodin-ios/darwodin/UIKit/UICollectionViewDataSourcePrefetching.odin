@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDataSourcePrefetching
 ///
 @(objc_class="UICollectionViewDataSourcePrefetching")
-CollectionViewDataSourcePrefetching :: struct { using _: intrinsics.objc_object, 
+CollectionViewDataSourcePrefetching :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

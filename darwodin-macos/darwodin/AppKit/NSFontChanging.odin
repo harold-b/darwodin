@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSFontChanging
 ///
 @(objc_class="NSFontChanging")
-FontChanging :: struct { using _: intrinsics.objc_object, 
+FontChanging :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIImageView
 ///
 @(objc_class="UIImageView", objc_superclass=View)
-ImageView :: struct { using _: View, }
+ImageView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

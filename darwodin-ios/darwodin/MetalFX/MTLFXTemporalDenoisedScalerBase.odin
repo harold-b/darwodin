@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTLFXTemporalDenoisedScalerBase
 ///
 @(objc_class="MTLFXTemporalDenoisedScalerBase")
-TemporalDenoisedScalerBase :: struct { using _: intrinsics.objc_object, 
+TemporalDenoisedScalerBase :: struct {
+    using _: intrinsics.objc_object,
     using _: FrameInterpolatableScaler,
 }
 
@@ -232,16 +233,16 @@ foreign lib {
     TemporalDenoisedScalerBase_inputContentMaxScale :: proc(self: ^TemporalDenoisedScalerBase) -> cffi.float ---
 
     @(objc_type=TemporalDenoisedScalerBase, objc_selector="worldToViewMatrix", objc_name="worldToViewMatrix")
-    TemporalDenoisedScalerBase_worldToViewMatrix :: proc(self: ^TemporalDenoisedScalerBase) -> simd_float4x4 ---
+    TemporalDenoisedScalerBase_worldToViewMatrix :: proc(self: ^TemporalDenoisedScalerBase) -> matrix[4,4]f32 ---
 
     @(objc_type=TemporalDenoisedScalerBase, objc_selector="setWorldToViewMatrix:", objc_name="setWorldToViewMatrix")
-    TemporalDenoisedScalerBase_setWorldToViewMatrix :: proc(self: ^TemporalDenoisedScalerBase, worldToViewMatrix: simd_float4x4) ---
+    TemporalDenoisedScalerBase_setWorldToViewMatrix :: proc(self: ^TemporalDenoisedScalerBase, worldToViewMatrix: matrix[4,4]f32) ---
 
     @(objc_type=TemporalDenoisedScalerBase, objc_selector="viewToClipMatrix", objc_name="viewToClipMatrix")
-    TemporalDenoisedScalerBase_viewToClipMatrix :: proc(self: ^TemporalDenoisedScalerBase) -> simd_float4x4 ---
+    TemporalDenoisedScalerBase_viewToClipMatrix :: proc(self: ^TemporalDenoisedScalerBase) -> matrix[4,4]f32 ---
 
     @(objc_type=TemporalDenoisedScalerBase, objc_selector="setViewToClipMatrix:", objc_name="setViewToClipMatrix")
-    TemporalDenoisedScalerBase_setViewToClipMatrix :: proc(self: ^TemporalDenoisedScalerBase, viewToClipMatrix: simd_float4x4) ---
+    TemporalDenoisedScalerBase_setViewToClipMatrix :: proc(self: ^TemporalDenoisedScalerBase, viewToClipMatrix: matrix[4,4]f32) ---
 
     @(objc_type=TemporalDenoisedScalerBase, objc_selector="fence", objc_name="fence")
     TemporalDenoisedScalerBase_fence :: proc(self: ^TemporalDenoisedScalerBase) -> ^MTL.Fence ---

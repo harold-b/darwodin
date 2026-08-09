@@ -1,33 +1,23 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSURLSessionTaskMetrics", objc_superclass=Object)
-URLSessionTaskMetrics :: struct { using _: Object, }
+URLSessionTaskMetrics :: struct { using _: Object}
 
 foreign lib {
-    @(objc_type=URLSessionTaskMetrics, objc_selector="init", objc_name="init")
-    URLSessionTaskMetrics_init :: proc(self: ^URLSessionTaskMetrics) -> instancetype ---
+	@(objc_type=URLSessionTaskMetrics, objc_selector="init", objc_name="init")
+	URLSessionTaskMetrics_init :: proc(self: ^URLSessionTaskMetrics) -> instancetype ---
 
-    @(objc_type=URLSessionTaskMetrics, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    URLSessionTaskMetrics_new :: proc() -> ^URLSessionTaskMetrics ---
+	@(objc_type=URLSessionTaskMetrics, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	URLSessionTaskMetrics_new :: proc() -> ^URLSessionTaskMetrics ---
 
-    @(objc_type=URLSessionTaskMetrics, objc_selector="transactionMetrics", objc_name="transactionMetrics")
-    URLSessionTaskMetrics_transactionMetrics :: proc(self: ^URLSessionTaskMetrics) -> ^Array ---
+	@(objc_type=URLSessionTaskMetrics, objc_selector="transactionMetrics", objc_name="transactionMetrics")
+	URLSessionTaskMetrics_transactionMetrics :: proc(self: ^URLSessionTaskMetrics) -> ^Array ---
 
-    @(objc_type=URLSessionTaskMetrics, objc_selector="taskInterval", objc_name="taskInterval")
-    URLSessionTaskMetrics_taskInterval :: proc(self: ^URLSessionTaskMetrics) -> ^DateInterval ---
+	@(objc_type=URLSessionTaskMetrics, objc_selector="taskInterval", objc_name="taskInterval")
+	URLSessionTaskMetrics_taskInterval :: proc(self: ^URLSessionTaskMetrics) -> ^DateInterval ---
 
-    @(objc_type=URLSessionTaskMetrics, objc_selector="redirectCount", objc_name="redirectCount")
-    URLSessionTaskMetrics_redirectCount :: proc(self: ^URLSessionTaskMetrics) -> UInteger ---
+	@(objc_type=URLSessionTaskMetrics, objc_selector="redirectCount", objc_name="redirectCount")
+	URLSessionTaskMetrics_redirectCount :: proc(self: ^URLSessionTaskMetrics) -> UInteger ---
 }
-
-
-

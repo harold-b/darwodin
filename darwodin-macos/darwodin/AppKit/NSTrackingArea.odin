@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTrackingArea
 ///
 @(objc_class="NSTrackingArea", objc_superclass=NS.Object)
-TrackingArea :: struct { using _: NS.Object, 
+TrackingArea :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
 }

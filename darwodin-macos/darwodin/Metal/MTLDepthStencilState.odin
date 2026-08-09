@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLDepthStencilState
 ///
 @(objc_class="MTLDepthStencilState")
-DepthStencilState :: struct { using _: intrinsics.objc_object, 
+DepthStencilState :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

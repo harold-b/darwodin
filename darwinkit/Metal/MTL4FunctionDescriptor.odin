@@ -1,18 +1,10 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTL4FunctionDescriptor", objc_superclass=NS.Object)
-MTL4FunctionDescriptor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+MTL4FunctionDescriptor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
-

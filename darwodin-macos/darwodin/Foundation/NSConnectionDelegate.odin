@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSConnectionDelegate
 ///
 @(objc_class="NSConnectionDelegate")
-ConnectionDelegate :: struct { using _: intrinsics.objc_object, 
+ConnectionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

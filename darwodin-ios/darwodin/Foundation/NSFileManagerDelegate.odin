@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSFileManagerDelegate
 ///
 @(objc_class="NSFileManagerDelegate")
-FileManagerDelegate :: struct { using _: intrinsics.objc_object, 
+FileManagerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCControllerTouchpad
 ///
 @(objc_class="GCControllerTouchpad", objc_superclass=ControllerElement)
-ControllerTouchpad :: struct { using _: ControllerElement, }
+ControllerTouchpad :: struct { using _: ControllerElement}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICalendarSelectionSingleDateDelegate
 ///
 @(objc_class="UICalendarSelectionSingleDateDelegate")
-CalendarSelectionSingleDateDelegate :: struct { using _: intrinsics.objc_object, 
+CalendarSelectionSingleDateDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

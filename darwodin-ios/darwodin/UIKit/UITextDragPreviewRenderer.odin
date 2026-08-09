@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextDragPreviewRenderer
 ///
 @(objc_class="UITextDragPreviewRenderer", objc_superclass=NS.Object)
-TextDragPreviewRenderer :: struct { using _: NS.Object, }
+TextDragPreviewRenderer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

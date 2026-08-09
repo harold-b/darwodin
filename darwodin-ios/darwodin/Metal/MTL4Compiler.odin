@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4Compiler
 ///
 @(objc_class="MTL4Compiler")
-MTL4Compiler :: struct { using _: intrinsics.objc_object, 
+MTL4Compiler :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

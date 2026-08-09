@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITabAccessory
 ///
 @(objc_class="UITabAccessory", objc_superclass=NS.Object)
-TabAccessory :: struct { using _: NS.Object, }
+TabAccessory :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

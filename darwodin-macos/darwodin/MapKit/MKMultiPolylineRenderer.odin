@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMultiPolylineRenderer
 ///
 @(objc_class="MKMultiPolylineRenderer", objc_superclass=OverlayPathRenderer)
-MultiPolylineRenderer :: struct { using _: OverlayPathRenderer, }
+MultiPolylineRenderer :: struct { using _: OverlayPathRenderer}
 
 @(default_calling_convention="c")
 foreign lib {

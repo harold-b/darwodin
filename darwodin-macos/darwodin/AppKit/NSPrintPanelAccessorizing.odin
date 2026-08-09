@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPrintPanelAccessorizing
 ///
 @(objc_class="NSPrintPanelAccessorizing")
-PrintPanelAccessorizing :: struct { using _: intrinsics.objc_object, }
+PrintPanelAccessorizing :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

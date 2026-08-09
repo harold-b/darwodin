@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPanGestureRecognizer
 ///
 @(objc_class="UIPanGestureRecognizer", objc_superclass=GestureRecognizer)
-PanGestureRecognizer :: struct { using _: GestureRecognizer, }
+PanGestureRecognizer :: struct { using _: GestureRecognizer}
 
 @(default_calling_convention="c")
 foreign lib {

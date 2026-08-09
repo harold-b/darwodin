@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLPhysicallyPlausibleLight
 ///
 @(objc_class="MDLPhysicallyPlausibleLight", objc_superclass=Light)
-PhysicallyPlausibleLight :: struct { using _: Light, }
+PhysicallyPlausibleLight :: struct { using _: Light}
 
 @(default_calling_convention="c")
 foreign lib {

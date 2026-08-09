@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITableViewDataSourcePrefetching
 ///
 @(objc_class="UITableViewDataSourcePrefetching")
-TableViewDataSourcePrefetching :: struct { using _: intrinsics.objc_object, 
+TableViewDataSourcePrefetching :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

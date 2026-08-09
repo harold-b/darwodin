@@ -1,25 +1,18 @@
 #+build darwin
-package darwodin_GameController
+package darwin_GameController
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import NS "../Foundation"
 
 @(objc_class="GCAxisElement")
-AxisElement :: struct { using _: intrinsics.objc_object, 
-    using _: PhysicalInputElement,
+AxisElement :: struct {
+	using _: intrinsics.objc_object,
+	using _: PhysicalInputElement,
 }
 
 foreign lib {
-    @(objc_type=AxisElement, objc_selector="absoluteInput", objc_name="absoluteInput")
-    AxisElement_absoluteInput :: proc(self: ^AxisElement) -> ^AxisInput ---
+	@(objc_type=AxisElement, objc_selector="absoluteInput", objc_name="absoluteInput")
+	AxisElement_absoluteInput :: proc(self: ^AxisElement) -> ^AxisInput ---
 
-    @(objc_type=AxisElement, objc_selector="relativeInput", objc_name="relativeInput")
-    AxisElement_relativeInput :: proc(self: ^AxisElement) -> ^RelativeInput ---
+	@(objc_type=AxisElement, objc_selector="relativeInput", objc_name="relativeInput")
+	AxisElement_relativeInput :: proc(self: ^AxisElement) -> ^RelativeInput ---
 }
-
-
-

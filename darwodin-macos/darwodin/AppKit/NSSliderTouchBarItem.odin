@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSliderTouchBarItem
 ///
 @(objc_class="NSSliderTouchBarItem", objc_superclass=TouchBarItem)
-SliderTouchBarItem :: struct { using _: TouchBarItem, }
+SliderTouchBarItem :: struct { using _: TouchBarItem}
 
 @(default_calling_convention="c")
 foreign lib {

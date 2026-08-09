@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CommandAllocator
 ///
 @(objc_class="MTL4CommandAllocator")
-MTL4CommandAllocator :: struct { using _: intrinsics.objc_object, 
+MTL4CommandAllocator :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKLookAroundSnapshotter
 ///
 @(objc_class="MKLookAroundSnapshotter", objc_superclass=NS.Object)
-LookAroundSnapshotter :: struct { using _: NS.Object, }
+LookAroundSnapshotter :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

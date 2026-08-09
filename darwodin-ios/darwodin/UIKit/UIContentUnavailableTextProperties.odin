@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIContentUnavailableTextProperties
 ///
 @(objc_class="UIContentUnavailableTextProperties", objc_superclass=NS.Object)
-ContentUnavailableTextProperties :: struct { using _: NS.Object, 
+ContentUnavailableTextProperties :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKDirectionsRequest
 ///
 @(objc_class="MKDirectionsRequest", objc_superclass=NS.Object)
-DirectionsRequest :: struct { using _: NS.Object, }
+DirectionsRequest :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLDynamicLibrary
 ///
 @(objc_class="MTLDynamicLibrary")
-DynamicLibraryProtocol :: struct { using _: intrinsics.objc_object, 
+DynamicLibraryProtocol :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

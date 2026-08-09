@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLPointerType
 ///
 @(objc_class="MTLPointerType", objc_superclass=Type)
-PointerType :: struct { using _: Type, }
+PointerType :: struct { using _: Type}
 
 @(default_calling_convention="c")
 foreign lib {

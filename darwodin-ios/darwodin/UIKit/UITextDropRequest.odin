@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDropRequest
 ///
 @(objc_class="UITextDropRequest")
-TextDropRequest :: struct { using _: intrinsics.objc_object, 
+TextDropRequest :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

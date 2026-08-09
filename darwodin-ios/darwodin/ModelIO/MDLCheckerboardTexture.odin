@@ -15,7 +15,7 @@ import MTL "../Metal"
 /// MDLCheckerboardTexture
 ///
 @(objc_class="MDLCheckerboardTexture", objc_superclass=Texture)
-CheckerboardTexture :: struct { using _: Texture, }
+CheckerboardTexture :: struct { using _: Texture}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMutableCaption
 ///
 @(objc_class="AVMutableCaption", objc_superclass=Caption)
-MutableCaption :: struct { using _: Caption, }
+MutableCaption :: struct { using _: Caption}
 
 @(default_calling_convention="c")
 foreign lib {

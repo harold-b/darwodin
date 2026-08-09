@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSAutoreleasePool
 ///
 @(objc_class="NSAutoreleasePool", objc_superclass=Object)
-AutoreleasePool :: struct { using _: Object, }
+AutoreleasePool :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

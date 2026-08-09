@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLPackedJointAnimation
 ///
 @(objc_class="MDLPackedJointAnimation", objc_superclass=Object)
-PackedJointAnimation :: struct { using _: Object, 
+PackedJointAnimation :: struct {
+    using _: Object,
     using _: NS.Copying,
     using _: JointAnimation,
 }

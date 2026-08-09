@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIWritingToolsCoordinator
 ///
 @(objc_class="UIWritingToolsCoordinator", objc_superclass=NS.Object)
-WritingToolsCoordinator :: struct { using _: NS.Object, 
+WritingToolsCoordinator :: struct {
+    using _: NS.Object,
     using _: Interaction,
 }
 

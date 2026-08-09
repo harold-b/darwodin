@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICollectionViewDiffableDataSourceSectionSnapshotHandlers
 ///
 @(objc_class="UICollectionViewDiffableDataSourceSectionSnapshotHandlers", objc_superclass=NS.Object)
-CollectionViewDiffableDataSourceSectionSnapshotHandlers :: struct { using _: NS.Object, 
+CollectionViewDiffableDataSourceSectionSnapshotHandlers :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

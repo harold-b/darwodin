@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLRenderPassColorAttachmentDescriptorArray
 ///
 @(objc_class="MTLRenderPassColorAttachmentDescriptorArray", objc_superclass=NS.Object)
-RenderPassColorAttachmentDescriptorArray :: struct { using _: NS.Object, }
+RenderPassColorAttachmentDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

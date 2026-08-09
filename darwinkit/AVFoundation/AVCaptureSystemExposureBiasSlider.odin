@@ -1,33 +1,23 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVCaptureSystemExposureBiasSlider", objc_superclass=CaptureControl)
-CaptureSystemExposureBiasSlider :: struct { using _: CaptureControl, }
+CaptureSystemExposureBiasSlider :: struct { using _: CaptureControl}
 
 foreign lib {
-    @(objc_type=CaptureSystemExposureBiasSlider, objc_selector="initWithDevice:", objc_name="initWithDevice_")
-    CaptureSystemExposureBiasSlider_initWithDevice_ :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice) -> instancetype ---
+	@(objc_type=CaptureSystemExposureBiasSlider, objc_selector="initWithDevice:", objc_name="initWithDevice_")
+	CaptureSystemExposureBiasSlider_initWithDevice_ :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice) -> instancetype ---
 
-    @(objc_type=CaptureSystemExposureBiasSlider, objc_selector="initWithDevice:action:", objc_name="initWithDevice_action")
-    CaptureSystemExposureBiasSlider_initWithDevice_action :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" ( exposureTargetBias: cffi.float ))) -> instancetype ---
+	@(objc_type=CaptureSystemExposureBiasSlider, objc_selector="initWithDevice:action:", objc_name="initWithDevice_action")
+	CaptureSystemExposureBiasSlider_initWithDevice_action :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" ( exposureTargetBias: cffi.float ))) -> instancetype ---
 }
 
 
 
 @(objc_type=CaptureSystemExposureBiasSlider, objc_name="initWithDevice")
 CaptureSystemExposureBiasSlider_initWithDevice :: proc {
-    CaptureSystemExposureBiasSlider_initWithDevice_,
-    CaptureSystemExposureBiasSlider_initWithDevice_action,
+	CaptureSystemExposureBiasSlider_initWithDevice_,
+	CaptureSystemExposureBiasSlider_initWithDevice_action,
 }
-

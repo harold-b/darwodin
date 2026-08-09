@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilitySlider
 ///
 @(objc_class="NSAccessibilitySlider")
-AccessibilitySlider :: struct { using _: intrinsics.objc_object, 
+AccessibilitySlider :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityElementProtocol,
 }
 

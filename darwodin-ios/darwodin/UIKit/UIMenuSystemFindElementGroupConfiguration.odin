@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIMenuSystemFindElementGroupConfiguration
 ///
 @(objc_class="UIMenuSystemFindElementGroupConfiguration", objc_superclass=NS.Object)
-MenuSystemFindElementGroupConfiguration :: struct { using _: NS.Object, }
+MenuSystemFindElementGroupConfiguration :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

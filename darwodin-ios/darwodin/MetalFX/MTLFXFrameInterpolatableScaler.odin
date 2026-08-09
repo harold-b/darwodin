@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTLFXFrameInterpolatableScaler
 ///
 @(objc_class="MTLFXFrameInterpolatableScaler")
-FrameInterpolatableScaler :: struct { using _: intrinsics.objc_object, 
+FrameInterpolatableScaler :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

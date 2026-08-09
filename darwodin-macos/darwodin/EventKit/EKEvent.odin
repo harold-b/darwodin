@@ -3,6 +3,7 @@ package darwodin_EventKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
+import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
@@ -14,7 +15,7 @@ import MK "../MapKit"
 /// EKEvent
 ///
 @(objc_class="EKEvent", objc_superclass=CalendarItem)
-Event :: struct { using _: CalendarItem, }
+Event :: struct { using _: CalendarItem}
 
 @(default_calling_convention="c")
 foreign lib {

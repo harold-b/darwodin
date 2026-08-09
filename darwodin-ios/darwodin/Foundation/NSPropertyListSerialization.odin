@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSPropertyListSerialization
 ///
 @(objc_class="NSPropertyListSerialization", objc_superclass=Object)
-PropertyListSerialization :: struct { using _: Object, }
+PropertyListSerialization :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

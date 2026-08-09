@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSScriptExecutionContext
 ///
 @(objc_class="NSScriptExecutionContext", objc_superclass=Object)
-ScriptExecutionContext :: struct { using _: Object, }
+ScriptExecutionContext :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

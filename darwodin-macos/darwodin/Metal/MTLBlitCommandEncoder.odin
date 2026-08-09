@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBlitCommandEncoder
 ///
 @(objc_class="MTLBlitCommandEncoder")
-BlitCommandEncoder :: struct { using _: intrinsics.objc_object, 
+BlitCommandEncoder :: struct {
+    using _: intrinsics.objc_object,
     using _: CommandEncoder,
 }
 

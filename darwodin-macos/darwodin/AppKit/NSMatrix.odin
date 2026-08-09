@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSMatrix
 ///
 @(objc_class="NSMatrix", objc_superclass=Control)
-Matrix :: struct { using _: Control, 
+Matrix :: struct {
+    using _: Control,
     using _: UserInterfaceValidations,
     using _: ViewToolTipOwner,
 }

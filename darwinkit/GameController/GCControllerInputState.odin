@@ -1,15 +1,10 @@
 #+build darwin
-package darwodin_GameController
+package darwin_GameController
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
 
 @(objc_class="GCControllerInputState", objc_superclass=NS.Object)
-ControllerInputState :: struct { using _: NS.Object, 
-    using _: DevicePhysicalInputState,
+ControllerInputState :: struct {
+	using _: NS.Object,
+	using _: DevicePhysicalInputState,
 }
-

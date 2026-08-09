@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSHapticFeedbackPerformer
 ///
 @(objc_class="NSHapticFeedbackPerformer")
-HapticFeedbackPerformer :: struct { using _: intrinsics.objc_object, 
+HapticFeedbackPerformer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

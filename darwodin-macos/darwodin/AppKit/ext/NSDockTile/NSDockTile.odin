@@ -13,13 +13,6 @@ import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
 
-id            :: ^intrinsics.objc_object
-SEL           :: ^intrinsics.objc_selector
-Class         :: ^intrinsics.objc_class
-IMP           :: rawptr
-Protocol      :: distinct id
-instancetype  :: intrinsics.objc_instancetype
-
 import NS "../../"
 
 import "../../../Foundation/ext/NSObject"

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIActivityIndicatorView
 ///
 @(objc_class="UIActivityIndicatorView", objc_superclass=View)
-ActivityIndicatorView :: struct { using _: View, 
+ActivityIndicatorView :: struct {
+    using _: View,
     using _: NS.Coding,
 }
 

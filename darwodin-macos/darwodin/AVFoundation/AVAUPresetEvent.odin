@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAUPresetEvent
 ///
 @(objc_class="AVAUPresetEvent", objc_superclass=MusicEvent)
-AUPresetEvent :: struct { using _: MusicEvent, }
+AUPresetEvent :: struct { using _: MusicEvent}
 
 @(default_calling_convention="c")
 foreign lib {

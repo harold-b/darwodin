@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityElement
 ///
 @(objc_class="NSAccessibilityElement", objc_superclass=NS.Object)
-AccessibilityElement :: struct { using _: NS.Object, 
+AccessibilityElement :: struct {
+    using _: NS.Object,
     using _: Accessibility,
 }
 

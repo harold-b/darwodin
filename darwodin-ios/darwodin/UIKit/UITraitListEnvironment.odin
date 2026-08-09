@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitListEnvironment
 ///
 @(objc_class="UITraitListEnvironment", objc_superclass=NS.Object)
-TraitListEnvironment :: struct { using _: NS.Object, 
+TraitListEnvironment :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

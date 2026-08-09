@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCLinearInput
 ///
 @(objc_class="GCLinearInput")
-LinearInput :: struct { using _: intrinsics.objc_object, 
+LinearInput :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

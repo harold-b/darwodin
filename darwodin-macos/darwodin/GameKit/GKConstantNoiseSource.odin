@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKConstantNoiseSource
 ///
 @(objc_class="GKConstantNoiseSource", objc_superclass=NoiseSource)
-ConstantNoiseSource :: struct { using _: NoiseSource, }
+ConstantNoiseSource :: struct { using _: NoiseSource}
 
 @(default_calling_convention="c")
 foreign lib {

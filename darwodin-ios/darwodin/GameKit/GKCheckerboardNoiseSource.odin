@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKCheckerboardNoiseSource
 ///
 @(objc_class="GKCheckerboardNoiseSource", objc_superclass=NoiseSource)
-CheckerboardNoiseSource :: struct { using _: NoiseSource, }
+CheckerboardNoiseSource :: struct { using _: NoiseSource}
 
 @(default_calling_convention="c")
 foreign lib {

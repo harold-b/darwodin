@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKMapItemRequest
 ///
 @(objc_class="MKMapItemRequest", objc_superclass=NS.Object)
-MapItemRequest :: struct { using _: NS.Object, }
+MapItemRequest :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -1,33 +1,21 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVDelegatingPlaybackCoordinatorPauseCommand", objc_superclass=DelegatingPlaybackCoordinatorPlaybackControlCommand)
-DelegatingPlaybackCoordinatorPauseCommand :: struct { using _: DelegatingPlaybackCoordinatorPlaybackControlCommand, }
+DelegatingPlaybackCoordinatorPauseCommand :: struct { using _: DelegatingPlaybackCoordinatorPlaybackControlCommand}
 
 foreign lib {
-    @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="init", objc_name="init")
-    DelegatingPlaybackCoordinatorPauseCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> instancetype ---
+	@(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="init", objc_name="init")
+	DelegatingPlaybackCoordinatorPauseCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> instancetype ---
 
-    @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    DelegatingPlaybackCoordinatorPauseCommand_new :: proc() -> ^DelegatingPlaybackCoordinatorPauseCommand ---
+	@(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	DelegatingPlaybackCoordinatorPauseCommand_new :: proc() -> ^DelegatingPlaybackCoordinatorPauseCommand ---
 
-    @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="shouldBufferInAnticipationOfPlayback", objc_name="shouldBufferInAnticipationOfPlayback")
-    DelegatingPlaybackCoordinatorPauseCommand_shouldBufferInAnticipationOfPlayback :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> bool ---
+	@(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="shouldBufferInAnticipationOfPlayback", objc_name="shouldBufferInAnticipationOfPlayback")
+	DelegatingPlaybackCoordinatorPauseCommand_shouldBufferInAnticipationOfPlayback :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> bool ---
 
-    @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="anticipatedPlaybackRate", objc_name="anticipatedPlaybackRate")
-    DelegatingPlaybackCoordinatorPauseCommand_anticipatedPlaybackRate :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> cffi.float ---
+	@(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="anticipatedPlaybackRate", objc_name="anticipatedPlaybackRate")
+	DelegatingPlaybackCoordinatorPauseCommand_anticipatedPlaybackRate :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> cffi.float ---
 }
-
-
-

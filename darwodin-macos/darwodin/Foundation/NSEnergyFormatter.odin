@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSEnergyFormatter
 ///
 @(objc_class="NSEnergyFormatter", objc_superclass=Formatter)
-EnergyFormatter :: struct { using _: Formatter, }
+EnergyFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

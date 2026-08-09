@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCColor
 ///
 @(objc_class="GCColor", objc_superclass=NS.Object)
-Color :: struct { using _: NS.Object, 
+Color :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

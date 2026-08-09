@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSOrderedCollectionChange
 ///
 @(objc_class="NSOrderedCollectionChange", objc_superclass=Object)
-OrderedCollectionChange :: struct { using _: Object, }
+OrderedCollectionChange :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

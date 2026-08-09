@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPercentDrivenInteractiveTransition
 ///
 @(objc_class="UIPercentDrivenInteractiveTransition", objc_superclass=NS.Object)
-PercentDrivenInteractiveTransition :: struct { using _: NS.Object, 
+PercentDrivenInteractiveTransition :: struct {
+    using _: NS.Object,
     using _: ViewControllerInteractiveTransitioning,
 }
 

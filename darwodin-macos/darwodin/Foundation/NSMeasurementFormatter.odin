@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSMeasurementFormatter
 ///
 @(objc_class="NSMeasurementFormatter", objc_superclass=Formatter)
-MeasurementFormatter :: struct { using _: Formatter, 
+MeasurementFormatter :: struct {
+    using _: Formatter,
     using _: SecureCoding,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4PipelineStageDynamicLinkingDescriptor
 ///
 @(objc_class="MTL4PipelineStageDynamicLinkingDescriptor", objc_superclass=NS.Object)
-MTL4PipelineStageDynamicLinkingDescriptor :: struct { using _: NS.Object, 
+MTL4PipelineStageDynamicLinkingDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

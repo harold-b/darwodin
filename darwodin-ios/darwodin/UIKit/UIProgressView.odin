@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIProgressView
 ///
 @(objc_class="UIProgressView", objc_superclass=View)
-ProgressView :: struct { using _: View, 
+ProgressView :: struct {
+    using _: View,
     using _: NS.Coding,
 }
 

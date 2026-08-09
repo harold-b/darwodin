@@ -1,34 +1,25 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLFunctionHandle")
-FunctionHandle :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+FunctionHandle :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=FunctionHandle, objc_selector="functionType", objc_name="functionType")
-    FunctionHandle_functionType :: proc(self: ^FunctionHandle) -> FunctionType ---
+	@(objc_type=FunctionHandle, objc_selector="functionType", objc_name="functionType")
+	FunctionHandle_functionType :: proc(self: ^FunctionHandle) -> FunctionType ---
 
-    @(objc_type=FunctionHandle, objc_selector="name", objc_name="name")
-    FunctionHandle_name :: proc(self: ^FunctionHandle) -> ^NS.String ---
+	@(objc_type=FunctionHandle, objc_selector="name", objc_name="name")
+	FunctionHandle_name :: proc(self: ^FunctionHandle) -> ^NS.String ---
 
-    @(objc_type=FunctionHandle, objc_selector="device", objc_name="device")
-    FunctionHandle_device :: proc(self: ^FunctionHandle) -> ^Device ---
+	@(objc_type=FunctionHandle, objc_selector="device", objc_name="device")
+	FunctionHandle_device :: proc(self: ^FunctionHandle) -> ^Device ---
 
-    @(objc_type=FunctionHandle, objc_selector="gpuResourceID", objc_name="gpuResourceID")
-    FunctionHandle_gpuResourceID :: proc(self: ^FunctionHandle) -> ResourceID ---
+	@(objc_type=FunctionHandle, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+	FunctionHandle_gpuResourceID :: proc(self: ^FunctionHandle) -> ResourceID ---
 }
-
-
-

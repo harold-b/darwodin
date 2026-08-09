@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLRasterizationRateLayerArray", objc_superclass=NS.Object)
-RasterizationRateLayerArray :: struct { using _: NS.Object, }
+RasterizationRateLayerArray :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=RasterizationRateLayerArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
-    RasterizationRateLayerArray_objectAtIndexedSubscript :: proc(self: ^RasterizationRateLayerArray, layerIndex: NS.UInteger) -> ^RasterizationRateLayerDescriptor ---
+	@(objc_type=RasterizationRateLayerArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+	RasterizationRateLayerArray_objectAtIndexedSubscript :: proc(self: ^RasterizationRateLayerArray, layerIndex: NS.UInteger) -> ^RasterizationRateLayerDescriptor ---
 
-    @(objc_type=RasterizationRateLayerArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
-    RasterizationRateLayerArray_setObject :: proc(self: ^RasterizationRateLayerArray, layer: ^RasterizationRateLayerDescriptor, layerIndex: NS.UInteger) ---
+	@(objc_type=RasterizationRateLayerArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
+	RasterizationRateLayerArray_setObject :: proc(self: ^RasterizationRateLayerArray, layer: ^RasterizationRateLayerDescriptor, layerIndex: NS.UInteger) ---
 }
-
-
-

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTextureDescriptor
 ///
 @(objc_class="MTLTextureDescriptor", objc_superclass=NS.Object)
-TextureDescriptor :: struct { using _: NS.Object, 
+TextureDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

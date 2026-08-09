@@ -6,14 +6,14 @@ darwodin_base_frameworks=(
   CoreFoundation
   CoreGraphics
   CoreText
-  CoreAudio
   Security
-  CoreMedia
-  CoreLocation
   IOKit
   DiskArbitration
   FSEvents
   Foundation
+  AudioToolbox
+  CoreMedia
+  CoreLocation
   QuartzCore
   AppKit
   UIKit
@@ -27,7 +27,6 @@ darwodin_base_frameworks=(
   CloudKit
   GameKit
   CoreHaptics
-  AudioToolbox
   AVFoundation
   EventKit
 )
@@ -41,11 +40,6 @@ darwodin_macos_frameworks=(
 
 darwodin_ios_frameworks=(
   UIKit
-)
-
-appkit_dependent_frameworks=(
-  GameKit
-  MetalKit
 )
 
 
@@ -107,14 +101,6 @@ function darwodin_get_header_for_framework()
     IOKit)
       framework="IOKit/IOKitLib"
       ;;
-
-    CoreAudio|coreaudio)
-      if [[ $is_ios -eq 1 ]]; then
-        framework=AudioToolbox/AudioToolbox
-      else
-        framework=CoreAudio/CoreAudio
-      fi
-      ;;
     *)
     framework="$framework/$framework"
       ;;
@@ -172,31 +158,4 @@ function darwodin_get_output_folder()
   else
     echo "${darwodin_out_dir_macos}${suffix}"
   fi
-}
-
-
-function darwodin_framework_depends_on_appkit()
-{
-  framework_lower=$1
-  for f in "${appkit_dependent_frameworks[@]}"; do
-    lower="$(echo $f | tr '[:upper:]' '[:lower:]')"
-    if [[  "${lower}" == "${framework_lower}" ]]; then
-      return 0
-    fi
-  done
-
-  return 1
-  # if [ ${framework_lower} != "corefoundation" ] &&
-  #     [ ${framework_lower} != "coregraphics" ] &&
-  #     [ ${framework_lower} != "coretext" ] &&
-  #     [ ${framework_lower} != "security" ] &&
-  #     [ ${framework_lower} != "fsevents" ] &&
-  #     [ ${framework_lower} != "foundation" ] &&
-  #     [ ${framework_lower} != "quartzcore" ] &&
-  #     [ ${framework_lower} != "appkit" ] &&
-  #     [ ${framework_lower} != "uikit" ]; then
-  #   echo 0
-  # else
-  #   echo 1
-  # fi
 }

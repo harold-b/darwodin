@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSHost
 ///
 @(objc_class="NSHost", objc_superclass=Object)
-Host :: struct { using _: Object, }
+Host :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLBuffer
 ///
 @(objc_class="MTLBuffer")
-Buffer :: struct { using _: intrinsics.objc_object, 
+Buffer :: struct {
+    using _: intrinsics.objc_object,
     using _: Resource,
 }
 

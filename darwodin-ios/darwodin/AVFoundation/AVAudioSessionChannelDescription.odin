@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioSessionChannelDescription
 ///
 @(objc_class="AVAudioSessionChannelDescription", objc_superclass=NS.Object)
-AudioSessionChannelDescription :: struct { using _: NS.Object, }
+AudioSessionChannelDescription :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -31,5 +31,5 @@ foreign lib {
     AudioSessionChannelDescription_channelNumber :: proc(self: ^AudioSessionChannelDescription) -> NS.UInteger ---
 
     @(objc_type=AudioSessionChannelDescription, objc_selector="channelLabel", objc_name="channelLabel")
-    AudioSessionChannelDescription_channelLabel :: proc(self: ^AudioSessionChannelDescription) -> Audio.ChannelLabel ---
+    AudioSessionChannelDescription_channelLabel :: proc(self: ^AudioSessionChannelDescription) -> AT.ChannelLabel ---
 }

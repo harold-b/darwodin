@@ -1,24 +1,15 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSUnitConverter", objc_superclass=Object)
-UnitConverter :: struct { using _: Object, }
+UnitConverter :: struct { using _: Object}
 
 foreign lib {
-    @(objc_type=UnitConverter, objc_selector="baseUnitValueFromValue:", objc_name="baseUnitValueFromValue")
-    UnitConverter_baseUnitValueFromValue :: proc(self: ^UnitConverter, value: cffi.double) -> cffi.double ---
+	@(objc_type=UnitConverter, objc_selector="baseUnitValueFromValue:", objc_name="baseUnitValueFromValue")
+	UnitConverter_baseUnitValueFromValue :: proc(self: ^UnitConverter, value: cffi.double) -> cffi.double ---
 
-    @(objc_type=UnitConverter, objc_selector="valueFromBaseUnitValue:", objc_name="valueFromBaseUnitValue")
-    UnitConverter_valueFromBaseUnitValue :: proc(self: ^UnitConverter, baseUnitValue: cffi.double) -> cffi.double ---
+	@(objc_type=UnitConverter, objc_selector="valueFromBaseUnitValue:", objc_name="valueFromBaseUnitValue")
+	UnitConverter_valueFromBaseUnitValue :: proc(self: ^UnitConverter, baseUnitValue: cffi.double) -> cffi.double ---
 }
-
-
-

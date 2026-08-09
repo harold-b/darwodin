@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKSyncEngineSendChangesScope
 ///
 @(objc_class="CKSyncEngineSendChangesScope", objc_superclass=NS.Object)
-SyncEngineSendChangesScope :: struct { using _: NS.Object, 
+SyncEngineSendChangesScope :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

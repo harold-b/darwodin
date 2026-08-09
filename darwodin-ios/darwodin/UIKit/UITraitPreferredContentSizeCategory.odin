@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitPreferredContentSizeCategory
 ///
 @(objc_class="UITraitPreferredContentSizeCategory", objc_superclass=NS.Object)
-TraitPreferredContentSizeCategory :: struct { using _: NS.Object, 
+TraitPreferredContentSizeCategory :: struct {
+    using _: NS.Object,
     using _: ObjectTraitDefinition,
 }
 

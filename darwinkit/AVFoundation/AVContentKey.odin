@@ -1,30 +1,18 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVContentKey", objc_superclass=NS.Object)
-ContentKey :: struct { using _: NS.Object, }
+ContentKey :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=ContentKey, objc_selector="revoke", objc_name="revoke")
-    ContentKey_revoke :: proc(self: ^ContentKey) ---
+	@(objc_type=ContentKey, objc_selector="revoke", objc_name="revoke")
+	ContentKey_revoke :: proc(self: ^ContentKey) ---
 
-    @(objc_type=ContentKey, objc_selector="contentKeySpecifier", objc_name="contentKeySpecifier")
-    ContentKey_contentKeySpecifier :: proc(self: ^ContentKey) -> ^ContentKeySpecifier ---
+	@(objc_type=ContentKey, objc_selector="contentKeySpecifier", objc_name="contentKeySpecifier")
+	ContentKey_contentKeySpecifier :: proc(self: ^ContentKey) -> ^ContentKeySpecifier ---
 
-    @(objc_type=ContentKey, objc_selector="externalContentProtectionStatus", objc_name="externalContentProtectionStatus")
-    ContentKey_externalContentProtectionStatus :: proc(self: ^ContentKey) -> ExternalContentProtectionStatus ---
+	@(objc_type=ContentKey, objc_selector="externalContentProtectionStatus", objc_name="externalContentProtectionStatus")
+	ContentKey_externalContentProtectionStatus :: proc(self: ^ContentKey) -> ExternalContentProtectionStatus ---
 }
-
-
-

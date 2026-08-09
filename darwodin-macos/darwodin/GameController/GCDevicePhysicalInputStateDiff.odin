@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCDevicePhysicalInputStateDiff
 ///
 @(objc_class="GCDevicePhysicalInputStateDiff")
-DevicePhysicalInputStateDiff :: struct { using _: intrinsics.objc_object, 
+DevicePhysicalInputStateDiff :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

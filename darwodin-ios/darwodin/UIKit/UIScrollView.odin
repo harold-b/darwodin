@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIScrollView
 ///
 @(objc_class="UIScrollView", objc_superclass=View)
-ScrollView :: struct { using _: View, 
+ScrollView :: struct {
+    using _: View,
     using _: NS.Coding,
     using _: FocusItemScrollableContainer,
 }

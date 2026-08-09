@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSCollectionViewUpdateItem
 ///
 @(objc_class="NSCollectionViewUpdateItem", objc_superclass=NS.Object)
-CollectionViewUpdateItem :: struct { using _: NS.Object, }
+CollectionViewUpdateItem :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

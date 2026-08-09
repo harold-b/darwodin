@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSpeechSynthesizerDelegate
 ///
 @(objc_class="NSSpeechSynthesizerDelegate")
-SpeechSynthesizerDelegate :: struct { using _: intrinsics.objc_object, 
+SpeechSynthesizerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

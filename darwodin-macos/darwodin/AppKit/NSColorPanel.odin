@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSColorPanel
 ///
 @(objc_class="NSColorPanel", objc_superclass=Panel)
-ColorPanel :: struct { using _: Panel, }
+ColorPanel :: struct { using _: Panel}
 
 @(default_calling_convention="c")
 foreign lib {

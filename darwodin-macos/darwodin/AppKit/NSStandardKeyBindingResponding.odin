@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSStandardKeyBindingResponding
 ///
 @(objc_class="NSStandardKeyBindingResponding")
-StandardKeyBindingResponding :: struct { using _: intrinsics.objc_object, 
+StandardKeyBindingResponding :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

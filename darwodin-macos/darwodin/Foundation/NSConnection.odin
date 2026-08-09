@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSConnection
 ///
 @(objc_class="NSConnection", objc_superclass=Object)
-Connection :: struct { using _: Object, }
+Connection :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSXMLParserDelegate
 ///
 @(objc_class="NSXMLParserDelegate")
-XMLParserDelegate :: struct { using _: intrinsics.objc_object, 
+XMLParserDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

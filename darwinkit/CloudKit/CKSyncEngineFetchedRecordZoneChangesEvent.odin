@@ -1,22 +1,15 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="CKSyncEngineFetchedRecordZoneChangesEvent", objc_superclass=SyncEngineEvent)
-SyncEngineFetchedRecordZoneChangesEvent :: struct { using _: SyncEngineEvent, }
+SyncEngineFetchedRecordZoneChangesEvent :: struct { using _: SyncEngineEvent}
 
 foreign lib {
-    @(objc_type=SyncEngineFetchedRecordZoneChangesEvent, objc_selector="modifications", objc_name="modifications")
-    SyncEngineFetchedRecordZoneChangesEvent_modifications :: proc(self: ^SyncEngineFetchedRecordZoneChangesEvent) -> ^NS.Array ---
+	@(objc_type=SyncEngineFetchedRecordZoneChangesEvent, objc_selector="modifications", objc_name="modifications")
+	SyncEngineFetchedRecordZoneChangesEvent_modifications :: proc(self: ^SyncEngineFetchedRecordZoneChangesEvent) -> ^NS.Array ---
 
-    @(objc_type=SyncEngineFetchedRecordZoneChangesEvent, objc_selector="deletions", objc_name="deletions")
-    SyncEngineFetchedRecordZoneChangesEvent_deletions :: proc(self: ^SyncEngineFetchedRecordZoneChangesEvent) -> ^NS.Array ---
+	@(objc_type=SyncEngineFetchedRecordZoneChangesEvent, objc_selector="deletions", objc_name="deletions")
+	SyncEngineFetchedRecordZoneChangesEvent_deletions :: proc(self: ^SyncEngineFetchedRecordZoneChangesEvent) -> ^NS.Array ---
 }
-
-
-

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSMagnificationGestureRecognizer
 ///
 @(objc_class="NSMagnificationGestureRecognizer", objc_superclass=GestureRecognizer)
-MagnificationGestureRecognizer :: struct { using _: GestureRecognizer, }
+MagnificationGestureRecognizer :: struct { using _: GestureRecognizer}
 
 @(default_calling_convention="c")
 foreign lib {

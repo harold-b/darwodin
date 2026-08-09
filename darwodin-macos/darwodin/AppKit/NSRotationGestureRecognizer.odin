@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSRotationGestureRecognizer
 ///
 @(objc_class="NSRotationGestureRecognizer", objc_superclass=GestureRecognizer)
-RotationGestureRecognizer :: struct { using _: GestureRecognizer, }
+RotationGestureRecognizer :: struct { using _: GestureRecognizer}
 
 @(default_calling_convention="c")
 foreign lib {

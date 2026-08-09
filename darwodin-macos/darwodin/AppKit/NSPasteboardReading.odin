@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSPasteboardReading
 ///
 @(objc_class="NSPasteboardReading")
-PasteboardReading :: struct { using _: intrinsics.objc_object, 
+PasteboardReading :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

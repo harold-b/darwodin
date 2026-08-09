@@ -3,11 +3,13 @@ package darwodin_EventKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
+import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
 import MK "../MapKit"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
@@ -21,9 +23,19 @@ foreign import lib {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 ABAddressBook:: NS.Object
 ABPerson::      NS.Object
 
+ABAddressBookRef :: CF.TypeRef
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    ABRecordRef      :: CF.TypeRef
+} else {
+    ABRecordRef      :: rawptr
+}
+
+// -user-text-end
 
 
 foreign lib {

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSFontAssetRequest
 ///
 @(objc_class="NSFontAssetRequest", objc_superclass=NS.Object)
-FontAssetRequest :: struct { using _: NS.Object, 
+FontAssetRequest :: struct {
+    using _: NS.Object,
     using _: NS.ProgressReporting,
 }
 

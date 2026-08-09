@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCDirectionalGamepad
 ///
 @(objc_class="GCDirectionalGamepad", objc_superclass=MicroGamepad)
-DirectionalGamepad :: struct { using _: MicroGamepad, }
+DirectionalGamepad :: struct { using _: MicroGamepad}
 
 @(default_calling_convention="c")
 foreign lib {}

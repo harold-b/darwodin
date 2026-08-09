@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextContentManagerDelegate
 ///
 @(objc_class="NSTextContentManagerDelegate")
-TextContentManagerDelegate :: struct { using _: intrinsics.objc_object, 
+TextContentManagerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

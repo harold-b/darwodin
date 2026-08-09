@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIZoomTransitionSourceViewProviderContext
 ///
 @(objc_class="UIZoomTransitionSourceViewProviderContext", objc_superclass=NS.Object)
-ZoomTransitionSourceViewProviderContext :: struct { using _: NS.Object, }
+ZoomTransitionSourceViewProviderContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

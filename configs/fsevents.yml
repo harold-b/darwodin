@@ -48,7 +48,7 @@ Odin:
   ExportTypeMapDir: ../exports
 
   ExternalTypes:
-    - ../exports/global.exports.yml
+    - ../global.exports.yml
     - ../mach/exports/mach.exports.yml
     - ../libc/libc.exports.yml
     - ../exports/CoreFoundation.exports.yml

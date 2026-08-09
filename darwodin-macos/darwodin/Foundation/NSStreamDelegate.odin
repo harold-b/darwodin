@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSStreamDelegate
 ///
 @(objc_class="NSStreamDelegate")
-StreamDelegate :: struct { using _: intrinsics.objc_object, 
+StreamDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

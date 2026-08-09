@@ -6,9 +6,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CA "../QuartzCore"
+import NS "../AppKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import NS "../AppKit"
 
 
 
@@ -16,7 +16,8 @@ import NS "../AppKit"
 /// MTKView
 ///
 @(objc_class="MTKView", objc_superclass=NS.View)
-View :: struct { using _: NS.View, 
+View :: struct {
+    using _: NS.View,
     using _: NS.Coding,
     using _: CA.LayerDelegate,
 }

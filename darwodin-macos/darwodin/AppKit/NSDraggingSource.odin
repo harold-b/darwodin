@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSDraggingSource
 ///
 @(objc_class="NSDraggingSource")
-DraggingSource :: struct { using _: intrinsics.objc_object, 
+DraggingSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

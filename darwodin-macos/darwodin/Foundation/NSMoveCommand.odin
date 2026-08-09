@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMoveCommand
 ///
 @(objc_class="NSMoveCommand", objc_superclass=ScriptCommand)
-MoveCommand :: struct { using _: ScriptCommand, }
+MoveCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {

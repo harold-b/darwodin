@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CommandAllocatorDescriptor
 ///
 @(objc_class="MTL4CommandAllocatorDescriptor", objc_superclass=NS.Object)
-MTL4CommandAllocatorDescriptor :: struct { using _: NS.Object, 
+MTL4CommandAllocatorDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCDeviceBattery
 ///
 @(objc_class="GCDeviceBattery", objc_superclass=NS.Object)
-DeviceBattery :: struct { using _: NS.Object, }
+DeviceBattery :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

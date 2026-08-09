@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLResponse
 ///
 @(objc_class="NSURLResponse", objc_superclass=Object)
-URLResponse :: struct { using _: Object, 
+URLResponse :: struct {
+    using _: Object,
     using _: SecureCoding,
     using _: Copying,
 }

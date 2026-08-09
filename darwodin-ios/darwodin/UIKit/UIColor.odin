@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIColor
 ///
 @(objc_class="UIColor", objc_superclass=NS.Object)
-Color :: struct { using _: NS.Object, 
+Color :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

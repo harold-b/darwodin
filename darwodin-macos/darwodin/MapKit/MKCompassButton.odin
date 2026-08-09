@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKCompassButton
 ///
 @(objc_class="MKCompassButton", objc_superclass=NS.View)
-CompassButton :: struct { using _: NS.View, }
+CompassButton :: struct { using _: NS.View}
 
 @(default_calling_convention="c")
 foreign lib {

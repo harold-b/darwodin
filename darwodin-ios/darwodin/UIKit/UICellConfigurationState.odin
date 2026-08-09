@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICellConfigurationState
 ///
 @(objc_class="UICellConfigurationState", objc_superclass=ViewConfigurationState)
-CellConfigurationState :: struct { using _: ViewConfigurationState, }
+CellConfigurationState :: struct { using _: ViewConfigurationState}
 
 @(default_calling_convention="c")
 foreign lib {

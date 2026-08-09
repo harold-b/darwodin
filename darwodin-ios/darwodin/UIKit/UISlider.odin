@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISlider
 ///
 @(objc_class="UISlider", objc_superclass=Control)
-Slider :: struct { using _: Control, 
+Slider :: struct {
+    using _: Control,
     using _: NS.Coding,
 }
 

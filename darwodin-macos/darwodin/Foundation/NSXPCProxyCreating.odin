@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSXPCProxyCreating
 ///
 @(objc_class="NSXPCProxyCreating")
-XPCProxyCreating :: struct { using _: intrinsics.objc_object, }
+XPCProxyCreating :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

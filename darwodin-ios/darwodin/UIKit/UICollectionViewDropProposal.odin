@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICollectionViewDropProposal
 ///
 @(objc_class="UICollectionViewDropProposal", objc_superclass=DropProposal)
-CollectionViewDropProposal :: struct { using _: DropProposal, }
+CollectionViewDropProposal :: struct { using _: DropProposal}
 
 @(default_calling_convention="c")
 foreign lib {

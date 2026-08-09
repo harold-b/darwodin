@@ -1,32 +1,24 @@
 #+build darwin
-package darwodin_LocalAuthentication
+package darwin_LocalAuthentication
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
-import Sec "../Security"
 
 @(objc_class="LADomainState", objc_superclass=NS.Object)
-DomainState :: struct { using _: NS.Object, }
+DomainState :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=DomainState, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    DomainState_new :: proc() -> ^DomainState ---
+	@(objc_type=DomainState, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	DomainState_new :: proc() -> ^DomainState ---
 
-    @(objc_type=DomainState, objc_selector="init", objc_name="init")
-    DomainState_init :: proc(self: ^DomainState) -> instancetype ---
+	@(objc_type=DomainState, objc_selector="init", objc_name="init")
+	DomainState_init :: proc(self: ^DomainState) -> instancetype ---
 
-    @(objc_type=DomainState, objc_selector="biometry", objc_name="biometry")
-    DomainState_biometry :: proc(self: ^DomainState) -> ^DomainStateBiometry ---
+	@(objc_type=DomainState, objc_selector="biometry", objc_name="biometry")
+	DomainState_biometry :: proc(self: ^DomainState) -> ^DomainStateBiometry ---
 
-    @(objc_type=DomainState, objc_selector="companion", objc_name="companion")
-    DomainState_companion :: proc(self: ^DomainState) -> ^DomainStateCompanion ---
+	@(objc_type=DomainState, objc_selector="companion", objc_name="companion")
+	DomainState_companion :: proc(self: ^DomainState) -> ^DomainStateCompanion ---
 
-    @(objc_type=DomainState, objc_selector="stateHash", objc_name="stateHash")
-    DomainState_stateHash :: proc(self: ^DomainState) -> ^NS.Data ---
+	@(objc_type=DomainState, objc_selector="stateHash", objc_name="stateHash")
+	DomainState_stateHash :: proc(self: ^DomainState) -> ^NS.Data ---
 }
-
-
-

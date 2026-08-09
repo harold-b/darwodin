@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSComboButton
 ///
 @(objc_class="NSComboButton", objc_superclass=Control)
-ComboButton :: struct { using _: Control, }
+ComboButton :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

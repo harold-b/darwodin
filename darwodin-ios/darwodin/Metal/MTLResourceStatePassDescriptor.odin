@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLResourceStatePassDescriptor
 ///
 @(objc_class="MTLResourceStatePassDescriptor", objc_superclass=NS.Object)
-ResourceStatePassDescriptor :: struct { using _: NS.Object, 
+ResourceStatePassDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

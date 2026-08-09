@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPickerViewDelegate
 ///
 @(objc_class="UIPickerViewDelegate")
-PickerViewDelegate :: struct { using _: intrinsics.objc_object, 
+PickerViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

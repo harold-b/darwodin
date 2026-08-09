@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSNetServiceDelegate
 ///
 @(objc_class="NSNetServiceDelegate")
-NetServiceDelegate :: struct { using _: intrinsics.objc_object, 
+NetServiceDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

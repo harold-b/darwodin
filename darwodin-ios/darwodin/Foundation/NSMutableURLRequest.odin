@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableURLRequest
 ///
 @(objc_class="NSMutableURLRequest", objc_superclass=URLRequest)
-MutableURLRequest :: struct { using _: URLRequest, }
+MutableURLRequest :: struct { using _: URLRequest}
 
 @(default_calling_convention="c")
 foreign lib {

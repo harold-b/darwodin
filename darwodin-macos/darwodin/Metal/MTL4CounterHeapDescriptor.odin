@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CounterHeapDescriptor
 ///
 @(objc_class="MTL4CounterHeapDescriptor", objc_superclass=NS.Object)
-MTL4CounterHeapDescriptor :: struct { using _: NS.Object, 
+MTL4CounterHeapDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

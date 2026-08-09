@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIViewLayoutRegion
 ///
 @(objc_class="UIViewLayoutRegion", objc_superclass=NS.Object)
-ViewLayoutRegion :: struct { using _: NS.Object, }
+ViewLayoutRegion :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

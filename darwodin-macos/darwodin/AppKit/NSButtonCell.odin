@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSButtonCell
 ///
 @(objc_class="NSButtonCell", objc_superclass=ActionCell)
-ButtonCell :: struct { using _: ActionCell, }
+ButtonCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

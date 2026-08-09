@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableIndexSet
 ///
 @(objc_class="NSMutableIndexSet", objc_superclass=IndexSet)
-MutableIndexSet :: struct { using _: IndexSet, }
+MutableIndexSet :: struct { using _: IndexSet}
 
 @(default_calling_convention="c")
 foreign lib {

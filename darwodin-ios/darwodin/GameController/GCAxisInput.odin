@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCAxisInput
 ///
 @(objc_class="GCAxisInput")
-AxisInput :: struct { using _: intrinsics.objc_object, 
+AxisInput :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSScrubberDataSource
 ///
 @(objc_class="NSScrubberDataSource")
-ScrubberDataSource :: struct { using _: intrinsics.objc_object, 
+ScrubberDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

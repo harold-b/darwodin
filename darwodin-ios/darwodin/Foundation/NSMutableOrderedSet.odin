@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableOrderedSet
 ///
 @(objc_class="NSMutableOrderedSet", objc_superclass=OrderedSet)
-MutableOrderedSet :: struct { using _: OrderedSet, }
+MutableOrderedSet :: struct { using _: OrderedSet}
 
 @(default_calling_convention="c")
 foreign lib {

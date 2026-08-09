@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextSearchAggregator
 ///
 @(objc_class="UITextSearchAggregator")
-TextSearchAggregator :: struct { using _: intrinsics.objc_object, 
+TextSearchAggregator :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

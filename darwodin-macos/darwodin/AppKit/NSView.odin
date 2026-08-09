@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSView
 ///
 @(objc_class="NSView", objc_superclass=Responder)
-View :: struct { using _: Responder, 
+View :: struct {
+    using _: Responder,
     using _: AnimatablePropertyContainer,
     using _: UserInterfaceItemIdentification,
     using _: DraggingDestination,

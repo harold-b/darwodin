@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISceneDelegate
 ///
 @(objc_class="UISceneDelegate")
-SceneDelegate :: struct { using _: intrinsics.objc_object, 
+SceneDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIAppearance
 ///
 @(objc_class="UIAppearance")
-Appearance :: struct { using _: intrinsics.objc_object, 
+Appearance :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

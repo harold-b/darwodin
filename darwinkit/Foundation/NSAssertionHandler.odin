@@ -1,27 +1,17 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSAssertionHandler", objc_superclass=Object)
-AssertionHandler :: struct { using _: Object, }
+AssertionHandler :: struct { using _: Object}
 
 foreign lib {
-    @(objc_type=AssertionHandler, objc_selector="handleFailureInMethod:object:file:lineNumber:description:", objc_name="handleFailureInMethod")
-    AssertionHandler_handleFailureInMethod :: proc(self: ^AssertionHandler, selector: SEL, object: id, fileName: ^String, line: Integer, format: ^String) ---
+	@(objc_type=AssertionHandler, objc_selector="handleFailureInMethod:object:file:lineNumber:description:", objc_name="handleFailureInMethod")
+	AssertionHandler_handleFailureInMethod :: proc(self: ^AssertionHandler, selector: SEL, object: id, fileName: ^String, line: Integer, format: ^String) ---
 
-    @(objc_type=AssertionHandler, objc_selector="handleFailureInFunction:file:lineNumber:description:", objc_name="handleFailureInFunction")
-    AssertionHandler_handleFailureInFunction :: proc(self: ^AssertionHandler, functionName: ^String, fileName: ^String, line: Integer, format: ^String) ---
+	@(objc_type=AssertionHandler, objc_selector="handleFailureInFunction:file:lineNumber:description:", objc_name="handleFailureInFunction")
+	AssertionHandler_handleFailureInFunction :: proc(self: ^AssertionHandler, functionName: ^String, fileName: ^String, line: Integer, format: ^String) ---
 
-    @(objc_type=AssertionHandler, objc_selector="currentHandler", objc_name="currentHandler", objc_is_class_method=true)
-    AssertionHandler_currentHandler :: proc() -> ^AssertionHandler ---
+	@(objc_type=AssertionHandler, objc_selector="currentHandler", objc_name="currentHandler", objc_is_class_method=true)
+	AssertionHandler_currentHandler :: proc() -> ^AssertionHandler ---
 }
-
-
-

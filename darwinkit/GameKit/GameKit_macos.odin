@@ -1,7 +1,9 @@
 #+build darwin:default
 #+private package
-package darwodin_GameKit
+package darwin_GameKit
 
-import _AK "../AppKit"
-AK :: _AK
+import NS "../AppKit"
 
+UI_ViewController :: NS.ViewController
+UI_Image :: NS.Image
+UI_Window :: NS.Window

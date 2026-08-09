@@ -1,30 +1,18 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVCaptureSynchronizedSampleBufferData", objc_superclass=CaptureSynchronizedData)
-CaptureSynchronizedSampleBufferData :: struct { using _: CaptureSynchronizedData, }
+CaptureSynchronizedSampleBufferData :: struct { using _: CaptureSynchronizedData}
 
 foreign lib {
-    @(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="sampleBuffer", objc_name="sampleBuffer")
-    CaptureSynchronizedSampleBufferData_sampleBuffer :: proc(self: ^CaptureSynchronizedSampleBufferData) -> CM.SampleBufferRef ---
+	@(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="sampleBuffer", objc_name="sampleBuffer")
+	CaptureSynchronizedSampleBufferData_sampleBuffer :: proc(self: ^CaptureSynchronizedSampleBufferData) -> CM.SampleBufferRef ---
 
-    @(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="sampleBufferWasDropped", objc_name="sampleBufferWasDropped")
-    CaptureSynchronizedSampleBufferData_sampleBufferWasDropped :: proc(self: ^CaptureSynchronizedSampleBufferData) -> bool ---
+	@(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="sampleBufferWasDropped", objc_name="sampleBufferWasDropped")
+	CaptureSynchronizedSampleBufferData_sampleBufferWasDropped :: proc(self: ^CaptureSynchronizedSampleBufferData) -> bool ---
 
-    @(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="droppedReason", objc_name="droppedReason")
-    CaptureSynchronizedSampleBufferData_droppedReason :: proc(self: ^CaptureSynchronizedSampleBufferData) -> CaptureOutputDataDroppedReason ---
+	@(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="droppedReason", objc_name="droppedReason")
+	CaptureSynchronizedSampleBufferData_droppedReason :: proc(self: ^CaptureSynchronizedSampleBufferData) -> CaptureOutputDataDroppedReason ---
 }
-
-
-

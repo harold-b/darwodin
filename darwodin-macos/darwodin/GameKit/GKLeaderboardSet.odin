@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKLeaderboardSet
 ///
 @(objc_class="GKLeaderboardSet", objc_superclass=NS.Object)
-LeaderboardSet :: struct { using _: NS.Object, 
+LeaderboardSet :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }

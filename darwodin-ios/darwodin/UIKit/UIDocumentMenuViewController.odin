@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDocumentMenuViewController
 ///
 @(objc_class="UIDocumentMenuViewController", objc_superclass=ViewController)
-DocumentMenuViewController :: struct { using _: ViewController, }
+DocumentMenuViewController :: struct { using _: ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

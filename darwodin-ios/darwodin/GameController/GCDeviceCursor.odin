@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCDeviceCursor
 ///
 @(objc_class="GCDeviceCursor", objc_superclass=ControllerDirectionPad)
-DeviceCursor :: struct { using _: ControllerDirectionPad, }
+DeviceCursor :: struct { using _: ControllerDirectionPad}
 
 @(default_calling_convention="c")
 foreign lib {}

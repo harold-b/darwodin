@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLProtocolClient
 ///
 @(objc_class="NSURLProtocolClient")
-URLProtocolClient :: struct { using _: intrinsics.objc_object, 
+URLProtocolClient :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitLayoutDirection
 ///
 @(objc_class="UITraitLayoutDirection", objc_superclass=NS.Object)
-TraitLayoutDirection :: struct { using _: NS.Object, 
+TraitLayoutDirection :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

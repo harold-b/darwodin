@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKSavedGame
 ///
 @(objc_class="GKSavedGame", objc_superclass=NS.Object)
-SavedGame :: struct { using _: NS.Object, 
+SavedGame :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

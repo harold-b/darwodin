@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCController
 ///
 @(objc_class="GCController", objc_superclass=NS.Object)
-Controller :: struct { using _: NS.Object, 
+Controller :: struct {
+    using _: NS.Object,
     using _: Device,
 }
 

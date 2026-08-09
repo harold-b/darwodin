@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSKeyedArchiverDelegate
 ///
 @(objc_class="NSKeyedArchiverDelegate")
-KeyedArchiverDelegate :: struct { using _: intrinsics.objc_object, 
+KeyedArchiverDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

@@ -1,30 +1,20 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVVideoCompositionCoreAnimationTool", objc_superclass=NS.Object)
-VideoCompositionCoreAnimationTool :: struct { using _: NS.Object, }
+VideoCompositionCoreAnimationTool :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=VideoCompositionCoreAnimationTool, objc_selector="videoCompositionCoreAnimationToolWithAdditionalLayer:asTrackID:", objc_name="videoCompositionCoreAnimationToolWithAdditionalLayer", objc_is_class_method=true)
-    VideoCompositionCoreAnimationTool_videoCompositionCoreAnimationToolWithAdditionalLayer :: proc(layer: ^CA.Layer, trackID: CM.PersistentTrackID) -> instancetype ---
+	@(objc_type=VideoCompositionCoreAnimationTool, objc_selector="videoCompositionCoreAnimationToolWithAdditionalLayer:asTrackID:", objc_name="videoCompositionCoreAnimationToolWithAdditionalLayer", objc_is_class_method=true)
+	VideoCompositionCoreAnimationTool_videoCompositionCoreAnimationToolWithAdditionalLayer :: proc(layer: ^CA.Layer, trackID: CM.PersistentTrackID) -> instancetype ---
 
-    @(objc_type=VideoCompositionCoreAnimationTool, objc_selector="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:", objc_name="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer", objc_is_class_method=true)
-    VideoCompositionCoreAnimationTool_videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer :: proc(videoLayer: ^CA.Layer, animationLayer: ^CA.Layer) -> instancetype ---
+	@(objc_type=VideoCompositionCoreAnimationTool, objc_selector="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:inLayer:", objc_name="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer", objc_is_class_method=true)
+	VideoCompositionCoreAnimationTool_videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer :: proc(videoLayer: ^CA.Layer, animationLayer: ^CA.Layer) -> instancetype ---
 
-    @(objc_type=VideoCompositionCoreAnimationTool, objc_selector="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:", objc_name="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers", objc_is_class_method=true)
-    VideoCompositionCoreAnimationTool_videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers :: proc(videoLayers: ^NS.Array, animationLayer: ^CA.Layer) -> instancetype ---
+	@(objc_type=VideoCompositionCoreAnimationTool, objc_selector="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers:inLayer:", objc_name="videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers", objc_is_class_method=true)
+	VideoCompositionCoreAnimationTool_videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayers :: proc(videoLayers: ^NS.Array, animationLayer: ^CA.Layer) -> instancetype ---
 }
-
-
-

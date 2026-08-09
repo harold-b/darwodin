@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVPlayerItemMetadataOutput
 ///
 @(objc_class="AVPlayerItemMetadataOutput", objc_superclass=PlayerItemOutput)
-PlayerItemMetadataOutput :: struct { using _: PlayerItemOutput, }
+PlayerItemMetadataOutput :: struct { using _: PlayerItemOutput}
 
 @(default_calling_convention="c")
 foreign lib {

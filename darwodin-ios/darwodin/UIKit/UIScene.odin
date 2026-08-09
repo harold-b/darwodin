@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIScene
 ///
 @(objc_class="UIScene", objc_superclass=Responder)
-Scene :: struct { using _: Responder, }
+Scene :: struct { using _: Responder}
 
 @(default_calling_convention="c")
 foreign lib {

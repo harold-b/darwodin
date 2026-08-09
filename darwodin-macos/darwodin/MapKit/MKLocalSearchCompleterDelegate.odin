@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKLocalSearchCompleterDelegate
 ///
 @(objc_class="MKLocalSearchCompleterDelegate")
-LocalSearchCompleterDelegate :: struct { using _: intrinsics.objc_object, 
+LocalSearchCompleterDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

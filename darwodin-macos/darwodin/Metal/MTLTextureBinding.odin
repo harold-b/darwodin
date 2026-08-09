@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTextureBinding
 ///
 @(objc_class="MTLTextureBinding")
-TextureBinding :: struct { using _: intrinsics.objc_object, 
+TextureBinding :: struct {
+    using _: intrinsics.objc_object,
     using _: Binding,
 }
 

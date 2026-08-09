@@ -13,7 +13,8 @@ import Sec "../Security"
 /// LAEnvironmentState
 ///
 @(objc_class="LAEnvironmentState", objc_superclass=NS.Object)
-EnvironmentState :: struct { using _: NS.Object, 
+EnvironmentState :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

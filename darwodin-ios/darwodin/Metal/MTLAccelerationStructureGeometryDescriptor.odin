@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLAccelerationStructureGeometryDescriptor
 ///
 @(objc_class="MTLAccelerationStructureGeometryDescriptor", objc_superclass=NS.Object)
-AccelerationStructureGeometryDescriptor :: struct { using _: NS.Object, 
+AccelerationStructureGeometryDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

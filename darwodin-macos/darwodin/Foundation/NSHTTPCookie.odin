@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSHTTPCookie
 ///
 @(objc_class="NSHTTPCookie", objc_superclass=Object)
-HTTPCookie :: struct { using _: Object, }
+HTTPCookie :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

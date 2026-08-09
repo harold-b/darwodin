@@ -1,24 +1,16 @@
 #+build darwin:default
-package darwodin_Foundation
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
+package darwin_Foundation
 
 
 
-///
-/// NSQuitCommand
-///
+
+
+
 @(objc_class="NSQuitCommand", objc_superclass=ScriptCommand)
-QuitCommand :: struct { using _: ScriptCommand, }
+QuitCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=QuitCommand, objc_selector="saveOptions", objc_name="saveOptions")
-    QuitCommand_saveOptions :: proc(self: ^QuitCommand) -> SaveOptions ---
+	@(objc_type=QuitCommand, objc_selector="saveOptions", objc_name="saveOptions")
+	QuitCommand_saveOptions :: proc(self: ^QuitCommand) -> SaveOptions ---
 }

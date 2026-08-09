@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSExtensionRequestHandling
 ///
 @(objc_class="NSExtensionRequestHandling")
-ExtensionRequestHandling :: struct { using _: intrinsics.objc_object, 
+ExtensionRequestHandling :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

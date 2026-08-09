@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLSessionDelegate
 ///
 @(objc_class="NSURLSessionDelegate")
-URLSessionDelegate :: struct { using _: intrinsics.objc_object, 
+URLSessionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

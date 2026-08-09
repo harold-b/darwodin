@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIToolbarDelegate
 ///
 @(objc_class="UIToolbarDelegate")
-ToolbarDelegate :: struct { using _: intrinsics.objc_object, 
+ToolbarDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: BarPositioningDelegate,
 }
 

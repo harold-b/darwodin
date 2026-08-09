@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSImageRep
 ///
 @(objc_class="NSImageRep", objc_superclass=NS.Object)
-ImageRep :: struct { using _: NS.Object, 
+ImageRep :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
 }

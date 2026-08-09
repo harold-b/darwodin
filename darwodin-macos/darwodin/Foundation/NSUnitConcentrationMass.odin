@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitConcentrationMass
 ///
 @(objc_class="NSUnitConcentrationMass", objc_superclass=Dimension)
-UnitConcentrationMass :: struct { using _: Dimension, 
+UnitConcentrationMass :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTLFXTemporalScalerBase
 ///
 @(objc_class="MTLFXTemporalScalerBase")
-TemporalScalerBase :: struct { using _: intrinsics.objc_object, 
+TemporalScalerBase :: struct {
+    using _: intrinsics.objc_object,
     using _: FrameInterpolatableScaler,
 }
 

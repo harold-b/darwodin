@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSDataDetector
 ///
 @(objc_class="NSDataDetector", objc_superclass=RegularExpression)
-DataDetector :: struct { using _: RegularExpression, }
+DataDetector :: struct { using _: RegularExpression}
 
 @(default_calling_convention="c")
 foreign lib {

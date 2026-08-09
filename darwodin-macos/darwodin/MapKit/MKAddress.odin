@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKAddress
 ///
 @(objc_class="MKAddress", objc_superclass=NS.Object)
-Address :: struct { using _: NS.Object, }
+Address :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

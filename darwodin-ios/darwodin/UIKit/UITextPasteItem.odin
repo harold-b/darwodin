@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextPasteItem
 ///
 @(objc_class="UITextPasteItem")
-TextPasteItem :: struct { using _: intrinsics.objc_object, 
+TextPasteItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

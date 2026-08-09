@@ -1,27 +1,17 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSURLSessionDownloadTask", objc_superclass=URLSessionTask)
-URLSessionDownloadTask :: struct { using _: URLSessionTask, }
+URLSessionDownloadTask :: struct { using _: URLSessionTask}
 
 foreign lib {
-    @(objc_type=URLSessionDownloadTask, objc_selector="cancelByProducingResumeData:", objc_name="cancelByProducingResumeData")
-    URLSessionDownloadTask_cancelByProducingResumeData :: proc(self: ^URLSessionDownloadTask, completionHandler: ^Objc_Block(proc "c" ( resumeData: ^Data ))) ---
+	@(objc_type=URLSessionDownloadTask, objc_selector="cancelByProducingResumeData:", objc_name="cancelByProducingResumeData")
+	URLSessionDownloadTask_cancelByProducingResumeData :: proc(self: ^URLSessionDownloadTask, completionHandler: ^Objc_Block(proc "c" ( resumeData: ^Data ))) ---
 
-    @(objc_type=URLSessionDownloadTask, objc_selector="init", objc_name="init")
-    URLSessionDownloadTask_init :: proc(self: ^URLSessionDownloadTask) -> instancetype ---
+	@(objc_type=URLSessionDownloadTask, objc_selector="init", objc_name="init")
+	URLSessionDownloadTask_init :: proc(self: ^URLSessionDownloadTask) -> instancetype ---
 
-    @(objc_type=URLSessionDownloadTask, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    URLSessionDownloadTask_new :: proc() -> ^URLSessionDownloadTask ---
+	@(objc_type=URLSessionDownloadTask, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	URLSessionDownloadTask_new :: proc() -> ^URLSessionDownloadTask ---
 }
-
-
-

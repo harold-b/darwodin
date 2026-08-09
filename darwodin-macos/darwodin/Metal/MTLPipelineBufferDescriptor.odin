@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLPipelineBufferDescriptor
 ///
 @(objc_class="MTLPipelineBufferDescriptor", objc_superclass=NS.Object)
-PipelineBufferDescriptor :: struct { using _: NS.Object, 
+PipelineBufferDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

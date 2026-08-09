@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISceneWindowingBehaviors
 ///
 @(objc_class="UISceneWindowingBehaviors", objc_superclass=NS.Object)
-SceneWindowingBehaviors :: struct { using _: NS.Object, }
+SceneWindowingBehaviors :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

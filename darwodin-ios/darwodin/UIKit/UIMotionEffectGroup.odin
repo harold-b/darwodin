@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIMotionEffectGroup
 ///
 @(objc_class="UIMotionEffectGroup", objc_superclass=MotionEffect)
-MotionEffectGroup :: struct { using _: MotionEffect, }
+MotionEffectGroup :: struct { using _: MotionEffect}
 
 @(default_calling_convention="c")
 foreign lib {

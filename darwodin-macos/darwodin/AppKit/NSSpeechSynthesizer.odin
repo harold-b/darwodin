@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSpeechSynthesizer
 ///
 @(objc_class="NSSpeechSynthesizer", objc_superclass=NS.Object)
-SpeechSynthesizer :: struct { using _: NS.Object, }
+SpeechSynthesizer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

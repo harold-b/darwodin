@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITapGestureRecognizer
 ///
 @(objc_class="UITapGestureRecognizer", objc_superclass=GestureRecognizer)
-TapGestureRecognizer :: struct { using _: GestureRecognizer, }
+TapGestureRecognizer :: struct { using _: GestureRecognizer}
 
 @(default_calling_convention="c")
 foreign lib {

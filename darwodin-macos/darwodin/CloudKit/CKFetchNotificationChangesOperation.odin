@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKFetchNotificationChangesOperation
 ///
 @(objc_class="CKFetchNotificationChangesOperation", objc_superclass=Operation)
-FetchNotificationChangesOperation :: struct { using _: Operation, }
+FetchNotificationChangesOperation :: struct { using _: Operation}
 
 @(default_calling_convention="c")
 foreign lib {}

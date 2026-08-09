@@ -1,30 +1,18 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 @(objc_class="AVAudioUnitTimeEffect", objc_superclass=AudioUnit)
-AudioUnitTimeEffect :: struct { using _: AudioUnit, }
+AudioUnitTimeEffect :: struct { using _: AudioUnit}
 
 foreign lib {
-    @(objc_type=AudioUnitTimeEffect, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
-    AudioUnitTimeEffect_initWithAudioComponentDescription :: proc(self: ^AudioUnitTimeEffect, audioComponentDescription: Audio.ComponentDescription) -> instancetype ---
+	@(objc_type=AudioUnitTimeEffect, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
+	AudioUnitTimeEffect_initWithAudioComponentDescription :: proc(self: ^AudioUnitTimeEffect, audioComponentDescription: AT.ComponentDescription) -> instancetype ---
 
-    @(objc_type=AudioUnitTimeEffect, objc_selector="bypass", objc_name="bypass")
-    AudioUnitTimeEffect_bypass :: proc(self: ^AudioUnitTimeEffect) -> bool ---
+	@(objc_type=AudioUnitTimeEffect, objc_selector="bypass", objc_name="bypass")
+	AudioUnitTimeEffect_bypass :: proc(self: ^AudioUnitTimeEffect) -> bool ---
 
-    @(objc_type=AudioUnitTimeEffect, objc_selector="setBypass:", objc_name="setBypass")
-    AudioUnitTimeEffect_setBypass :: proc(self: ^AudioUnitTimeEffect, bypass: bool) ---
+	@(objc_type=AudioUnitTimeEffect, objc_selector="setBypass:", objc_name="setBypass")
+	AudioUnitTimeEffect_setBypass :: proc(self: ^AudioUnitTimeEffect, bypass: bool) ---
 }
-
-
-

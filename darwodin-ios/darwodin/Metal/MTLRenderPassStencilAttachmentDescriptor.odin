@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLRenderPassStencilAttachmentDescriptor
 ///
 @(objc_class="MTLRenderPassStencilAttachmentDescriptor", objc_superclass=RenderPassAttachmentDescriptor)
-RenderPassStencilAttachmentDescriptor :: struct { using _: RenderPassAttachmentDescriptor, }
+RenderPassStencilAttachmentDescriptor :: struct { using _: RenderPassAttachmentDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

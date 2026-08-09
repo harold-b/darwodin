@@ -1,21 +1,13 @@
 #+build darwin:default
-package darwodin_Foundation
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
+package darwin_Foundation
 
 
 
-///
-/// NSPropertySpecifier
-///
+
+
+
 @(objc_class="NSPropertySpecifier", objc_superclass=ScriptObjectSpecifier)
-PropertySpecifier :: struct { using _: ScriptObjectSpecifier, }
+PropertySpecifier :: struct { using _: ScriptObjectSpecifier}
 
 @(default_calling_convention="c")
 foreign lib {}

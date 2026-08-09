@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIRegion
 ///
 @(objc_class="UIRegion", objc_superclass=NS.Object)
-Region :: struct { using _: NS.Object, 
+Region :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.Coding,
 }

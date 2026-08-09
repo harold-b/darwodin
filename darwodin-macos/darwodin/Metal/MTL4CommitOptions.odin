@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4CommitOptions
 ///
 @(objc_class="MTL4CommitOptions", objc_superclass=NS.Object)
-MTL4CommitOptions :: struct { using _: NS.Object, }
+MTL4CommitOptions :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

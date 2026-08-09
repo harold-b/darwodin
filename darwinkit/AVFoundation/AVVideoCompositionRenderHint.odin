@@ -1,27 +1,16 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVVideoCompositionRenderHint", objc_superclass=NS.Object)
-VideoCompositionRenderHint :: struct { using _: NS.Object, }
+VideoCompositionRenderHint :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=VideoCompositionRenderHint, objc_selector="startCompositionTime", objc_name="startCompositionTime")
-    VideoCompositionRenderHint_startCompositionTime :: proc(self: ^VideoCompositionRenderHint) -> CM.Time ---
+	@(objc_type=VideoCompositionRenderHint, objc_selector="startCompositionTime", objc_name="startCompositionTime")
+	VideoCompositionRenderHint_startCompositionTime :: proc(self: ^VideoCompositionRenderHint) -> CM.Time ---
 
-    @(objc_type=VideoCompositionRenderHint, objc_selector="endCompositionTime", objc_name="endCompositionTime")
-    VideoCompositionRenderHint_endCompositionTime :: proc(self: ^VideoCompositionRenderHint) -> CM.Time ---
+	@(objc_type=VideoCompositionRenderHint, objc_selector="endCompositionTime", objc_name="endCompositionTime")
+	VideoCompositionRenderHint_endCompositionTime :: proc(self: ^VideoCompositionRenderHint) -> CM.Time ---
 }
-
-
-

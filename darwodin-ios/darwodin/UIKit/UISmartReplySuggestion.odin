@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISmartReplySuggestion
 ///
 @(objc_class="UISmartReplySuggestion", objc_superclass=InputSuggestion)
-SmartReplySuggestion :: struct { using _: InputSuggestion, }
+SmartReplySuggestion :: struct { using _: InputSuggestion}
 
 @(default_calling_convention="c")
 foreign lib {

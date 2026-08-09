@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSGestureRecognizer
 ///
 @(objc_class="NSGestureRecognizer", objc_superclass=NS.Object)
-GestureRecognizer :: struct { using _: NS.Object, 
+GestureRecognizer :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
 }
 

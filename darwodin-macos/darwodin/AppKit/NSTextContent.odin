@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextContent
 ///
 @(objc_class="NSTextContent")
-TextContent :: struct { using _: intrinsics.objc_object, }
+TextContent :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

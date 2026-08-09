@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSRecursiveLock
 ///
 @(objc_class="NSRecursiveLock", objc_superclass=Object)
-RecursiveLock :: struct { using _: Object, 
+RecursiveLock :: struct {
+    using _: Object,
     using _: Locking,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLArgumentEncoder
 ///
 @(objc_class="MTLArgumentEncoder")
-ArgumentEncoder :: struct { using _: intrinsics.objc_object, 
+ArgumentEncoder :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

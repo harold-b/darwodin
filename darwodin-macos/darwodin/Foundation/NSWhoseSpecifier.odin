@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSWhoseSpecifier
 ///
 @(objc_class="NSWhoseSpecifier", objc_superclass=ScriptObjectSpecifier)
-WhoseSpecifier :: struct { using _: ScriptObjectSpecifier, }
+WhoseSpecifier :: struct { using _: ScriptObjectSpecifier}
 
 @(default_calling_convention="c")
 foreign lib {

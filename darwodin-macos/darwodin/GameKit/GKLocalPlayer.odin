@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKLocalPlayer
 ///
 @(objc_class="GKLocalPlayer", objc_superclass=Player)
-LocalPlayer :: struct { using _: Player, }
+LocalPlayer :: struct { using _: Player}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMapItemIdentifier
 ///
 @(objc_class="MKMapItemIdentifier", objc_superclass=NS.Object)
-MapItemIdentifier :: struct { using _: NS.Object, 
+MapItemIdentifier :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

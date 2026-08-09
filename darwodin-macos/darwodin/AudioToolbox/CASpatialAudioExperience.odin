@@ -5,8 +5,6 @@ import "base:runtime"
 import cffi "core:c"
 import mach "../mach"
 import CF "../CoreFoundation"
-import CA "../CoreAudio"
-import CM "../CoreMedia"
 import NS "../Foundation"
 
 
@@ -15,7 +13,7 @@ import NS "../Foundation"
 /// CASpatialAudioExperience
 ///
 @(objc_class="CASpatialAudioExperience")
-CASpatialAudioExperience :: struct { using _: intrinsics.objc_object, }
+SpatialAudioExperience :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

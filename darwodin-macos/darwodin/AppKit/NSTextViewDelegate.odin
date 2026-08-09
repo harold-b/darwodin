@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextViewDelegate
 ///
 @(objc_class="NSTextViewDelegate")
-TextViewDelegate :: struct { using _: intrinsics.objc_object, 
+TextViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: TextDelegate,
 }
 

@@ -1,30 +1,18 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVAssetResourceLoadingRequestor", objc_superclass=NS.Object)
-AssetResourceLoadingRequestor :: struct { using _: NS.Object, }
+AssetResourceLoadingRequestor :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=AssetResourceLoadingRequestor, objc_selector="init", objc_name="init")
-    AssetResourceLoadingRequestor_init :: proc(self: ^AssetResourceLoadingRequestor) -> instancetype ---
+	@(objc_type=AssetResourceLoadingRequestor, objc_selector="init", objc_name="init")
+	AssetResourceLoadingRequestor_init :: proc(self: ^AssetResourceLoadingRequestor) -> instancetype ---
 
-    @(objc_type=AssetResourceLoadingRequestor, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    AssetResourceLoadingRequestor_new :: proc() -> ^AssetResourceLoadingRequestor ---
+	@(objc_type=AssetResourceLoadingRequestor, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	AssetResourceLoadingRequestor_new :: proc() -> ^AssetResourceLoadingRequestor ---
 
-    @(objc_type=AssetResourceLoadingRequestor, objc_selector="providesExpiredSessionReports", objc_name="providesExpiredSessionReports")
-    AssetResourceLoadingRequestor_providesExpiredSessionReports :: proc(self: ^AssetResourceLoadingRequestor) -> bool ---
+	@(objc_type=AssetResourceLoadingRequestor, objc_selector="providesExpiredSessionReports", objc_name="providesExpiredSessionReports")
+	AssetResourceLoadingRequestor_providesExpiredSessionReports :: proc(self: ^AssetResourceLoadingRequestor) -> bool ---
 }
-
-
-

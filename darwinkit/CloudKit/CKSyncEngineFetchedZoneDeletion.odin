@@ -1,28 +1,21 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="CKSyncEngineFetchedZoneDeletion", objc_superclass=NS.Object)
-SyncEngineFetchedZoneDeletion :: struct { using _: NS.Object, }
+SyncEngineFetchedZoneDeletion :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="init", objc_name="init")
-    SyncEngineFetchedZoneDeletion_init :: proc(self: ^SyncEngineFetchedZoneDeletion) -> instancetype ---
+	@(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="init", objc_name="init")
+	SyncEngineFetchedZoneDeletion_init :: proc(self: ^SyncEngineFetchedZoneDeletion) -> instancetype ---
 
-    @(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    SyncEngineFetchedZoneDeletion_new :: proc() -> ^SyncEngineFetchedZoneDeletion ---
+	@(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	SyncEngineFetchedZoneDeletion_new :: proc() -> ^SyncEngineFetchedZoneDeletion ---
 
-    @(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="zoneID", objc_name="zoneID")
-    SyncEngineFetchedZoneDeletion_zoneID :: proc(self: ^SyncEngineFetchedZoneDeletion) -> ^RecordZoneID ---
+	@(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="zoneID", objc_name="zoneID")
+	SyncEngineFetchedZoneDeletion_zoneID :: proc(self: ^SyncEngineFetchedZoneDeletion) -> ^RecordZoneID ---
 
-    @(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="reason", objc_name="reason")
-    SyncEngineFetchedZoneDeletion_reason :: proc(self: ^SyncEngineFetchedZoneDeletion) -> SyncEngineZoneDeletionReason ---
+	@(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="reason", objc_name="reason")
+	SyncEngineFetchedZoneDeletion_reason :: proc(self: ^SyncEngineFetchedZoneDeletion) -> SyncEngineZoneDeletionReason ---
 }
-
-
-

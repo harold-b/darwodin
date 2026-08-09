@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDragDropSession
 ///
 @(objc_class="UIDragDropSession")
-DragDropSession :: struct { using _: intrinsics.objc_object, 
+DragDropSession :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

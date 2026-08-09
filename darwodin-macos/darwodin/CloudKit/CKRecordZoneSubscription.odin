@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKRecordZoneSubscription
 ///
 @(objc_class="CKRecordZoneSubscription", objc_superclass=Subscription)
-RecordZoneSubscription :: struct { using _: Subscription, 
+RecordZoneSubscription :: struct {
+    using _: Subscription,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

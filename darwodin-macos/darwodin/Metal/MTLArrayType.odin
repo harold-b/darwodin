@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLArrayType
 ///
 @(objc_class="MTLArrayType", objc_superclass=Type)
-ArrayType :: struct { using _: Type, }
+ArrayType :: struct { using _: Type}
 
 @(default_calling_convention="c")
 foreign lib {

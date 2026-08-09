@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISearchTab
 ///
 @(objc_class="UISearchTab", objc_superclass=Tab)
-SearchTab :: struct { using _: Tab, }
+SearchTab :: struct { using _: Tab}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -1,44 +1,37 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 when ODIN_PLATFORM_SUBTARGET == .Default {
-    @(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=AK.ViewController)
-    TurnBasedMatchmakerViewController :: struct { using _: AK.ViewController, 
-        using _: ViewController,
-    }
+	@(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=UI_ViewController)
+	TurnBasedMatchmakerViewController :: struct {
+		using _: UI_ViewController,
+		using _: ViewController,
+	}
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=UI.NavigationController)
-    TurnBasedMatchmakerViewController :: struct { using _: UI.NavigationController, }
+	@(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=UI_NavigationController)
+	TurnBasedMatchmakerViewController :: struct { using _: UI_NavigationController}
 }
 
 foreign lib {
-    @(objc_type=TurnBasedMatchmakerViewController, objc_selector="turnBasedMatchmakerDelegate", objc_name="turnBasedMatchmakerDelegate")
-    TurnBasedMatchmakerViewController_turnBasedMatchmakerDelegate :: proc(self: ^TurnBasedMatchmakerViewController) -> ^TurnBasedMatchmakerViewControllerDelegate ---
+	@(objc_type=TurnBasedMatchmakerViewController, objc_selector="turnBasedMatchmakerDelegate", objc_name="turnBasedMatchmakerDelegate")
+	TurnBasedMatchmakerViewController_turnBasedMatchmakerDelegate :: proc(self: ^TurnBasedMatchmakerViewController) -> ^TurnBasedMatchmakerViewControllerDelegate ---
 
-    @(objc_type=TurnBasedMatchmakerViewController, objc_selector="setTurnBasedMatchmakerDelegate:", objc_name="setTurnBasedMatchmakerDelegate")
-    TurnBasedMatchmakerViewController_setTurnBasedMatchmakerDelegate :: proc(self: ^TurnBasedMatchmakerViewController, turnBasedMatchmakerDelegate: ^TurnBasedMatchmakerViewControllerDelegate) ---
+	@(objc_type=TurnBasedMatchmakerViewController, objc_selector="setTurnBasedMatchmakerDelegate:", objc_name="setTurnBasedMatchmakerDelegate")
+	TurnBasedMatchmakerViewController_setTurnBasedMatchmakerDelegate :: proc(self: ^TurnBasedMatchmakerViewController, turnBasedMatchmakerDelegate: ^TurnBasedMatchmakerViewControllerDelegate) ---
 
-    @(objc_type=TurnBasedMatchmakerViewController, objc_selector="showExistingMatches", objc_name="showExistingMatches")
-    TurnBasedMatchmakerViewController_showExistingMatches :: proc(self: ^TurnBasedMatchmakerViewController) -> bool ---
+	@(objc_type=TurnBasedMatchmakerViewController, objc_selector="showExistingMatches", objc_name="showExistingMatches")
+	TurnBasedMatchmakerViewController_showExistingMatches :: proc(self: ^TurnBasedMatchmakerViewController) -> bool ---
 
-    @(objc_type=TurnBasedMatchmakerViewController, objc_selector="setShowExistingMatches:", objc_name="setShowExistingMatches")
-    TurnBasedMatchmakerViewController_setShowExistingMatches :: proc(self: ^TurnBasedMatchmakerViewController, showExistingMatches: bool) ---
+	@(objc_type=TurnBasedMatchmakerViewController, objc_selector="setShowExistingMatches:", objc_name="setShowExistingMatches")
+	TurnBasedMatchmakerViewController_setShowExistingMatches :: proc(self: ^TurnBasedMatchmakerViewController, showExistingMatches: bool) ---
 
-    @(objc_type=TurnBasedMatchmakerViewController, objc_selector="matchmakingMode", objc_name="matchmakingMode")
-    TurnBasedMatchmakerViewController_matchmakingMode :: proc(self: ^TurnBasedMatchmakerViewController) -> MatchmakingMode ---
+	@(objc_type=TurnBasedMatchmakerViewController, objc_selector="matchmakingMode", objc_name="matchmakingMode")
+	TurnBasedMatchmakerViewController_matchmakingMode :: proc(self: ^TurnBasedMatchmakerViewController) -> MatchmakingMode ---
 
-    @(objc_type=TurnBasedMatchmakerViewController, objc_selector="setMatchmakingMode:", objc_name="setMatchmakingMode")
-    TurnBasedMatchmakerViewController_setMatchmakingMode :: proc(self: ^TurnBasedMatchmakerViewController, matchmakingMode: MatchmakingMode) ---
+	@(objc_type=TurnBasedMatchmakerViewController, objc_selector="setMatchmakingMode:", objc_name="setMatchmakingMode")
+	TurnBasedMatchmakerViewController_setMatchmakingMode :: proc(self: ^TurnBasedMatchmakerViewController, matchmakingMode: MatchmakingMode) ---
 
-    @(objc_type=TurnBasedMatchmakerViewController, objc_selector="initWithMatchRequest:", objc_name="initWithMatchRequest")
-    TurnBasedMatchmakerViewController_initWithMatchRequest :: proc(self: ^TurnBasedMatchmakerViewController, request: ^MatchRequest) -> id ---
+	@(objc_type=TurnBasedMatchmakerViewController, objc_selector="initWithMatchRequest:", objc_name="initWithMatchRequest")
+	TurnBasedMatchmakerViewController_initWithMatchRequest :: proc(self: ^TurnBasedMatchmakerViewController, request: ^MatchRequest) -> id ---
 }
-
-
-

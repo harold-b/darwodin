@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLFunctionReflection
 ///
 @(objc_class="MTLFunctionReflection", objc_superclass=NS.Object)
-FunctionReflection :: struct { using _: NS.Object, }
+FunctionReflection :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

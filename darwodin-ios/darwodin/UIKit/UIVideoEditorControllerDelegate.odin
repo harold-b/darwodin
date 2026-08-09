@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIVideoEditorControllerDelegate
 ///
 @(objc_class="UIVideoEditorControllerDelegate")
-VideoEditorControllerDelegate :: struct { using _: intrinsics.objc_object, 
+VideoEditorControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

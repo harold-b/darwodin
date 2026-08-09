@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UILongPressGestureRecognizer
 ///
 @(objc_class="UILongPressGestureRecognizer", objc_superclass=GestureRecognizer)
-LongPressGestureRecognizer :: struct { using _: GestureRecognizer, }
+LongPressGestureRecognizer :: struct { using _: GestureRecognizer}
 
 @(default_calling_convention="c")
 foreign lib {

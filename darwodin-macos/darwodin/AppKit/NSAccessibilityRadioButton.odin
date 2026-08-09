@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityRadioButton
 ///
 @(objc_class="NSAccessibilityRadioButton")
-AccessibilityRadioButton :: struct { using _: intrinsics.objc_object, 
+AccessibilityRadioButton :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityButton,
 }
 

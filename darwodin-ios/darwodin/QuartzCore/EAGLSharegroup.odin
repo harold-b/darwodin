@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// EAGLSharegroup
 ///
 @(objc_class="EAGLSharegroup", objc_superclass=NS.Object)
-EAGLSharegroup :: struct { using _: NS.Object, }
+EAGLSharegroup :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

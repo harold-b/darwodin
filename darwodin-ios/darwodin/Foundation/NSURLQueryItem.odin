@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLQueryItem
 ///
 @(objc_class="NSURLQueryItem", objc_superclass=Object)
-URLQueryItem :: struct { using _: Object, 
+URLQueryItem :: struct {
+    using _: Object,
     using _: SecureCoding,
     using _: Copying,
 }

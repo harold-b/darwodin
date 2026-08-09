@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTableCellView
 ///
 @(objc_class="NSTableCellView", objc_superclass=View)
-TableCellView :: struct { using _: View, }
+TableCellView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

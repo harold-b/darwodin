@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDocumentBrowserViewController
 ///
 @(objc_class="UIDocumentBrowserViewController", objc_superclass=ViewController)
-DocumentBrowserViewController :: struct { using _: ViewController, 
+DocumentBrowserViewController :: struct {
+    using _: ViewController,
     using _: NS.Coding,
 }
 

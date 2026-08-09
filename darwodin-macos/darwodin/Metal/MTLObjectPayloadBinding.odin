@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLObjectPayloadBinding
 ///
 @(objc_class="MTLObjectPayloadBinding")
-ObjectPayloadBinding :: struct { using _: intrinsics.objc_object, 
+ObjectPayloadBinding :: struct {
+    using _: intrinsics.objc_object,
     using _: Binding,
 }
 

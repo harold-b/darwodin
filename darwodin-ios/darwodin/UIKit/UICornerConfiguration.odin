@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICornerConfiguration
 ///
 @(objc_class="UICornerConfiguration", objc_superclass=NS.Object)
-CornerConfiguration :: struct { using _: NS.Object, 
+CornerConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

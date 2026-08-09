@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSSpellServer
 ///
 @(objc_class="NSSpellServer", objc_superclass=Object)
-SpellServer :: struct { using _: Object, }
+SpellServer :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

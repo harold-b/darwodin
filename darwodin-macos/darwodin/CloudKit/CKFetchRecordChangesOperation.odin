@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKFetchRecordChangesOperation
 ///
 @(objc_class="CKFetchRecordChangesOperation", objc_superclass=DatabaseOperation)
-FetchRecordChangesOperation :: struct { using _: DatabaseOperation, }
+FetchRecordChangesOperation :: struct { using _: DatabaseOperation}
 
 @(default_calling_convention="c")
 foreign lib {

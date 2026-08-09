@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,17 +17,18 @@ import Audio "../AudioToolbox"
 /// AVAudioFormat
 ///
 @(objc_class="AVAudioFormat", objc_superclass=NS.Object)
-AudioFormat :: struct { using _: NS.Object, 
+AudioFormat :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioFormat, objc_selector="initWithStreamDescription:", objc_name="initWithStreamDescription_")
-    AudioFormat_initWithStreamDescription_ :: proc(self: ^AudioFormat, asbd: ^Audio.StreamBasicDescription) -> instancetype ---
+    AudioFormat_initWithStreamDescription_ :: proc(self: ^AudioFormat, asbd: ^AT.StreamBasicDescription) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initWithStreamDescription:channelLayout:", objc_name="initWithStreamDescription_channelLayout")
-    AudioFormat_initWithStreamDescription_channelLayout :: proc(self: ^AudioFormat, asbd: ^Audio.StreamBasicDescription, layout: ^AudioChannelLayout) -> instancetype ---
+    AudioFormat_initWithStreamDescription_channelLayout :: proc(self: ^AudioFormat, asbd: ^AT.StreamBasicDescription, layout: ^AudioChannelLayout) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initStandardFormatWithSampleRate:channels:", objc_name="initStandardFormatWithSampleRate_channels")
     AudioFormat_initStandardFormatWithSampleRate_channels :: proc(self: ^AudioFormat, sampleRate: cffi.double, channels: AudioChannelCount) -> instancetype ---
@@ -66,7 +67,7 @@ foreign lib {
     AudioFormat_isInterleaved :: proc(self: ^AudioFormat) -> bool ---
 
     @(objc_type=AudioFormat, objc_selector="streamDescription", objc_name="streamDescription")
-    AudioFormat_streamDescription :: proc(self: ^AudioFormat) -> ^Audio.StreamBasicDescription ---
+    AudioFormat_streamDescription :: proc(self: ^AudioFormat) -> ^AT.StreamBasicDescription ---
 
     @(objc_type=AudioFormat, objc_selector="channelLayout", objc_name="channelLayout")
     AudioFormat_channelLayout :: proc(self: ^AudioFormat) -> ^AudioChannelLayout ---

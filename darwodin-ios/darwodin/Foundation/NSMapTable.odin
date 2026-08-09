@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSMapTable
 ///
 @(objc_class="NSMapTable", objc_superclass=Object)
-MapTable :: struct { using _: Object, 
+MapTable :: struct {
+    using _: Object,
     using _: Copying,
     using _: SecureCoding,
     using _: FastEnumeration,

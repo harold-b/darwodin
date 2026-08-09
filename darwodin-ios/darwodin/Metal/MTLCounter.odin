@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCounter
 ///
 @(objc_class="MTLCounter")
-Counter :: struct { using _: intrinsics.objc_object, 
+Counter :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

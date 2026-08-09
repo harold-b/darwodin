@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextViewportLayoutControllerDelegate
 ///
 @(objc_class="NSTextViewportLayoutControllerDelegate")
-TextViewportLayoutControllerDelegate :: struct { using _: intrinsics.objc_object, 
+TextViewportLayoutControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

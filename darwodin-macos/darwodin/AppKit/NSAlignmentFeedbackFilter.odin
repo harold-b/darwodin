@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSAlignmentFeedbackFilter
 ///
 @(objc_class="NSAlignmentFeedbackFilter", objc_superclass=NS.Object)
-AlignmentFeedbackFilter :: struct { using _: NS.Object, }
+AlignmentFeedbackFilter :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

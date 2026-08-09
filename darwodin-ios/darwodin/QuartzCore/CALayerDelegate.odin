@@ -15,7 +15,8 @@ import NS "../Foundation"
 /// CALayerDelegate
 ///
 @(objc_class="CALayerDelegate")
-LayerDelegate :: struct { using _: intrinsics.objc_object, 
+LayerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCommandBufferEncoderInfo
 ///
 @(objc_class="MTLCommandBufferEncoderInfo")
-CommandBufferEncoderInfo :: struct { using _: intrinsics.objc_object, 
+CommandBufferEncoderInfo :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

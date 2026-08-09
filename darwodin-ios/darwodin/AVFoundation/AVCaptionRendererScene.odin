@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVCaptionRendererScene
 ///
 @(objc_class="AVCaptionRendererScene", objc_superclass=NS.Object)
-CaptionRendererScene :: struct { using _: NS.Object, 
+CaptionRendererScene :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

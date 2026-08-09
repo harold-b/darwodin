@@ -1,26 +1,15 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLRenderPassColorAttachmentDescriptorArray", objc_superclass=NS.Object)
-RenderPassColorAttachmentDescriptorArray :: struct { using _: NS.Object, }
+RenderPassColorAttachmentDescriptorArray :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=RenderPassColorAttachmentDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
-    RenderPassColorAttachmentDescriptorArray_objectAtIndexedSubscript :: proc(self: ^RenderPassColorAttachmentDescriptorArray, attachmentIndex: NS.UInteger) -> ^RenderPassColorAttachmentDescriptor ---
+	@(objc_type=RenderPassColorAttachmentDescriptorArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
+	RenderPassColorAttachmentDescriptorArray_objectAtIndexedSubscript :: proc(self: ^RenderPassColorAttachmentDescriptorArray, attachmentIndex: NS.UInteger) -> ^RenderPassColorAttachmentDescriptor ---
 
-    @(objc_type=RenderPassColorAttachmentDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
-    RenderPassColorAttachmentDescriptorArray_setObject :: proc(self: ^RenderPassColorAttachmentDescriptorArray, attachment: ^RenderPassColorAttachmentDescriptor, attachmentIndex: NS.UInteger) ---
+	@(objc_type=RenderPassColorAttachmentDescriptorArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
+	RenderPassColorAttachmentDescriptorArray_setObject :: proc(self: ^RenderPassColorAttachmentDescriptorArray, attachment: ^RenderPassColorAttachmentDescriptor, attachmentIndex: NS.UInteger) ---
 }
-
-
-

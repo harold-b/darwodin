@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,8 @@ import UI "../UIKit"
 /// GKBasePlayer
 ///
 @(objc_class="GKBasePlayer", objc_superclass=NS.Object)
-BasePlayer :: struct { using _: NS.Object, 
+BasePlayer :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

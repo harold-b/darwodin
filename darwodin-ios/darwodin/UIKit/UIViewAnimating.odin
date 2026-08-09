@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIViewAnimating
 ///
 @(objc_class="UIViewAnimating")
-ViewAnimating :: struct { using _: intrinsics.objc_object, 
+ViewAnimating :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

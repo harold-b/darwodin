@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextFinder
 ///
 @(objc_class="NSTextFinder", objc_superclass=NS.Object)
-TextFinder :: struct { using _: NS.Object, 
+TextFinder :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
 }
 

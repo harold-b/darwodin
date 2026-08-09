@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISearchTextFieldPasteItem
 ///
 @(objc_class="UISearchTextFieldPasteItem")
-SearchTextFieldPasteItem :: struct { using _: intrinsics.objc_object, 
+SearchTextFieldPasteItem :: struct {
+    using _: intrinsics.objc_object,
     using _: TextPasteItem,
 }
 

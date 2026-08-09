@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSpringLoadingDestination
 ///
 @(objc_class="NSSpringLoadingDestination")
-SpringLoadingDestination :: struct { using _: intrinsics.objc_object, 
+SpringLoadingDestination :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

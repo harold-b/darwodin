@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UILargeContentViewerInteractionDelegate
 ///
 @(objc_class="UILargeContentViewerInteractionDelegate")
-LargeContentViewerInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+LargeContentViewerInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

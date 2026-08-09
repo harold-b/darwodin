@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSByteCountFormatter
 ///
 @(objc_class="NSByteCountFormatter", objc_superclass=Formatter)
-ByteCountFormatter :: struct { using _: Formatter, }
+ByteCountFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

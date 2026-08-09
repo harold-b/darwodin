@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLCredentialStorageInternal
 ///
 @(objc_class="NSURLCredentialStorageInternal")
-URLCredentialStorageInternal :: struct { using _: intrinsics.objc_object, }
+URLCredentialStorageInternal :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

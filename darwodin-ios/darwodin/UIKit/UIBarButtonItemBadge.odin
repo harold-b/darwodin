@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIBarButtonItemBadge
 ///
 @(objc_class="UIBarButtonItemBadge", objc_superclass=NS.Object)
-BarButtonItemBadge :: struct { using _: NS.Object, 
+BarButtonItemBadge :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

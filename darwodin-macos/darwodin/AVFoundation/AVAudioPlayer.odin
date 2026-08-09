@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioPlayer
 ///
 @(objc_class="AVAudioPlayer", objc_superclass=NS.Object)
-AudioPlayer :: struct { using _: NS.Object, }
+AudioPlayer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -145,10 +145,10 @@ foreign lib {
     AudioPlayer_setChannelAssignments :: proc(self: ^AudioPlayer, channelAssignments: ^NS.Array) ---
 
     @(objc_type=AudioPlayer, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
-    AudioPlayer_intendedSpatialExperience :: proc(self: ^AudioPlayer) -> ^Audio.CASpatialAudioExperience ---
+    AudioPlayer_intendedSpatialExperience :: proc(self: ^AudioPlayer) -> ^AT.SpatialAudioExperience ---
 
     @(objc_type=AudioPlayer, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
-    AudioPlayer_setIntendedSpatialExperience :: proc(self: ^AudioPlayer, intendedSpatialExperience: ^Audio.CASpatialAudioExperience) ---
+    AudioPlayer_setIntendedSpatialExperience :: proc(self: ^AudioPlayer, intendedSpatialExperience: ^AT.SpatialAudioExperience) ---
 }
 
 @(objc_type=AudioPlayer, objc_name="initWithContentsOfURL")

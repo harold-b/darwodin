@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTableViewDelegate
 ///
 @(objc_class="NSTableViewDelegate")
-TableViewDelegate :: struct { using _: intrinsics.objc_object, 
+TableViewDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ControlTextEditingDelegate,
 }
 

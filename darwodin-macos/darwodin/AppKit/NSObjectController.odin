@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSObjectController
 ///
 @(objc_class="NSObjectController", objc_superclass=Controller)
-ObjectController :: struct { using _: Controller, }
+ObjectController :: struct { using _: Controller}
 
 @(default_calling_convention="c")
 foreign lib {

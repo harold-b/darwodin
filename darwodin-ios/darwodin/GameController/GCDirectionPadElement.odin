@@ -14,7 +14,8 @@ import UI "../UIKit"
 /// GCDirectionPadElement
 ///
 @(objc_class="GCDirectionPadElement")
-DirectionPadElement :: struct { using _: intrinsics.objc_object, 
+DirectionPadElement :: struct {
+    using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 

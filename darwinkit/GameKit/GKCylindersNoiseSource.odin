@@ -1,28 +1,21 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="GKCylindersNoiseSource", objc_superclass=NoiseSource)
-CylindersNoiseSource :: struct { using _: NoiseSource, }
+CylindersNoiseSource :: struct { using _: NoiseSource}
 
 foreign lib {
-    @(objc_type=CylindersNoiseSource, objc_selector="cylindersNoiseWithFrequency:", objc_name="cylindersNoiseWithFrequency", objc_is_class_method=true)
-    CylindersNoiseSource_cylindersNoiseWithFrequency :: proc(frequency: cffi.double) -> instancetype ---
+	@(objc_type=CylindersNoiseSource, objc_selector="cylindersNoiseWithFrequency:", objc_name="cylindersNoiseWithFrequency", objc_is_class_method=true)
+	CylindersNoiseSource_cylindersNoiseWithFrequency :: proc(frequency: cffi.double) -> instancetype ---
 
-    @(objc_type=CylindersNoiseSource, objc_selector="initWithFrequency:", objc_name="initWithFrequency")
-    CylindersNoiseSource_initWithFrequency :: proc(self: ^CylindersNoiseSource, frequency: cffi.double) -> instancetype ---
+	@(objc_type=CylindersNoiseSource, objc_selector="initWithFrequency:", objc_name="initWithFrequency")
+	CylindersNoiseSource_initWithFrequency :: proc(self: ^CylindersNoiseSource, frequency: cffi.double) -> instancetype ---
 
-    @(objc_type=CylindersNoiseSource, objc_selector="frequency", objc_name="frequency")
-    CylindersNoiseSource_frequency :: proc(self: ^CylindersNoiseSource) -> cffi.double ---
+	@(objc_type=CylindersNoiseSource, objc_selector="frequency", objc_name="frequency")
+	CylindersNoiseSource_frequency :: proc(self: ^CylindersNoiseSource) -> cffi.double ---
 
-    @(objc_type=CylindersNoiseSource, objc_selector="setFrequency:", objc_name="setFrequency")
-    CylindersNoiseSource_setFrequency :: proc(self: ^CylindersNoiseSource, frequency: cffi.double) ---
+	@(objc_type=CylindersNoiseSource, objc_selector="setFrequency:", objc_name="setFrequency")
+	CylindersNoiseSource_setFrequency :: proc(self: ^CylindersNoiseSource, frequency: cffi.double) ---
 }
-
-
-

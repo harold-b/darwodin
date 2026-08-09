@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKSyncEngineWillFetchChangesEvent
 ///
 @(objc_class="CKSyncEngineWillFetchChangesEvent", objc_superclass=SyncEngineEvent)
-SyncEngineWillFetchChangesEvent :: struct { using _: SyncEngineEvent, }
+SyncEngineWillFetchChangesEvent :: struct { using _: SyncEngineEvent}
 
 @(default_calling_convention="c")
 foreign lib {

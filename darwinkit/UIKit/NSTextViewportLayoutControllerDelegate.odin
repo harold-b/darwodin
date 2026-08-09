@@ -1,37 +1,31 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSTextViewportLayoutControllerDelegate
-///
+
+
 @(objc_class="NSTextViewportLayoutControllerDelegate")
-NSTextViewportLayoutControllerDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+NSTextViewportLayoutControllerDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="viewportBoundsForTextViewportLayoutController:", objc_name="viewportBoundsForTextViewportLayoutController")
-    NSTextViewportLayoutControllerDelegate_viewportBoundsForTextViewportLayoutController :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController) -> CG.Rect ---
+	@(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="viewportBoundsForTextViewportLayoutController:", objc_name="viewportBoundsForTextViewportLayoutController")
+	NSTextViewportLayoutControllerDelegate_viewportBoundsForTextViewportLayoutController :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController) -> CG.Rect ---
 
-    @(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController")
-    NSTextViewportLayoutControllerDelegate_textViewportLayoutController :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController, textLayoutFragment: ^NSTextLayoutFragment) ---
+	@(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController")
+	NSTextViewportLayoutControllerDelegate_textViewportLayoutController :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController, textLayoutFragment: ^NSTextLayoutFragment) ---
 
-    @(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutControllerWillLayout:", objc_name="textViewportLayoutControllerWillLayout")
-    NSTextViewportLayoutControllerDelegate_textViewportLayoutControllerWillLayout :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController) ---
+	@(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutControllerWillLayout:", objc_name="textViewportLayoutControllerWillLayout")
+	NSTextViewportLayoutControllerDelegate_textViewportLayoutControllerWillLayout :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController) ---
 
-    @(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutControllerDidLayout:", objc_name="textViewportLayoutControllerDidLayout")
-    NSTextViewportLayoutControllerDelegate_textViewportLayoutControllerDidLayout :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController) ---
+	@(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutControllerDidLayout:", objc_name="textViewportLayoutControllerDidLayout")
+	NSTextViewportLayoutControllerDelegate_textViewportLayoutControllerDidLayout :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController) ---
 }

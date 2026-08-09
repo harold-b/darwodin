@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDraggable
 ///
 @(objc_class="UITextDraggable")
-TextDraggable :: struct { using _: intrinsics.objc_object, 
+TextDraggable :: struct {
+    using _: intrinsics.objc_object,
     using _: TextInput,
 }
 

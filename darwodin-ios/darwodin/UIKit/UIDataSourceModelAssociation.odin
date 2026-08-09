@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIDataSourceModelAssociation
 ///
 @(objc_class="UIDataSourceModelAssociation")
-DataSourceModelAssociation :: struct { using _: intrinsics.objc_object, }
+DataSourceModelAssociation :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

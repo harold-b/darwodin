@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIFieldBehavior
 ///
 @(objc_class="UIFieldBehavior", objc_superclass=DynamicBehavior)
-FieldBehavior :: struct { using _: DynamicBehavior, }
+FieldBehavior :: struct { using _: DynamicBehavior}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4IndirectInstanceAccelerationStructureDescriptor
 ///
 @(objc_class="MTL4IndirectInstanceAccelerationStructureDescriptor", objc_superclass=MTL4AccelerationStructureDescriptor)
-MTL4IndirectInstanceAccelerationStructureDescriptor :: struct { using _: MTL4AccelerationStructureDescriptor, }
+MTL4IndirectInstanceAccelerationStructureDescriptor :: struct { using _: MTL4AccelerationStructureDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

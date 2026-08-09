@@ -1,20 +1,11 @@
 #+build darwin
-package darwodin_LocalAuthentication
+package darwin_LocalAuthentication
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
-import Sec "../Security"
 
 @(objc_class="LAEnvironmentMechanismUserPassword", objc_superclass=EnvironmentMechanism)
-EnvironmentMechanismUserPassword :: struct { using _: EnvironmentMechanism, }
+EnvironmentMechanismUserPassword :: struct { using _: EnvironmentMechanism}
 
 foreign lib {
-    @(objc_type=EnvironmentMechanismUserPassword, objc_selector="isSet", objc_name="isSet")
-    EnvironmentMechanismUserPassword_isSet :: proc(self: ^EnvironmentMechanismUserPassword) -> bool ---
+	@(objc_type=EnvironmentMechanismUserPassword, objc_selector="isSet", objc_name="isSet")
+	EnvironmentMechanismUserPassword_isSet :: proc(self: ^EnvironmentMechanismUserPassword) -> bool ---
 }
-
-
-

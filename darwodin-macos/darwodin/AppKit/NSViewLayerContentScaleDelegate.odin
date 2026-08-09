@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSViewLayerContentScaleDelegate
 ///
 @(objc_class="NSViewLayerContentScaleDelegate")
-ViewLayerContentScaleDelegate :: struct { using _: intrinsics.objc_object, 
+ViewLayerContentScaleDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSWritingToolsCoordinatorContext
 ///
 @(objc_class="NSWritingToolsCoordinatorContext", objc_superclass=NS.Object)
-WritingToolsCoordinatorContext :: struct { using _: NS.Object, }
+WritingToolsCoordinatorContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

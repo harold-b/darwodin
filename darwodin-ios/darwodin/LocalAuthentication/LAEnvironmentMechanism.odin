@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LAEnvironmentMechanism
 ///
 @(objc_class="LAEnvironmentMechanism", objc_superclass=NS.Object)
-EnvironmentMechanism :: struct { using _: NS.Object, }
+EnvironmentMechanism :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

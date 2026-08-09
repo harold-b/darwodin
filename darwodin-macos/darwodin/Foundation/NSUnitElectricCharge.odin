@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitElectricCharge
 ///
 @(objc_class="NSUnitElectricCharge", objc_superclass=Dimension)
-UnitElectricCharge :: struct { using _: Dimension, 
+UnitElectricCharge :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UICollectionViewFocusUpdateContext
 ///
 @(objc_class="UICollectionViewFocusUpdateContext", objc_superclass=FocusUpdateContext)
-CollectionViewFocusUpdateContext :: struct { using _: FocusUpdateContext, }
+CollectionViewFocusUpdateContext :: struct { using _: FocusUpdateContext}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIFontPickerViewControllerDelegate
 ///
 @(objc_class="UIFontPickerViewControllerDelegate")
-FontPickerViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+FontPickerViewControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

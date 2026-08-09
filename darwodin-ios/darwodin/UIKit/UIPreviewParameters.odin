@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPreviewParameters
 ///
 @(objc_class="UIPreviewParameters", objc_superclass=NS.Object)
-PreviewParameters :: struct { using _: NS.Object, 
+PreviewParameters :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

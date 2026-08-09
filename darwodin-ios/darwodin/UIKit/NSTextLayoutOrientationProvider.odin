@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSTextLayoutOrientationProvider
 ///
 @(objc_class="NSTextLayoutOrientationProvider")
-NSTextLayoutOrientationProvider :: struct { using _: intrinsics.objc_object, }
+NSTextLayoutOrientationProvider :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

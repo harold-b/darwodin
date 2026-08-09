@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLArgumentDescriptor
 ///
 @(objc_class="MTLArgumentDescriptor", objc_superclass=NS.Object)
-ArgumentDescriptor :: struct { using _: NS.Object, 
+ArgumentDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

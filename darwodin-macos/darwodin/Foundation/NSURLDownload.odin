@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLDownload
 ///
 @(objc_class="NSURLDownload", objc_superclass=Object)
-URLDownload :: struct { using _: Object, }
+URLDownload :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

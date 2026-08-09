@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKShareBlockedIdentity
 ///
 @(objc_class="CKShareBlockedIdentity", objc_superclass=NS.Object)
-ShareBlockedIdentity :: struct { using _: NS.Object, 
+ShareBlockedIdentity :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

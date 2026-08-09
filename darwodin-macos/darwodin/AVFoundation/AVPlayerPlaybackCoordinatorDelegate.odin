@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVPlayerPlaybackCoordinatorDelegate
 ///
 @(objc_class="AVPlayerPlaybackCoordinatorDelegate")
-PlayerPlaybackCoordinatorDelegate :: struct { using _: intrinsics.objc_object, 
+PlayerPlaybackCoordinatorDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

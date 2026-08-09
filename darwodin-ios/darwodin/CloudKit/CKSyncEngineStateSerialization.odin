@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKSyncEngineStateSerialization
 ///
 @(objc_class="CKSyncEngineStateSerialization", objc_superclass=NS.Object)
-SyncEngineStateSerialization :: struct { using _: NS.Object, 
+SyncEngineStateSerialization :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

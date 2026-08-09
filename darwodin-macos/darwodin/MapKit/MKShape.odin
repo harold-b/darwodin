@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKShape
 ///
 @(objc_class="MKShape", objc_superclass=NS.Object)
-Shape :: struct { using _: NS.Object, 
+Shape :: struct {
+    using _: NS.Object,
     using _: Annotation,
 }
 

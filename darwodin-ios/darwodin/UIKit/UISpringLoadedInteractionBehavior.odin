@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISpringLoadedInteractionBehavior
 ///
 @(objc_class="UISpringLoadedInteractionBehavior")
-SpringLoadedInteractionBehavior :: struct { using _: intrinsics.objc_object, 
+SpringLoadedInteractionBehavior :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

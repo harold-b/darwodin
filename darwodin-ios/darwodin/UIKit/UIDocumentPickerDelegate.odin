@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDocumentPickerDelegate
 ///
 @(objc_class="UIDocumentPickerDelegate")
-DocumentPickerDelegate :: struct { using _: intrinsics.objc_object, 
+DocumentPickerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityCustomRotorItemSearchDelegate
 ///
 @(objc_class="NSAccessibilityCustomRotorItemSearchDelegate")
-AccessibilityCustomRotorItemSearchDelegate :: struct { using _: intrinsics.objc_object, 
+AccessibilityCustomRotorItemSearchDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

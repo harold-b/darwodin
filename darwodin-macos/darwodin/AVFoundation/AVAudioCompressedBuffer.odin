@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAudioCompressedBuffer
 ///
 @(objc_class="AVAudioCompressedBuffer", objc_superclass=AudioBuffer)
-AudioCompressedBuffer :: struct { using _: AudioBuffer, }
+AudioCompressedBuffer :: struct { using _: AudioBuffer}
 
 @(default_calling_convention="c")
 foreign lib {
@@ -52,10 +52,10 @@ foreign lib {
     AudioCompressedBuffer_setByteLength :: proc(self: ^AudioCompressedBuffer, byteLength: cffi.uint32_t) ---
 
     @(objc_type=AudioCompressedBuffer, objc_selector="packetDescriptions", objc_name="packetDescriptions")
-    AudioCompressedBuffer_packetDescriptions :: proc(self: ^AudioCompressedBuffer) -> ^Audio.StreamPacketDescription ---
+    AudioCompressedBuffer_packetDescriptions :: proc(self: ^AudioCompressedBuffer) -> ^AT.StreamPacketDescription ---
 
     @(objc_type=AudioCompressedBuffer, objc_selector="packetDependencies", objc_name="packetDependencies")
-    AudioCompressedBuffer_packetDependencies :: proc(self: ^AudioCompressedBuffer) -> ^Audio.StreamPacketDependencyDescription ---
+    AudioCompressedBuffer_packetDependencies :: proc(self: ^AudioCompressedBuffer) -> ^AT.StreamPacketDependencyDescription ---
 }
 
 @(objc_type=AudioCompressedBuffer, objc_name="initWithFormat")

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTLFXSpatialScalerDescriptor
 ///
 @(objc_class="MTLFXSpatialScalerDescriptor", objc_superclass=NS.Object)
-SpatialScalerDescriptor :: struct { using _: NS.Object, 
+SpatialScalerDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

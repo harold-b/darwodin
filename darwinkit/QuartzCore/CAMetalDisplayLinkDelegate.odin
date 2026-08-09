@@ -1,22 +1,12 @@
 #+build darwin
-package darwodin_QuartzCore
+package darwin_QuartzCore
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import NS "../Foundation"
 
 @(objc_class="CAMetalDisplayLinkDelegate")
-MetalDisplayLinkDelegate :: struct { using _: intrinsics.objc_object, }
+MetalDisplayLinkDelegate :: struct { using _: intrinsics.objc_object}
 
 foreign lib {
-    @(objc_type=MetalDisplayLinkDelegate, objc_selector="metalDisplayLink:needsUpdate:", objc_name="metalDisplayLink")
-    MetalDisplayLinkDelegate_metalDisplayLink :: proc(self: ^MetalDisplayLinkDelegate, link: ^MetalDisplayLink, update: ^MetalDisplayLinkUpdate) ---
+	@(objc_type=MetalDisplayLinkDelegate, objc_selector="metalDisplayLink:needsUpdate:", objc_name="metalDisplayLink")
+	MetalDisplayLinkDelegate_metalDisplayLink :: proc(self: ^MetalDisplayLinkDelegate, link: ^MetalDisplayLink, update: ^MetalDisplayLinkUpdate) ---
 }
-
-
-

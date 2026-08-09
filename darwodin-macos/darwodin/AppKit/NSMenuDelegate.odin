@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSMenuDelegate
 ///
 @(objc_class="NSMenuDelegate")
-MenuDelegate :: struct { using _: intrinsics.objc_object, 
+MenuDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

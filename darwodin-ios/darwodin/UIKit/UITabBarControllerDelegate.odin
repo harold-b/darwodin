@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITabBarControllerDelegate
 ///
 @(objc_class="UITabBarControllerDelegate")
-TabBarControllerDelegate :: struct { using _: intrinsics.objc_object, 
+TabBarControllerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

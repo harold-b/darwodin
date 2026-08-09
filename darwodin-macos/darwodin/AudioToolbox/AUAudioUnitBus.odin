@@ -5,8 +5,6 @@ import "base:runtime"
 import cffi "core:c"
 import mach "../mach"
 import CF "../CoreFoundation"
-import CA "../CoreAudio"
-import CM "../CoreMedia"
 import NS "../Foundation"
 
 
@@ -15,7 +13,7 @@ import NS "../Foundation"
 /// AUAudioUnitBus
 ///
 @(objc_class="AUAudioUnitBus", objc_superclass=NS.Object)
-AUAudioUnitBus :: struct { using _: NS.Object, }
+AUAudioUnitBus :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

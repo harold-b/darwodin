@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKLocalPointsOfInterestRequest
 ///
 @(objc_class="MKLocalPointsOfInterestRequest", objc_superclass=NS.Object)
-LocalPointsOfInterestRequest :: struct { using _: NS.Object, 
+LocalPointsOfInterestRequest :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

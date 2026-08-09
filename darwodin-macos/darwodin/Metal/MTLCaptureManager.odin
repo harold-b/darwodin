@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLCaptureManager
 ///
 @(objc_class="MTLCaptureManager", objc_superclass=NS.Object)
-CaptureManager :: struct { using _: NS.Object, }
+CaptureManager :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

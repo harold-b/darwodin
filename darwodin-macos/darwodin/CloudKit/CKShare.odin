@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKShare
 ///
 @(objc_class="CKShare", objc_superclass=Record)
-Share :: struct { using _: Record, 
+Share :: struct {
+    using _: Record,
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }

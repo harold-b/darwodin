@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSProgressReporting
 ///
 @(objc_class="NSProgressReporting")
-ProgressReporting :: struct { using _: intrinsics.objc_object, 
+ProgressReporting :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

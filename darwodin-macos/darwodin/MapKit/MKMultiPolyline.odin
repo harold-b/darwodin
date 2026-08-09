@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKMultiPolyline
 ///
 @(objc_class="MKMultiPolyline", objc_superclass=Shape)
-MultiPolyline :: struct { using _: Shape, 
+MultiPolyline :: struct {
+    using _: Shape,
     using _: Overlay,
 }
 

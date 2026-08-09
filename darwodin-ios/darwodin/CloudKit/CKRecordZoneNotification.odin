@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CKRecordZoneNotification
 ///
 @(objc_class="CKRecordZoneNotification", objc_superclass=Notification)
-RecordZoneNotification :: struct { using _: Notification, }
+RecordZoneNotification :: struct { using _: Notification}
 
 @(default_calling_convention="c")
 foreign lib {

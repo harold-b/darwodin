@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,8 @@ import UI "../UIKit"
 /// GKChallengeEventHandlerDelegate
 ///
 @(objc_class="GKChallengeEventHandlerDelegate")
-ChallengeEventHandlerDelegate :: struct { using _: intrinsics.objc_object, 
+ChallengeEventHandlerDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

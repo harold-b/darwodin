@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSViewControllerPresentationAnimator
 ///
 @(objc_class="NSViewControllerPresentationAnimator")
-ViewControllerPresentationAnimator :: struct { using _: intrinsics.objc_object, 
+ViewControllerPresentationAnimator :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTileRenderPipelineColorAttachmentDescriptor
 ///
 @(objc_class="MTLTileRenderPipelineColorAttachmentDescriptor", objc_superclass=NS.Object)
-TileRenderPipelineColorAttachmentDescriptor :: struct { using _: NS.Object, 
+TileRenderPipelineColorAttachmentDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTLFXTemporalDenoisedScalerDescriptor
 ///
 @(objc_class="MTLFXTemporalDenoisedScalerDescriptor", objc_superclass=NS.Object)
-TemporalDenoisedScalerDescriptor :: struct { using _: NS.Object, 
+TemporalDenoisedScalerDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

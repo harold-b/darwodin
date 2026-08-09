@@ -1,0 +1,18 @@
+#+build darwin
+package darwin_MapKit
+
+import NS "../Foundation"
+
+@(objc_class="MKSelectionAccessory", objc_superclass=NS.Object)
+SelectionAccessory :: struct { using _: NS.Object}
+
+foreign lib {
+	@(objc_type=SelectionAccessory, objc_selector="new", objc_name="new", objc_is_class_method=true)
+	SelectionAccessory_new :: proc() -> ^SelectionAccessory ---
+
+	@(objc_type=SelectionAccessory, objc_selector="init", objc_name="init")
+	SelectionAccessory_init :: proc(self: ^SelectionAccessory) -> instancetype ---
+
+	@(objc_type=SelectionAccessory, objc_selector="mapItemDetailWithPresentationStyle:", objc_name="mapItemDetailWithPresentationStyle", objc_is_class_method=true)
+	SelectionAccessory_mapItemDetailWithPresentationStyle :: proc(presentationStyle: ^MapItemDetailSelectionAccessoryPresentationStyle) -> ^SelectionAccessory ---
+}

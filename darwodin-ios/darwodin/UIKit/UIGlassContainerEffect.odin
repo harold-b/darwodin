@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIGlassContainerEffect
 ///
 @(objc_class="UIGlassContainerEffect", objc_superclass=VisualEffect)
-GlassContainerEffect :: struct { using _: VisualEffect, }
+GlassContainerEffect :: struct { using _: VisualEffect}
 
 @(default_calling_convention="c")
 foreign lib {

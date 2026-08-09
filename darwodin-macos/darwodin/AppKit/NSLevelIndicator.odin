@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSLevelIndicator
 ///
 @(objc_class="NSLevelIndicator", objc_superclass=Control)
-LevelIndicator :: struct { using _: Control, }
+LevelIndicator :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

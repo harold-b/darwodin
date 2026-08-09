@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LASecret
 ///
 @(objc_class="LASecret", objc_superclass=NS.Object)
-Secret :: struct { using _: NS.Object, }
+Secret :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

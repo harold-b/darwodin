@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitElectricResistance
 ///
 @(objc_class="NSUnitElectricResistance", objc_superclass=Dimension)
-UnitElectricResistance :: struct { using _: Dimension, 
+UnitElectricResistance :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

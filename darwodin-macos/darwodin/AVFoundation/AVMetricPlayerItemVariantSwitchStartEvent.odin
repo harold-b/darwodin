@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMetricPlayerItemVariantSwitchStartEvent
 ///
 @(objc_class="AVMetricPlayerItemVariantSwitchStartEvent", objc_superclass=MetricEvent)
-MetricPlayerItemVariantSwitchStartEvent :: struct { using _: MetricEvent, }
+MetricPlayerItemVariantSwitchStartEvent :: struct { using _: MetricEvent}
 
 @(default_calling_convention="c")
 foreign lib {

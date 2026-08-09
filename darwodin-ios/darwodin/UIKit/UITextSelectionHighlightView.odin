@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextSelectionHighlightView
 ///
 @(objc_class="UITextSelectionHighlightView")
-TextSelectionHighlightView :: struct { using _: intrinsics.objc_object, 
+TextSelectionHighlightView :: struct {
+    using _: intrinsics.objc_object,
     using _: CoordinateSpace,
 }
 

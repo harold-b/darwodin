@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCDevicePhysicalInputState
 ///
 @(objc_class="GCDevicePhysicalInputState")
-DevicePhysicalInputState :: struct { using _: intrinsics.objc_object, 
+DevicePhysicalInputState :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

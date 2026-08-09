@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCControllerAxisInput
 ///
 @(objc_class="GCControllerAxisInput", objc_superclass=ControllerElement)
-ControllerAxisInput :: struct { using _: ControllerElement, }
+ControllerAxisInput :: struct { using _: ControllerElement}
 
 @(default_calling_convention="c")
 foreign lib {

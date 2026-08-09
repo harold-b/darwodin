@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSBezierPath
 ///
 @(objc_class="NSBezierPath", objc_superclass=NS.Object)
-BezierPath :: struct { using _: NS.Object, 
+BezierPath :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAccessibilityRow
 ///
 @(objc_class="NSAccessibilityRow")
-AccessibilityRow :: struct { using _: intrinsics.objc_object, 
+AccessibilityRow :: struct {
+    using _: intrinsics.objc_object,
     using _: AccessibilityGroup,
 }
 

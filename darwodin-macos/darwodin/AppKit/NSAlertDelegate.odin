@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAlertDelegate
 ///
 @(objc_class="NSAlertDelegate")
-AlertDelegate :: struct { using _: intrinsics.objc_object, 
+AlertDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIContentConfiguration
 ///
 @(objc_class="UIContentConfiguration")
-ContentConfiguration :: struct { using _: intrinsics.objc_object, 
+ContentConfiguration :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
     using _: NS.Copying,
 }

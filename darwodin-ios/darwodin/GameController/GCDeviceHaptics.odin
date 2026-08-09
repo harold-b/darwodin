@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCDeviceHaptics
 ///
 @(objc_class="GCDeviceHaptics", objc_superclass=NS.Object)
-DeviceHaptics :: struct { using _: NS.Object, }
+DeviceHaptics :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

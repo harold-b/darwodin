@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSHTTPURLResponse
 ///
 @(objc_class="NSHTTPURLResponse", objc_superclass=URLResponse)
-HTTPURLResponse :: struct { using _: URLResponse, }
+HTTPURLResponse :: struct { using _: URLResponse}
 
 @(default_calling_convention="c")
 foreign lib {

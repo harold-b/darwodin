@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITraitHDRHeadroomUsageLimit
 ///
 @(objc_class="UITraitHDRHeadroomUsageLimit", objc_superclass=NS.Object)
-TraitHDRHeadroomUsageLimit :: struct { using _: NS.Object, 
+TraitHDRHeadroomUsageLimit :: struct {
+    using _: NS.Object,
     using _: NSIntegerTraitDefinition,
 }
 

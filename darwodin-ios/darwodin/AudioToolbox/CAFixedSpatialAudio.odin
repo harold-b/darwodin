@@ -5,8 +5,6 @@ import "base:runtime"
 import cffi "core:c"
 import mach "../mach"
 import CF "../CoreFoundation"
-import CA "../CoreAudio"
-import CM "../CoreMedia"
 import NS "../Foundation"
 
 
@@ -14,17 +12,17 @@ import NS "../Foundation"
 ///
 /// CAFixedSpatialAudio
 ///
-@(objc_class="CAFixedSpatialAudio", objc_superclass=CASpatialAudioExperience)
-CAFixedSpatialAudio :: struct { using _: CASpatialAudioExperience, }
+@(objc_class="CAFixedSpatialAudio", objc_superclass=SpatialAudioExperience)
+FixedSpatialAudio :: struct { using _: SpatialAudioExperience}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=CAFixedSpatialAudio, objc_selector="initWithSoundStageSize:", objc_name="initWithSoundStageSize")
-    CAFixedSpatialAudio_initWithSoundStageSize :: proc(self: ^CAFixedSpatialAudio, soundStageSize: CASoundStageSize) -> instancetype ---
+    @(objc_type=FixedSpatialAudio, objc_selector="initWithSoundStageSize:", objc_name="initWithSoundStageSize")
+    FixedSpatialAudio_initWithSoundStageSize :: proc(self: ^FixedSpatialAudio, soundStageSize: SoundStageSize) -> instancetype ---
 
-    @(objc_type=CAFixedSpatialAudio, objc_selector="new", objc_name="new", objc_is_class_method=true)
-    CAFixedSpatialAudio_new :: proc() -> ^CAFixedSpatialAudio ---
+    @(objc_type=FixedSpatialAudio, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    FixedSpatialAudio_new :: proc() -> ^FixedSpatialAudio ---
 
-    @(objc_type=CAFixedSpatialAudio, objc_selector="soundStageSize", objc_name="soundStageSize")
-    CAFixedSpatialAudio_soundStageSize :: proc(self: ^CAFixedSpatialAudio) -> CASoundStageSize ---
+    @(objc_type=FixedSpatialAudio, objc_selector="soundStageSize", objc_name="soundStageSize")
+    FixedSpatialAudio_soundStageSize :: proc(self: ^FixedSpatialAudio) -> SoundStageSize ---
 }

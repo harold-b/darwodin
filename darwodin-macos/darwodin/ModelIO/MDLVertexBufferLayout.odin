@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLVertexBufferLayout
 ///
 @(objc_class="MDLVertexBufferLayout", objc_superclass=NS.Object)
-VertexBufferLayout :: struct { using _: NS.Object, 
+VertexBufferLayout :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

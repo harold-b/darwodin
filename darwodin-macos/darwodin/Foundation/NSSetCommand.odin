@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSSetCommand
 ///
 @(objc_class="NSSetCommand", objc_superclass=ScriptCommand)
-SetCommand :: struct { using _: ScriptCommand, }
+SetCommand :: struct { using _: ScriptCommand}
 
 @(default_calling_convention="c")
 foreign lib {

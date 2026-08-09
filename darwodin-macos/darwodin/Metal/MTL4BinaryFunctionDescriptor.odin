@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4BinaryFunctionDescriptor
 ///
 @(objc_class="MTL4BinaryFunctionDescriptor", objc_superclass=NS.Object)
-MTL4BinaryFunctionDescriptor :: struct { using _: NS.Object, 
+MTL4BinaryFunctionDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

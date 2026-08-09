@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSOpenSavePanelDelegate
 ///
 @(objc_class="NSOpenSavePanelDelegate")
-OpenSavePanelDelegate :: struct { using _: intrinsics.objc_object, 
+OpenSavePanelDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

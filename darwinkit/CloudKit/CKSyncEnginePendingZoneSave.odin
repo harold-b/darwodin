@@ -1,22 +1,14 @@
 #+build darwin
-package darwodin_CloudKit
+package darwin_CloudKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import NS "../Foundation"
 
 @(objc_class="CKSyncEnginePendingZoneSave", objc_superclass=SyncEnginePendingDatabaseChange)
-SyncEnginePendingZoneSave :: struct { using _: SyncEnginePendingDatabaseChange, }
+SyncEnginePendingZoneSave :: struct { using _: SyncEnginePendingDatabaseChange}
 
 foreign lib {
-    @(objc_type=SyncEnginePendingZoneSave, objc_selector="initWithZone:", objc_name="initWithZone")
-    SyncEnginePendingZoneSave_initWithZone :: proc(self: ^SyncEnginePendingZoneSave, zone: ^RecordZone) -> instancetype ---
+	@(objc_type=SyncEnginePendingZoneSave, objc_selector="initWithZone:", objc_name="initWithZone")
+	SyncEnginePendingZoneSave_initWithZone :: proc(self: ^SyncEnginePendingZoneSave, zone: ^RecordZone) -> instancetype ---
 
-    @(objc_type=SyncEnginePendingZoneSave, objc_selector="zone", objc_name="zone")
-    SyncEnginePendingZoneSave_zone :: proc(self: ^SyncEnginePendingZoneSave) -> ^RecordZone ---
+	@(objc_type=SyncEnginePendingZoneSave, objc_selector="zone", objc_name="zone")
+	SyncEnginePendingZoneSave_zone :: proc(self: ^SyncEnginePendingZoneSave) -> ^RecordZone ---
 }
-
-
-

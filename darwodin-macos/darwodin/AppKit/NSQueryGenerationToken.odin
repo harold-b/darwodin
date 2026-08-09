@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSQueryGenerationToken
 ///
 @(objc_class="NSQueryGenerationToken")
-QueryGenerationToken :: struct { using _: intrinsics.objc_object, }
+QueryGenerationToken :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

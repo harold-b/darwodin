@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIImageConfiguration
 ///
 @(objc_class="UIImageConfiguration", objc_superclass=NS.Object)
-ImageConfiguration :: struct { using _: NS.Object, 
+ImageConfiguration :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

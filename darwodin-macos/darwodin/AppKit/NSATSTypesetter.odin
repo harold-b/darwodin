@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSATSTypesetter
 ///
 @(objc_class="NSATSTypesetter", objc_superclass=Typesetter)
-ATSTypesetter :: struct { using _: Typesetter, }
+ATSTypesetter :: struct { using _: Typesetter}
 
 @(default_calling_convention="c")
 foreign lib {

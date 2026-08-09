@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLMaterial
 ///
 @(objc_class="MDLMaterial", objc_superclass=NS.Object)
-Material :: struct { using _: NS.Object, 
+Material :: struct {
+    using _: NS.Object,
     using _: Named,
     using _: NS.FastEnumeration,
 }

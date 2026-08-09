@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSPredicateValidating
 ///
 @(objc_class="NSPredicateValidating")
-PredicateValidating :: struct { using _: intrinsics.objc_object, 
+PredicateValidating :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

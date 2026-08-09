@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextAttachmentCell
 ///
 @(objc_class="NSTextAttachmentCell", objc_superclass=Cell)
-TextAttachmentCell :: struct { using _: Cell, 
+TextAttachmentCell :: struct {
+    using _: Cell,
     using _: TextAttachmentCellProtocol,
 }
 

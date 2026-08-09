@@ -1,35 +1,29 @@
 #+build darwin
-package darwodin_GameController
+package darwin_GameController
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
 
 @(objc_class="GCColor", objc_superclass=NS.Object)
-Color :: struct { using _: NS.Object, 
-    using _: NS.Copying,
-    using _: NS.SecureCoding,
+Color :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
+	using _: NS.SecureCoding,
 }
 
 foreign lib {
-    @(objc_type=Color, objc_selector="init", objc_name="init")
-    Color_init :: proc(self: ^Color) -> instancetype ---
+	@(objc_type=Color, objc_selector="init", objc_name="init")
+	Color_init :: proc(self: ^Color) -> instancetype ---
 
-    @(objc_type=Color, objc_selector="initWithRed:green:blue:", objc_name="initWithRed")
-    Color_initWithRed :: proc(self: ^Color, red: cffi.float, green: cffi.float, blue: cffi.float) -> instancetype ---
+	@(objc_type=Color, objc_selector="initWithRed:green:blue:", objc_name="initWithRed")
+	Color_initWithRed :: proc(self: ^Color, red: cffi.float, green: cffi.float, blue: cffi.float) -> instancetype ---
 
-    @(objc_type=Color, objc_selector="red", objc_name="red")
-    Color_red :: proc(self: ^Color) -> cffi.float ---
+	@(objc_type=Color, objc_selector="red", objc_name="red")
+	Color_red :: proc(self: ^Color) -> cffi.float ---
 
-    @(objc_type=Color, objc_selector="green", objc_name="green")
-    Color_green :: proc(self: ^Color) -> cffi.float ---
+	@(objc_type=Color, objc_selector="green", objc_name="green")
+	Color_green :: proc(self: ^Color) -> cffi.float ---
 
-    @(objc_type=Color, objc_selector="blue", objc_name="blue")
-    Color_blue :: proc(self: ^Color) -> cffi.float ---
+	@(objc_type=Color, objc_selector="blue", objc_name="blue")
+	Color_blue :: proc(self: ^Color) -> cffi.float ---
 }
-
-
-

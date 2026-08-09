@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,7 @@ import NS "../AppKit"
 /// GKDialogController
 ///
 @(objc_class="GKDialogController", objc_superclass=NS.Responder)
-DialogController :: struct { using _: NS.Responder, }
+DialogController :: struct { using _: NS.Responder}
 
 @(default_calling_convention="c")
 foreign lib {

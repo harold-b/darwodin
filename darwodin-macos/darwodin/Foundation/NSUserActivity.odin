@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSUserActivity
 ///
 @(objc_class="NSUserActivity", objc_superclass=Object)
-UserActivity :: struct { using _: Object, }
+UserActivity :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

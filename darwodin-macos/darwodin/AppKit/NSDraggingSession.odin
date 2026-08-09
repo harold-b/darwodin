@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSDraggingSession
 ///
 @(objc_class="NSDraggingSession", objc_superclass=NS.Object)
-DraggingSession :: struct { using _: NS.Object, }
+DraggingSession :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

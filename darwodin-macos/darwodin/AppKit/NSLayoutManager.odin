@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSLayoutManager
 ///
 @(objc_class="NSLayoutManager", objc_superclass=NS.Object)
-LayoutManager :: struct { using _: NS.Object, 
+LayoutManager :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

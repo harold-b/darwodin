@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextContainer
 ///
 @(objc_class="NSTextContainer", objc_superclass=NS.Object)
-TextContainer :: struct { using _: NS.Object, 
+TextContainer :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

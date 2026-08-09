@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextCursorDropPositionAnimator
 ///
 @(objc_class="UITextCursorDropPositionAnimator", objc_superclass=NS.Object)
-TextCursorDropPositionAnimator :: struct { using _: NS.Object, }
+TextCursorDropPositionAnimator :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

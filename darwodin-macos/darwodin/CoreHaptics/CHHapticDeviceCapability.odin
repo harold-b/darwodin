@@ -12,7 +12,7 @@ import NS "../Foundation"
 /// CHHapticDeviceCapability
 ///
 @(objc_class="CHHapticDeviceCapability")
-HapticDeviceCapability :: struct { using _: intrinsics.objc_object, }
+HapticDeviceCapability :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

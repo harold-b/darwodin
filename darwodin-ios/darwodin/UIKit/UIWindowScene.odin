@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowScene
 ///
 @(objc_class="UIWindowScene", objc_superclass=Scene)
-WindowScene :: struct { using _: Scene, }
+WindowScene :: struct { using _: Scene}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import CL "../CoreLocation"
 /// MKGeoJSONFeature
 ///
 @(objc_class="MKGeoJSONFeature", objc_superclass=NS.Object)
-GeoJSONFeature :: struct { using _: NS.Object, 
+GeoJSONFeature :: struct {
+    using _: NS.Object,
     using _: GeoJSONObject,
 }
 

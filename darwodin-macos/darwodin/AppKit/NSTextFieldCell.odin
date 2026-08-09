@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextFieldCell
 ///
 @(objc_class="NSTextFieldCell", objc_superclass=ActionCell)
-TextFieldCell :: struct { using _: ActionCell, }
+TextFieldCell :: struct { using _: ActionCell}
 
 @(default_calling_convention="c")
 foreign lib {

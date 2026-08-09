@@ -1,22 +1,16 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKRidgedNoiseSource", objc_superclass=CoherentNoiseSource)
-RidgedNoiseSource :: struct { using _: CoherentNoiseSource, }
+RidgedNoiseSource :: struct { using _: CoherentNoiseSource}
 
 foreign lib {
-    @(objc_type=RidgedNoiseSource, objc_selector="ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:", objc_name="ridgedNoiseSourceWithFrequency", objc_is_class_method=true)
-    RidgedNoiseSource_ridgedNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
+	@(objc_type=RidgedNoiseSource, objc_selector="ridgedNoiseSourceWithFrequency:octaveCount:lacunarity:seed:", objc_name="ridgedNoiseSourceWithFrequency", objc_is_class_method=true)
+	RidgedNoiseSource_ridgedNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 
-    @(objc_type=RidgedNoiseSource, objc_selector="initWithFrequency:octaveCount:lacunarity:seed:", objc_name="initWithFrequency")
-    RidgedNoiseSource_initWithFrequency :: proc(self: ^RidgedNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
+	@(objc_type=RidgedNoiseSource, objc_selector="initWithFrequency:octaveCount:lacunarity:seed:", objc_name="initWithFrequency")
+	RidgedNoiseSource_initWithFrequency :: proc(self: ^RidgedNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 }
-
-
-

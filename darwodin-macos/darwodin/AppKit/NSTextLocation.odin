@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTextLocation
 ///
 @(objc_class="NSTextLocation")
-TextLocation :: struct { using _: intrinsics.objc_object, 
+TextLocation :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKMersenneTwisterRandomSource
 ///
 @(objc_class="GKMersenneTwisterRandomSource", objc_superclass=RandomSource)
-MersenneTwisterRandomSource :: struct { using _: RandomSource, }
+MersenneTwisterRandomSource :: struct { using _: RandomSource}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSAttributedStringMarkdownParsingOptions
 ///
 @(objc_class="NSAttributedStringMarkdownParsingOptions", objc_superclass=Object)
-AttributedStringMarkdownParsingOptions :: struct { using _: Object, 
+AttributedStringMarkdownParsingOptions :: struct {
+    using _: Object,
     using _: Copying,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UILargeContentViewerItem
 ///
 @(objc_class="UILargeContentViewerItem")
-LargeContentViewerItem :: struct { using _: intrinsics.objc_object, 
+LargeContentViewerItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

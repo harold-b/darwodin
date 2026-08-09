@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CADisplayLink
 ///
 @(objc_class="CADisplayLink", objc_superclass=NS.Object)
-DisplayLink :: struct { using _: NS.Object, }
+DisplayLink :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

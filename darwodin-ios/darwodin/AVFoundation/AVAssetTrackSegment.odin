@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAssetTrackSegment
 ///
 @(objc_class="AVAssetTrackSegment", objc_superclass=NS.Object)
-AssetTrackSegment :: struct { using _: NS.Object, }
+AssetTrackSegment :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

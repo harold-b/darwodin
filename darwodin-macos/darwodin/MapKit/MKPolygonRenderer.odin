@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKPolygonRenderer
 ///
 @(objc_class="MKPolygonRenderer", objc_superclass=OverlayPathRenderer)
-PolygonRenderer :: struct { using _: OverlayPathRenderer, }
+PolygonRenderer :: struct { using _: OverlayPathRenderer}
 
 @(default_calling_convention="c")
 foreign lib {

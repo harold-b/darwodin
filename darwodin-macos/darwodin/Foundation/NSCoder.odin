@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSCoder
 ///
 @(objc_class="NSCoder", objc_superclass=Object)
-Coder :: struct { using _: Object, }
+Coder :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

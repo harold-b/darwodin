@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTreeController
 ///
 @(objc_class="NSTreeController", objc_superclass=ObjectController)
-TreeController :: struct { using _: ObjectController, }
+TreeController :: struct { using _: ObjectController}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITableViewDropItem
 ///
 @(objc_class="UITableViewDropItem")
-TableViewDropItem :: struct { using _: intrinsics.objc_object, 
+TableViewDropItem :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

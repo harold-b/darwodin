@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKLocalPlayerListener
 ///
 @(objc_class="GKLocalPlayerListener")
-LocalPlayerListener :: struct { using _: intrinsics.objc_object, 
+LocalPlayerListener :: struct {
+    using _: intrinsics.objc_object,
     using _: ChallengeListener,
     using _: GameActivityListener,
     using _: InviteEventListener,

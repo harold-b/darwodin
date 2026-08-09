@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISheetPresentationControllerDetentResolutionContext
 ///
 @(objc_class="UISheetPresentationControllerDetentResolutionContext")
-SheetPresentationControllerDetentResolutionContext :: struct { using _: intrinsics.objc_object, 
+SheetPresentationControllerDetentResolutionContext :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

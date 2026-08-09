@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKTurnBasedExchange
 ///
 @(objc_class="GKTurnBasedExchange", objc_superclass=NS.Object)
-TurnBasedExchange :: struct { using _: NS.Object, }
+TurnBasedExchange :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

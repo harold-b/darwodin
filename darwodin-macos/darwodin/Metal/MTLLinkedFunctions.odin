@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLLinkedFunctions
 ///
 @(objc_class="MTLLinkedFunctions", objc_superclass=NS.Object)
-LinkedFunctions :: struct { using _: NS.Object, 
+LinkedFunctions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

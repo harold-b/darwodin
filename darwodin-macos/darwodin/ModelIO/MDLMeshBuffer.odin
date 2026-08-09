@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MDLMeshBuffer
 ///
 @(objc_class="MDLMeshBuffer")
-MeshBuffer :: struct { using _: intrinsics.objc_object, 
+MeshBuffer :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
     using _: NS.Copying,
 }

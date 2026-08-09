@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSTextContentManager
 ///
 @(objc_class="NSTextContentManager", objc_superclass=NS.Object)
-NSTextContentManager :: struct { using _: NS.Object, 
+NSTextContentManager :: struct {
+    using _: NS.Object,
     using _: NSTextElementProvider,
     using _: NS.SecureCoding,
 }

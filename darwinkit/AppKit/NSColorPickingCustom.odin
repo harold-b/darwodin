@@ -1,40 +1,29 @@
 #+build darwin:default
-package darwodin_AppKit
+package darwin_AppKit
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import CM "../CoreMedia"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// NSColorPickingCustom
-///
+
+
 @(objc_class="NSColorPickingCustom")
-ColorPickingCustom :: struct { using _: intrinsics.objc_object, 
-    using _: ColorPickingDefault,
+ColorPickingCustom :: struct {
+	using _: intrinsics.objc_object,
+	using _: ColorPickingDefault,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=ColorPickingCustom, objc_selector="supportsMode:", objc_name="supportsMode")
-    ColorPickingCustom_supportsMode :: proc(self: ^ColorPickingCustom, mode: ColorPanelMode) -> bool ---
+	@(objc_type=ColorPickingCustom, objc_selector="supportsMode:", objc_name="supportsMode")
+	ColorPickingCustom_supportsMode :: proc(self: ^ColorPickingCustom, mode: ColorPanelMode) -> bool ---
 
-    @(objc_type=ColorPickingCustom, objc_selector="currentMode", objc_name="currentMode")
-    ColorPickingCustom_currentMode :: proc(self: ^ColorPickingCustom) -> ColorPanelMode ---
+	@(objc_type=ColorPickingCustom, objc_selector="currentMode", objc_name="currentMode")
+	ColorPickingCustom_currentMode :: proc(self: ^ColorPickingCustom) -> ColorPanelMode ---
 
-    @(objc_type=ColorPickingCustom, objc_selector="provideNewView:", objc_name="provideNewView")
-    ColorPickingCustom_provideNewView :: proc(self: ^ColorPickingCustom, initialRequest: bool) -> ^View ---
+	@(objc_type=ColorPickingCustom, objc_selector="provideNewView:", objc_name="provideNewView")
+	ColorPickingCustom_provideNewView :: proc(self: ^ColorPickingCustom, initialRequest: bool) -> ^View ---
 
-    @(objc_type=ColorPickingCustom, objc_selector="setColor:", objc_name="setColor")
-    ColorPickingCustom_setColor :: proc(self: ^ColorPickingCustom, newColor: ^Color) ---
+	@(objc_type=ColorPickingCustom, objc_selector="setColor:", objc_name="setColor")
+	ColorPickingCustom_setColor :: proc(self: ^ColorPickingCustom, newColor: ^Color) ---
 }

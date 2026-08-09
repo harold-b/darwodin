@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4StitchedFunctionDescriptor
 ///
 @(objc_class="MTL4StitchedFunctionDescriptor", objc_superclass=MTL4FunctionDescriptor)
-MTL4StitchedFunctionDescriptor :: struct { using _: MTL4FunctionDescriptor, }
+MTL4StitchedFunctionDescriptor :: struct { using _: MTL4FunctionDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCEventViewController
 ///
 @(objc_class="GCEventViewController", objc_superclass=UI.ViewController)
-EventViewController :: struct { using _: UI.ViewController, }
+EventViewController :: struct { using _: UI.ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

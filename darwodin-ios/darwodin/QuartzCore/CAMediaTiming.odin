@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CAMediaTiming
 ///
 @(objc_class="CAMediaTiming")
-MediaTiming :: struct { using _: intrinsics.objc_object, }
+MediaTiming :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

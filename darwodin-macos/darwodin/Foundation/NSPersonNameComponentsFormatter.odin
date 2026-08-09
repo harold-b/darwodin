@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSPersonNameComponentsFormatter
 ///
 @(objc_class="NSPersonNameComponentsFormatter", objc_superclass=Formatter)
-PersonNameComponentsFormatter :: struct { using _: Formatter, }
+PersonNameComponentsFormatter :: struct { using _: Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

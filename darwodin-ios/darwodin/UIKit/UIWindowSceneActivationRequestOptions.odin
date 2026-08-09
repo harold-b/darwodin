@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIWindowSceneActivationRequestOptions
 ///
 @(objc_class="UIWindowSceneActivationRequestOptions", objc_superclass=SceneActivationRequestOptions)
-WindowSceneActivationRequestOptions :: struct { using _: SceneActivationRequestOptions, }
+WindowSceneActivationRequestOptions :: struct { using _: SceneActivationRequestOptions}
 
 @(default_calling_convention="c")
 foreign lib {

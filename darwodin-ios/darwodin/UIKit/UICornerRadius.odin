@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICornerRadius
 ///
 @(objc_class="UICornerRadius", objc_superclass=NS.Object)
-CornerRadius :: struct { using _: NS.Object, 
+CornerRadius :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

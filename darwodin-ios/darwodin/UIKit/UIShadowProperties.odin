@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIShadowProperties
 ///
 @(objc_class="UIShadowProperties", objc_superclass=NS.Object)
-ShadowProperties :: struct { using _: NS.Object, 
+ShadowProperties :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

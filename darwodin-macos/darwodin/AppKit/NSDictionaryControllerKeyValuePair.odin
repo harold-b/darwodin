@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSDictionaryControllerKeyValuePair
 ///
 @(objc_class="NSDictionaryControllerKeyValuePair", objc_superclass=NS.Object)
-DictionaryControllerKeyValuePair :: struct { using _: NS.Object, }
+DictionaryControllerKeyValuePair :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

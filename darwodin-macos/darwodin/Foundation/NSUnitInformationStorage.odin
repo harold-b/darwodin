@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitInformationStorage
 ///
 @(objc_class="NSUnitInformationStorage", objc_superclass=Dimension)
-UnitInformationStorage :: struct { using _: Dimension, 
+UnitInformationStorage :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

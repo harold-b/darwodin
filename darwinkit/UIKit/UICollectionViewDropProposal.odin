@@ -1,29 +1,19 @@
 #+build darwin:ios
-package darwodin_UIKit
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
+package darwin_UIKit
 
 
 
-///
-/// UICollectionViewDropProposal
-///
+
+
+
 @(objc_class="UICollectionViewDropProposal", objc_superclass=DropProposal)
-CollectionViewDropProposal :: struct { using _: DropProposal, }
+CollectionViewDropProposal :: struct { using _: DropProposal}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=CollectionViewDropProposal, objc_selector="initWithDropOperation:intent:", objc_name="initWithDropOperation")
-    CollectionViewDropProposal_initWithDropOperation :: proc(self: ^CollectionViewDropProposal, operation: DropOperation, intent: CollectionViewDropIntent) -> instancetype ---
+	@(objc_type=CollectionViewDropProposal, objc_selector="initWithDropOperation:intent:", objc_name="initWithDropOperation")
+	CollectionViewDropProposal_initWithDropOperation :: proc(self: ^CollectionViewDropProposal, operation: DropOperation, intent: CollectionViewDropIntent) -> instancetype ---
 
-    @(objc_type=CollectionViewDropProposal, objc_selector="intent", objc_name="intent")
-    CollectionViewDropProposal_intent :: proc(self: ^CollectionViewDropProposal) -> CollectionViewDropIntent ---
+	@(objc_type=CollectionViewDropProposal, objc_selector="intent", objc_name="intent")
+	CollectionViewDropProposal_intent :: proc(self: ^CollectionViewDropProposal) -> CollectionViewDropIntent ---
 }

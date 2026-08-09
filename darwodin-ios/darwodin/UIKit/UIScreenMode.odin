@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIScreenMode
 ///
 @(objc_class="UIScreenMode", objc_superclass=NS.Object)
-ScreenMode :: struct { using _: NS.Object, }
+ScreenMode :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

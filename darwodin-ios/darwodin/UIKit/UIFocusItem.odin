@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIFocusItem
 ///
 @(objc_class="UIFocusItem")
-FocusItem :: struct { using _: intrinsics.objc_object, 
+FocusItem :: struct {
+    using _: intrinsics.objc_object,
     using _: FocusEnvironment,
 }
 

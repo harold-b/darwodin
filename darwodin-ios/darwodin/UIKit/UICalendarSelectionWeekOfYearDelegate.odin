@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UICalendarSelectionWeekOfYearDelegate
 ///
 @(objc_class="UICalendarSelectionWeekOfYearDelegate")
-CalendarSelectionWeekOfYearDelegate :: struct { using _: intrinsics.objc_object, 
+CalendarSelectionWeekOfYearDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

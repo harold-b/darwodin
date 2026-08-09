@@ -12,7 +12,8 @@ import NS "../Foundation"
 /// CKQueryCursor
 ///
 @(objc_class="CKQueryCursor", objc_superclass=NS.Object)
-QueryCursor :: struct { using _: NS.Object, 
+QueryCursor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

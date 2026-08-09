@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPencilInteractionDelegate
 ///
 @(objc_class="UIPencilInteractionDelegate")
-PencilInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+PencilInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

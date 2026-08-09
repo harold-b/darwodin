@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMutableMediaSelection
 ///
 @(objc_class="AVMutableMediaSelection", objc_superclass=MediaSelection)
-MutableMediaSelection :: struct { using _: MediaSelection, }
+MutableMediaSelection :: struct { using _: MediaSelection}
 
 @(default_calling_convention="c")
 foreign lib {

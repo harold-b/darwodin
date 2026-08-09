@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIListContentView
 ///
 @(objc_class="UIListContentView", objc_superclass=View)
-ListContentView :: struct { using _: View, 
+ListContentView :: struct {
+    using _: View,
     using _: ContentView,
 }
 

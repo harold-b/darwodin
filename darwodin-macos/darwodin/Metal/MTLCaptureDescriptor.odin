@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCaptureDescriptor
 ///
 @(objc_class="MTLCaptureDescriptor", objc_superclass=NS.Object)
-CaptureDescriptor :: struct { using _: NS.Object, 
+CaptureDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

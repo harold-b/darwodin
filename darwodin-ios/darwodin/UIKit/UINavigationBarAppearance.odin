@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UINavigationBarAppearance
 ///
 @(objc_class="UINavigationBarAppearance", objc_superclass=BarAppearance)
-NavigationBarAppearance :: struct { using _: BarAppearance, }
+NavigationBarAppearance :: struct { using _: BarAppearance}
 
 @(default_calling_convention="c")
 foreign lib {

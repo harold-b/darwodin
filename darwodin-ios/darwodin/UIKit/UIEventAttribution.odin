@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIEventAttribution
 ///
 @(objc_class="UIEventAttribution", objc_superclass=NS.Object)
-EventAttribution :: struct { using _: NS.Object, 
+EventAttribution :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

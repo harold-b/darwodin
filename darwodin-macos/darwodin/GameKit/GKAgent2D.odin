@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKAgent2D
 ///
 @(objc_class="GKAgent2D", objc_superclass=Agent)
-Agent2D :: struct { using _: Agent, 
+Agent2D :: struct {
+    using _: Agent,
     using _: NS.SecureCoding,
 }
 

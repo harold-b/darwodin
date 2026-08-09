@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIIndirectScribbleInteractionDelegate
 ///
 @(objc_class="UIIndirectScribbleInteractionDelegate")
-IndirectScribbleInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+IndirectScribbleInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

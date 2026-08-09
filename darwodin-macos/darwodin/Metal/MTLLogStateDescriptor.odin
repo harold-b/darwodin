@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLLogStateDescriptor
 ///
 @(objc_class="MTLLogStateDescriptor", objc_superclass=NS.Object)
-LogStateDescriptor :: struct { using _: NS.Object, 
+LogStateDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

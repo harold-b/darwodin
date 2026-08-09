@@ -1,36 +1,25 @@
 #+build darwin:ios
-package darwodin_UIKit
-
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
-import NS "../Foundation"
-import CA "../QuartzCore"
+package darwin_UIKit
 
 
 
-///
-/// UIVibrancyEffect
-///
+
+
+
 @(objc_class="UIVibrancyEffect", objc_superclass=VisualEffect)
-VibrancyEffect :: struct { using _: VisualEffect, }
+VibrancyEffect :: struct { using _: VisualEffect}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=VibrancyEffect, objc_selector="effectForBlurEffect:", objc_name="effectForBlurEffect_", objc_is_class_method=true)
-    VibrancyEffect_effectForBlurEffect_ :: proc(blurEffect: ^BlurEffect) -> ^VibrancyEffect ---
+	@(objc_type=VibrancyEffect, objc_selector="effectForBlurEffect:", objc_name="effectForBlurEffect_", objc_is_class_method=true)
+	VibrancyEffect_effectForBlurEffect_ :: proc(blurEffect: ^BlurEffect) -> ^VibrancyEffect ---
 
-    @(objc_type=VibrancyEffect, objc_selector="effectForBlurEffect:style:", objc_name="effectForBlurEffect_style", objc_is_class_method=true)
-    VibrancyEffect_effectForBlurEffect_style :: proc(blurEffect: ^BlurEffect, style: VibrancyEffectStyle) -> ^VibrancyEffect ---
+	@(objc_type=VibrancyEffect, objc_selector="effectForBlurEffect:style:", objc_name="effectForBlurEffect_style", objc_is_class_method=true)
+	VibrancyEffect_effectForBlurEffect_style :: proc(blurEffect: ^BlurEffect, style: VibrancyEffectStyle) -> ^VibrancyEffect ---
 }
 
 @(objc_type=VibrancyEffect, objc_name="effectForBlurEffect")
 VibrancyEffect_effectForBlurEffect :: proc {
-    VibrancyEffect_effectForBlurEffect_,
-    VibrancyEffect_effectForBlurEffect_style,
+	VibrancyEffect_effectForBlurEffect_,
+	VibrancyEffect_effectForBlurEffect_style,
 }
-

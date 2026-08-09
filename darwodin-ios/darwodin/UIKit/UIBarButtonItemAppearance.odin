@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIBarButtonItemAppearance
 ///
 @(objc_class="UIBarButtonItemAppearance", objc_superclass=NS.Object)
-BarButtonItemAppearance :: struct { using _: NS.Object, 
+BarButtonItemAppearance :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

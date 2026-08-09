@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLTileRenderPipelineColorAttachmentDescriptorArray
 ///
 @(objc_class="MTLTileRenderPipelineColorAttachmentDescriptorArray", objc_superclass=NS.Object)
-TileRenderPipelineColorAttachmentDescriptorArray :: struct { using _: NS.Object, }
+TileRenderPipelineColorAttachmentDescriptorArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

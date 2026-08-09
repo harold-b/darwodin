@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMutableString
 ///
 @(objc_class="NSMutableString", objc_superclass=String)
-MutableString :: struct { using _: String, }
+MutableString :: struct { using _: String}
 
 @(default_calling_convention="c")
 foreign lib {

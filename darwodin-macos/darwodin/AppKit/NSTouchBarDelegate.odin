@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSTouchBarDelegate
 ///
 @(objc_class="NSTouchBarDelegate")
-TouchBarDelegate :: struct { using _: intrinsics.objc_object, 
+TouchBarDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

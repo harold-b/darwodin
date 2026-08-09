@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVDateRangeMetadataGroup
 ///
 @(objc_class="AVDateRangeMetadataGroup", objc_superclass=MetadataGroup)
-DateRangeMetadataGroup :: struct { using _: MetadataGroup, 
+DateRangeMetadataGroup :: struct {
+    using _: MetadataGroup,
     using _: NS.Copying,
     using _: NS.MutableCopying,
 }

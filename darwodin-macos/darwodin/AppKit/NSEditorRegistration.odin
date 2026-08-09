@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSEditorRegistration
 ///
 @(objc_class="NSEditorRegistration")
-EditorRegistration :: struct { using _: intrinsics.objc_object, 
+EditorRegistration :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

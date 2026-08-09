@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSharingServicePickerToolbarItem
 ///
 @(objc_class="NSSharingServicePickerToolbarItem", objc_superclass=ToolbarItem)
-SharingServicePickerToolbarItem :: struct { using _: ToolbarItem, }
+SharingServicePickerToolbarItem :: struct { using _: ToolbarItem}
 
 @(default_calling_convention="c")
 foreign lib {

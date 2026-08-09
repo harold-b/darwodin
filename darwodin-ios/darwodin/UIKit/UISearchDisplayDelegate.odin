@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UISearchDisplayDelegate
 ///
 @(objc_class="UISearchDisplayDelegate")
-SearchDisplayDelegate :: struct { using _: intrinsics.objc_object, 
+SearchDisplayDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

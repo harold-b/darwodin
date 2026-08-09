@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitVolume
 ///
 @(objc_class="NSUnitVolume", objc_superclass=Dimension)
-UnitVolume :: struct { using _: Dimension, 
+UnitVolume :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

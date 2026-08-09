@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVCaptureDeferredPhotoProxy
 ///
 @(objc_class="AVCaptureDeferredPhotoProxy", objc_superclass=CapturePhoto)
-CaptureDeferredPhotoProxy :: struct { using _: CapturePhoto, }
+CaptureDeferredPhotoProxy :: struct { using _: CapturePhoto}
 
 @(default_calling_convention="c")
 foreign lib {

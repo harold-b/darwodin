@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LAPrivateKey
 ///
 @(objc_class="LAPrivateKey", objc_superclass=NS.Object)
-PrivateKey :: struct { using _: NS.Object, }
+PrivateKey :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

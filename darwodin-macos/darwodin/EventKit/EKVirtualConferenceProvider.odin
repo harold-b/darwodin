@@ -3,6 +3,7 @@ package darwodin_EventKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
+import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../AppKit"
 import CL "../CoreLocation"
@@ -14,7 +15,8 @@ import MK "../MapKit"
 /// EKVirtualConferenceProvider
 ///
 @(objc_class="EKVirtualConferenceProvider", objc_superclass=NS.Object)
-VirtualConferenceProvider :: struct { using _: NS.Object, 
+VirtualConferenceProvider :: struct {
+    using _: NS.Object,
     using _: NS.ExtensionRequestHandling,
 }
 

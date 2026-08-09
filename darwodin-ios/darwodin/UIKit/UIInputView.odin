@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIInputView
 ///
 @(objc_class="UIInputView", objc_superclass=View)
-InputView :: struct { using _: View, }
+InputView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

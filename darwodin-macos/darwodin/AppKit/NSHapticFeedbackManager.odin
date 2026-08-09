@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSHapticFeedbackManager
 ///
 @(objc_class="NSHapticFeedbackManager", objc_superclass=NS.Object)
-HapticFeedbackManager :: struct { using _: NS.Object, }
+HapticFeedbackManager :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

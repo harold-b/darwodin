@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSOutlineViewDataSource
 ///
 @(objc_class="NSOutlineViewDataSource")
-OutlineViewDataSource :: struct { using _: intrinsics.objc_object, 
+OutlineViewDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

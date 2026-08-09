@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCControllerDirectionPad
 ///
 @(objc_class="GCControllerDirectionPad", objc_superclass=ControllerElement)
-ControllerDirectionPad :: struct { using _: ControllerElement, }
+ControllerDirectionPad :: struct { using _: ControllerElement}
 
 @(default_calling_convention="c")
 foreign lib {

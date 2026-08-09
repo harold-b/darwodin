@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSWindowController
 ///
 @(objc_class="NSWindowController", objc_superclass=Responder)
-WindowController :: struct { using _: Responder, 
+WindowController :: struct {
+    using _: Responder,
     using _: SeguePerforming,
 }
 

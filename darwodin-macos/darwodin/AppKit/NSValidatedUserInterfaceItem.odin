@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSValidatedUserInterfaceItem
 ///
 @(objc_class="NSValidatedUserInterfaceItem")
-ValidatedUserInterfaceItem :: struct { using _: intrinsics.objc_object, }
+ValidatedUserInterfaceItem :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

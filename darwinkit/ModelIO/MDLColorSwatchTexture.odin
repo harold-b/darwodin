@@ -1,25 +1,17 @@
 #+build darwin
-package darwodin_ModelIO
+package darwin_ModelIO
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import MTL "../Metal"
 
 @(objc_class="MDLColorSwatchTexture", objc_superclass=Texture)
-ColorSwatchTexture :: struct { using _: Texture, }
+ColorSwatchTexture :: struct { using _: Texture}
 
 foreign lib {
-    @(objc_type=ColorSwatchTexture, objc_selector="initWithColorTemperatureGradientFrom:toColorTemperature:name:textureDimensions:", objc_name="initWithColorTemperatureGradientFrom")
-    ColorSwatchTexture_initWithColorTemperatureGradientFrom :: proc(self: ^ColorSwatchTexture, colorTemperature1: cffi.float, colorTemperature2: cffi.float, name: ^NS.String, textureDimensions: ^[2]cffi.int) -> instancetype ---
+	@(objc_type=ColorSwatchTexture, objc_selector="initWithColorTemperatureGradientFrom:toColorTemperature:name:textureDimensions:", objc_name="initWithColorTemperatureGradientFrom")
+	ColorSwatchTexture_initWithColorTemperatureGradientFrom :: proc(self: ^ColorSwatchTexture, colorTemperature1: cffi.float, colorTemperature2: cffi.float, name: ^NS.String, textureDimensions: ^[2]cffi.int) -> instancetype ---
 
-    @(objc_type=ColorSwatchTexture, objc_selector="initWithColorGradientFrom:toColor:name:textureDimensions:", objc_name="initWithColorGradientFrom")
-    ColorSwatchTexture_initWithColorGradientFrom :: proc(self: ^ColorSwatchTexture, color1: CG.ColorRef, color2: CG.ColorRef, name: ^NS.String, textureDimensions: ^[2]cffi.int) -> instancetype ---
+	@(objc_type=ColorSwatchTexture, objc_selector="initWithColorGradientFrom:toColor:name:textureDimensions:", objc_name="initWithColorGradientFrom")
+	ColorSwatchTexture_initWithColorGradientFrom :: proc(self: ^ColorSwatchTexture, color1: CG.ColorRef, color2: CG.ColorRef, name: ^NS.String, textureDimensions: ^[2]cffi.int) -> instancetype ---
 }
-
-
-

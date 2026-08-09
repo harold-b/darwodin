@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIApplicationShortcutItem
 ///
 @(objc_class="UIApplicationShortcutItem", objc_superclass=NS.Object)
-ApplicationShortcutItem :: struct { using _: NS.Object, 
+ApplicationShortcutItem :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.MutableCopying,
 }

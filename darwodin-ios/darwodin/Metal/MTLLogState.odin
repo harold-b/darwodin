@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLLogState
 ///
 @(objc_class="MTLLogState")
-LogState :: struct { using _: intrinsics.objc_object, 
+LogState :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

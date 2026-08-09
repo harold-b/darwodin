@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSCollectionLayoutSpacing
 ///
 @(objc_class="NSCollectionLayoutSpacing", objc_superclass=NS.Object)
-CollectionLayoutSpacing :: struct { using _: NS.Object, 
+CollectionLayoutSpacing :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

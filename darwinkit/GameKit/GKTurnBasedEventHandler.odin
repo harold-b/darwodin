@@ -1,25 +1,18 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKTurnBasedEventHandler", objc_superclass=NS.Object)
-TurnBasedEventHandler :: struct { using _: NS.Object, }
+TurnBasedEventHandler :: struct { using _: NS.Object}
 
 foreign lib {
-    @(objc_type=TurnBasedEventHandler, objc_selector="sharedTurnBasedEventHandler", objc_name="sharedTurnBasedEventHandler", objc_is_class_method=true)
-    TurnBasedEventHandler_sharedTurnBasedEventHandler :: proc() -> ^TurnBasedEventHandler ---
+	@(objc_type=TurnBasedEventHandler, objc_selector="sharedTurnBasedEventHandler", objc_name="sharedTurnBasedEventHandler", objc_is_class_method=true)
+	TurnBasedEventHandler_sharedTurnBasedEventHandler :: proc() -> ^TurnBasedEventHandler ---
 
-    @(objc_type=TurnBasedEventHandler, objc_selector="delegate", objc_name="delegate")
-    TurnBasedEventHandler_delegate :: proc(self: ^TurnBasedEventHandler) -> ^NS.Object ---
+	@(objc_type=TurnBasedEventHandler, objc_selector="delegate", objc_name="delegate")
+	TurnBasedEventHandler_delegate :: proc(self: ^TurnBasedEventHandler) -> ^NS.Object ---
 
-    @(objc_type=TurnBasedEventHandler, objc_selector="setDelegate:", objc_name="setDelegate")
-    TurnBasedEventHandler_setDelegate :: proc(self: ^TurnBasedEventHandler, delegate: ^NS.Object) ---
+	@(objc_type=TurnBasedEventHandler, objc_selector="setDelegate:", objc_name="setDelegate")
+	TurnBasedEventHandler_setDelegate :: proc(self: ^TurnBasedEventHandler, delegate: ^NS.Object) ---
 }
-
-
-

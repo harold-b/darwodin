@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSRuleEditorDelegate
 ///
 @(objc_class="NSRuleEditorDelegate")
-RuleEditorDelegate :: struct { using _: intrinsics.objc_object, 
+RuleEditorDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

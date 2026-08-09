@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextRange
 ///
 @(objc_class="NSTextRange", objc_superclass=NS.Object)
-TextRange :: struct { using _: NS.Object, }
+TextRange :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -1,32 +1,23 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSLock", objc_superclass=Object)
-Lock :: struct { using _: Object, 
-    using _: Locking,
+Lock :: struct {
+	using _: Object,
+	using _: Locking,
 }
 
 foreign lib {
-    @(objc_type=Lock, objc_selector="tryLock", objc_name="tryLock")
-    Lock_tryLock :: proc(self: ^Lock) -> bool ---
+	@(objc_type=Lock, objc_selector="tryLock", objc_name="tryLock")
+	Lock_tryLock :: proc(self: ^Lock) -> bool ---
 
-    @(objc_type=Lock, objc_selector="lockBeforeDate:", objc_name="lockBeforeDate")
-    Lock_lockBeforeDate :: proc(self: ^Lock, limit: ^Date) -> bool ---
+	@(objc_type=Lock, objc_selector="lockBeforeDate:", objc_name="lockBeforeDate")
+	Lock_lockBeforeDate :: proc(self: ^Lock, limit: ^Date) -> bool ---
 
-    @(objc_type=Lock, objc_selector="name", objc_name="name")
-    Lock_name :: proc(self: ^Lock) -> ^String ---
+	@(objc_type=Lock, objc_selector="name", objc_name="name")
+	Lock_name :: proc(self: ^Lock) -> ^String ---
 
-    @(objc_type=Lock, objc_selector="setName:", objc_name="setName")
-    Lock_setName :: proc(self: ^Lock, name: ^String) ---
+	@(objc_type=Lock, objc_selector="setName:", objc_name="setName")
+	Lock_setName :: proc(self: ^Lock, name: ^String) ---
 }
-
-
-

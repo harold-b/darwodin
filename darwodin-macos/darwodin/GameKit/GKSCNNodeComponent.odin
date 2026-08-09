@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../AppKit"
 
 
@@ -12,7 +13,8 @@ import NS "../AppKit"
 /// GKSCNNodeComponent
 ///
 @(objc_class="GKSCNNodeComponent", objc_superclass=Component)
-SCNNodeComponent :: struct { using _: Component, 
+SCNNodeComponent :: struct {
+    using _: Component,
     using _: AgentDelegate,
 }
 

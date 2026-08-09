@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCAxisElement
 ///
 @(objc_class="GCAxisElement")
-AxisElement :: struct { using _: intrinsics.objc_object, 
+AxisElement :: struct {
+    using _: intrinsics.objc_object,
     using _: PhysicalInputElement,
 }
 

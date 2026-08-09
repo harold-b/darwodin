@@ -1,26 +1,16 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVCaptureDataOutputSynchronizerDelegate")
-CaptureDataOutputSynchronizerDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+CaptureDataOutputSynchronizerDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=CaptureDataOutputSynchronizerDelegate, objc_selector="dataOutputSynchronizer:didOutputSynchronizedDataCollection:", objc_name="dataOutputSynchronizer")
-    CaptureDataOutputSynchronizerDelegate_dataOutputSynchronizer :: proc(self: ^CaptureDataOutputSynchronizerDelegate, synchronizer: ^CaptureDataOutputSynchronizer, synchronizedDataCollection: ^CaptureSynchronizedDataCollection) ---
+	@(objc_type=CaptureDataOutputSynchronizerDelegate, objc_selector="dataOutputSynchronizer:didOutputSynchronizedDataCollection:", objc_name="dataOutputSynchronizer")
+	CaptureDataOutputSynchronizerDelegate_dataOutputSynchronizer :: proc(self: ^CaptureDataOutputSynchronizerDelegate, synchronizer: ^CaptureDataOutputSynchronizer, synchronizedDataCollection: ^CaptureSynchronizedDataCollection) ---
 }
-
-
-

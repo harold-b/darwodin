@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSearchFieldDelegate
 ///
 @(objc_class="NSSearchFieldDelegate")
-SearchFieldDelegate :: struct { using _: intrinsics.objc_object, 
+SearchFieldDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: TextFieldDelegate,
 }
 

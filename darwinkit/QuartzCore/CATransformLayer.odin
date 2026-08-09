@@ -1,15 +1,6 @@
 #+build darwin
-package darwodin_QuartzCore
+package darwin_QuartzCore
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import NS "../Foundation"
 
 @(objc_class="CATransformLayer", objc_superclass=Layer)
-TransformLayer :: struct { using _: Layer, }
-
+TransformLayer :: struct { using _: Layer}

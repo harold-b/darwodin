@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIWindowSceneActivationInteraction
 ///
 @(objc_class="UIWindowSceneActivationInteraction", objc_superclass=NS.Object)
-WindowSceneActivationInteraction :: struct { using _: NS.Object, 
+WindowSceneActivationInteraction :: struct {
+    using _: NS.Object,
     using _: Interaction,
 }
 

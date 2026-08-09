@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSOperationQueue
 ///
 @(objc_class="NSOperationQueue", objc_superclass=Object)
-OperationQueue :: struct { using _: Object, 
+OperationQueue :: struct {
+    using _: Object,
     using _: ProgressReporting,
 }
 

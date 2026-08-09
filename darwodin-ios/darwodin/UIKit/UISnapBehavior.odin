@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISnapBehavior
 ///
 @(objc_class="UISnapBehavior", objc_superclass=DynamicBehavior)
-SnapBehavior :: struct { using _: DynamicBehavior, }
+SnapBehavior :: struct { using _: DynamicBehavior}
 
 @(default_calling_convention="c")
 foreign lib {

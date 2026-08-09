@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSURLDownloadDelegate
 ///
 @(objc_class="NSURLDownloadDelegate")
-URLDownloadDelegate :: struct { using _: intrinsics.objc_object, 
+URLDownloadDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ObjectProtocol,
 }
 

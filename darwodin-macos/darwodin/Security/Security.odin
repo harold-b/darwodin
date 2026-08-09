@@ -7,17 +7,13 @@ import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
 IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
-
-@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
-@private CFG    :: "debug"  when ODIN_DEBUG else "release"
-@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
-@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
 when ODIN_OS == .Darwin {
     @(export)
@@ -27,12 +23,15 @@ when ODIN_OS == .Darwin {
 }
 
 
+// -auto-text-end
+// +user-text-begin
 __sFILE :: rawptr
 OpaqueSecIdentitySearchRef :: struct {}
 OpaquePolicySearchRef :: struct {}
 OpaqueSecTransformImplementation :: struct {}
 xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead of exporting from Foundation
 
+// -user-text-end
 
 
 errSecSuccess                             :: 0
@@ -4525,7 +4524,7 @@ cssm_func_name_addr :: struct #align (8) {
 #assert(size_of(cssm_func_name_addr) == 80)
 
 /// cssm_date
-cssm_date :: struct #align (1) {
+cssm_date :: struct #packed {
     Year:  [4]cffi.uchar,
     Month: [2]cffi.uchar,
     Day:   [2]cffi.uchar,
@@ -5457,7 +5456,7 @@ cssm_applecspdl_db_settings_parameters :: struct #align (4) {
 #assert(size_of(cssm_applecspdl_db_settings_parameters) == 8)
 
 /// cssm_applecspdl_db_is_locked_parameters
-cssm_applecspdl_db_is_locked_parameters :: struct #align (1) {
+cssm_applecspdl_db_is_locked_parameters :: struct #packed {
     isLocked: cffi.uchar,
 }
 #assert(size_of(cssm_applecspdl_db_is_locked_parameters) == 1)
@@ -5626,7 +5625,7 @@ AuthorizationItemSet :: struct #align (8) {
 #assert(size_of(AuthorizationItemSet) == 16)
 
 /// AuthorizationExternalForm
-AuthorizationExternalForm :: struct #align (1) {
+AuthorizationExternalForm :: struct #packed {
     bytes: [32]cffi.char,
 }
 #assert(size_of(AuthorizationExternalForm) == 32)

@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVAssetWriterInputMetadataAdaptor
 ///
 @(objc_class="AVAssetWriterInputMetadataAdaptor", objc_superclass=NS.Object)
-AssetWriterInputMetadataAdaptor :: struct { using _: NS.Object, }
+AssetWriterInputMetadataAdaptor :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSUserNotificationCenter
 ///
 @(objc_class="NSUserNotificationCenter", objc_superclass=Object)
-UserNotificationCenter :: struct { using _: Object, }
+UserNotificationCenter :: struct { using _: Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSConstantString
 ///
 @(objc_class="NSConstantString", objc_superclass=SimpleCString)
-ConstantString :: struct { using _: SimpleCString, }
+ConstantString :: struct { using _: SimpleCString}
 
 @(default_calling_convention="c")
 foreign lib {}

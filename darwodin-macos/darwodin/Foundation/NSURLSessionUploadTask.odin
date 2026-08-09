@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSURLSessionUploadTask
 ///
 @(objc_class="NSURLSessionUploadTask", objc_superclass=URLSessionDataTask)
-URLSessionUploadTask :: struct { using _: URLSessionDataTask, }
+URLSessionUploadTask :: struct { using _: URLSessionDataTask}
 
 @(default_calling_convention="c")
 foreign lib {

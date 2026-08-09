@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKUserLocationView
 ///
 @(objc_class="MKUserLocationView", objc_superclass=AnnotationView)
-UserLocationView :: struct { using _: AnnotationView, }
+UserLocationView :: struct { using _: AnnotationView}
 
 @(default_calling_convention="c")
 foreign lib {}

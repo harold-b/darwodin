@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSPredicateEditor
 ///
 @(objc_class="NSPredicateEditor", objc_superclass=RuleEditor)
-PredicateEditor :: struct { using _: RuleEditor, }
+PredicateEditor :: struct { using _: RuleEditor}
 
 @(default_calling_convention="c")
 foreign lib {

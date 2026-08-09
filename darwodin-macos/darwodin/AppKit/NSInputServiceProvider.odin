@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSInputServiceProvider
 ///
 @(objc_class="NSInputServiceProvider")
-InputServiceProvider :: struct { using _: intrinsics.objc_object, }
+InputServiceProvider :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

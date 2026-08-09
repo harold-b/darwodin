@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLSharedTextureHandle
 ///
 @(objc_class="MTLSharedTextureHandle", objc_superclass=NS.Object)
-SharedTextureHandle :: struct { using _: NS.Object, 
+SharedTextureHandle :: struct {
+    using _: NS.Object,
     using _: NS.SecureCoding,
 }
 

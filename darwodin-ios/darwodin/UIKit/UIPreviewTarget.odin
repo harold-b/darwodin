@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPreviewTarget
 ///
 @(objc_class="UIPreviewTarget", objc_superclass=NS.Object)
-PreviewTarget :: struct { using _: NS.Object, 
+PreviewTarget :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

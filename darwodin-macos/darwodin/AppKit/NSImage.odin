@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSImage
 ///
 @(objc_class="NSImage", objc_superclass=NS.Object)
-Image :: struct { using _: NS.Object, }
+Image :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

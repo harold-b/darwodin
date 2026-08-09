@@ -15,7 +15,7 @@ import NS "../Foundation"
 /// CATransition
 ///
 @(objc_class="CATransition", objc_superclass=Animation)
-Transition :: struct { using _: Animation, }
+Transition :: struct { using _: Animation}
 
 @(default_calling_convention="c")
 foreign lib {

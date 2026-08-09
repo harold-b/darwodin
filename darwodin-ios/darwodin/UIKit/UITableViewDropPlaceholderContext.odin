@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITableViewDropPlaceholderContext
 ///
 @(objc_class="UITableViewDropPlaceholderContext")
-TableViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object, 
+TableViewDropPlaceholderContext :: struct {
+    using _: intrinsics.objc_object,
     using _: DragAnimating,
 }
 

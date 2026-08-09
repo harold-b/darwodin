@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LAPersistedRight
 ///
 @(objc_class="LAPersistedRight", objc_superclass=Right)
-PersistedRight :: struct { using _: Right, }
+PersistedRight :: struct { using _: Right}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIPencilInteractionSqueeze
 ///
 @(objc_class="UIPencilInteractionSqueeze", objc_superclass=NS.Object)
-PencilInteractionSqueeze :: struct { using _: NS.Object, }
+PencilInteractionSqueeze :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -1,42 +1,32 @@
 #+build darwin
-package darwodin_Foundation
+package darwin_Foundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import Sec "../Security"
 
 @(objc_class="NSMutableIndexSet", objc_superclass=IndexSet)
-MutableIndexSet :: struct { using _: IndexSet, }
+MutableIndexSet :: struct { using _: IndexSet}
 
 foreign lib {
-    @(objc_type=MutableIndexSet, objc_selector="addIndexes:", objc_name="addIndexes")
-    MutableIndexSet_addIndexes :: proc(self: ^MutableIndexSet, indexSet: ^IndexSet) ---
+	@(objc_type=MutableIndexSet, objc_selector="addIndexes:", objc_name="addIndexes")
+	MutableIndexSet_addIndexes :: proc(self: ^MutableIndexSet, indexSet: ^IndexSet) ---
 
-    @(objc_type=MutableIndexSet, objc_selector="removeIndexes:", objc_name="removeIndexes")
-    MutableIndexSet_removeIndexes :: proc(self: ^MutableIndexSet, indexSet: ^IndexSet) ---
+	@(objc_type=MutableIndexSet, objc_selector="removeIndexes:", objc_name="removeIndexes")
+	MutableIndexSet_removeIndexes :: proc(self: ^MutableIndexSet, indexSet: ^IndexSet) ---
 
-    @(objc_type=MutableIndexSet, objc_selector="removeAllIndexes", objc_name="removeAllIndexes")
-    MutableIndexSet_removeAllIndexes :: proc(self: ^MutableIndexSet) ---
+	@(objc_type=MutableIndexSet, objc_selector="removeAllIndexes", objc_name="removeAllIndexes")
+	MutableIndexSet_removeAllIndexes :: proc(self: ^MutableIndexSet) ---
 
-    @(objc_type=MutableIndexSet, objc_selector="addIndex:", objc_name="addIndex")
-    MutableIndexSet_addIndex :: proc(self: ^MutableIndexSet, value: UInteger) ---
+	@(objc_type=MutableIndexSet, objc_selector="addIndex:", objc_name="addIndex")
+	MutableIndexSet_addIndex :: proc(self: ^MutableIndexSet, value: UInteger) ---
 
-    @(objc_type=MutableIndexSet, objc_selector="removeIndex:", objc_name="removeIndex")
-    MutableIndexSet_removeIndex :: proc(self: ^MutableIndexSet, value: UInteger) ---
+	@(objc_type=MutableIndexSet, objc_selector="removeIndex:", objc_name="removeIndex")
+	MutableIndexSet_removeIndex :: proc(self: ^MutableIndexSet, value: UInteger) ---
 
-    @(objc_type=MutableIndexSet, objc_selector="addIndexesInRange:", objc_name="addIndexesInRange")
-    MutableIndexSet_addIndexesInRange :: proc(self: ^MutableIndexSet, range: _NSRange) ---
+	@(objc_type=MutableIndexSet, objc_selector="addIndexesInRange:", objc_name="addIndexesInRange")
+	MutableIndexSet_addIndexesInRange :: proc(self: ^MutableIndexSet, range: _NSRange) ---
 
-    @(objc_type=MutableIndexSet, objc_selector="removeIndexesInRange:", objc_name="removeIndexesInRange")
-    MutableIndexSet_removeIndexesInRange :: proc(self: ^MutableIndexSet, range: _NSRange) ---
+	@(objc_type=MutableIndexSet, objc_selector="removeIndexesInRange:", objc_name="removeIndexesInRange")
+	MutableIndexSet_removeIndexesInRange :: proc(self: ^MutableIndexSet, range: _NSRange) ---
 
-    @(objc_type=MutableIndexSet, objc_selector="shiftIndexesStartingAtIndex:by:", objc_name="shiftIndexesStartingAtIndex")
-    MutableIndexSet_shiftIndexesStartingAtIndex :: proc(self: ^MutableIndexSet, index: UInteger, delta: Integer) ---
+	@(objc_type=MutableIndexSet, objc_selector="shiftIndexesStartingAtIndex:by:", objc_name="shiftIndexesStartingAtIndex")
+	MutableIndexSet_shiftIndexesStartingAtIndex :: proc(self: ^MutableIndexSet, index: UInteger, delta: Integer) ---
 }
-
-
-

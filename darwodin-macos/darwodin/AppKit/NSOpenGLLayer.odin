@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSOpenGLLayer
 ///
 @(objc_class="NSOpenGLLayer", objc_superclass=CA.OpenGLLayer)
-OpenGLLayer :: struct { using _: CA.OpenGLLayer, }
+OpenGLLayer :: struct { using _: CA.OpenGLLayer}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -14,7 +14,7 @@ while true; do
     -framework|-f)
       shift && framework=$1 || exit 1
     ;;
-    -i)
+    -i|-I)
       shift && include=$1 || exit 1
     ;;
   esac

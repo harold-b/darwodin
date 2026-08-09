@@ -13,7 +13,7 @@ import NS "../AppKit"
 /// GCDualSenseAdaptiveTrigger
 ///
 @(objc_class="GCDualSenseAdaptiveTrigger", objc_superclass=ControllerButtonInput)
-DualSenseAdaptiveTrigger :: struct { using _: ControllerButtonInput, }
+DualSenseAdaptiveTrigger :: struct { using _: ControllerButtonInput}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIKeyCommand
 ///
 @(objc_class="UIKeyCommand", objc_superclass=Command)
-KeyCommand :: struct { using _: Command, }
+KeyCommand :: struct { using _: Command}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITableViewDataSource
 ///
 @(objc_class="UITableViewDataSource")
-TableViewDataSource :: struct { using _: intrinsics.objc_object, 
+TableViewDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

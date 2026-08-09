@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLIndirectCommandBuffer
 ///
 @(objc_class="MTLIndirectCommandBuffer")
-IndirectCommandBuffer :: struct { using _: intrinsics.objc_object, 
+IndirectCommandBuffer :: struct {
+    using _: intrinsics.objc_object,
     using _: Resource,
 }
 

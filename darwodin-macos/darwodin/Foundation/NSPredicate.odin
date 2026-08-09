@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSPredicate
 ///
 @(objc_class="NSPredicate", objc_superclass=Object)
-Predicate :: struct { using _: Object, 
+Predicate :: struct {
+    using _: Object,
     using _: SecureCoding,
     using _: Copying,
 }

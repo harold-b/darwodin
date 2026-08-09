@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextSelectionView
 ///
 @(objc_class="UITextSelectionView")
-TextSelectionView :: struct { using _: intrinsics.objc_object, }
+TextSelectionView :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

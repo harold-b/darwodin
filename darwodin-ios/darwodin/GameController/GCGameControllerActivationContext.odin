@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCGameControllerActivationContext
 ///
 @(objc_class="GCGameControllerActivationContext", objc_superclass=NS.Object)
-GameControllerActivationContext :: struct { using _: NS.Object, }
+GameControllerActivationContext :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

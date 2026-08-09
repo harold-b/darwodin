@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTLRasterizationRateSampleArray
 ///
 @(objc_class="MTLRasterizationRateSampleArray", objc_superclass=NS.Object)
-RasterizationRateSampleArray :: struct { using _: NS.Object, }
+RasterizationRateSampleArray :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

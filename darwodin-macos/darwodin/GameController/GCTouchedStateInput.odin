@@ -13,7 +13,8 @@ import NS "../AppKit"
 /// GCTouchedStateInput
 ///
 @(objc_class="GCTouchedStateInput")
-TouchedStateInput :: struct { using _: intrinsics.objc_object, 
+TouchedStateInput :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

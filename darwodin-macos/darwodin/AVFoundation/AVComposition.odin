@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,8 @@ import Audio "../AudioToolbox"
 /// AVComposition
 ///
 @(objc_class="AVComposition", objc_superclass=Asset)
-Composition :: struct { using _: Asset, 
+Composition :: struct {
+    using _: Asset,
     using _: NS.MutableCopying,
 }
 

@@ -15,7 +15,8 @@ import MTL "../Metal"
 /// MTLFXFrameInterpolatorDescriptor
 ///
 @(objc_class="MTLFXFrameInterpolatorDescriptor", objc_superclass=NS.Object)
-FrameInterpolatorDescriptor :: struct { using _: NS.Object, 
+FrameInterpolatorDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

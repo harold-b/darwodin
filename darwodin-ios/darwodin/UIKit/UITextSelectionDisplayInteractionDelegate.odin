@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextSelectionDisplayInteractionDelegate
 ///
 @(objc_class="UITextSelectionDisplayInteractionDelegate")
-TextSelectionDisplayInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+TextSelectionDisplayInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

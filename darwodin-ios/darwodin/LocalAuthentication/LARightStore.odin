@@ -13,7 +13,7 @@ import Sec "../Security"
 /// LARightStore
 ///
 @(objc_class="LARightStore", objc_superclass=NS.Object)
-RightStore :: struct { using _: NS.Object, }
+RightStore :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

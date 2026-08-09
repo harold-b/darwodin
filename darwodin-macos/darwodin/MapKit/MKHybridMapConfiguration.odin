@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKHybridMapConfiguration
 ///
 @(objc_class="MKHybridMapConfiguration", objc_superclass=MapConfiguration)
-HybridMapConfiguration :: struct { using _: MapConfiguration, }
+HybridMapConfiguration :: struct { using _: MapConfiguration}
 
 @(default_calling_convention="c")
 foreign lib {

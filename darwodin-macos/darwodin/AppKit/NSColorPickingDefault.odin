@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSColorPickingDefault
 ///
 @(objc_class="NSColorPickingDefault")
-ColorPickingDefault :: struct { using _: intrinsics.objc_object, }
+ColorPickingDefault :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {

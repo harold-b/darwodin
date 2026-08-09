@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSDatePicker
 ///
 @(objc_class="NSDatePicker", objc_superclass=Control)
-DatePicker :: struct { using _: Control, }
+DatePicker :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

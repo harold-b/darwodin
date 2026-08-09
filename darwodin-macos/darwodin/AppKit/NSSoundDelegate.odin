@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSSoundDelegate
 ///
 @(objc_class="NSSoundDelegate")
-SoundDelegate :: struct { using _: intrinsics.objc_object, 
+SoundDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

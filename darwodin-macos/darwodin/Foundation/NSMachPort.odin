@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSMachPort
 ///
 @(objc_class="NSMachPort", objc_superclass=Port)
-MachPort :: struct { using _: Port, }
+MachPort :: struct { using _: Port}
 
 @(default_calling_convention="c")
 foreign lib {

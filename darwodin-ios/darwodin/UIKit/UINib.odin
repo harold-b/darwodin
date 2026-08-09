@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UINib
 ///
 @(objc_class="UINib", objc_superclass=NS.Object)
-Nib :: struct { using _: NS.Object, }
+Nib :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

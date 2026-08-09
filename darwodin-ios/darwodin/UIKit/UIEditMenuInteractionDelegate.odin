@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIEditMenuInteractionDelegate
 ///
 @(objc_class="UIEditMenuInteractionDelegate")
-EditMenuInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+EditMenuInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIConversationEntry
 ///
 @(objc_class="UIConversationEntry", objc_superclass=NS.Object)
-ConversationEntry :: struct { using _: NS.Object, }
+ConversationEntry :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

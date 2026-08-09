@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSAnimationDelegate
 ///
 @(objc_class="NSAnimationDelegate")
-AnimationDelegate :: struct { using _: intrinsics.objc_object, 
+AnimationDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

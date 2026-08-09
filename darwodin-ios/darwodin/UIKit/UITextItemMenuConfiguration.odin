@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextItemMenuConfiguration
 ///
 @(objc_class="UITextItemMenuConfiguration", objc_superclass=NS.Object)
-TextItemMenuConfiguration :: struct { using _: NS.Object, }
+TextItemMenuConfiguration :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

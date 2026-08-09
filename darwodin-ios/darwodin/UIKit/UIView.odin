@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIView
 ///
 @(objc_class="UIView", objc_superclass=Responder)
-View :: struct { using _: Responder, 
+View :: struct {
+    using _: Responder,
     using _: NS.Coding,
     using _: Appearance,
     using _: AppearanceContainer,

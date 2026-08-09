@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLCommandQueueDescriptor
 ///
 @(objc_class="MTLCommandQueueDescriptor", objc_superclass=NS.Object)
-CommandQueueDescriptor :: struct { using _: NS.Object, 
+CommandQueueDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

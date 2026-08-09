@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// MTL4LibraryFunctionDescriptor
 ///
 @(objc_class="MTL4LibraryFunctionDescriptor", objc_superclass=MTL4FunctionDescriptor)
-MTL4LibraryFunctionDescriptor :: struct { using _: MTL4FunctionDescriptor, }
+MTL4LibraryFunctionDescriptor :: struct { using _: MTL4FunctionDescriptor}
 
 @(default_calling_convention="c")
 foreign lib {

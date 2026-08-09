@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKGeodesicPolyline
 ///
 @(objc_class="MKGeodesicPolyline", objc_superclass=Polyline)
-GeodesicPolyline :: struct { using _: Polyline, }
+GeodesicPolyline :: struct { using _: Polyline}
 
 @(default_calling_convention="c")
 foreign lib {

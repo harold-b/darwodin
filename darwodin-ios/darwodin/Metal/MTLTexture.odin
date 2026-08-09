@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTLTexture
 ///
 @(objc_class="MTLTexture")
-Texture :: struct { using _: intrinsics.objc_object, 
+Texture :: struct {
+    using _: intrinsics.objc_object,
     using _: Resource,
 }
 

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSSearchToolbarItem
 ///
 @(objc_class="NSSearchToolbarItem", objc_superclass=ToolbarItem)
-SearchToolbarItem :: struct { using _: ToolbarItem, }
+SearchToolbarItem :: struct { using _: ToolbarItem}
 
 @(default_calling_convention="c")
 foreign lib {

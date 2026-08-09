@@ -1,28 +1,18 @@
 #+build darwin
-package darwodin_Metal
+package darwin_Metal
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import libc "../libc"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 @(objc_class="MTLResourceStatePassDescriptor", objc_superclass=NS.Object)
-ResourceStatePassDescriptor :: struct { using _: NS.Object, 
-    using _: NS.Copying,
+ResourceStatePassDescriptor :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
 }
 
 foreign lib {
-    @(objc_type=ResourceStatePassDescriptor, objc_selector="resourceStatePassDescriptor", objc_name="resourceStatePassDescriptor", objc_is_class_method=true)
-    ResourceStatePassDescriptor_resourceStatePassDescriptor :: proc() -> ^ResourceStatePassDescriptor ---
+	@(objc_type=ResourceStatePassDescriptor, objc_selector="resourceStatePassDescriptor", objc_name="resourceStatePassDescriptor", objc_is_class_method=true)
+	ResourceStatePassDescriptor_resourceStatePassDescriptor :: proc() -> ^ResourceStatePassDescriptor ---
 
-    @(objc_type=ResourceStatePassDescriptor, objc_selector="sampleBufferAttachments", objc_name="sampleBufferAttachments")
-    ResourceStatePassDescriptor_sampleBufferAttachments :: proc(self: ^ResourceStatePassDescriptor) -> ^ResourceStatePassSampleBufferAttachmentDescriptorArray ---
+	@(objc_type=ResourceStatePassDescriptor, objc_selector="sampleBufferAttachments", objc_name="sampleBufferAttachments")
+	ResourceStatePassDescriptor_sampleBufferAttachments :: proc(self: ^ResourceStatePassDescriptor) -> ^ResourceStatePassSampleBufferAttachmentDescriptorArray ---
 }
-
-
-

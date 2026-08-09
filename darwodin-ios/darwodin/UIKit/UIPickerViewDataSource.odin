@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPickerViewDataSource
 ///
 @(objc_class="UIPickerViewDataSource")
-PickerViewDataSource :: struct { using _: intrinsics.objc_object, 
+PickerViewDataSource :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

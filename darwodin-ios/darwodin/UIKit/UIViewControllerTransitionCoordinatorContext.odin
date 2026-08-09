@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIViewControllerTransitionCoordinatorContext
 ///
 @(objc_class="UIViewControllerTransitionCoordinatorContext")
-ViewControllerTransitionCoordinatorContext :: struct { using _: intrinsics.objc_object, 
+ViewControllerTransitionCoordinatorContext :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

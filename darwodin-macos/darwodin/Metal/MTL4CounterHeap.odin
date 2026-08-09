@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4CounterHeap
 ///
 @(objc_class="MTL4CounterHeap")
-MTL4CounterHeap :: struct { using _: intrinsics.objc_object, 
+MTL4CounterHeap :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// NSTextSelectionNavigation
 ///
 @(objc_class="NSTextSelectionNavigation", objc_superclass=NS.Object)
-NSTextSelectionNavigation :: struct { using _: NS.Object, }
+NSTextSelectionNavigation :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

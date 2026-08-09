@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSBackgroundExtensionView
 ///
 @(objc_class="NSBackgroundExtensionView", objc_superclass=View)
-BackgroundExtensionView :: struct { using _: View, }
+BackgroundExtensionView :: struct { using _: View}
 
 @(default_calling_convention="c")
 foreign lib {

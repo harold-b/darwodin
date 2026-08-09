@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextDragRequest
 ///
 @(objc_class="UITextDragRequest")
-TextDragRequest :: struct { using _: intrinsics.objc_object, 
+TextDragRequest :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

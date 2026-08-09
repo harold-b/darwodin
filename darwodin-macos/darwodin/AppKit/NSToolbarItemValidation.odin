@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSToolbarItemValidation
 ///
 @(objc_class="NSToolbarItemValidation")
-ToolbarItemValidation :: struct { using _: intrinsics.objc_object, 
+ToolbarItemValidation :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,12 +17,12 @@ import Audio "../AudioToolbox"
 /// AVAudioUnitEffect
 ///
 @(objc_class="AVAudioUnitEffect", objc_superclass=AudioUnit)
-AudioUnitEffect :: struct { using _: AudioUnit, }
+AudioUnitEffect :: struct { using _: AudioUnit}
 
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitEffect, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
-    AudioUnitEffect_initWithAudioComponentDescription :: proc(self: ^AudioUnitEffect, audioComponentDescription: Audio.ComponentDescription) -> instancetype ---
+    AudioUnitEffect_initWithAudioComponentDescription :: proc(self: ^AudioUnitEffect, audioComponentDescription: AT.ComponentDescription) -> instancetype ---
 
     @(objc_type=AudioUnitEffect, objc_selector="bypass", objc_name="bypass")
     AudioUnitEffect_bypass :: proc(self: ^AudioUnitEffect) -> bool ---

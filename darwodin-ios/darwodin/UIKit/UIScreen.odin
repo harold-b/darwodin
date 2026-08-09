@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIScreen
 ///
 @(objc_class="UIScreen", objc_superclass=NS.Object)
-Screen :: struct { using _: NS.Object, 
+Screen :: struct {
+    using _: NS.Object,
     using _: TraitEnvironment,
 }
 

@@ -1,34 +1,30 @@
 #+build darwin
-package darwodin_GameKit
+package darwin_GameKit
 
-import "base:intrinsics"
-import "base:runtime"
 import cffi "core:c"
-import CF "../CoreFoundation"
 import NS "../Foundation"
 
 @(objc_class="GKGaussianDistribution", objc_superclass=RandomDistribution)
-GaussianDistribution :: struct { using _: RandomDistribution, }
+GaussianDistribution :: struct { using _: RandomDistribution}
 
 foreign lib {
-    @(objc_type=GaussianDistribution, objc_selector="initWithRandomSource:lowestValue:highestValue:", objc_name="initWithRandomSource_lowestValue_highestValue")
-    GaussianDistribution_initWithRandomSource_lowestValue_highestValue :: proc(self: ^GaussianDistribution, source: ^Random, lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> instancetype ---
+	@(objc_type=GaussianDistribution, objc_selector="initWithRandomSource:lowestValue:highestValue:", objc_name="initWithRandomSource_lowestValue_highestValue")
+	GaussianDistribution_initWithRandomSource_lowestValue_highestValue :: proc(self: ^GaussianDistribution, source: ^Random, lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> instancetype ---
 
-    @(objc_type=GaussianDistribution, objc_selector="initWithRandomSource:mean:deviation:", objc_name="initWithRandomSource_mean_deviation")
-    GaussianDistribution_initWithRandomSource_mean_deviation :: proc(self: ^GaussianDistribution, source: ^Random, mean: cffi.float, deviation: cffi.float) -> instancetype ---
+	@(objc_type=GaussianDistribution, objc_selector="initWithRandomSource:mean:deviation:", objc_name="initWithRandomSource_mean_deviation")
+	GaussianDistribution_initWithRandomSource_mean_deviation :: proc(self: ^GaussianDistribution, source: ^Random, mean: cffi.float, deviation: cffi.float) -> instancetype ---
 
-    @(objc_type=GaussianDistribution, objc_selector="mean", objc_name="mean")
-    GaussianDistribution_mean :: proc(self: ^GaussianDistribution) -> cffi.float ---
+	@(objc_type=GaussianDistribution, objc_selector="mean", objc_name="mean")
+	GaussianDistribution_mean :: proc(self: ^GaussianDistribution) -> cffi.float ---
 
-    @(objc_type=GaussianDistribution, objc_selector="deviation", objc_name="deviation")
-    GaussianDistribution_deviation :: proc(self: ^GaussianDistribution) -> cffi.float ---
+	@(objc_type=GaussianDistribution, objc_selector="deviation", objc_name="deviation")
+	GaussianDistribution_deviation :: proc(self: ^GaussianDistribution) -> cffi.float ---
 }
 
 
 
 @(objc_type=GaussianDistribution, objc_name="initWithRandomSource")
 GaussianDistribution_initWithRandomSource :: proc {
-    GaussianDistribution_initWithRandomSource_lowestValue_highestValue,
-    GaussianDistribution_initWithRandomSource_mean_deviation,
+	GaussianDistribution_initWithRandomSource_lowestValue_highestValue,
+	GaussianDistribution_initWithRandomSource_mean_deviation,
 }
-

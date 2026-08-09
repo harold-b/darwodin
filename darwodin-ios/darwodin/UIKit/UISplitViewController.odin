@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UISplitViewController
 ///
 @(objc_class="UISplitViewController", objc_superclass=ViewController)
-SplitViewController :: struct { using _: ViewController, }
+SplitViewController :: struct { using _: ViewController}
 
 @(default_calling_convention="c")
 foreign lib {

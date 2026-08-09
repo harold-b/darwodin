@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSTextCheckingController
 ///
 @(objc_class="NSTextCheckingController", objc_superclass=NS.Object)
-TextCheckingController :: struct { using _: NS.Object, }
+TextCheckingController :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

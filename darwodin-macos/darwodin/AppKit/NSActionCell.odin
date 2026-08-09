@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSActionCell
 ///
 @(objc_class="NSActionCell", objc_superclass=Cell)
-ActionCell :: struct { using _: Cell, }
+ActionCell :: struct { using _: Cell}
 
 @(default_calling_convention="c")
 foreign lib {

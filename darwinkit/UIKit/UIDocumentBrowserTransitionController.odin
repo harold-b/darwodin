@@ -1,40 +1,32 @@
 #+build darwin:ios
-package darwodin_UIKit
+package darwin_UIKit
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CT "../CoreText"
-import Sec "../Security"
 import NS "../Foundation"
-import CA "../QuartzCore"
 
 
 
-///
-/// UIDocumentBrowserTransitionController
-///
+
+
 @(objc_class="UIDocumentBrowserTransitionController", objc_superclass=NS.Object)
-DocumentBrowserTransitionController :: struct { using _: NS.Object, 
-    using _: ViewControllerAnimatedTransitioning,
+DocumentBrowserTransitionController :: struct {
+	using _: NS.Object,
+	using _: ViewControllerAnimatedTransitioning,
 }
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=DocumentBrowserTransitionController, objc_selector="init", objc_name="init")
-    DocumentBrowserTransitionController_init :: proc(self: ^DocumentBrowserTransitionController) -> instancetype ---
+	@(objc_type=DocumentBrowserTransitionController, objc_selector="init", objc_name="init")
+	DocumentBrowserTransitionController_init :: proc(self: ^DocumentBrowserTransitionController) -> instancetype ---
 
-    @(objc_type=DocumentBrowserTransitionController, objc_selector="loadingProgress", objc_name="loadingProgress")
-    DocumentBrowserTransitionController_loadingProgress :: proc(self: ^DocumentBrowserTransitionController) -> ^NS.Progress ---
+	@(objc_type=DocumentBrowserTransitionController, objc_selector="loadingProgress", objc_name="loadingProgress")
+	DocumentBrowserTransitionController_loadingProgress :: proc(self: ^DocumentBrowserTransitionController) -> ^NS.Progress ---
 
-    @(objc_type=DocumentBrowserTransitionController, objc_selector="setLoadingProgress:", objc_name="setLoadingProgress")
-    DocumentBrowserTransitionController_setLoadingProgress :: proc(self: ^DocumentBrowserTransitionController, loadingProgress: ^NS.Progress) ---
+	@(objc_type=DocumentBrowserTransitionController, objc_selector="setLoadingProgress:", objc_name="setLoadingProgress")
+	DocumentBrowserTransitionController_setLoadingProgress :: proc(self: ^DocumentBrowserTransitionController, loadingProgress: ^NS.Progress) ---
 
-    @(objc_type=DocumentBrowserTransitionController, objc_selector="targetView", objc_name="targetView")
-    DocumentBrowserTransitionController_targetView :: proc(self: ^DocumentBrowserTransitionController) -> ^View ---
+	@(objc_type=DocumentBrowserTransitionController, objc_selector="targetView", objc_name="targetView")
+	DocumentBrowserTransitionController_targetView :: proc(self: ^DocumentBrowserTransitionController) -> ^View ---
 
-    @(objc_type=DocumentBrowserTransitionController, objc_selector="setTargetView:", objc_name="setTargetView")
-    DocumentBrowserTransitionController_setTargetView :: proc(self: ^DocumentBrowserTransitionController, targetView: ^View) ---
+	@(objc_type=DocumentBrowserTransitionController, objc_selector="setTargetView:", objc_name="setTargetView")
+	DocumentBrowserTransitionController_setTargetView :: proc(self: ^DocumentBrowserTransitionController, targetView: ^View) ---
 }

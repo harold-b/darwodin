@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSTextStorageDelegate
 ///
 @(objc_class="NSTextStorageDelegate")
-NSTextStorageDelegate :: struct { using _: intrinsics.objc_object, 
+NSTextStorageDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

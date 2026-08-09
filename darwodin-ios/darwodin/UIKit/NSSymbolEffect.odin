@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// NSSymbolEffect
 ///
 @(objc_class="NSSymbolEffect", objc_superclass=NS.Object)
-NSSymbolEffect :: struct { using _: NS.Object, 
+NSSymbolEffect :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UIScrollEdgeEffectStyle
 ///
 @(objc_class="UIScrollEdgeEffectStyle", objc_superclass=NS.Object)
-ScrollEdgeEffectStyle :: struct { using _: NS.Object, }
+ScrollEdgeEffectStyle :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSRuleEditor
 ///
 @(objc_class="NSRuleEditor", objc_superclass=Control)
-RuleEditor :: struct { using _: Control, }
+RuleEditor :: struct { using _: Control}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -16,7 +16,7 @@ import CA "../QuartzCore"
 /// UITextChecker
 ///
 @(objc_class="UITextChecker", objc_superclass=NS.Object)
-TextChecker :: struct { using _: NS.Object, }
+TextChecker :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

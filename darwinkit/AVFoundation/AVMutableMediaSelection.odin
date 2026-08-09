@@ -1,24 +1,11 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
-import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVMutableMediaSelection", objc_superclass=MediaSelection)
-MutableMediaSelection :: struct { using _: MediaSelection, }
+MutableMediaSelection :: struct { using _: MediaSelection}
 
 foreign lib {
-    @(objc_type=MutableMediaSelection, objc_selector="selectMediaOption:inMediaSelectionGroup:", objc_name="selectMediaOption")
-    MutableMediaSelection_selectMediaOption :: proc(self: ^MutableMediaSelection, mediaSelectionOption: ^MediaSelectionOptions, mediaSelectionGroup: ^MediaSelectionGroup) ---
+	@(objc_type=MutableMediaSelection, objc_selector="selectMediaOption:inMediaSelectionGroup:", objc_name="selectMediaOption")
+	MutableMediaSelection_selectMediaOption :: proc(self: ^MutableMediaSelection, mediaSelectionOption: ^MediaSelectionOptions, mediaSelectionGroup: ^MediaSelectionGroup) ---
 }
-
-
-

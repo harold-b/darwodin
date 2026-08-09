@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKDistanceFormatter
 ///
 @(objc_class="MKDistanceFormatter", objc_superclass=NS.Formatter)
-DistanceFormatter :: struct { using _: NS.Formatter, }
+DistanceFormatter :: struct { using _: NS.Formatter}
 
 @(default_calling_convention="c")
 foreign lib {

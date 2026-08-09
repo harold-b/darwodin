@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIActionSheetDelegate
 ///
 @(objc_class="UIActionSheetDelegate")
-ActionSheetDelegate :: struct { using _: intrinsics.objc_object, 
+ActionSheetDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextInput
 ///
 @(objc_class="UITextInput")
-TextInput :: struct { using _: intrinsics.objc_object, 
+TextInput :: struct {
+    using _: intrinsics.objc_object,
     using _: KeyInput,
 }
 

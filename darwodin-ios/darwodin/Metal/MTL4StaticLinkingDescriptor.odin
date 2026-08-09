@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4StaticLinkingDescriptor
 ///
 @(objc_class="MTL4StaticLinkingDescriptor", objc_superclass=NS.Object)
-MTL4StaticLinkingDescriptor :: struct { using _: NS.Object, 
+MTL4StaticLinkingDescriptor :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

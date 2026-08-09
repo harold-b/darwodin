@@ -14,7 +14,7 @@ import UI "../UIKit"
 /// GCPhysicalInputProfile
 ///
 @(objc_class="GCPhysicalInputProfile", objc_superclass=NS.Object)
-PhysicalInputProfile :: struct { using _: NS.Object, }
+PhysicalInputProfile :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

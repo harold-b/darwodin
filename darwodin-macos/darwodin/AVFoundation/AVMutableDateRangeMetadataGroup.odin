@@ -9,7 +9,7 @@ import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
-import Audio "../AudioToolbox"
+import AT "../AudioToolbox"
 
 
 
@@ -17,7 +17,7 @@ import Audio "../AudioToolbox"
 /// AVMutableDateRangeMetadataGroup
 ///
 @(objc_class="AVMutableDateRangeMetadataGroup", objc_superclass=DateRangeMetadataGroup)
-MutableDateRangeMetadataGroup :: struct { using _: DateRangeMetadataGroup, }
+MutableDateRangeMetadataGroup :: struct { using _: DateRangeMetadataGroup}
 
 @(default_calling_convention="c")
 foreign lib {

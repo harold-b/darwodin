@@ -1,27 +1,16 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
-import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVAudioMix", objc_superclass=NS.Object)
-AudioMix :: struct { using _: NS.Object, 
-    using _: NS.Copying,
-    using _: NS.MutableCopying,
+AudioMix :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
+	using _: NS.MutableCopying,
 }
 
 foreign lib {
-    @(objc_type=AudioMix, objc_selector="inputParameters", objc_name="inputParameters")
-    AudioMix_inputParameters :: proc(self: ^AudioMix) -> ^NS.Array ---
+	@(objc_type=AudioMix, objc_selector="inputParameters", objc_name="inputParameters")
+	AudioMix_inputParameters :: proc(self: ^AudioMix) -> ^NS.Array ---
 }
-
-
-

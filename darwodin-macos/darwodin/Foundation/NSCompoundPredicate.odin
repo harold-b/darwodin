@@ -14,7 +14,7 @@ import Sec "../Security"
 /// NSCompoundPredicate
 ///
 @(objc_class="NSCompoundPredicate", objc_superclass=Predicate)
-CompoundPredicate :: struct { using _: Predicate, }
+CompoundPredicate :: struct { using _: Predicate}
 
 @(default_calling_convention="c")
 foreign lib {

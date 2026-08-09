@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIDropInteraction
 ///
 @(objc_class="UIDropInteraction", objc_superclass=NS.Object)
-DropInteraction :: struct { using _: NS.Object, 
+DropInteraction :: struct {
+    using _: NS.Object,
     using _: Interaction,
 }
 

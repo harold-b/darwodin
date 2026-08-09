@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSMenuItem
 ///
 @(objc_class="NSMenuItem")
-MenuItemProtocol :: struct { using _: intrinsics.objc_object, }
+MenuItemProtocol :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

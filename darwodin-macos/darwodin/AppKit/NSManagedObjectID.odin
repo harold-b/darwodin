@@ -19,7 +19,7 @@ import CA "../QuartzCore"
 /// NSManagedObjectID
 ///
 @(objc_class="NSManagedObjectID")
-ManagedObjectID :: struct { using _: intrinsics.objc_object, }
+ManagedObjectID :: struct { using _: intrinsics.objc_object}
 
 @(default_calling_convention="c")
 foreign lib {}

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UITextFormattingCoordinatorDelegate
 ///
 @(objc_class="UITextFormattingCoordinatorDelegate")
-TextFormattingCoordinatorDelegate :: struct { using _: intrinsics.objc_object, 
+TextFormattingCoordinatorDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIPointerInteractionDelegate
 ///
 @(objc_class="UIPointerInteractionDelegate")
-PointerInteractionDelegate :: struct { using _: intrinsics.objc_object, 
+PointerInteractionDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

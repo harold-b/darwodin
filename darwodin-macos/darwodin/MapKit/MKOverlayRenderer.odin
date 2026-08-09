@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKOverlayRenderer
 ///
 @(objc_class="MKOverlayRenderer", objc_superclass=NS.Object)
-OverlayRenderer :: struct { using _: NS.Object, }
+OverlayRenderer :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

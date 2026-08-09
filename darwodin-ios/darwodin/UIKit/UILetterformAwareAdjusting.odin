@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UILetterformAwareAdjusting
 ///
 @(objc_class="UILetterformAwareAdjusting")
-LetterformAwareAdjusting :: struct { using _: intrinsics.objc_object, 
+LetterformAwareAdjusting :: struct {
+    using _: intrinsics.objc_object,
     using _: NS.ObjectProtocol,
 }
 

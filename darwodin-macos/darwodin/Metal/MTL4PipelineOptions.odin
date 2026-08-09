@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// MTL4PipelineOptions
 ///
 @(objc_class="MTL4PipelineOptions", objc_superclass=NS.Object)
-MTL4PipelineOptions :: struct { using _: NS.Object, 
+MTL4PipelineOptions :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

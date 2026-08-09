@@ -1,35 +1,25 @@
 #+build darwin
-package darwodin_AVFoundation
+package darwin_AVFoundation
 
 import "base:intrinsics"
-import "base:runtime"
-import cffi "core:c"
-import mach "../mach"
-import CF "../CoreFoundation"
-import CG "../CoreGraphics"
-import CM "../CoreMedia"
 import NS "../Foundation"
-import CA "../QuartzCore"
-import Audio "../AudioToolbox"
 
 @(objc_class="AVAudioSessionDelegate")
-AudioSessionDelegate :: struct { using _: intrinsics.objc_object, 
-    using _: NS.ObjectProtocol,
+AudioSessionDelegate :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
 }
 
 foreign lib {
-    @(objc_type=AudioSessionDelegate, objc_selector="beginInterruption", objc_name="beginInterruption")
-    AudioSessionDelegate_beginInterruption :: proc(self: ^AudioSessionDelegate) ---
+	@(objc_type=AudioSessionDelegate, objc_selector="beginInterruption", objc_name="beginInterruption")
+	AudioSessionDelegate_beginInterruption :: proc(self: ^AudioSessionDelegate) ---
 
-    @(objc_type=AudioSessionDelegate, objc_selector="endInterruptionWithFlags:", objc_name="endInterruptionWithFlags")
-    AudioSessionDelegate_endInterruptionWithFlags :: proc(self: ^AudioSessionDelegate, flags: NS.UInteger) ---
+	@(objc_type=AudioSessionDelegate, objc_selector="endInterruptionWithFlags:", objc_name="endInterruptionWithFlags")
+	AudioSessionDelegate_endInterruptionWithFlags :: proc(self: ^AudioSessionDelegate, flags: NS.UInteger) ---
 
-    @(objc_type=AudioSessionDelegate, objc_selector="endInterruption", objc_name="endInterruption")
-    AudioSessionDelegate_endInterruption :: proc(self: ^AudioSessionDelegate) ---
+	@(objc_type=AudioSessionDelegate, objc_selector="endInterruption", objc_name="endInterruption")
+	AudioSessionDelegate_endInterruption :: proc(self: ^AudioSessionDelegate) ---
 
-    @(objc_type=AudioSessionDelegate, objc_selector="inputIsAvailableChanged:", objc_name="inputIsAvailableChanged")
-    AudioSessionDelegate_inputIsAvailableChanged :: proc(self: ^AudioSessionDelegate, isInputAvailable: bool) ---
+	@(objc_type=AudioSessionDelegate, objc_selector="inputIsAvailableChanged:", objc_name="inputIsAvailableChanged")
+	AudioSessionDelegate_inputIsAvailableChanged :: proc(self: ^AudioSessionDelegate, isInputAvailable: bool) ---
 }
-
-
-

@@ -16,7 +16,8 @@ import CA "../QuartzCore"
 /// UIFocusMovementHint
 ///
 @(objc_class="UIFocusMovementHint", objc_superclass=NS.Object)
-FocusMovementHint :: struct { using _: NS.Object, 
+FocusMovementHint :: struct {
+    using _: NS.Object,
     using _: NS.Copying,
 }
 

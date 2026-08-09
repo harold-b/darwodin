@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSMovie
 ///
 @(objc_class="NSMovie", objc_superclass=NS.Object)
-Movie :: struct { using _: NS.Object, 
+Movie :: struct {
+    using _: NS.Object,
     using _: NS.Coding,
 }
 

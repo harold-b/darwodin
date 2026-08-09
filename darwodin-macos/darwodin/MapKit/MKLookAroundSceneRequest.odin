@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKLookAroundSceneRequest
 ///
 @(objc_class="MKLookAroundSceneRequest", objc_superclass=NS.Object)
-LookAroundSceneRequest :: struct { using _: NS.Object, }
+LookAroundSceneRequest :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

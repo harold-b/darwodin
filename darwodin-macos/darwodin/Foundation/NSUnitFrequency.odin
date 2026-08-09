@@ -14,7 +14,8 @@ import Sec "../Security"
 /// NSUnitFrequency
 ///
 @(objc_class="NSUnitFrequency", objc_superclass=Dimension)
-UnitFrequency :: struct { using _: Dimension, 
+UnitFrequency :: struct {
+    using _: Dimension,
     using _: SecureCoding,
 }
 

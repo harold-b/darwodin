@@ -14,7 +14,7 @@ import CL "../CoreLocation"
 /// MKLookAroundSnapshotOptions
 ///
 @(objc_class="MKLookAroundSnapshotOptions", objc_superclass=NS.Object)
-LookAroundSnapshotOptions :: struct { using _: NS.Object, }
+LookAroundSnapshotOptions :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

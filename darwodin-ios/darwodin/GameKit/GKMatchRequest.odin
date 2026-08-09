@@ -4,6 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
+import CG "../CoreGraphics"
 import NS "../Foundation"
 import UI "../UIKit"
 
@@ -13,7 +14,7 @@ import UI "../UIKit"
 /// GKMatchRequest
 ///
 @(objc_class="GKMatchRequest", objc_superclass=NS.Object)
-MatchRequest :: struct { using _: NS.Object, }
+MatchRequest :: struct { using _: NS.Object}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -19,7 +19,8 @@ import CA "../QuartzCore"
 /// NSScrubberFlowLayoutDelegate
 ///
 @(objc_class="NSScrubberFlowLayoutDelegate")
-ScrubberFlowLayoutDelegate :: struct { using _: intrinsics.objc_object, 
+ScrubberFlowLayoutDelegate :: struct {
+    using _: intrinsics.objc_object,
     using _: ScrubberDelegate,
 }
 
