@@ -10,6 +10,7 @@ import NS "../AppKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
 
+// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
@@ -23,6 +24,9 @@ foreign import lib {
 }
 
 
+// -auto-text-end
+// +user-text-begin
+// -user-text-end
 
 
 foreign lib {
