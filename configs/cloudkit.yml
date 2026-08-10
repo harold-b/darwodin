@@ -41,7 +41,7 @@ Odin:
   Packages:
     - Name  : CloudKit
       Export: CK
-      DarwinLinkLibs: [system:CloudKit.framework]
+      LinkLibs: [system:CloudKit.framework]
       Filter: .*
 
       Imports:

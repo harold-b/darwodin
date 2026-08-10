@@ -11,8 +11,10 @@ source ./config
 targets=()
 merged=false
 args=()
+is_ios=false
+check_enums=false # Check which enums can be bit_sets
 
-while true; do
+while (( $# > 0 )); do
   case $1 in
 
     -ios|--ios|-i)
@@ -25,6 +27,12 @@ while true; do
 
     -m|-merged|--merged)
       merged=true
+      ;;
+
+    -e|-enums|--enums)
+      echo "Checking enums that can be bit_sets"
+      echo ""
+      check_enums=true
       ;;
 
     *)
@@ -43,15 +51,40 @@ fi
 
 frameworks_path="darwodin-macos/darwodin"
 
-if [[ ${is_ios} ]]; then
+if $is_ios; then
   frameworks_path="darwodin-ios/darwodin"
+  echo "Checking iOS"
+  if ! $merged ; then
+    echo ""
+  fi
 fi
 
 if $merged ; then
   frameworks_path="darwinkit"
+  echo "Checking merged"
+  echo ""
 fi
+
 
 for t in ${targets[@]}; do
   echo "${t}"
-  odin check "${frameworks_path}/${t}" ${args[@]} -no-entry-point
+
+  if $check_enums; then
+    ios_param=
+    if $is_ios; then
+      ios_param=1
+    fi
+
+    t="${t,,}"  # Lower case
+
+    cfg_path="configs/${t}.yml"
+    if [[ -e "configs/${t}.toml" ]]; then
+      cfg_path="configs/${t}.toml"
+    fi
+  
+    csgen --odin-check-enums "$cfg_path"
+    echo ""
+  else
+    odin check "${frameworks_path}/${t}" ${args[@]} -no-entry-point
+  fi
 done

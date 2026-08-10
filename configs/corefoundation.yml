@@ -141,7 +141,7 @@ Odin:
     - Name  : CoreFoundation
       Filter: .*
       Export: CF
-      DarwinLinkLibs: [system:CoreFoundation.framework]
+      LinkLibs: [system:CoreFoundation.framework]
       RequiredLink: true
 
       Imports:

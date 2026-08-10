@@ -271,115 +271,79 @@ foreign lib {
 	@(link_name="AudioOutputUnitStop")
 	OutputUnitStop :: proc(ci: Unit) -> CF.OSStatus ---
 
-	@(link_name="AUGraphAddNode")
 	AUGraphAddNode :: proc(inGraph: AUGraph, inDescription: ^ComponentDescription, outNode: ^AUNode) -> CF.OSStatus ---
 
-	@(link_name="AUGraphRemoveNode")
 	AUGraphRemoveNode :: proc(inGraph: AUGraph, inNode: AUNode) -> CF.OSStatus ---
 
-	@(link_name="AUGraphGetNodeCount")
 	AUGraphGetNodeCount :: proc(inGraph: AUGraph, outNumberOfNodes: ^CF.UInt32) -> CF.OSStatus ---
 
-	@(link_name="AUGraphGetIndNode")
 	AUGraphGetIndNode :: proc(inGraph: AUGraph, inIndex: CF.UInt32, outNode: ^AUNode) -> CF.OSStatus ---
 
-	@(link_name="AUGraphNodeInfo")
 	AUGraphNodeInfo :: proc(inGraph: AUGraph, inNode: AUNode, outDescription: ^ComponentDescription, outAudioUnit: ^Unit) -> CF.OSStatus ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="AUGraphNewNodeSubGraph")
 		AUGraphNewNodeSubGraph :: proc(inGraph: AUGraph, outNode: ^AUNode) -> CF.OSStatus ---
 
-		@(link_name="AUGraphGetNodeInfoSubGraph")
 		AUGraphGetNodeInfoSubGraph :: proc(inGraph: AUGraph, inNode: AUNode, outSubGraph: ^AUGraph) -> CF.OSStatus ---
 
-		@(link_name="AUGraphIsNodeSubGraph")
 		AUGraphIsNodeSubGraph :: proc(inGraph: AUGraph, inNode: AUNode, outFlag: ^CF.Boolean) -> CF.OSStatus ---
 	}
 
-	@(link_name="AUGraphConnectNodeInput")
 	AUGraphConnectNodeInput :: proc(inGraph: AUGraph, inSourceNode: AUNode, inSourceOutputNumber: CF.UInt32, inDestNode: AUNode, inDestInputNumber: CF.UInt32) -> CF.OSStatus ---
 
-	@(link_name="AUGraphSetNodeInputCallback")
 	AUGraphSetNodeInputCallback :: proc(inGraph: AUGraph, inDestNode: AUNode, inDestInputNumber: CF.UInt32, inInputCallback: ^AURenderCallbackStruct) -> CF.OSStatus ---
 
-	@(link_name="AUGraphDisconnectNodeInput")
 	AUGraphDisconnectNodeInput :: proc(inGraph: AUGraph, inDestNode: AUNode, inDestInputNumber: CF.UInt32) -> CF.OSStatus ---
 
-	@(link_name="AUGraphClearConnections")
 	AUGraphClearConnections :: proc(inGraph: AUGraph) -> CF.OSStatus ---
 
-	@(link_name="AUGraphGetNumberOfInteractions")
 	AUGraphGetNumberOfInteractions :: proc(inGraph: AUGraph, outNumInteractions: ^CF.UInt32) -> CF.OSStatus ---
 
-	@(link_name="AUGraphGetInteractionInfo")
 	AUGraphGetInteractionInfo :: proc(inGraph: AUGraph, inInteractionIndex: CF.UInt32, outInteraction: ^AUNodeInteraction) -> CF.OSStatus ---
 
-	@(link_name="AUGraphCountNodeInteractions")
 	AUGraphCountNodeInteractions :: proc(inGraph: AUGraph, inNode: AUNode, outNumInteractions: ^CF.UInt32) -> CF.OSStatus ---
 
-	@(link_name="AUGraphGetNodeInteractions")
 	AUGraphGetNodeInteractions :: proc(inGraph: AUGraph, inNode: AUNode, ioNumInteractions: ^CF.UInt32, outInteractions: ^AUNodeInteraction) -> CF.OSStatus ---
 
-	@(link_name="AUGraphUpdate")
 	AUGraphUpdate :: proc(inGraph: AUGraph, outIsUpdated: ^CF.Boolean) -> CF.OSStatus ---
 
-	@(link_name="AUGraphOpen")
 	AUGraphOpen :: proc(inGraph: AUGraph) -> CF.OSStatus ---
 
-	@(link_name="AUGraphClose")
 	AUGraphClose :: proc(inGraph: AUGraph) -> CF.OSStatus ---
 
-	@(link_name="AUGraphInitialize")
 	AUGraphInitialize :: proc(inGraph: AUGraph) -> CF.OSStatus ---
 
-	@(link_name="AUGraphUninitialize")
 	AUGraphUninitialize :: proc(inGraph: AUGraph) -> CF.OSStatus ---
 
-	@(link_name="AUGraphStart")
 	AUGraphStart :: proc(inGraph: AUGraph) -> CF.OSStatus ---
 
-	@(link_name="AUGraphStop")
 	AUGraphStop :: proc(inGraph: AUGraph) -> CF.OSStatus ---
 
-	@(link_name="AUGraphIsOpen")
 	AUGraphIsOpen :: proc(inGraph: AUGraph, outIsOpen: ^CF.Boolean) -> CF.OSStatus ---
 
-	@(link_name="AUGraphIsInitialized")
 	AUGraphIsInitialized :: proc(inGraph: AUGraph, outIsInitialized: ^CF.Boolean) -> CF.OSStatus ---
 
-	@(link_name="AUGraphIsRunning")
 	AUGraphIsRunning :: proc(inGraph: AUGraph, outIsRunning: ^CF.Boolean) -> CF.OSStatus ---
 
-	@(link_name="AUGraphGetCPULoad")
 	AUGraphGetCPULoad :: proc(inGraph: AUGraph, outAverageCPULoad: ^cffi.float) -> CF.OSStatus ---
 
-	@(link_name="AUGraphGetMaxCPULoad")
 	AUGraphGetMaxCPULoad :: proc(inGraph: AUGraph, outMaxLoad: ^cffi.float) -> CF.OSStatus ---
 
-	@(link_name="AUGraphAddRenderNotify")
 	AUGraphAddRenderNotify :: proc(inGraph: AUGraph, inCallback: AURenderCallback, inRefCon: rawptr) -> CF.OSStatus ---
 
-	@(link_name="AUGraphRemoveRenderNotify")
 	AUGraphRemoveRenderNotify :: proc(inGraph: AUGraph, inCallback: AURenderCallback, inRefCon: rawptr) -> CF.OSStatus ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="AUGraphNewNode")
 		AUGraphNewNode :: proc(inGraph: AUGraph, inDescription: ^ComponentDescription, inClassDataSize: CF.UInt32, inClassData: rawptr, outNode: ^AUNode) -> CF.OSStatus ---
 
-		@(link_name="AUGraphGetNodeInfo")
 		AUGraphGetNodeInfo :: proc(inGraph: AUGraph, inNode: AUNode, outDescription: ^ComponentDescription, outClassDataSize: ^CF.UInt32, outClassData: ^rawptr, outAudioUnit: ^Unit) -> CF.OSStatus ---
 
-		@(link_name="AUGraphGetNumberOfConnections")
 		AUGraphGetNumberOfConnections :: proc(inGraph: AUGraph, outNumConnections: ^CF.UInt32) -> CF.OSStatus ---
 
-		@(link_name="AUGraphGetConnectionInfo")
 		AUGraphGetConnectionInfo :: proc(inGraph: AUGraph, inConnectionIndex: CF.UInt32, outSourceNode: ^AUNode, outSourceOutputNumber: ^CF.UInt32, outDestNode: ^AUNode, outDestInputNumber: ^CF.UInt32) -> CF.OSStatus ---
 
-		@(link_name="AUGraphCountNodeConnections")
 		AUGraphCountNodeConnections :: proc(inGraph: AUGraph, inNode: AUNode, outNumConnections: ^CF.UInt32) -> CF.OSStatus ---
 
-		@(link_name="AUGraphGetNodeConnections")
 		AUGraphGetNodeConnections :: proc(inGraph: AUGraph, inNode: AUNode, outConnections: ^UnitNodeConnection, ioNumConnections: ^CF.UInt32) -> CF.OSStatus ---
 	}
 
@@ -833,49 +797,34 @@ foreign lib {
 	@(link_name="AudioServicesPlayAlertSoundWithDetails")
 	ServicesPlayAlertSoundWithDetails :: proc(inSystemSoundID: SystemSoundID, inDetails: CF.DictionaryRef, inCompletionBlock: ^Objc_Block(proc "c" ())) ---
 
-	@(link_name="AUListenerCreateWithDispatchQueue")
 	AUListenerCreateWithDispatchQueue :: proc(outListener: ^AUParameterListenerRef, inNotificationInterval: cffi.float, inDispatchQueue: CF.dispatch_queue_t, inBlock: AUParameterListenerBlock) -> CF.OSStatus ---
 
-	@(link_name="AUListenerCreate")
 	AUListenerCreate :: proc(inProc: AUParameterListenerProc, inUserData: rawptr, inRunLoop: CF.RunLoopRef, inRunLoopMode: CF.StringRef, inNotificationInterval: cffi.float, outListener: ^AUParameterListenerRef) -> CF.OSStatus ---
 
-	@(link_name="AUListenerDispose")
 	AUListenerDispose :: proc(inListener: AUParameterListenerRef) -> CF.OSStatus ---
 
-	@(link_name="AUListenerAddParameter")
 	AUListenerAddParameter :: proc(inListener: AUParameterListenerRef, inObject: rawptr, inParameter: ^UnitParameter) -> CF.OSStatus ---
 
-	@(link_name="AUListenerRemoveParameter")
 	AUListenerRemoveParameter :: proc(inListener: AUParameterListenerRef, inObject: rawptr, inParameter: ^UnitParameter) -> CF.OSStatus ---
 
-	@(link_name="AUParameterSet")
 	AUParameterSet :: proc(inSendingListener: AUParameterListenerRef, inSendingObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue, inBufferOffsetInFrames: CF.UInt32) -> CF.OSStatus ---
 
-	@(link_name="AUParameterListenerNotify")
 	AUParameterListenerNotify :: proc(inSendingListener: AUParameterListenerRef, inSendingObject: rawptr, inParameter: ^UnitParameter) -> CF.OSStatus ---
 
-	@(link_name="AUEventListenerCreateWithDispatchQueue")
 	AUEventListenerCreateWithDispatchQueue :: proc(outListener: ^AUEventListenerRef, inNotificationInterval: cffi.float, inValueChangeGranularity: cffi.float, inDispatchQueue: CF.dispatch_queue_t, inBlock: AUEventListenerBlock) -> CF.OSStatus ---
 
-	@(link_name="AUEventListenerCreate")
 	AUEventListenerCreate :: proc(inProc: AUEventListenerProc, inUserData: rawptr, inRunLoop: CF.RunLoopRef, inRunLoopMode: CF.StringRef, inNotificationInterval: cffi.float, inValueChangeGranularity: cffi.float, outListener: ^AUEventListenerRef) -> CF.OSStatus ---
 
-	@(link_name="AUEventListenerAddEventType")
 	AUEventListenerAddEventType :: proc(inListener: AUEventListenerRef, inObject: rawptr, inEvent: ^UnitEvent) -> CF.OSStatus ---
 
-	@(link_name="AUEventListenerRemoveEventType")
 	AUEventListenerRemoveEventType :: proc(inListener: AUEventListenerRef, inObject: rawptr, inEvent: ^UnitEvent) -> CF.OSStatus ---
 
-	@(link_name="AUEventListenerNotify")
 	AUEventListenerNotify :: proc(inSendingListener: AUEventListenerRef, inSendingObject: rawptr, inEvent: ^UnitEvent) -> CF.OSStatus ---
 
-	@(link_name="AUParameterValueFromLinear")
 	AUParameterValueFromLinear :: proc(inLinearValue: cffi.float, inParameter: ^UnitParameter) -> UnitParameterValue ---
 
-	@(link_name="AUParameterValueToLinear")
 	AUParameterValueToLinear :: proc(inParameterValue: UnitParameterValue, inParameter: ^UnitParameter) -> cffi.float ---
 
-	@(link_name="AUParameterFormatValue")
 	AUParameterFormatValue :: proc(inParameterValue: cffi.double, inParameter: ^UnitParameter, inTextBuffer: cstring, inDigits: CF.UInt32) -> cstring ---
 
 	@(link_name="AudioWorkIntervalCreate")

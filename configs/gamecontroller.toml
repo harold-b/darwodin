@@ -36,7 +36,7 @@ ResolvedTypedefs = [
 [[Odin.Packages]]
 Name           = 'GameController'
 Export         = 'GC'
-DarwinLinkLibs = [ 'system:GameController.framework' ]
+LinkLibs = [ 'system:GameController.framework' ]
 Filter         =  '.*'
 
 Imports = ['''

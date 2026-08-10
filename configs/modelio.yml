@@ -45,7 +45,7 @@ Odin:
   Packages:
     - Name  : ModelIO
       Export: MDL
-      DarwinLinkLibs: [system:ModelIO.framework]
+      LinkLibs: [system:ModelIO.framework]
       Filter: .*
 
       Imports:

@@ -18,11 +18,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-    @(export, require)
-    foreign import lib {
-        "system:UIKit.framework",
-    }
+@(export, require)
+foreign import lib {
+    "system:UIKit.framework",
 }
 
 
@@ -738,34 +736,25 @@ foreign lib {
 
 @(default_calling_convention="c")
 foreign lib {
-    @(link_name="NSStringFromCGPoint")
     NSStringFromCGPoint :: proc(point: CG.Point) -> ^NS.String ---
 
-    @(link_name="NSStringFromCGVector")
     NSStringFromCGVector :: proc(vector: CG.Vector) -> ^NS.String ---
 
-    @(link_name="NSStringFromCGSize")
     NSStringFromCGSize :: proc(size: CG.Size) -> ^NS.String ---
 
-    @(link_name="NSStringFromCGRect")
     NSStringFromCGRect :: proc(rect: CG.Rect) -> ^NS.String ---
 
-    @(link_name="NSStringFromCGAffineTransform")
     NSStringFromCGAffineTransform :: proc(transform: CG.AffineTransform) -> ^NS.String ---
 
-    @(link_name="NSStringFromUIEdgeInsets")
     NSStringFromUIEdgeInsets :: proc(insets: EdgeInsets) -> ^NS.String ---
 
-    @(link_name="NSStringFromDirectionalEdgeInsets")
     NSStringFromDirectionalEdgeInsets :: proc(insets: NSDirectionalEdgeInsets) -> ^NS.String ---
 
-    @(link_name="NSStringFromUIOffset")
     NSStringFromUIOffset :: proc(offset: Offset) -> ^NS.String ---
 
     @(link_name="UIEdgeInsetsFromString")
     EdgeInsetsFromString :: proc(string: ^NS.String) -> EdgeInsets ---
 
-    @(link_name="NSDirectionalEdgeInsetsFromString")
     NSDirectionalEdgeInsetsFromString :: proc(string: ^NS.String) -> NSDirectionalEdgeInsets ---
 
     @(link_name="UIOffsetFromString")
@@ -849,10 +838,8 @@ foreign lib {
     @(link_name="UIImageSymbolWeightForFontWeight")
     ImageSymbolWeightForFontWeight :: proc(fontWeight: FontWeight) -> ImageSymbolWeight ---
 
-    @(link_name="NSTextAlignmentToCTTextAlignment")
     NSTextAlignmentToCTTextAlignment :: proc(nsTextAlignment: NSTextAlignment) -> CTTextAlignment ---
 
-    @(link_name="NSTextAlignmentFromCTTextAlignment")
     NSTextAlignmentFromCTTextAlignment :: proc(ctTextAlignment: CTTextAlignment) -> NSTextAlignment ---
 
     @(link_name="UIEventButtonMaskForButtonNumber")

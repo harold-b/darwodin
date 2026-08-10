@@ -51,7 +51,7 @@ Odin:
   Packages:
     - Name  : Metal
       Export: MTL
-      DarwinLinkLibs: [system:Metal.framework]
+      LinkLibs: [system:Metal.framework]
       Filter: .*
 
       # Imports:

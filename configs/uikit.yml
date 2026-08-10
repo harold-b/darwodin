@@ -50,7 +50,7 @@ Odin:
   Packages:
     - Name  : UIKit
       Export: UI
-      DarwinLinkLibs: [system:UIKit.framework]
+      LinkLibs: [system:UIKit.framework]
       RequiredLink: true
       Filter: .*
 

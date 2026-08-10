@@ -14,11 +14,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-	@(export)
-	foreign import lib {
-		"system:Security.framework",
-	}
+@(export)
+foreign import lib {
+	"system:Security.framework",
 }
 
 
@@ -1796,968 +1794,654 @@ foreign lib {
 	}
 
 	when ODIN_PLATFORM_SUBTARGET_IOS {
-		@(link_name="SecKeyRawSign")
 		SecKeyRawSign :: proc(key: SecKeyRef, padding: SecPadding, dataToSign: ^cffi.uint8_t, dataToSignLen: cffi.size_t, sig: ^cffi.uint8_t, sigLen: ^cffi.size_t) -> CF.OSStatus ---
 
-		@(link_name="SecKeyRawVerify")
 		SecKeyRawVerify :: proc(key: SecKeyRef, padding: SecPadding, signedData: ^cffi.uint8_t, signedDataLen: cffi.size_t, sig: ^cffi.uint8_t, sigLen: cffi.size_t) -> CF.OSStatus ---
 
-		@(link_name="SecKeyEncrypt")
 		SecKeyEncrypt :: proc(key: SecKeyRef, padding: SecPadding, plainText: ^cffi.uint8_t, plainTextLen: cffi.size_t, cipherText: ^cffi.uint8_t, cipherTextLen: ^cffi.size_t) -> CF.OSStatus ---
 
-		@(link_name="SecKeyDecrypt")
 		SecKeyDecrypt :: proc(key: SecKeyRef, padding: SecPadding, cipherText: ^cffi.uint8_t, cipherTextLen: cffi.size_t, plainText: ^cffi.uint8_t, plainTextLen: ^cffi.size_t) -> CF.OSStatus ---
 	}
 
-	@(link_name="SecCopyErrorMessageString")
 	SecCopyErrorMessageString :: proc(status: CF.OSStatus, reserved: rawptr) -> CF.StringRef ---
 
-	@(link_name="SecCertificateGetTypeID")
 	SecCertificateGetTypeID :: proc() -> CF.TypeID ---
 
-	@(link_name="SecCertificateCreateWithData")
 	SecCertificateCreateWithData :: proc(allocator: CF.AllocatorRef, data: CF.DataRef) -> SecCertificateRef ---
 
-	@(link_name="SecCertificateCopyData")
 	SecCertificateCopyData :: proc(certificate: SecCertificateRef) -> CF.DataRef ---
 
-	@(link_name="SecCertificateCopySubjectSummary")
 	SecCertificateCopySubjectSummary :: proc(certificate: SecCertificateRef) -> CF.StringRef ---
 
-	@(link_name="SecCertificateCopyCommonName")
 	SecCertificateCopyCommonName :: proc(certificate: SecCertificateRef, commonName: ^CF.StringRef) -> CF.OSStatus ---
 
-	@(link_name="SecCertificateCopyEmailAddresses")
 	SecCertificateCopyEmailAddresses :: proc(certificate: SecCertificateRef, emailAddresses: ^CF.ArrayRef) -> CF.OSStatus ---
 
-	@(link_name="SecCertificateCopyNormalizedIssuerSequence")
 	SecCertificateCopyNormalizedIssuerSequence :: proc(certificate: SecCertificateRef) -> CF.DataRef ---
 
-	@(link_name="SecCertificateCopyNormalizedSubjectSequence")
 	SecCertificateCopyNormalizedSubjectSequence :: proc(certificate: SecCertificateRef) -> CF.DataRef ---
 
-	@(link_name="SecCertificateCopyKey")
 	SecCertificateCopyKey :: proc(certificate: SecCertificateRef) -> SecKeyRef ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecCertificateCopyPublicKey")
 		SecCertificateCopyPublicKey :: proc(certificate: SecCertificateRef, key: ^SecKeyRef) -> CF.OSStatus ---
 	} else when ODIN_PLATFORM_SUBTARGET_IOS {
-		@(link_name="SecCertificateCopyPublicKey")
 		SecCertificateCopyPublicKey :: proc(certificate: SecCertificateRef) -> SecKeyRef ---
 	}
 
-	@(link_name="SecCertificateCopySerialNumberData")
 	SecCertificateCopySerialNumberData :: proc(certificate: SecCertificateRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-	@(link_name="SecCertificateCopyNotValidBeforeDate")
 	SecCertificateCopyNotValidBeforeDate :: proc(certificate: SecCertificateRef) -> CF.DateRef ---
 
-	@(link_name="SecCertificateCopyNotValidAfterDate")
 	SecCertificateCopyNotValidAfterDate :: proc(certificate: SecCertificateRef) -> CF.DateRef ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecCertificateCopySerialNumber")
 		SecCertificateCopySerialNumber :: proc(certificate: SecCertificateRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 	} else when ODIN_PLATFORM_SUBTARGET_IOS {
-		@(link_name="SecCertificateCopySerialNumber")
 		SecCertificateCopySerialNumber :: proc(certificate: SecCertificateRef) -> CF.DataRef ---
 	}
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecCertificateCreateFromData")
 		SecCertificateCreateFromData :: proc(data: ^cssm_data, type: CSSM_CERT_TYPE, encoding: CSSM_CERT_ENCODING, certificate: ^SecCertificateRef) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateAddToKeychain")
 		SecCertificateAddToKeychain :: proc(certificate: SecCertificateRef, keychain: SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateGetData")
 		SecCertificateGetData :: proc(certificate: SecCertificateRef, data: CSSM_DATA_PTR) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateGetType")
 		SecCertificateGetType :: proc(certificate: SecCertificateRef, certificateType: ^CSSM_CERT_TYPE) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateGetSubject")
 		SecCertificateGetSubject :: proc(certificate: SecCertificateRef, subject: ^^cssm_x509_name) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateGetIssuer")
 		SecCertificateGetIssuer :: proc(certificate: SecCertificateRef, issuer: ^^cssm_x509_name) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateGetCLHandle")
 		SecCertificateGetCLHandle :: proc(certificate: SecCertificateRef, clHandle: ^CSSM_CL_HANDLE) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateGetAlgorithmID")
 		SecCertificateGetAlgorithmID :: proc(certificate: SecCertificateRef, algid: ^^SecAsn1AlgId) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateCopyPreference")
 		SecCertificateCopyPreference :: proc(name: CF.StringRef, keyUsage: cffi.uint, certificate: ^SecCertificateRef) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateCopyPreferred")
 		SecCertificateCopyPreferred :: proc(name: CF.StringRef, keyUsage: CF.ArrayRef) -> SecCertificateRef ---
 
-		@(link_name="SecCertificateSetPreference")
 		SecCertificateSetPreference :: proc(certificate: SecCertificateRef, name: CF.StringRef, keyUsage: cffi.uint, date: CF.DateRef) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateSetPreferred")
 		SecCertificateSetPreferred :: proc(certificate: SecCertificateRef, name: CF.StringRef, keyUsage: CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecCertificateCopyValues")
 		SecCertificateCopyValues :: proc(certificate: SecCertificateRef, keys: CF.ArrayRef, error: ^CF.ErrorRef) -> CF.DictionaryRef ---
 
-		@(link_name="SecCertificateCopyLongDescription")
 		SecCertificateCopyLongDescription :: proc(alloc: CF.AllocatorRef, certificate: SecCertificateRef, error: ^CF.ErrorRef) -> CF.StringRef ---
 
-		@(link_name="SecCertificateCopyShortDescription")
 		SecCertificateCopyShortDescription :: proc(alloc: CF.AllocatorRef, certificate: SecCertificateRef, error: ^CF.ErrorRef) -> CF.StringRef ---
 
-		@(link_name="SecCertificateCopyNormalizedIssuerContent")
 		SecCertificateCopyNormalizedIssuerContent :: proc(certificate: SecCertificateRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-		@(link_name="SecCertificateCopyNormalizedSubjectContent")
 		SecCertificateCopyNormalizedSubjectContent :: proc(certificate: SecCertificateRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 	}
 
-	@(link_name="SecIdentityGetTypeID")
 	SecIdentityGetTypeID :: proc() -> CF.TypeID ---
 
-	@(link_name="SecIdentityCreate")
 	SecIdentityCreate :: proc(allocator: CF.AllocatorRef, certificate: SecCertificateRef, privateKey: SecKeyRef) -> SecIdentityRef ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecIdentityCreateWithCertificate")
 		SecIdentityCreateWithCertificate :: proc(keychainOrArray: CF.TypeRef, certificateRef: SecCertificateRef, identityRef: ^SecIdentityRef) -> CF.OSStatus ---
 	}
 
-	@(link_name="SecIdentityCopyCertificate")
 	SecIdentityCopyCertificate :: proc(identityRef: SecIdentityRef, certificateRef: ^SecCertificateRef) -> CF.OSStatus ---
 
-	@(link_name="SecIdentityCopyPrivateKey")
 	SecIdentityCopyPrivateKey :: proc(identityRef: SecIdentityRef, privateKeyRef: ^SecKeyRef) -> CF.OSStatus ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecIdentityCopyPreference")
 		SecIdentityCopyPreference :: proc(name: CF.StringRef, keyUsage: CSSM_KEYUSE, validIssuers: CF.ArrayRef, identity: ^SecIdentityRef) -> CF.OSStatus ---
 
-		@(link_name="SecIdentityCopyPreferred")
 		SecIdentityCopyPreferred :: proc(name: CF.StringRef, keyUsage: CF.ArrayRef, validIssuers: CF.ArrayRef) -> SecIdentityRef ---
 
-		@(link_name="SecIdentitySetPreference")
 		SecIdentitySetPreference :: proc(identity: SecIdentityRef, name: CF.StringRef, keyUsage: CSSM_KEYUSE) -> CF.OSStatus ---
 
-		@(link_name="SecIdentitySetPreferred")
 		SecIdentitySetPreferred :: proc(identity: SecIdentityRef, name: CF.StringRef, keyUsage: CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecIdentityCopySystemIdentity")
 		SecIdentityCopySystemIdentity :: proc(domain: CF.StringRef, idRef: ^SecIdentityRef, actualDomain: ^CF.StringRef) -> CF.OSStatus ---
 
-		@(link_name="SecIdentitySetSystemIdentity")
 		SecIdentitySetSystemIdentity :: proc(domain: CF.StringRef, idRef: SecIdentityRef) -> CF.OSStatus ---
 	}
 
-	@(link_name="SecAccessControlGetTypeID")
 	SecAccessControlGetTypeID :: proc() -> CF.TypeID ---
 
-	@(link_name="SecAccessControlCreateWithFlags")
 	SecAccessControlCreateWithFlags :: proc(allocator: CF.AllocatorRef, protection: CF.TypeRef, flags: SecAccessControlCreateFlags, error: ^CF.ErrorRef) -> SecAccessControlRef ---
 
-	@(link_name="SecItemCopyMatching")
 	SecItemCopyMatching :: proc(query: CF.DictionaryRef, result: ^CF.TypeRef) -> CF.OSStatus ---
 
-	@(link_name="SecItemAdd")
 	SecItemAdd :: proc(attributes: CF.DictionaryRef, result: ^CF.TypeRef) -> CF.OSStatus ---
 
-	@(link_name="SecItemUpdate")
 	SecItemUpdate :: proc(query: CF.DictionaryRef, attributesToUpdate: CF.DictionaryRef) -> CF.OSStatus ---
 
-	@(link_name="SecItemDelete")
 	SecItemDelete :: proc(query: CF.DictionaryRef) -> CF.OSStatus ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecAccessGetTypeID")
 		SecAccessGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecAccessCreate")
 		SecAccessCreate :: proc(descriptor: CF.StringRef, trustedlist: CF.ArrayRef, accessRef: ^SecAccessRef) -> CF.OSStatus ---
 
-		@(link_name="SecAccessCreateFromOwnerAndACL")
 		SecAccessCreateFromOwnerAndACL :: proc(owner: ^cssm_acl_owner_prototype, aclCount: cffi.uint, acls: ^cssm_acl_entry_info, accessRef: ^SecAccessRef) -> CF.OSStatus ---
 
-		@(link_name="SecAccessCreateWithOwnerAndACL")
 		SecAccessCreateWithOwnerAndACL :: proc(userId: libc.uid_t, groupId: libc.gid_t, ownerType: SecAccessOwnerType, acls: CF.ArrayRef, error: ^CF.ErrorRef) -> SecAccessRef ---
 
-		@(link_name="SecAccessGetOwnerAndACL")
 		SecAccessGetOwnerAndACL :: proc(accessRef: SecAccessRef, owner: ^CSSM_ACL_OWNER_PROTOTYPE_PTR, aclCount: ^cffi.uint, acls: ^CSSM_ACL_ENTRY_INFO_PTR) -> CF.OSStatus ---
 
-		@(link_name="SecAccessCopyOwnerAndACL")
 		SecAccessCopyOwnerAndACL :: proc(accessRef: SecAccessRef, userId: ^libc.uid_t, groupId: ^libc.gid_t, ownerType: ^SecAccessOwnerType, aclList: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecAccessCopyACLList")
 		SecAccessCopyACLList :: proc(accessRef: SecAccessRef, aclList: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecAccessCopySelectedACLList")
 		SecAccessCopySelectedACLList :: proc(accessRef: SecAccessRef, action: CSSM_ACL_AUTHORIZATION_TAG, aclList: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecAccessCopyMatchingACLList")
 		SecAccessCopyMatchingACLList :: proc(accessRef: SecAccessRef, authorizationTag: CF.TypeRef) -> CF.ArrayRef ---
 	}
 
-	@(link_name="SecKeyGetTypeID")
 	SecKeyGetTypeID :: proc() -> CF.TypeID ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecKeyCreatePair")
 		SecKeyCreatePair :: proc(keychainRef: SecKeychainRef, algorithm: CSSM_ALGORITHMS, keySizeInBits: cffi.uint, contextHandle: CSSM_CC_HANDLE, publicKeyUsage: CSSM_KEYUSE, publicKeyAttr: cffi.uint, privateKeyUsage: CSSM_KEYUSE, privateKeyAttr: cffi.uint, initialAccess: SecAccessRef, publicKey: ^SecKeyRef, privateKey: ^SecKeyRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeyGenerate")
 		SecKeyGenerate :: proc(keychainRef: SecKeychainRef, algorithm: CSSM_ALGORITHMS, keySizeInBits: cffi.uint, contextHandle: CSSM_CC_HANDLE, keyUsage: CSSM_KEYUSE, keyAttr: cffi.uint, initialAccess: SecAccessRef, keyRef: ^SecKeyRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeyGetCSSMKey")
 		SecKeyGetCSSMKey :: proc(key: SecKeyRef, cssmKey: ^^cssm_key) -> CF.OSStatus ---
 
-		@(link_name="SecKeyGetCSPHandle")
 		SecKeyGetCSPHandle :: proc(keyRef: SecKeyRef, cspHandle: ^CSSM_CSP_HANDLE) -> CF.OSStatus ---
 
-		@(link_name="SecKeyGetCredentials")
 		SecKeyGetCredentials :: proc(keyRef: SecKeyRef, operation: CSSM_ACL_AUTHORIZATION_TAG, credentialType: SecCredentialType, outCredentials: ^^cssm_access_credentials) -> CF.OSStatus ---
 
-		@(link_name="SecKeyGenerateSymmetric")
 		SecKeyGenerateSymmetric :: proc(parameters: CF.DictionaryRef, error: ^CF.ErrorRef) -> SecKeyRef ---
 
-		@(link_name="SecKeyCreateFromData")
 		SecKeyCreateFromData :: proc(parameters: CF.DictionaryRef, keyData: CF.DataRef, error: ^CF.ErrorRef) -> SecKeyRef ---
 
-		@(link_name="SecKeyGeneratePairAsync")
 		SecKeyGeneratePairAsync :: proc(parameters: CF.DictionaryRef, deliveryQueue: CF.dispatch_queue_t, result: SecKeyGeneratePairBlock) ---
 
-		@(link_name="SecKeyDeriveFromPassword")
 		SecKeyDeriveFromPassword :: proc(password: CF.StringRef, parameters: CF.DictionaryRef, error: ^CF.ErrorRef) -> SecKeyRef ---
 
-		@(link_name="SecKeyWrapSymmetric")
 		SecKeyWrapSymmetric :: proc(keyToWrap: SecKeyRef, wrappingKey: SecKeyRef, parameters: CF.DictionaryRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-		@(link_name="SecKeyUnwrapSymmetric")
 		SecKeyUnwrapSymmetric :: proc(keyToUnwrap: ^CF.DataRef, unwrappingKey: SecKeyRef, parameters: CF.DictionaryRef, error: ^CF.ErrorRef) -> SecKeyRef ---
 	}
 
-	@(link_name="SecKeyGeneratePair")
 	SecKeyGeneratePair :: proc(parameters: CF.DictionaryRef, publicKey: ^SecKeyRef, privateKey: ^SecKeyRef) -> CF.OSStatus ---
 
-	@(link_name="SecKeyCreateRandomKey")
 	SecKeyCreateRandomKey :: proc(parameters: CF.DictionaryRef, error: ^CF.ErrorRef) -> SecKeyRef ---
 
-	@(link_name="SecKeyCreateWithData")
 	SecKeyCreateWithData :: proc(keyData: CF.DataRef, attributes: CF.DictionaryRef, error: ^CF.ErrorRef) -> SecKeyRef ---
 
-	@(link_name="SecKeyGetBlockSize")
 	SecKeyGetBlockSize :: proc(key: SecKeyRef) -> cffi.size_t ---
 
-	@(link_name="SecKeyCopyExternalRepresentation")
 	SecKeyCopyExternalRepresentation :: proc(key: SecKeyRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-	@(link_name="SecKeyCopyAttributes")
 	SecKeyCopyAttributes :: proc(key: SecKeyRef) -> CF.DictionaryRef ---
 
-	@(link_name="SecKeyCopyPublicKey")
 	SecKeyCopyPublicKey :: proc(key: SecKeyRef) -> SecKeyRef ---
 
-	@(link_name="SecKeyCreateSignature")
 	SecKeyCreateSignature :: proc(key: SecKeyRef, algorithm: SecKeyAlgorithm, dataToSign: CF.DataRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-	@(link_name="SecKeyVerifySignature")
 	SecKeyVerifySignature :: proc(key: SecKeyRef, algorithm: SecKeyAlgorithm, signedData: CF.DataRef, signature: CF.DataRef, error: ^CF.ErrorRef) -> CF.Boolean ---
 
-	@(link_name="SecKeyCreateEncryptedData")
 	SecKeyCreateEncryptedData :: proc(key: SecKeyRef, algorithm: SecKeyAlgorithm, plaintext: CF.DataRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-	@(link_name="SecKeyCreateDecryptedData")
 	SecKeyCreateDecryptedData :: proc(key: SecKeyRef, algorithm: SecKeyAlgorithm, ciphertext: CF.DataRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-	@(link_name="SecKeyCopyKeyExchangeResult")
 	SecKeyCopyKeyExchangeResult :: proc(privateKey: SecKeyRef, algorithm: SecKeyAlgorithm, publicKey: SecKeyRef, parameters: CF.DictionaryRef, error: ^CF.ErrorRef) -> CF.DataRef ---
 
-	@(link_name="SecKeyIsAlgorithmSupported")
 	SecKeyIsAlgorithmSupported :: proc(key: SecKeyRef, operation: SecKeyOperationType, algorithm: SecKeyAlgorithm) -> CF.Boolean ---
 
-	@(link_name="SecPolicyGetTypeID")
 	SecPolicyGetTypeID :: proc() -> CF.TypeID ---
 
-	@(link_name="SecPolicyCopyProperties")
 	SecPolicyCopyProperties :: proc(policyRef: SecPolicyRef) -> CF.DictionaryRef ---
 
-	@(link_name="SecPolicyCreateBasicX509")
 	SecPolicyCreateBasicX509 :: proc() -> SecPolicyRef ---
 
-	@(link_name="SecPolicyCreateSSL")
 	SecPolicyCreateSSL :: proc(server: CF.Boolean, hostname: CF.StringRef) -> SecPolicyRef ---
 
-	@(link_name="SecPolicyCreateRevocation")
 	SecPolicyCreateRevocation :: proc(revocationFlags: CF.OptionFlags) -> SecPolicyRef ---
 
-	@(link_name="SecPolicyCreateWithProperties")
 	SecPolicyCreateWithProperties :: proc(policyIdentifier: CF.TypeRef, properties: CF.DictionaryRef) -> SecPolicyRef ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecPolicyCreateWithOID")
 		SecPolicyCreateWithOID :: proc(policyOID: CF.TypeRef) -> SecPolicyRef ---
 
-		@(link_name="SecPolicyGetOID")
 		SecPolicyGetOID :: proc(policyRef: SecPolicyRef, oid: ^cssm_data) -> CF.OSStatus ---
 
-		@(link_name="SecPolicyGetValue")
 		SecPolicyGetValue :: proc(policyRef: SecPolicyRef, value: ^cssm_data) -> CF.OSStatus ---
 
-		@(link_name="SecPolicySetValue")
 		SecPolicySetValue :: proc(policyRef: SecPolicyRef, value: ^cssm_data) -> CF.OSStatus ---
 
-		@(link_name="SecPolicySetProperties")
 		SecPolicySetProperties :: proc(policyRef: SecPolicyRef, properties: CF.DictionaryRef) -> CF.OSStatus ---
 
-		@(link_name="SecPolicyGetTPHandle")
 		SecPolicyGetTPHandle :: proc(policyRef: SecPolicyRef, tpHandle: ^CSSM_TP_HANDLE) -> CF.OSStatus ---
 	}
 
-	@(link_name="SecRandomCopyBytes")
 	SecRandomCopyBytes :: proc(rnd: SecRandomRef, count: cffi.size_t, bytes: rawptr) -> cffi.int ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecKeychainGetTypeID")
 		SecKeychainGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecKeychainGetVersion")
 		SecKeychainGetVersion :: proc(returnVers: ^CF.UInt32) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainOpen")
 		SecKeychainOpen :: proc(pathName: cstring, keychain: ^SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainCreate")
 		SecKeychainCreate :: proc(pathName: cstring, passwordLength: CF.UInt32, password: rawptr, promptUser: CF.Boolean, initialAccess: SecAccessRef, keychain: ^SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainDelete")
 		SecKeychainDelete :: proc(keychainOrArray: SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetSettings")
 		SecKeychainSetSettings :: proc(keychain: SecKeychainRef, newSettings: ^SecKeychainSettings) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainCopySettings")
 		SecKeychainCopySettings :: proc(keychain: SecKeychainRef, outSettings: ^SecKeychainSettings) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainUnlock")
 		SecKeychainUnlock :: proc(keychain: SecKeychainRef, passwordLength: CF.UInt32, password: rawptr, usePassword: CF.Boolean) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainLock")
 		SecKeychainLock :: proc(keychain: SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainLockAll")
 		SecKeychainLockAll :: proc() -> CF.OSStatus ---
 
-		@(link_name="SecKeychainCopyDefault")
 		SecKeychainCopyDefault :: proc(keychain: ^SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetDefault")
 		SecKeychainSetDefault :: proc(keychain: SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainCopySearchList")
 		SecKeychainCopySearchList :: proc(searchList: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetSearchList")
 		SecKeychainSetSearchList :: proc(searchList: CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainCopyDomainDefault")
 		SecKeychainCopyDomainDefault :: proc(domain: SecPreferencesDomain, keychain: ^SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetDomainDefault")
 		SecKeychainSetDomainDefault :: proc(domain: SecPreferencesDomain, keychain: SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainCopyDomainSearchList")
 		SecKeychainCopyDomainSearchList :: proc(domain: SecPreferencesDomain, searchList: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetDomainSearchList")
 		SecKeychainSetDomainSearchList :: proc(domain: SecPreferencesDomain, searchList: CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetPreferenceDomain")
 		SecKeychainSetPreferenceDomain :: proc(domain: SecPreferencesDomain) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainGetPreferenceDomain")
 		SecKeychainGetPreferenceDomain :: proc(domain: ^SecPreferencesDomain) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainGetStatus")
 		SecKeychainGetStatus :: proc(keychain: SecKeychainRef, keychainStatus: ^SecKeychainStatus) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainGetPath")
 		SecKeychainGetPath :: proc(keychain: SecKeychainRef, ioPathLength: ^CF.UInt32, pathName: cstring) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainAttributeInfoForItemID")
 		SecKeychainAttributeInfoForItemID :: proc(keychain: SecKeychainRef, itemID: CF.UInt32, info: ^^SecKeychainAttributeInfo) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainFreeAttributeInfo")
 		SecKeychainFreeAttributeInfo :: proc(info: ^SecKeychainAttributeInfo) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainAddCallback")
 		SecKeychainAddCallback :: proc(callbackFunction: SecKeychainCallback, eventMask: SecKeychainEventMasks, userContext: rawptr) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainRemoveCallback")
 		SecKeychainRemoveCallback :: proc(callbackFunction: SecKeychainCallback) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainAddInternetPassword")
 		SecKeychainAddInternetPassword :: proc(keychain: SecKeychainRef, serverNameLength: CF.UInt32, serverName: cstring, securityDomainLength: CF.UInt32, securityDomain: cstring, accountNameLength: CF.UInt32, accountName: cstring, pathLength: CF.UInt32, path: cstring, port: CF.UInt16, protocol: SecProtocolType, authenticationType: SecAuthenticationType, passwordLength: CF.UInt32, passwordData: rawptr, itemRef: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainFindInternetPassword")
 		SecKeychainFindInternetPassword :: proc(keychainOrArray: CF.TypeRef, serverNameLength: CF.UInt32, serverName: cstring, securityDomainLength: CF.UInt32, securityDomain: cstring, accountNameLength: CF.UInt32, accountName: cstring, pathLength: CF.UInt32, path: cstring, port: CF.UInt16, protocol: SecProtocolType, authenticationType: SecAuthenticationType, passwordLength: ^CF.UInt32, passwordData: ^rawptr, itemRef: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainAddGenericPassword")
 		SecKeychainAddGenericPassword :: proc(keychain: SecKeychainRef, serviceNameLength: CF.UInt32, serviceName: cstring, accountNameLength: CF.UInt32, accountName: cstring, passwordLength: CF.UInt32, passwordData: rawptr, itemRef: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainFindGenericPassword")
 		SecKeychainFindGenericPassword :: proc(keychainOrArray: CF.TypeRef, serviceNameLength: CF.UInt32, serviceName: cstring, accountNameLength: CF.UInt32, accountName: cstring, passwordLength: ^CF.UInt32, passwordData: ^rawptr, itemRef: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetUserInteractionAllowed")
 		SecKeychainSetUserInteractionAllowed :: proc(state: CF.Boolean) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainGetUserInteractionAllowed")
 		SecKeychainGetUserInteractionAllowed :: proc(state: ^CF.Boolean) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainGetCSPHandle")
 		SecKeychainGetCSPHandle :: proc(keychain: SecKeychainRef, cspHandle: ^CSSM_CSP_HANDLE) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainGetDLDBHandle")
 		SecKeychainGetDLDBHandle :: proc(keychain: SecKeychainRef, dldbHandle: ^cssm_dl_db_handle) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainCopyAccess")
 		SecKeychainCopyAccess :: proc(keychain: SecKeychainRef, access: ^SecAccessRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSetAccess")
 		SecKeychainSetAccess :: proc(keychain: SecKeychainRef, access: SecAccessRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemExport")
 		SecKeychainItemExport :: proc(keychainItemOrArray: CF.TypeRef, outputFormat: SecExternalFormat, flags: SecItemImportExportFlags, keyParams: ^SecKeyImportExportParameters, exportedData: ^CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecItemExport")
 		SecItemExport :: proc(secItemOrArray: CF.TypeRef, outputFormat: SecExternalFormat, flags: SecItemImportExportFlags, keyParams: ^SecItemImportExportKeyParameters, exportedData: ^CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemImport")
 		SecKeychainItemImport :: proc(importedData: CF.DataRef, fileNameOrExtension: CF.StringRef, inputFormat: ^SecExternalFormat, itemType: ^SecExternalItemType, flags: SecItemImportExportFlags, keyParams: ^SecKeyImportExportParameters, importKeychain: SecKeychainRef, outItems: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecItemImport")
 		SecItemImport :: proc(importedData: CF.DataRef, fileNameOrExtension: CF.StringRef, inputFormat: ^SecExternalFormat, itemType: ^SecExternalItemType, flags: SecItemImportExportFlags, keyParams: ^SecItemImportExportKeyParameters, importKeychain: SecKeychainRef, outItems: ^CF.ArrayRef) -> CF.OSStatus ---
 	}
 
-	@(link_name="SecPKCS12Import")
 	SecPKCS12Import :: proc(pkcs12_data: CF.DataRef, options: CF.DictionaryRef, items: ^CF.ArrayRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustGetTypeID")
 	SecTrustGetTypeID :: proc() -> CF.TypeID ---
 
-	@(link_name="SecTrustCreateWithCertificates")
 	SecTrustCreateWithCertificates :: proc(certificates: CF.TypeRef, policies: CF.TypeRef, trust: ^SecTrustRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustSetPolicies")
 	SecTrustSetPolicies :: proc(trust: SecTrustRef, policies: CF.TypeRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustCopyPolicies")
 	SecTrustCopyPolicies :: proc(trust: SecTrustRef, policies: ^CF.ArrayRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustSetNetworkFetchAllowed")
 	SecTrustSetNetworkFetchAllowed :: proc(trust: SecTrustRef, allowFetch: CF.Boolean) -> CF.OSStatus ---
 
-	@(link_name="SecTrustGetNetworkFetchAllowed")
 	SecTrustGetNetworkFetchAllowed :: proc(trust: SecTrustRef, allowFetch: ^CF.Boolean) -> CF.OSStatus ---
 
-	@(link_name="SecTrustSetAnchorCertificates")
 	SecTrustSetAnchorCertificates :: proc(trust: SecTrustRef, anchorCertificates: CF.ArrayRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustSetAnchorCertificatesOnly")
 	SecTrustSetAnchorCertificatesOnly :: proc(trust: SecTrustRef, anchorCertificatesOnly: CF.Boolean) -> CF.OSStatus ---
 
-	@(link_name="SecTrustCopyCustomAnchorCertificates")
 	SecTrustCopyCustomAnchorCertificates :: proc(trust: SecTrustRef, anchors: ^CF.ArrayRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustSetVerifyDate")
 	SecTrustSetVerifyDate :: proc(trust: SecTrustRef, verifyDate: CF.DateRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustGetVerifyTime")
 	SecTrustGetVerifyTime :: proc(trust: SecTrustRef) -> CF.CFAbsoluteTime ---
 
-	@(link_name="SecTrustEvaluate")
 	SecTrustEvaluate :: proc(trust: SecTrustRef, result: ^SecTrustResultType) -> CF.OSStatus ---
 
-	@(link_name="SecTrustEvaluateAsync")
 	SecTrustEvaluateAsync :: proc(trust: SecTrustRef, queue: CF.dispatch_queue_t, result: SecTrustCallback) -> CF.OSStatus ---
 
-	@(link_name="SecTrustEvaluateWithError")
 	SecTrustEvaluateWithError :: proc(trust: SecTrustRef, error: ^CF.ErrorRef) -> cffi.bool ---
 
-	@(link_name="SecTrustEvaluateAsyncWithError")
 	SecTrustEvaluateAsyncWithError :: proc(trust: SecTrustRef, queue: CF.dispatch_queue_t, result: SecTrustWithErrorCallback) -> CF.OSStatus ---
 
-	@(link_name="SecTrustGetTrustResult")
 	SecTrustGetTrustResult :: proc(trust: SecTrustRef, result: ^SecTrustResultType) -> CF.OSStatus ---
 
-	@(link_name="SecTrustCopyPublicKey")
 	SecTrustCopyPublicKey :: proc(trust: SecTrustRef) -> SecKeyRef ---
 
-	@(link_name="SecTrustCopyKey")
 	SecTrustCopyKey :: proc(trust: SecTrustRef) -> SecKeyRef ---
 
-	@(link_name="SecTrustGetCertificateCount")
 	SecTrustGetCertificateCount :: proc(trust: SecTrustRef) -> CF.Index ---
 
-	@(link_name="SecTrustGetCertificateAtIndex")
 	SecTrustGetCertificateAtIndex :: proc(trust: SecTrustRef, ix: CF.Index) -> SecCertificateRef ---
 
-	@(link_name="SecTrustCopyExceptions")
 	SecTrustCopyExceptions :: proc(trust: SecTrustRef) -> CF.DataRef ---
 
-	@(link_name="SecTrustSetExceptions")
 	SecTrustSetExceptions :: proc(trust: SecTrustRef, exceptions: CF.DataRef) -> cffi.bool ---
 
-	@(link_name="SecTrustCopyProperties")
 	SecTrustCopyProperties :: proc(trust: SecTrustRef) -> CF.ArrayRef ---
 
-	@(link_name="SecTrustCopyResult")
 	SecTrustCopyResult :: proc(trust: SecTrustRef) -> CF.DictionaryRef ---
 
-	@(link_name="SecTrustSetOCSPResponse")
 	SecTrustSetOCSPResponse :: proc(trust: SecTrustRef, responseData: CF.TypeRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustSetSignedCertificateTimestamps")
 	SecTrustSetSignedCertificateTimestamps :: proc(trust: SecTrustRef, sctArray: CF.ArrayRef) -> CF.OSStatus ---
 
-	@(link_name="SecTrustCopyCertificateChain")
 	SecTrustCopyCertificateChain :: proc(trust: SecTrustRef) -> CF.ArrayRef ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="SecTrustSetOptions")
 		SecTrustSetOptions :: proc(trustRef: SecTrustRef, options: SecTrustOptionFlags) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSetParameters")
 		SecTrustSetParameters :: proc(trustRef: SecTrustRef, action: CSSM_TP_ACTION, actionData: CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSetKeychains")
 		SecTrustSetKeychains :: proc(trust: SecTrustRef, keychainOrArray: CF.TypeRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustGetResult")
 		SecTrustGetResult :: proc(trustRef: SecTrustRef, result: ^SecTrustResultType, certChain: ^CF.ArrayRef, statusChain: ^^CSSM_TP_APPLE_EVIDENCE_INFO) -> CF.OSStatus ---
 
-		@(link_name="SecTrustGetCssmResult")
 		SecTrustGetCssmResult :: proc(trust: SecTrustRef, result: ^CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CF.OSStatus ---
 
-		@(link_name="SecTrustGetCssmResultCode")
 		SecTrustGetCssmResultCode :: proc(trust: SecTrustRef, resultCode: ^CF.OSStatus) -> CF.OSStatus ---
 
-		@(link_name="SecTrustGetTPHandle")
 		SecTrustGetTPHandle :: proc(trust: SecTrustRef, handle: ^CSSM_TP_HANDLE) -> CF.OSStatus ---
 
-		@(link_name="SecTrustCopyAnchorCertificates")
 		SecTrustCopyAnchorCertificates :: proc(anchors: ^CF.ArrayRef) -> CF.OSStatus ---
 	}
 
-	@(link_name="SecAddSharedWebCredential")
 	SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: ^Objc_Block(proc "c" ( error: CF.ErrorRef ))) ---
 
-	@(link_name="SecRequestSharedWebCredential")
 	SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: ^Objc_Block(proc "c" ( credentials: CF.ArrayRef, error: CF.ErrorRef ))) ---
 
-	@(link_name="SecCreateSharedWebCredentialPassword")
 	SecCreateSharedWebCredentialPassword :: proc() -> CF.StringRef ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="AuthorizationCreate")
 		AuthorizationCreate :: proc(rights: ^AuthorizationRights, environment: ^AuthorizationEnvironment, flags: AuthorizationFlags, authorization: ^AuthorizationRef) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationFree")
 		AuthorizationFree :: proc(authorization: AuthorizationRef, flags: AuthorizationFlags) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationCopyRights")
 		AuthorizationCopyRights :: proc(authorization: AuthorizationRef, rights: ^AuthorizationRights, environment: ^AuthorizationEnvironment, flags: AuthorizationFlags, authorizedRights: ^^AuthorizationRights) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationCopyRightsAsync")
 		AuthorizationCopyRightsAsync :: proc(authorization: AuthorizationRef, rights: ^AuthorizationRights, environment: ^AuthorizationEnvironment, flags: AuthorizationFlags, callbackBlock: AuthorizationAsyncCallback) ---
 
-		@(link_name="AuthorizationCopyInfo")
 		AuthorizationCopyInfo :: proc(authorization: AuthorizationRef, tag: AuthorizationString, info: ^^AuthorizationItemSet) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationMakeExternalForm")
 		AuthorizationMakeExternalForm :: proc(authorization: AuthorizationRef, extForm: ^AuthorizationExternalForm) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationCreateFromExternalForm")
 		AuthorizationCreateFromExternalForm :: proc(extForm: ^AuthorizationExternalForm, authorization: ^AuthorizationRef) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationFreeItemSet")
 		AuthorizationFreeItemSet :: proc(set: ^AuthorizationItemSet) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationExecuteWithPrivileges")
 		AuthorizationExecuteWithPrivileges :: proc(authorization: AuthorizationRef, pathToTool: cstring, options: AuthorizationFlags, arguments: ^cstring, communicationsPipe: ^^libc.__sFILE) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationCopyPrivilegedReference")
 		AuthorizationCopyPrivilegedReference :: proc(authorization: ^AuthorizationRef, flags: AuthorizationFlags) -> CF.OSStatus ---
 
-		@(link_name="SessionGetInfo")
 		SessionGetInfo :: proc(session: SecuritySessionId, sessionId: ^SecuritySessionId, attributes: ^SessionAttributeBits) -> CF.OSStatus ---
 
-		@(link_name="SessionCreate")
 		SessionCreate :: proc(flags: SessionCreationFlags, attributes: SessionAttributeBits) -> CF.OSStatus ---
 
-		@(link_name="SecACLGetTypeID")
 		SecACLGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecACLCreateFromSimpleContents")
 		SecACLCreateFromSimpleContents :: proc(access: SecAccessRef, applicationList: CF.ArrayRef, description: CF.StringRef, promptSelector: ^cssm_acl_keychain_prompt_selector, newAcl: ^SecACLRef) -> CF.OSStatus ---
 
-		@(link_name="SecACLCreateWithSimpleContents")
 		SecACLCreateWithSimpleContents :: proc(access: SecAccessRef, applicationList: CF.ArrayRef, description: CF.StringRef, promptSelector: SecKeychainPromptSelector, newAcl: ^SecACLRef) -> CF.OSStatus ---
 
-		@(link_name="SecACLRemove")
 		SecACLRemove :: proc(aclRef: SecACLRef) -> CF.OSStatus ---
 
-		@(link_name="SecACLCopySimpleContents")
 		SecACLCopySimpleContents :: proc(acl: SecACLRef, applicationList: ^CF.ArrayRef, description: ^CF.StringRef, promptSelector: ^cssm_acl_keychain_prompt_selector) -> CF.OSStatus ---
 
-		@(link_name="SecACLCopyContents")
 		SecACLCopyContents :: proc(acl: SecACLRef, applicationList: ^CF.ArrayRef, description: ^CF.StringRef, promptSelector: ^SecKeychainPromptSelector) -> CF.OSStatus ---
 
-		@(link_name="SecACLSetSimpleContents")
 		SecACLSetSimpleContents :: proc(acl: SecACLRef, applicationList: CF.ArrayRef, description: CF.StringRef, promptSelector: ^cssm_acl_keychain_prompt_selector) -> CF.OSStatus ---
 
-		@(link_name="SecACLSetContents")
 		SecACLSetContents :: proc(acl: SecACLRef, applicationList: CF.ArrayRef, description: CF.StringRef, promptSelector: SecKeychainPromptSelector) -> CF.OSStatus ---
 
-		@(link_name="SecACLGetAuthorizations")
 		SecACLGetAuthorizations :: proc(acl: SecACLRef, tags: ^CSSM_ACL_AUTHORIZATION_TAG, tagCount: ^cffi.uint) -> CF.OSStatus ---
 
-		@(link_name="SecACLCopyAuthorizations")
 		SecACLCopyAuthorizations :: proc(acl: SecACLRef) -> CF.ArrayRef ---
 
-		@(link_name="SecACLSetAuthorizations")
 		SecACLSetAuthorizations :: proc(acl: SecACLRef, tags: ^CSSM_ACL_AUTHORIZATION_TAG, tagCount: cffi.uint) -> CF.OSStatus ---
 
-		@(link_name="SecACLUpdateAuthorizations")
 		SecACLUpdateAuthorizations :: proc(acl: SecACLRef, authorizations: CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecIdentitySearchGetTypeID")
 		SecIdentitySearchGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecIdentitySearchCreate")
 		SecIdentitySearchCreate :: proc(keychainOrArray: CF.TypeRef, keyUsage: CSSM_KEYUSE, searchRef: ^SecIdentitySearchRef) -> CF.OSStatus ---
 
-		@(link_name="SecIdentitySearchCopyNext")
 		SecIdentitySearchCopyNext :: proc(searchRef: SecIdentitySearchRef, identity: ^SecIdentityRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemGetTypeID")
 		SecKeychainItemGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecKeychainItemModifyAttributesAndData")
 		SecKeychainItemModifyAttributesAndData :: proc(itemRef: SecKeychainItemRef, attrList: ^SecKeychainAttributeList, length: CF.UInt32, data: rawptr) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCreateFromContent")
 		SecKeychainItemCreateFromContent :: proc(itemClass: SecItemClass, attrList: ^SecKeychainAttributeList, length: CF.UInt32, data: rawptr, keychainRef: SecKeychainRef, initialAccess: SecAccessRef, itemRef: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemModifyContent")
 		SecKeychainItemModifyContent :: proc(itemRef: SecKeychainItemRef, attrList: ^SecKeychainAttributeList, length: CF.UInt32, data: rawptr) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCopyContent")
 		SecKeychainItemCopyContent :: proc(itemRef: SecKeychainItemRef, itemClass: ^SecItemClass, attrList: ^SecKeychainAttributeList, length: ^CF.UInt32, outData: ^rawptr) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemFreeContent")
 		SecKeychainItemFreeContent :: proc(attrList: ^SecKeychainAttributeList, data: rawptr) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCopyAttributesAndData")
 		SecKeychainItemCopyAttributesAndData :: proc(itemRef: SecKeychainItemRef, info: ^SecKeychainAttributeInfo, itemClass: ^SecItemClass, attrList: ^^SecKeychainAttributeList, length: ^CF.UInt32, outData: ^rawptr) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemFreeAttributesAndData")
 		SecKeychainItemFreeAttributesAndData :: proc(attrList: ^SecKeychainAttributeList, data: rawptr) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemDelete")
 		SecKeychainItemDelete :: proc(itemRef: SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCopyKeychain")
 		SecKeychainItemCopyKeychain :: proc(itemRef: SecKeychainItemRef, keychainRef: ^SecKeychainRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCreateCopy")
 		SecKeychainItemCreateCopy :: proc(itemRef: SecKeychainItemRef, destKeychainRef: SecKeychainRef, initialAccess: SecAccessRef, itemCopy: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCreatePersistentReference")
 		SecKeychainItemCreatePersistentReference :: proc(itemRef: SecKeychainItemRef, persistentItemRef: ^CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCopyFromPersistentReference")
 		SecKeychainItemCopyFromPersistentReference :: proc(persistentItemRef: CF.DataRef, itemRef: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemGetDLDBHandle")
 		SecKeychainItemGetDLDBHandle :: proc(keyItemRef: SecKeychainItemRef, dldbHandle: ^cssm_dl_db_handle) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemGetUniqueRecordID")
 		SecKeychainItemGetUniqueRecordID :: proc(itemRef: SecKeychainItemRef, uniqueRecordID: ^^cssm_db_unique_record) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemCopyAccess")
 		SecKeychainItemCopyAccess :: proc(itemRef: SecKeychainItemRef, access: ^SecAccessRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainItemSetAccess")
 		SecKeychainItemSetAccess :: proc(itemRef: SecKeychainItemRef, access: SecAccessRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSearchGetTypeID")
 		SecKeychainSearchGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecKeychainSearchCreateFromAttributes")
 		SecKeychainSearchCreateFromAttributes :: proc(keychainOrArray: CF.TypeRef, itemClass: SecItemClass, attrList: ^SecKeychainAttributeList, searchRef: ^SecKeychainSearchRef) -> CF.OSStatus ---
 
-		@(link_name="SecKeychainSearchCopyNext")
 		SecKeychainSearchCopyNext :: proc(searchRef: SecKeychainSearchRef, itemRef: ^SecKeychainItemRef) -> CF.OSStatus ---
 
-		@(link_name="SecPolicySearchGetTypeID")
 		SecPolicySearchGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecPolicySearchCreate")
 		SecPolicySearchCreate :: proc(certType: CSSM_CERT_TYPE, policyOID: ^cssm_data, value: ^cssm_data, searchRef: ^SecPolicySearchRef) -> CF.OSStatus ---
 
-		@(link_name="SecPolicySearchCopyNext")
 		SecPolicySearchCopyNext :: proc(searchRef: SecPolicySearchRef, policyRef: ^SecPolicyRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustedApplicationGetTypeID")
 		SecTrustedApplicationGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecTrustedApplicationCreateFromPath")
 		SecTrustedApplicationCreateFromPath :: proc(path: cstring, app: ^SecTrustedApplicationRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustedApplicationCopyData")
 		SecTrustedApplicationCopyData :: proc(appRef: SecTrustedApplicationRef, data: ^CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustedApplicationSetData")
 		SecTrustedApplicationSetData :: proc(appRef: SecTrustedApplicationRef, data: CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSettingsCopyTrustSettings")
 		SecTrustSettingsCopyTrustSettings :: proc(certRef: SecCertificateRef, domain: SecTrustSettingsDomain, trustSettings: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSettingsSetTrustSettings")
 		SecTrustSettingsSetTrustSettings :: proc(certRef: SecCertificateRef, domain: SecTrustSettingsDomain, trustSettingsDictOrArray: CF.TypeRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSettingsRemoveTrustSettings")
 		SecTrustSettingsRemoveTrustSettings :: proc(certRef: SecCertificateRef, domain: SecTrustSettingsDomain) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSettingsCopyCertificates")
 		SecTrustSettingsCopyCertificates :: proc(domain: SecTrustSettingsDomain, certArray: ^CF.ArrayRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSettingsCopyModificationDate")
 		SecTrustSettingsCopyModificationDate :: proc(certRef: SecCertificateRef, domain: SecTrustSettingsDomain, modificationDate: ^CF.DateRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSettingsCreateExternalRepresentation")
 		SecTrustSettingsCreateExternalRepresentation :: proc(domain: SecTrustSettingsDomain, trustSettings: ^CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecTrustSettingsImportExternalRepresentation")
 		SecTrustSettingsImportExternalRepresentation :: proc(domain: SecTrustSettingsDomain, trustSettings: CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecStaticCodeGetTypeID")
 		SecStaticCodeGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecStaticCodeCreateWithPath")
 		SecStaticCodeCreateWithPath :: proc(path: CF.URLRef, flags: SecCSFlags, staticCode: ^SecStaticCodeRef) -> CF.OSStatus ---
 
-		@(link_name="SecStaticCodeCreateWithPathAndAttributes")
 		SecStaticCodeCreateWithPathAndAttributes :: proc(path: CF.URLRef, flags: SecCSFlags, attributes: CF.DictionaryRef, staticCode: ^SecStaticCodeRef) -> CF.OSStatus ---
 
-		@(link_name="SecStaticCodeCheckValidity")
 		SecStaticCodeCheckValidity :: proc(staticCode: SecStaticCodeRef, flags: SecCSFlags, requirement: SecRequirementRef) -> CF.OSStatus ---
 
-		@(link_name="SecStaticCodeCheckValidityWithErrors")
 		SecStaticCodeCheckValidityWithErrors :: proc(staticCode: SecStaticCodeRef, flags: SecCSFlags, requirement: SecRequirementRef, errors: ^CF.ErrorRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeGetTypeID")
 		SecCodeGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecCodeCopySelf")
 		SecCodeCopySelf :: proc(flags: SecCSFlags, self: ^SecCodeRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCopyStaticCode")
 		SecCodeCopyStaticCode :: proc(code: SecCodeRef, flags: SecCSFlags, staticCode: ^SecStaticCodeRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCopyHost")
 		SecCodeCopyHost :: proc(guest: SecCodeRef, flags: SecCSFlags, host: ^SecCodeRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCopyGuestWithAttributes")
 		SecCodeCopyGuestWithAttributes :: proc(host: SecCodeRef, attributes: CF.DictionaryRef, flags: SecCSFlags, guest: ^SecCodeRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCreateWithXPCMessage")
 		SecCodeCreateWithXPCMessage :: proc(message: xpc_object_t, flags: SecCSFlags, target: ^SecCodeRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCheckValidity")
 		SecCodeCheckValidity :: proc(code: SecCodeRef, flags: SecCSFlags, requirement: SecRequirementRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCheckValidityWithErrors")
 		SecCodeCheckValidityWithErrors :: proc(code: SecCodeRef, flags: SecCSFlags, requirement: SecRequirementRef, errors: ^CF.ErrorRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeValidateFileResource")
 		SecCodeValidateFileResource :: proc(code: SecStaticCodeRef, relativePath: CF.StringRef, fileData: CF.DataRef, flags: SecCSFlags) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCopyPath")
 		SecCodeCopyPath :: proc(staticCode: SecStaticCodeRef, flags: SecCSFlags, path: ^CF.URLRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCopyDesignatedRequirement")
 		SecCodeCopyDesignatedRequirement :: proc(code: SecStaticCodeRef, flags: SecCSFlags, requirement: ^SecRequirementRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeCopySigningInformation")
 		SecCodeCopySigningInformation :: proc(code: SecStaticCodeRef, flags: SecCSFlags, information: ^CF.DictionaryRef) -> CF.OSStatus ---
 
-		@(link_name="SecCodeMapMemory")
 		SecCodeMapMemory :: proc(code: SecStaticCodeRef, flags: SecCSFlags) -> CF.OSStatus ---
 
-		@(link_name="SecHostCreateGuest")
 		SecHostCreateGuest :: proc(host: SecGuestRef, status: cffi.uint32_t, path: CF.URLRef, attributes: CF.DictionaryRef, flags: SecCSFlags, newGuest: ^SecGuestRef) -> CF.OSStatus ---
 
-		@(link_name="SecHostRemoveGuest")
 		SecHostRemoveGuest :: proc(host: SecGuestRef, guest: SecGuestRef, flags: SecCSFlags) -> CF.OSStatus ---
 
-		@(link_name="SecHostSelectGuest")
 		SecHostSelectGuest :: proc(guestRef: SecGuestRef, flags: SecCSFlags) -> CF.OSStatus ---
 
-		@(link_name="SecHostSelectedGuest")
 		SecHostSelectedGuest :: proc(flags: SecCSFlags, guestRef: ^SecGuestRef) -> CF.OSStatus ---
 
-		@(link_name="SecHostSetGuestStatus")
 		SecHostSetGuestStatus :: proc(guestRef: SecGuestRef, status: cffi.uint32_t, attributes: CF.DictionaryRef, flags: SecCSFlags) -> CF.OSStatus ---
 
-		@(link_name="SecHostSetHostingPort")
 		SecHostSetHostingPort :: proc(hostingPort: mach.port_t, flags: SecCSFlags) -> CF.OSStatus ---
 
-		@(link_name="SecRequirementGetTypeID")
 		SecRequirementGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecRequirementCreateWithData")
 		SecRequirementCreateWithData :: proc(data: CF.DataRef, flags: SecCSFlags, requirement: ^SecRequirementRef) -> CF.OSStatus ---
 
-		@(link_name="SecRequirementCreateWithString")
 		SecRequirementCreateWithString :: proc(text: CF.StringRef, flags: SecCSFlags, requirement: ^SecRequirementRef) -> CF.OSStatus ---
 
-		@(link_name="SecRequirementCreateWithStringAndErrors")
 		SecRequirementCreateWithStringAndErrors :: proc(text: CF.StringRef, flags: SecCSFlags, errors: ^CF.ErrorRef, requirement: ^SecRequirementRef) -> CF.OSStatus ---
 
-		@(link_name="SecRequirementCopyData")
 		SecRequirementCopyData :: proc(requirement: SecRequirementRef, flags: SecCSFlags, data: ^CF.DataRef) -> CF.OSStatus ---
 
-		@(link_name="SecRequirementCopyString")
 		SecRequirementCopyString :: proc(requirement: SecRequirementRef, flags: SecCSFlags, text: ^CF.StringRef) -> CF.OSStatus ---
 
-		@(link_name="SecTaskGetTypeID")
 		SecTaskGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecTaskCreateWithAuditToken")
 		SecTaskCreateWithAuditToken :: proc(allocator: CF.AllocatorRef, token: mach.audit_token_t) -> SecTaskRef ---
 
-		@(link_name="SecTaskCreateFromSelf")
 		SecTaskCreateFromSelf :: proc(allocator: CF.AllocatorRef) -> SecTaskRef ---
 
-		@(link_name="SecTaskCopyValueForEntitlement")
 		SecTaskCopyValueForEntitlement :: proc(task: SecTaskRef, entitlement: CF.StringRef, error: ^CF.ErrorRef) -> CF.TypeRef ---
 
-		@(link_name="SecTaskCopyValuesForEntitlements")
 		SecTaskCopyValuesForEntitlements :: proc(task: SecTaskRef, entitlements: CF.ArrayRef, error: ^CF.ErrorRef) -> CF.DictionaryRef ---
 
-		@(link_name="SecTaskCopySigningIdentifier")
 		SecTaskCopySigningIdentifier :: proc(task: SecTaskRef, error: ^CF.ErrorRef) -> CF.StringRef ---
 
-		@(link_name="SecTaskGetCodeSignStatus")
 		SecTaskGetCodeSignStatus :: proc(task: SecTaskRef) -> cffi.uint32_t ---
 
-		@(link_name="AuthorizationRightGet")
 		AuthorizationRightGet :: proc(rightName: cstring, rightDefinition: ^CF.DictionaryRef) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationRightSet")
 		AuthorizationRightSet :: proc(authRef: AuthorizationRef, rightName: cstring, rightDefinition: CF.TypeRef, descriptionKey: CF.StringRef, bundle: CF.BundleRef, localeTableName: CF.StringRef) -> CF.OSStatus ---
 
-		@(link_name="AuthorizationRightRemove")
 		AuthorizationRightRemove :: proc(authRef: AuthorizationRef, rightName: cstring) -> CF.OSStatus ---
 
-		@(link_name="SecTransformGetTypeID")
 		SecTransformGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecGroupTransformGetTypeID")
 		SecGroupTransformGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecTransformCreateFromExternalRepresentation")
 		SecTransformCreateFromExternalRepresentation :: proc(dictionary: CF.DictionaryRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecTransformCopyExternalRepresentation")
 		SecTransformCopyExternalRepresentation :: proc(transformRef: SecTransformRef) -> CF.DictionaryRef ---
 
-		@(link_name="SecTransformCreateGroupTransform")
 		SecTransformCreateGroupTransform :: proc() -> SecGroupTransformRef ---
 
-		@(link_name="SecTransformConnectTransforms")
 		SecTransformConnectTransforms :: proc(sourceTransformRef: SecTransformRef, sourceAttributeName: CF.StringRef, destinationTransformRef: SecTransformRef, destinationAttributeName: CF.StringRef, group: SecGroupTransformRef, error: ^CF.ErrorRef) -> SecGroupTransformRef ---
 
-		@(link_name="SecTransformSetAttribute")
 		SecTransformSetAttribute :: proc(transformRef: SecTransformRef, key: CF.StringRef, value: CF.TypeRef, error: ^CF.ErrorRef) -> CF.Boolean ---
 
-		@(link_name="SecTransformGetAttribute")
 		SecTransformGetAttribute :: proc(transformRef: SecTransformRef, key: CF.StringRef) -> CF.TypeRef ---
 
-		@(link_name="SecTransformFindByName")
 		SecTransformFindByName :: proc(transform: SecGroupTransformRef, name: CF.StringRef) -> SecTransformRef ---
 
-		@(link_name="SecTransformExecute")
 		SecTransformExecute :: proc(transformRef: SecTransformRef, errorRef: ^CF.ErrorRef) -> CF.TypeRef ---
 
-		@(link_name="SecTransformExecuteAsync")
 		SecTransformExecuteAsync :: proc(transformRef: SecTransformRef, deliveryQueue: CF.dispatch_queue_t, deliveryBlock: SecMessageBlock) ---
 
-		@(link_name="SecTransformSetAttributeAction")
 		SecTransformSetAttributeAction :: proc(ref: SecTransformImplementationRef, action: CF.StringRef, attribute: SecTransformStringOrAttributeRef, newAction: SecTransformAttributeActionBlock) -> CF.ErrorRef ---
 
-		@(link_name="SecTransformSetDataAction")
 		SecTransformSetDataAction :: proc(ref: SecTransformImplementationRef, action: CF.StringRef, newAction: SecTransformDataBlock) -> CF.ErrorRef ---
 
-		@(link_name="SecTransformSetTransformAction")
 		SecTransformSetTransformAction :: proc(ref: SecTransformImplementationRef, action: CF.StringRef, newAction: SecTransformActionBlock) -> CF.ErrorRef ---
 
-		@(link_name="SecTranformCustomGetAttribute")
 		SecTranformCustomGetAttribute :: proc(ref: SecTransformImplementationRef, attribute: SecTransformStringOrAttributeRef, type: SecTransformMetaAttributeType) -> CF.TypeRef ---
 
-		@(link_name="SecTransformCustomGetAttribute")
 		SecTransformCustomGetAttribute :: proc(ref: SecTransformImplementationRef, attribute: SecTransformStringOrAttributeRef, type: SecTransformMetaAttributeType) -> CF.TypeRef ---
 
-		@(link_name="SecTransformCustomSetAttribute")
 		SecTransformCustomSetAttribute :: proc(ref: SecTransformImplementationRef, attribute: SecTransformStringOrAttributeRef, type: SecTransformMetaAttributeType, value: CF.TypeRef) -> CF.TypeRef ---
 
-		@(link_name="SecTransformPushbackAttribute")
 		SecTransformPushbackAttribute :: proc(ref: SecTransformImplementationRef, attribute: SecTransformStringOrAttributeRef, value: CF.TypeRef) -> CF.TypeRef ---
 
-		@(link_name="SecTransformRegister")
 		SecTransformRegister :: proc(uniqueName: CF.StringRef, createTransformFunction: SecTransformCreateFP, error: ^CF.ErrorRef) -> CF.Boolean ---
 
-		@(link_name="SecTransformCreate")
 		SecTransformCreate :: proc(name: CF.StringRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecTransformNoData")
 		SecTransformNoData :: proc() -> CF.TypeRef ---
 
-		@(link_name="SecEncodeTransformCreate")
 		SecEncodeTransformCreate :: proc(encodeType: CF.TypeRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecDecodeTransformCreate")
 		SecDecodeTransformCreate :: proc(DecodeType: CF.TypeRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecDigestTransformCreate")
 		SecDigestTransformCreate :: proc(digestType: CF.TypeRef, digestLength: CF.Index, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecDigestTransformGetTypeID")
 		SecDigestTransformGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecEncryptTransformCreate")
 		SecEncryptTransformCreate :: proc(keyRef: SecKeyRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecDecryptTransformCreate")
 		SecDecryptTransformCreate :: proc(keyRef: SecKeyRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecDecryptTransformGetTypeID")
 		SecDecryptTransformGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecEncryptTransformGetTypeID")
 		SecEncryptTransformGetTypeID :: proc() -> CF.TypeID ---
 
-		@(link_name="SecSignTransformCreate")
 		SecSignTransformCreate :: proc(key: SecKeyRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecVerifyTransformCreate")
 		SecVerifyTransformCreate :: proc(key: SecKeyRef, signature: CF.DataRef, error: ^CF.ErrorRef) -> SecTransformRef ---
 
-		@(link_name="SecTransformCreateReadTransformWithReadStream")
 		SecTransformCreateReadTransformWithReadStream :: proc(inputStream: CF.ReadStreamRef) -> SecTransformRef ---
 	}
 }

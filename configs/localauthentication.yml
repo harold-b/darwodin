@@ -42,7 +42,7 @@ Odin:
   Packages:
     - Name  : LocalAuthentication
       Export: LA
-      DarwinLinkLibs: [system:LocalAuthentication.framework]
+      LinkLibs: [system:LocalAuthentication.framework]
       RequiredLink: true
       Filter: .*
 

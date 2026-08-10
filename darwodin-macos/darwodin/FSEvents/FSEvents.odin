@@ -15,11 +15,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-    @(export, require)
-    foreign import lib {
-        "system:CoreServices.framework",
-    }
+@(export, require)
+foreign import lib {
+    "system:CoreServices.framework",
 }
 
 

@@ -10,7 +10,6 @@ import NS "../AppKit"
 import MTL "../Metal"
 import MDL "../ModelIO"
 
-// +auto-text-begin
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
 Class         :: ^intrinsics.objc_class
@@ -18,17 +17,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-    @(export)
-    foreign import lib {
-        "system:MetalKit.framework",
-    }
+@(export)
+foreign import lib {
+    "system:MetalKit.framework",
 }
 
 
-// -auto-text-end
-// +user-text-begin
-// -user-text-end
 
 
 foreign lib {

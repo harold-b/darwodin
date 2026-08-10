@@ -61,7 +61,7 @@ DistinctTypeDefs = [
 [[Odin.Packages]]
 Name           = 'AVFoundation'
 Export         = 'AV'
-DarwinLinkLibs = ['system:AVFoundation.framework']
+LinkLibs       = ['system:AVFoundation.framework']
 Filter         = '.*'
 
 Imports = ["""

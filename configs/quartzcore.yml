@@ -55,7 +55,7 @@ Odin:
   Packages:
     - Name  : QuartzCore
       Export: CA
-      DarwinLinkLibs: [system:QuartzCore.framework]
+      LinkLibs: [system:QuartzCore.framework]
       RequiredLink: true
       Filter: .*
 

@@ -48,7 +48,7 @@ Odin:
   Packages:
     - Name  : MetalFX
       Export: MTLFX
-      DarwinLinkLibs: [system:MetalFX.framework]
+      LinkLibs: [system:MetalFX.framework]
       Filter: .*
 
       Imports:

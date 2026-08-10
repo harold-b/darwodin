@@ -81,7 +81,7 @@ Odin:
   Packages:
     - Name  : Foundation
       Export: NS
-      DarwinLinkLibs: [system:Foundation.framework]
+      LinkLibs: [system:Foundation.framework]
       RequiredLink: true
       Filter: .*
 

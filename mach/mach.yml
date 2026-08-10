@@ -103,7 +103,7 @@ Odin:
     - Name  : mach
       Filter: .*
       Export: mach
-      DarwinLinkLibs: [system:System]
+      LinkLibs: [system:System]
       # WindowsLinkLibs: [lib/windows/libclang.dll]
       # LinuxLinkLibs: [lib/linux/libclang.so]
       RequiredLink: true

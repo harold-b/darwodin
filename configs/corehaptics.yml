@@ -41,7 +41,7 @@ Odin:
   Packages:
     - Name  : CoreHaptics
       Export: CH
-      DarwinLinkLibs: [system:CoreHaptics.framework]
+      LinkLibs: [system:CoreHaptics.framework]
       Filter: .*
 
       Imports:

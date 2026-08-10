@@ -42,7 +42,7 @@ Odin:
   Packages:
     - Name  : GameKit
       Export: GK
-      DarwinLinkLibs: [system:GameKit.framework]
+      LinkLibs: [system:GameKit.framework]
       Filter: .*
 
       Imports:

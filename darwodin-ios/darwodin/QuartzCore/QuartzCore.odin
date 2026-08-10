@@ -17,11 +17,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-    @(export, require)
-    foreign import lib {
-        "system:QuartzCore.framework",
-    }
+@(export, require)
+foreign import lib {
+    "system:QuartzCore.framework",
 }
 
 

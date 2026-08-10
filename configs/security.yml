@@ -64,7 +64,7 @@ Odin:
   Packages:
     - Name  : Security
       Export: Sec
-      DarwinLinkLibs: [system:Security.framework]
+      LinkLibs: [system:Security.framework]
       Filter: .*
 
       Imports:

@@ -3,12 +3,18 @@ set -eo pipefail
 _script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd "${_script_dir}"
 
+if (( BASH_VERSINFO[0] < 5 || (BASH_VERSINFO[0] == 5 && BASH_VERSINFO[1] < 1) )); then
+  echo "Bash version >= 5.1 is required. Have $BASH_VERSION"
+  echo "Install bash via brew"
+  exit 1
+fi
+
 frameworks=()
 use_ios=
 lite=
 cgen_args=()
 
-while true; do
+while (( $# > 0 )); do
   case $1 in
     -i|-ios)
       use_ios=1
@@ -36,6 +42,8 @@ if [[ 0 -eq ${#frameworks[@]} ]]; then
 fi
 
 source ./config
+source ./atom_print
+
 
 out_folder=$(darwodin_get_output_folder "${use_ios}" "${lite}")
 appkit=AppKit
@@ -63,52 +71,84 @@ if [[ ${use_ios} -eq 1 ]]; then
   )
 fi
 
-
 out_path=../${out_folder}
-for f in ${frameworks[@]}; do
-    f=$(darwodin_filter_framework $f $use_ios)
-    echo "$f"
 
-    framework_lower="$(echo $f | tr '[:upper:]' '[:lower:]')"
+function bind_framework() {
+  local framework_index=$1
+  local f="${frameworks[$framework_index]}"
 
-    framework_cfg="configs/${framework_lower}.yml"
-    if [[ -e "configs/${framework_lower}.toml" ]]; then
-      framework_cfg="configs/${framework_lower}.toml"
+  f=$(darwodin_filter_framework $f $use_ios)
+  atom_print "$f"
+
+  # lowercase
+  local framework_lower="${f,,}"
+
+  local framework_cfg="configs/${framework_lower}.yml"
+  if [[ -e "configs/${framework_lower}.toml" ]]; then
+    framework_cfg="configs/${framework_lower}.toml"
+  fi
+
+  # Check ios-specific version
+  if [[ ${use_ios} -eq 1 ]]; then
+    local framework_cfg_ios_toml="configs/${framework_lower}_ios.toml"
+    local framework_cfg_ios_yaml="configs/${framework_lower}_ios.yml"
+
+    if [[ -e "${framework_cfg_ios_toml}" ]]; then
+      framework_cfg=$framework_cfg_ios_toml
+    elif [[ -e "${framework_cfg_ios_yaml}" ]]; then
+      framework_cfg=$framework_cfg_ios_yaml
     fi
+  fi
 
-    # Check ios-specific version
-    if [[ ${use_ios} -eq 1 ]]; then
-      framework_cfg_ios_toml="configs/${framework_lower}_ios.toml"
-      framework_cfg_ios_yaml="configs/${framework_lower}_ios.yml"
+  local args=()
+  if [[ ${use_ios} -eq 1 ]]; then
+    args=(--def definitions/ios/${framework_lower}.json)
+  fi
 
-      if [[ -e "${framework_cfg_ios_toml}" ]]; then
-        framework_cfg=$framework_cfg_ios_toml
-      elif [[ -e "${framework_cfg_ios_yaml}" ]]; then
-        framework_cfg=$framework_cfg_ios_yaml
-      fi
-    fi
+  # Test generics
+  # args+=(--odin-objc-generics)
 
-    args=()
-    if [[ ${use_ios} -eq 1 ]]; then
-      args=(--def definitions/ios/${framework_lower}.json)
-    fi
+  args+=(
+    --odin-no-canon-link-path
+  )
 
-    # Test generics
-    # args+=(--odin-objc-generics)
+  # echo "${out_path}"
+  csgen ${cgen_args[@]} ${args[@]} --odin-out "${out_path}" "$framework_cfg"
+}
 
-    args+=(
-      --odin-no-canon-link-path
-    )
-
-    # echo "${out_path}"
-    csgen ${cgen_args[@]} ${args[@]} --odin-out "${out_path}" "$framework_cfg"
+# Launch tasks
+task_pids=()
+for i in ${!frameworks[@]}; do
+  bind_framework $i &
+  task_pids+=($!)
 done
 
+# Wait for all tasks to finish
+while ((${#task_pids[@]})); do
+  if ! wait -n -p finished_pid "${task_pids[@]}"; then
+    # One task failed
+    # Kill every remaining background job
+    for pid in "${task_pids[@]}"; do
+      echo "Killing $pid"
+      builtin kill -TERM "$pid" 2>/dev/null || :
+      echo "Killed it."
+    done
 
-# Copy Objective-C sources
-# # if [[ "${use_ios}" -eq 1 ]] || [[ "${lite}" -eq 1 ]]; then
-#   if [[ ! -h "${out_folder}/darwodin/ObjectiveC" ]]; then
-#     # ln -s "$(pwd)/ObjectiveC" "$(pwd)/${out_folder}/darwodin/ObjectiveC"
-#     cp -r "ObjectiveC" "${out_folder}/darwodin/ObjectiveC"
-#   fi
-# fi
+    for pid in "${task_pids[@]}"; do
+      echo "Waiting for $pid"
+      wait "$pid" 2>/dev/null || :
+      echo "Done."
+    done
+
+    echo "Exiting"
+    exit 1
+  fi
+
+  # Remove the task that just finished.
+  next=()
+  for pid in "${task_pids[@]}"; do
+    [[ $pid != "$finished_pid" ]] && next+=("$pid")
+  done
+
+  task_pids=("${next[@]}")
+done

@@ -14,11 +14,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-	@(export, require)
-	foreign import lib {
-		"system:QuartzCore.framework",
-	}
+@(export, require)
+foreign import lib {
+	"system:QuartzCore.framework",
 }
 
 
@@ -399,160 +397,108 @@ foreign lib {
 	ValueFunctionTranslateZ: ^NS.String
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
-		@(link_name="CGLSetCurrentContext")
 		CGLSetCurrentContext :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLGetCurrentContext")
 		CGLGetCurrentContext :: proc() -> CGLContextObj ---
 
-		@(link_name="CGLGetShareGroup")
 		CGLGetShareGroup :: proc(ctx: CGLContextObj) -> CGLShareGroupObj ---
 
-		@(link_name="CGLGetDeviceFromGLRenderer")
 		CGLGetDeviceFromGLRenderer :: proc(rendererID: GLint) -> cl_device_id ---
 
-		@(link_name="CGLTexImageIOSurface2D")
 		CGLTexImageIOSurface2D :: proc(ctx: CGLContextObj, target: GLenum, internal_format: GLenum, width: GLsizei, height: GLsizei, format: GLenum, type: GLenum, ioSurface: CG.IOSurfaceRef, plane: GLuint) -> CGLError ---
 
-		@(link_name="CGLChoosePixelFormat")
 		CGLChoosePixelFormat :: proc(attribs: ^CGLPixelFormatAttribute, pix: ^CGLPixelFormatObj, npix: ^GLint) -> CGLError ---
 
-		@(link_name="CGLDestroyPixelFormat")
 		CGLDestroyPixelFormat :: proc(pix: CGLPixelFormatObj) -> CGLError ---
 
-		@(link_name="CGLDescribePixelFormat")
 		CGLDescribePixelFormat :: proc(pix: CGLPixelFormatObj, pix_num: GLint, attrib: CGLPixelFormatAttribute, value: ^GLint) -> CGLError ---
 
-		@(link_name="CGLReleasePixelFormat")
 		CGLReleasePixelFormat :: proc(pix: CGLPixelFormatObj) ---
 
-		@(link_name="CGLRetainPixelFormat")
 		CGLRetainPixelFormat :: proc(pix: CGLPixelFormatObj) -> CGLPixelFormatObj ---
 
-		@(link_name="CGLGetPixelFormatRetainCount")
 		CGLGetPixelFormatRetainCount :: proc(pix: CGLPixelFormatObj) -> GLuint ---
 
-		@(link_name="CGLQueryRendererInfo")
 		CGLQueryRendererInfo :: proc(display_mask: GLuint, rend: ^CGLRendererInfoObj, nrend: ^GLint) -> CGLError ---
 
-		@(link_name="CGLDestroyRendererInfo")
 		CGLDestroyRendererInfo :: proc(rend: CGLRendererInfoObj) -> CGLError ---
 
-		@(link_name="CGLDescribeRenderer")
 		CGLDescribeRenderer :: proc(rend: CGLRendererInfoObj, rend_num: GLint, prop: CGLRendererProperty, value: ^GLint) -> CGLError ---
 
-		@(link_name="CGLCreateContext")
 		CGLCreateContext :: proc(pix: CGLPixelFormatObj, share: CGLContextObj, ctx: ^CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLDestroyContext")
 		CGLDestroyContext :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLCopyContext")
 		CGLCopyContext :: proc(src: CGLContextObj, dst: CGLContextObj, mask: GLbitfield) -> CGLError ---
 
-		@(link_name="CGLRetainContext")
 		CGLRetainContext :: proc(ctx: CGLContextObj) -> CGLContextObj ---
 
-		@(link_name="CGLReleaseContext")
 		CGLReleaseContext :: proc(ctx: CGLContextObj) ---
 
-		@(link_name="CGLGetContextRetainCount")
 		CGLGetContextRetainCount :: proc(ctx: CGLContextObj) -> GLuint ---
 
-		@(link_name="CGLGetPixelFormat")
 		CGLGetPixelFormat :: proc(ctx: CGLContextObj) -> CGLPixelFormatObj ---
 
-		@(link_name="CGLCreatePBuffer")
 		CGLCreatePBuffer :: proc(width: GLsizei, height: GLsizei, target: GLenum, internalFormat: GLenum, max_level: GLint, pbuffer: ^CGLPBufferObj) -> CGLError ---
 
-		@(link_name="CGLDestroyPBuffer")
 		CGLDestroyPBuffer :: proc(pbuffer: CGLPBufferObj) -> CGLError ---
 
-		@(link_name="CGLDescribePBuffer")
 		CGLDescribePBuffer :: proc(obj: CGLPBufferObj, width: ^GLsizei, height: ^GLsizei, target: ^GLenum, internalFormat: ^GLenum, mipmap: ^GLint) -> CGLError ---
 
-		@(link_name="CGLTexImagePBuffer")
 		CGLTexImagePBuffer :: proc(ctx: CGLContextObj, pbuffer: CGLPBufferObj, source: GLenum) -> CGLError ---
 
-		@(link_name="CGLRetainPBuffer")
 		CGLRetainPBuffer :: proc(pbuffer: CGLPBufferObj) -> CGLPBufferObj ---
 
-		@(link_name="CGLReleasePBuffer")
 		CGLReleasePBuffer :: proc(pbuffer: CGLPBufferObj) ---
 
-		@(link_name="CGLGetPBufferRetainCount")
 		CGLGetPBufferRetainCount :: proc(pbuffer: CGLPBufferObj) -> GLuint ---
 
-		@(link_name="CGLSetOffScreen")
 		CGLSetOffScreen :: proc(ctx: CGLContextObj, width: GLsizei, height: GLsizei, rowbytes: GLint, baseaddr: rawptr) -> CGLError ---
 
-		@(link_name="CGLGetOffScreen")
 		CGLGetOffScreen :: proc(ctx: CGLContextObj, width: ^GLsizei, height: ^GLsizei, rowbytes: ^GLint, baseaddr: ^rawptr) -> CGLError ---
 
-		@(link_name="CGLSetFullScreen")
 		CGLSetFullScreen :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLSetFullScreenOnDisplay")
 		CGLSetFullScreenOnDisplay :: proc(ctx: CGLContextObj, display_mask: GLuint) -> CGLError ---
 
-		@(link_name="CGLSetPBuffer")
 		CGLSetPBuffer :: proc(ctx: CGLContextObj, pbuffer: CGLPBufferObj, face: GLenum, level: GLint, screen: GLint) -> CGLError ---
 
-		@(link_name="CGLGetPBuffer")
 		CGLGetPBuffer :: proc(ctx: CGLContextObj, pbuffer: ^CGLPBufferObj, face: ^GLenum, level: ^GLint, screen: ^GLint) -> CGLError ---
 
-		@(link_name="CGLClearDrawable")
 		CGLClearDrawable :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLFlushDrawable")
 		CGLFlushDrawable :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLEnable")
 		CGLEnable :: proc(ctx: CGLContextObj, pname: CGLContextEnable) -> CGLError ---
 
-		@(link_name="CGLDisable")
 		CGLDisable :: proc(ctx: CGLContextObj, pname: CGLContextEnable) -> CGLError ---
 
-		@(link_name="CGLIsEnabled")
 		CGLIsEnabled :: proc(ctx: CGLContextObj, pname: CGLContextEnable, enable: ^GLint) -> CGLError ---
 
-		@(link_name="CGLSetParameter")
 		CGLSetParameter :: proc(ctx: CGLContextObj, pname: CGLContextParameter, params: ^GLint) -> CGLError ---
 
-		@(link_name="CGLGetParameter")
 		CGLGetParameter :: proc(ctx: CGLContextObj, pname: CGLContextParameter, params: ^GLint) -> CGLError ---
 
-		@(link_name="CGLSetVirtualScreen")
 		CGLSetVirtualScreen :: proc(ctx: CGLContextObj, screen: GLint) -> CGLError ---
 
-		@(link_name="CGLGetVirtualScreen")
 		CGLGetVirtualScreen :: proc(ctx: CGLContextObj, screen: ^GLint) -> CGLError ---
 
-		@(link_name="CGLUpdateContext")
 		CGLUpdateContext :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLSetGlobalOption")
 		CGLSetGlobalOption :: proc(pname: CGLGlobalOption, params: ^GLint) -> CGLError ---
 
-		@(link_name="CGLGetGlobalOption")
 		CGLGetGlobalOption :: proc(pname: CGLGlobalOption, params: ^GLint) -> CGLError ---
 
-		@(link_name="CGLSetOption")
 		CGLSetOption :: proc(pname: CGLGlobalOption, param: GLint) -> CGLError ---
 
-		@(link_name="CGLGetOption")
 		CGLGetOption :: proc(pname: CGLGlobalOption, param: ^GLint) -> CGLError ---
 
-		@(link_name="CGLLockContext")
 		CGLLockContext :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLUnlockContext")
 		CGLUnlockContext :: proc(ctx: CGLContextObj) -> CGLError ---
 
-		@(link_name="CGLGetVersion")
 		CGLGetVersion :: proc(majorvers: ^GLint, minorvers: ^GLint) ---
 
-		@(link_name="CGLErrorString")
 		CGLErrorString :: proc(error: CGLError) -> cstring ---
 	}
 

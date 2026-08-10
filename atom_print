@@ -1,0 +1,8 @@
+dk_lock_file=$(mktemp)
+trap 'rm -f "$dk_lock_file"' EXIT
+
+atom_print() {
+  while ! lockf -k -s -t 0 "$dk_lock_file" printf '%s\n' "$@"; do
+    :
+  done
+}

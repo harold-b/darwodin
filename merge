@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd "${_dir}"
+
+clean=false
+
+while (( $# > 0 )); do
+  case $1 in
+    -c|-clean|--clean)
+      clean=true
+    ;;
+
+    *)
+      echo "Unknown argument '$1'"
+      exit 1
+    ;;
+  esac
+  shift || break
+done
+
+if $clean; then
+  echo "Cleaning..."
+  rm -rf "./darwinkit"
+fi
+
+odiff \
+  -m darwodin-macos/darwodin \
+  -i darwodin-ios/darwodin \
+  darwinkit

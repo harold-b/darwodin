@@ -48,7 +48,7 @@ Odin:
   Packages:
     - Name  : CoreText
       Export: CT
-      DarwinLinkLibs: [system:CoreText.framework]
+      LinkLibs: [system:CoreText.framework]
       Filter: .*
 
       # Imports:

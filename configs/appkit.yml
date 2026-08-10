@@ -53,7 +53,7 @@ Odin:
   Packages:
     - Name  : AppKit
       Export: NS
-      DarwinLinkLibs: [system:AppKit.framework]
+      LinkLibs: [system:AppKit.framework]
       RequiredLink: true
       Filter: .*
 

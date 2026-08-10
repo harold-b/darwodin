@@ -52,7 +52,7 @@ DistinctTypeDefs = [
 [[Odin.Packages]]
 Name           = 'DiskArbitration'
 Export         = 'DA'
-DarwinLinkLibs = ['system:DiskArbitration.framework']
+LinkLibs = ['system:DiskArbitration.framework']
 Filter         = '.*'
 
 # Imports = """

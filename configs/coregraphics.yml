@@ -55,7 +55,7 @@ Odin:
   Packages:
     - Name  : CoreGraphics
       Export: CG
-      DarwinLinkLibs: [system:CoreGraphics.framework]
+      LinkLibs: [system:CoreGraphics.framework]
       RequiredLink: true
       Filter: .*
 

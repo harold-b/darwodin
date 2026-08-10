@@ -3,13 +3,18 @@ set -eo pipefail
 cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 extra_args=()
-while true; do
+while (( $# > 0 )); do
   case $1 in
     -m|-markers)
       extra_args+=(-m)
     ;;
     -v|-verbose|--verbose)
       extra_args+=(-v)
+    ;;
+
+    *)
+      echo "Unknown argument '$1'"
+      exit 1
     ;;
   esac
   shift || break

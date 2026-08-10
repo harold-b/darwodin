@@ -65,7 +65,7 @@ Odin:
   Packages:
     - Name  : FSEvents
       Export: FS
-      DarwinLinkLibs: [system:CoreServices.framework]
+      LinkLibs: [system:CoreServices.framework]
       RequiredLink: true
       Filter: .*
 

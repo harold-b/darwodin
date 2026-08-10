@@ -14,11 +14,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-    @(export, require)
-    foreign import lib {
-        "system:CoreFoundation.framework",
-    }
+@(export, require)
+foreign import lib {
+    "system:CoreFoundation.framework",
 }
 
 
@@ -2079,331 +2077,222 @@ foreign lib {
     @(link_name="CFSocketGetDefaultNameRegistryPortNumber")
     SocketGetDefaultNameRegistryPortNumber :: proc() -> UInt16 ---
 
-    @(link_name="dispatch_time")
     dispatch_time :: proc(_when: dispatch_time_t, delta: cffi.int64_t) -> dispatch_time_t ---
 
-    @(link_name="dispatch_walltime")
     dispatch_walltime :: proc(_when: ^libc.timespec, delta: cffi.int64_t) -> dispatch_time_t ---
 
-    @(link_name="dispatch_retain")
     dispatch_retain :: proc(object: dispatch_object_t) ---
 
-    @(link_name="dispatch_release")
     dispatch_release :: proc(object: dispatch_object_t) ---
 
-    @(link_name="dispatch_get_context")
     dispatch_get_context :: proc(object: dispatch_object_t) -> rawptr ---
 
-    @(link_name="dispatch_set_context")
     dispatch_set_context :: proc(object: dispatch_object_t, _context: rawptr) ---
 
-    @(link_name="dispatch_set_finalizer_f")
     dispatch_set_finalizer_f :: proc(object: dispatch_object_t, finalizer: dispatch_function_t) ---
 
-    @(link_name="dispatch_activate")
     dispatch_activate :: proc(object: dispatch_object_t) ---
 
-    @(link_name="dispatch_suspend")
     dispatch_suspend :: proc(object: dispatch_object_t) ---
 
-    @(link_name="dispatch_resume")
     dispatch_resume :: proc(object: dispatch_object_t) ---
 
-    @(link_name="dispatch_set_qos_class_floor")
     dispatch_set_qos_class_floor :: proc(object: dispatch_object_t, qos_class: dispatch_qos_class_t, relative_priority: cffi.int) ---
 
-    @(link_name="dispatch_wait")
     dispatch_wait :: proc(object: rawptr, timeout: dispatch_time_t) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_notify")
     dispatch_notify :: proc(object: rawptr, queue: dispatch_object_t, notification_block: dispatch_block_t) ---
 
-    @(link_name="dispatch_cancel")
     dispatch_cancel :: proc(object: rawptr) ---
 
-    @(link_name="dispatch_testcancel")
     dispatch_testcancel :: proc(object: rawptr) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_debug")
     dispatch_debug :: proc(object: dispatch_object_t, message: cstring, #c_vararg args: ..any) ---
 
-    @(link_name="dispatch_debugv")
     dispatch_debugv :: proc(object: dispatch_object_t, message: cstring, ap: ^cffi.va_list) ---
 
-    @(link_name="dispatch_async")
     dispatch_async :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_async_f")
     dispatch_async_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_sync")
     dispatch_sync :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_sync_f")
     dispatch_sync_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_async_and_wait")
     dispatch_async_and_wait :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_async_and_wait_f")
     dispatch_async_and_wait_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_apply")
     dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: ^Objc_Block(proc "c" ( iteration: cffi.size_t ))) ---
 
-    @(link_name="dispatch_apply_f")
     dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" ( _context: rawptr, iteration: cffi.size_t )) ---
 
-    @(link_name="dispatch_get_current_queue")
     dispatch_get_current_queue :: proc() -> dispatch_queue_t ---
 
-    @(link_name="dispatch_get_global_queue")
     dispatch_get_global_queue :: proc(identifier: cffi.intptr_t, flags: cffi.uintptr_t) -> dispatch_queue_global_t ---
 
-    @(link_name="dispatch_queue_attr_make_initially_inactive")
     dispatch_queue_attr_make_initially_inactive :: proc(attr: dispatch_queue_attr_t) -> dispatch_queue_attr_t ---
 
-    @(link_name="dispatch_queue_attr_make_with_autorelease_frequency")
     dispatch_queue_attr_make_with_autorelease_frequency :: proc(attr: dispatch_queue_attr_t, frequency: dispatch_autorelease_frequency_t) -> dispatch_queue_attr_t ---
 
-    @(link_name="dispatch_queue_attr_make_with_qos_class")
     dispatch_queue_attr_make_with_qos_class :: proc(attr: dispatch_queue_attr_t, qos_class: dispatch_qos_class_t, relative_priority: cffi.int) -> dispatch_queue_attr_t ---
 
-    @(link_name="dispatch_queue_create_with_target")
     dispatch_queue_create_with_target :: proc(label: cstring, attr: dispatch_queue_attr_t, target: dispatch_queue_t) -> dispatch_queue_t ---
 
-    @(link_name="dispatch_queue_create")
     dispatch_queue_create :: proc(label: cstring, attr: dispatch_queue_attr_t) -> dispatch_queue_t ---
 
-    @(link_name="dispatch_queue_get_label")
     dispatch_queue_get_label :: proc(queue: dispatch_queue_t) -> cstring ---
 
-    @(link_name="dispatch_queue_get_qos_class")
     dispatch_queue_get_qos_class :: proc(queue: dispatch_queue_t, relative_priority_ptr: ^cffi.int) -> dispatch_qos_class_t ---
 
-    @(link_name="dispatch_set_target_queue")
     dispatch_set_target_queue :: proc(object: dispatch_object_t, queue: dispatch_queue_t) ---
 
-    @(link_name="dispatch_main")
     dispatch_main :: proc() ---
 
-    @(link_name="dispatch_after")
     dispatch_after :: proc(_when: dispatch_time_t, queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_after_f")
     dispatch_after_f :: proc(_when: dispatch_time_t, queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_barrier_async")
     dispatch_barrier_async :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_barrier_async_f")
     dispatch_barrier_async_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_barrier_sync")
     dispatch_barrier_sync :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_barrier_sync_f")
     dispatch_barrier_sync_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_barrier_async_and_wait")
     dispatch_barrier_async_and_wait :: proc(queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_barrier_async_and_wait_f")
     dispatch_barrier_async_and_wait_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_queue_set_specific")
     dispatch_queue_set_specific :: proc(queue: dispatch_queue_t, key: rawptr, _context: rawptr, destructor: dispatch_function_t) ---
 
-    @(link_name="dispatch_queue_get_specific")
     dispatch_queue_get_specific :: proc(queue: dispatch_queue_t, key: rawptr) -> rawptr ---
 
-    @(link_name="dispatch_get_specific")
     dispatch_get_specific :: proc(key: rawptr) -> rawptr ---
 
-    @(link_name="dispatch_assert_queue")
     dispatch_assert_queue :: proc(queue: dispatch_queue_t) ---
 
-    @(link_name="dispatch_assert_queue_barrier")
     dispatch_assert_queue_barrier :: proc(queue: dispatch_queue_t) ---
 
-    @(link_name="dispatch_assert_queue_not")
     dispatch_assert_queue_not :: proc(queue: dispatch_queue_t) ---
 
-    @(link_name="dispatch_allow_send_signals")
     dispatch_allow_send_signals :: proc(preserve_signum: cffi.int) -> cffi.int ---
 
-    @(link_name="dispatch_block_create")
     dispatch_block_create :: proc(flags: dispatch_block_flags_t, block: dispatch_block_t) -> dispatch_block_t ---
 
-    @(link_name="dispatch_block_create_with_qos_class")
     dispatch_block_create_with_qos_class :: proc(flags: dispatch_block_flags_t, qos_class: dispatch_qos_class_t, relative_priority: cffi.int, block: dispatch_block_t) -> dispatch_block_t ---
 
-    @(link_name="dispatch_block_perform")
     dispatch_block_perform :: proc(flags: dispatch_block_flags_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_block_wait")
     dispatch_block_wait :: proc(block: dispatch_block_t, timeout: dispatch_time_t) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_block_notify")
     dispatch_block_notify :: proc(block: dispatch_block_t, queue: dispatch_queue_t, notification_block: dispatch_block_t) ---
 
-    @(link_name="dispatch_block_cancel")
     dispatch_block_cancel :: proc(block: dispatch_block_t) ---
 
-    @(link_name="dispatch_block_testcancel")
     dispatch_block_testcancel :: proc(block: dispatch_block_t) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_source_create")
     dispatch_source_create :: proc(type: dispatch_source_type_t, handle: cffi.uintptr_t, mask: cffi.uintptr_t, queue: dispatch_queue_t) -> dispatch_source_t ---
 
-    @(link_name="dispatch_source_set_event_handler")
     dispatch_source_set_event_handler :: proc(source: dispatch_source_t, handler: dispatch_block_t) ---
 
-    @(link_name="dispatch_source_set_event_handler_f")
     dispatch_source_set_event_handler_f :: proc(source: dispatch_source_t, handler: dispatch_function_t) ---
 
-    @(link_name="dispatch_source_set_cancel_handler")
     dispatch_source_set_cancel_handler :: proc(source: dispatch_source_t, handler: dispatch_block_t) ---
 
-    @(link_name="dispatch_source_set_cancel_handler_f")
     dispatch_source_set_cancel_handler_f :: proc(source: dispatch_source_t, handler: dispatch_function_t) ---
 
-    @(link_name="dispatch_source_cancel")
     dispatch_source_cancel :: proc(source: dispatch_source_t) ---
 
-    @(link_name="dispatch_source_testcancel")
     dispatch_source_testcancel :: proc(source: dispatch_source_t) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_source_get_handle")
     dispatch_source_get_handle :: proc(source: dispatch_source_t) -> cffi.uintptr_t ---
 
-    @(link_name="dispatch_source_get_mask")
     dispatch_source_get_mask :: proc(source: dispatch_source_t) -> cffi.uintptr_t ---
 
-    @(link_name="dispatch_source_get_data")
     dispatch_source_get_data :: proc(source: dispatch_source_t) -> cffi.uintptr_t ---
 
-    @(link_name="dispatch_source_merge_data")
     dispatch_source_merge_data :: proc(source: dispatch_source_t, value: cffi.uintptr_t) ---
 
-    @(link_name="dispatch_source_set_timer")
     dispatch_source_set_timer :: proc(source: dispatch_source_t, start: dispatch_time_t, interval: cffi.uint64_t, leeway: cffi.uint64_t) ---
 
-    @(link_name="dispatch_source_set_registration_handler")
     dispatch_source_set_registration_handler :: proc(source: dispatch_source_t, handler: dispatch_block_t) ---
 
-    @(link_name="dispatch_source_set_registration_handler_f")
     dispatch_source_set_registration_handler_f :: proc(source: dispatch_source_t, handler: dispatch_function_t) ---
 
-    @(link_name="dispatch_group_create")
     dispatch_group_create :: proc() -> dispatch_group_t ---
 
-    @(link_name="dispatch_group_async")
     dispatch_group_async :: proc(group: dispatch_group_t, queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_group_async_f")
     dispatch_group_async_f :: proc(group: dispatch_group_t, queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_group_wait")
     dispatch_group_wait :: proc(group: dispatch_group_t, timeout: dispatch_time_t) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_group_notify")
     dispatch_group_notify :: proc(group: dispatch_group_t, queue: dispatch_queue_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_group_notify_f")
     dispatch_group_notify_f :: proc(group: dispatch_group_t, queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
-    @(link_name="dispatch_group_enter")
     dispatch_group_enter :: proc(group: dispatch_group_t) ---
 
-    @(link_name="dispatch_group_leave")
     dispatch_group_leave :: proc(group: dispatch_group_t) ---
 
-    @(link_name="dispatch_semaphore_create")
     dispatch_semaphore_create :: proc(value: cffi.intptr_t) -> dispatch_semaphore_t ---
 
-    @(link_name="dispatch_semaphore_wait")
     dispatch_semaphore_wait :: proc(dsema: dispatch_semaphore_t, timeout: dispatch_time_t) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_semaphore_signal")
     dispatch_semaphore_signal :: proc(dsema: dispatch_semaphore_t) -> cffi.intptr_t ---
 
-    @(link_name="dispatch_once")
     dispatch_once :: proc(predicate: ^dispatch_once_t, block: dispatch_block_t) ---
 
-    @(link_name="dispatch_once_f")
     dispatch_once_f :: proc(predicate: ^dispatch_once_t, _context: rawptr, function: dispatch_function_t) ---
 
-    @(link_name="dispatch_data_create")
     dispatch_data_create :: proc(buffer: rawptr, size: cffi.size_t, queue: dispatch_queue_t, destructor: dispatch_block_t) -> dispatch_data_t ---
 
-    @(link_name="dispatch_data_get_size")
     dispatch_data_get_size :: proc(data: dispatch_data_t) -> cffi.size_t ---
 
-    @(link_name="dispatch_data_create_map")
     dispatch_data_create_map :: proc(data: dispatch_data_t, buffer_ptr: ^rawptr, size_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
-    @(link_name="dispatch_data_create_concat")
     dispatch_data_create_concat :: proc(data1: dispatch_data_t, data2: dispatch_data_t) -> dispatch_data_t ---
 
-    @(link_name="dispatch_data_create_subrange")
     dispatch_data_create_subrange :: proc(data: dispatch_data_t, offset: cffi.size_t, length: cffi.size_t) -> dispatch_data_t ---
 
-    @(link_name="dispatch_data_apply")
     dispatch_data_apply :: proc(data: dispatch_data_t, applier: dispatch_data_applier_t) -> cffi.bool ---
 
-    @(link_name="dispatch_data_copy_region")
     dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.size_t, offset_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
-    @(link_name="dispatch_read")
     dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" ( data: dispatch_data_t, error: cffi.int ))) ---
 
-    @(link_name="dispatch_write")
     dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" ( data: dispatch_data_t, error: cffi.int ))) ---
 
-    @(link_name="dispatch_io_create")
     dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
-    @(link_name="dispatch_io_create_with_path")
     dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: libc.mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
-    @(link_name="dispatch_io_create_with_io")
     dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
-    @(link_name="dispatch_io_read")
     dispatch_io_read :: proc(channel: dispatch_io_t, offset: libc.off_t, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
 
-    @(link_name="dispatch_io_write")
     dispatch_io_write :: proc(channel: dispatch_io_t, offset: libc.off_t, data: dispatch_data_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
 
-    @(link_name="dispatch_io_close")
     dispatch_io_close :: proc(channel: dispatch_io_t, flags: dispatch_io_close_flags_t) ---
 
-    @(link_name="dispatch_io_barrier")
     dispatch_io_barrier :: proc(channel: dispatch_io_t, barrier: dispatch_block_t) ---
 
-    @(link_name="dispatch_io_get_descriptor")
     dispatch_io_get_descriptor :: proc(channel: dispatch_io_t) -> dispatch_fd_t ---
 
-    @(link_name="dispatch_io_set_high_water")
     dispatch_io_set_high_water :: proc(channel: dispatch_io_t, high_water: cffi.size_t) ---
 
-    @(link_name="dispatch_io_set_low_water")
     dispatch_io_set_low_water :: proc(channel: dispatch_io_t, low_water: cffi.size_t) ---
 
-    @(link_name="dispatch_io_set_interval")
     dispatch_io_set_interval :: proc(channel: dispatch_io_t, interval: cffi.uint64_t, flags: cffi.ulong) ---
 
-    @(link_name="dispatch_workloop_create")
     dispatch_workloop_create :: proc(label: cstring) -> dispatch_workloop_t ---
 
-    @(link_name="dispatch_workloop_create_inactive")
     dispatch_workloop_create_inactive :: proc(label: cstring) -> dispatch_workloop_t ---
 
-    @(link_name="dispatch_workloop_set_autorelease_frequency")
     dispatch_workloop_set_autorelease_frequency :: proc(workloop: dispatch_workloop_t, frequency: dispatch_autorelease_frequency_t) ---
 
-    @(link_name="dispatch_workloop_set_os_workgroup")
     dispatch_workloop_set_os_workgroup :: proc(workloop: dispatch_workloop_t, workgroup: os_workgroup_t) ---
 
     @(link_name="CFReadStreamGetTypeID")

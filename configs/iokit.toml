@@ -43,7 +43,7 @@ DistinctTypeDefs = [
 [[Odin.Packages]]
 Name           = 'IOKit'
 Export         = 'IO'
-DarwinLinkLibs = ['system:IOKit.framework']
+LinkLibs = ['system:IOKit.framework']
 Filter         = '.*'
 
 Imports = ["""

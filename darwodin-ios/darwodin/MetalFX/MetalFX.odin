@@ -17,11 +17,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-when ODIN_OS == .Darwin {
-    @(export)
-    foreign import lib {
-        "system:MetalFX.framework",
-    }
+@(export)
+foreign import lib {
+    "system:MetalFX.framework",
 }
 
 

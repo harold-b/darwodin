@@ -55,7 +55,7 @@ DistinctTypeDefs = [
 [[Odin.Packages]]
 Name           = 'CoreMedia'
 Export         = 'CM'
-DarwinLinkLibs = ['system:CoreMedia.framework']
+LinkLibs = ['system:CoreMedia.framework']
 Filter         = '.*'
 
 Imports = ["""

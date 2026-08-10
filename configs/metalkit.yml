@@ -45,7 +45,7 @@ Odin:
   Packages:
     - Name  : MetalKit
       Export: MTK
-      DarwinLinkLibs: [system:MetalKit.framework]
+      LinkLibs: [system:MetalKit.framework]
       Filter: .*
 
       # Imports:
