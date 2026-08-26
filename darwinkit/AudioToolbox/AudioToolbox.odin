@@ -4991,7 +4991,7 @@ BufferList :: struct #align (8) {
 StreamBasicDescription :: struct #align (8) {
 	mSampleRate:       cffi.double,
 	mFormatID:         FormatID,
-	mFormatFlags:      FormatFlagsPreset,
+	mFormatFlags:      FormatFlags,
 	mBytesPerPacket:   CF.UInt32,
 	mFramesPerPacket:  CF.UInt32,
 	mBytesPerFrame:    CF.UInt32,

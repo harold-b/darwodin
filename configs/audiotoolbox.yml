@@ -62,7 +62,7 @@ Odin:
   Packages:
     - Name:     AudioToolbox
       Export:   AT
-      LinkLibs: [system:AudioToolbox.framework]
+      LinkLibs: [system:CoreAudio.framework, system:AudioToolbox.framework]
       Filter:   .*
 
       Imports:
@@ -74,8 +74,8 @@ Odin:
           UIImage           :: struct {}
           OpaqueCAClock     :: struct {}
 
-      # TypeMap:
-      #   AudioFormatFlags: FormatFlags
+      TypeMap:
+        AudioFormatFlags: FormatFlags
 
       IgnoreEnumItems:
         - ^AudioFormatFlag::kLinearPCMFormatFlag.+'
