@@ -16,6 +16,7 @@ instancetype  :: intrinsics.objc_instancetype
 @(export)
 foreign import lib {
 	"system:AudioToolbox.framework",
+	"system:CoreAudio.framework",
 }
 
 
