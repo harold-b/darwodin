@@ -44,6 +44,9 @@ foreign lib {
 	@(objc_type=NSTextSelectionDataSource, objc_selector="textLayoutOrientationAtLocation:", objc_name="textLayoutOrientationAtLocation")
 	NSTextSelectionDataSource_textLayoutOrientationAtLocation :: proc(self: ^NSTextSelectionDataSource, location: ^NSTextLocation) -> NSTextSelectionNavigationLayoutOrientation ---
 
+	@(objc_type=NSTextSelectionDataSource, objc_selector="convertInteractionPoint:toContainerAtLocation:", objc_name="convertInteractionPoint")
+	NSTextSelectionDataSource_convertInteractionPoint :: proc(self: ^NSTextSelectionDataSource, point: CG.Point, containerLocation: ^NSTextLocation) -> CG.Point ---
+
 	@(objc_type=NSTextSelectionDataSource, objc_selector="documentRange", objc_name="documentRange")
 	NSTextSelectionDataSource_documentRange :: proc(self: ^NSTextSelectionDataSource) -> ^NSTextRange ---
 }

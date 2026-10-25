@@ -15,6 +15,7 @@ import UI "../../"
 VTable :: struct {
     windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, previousCoordinateSpace: ^UI.CoordinateSpace, previousInterfaceOrientation: UI.InterfaceOrientation, previousTraitCollection: ^UI.TraitCollection),
     windowScene_didUpdateEffectiveGeometry: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, previousEffectiveGeometry: ^UI.WindowSceneGeometry),
+    supportedInterfaceOrientationsForWindowScene: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene) -> UI.InterfaceOrientationMask,
     windowScene_performActionForShortcutItem_completionHandler: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" ( succeeded: bool ))),
     windowScene_userDidAcceptCloudKitShareWithMetadata: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene, cloudKitShareMetadata: ^UI.CKShareMetadata),
     preferredWindowingControlStyleForScene: proc(self: ^UI.WindowSceneDelegateProtocol, windowScene: ^UI.WindowScene) -> ^UI.SceneWindowingControlStyle,
@@ -45,6 +46,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("windowScene:didUpdateEffectiveGeometry:"), auto_cast windowScene_didUpdateEffectiveGeometry, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.supportedInterfaceOrientationsForWindowScene != nil {
+        supportedInterfaceOrientationsForWindowScene :: proc "c" (self: ^UI.WindowSceneDelegateProtocol, _: SEL, windowScene: ^UI.WindowScene) -> UI.InterfaceOrientationMask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).supportedInterfaceOrientationsForWindowScene(self, windowScene)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("supportedInterfaceOrientationsForWindowScene:"), auto_cast supportedInterfaceOrientationsForWindowScene, "L@:@") do panic("Failed to register objC method.")
     }
     if vt.windowScene_performActionForShortcutItem_completionHandler != nil {
         windowScene_performActionForShortcutItem_completionHandler :: proc "c" (self: ^UI.WindowSceneDelegateProtocol, _: SEL, windowScene: ^UI.WindowScene, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" ( succeeded: bool ))) {

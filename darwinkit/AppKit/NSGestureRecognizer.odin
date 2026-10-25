@@ -97,6 +97,12 @@ foreign lib {
 	@(objc_type=GestureRecognizer, objc_selector="setDelaysRotationEvents:", objc_name="setDelaysRotationEvents")
 	GestureRecognizer_setDelaysRotationEvents :: proc(self: ^GestureRecognizer, delaysRotationEvents: bool) ---
 
+	@(objc_type=GestureRecognizer, objc_selector="isCancellableByScrollGesture", objc_name="isCancellableByScrollGesture")
+	GestureRecognizer_isCancellableByScrollGesture :: proc(self: ^GestureRecognizer) -> bool ---
+
+	@(objc_type=GestureRecognizer, objc_selector="setCancellableByScrollGesture:", objc_name="setCancellableByScrollGesture")
+	GestureRecognizer_setCancellableByScrollGesture :: proc(self: ^GestureRecognizer, cancellableByScrollGesture: bool) ---
+
 	@(objc_type=GestureRecognizer, objc_selector="name", objc_name="name")
 	GestureRecognizer_name :: proc(self: ^GestureRecognizer) -> ^NS.String ---
 

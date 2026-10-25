@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -113,6 +115,9 @@ foreign lib {
 
     @(objc_type=AudioSession, objc_selector="activateWithOptions:completionHandler:", objc_name="activateWithOptions")
     AudioSession_activateWithOptions :: proc(self: ^AudioSession, options: AudioSessionActivationOptions, handler: ^Objc_Block(proc "c" ( activated: bool, error: ^NS.Error ))) ---
+
+    @(objc_type=AudioSession, objc_selector="deactivateWithOptions:completionHandler:", objc_name="deactivateWithOptions")
+    AudioSession_deactivateWithOptions :: proc(self: ^AudioSession, options: AudioSessionDeactivationOptions, handler: ^Objc_Block(proc "c" ( deactivated: bool, error: ^NS.Error ))) ---
 
     @(objc_type=AudioSession, objc_selector="setPreferredSampleRate:error:", objc_name="setPreferredSampleRate")
     AudioSession_setPreferredSampleRate :: proc(self: ^AudioSession, sampleRate: cffi.double, outError: ^^NS.Error) -> bool ---

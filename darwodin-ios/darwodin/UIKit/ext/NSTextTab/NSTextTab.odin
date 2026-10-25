@@ -17,10 +17,10 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     columnTerminatorsForLocale: proc(aLocale: ^NS.Locale) -> ^NS.CharacterSet,
-    location: proc(self: ^UI.NSTextTab) -> CG.Float,
-    options: proc(self: ^UI.NSTextTab) -> ^NS.Dictionary,
     initWithTextAlignment: proc(self: ^UI.NSTextTab, alignment: UI.NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype,
     alignment: proc(self: ^UI.NSTextTab) -> UI.NSTextAlignment,
+    location: proc(self: ^UI.NSTextTab) -> CG.Float,
+    options: proc(self: ^UI.NSTextTab) -> ^NS.Dictionary,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,26 +39,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("columnTerminatorsForLocale:"), auto_cast columnTerminatorsForLocale, "@#:@") do panic("Failed to register objC method.")
-    }
-    if vt.location != nil {
-        location :: proc "c" (self: ^UI.NSTextTab, _: SEL) -> CG.Float {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).location(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("location"), auto_cast location, "d@:") do panic("Failed to register objC method.")
-    }
-    if vt.options != nil {
-        options :: proc "c" (self: ^UI.NSTextTab, _: SEL) -> ^NS.Dictionary {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).options(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTextAlignment != nil {
         initWithTextAlignment :: proc "c" (self: ^UI.NSTextTab, _: SEL, alignment: UI.NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype {
@@ -79,6 +59,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.location != nil {
+        location :: proc "c" (self: ^UI.NSTextTab, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).location(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("location"), auto_cast location, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.options != nil {
+        options :: proc "c" (self: ^UI.NSTextTab, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).options(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "^void@:") do panic("Failed to register objC method.")
     }
 }
 

@@ -112,4 +112,22 @@ foreign lib {
 
     @(objc_type=ComputePipelineDescriptor, objc_selector="setRequiredThreadsPerThreadgroup:", objc_name="setRequiredThreadsPerThreadgroup")
     ComputePipelineDescriptor_setRequiredThreadsPerThreadgroup :: proc(self: ^ComputePipelineDescriptor, requiredThreadsPerThreadgroup: Size) ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="forwardProgressUsage", objc_name="forwardProgressUsage")
+    ComputePipelineDescriptor_forwardProgressUsage :: proc(self: ^ComputePipelineDescriptor) -> ForwardProgressUsage ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="setForwardProgressUsage:", objc_name="setForwardProgressUsage")
+    ComputePipelineDescriptor_setForwardProgressUsage :: proc(self: ^ComputePipelineDescriptor, forwardProgressUsage: ForwardProgressUsage) ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="contentionRelief", objc_name="contentionRelief")
+    ComputePipelineDescriptor_contentionRelief :: proc(self: ^ComputePipelineDescriptor) -> ContentionRelief ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="setContentionRelief:", objc_name="setContentionRelief")
+    ComputePipelineDescriptor_setContentionRelief :: proc(self: ^ComputePipelineDescriptor, contentionRelief: ContentionRelief) ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="optimizeForPersistentKernel", objc_name="optimizeForPersistentKernel")
+    ComputePipelineDescriptor_optimizeForPersistentKernel :: proc(self: ^ComputePipelineDescriptor) -> bool ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="setOptimizeForPersistentKernel:", objc_name="setOptimizeForPersistentKernel")
+    ComputePipelineDescriptor_setOptimizeForPersistentKernel :: proc(self: ^ComputePipelineDescriptor, optimizeForPersistentKernel: bool) ---
 }

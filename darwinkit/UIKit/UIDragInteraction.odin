@@ -33,6 +33,18 @@ foreign lib {
 	@(objc_type=DragInteraction, objc_selector="setAllowsSimultaneousRecognitionDuringLift:", objc_name="setAllowsSimultaneousRecognitionDuringLift")
 	DragInteraction_setAllowsSimultaneousRecognitionDuringLift :: proc(self: ^DragInteraction, allowsSimultaneousRecognitionDuringLift: bool) ---
 
+	@(objc_type=DragInteraction, objc_selector="allowsPointerDragBeforeLiftDelay", objc_name="allowsPointerDragBeforeLiftDelay")
+	DragInteraction_allowsPointerDragBeforeLiftDelay :: proc(self: ^DragInteraction) -> bool ---
+
+	@(objc_type=DragInteraction, objc_selector="setAllowsPointerDragBeforeLiftDelay:", objc_name="setAllowsPointerDragBeforeLiftDelay")
+	DragInteraction_setAllowsPointerDragBeforeLiftDelay :: proc(self: ^DragInteraction, allowsPointerDragBeforeLiftDelay: bool) ---
+
+	@(objc_type=DragInteraction, objc_selector="liftBehavior", objc_name="liftBehavior")
+	DragInteraction_liftBehavior :: proc(self: ^DragInteraction) -> DragLiftBehavior ---
+
+	@(objc_type=DragInteraction, objc_selector="setLiftBehavior:", objc_name="setLiftBehavior")
+	DragInteraction_setLiftBehavior :: proc(self: ^DragInteraction, liftBehavior: DragLiftBehavior) ---
+
 	@(objc_type=DragInteraction, objc_selector="isEnabled", objc_name="isEnabled")
 	DragInteraction_isEnabled :: proc(self: ^DragInteraction) -> bool ---
 

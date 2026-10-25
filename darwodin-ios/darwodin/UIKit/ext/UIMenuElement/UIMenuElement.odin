@@ -23,6 +23,10 @@ VTable :: struct {
     subtitle: proc(self: ^UI.MenuElement) -> ^NS.String,
     setSubtitle: proc(self: ^UI.MenuElement, subtitle: ^NS.String),
     image: proc(self: ^UI.MenuElement) -> ^UI.Image,
+    preferredImageVisibility: proc(self: ^UI.MenuElement) -> UI.MenuElementImageVisibility,
+    setPreferredImageVisibility: proc(self: ^UI.MenuElement, preferredImageVisibility: UI.MenuElementImageVisibility),
+    highlightStateUpdateHandler: proc(self: ^UI.MenuElement) -> ^Objc_Block(proc "c" ()),
+    setHighlightStateUpdateHandler: proc(self: ^UI.MenuElement, highlightStateUpdateHandler: ^Objc_Block(proc "c" ())),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -101,6 +105,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.preferredImageVisibility != nil {
+        preferredImageVisibility :: proc "c" (self: ^UI.MenuElement, _: SEL) -> UI.MenuElementImageVisibility {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredImageVisibility(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredImageVisibility"), auto_cast preferredImageVisibility, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredImageVisibility != nil {
+        setPreferredImageVisibility :: proc "c" (self: ^UI.MenuElement, _: SEL, preferredImageVisibility: UI.MenuElementImageVisibility) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredImageVisibility(self, preferredImageVisibility)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredImageVisibility:"), auto_cast setPreferredImageVisibility, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.highlightStateUpdateHandler != nil {
+        highlightStateUpdateHandler :: proc "c" (self: ^UI.MenuElement, _: SEL) -> ^Objc_Block(proc "c" ()) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).highlightStateUpdateHandler(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("highlightStateUpdateHandler"), auto_cast highlightStateUpdateHandler, "?@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHighlightStateUpdateHandler != nil {
+        setHighlightStateUpdateHandler :: proc "c" (self: ^UI.MenuElement, _: SEL, highlightStateUpdateHandler: ^Objc_Block(proc "c" ())) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setHighlightStateUpdateHandler(self, highlightStateUpdateHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHighlightStateUpdateHandler:"), auto_cast setHighlightStateUpdateHandler, "v@:?") do panic("Failed to register objC method.")
     }
 }
 

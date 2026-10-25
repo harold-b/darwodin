@@ -206,6 +206,18 @@ foreign lib {
     @(objc_type=BarButtonItem, objc_selector="setSymbolAnimationEnabled:", objc_name="setSymbolAnimationEnabled")
     BarButtonItem_setSymbolAnimationEnabled :: proc(self: ^BarButtonItem, symbolAnimationEnabled: bool) ---
 
+    @(objc_type=BarButtonItem, objc_selector="visibilityPriority", objc_name="visibilityPriority")
+    BarButtonItem_visibilityPriority :: proc(self: ^BarButtonItem) -> BarButtonItemVisibilityPriority ---
+
+    @(objc_type=BarButtonItem, objc_selector="setVisibilityPriority:", objc_name="setVisibilityPriority")
+    BarButtonItem_setVisibilityPriority :: proc(self: ^BarButtonItem, visibilityPriority: BarButtonItemVisibilityPriority) ---
+
+    @(objc_type=BarButtonItem, objc_selector="isPaddingRemoved", objc_name="isPaddingRemoved")
+    BarButtonItem_isPaddingRemoved :: proc(self: ^BarButtonItem) -> bool ---
+
+    @(objc_type=BarButtonItem, objc_selector="setPaddingRemoved:", objc_name="setPaddingRemoved")
+    BarButtonItem_setPaddingRemoved :: proc(self: ^BarButtonItem, paddingRemoved: bool) ---
+
     @(objc_type=BarButtonItem, objc_selector="menuRepresentation", objc_name="menuRepresentation")
     BarButtonItem_menuRepresentation :: proc(self: ^BarButtonItem) -> ^MenuElement ---
 

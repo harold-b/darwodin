@@ -86,4 +86,10 @@ foreign lib {
 
     @(objc_type=BarAppearance, objc_selector="setShadowImage:", objc_name="setShadowImage")
     BarAppearance_setShadowImage :: proc(self: ^BarAppearance, shadowImage: ^Image) ---
+
+    @(objc_type=BarAppearance, objc_selector="overrideUserInterfaceStyle", objc_name="overrideUserInterfaceStyle")
+    BarAppearance_overrideUserInterfaceStyle :: proc(self: ^BarAppearance) -> UserInterfaceStyle ---
+
+    @(objc_type=BarAppearance, objc_selector="setOverrideUserInterfaceStyle:", objc_name="setOverrideUserInterfaceStyle")
+    BarAppearance_setOverrideUserInterfaceStyle :: proc(self: ^BarAppearance, overrideUserInterfaceStyle: UserInterfaceStyle) ---
 }

@@ -35,6 +35,7 @@ VTable :: struct {
     ignoreWord: proc(self: ^NS.SpellChecker, wordToIgnore: ^NS.String, tag: NS.Integer),
     ignoredWordsInSpellDocumentWithTag: proc(self: ^NS.SpellChecker, tag: NS.Integer) -> ^NS.Array,
     setIgnoredWords: proc(self: ^NS.SpellChecker, words: ^NS.Array, tag: NS.Integer),
+    ignoreGrammarRange: proc(self: ^NS.SpellChecker, grammarRange: NS._NSRange, sentence: ^NS.String, tag: NS.Integer),
     guessesForWordRange: proc(self: ^NS.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array,
     correctionForWordRange: proc(self: ^NS.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.String,
     completionsForPartialWordRange: proc(self: ^NS.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array,
@@ -243,6 +244,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIgnoredWords:inSpellDocumentWithTag:"), auto_cast setIgnoredWords, "v@:^voidl") do panic("Failed to register objC method.")
+    }
+    if vt.ignoreGrammarRange != nil {
+        ignoreGrammarRange :: proc "c" (self: ^NS.SpellChecker, _: SEL, grammarRange: NS._NSRange, sentence: ^NS.String, tag: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).ignoreGrammarRange(self, grammarRange, sentence, tag)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("ignoreGrammarRange:inSentence:inSpellDocumentWithTag:"), auto_cast ignoreGrammarRange, "v@:{_NSRange=LL}@l") do panic("Failed to register objC method.")
     }
     if vt.guessesForWordRange != nil {
         guessesForWordRange :: proc "c" (self: ^NS.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array {

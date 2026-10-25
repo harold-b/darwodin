@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -29,6 +31,9 @@ foreign lib {
 
     @(objc_type=CaptureDeviceFormat, objc_selector="isVideoStabilizationModeSupported:", objc_name="isVideoStabilizationModeSupported")
     CaptureDeviceFormat_isVideoStabilizationModeSupported :: proc(self: ^CaptureDeviceFormat, videoStabilizationMode: CaptureVideoStabilizationMode) -> bool ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="supportsExposureModeCustomWithLensAperture:duration:ISO:", objc_name="supportsExposureModeCustomWithLensAperture")
+    CaptureDeviceFormat_supportsExposureModeCustomWithLensAperture :: proc(self: ^CaptureDeviceFormat, lensAperture: cffi.float, duration: CM.Time, ISO: cffi.float) -> bool ---
 
     @(objc_type=CaptureDeviceFormat, objc_selector="mediaType", objc_name="mediaType")
     CaptureDeviceFormat_mediaType :: proc(self: ^CaptureDeviceFormat) -> ^NS.String ---
@@ -56,6 +61,18 @@ foreign lib {
 
     @(objc_type=CaptureDeviceFormat, objc_selector="systemRecommendedVideoZoomRange", objc_name="systemRecommendedVideoZoomRange")
     CaptureDeviceFormat_systemRecommendedVideoZoomRange :: proc(self: ^CaptureDeviceFormat) -> ^ZoomRange ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="recommendedLensApertureStops", objc_name="recommendedLensApertureStops")
+    CaptureDeviceFormat_recommendedLensApertureStops :: proc(self: ^CaptureDeviceFormat) -> ^NS.Array ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="minLensAperture", objc_name="minLensAperture")
+    CaptureDeviceFormat_minLensAperture :: proc(self: ^CaptureDeviceFormat) -> cffi.float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="maxLensAperture", objc_name="maxLensAperture")
+    CaptureDeviceFormat_maxLensAperture :: proc(self: ^CaptureDeviceFormat) -> cffi.float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="defaultLensAperture", objc_name="defaultLensAperture")
+    CaptureDeviceFormat_defaultLensAperture :: proc(self: ^CaptureDeviceFormat) -> cffi.float ---
 
     @(objc_type=CaptureDeviceFormat, objc_selector="minExposureDuration", objc_name="minExposureDuration")
     CaptureDeviceFormat_minExposureDuration :: proc(self: ^CaptureDeviceFormat) -> CM.Time ---
@@ -195,6 +212,9 @@ foreign lib {
     @(objc_type=CaptureDeviceFormat, objc_selector="videoFrameRateRangeForCinematicVideo", objc_name="videoFrameRateRangeForCinematicVideo")
     CaptureDeviceFormat_videoFrameRateRangeForCinematicVideo :: proc(self: ^CaptureDeviceFormat) -> ^FrameRateRange ---
 
+    @(objc_type=CaptureDeviceFormat, objc_selector="isCinematicVideoMetadataCaptureSupported", objc_name="isCinematicVideoMetadataCaptureSupported")
+    CaptureDeviceFormat_isCinematicVideoMetadataCaptureSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
+
     @(objc_type=CaptureDeviceFormat, objc_selector="videoFieldOfViewForAspectRatio:geometricDistortionCorrected:", objc_name="videoFieldOfViewForAspectRatio")
     CaptureDeviceFormat_videoFieldOfViewForAspectRatio :: proc(self: ^CaptureDeviceFormat, aspectRatio: ^NS.String, geometricDistortionCorrected: bool) -> cffi.float ---
 
@@ -206,4 +226,10 @@ foreign lib {
 
     @(objc_type=CaptureDeviceFormat, objc_selector="isCameraLensSmudgeDetectionSupported", objc_name="isCameraLensSmudgeDetectionSupported")
     CaptureDeviceFormat_isCameraLensSmudgeDetectionSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="isContinuousAutoFocusTrackingSupported", objc_name="isContinuousAutoFocusTrackingSupported")
+    CaptureDeviceFormat_isContinuousAutoFocusTrackingSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="isLowLightVideoNoiseReductionSupported", objc_name="isLowLightVideoNoiseReductionSupported")
+    CaptureDeviceFormat_isLowLightVideoNoiseReductionSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
 }

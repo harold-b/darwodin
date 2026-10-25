@@ -34,6 +34,12 @@ foreign lib {
 	@(objc_type=TensorDescriptor, objc_selector="setUsage:", objc_name="setUsage")
 	TensorDescriptor_setUsage :: proc(self: ^TensorDescriptor, usage: TensorUsage) ---
 
+	@(objc_type=TensorDescriptor, objc_selector="auxiliaryPlanes", objc_name="auxiliaryPlanes")
+	TensorDescriptor_auxiliaryPlanes :: proc(self: ^TensorDescriptor) -> ^TensorAuxiliaryPlaneDescriptorMap ---
+
+	@(objc_type=TensorDescriptor, objc_selector="setAuxiliaryPlanes:", objc_name="setAuxiliaryPlanes")
+	TensorDescriptor_setAuxiliaryPlanes :: proc(self: ^TensorDescriptor, auxiliaryPlanes: ^TensorAuxiliaryPlaneDescriptorMap) ---
+
 	@(objc_type=TensorDescriptor, objc_selector="resourceOptions", objc_name="resourceOptions")
 	TensorDescriptor_resourceOptions :: proc(self: ^TensorDescriptor) -> ResourceOptions ---
 

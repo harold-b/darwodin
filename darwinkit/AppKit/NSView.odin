@@ -670,8 +670,11 @@ foreign lib {
 	@(objc_type=View, objc_selector="printJobTitle", objc_name="printJobTitle")
 	View_printJobTitle :: proc(self: ^View) -> ^NS.String ---
 
-	@(objc_type=View, objc_selector="beginDraggingSessionWithItems:event:source:", objc_name="beginDraggingSessionWithItems")
-	View_beginDraggingSessionWithItems :: proc(self: ^View, items: ^NS.Array, event: ^Event, source: ^DraggingSource) -> ^DraggingSession ---
+	@(objc_type=View, objc_selector="beginDraggingSessionWithItems:gesture:source:", objc_name="beginDraggingSessionWithItems_gesture_source")
+	View_beginDraggingSessionWithItems_gesture_source :: proc(self: ^View, items: ^NS.Array, gesture: ^GestureRecognizer, source: ^DraggingSource) -> ^DraggingSession ---
+
+	@(objc_type=View, objc_selector="beginDraggingSessionWithItems:event:source:", objc_name="beginDraggingSessionWithItems_event_source")
+	View_beginDraggingSessionWithItems_event_source :: proc(self: ^View, items: ^NS.Array, event: ^Event, source: ^DraggingSource) -> ^DraggingSession ---
 
 	@(objc_type=View, objc_selector="registerForDraggedTypes:", objc_name="registerForDraggedTypes")
 	View_registerForDraggedTypes :: proc(self: ^View, newTypes: ^NS.Array) ---
@@ -712,6 +715,12 @@ foreign lib {
 	@(objc_type=View, objc_selector="setGestureRecognizers:", objc_name="setGestureRecognizers")
 	View_setGestureRecognizers :: proc(self: ^View, gestureRecognizers: ^NS.Array) ---
 
+	@(objc_type=View, objc_selector="exclusiveGestureBehavior", objc_name="exclusiveGestureBehavior")
+	View_exclusiveGestureBehavior :: proc(self: ^View) -> ViewExclusiveGestureBehavior ---
+
+	@(objc_type=View, objc_selector="setExclusiveGestureBehavior:", objc_name="setExclusiveGestureBehavior")
+	View_setExclusiveGestureBehavior :: proc(self: ^View, exclusiveGestureBehavior: ViewExclusiveGestureBehavior) ---
+
 	@(objc_type=View, objc_selector="allowedTouchTypes", objc_name="allowedTouchTypes")
 	View_allowedTouchTypes :: proc(self: ^View) -> TouchTypeMask ---
 
@@ -735,6 +744,18 @@ foreign lib {
 
 	@(objc_type=View, objc_selector="layoutMarginsGuide", objc_name="layoutMarginsGuide")
 	View_layoutMarginsGuide :: proc(self: ^View) -> ^LayoutGuide ---
+
+	@(objc_type=View, objc_selector="viewDidChangeEffectiveCornerRadii", objc_name="viewDidChangeEffectiveCornerRadii")
+	View_viewDidChangeEffectiveCornerRadii :: proc(self: ^View) ---
+
+	@(objc_type=View, objc_selector="invalidateCornerConfiguration", objc_name="invalidateCornerConfiguration")
+	View_invalidateCornerConfiguration :: proc(self: ^View) ---
+
+	@(objc_type=View, objc_selector="cornerConfiguration", objc_name="cornerConfiguration")
+	View_cornerConfiguration :: proc(self: ^View) -> ^ViewCornerConfiguration ---
+
+	@(objc_type=View, objc_selector="effectiveCornerRadii", objc_name="effectiveCornerRadii")
+	View_effectiveCornerRadii :: proc(self: ^View) -> ^ViewCornerRadii ---
 
 	@(objc_type=View, objc_selector="prefersCompactControlSizeMetrics", objc_name="prefersCompactControlSizeMetrics")
 	View_prefersCompactControlSizeMetrics :: proc(self: ^View) -> bool ---
@@ -991,6 +1012,12 @@ foreign lib {
 	@(objc_type=View, objc_selector="rectForLayoutRegion:", objc_name="rectForLayoutRegion")
 	View_rectForLayoutRegion :: proc(self: ^View, layoutRegion: ^ViewLayoutRegion) -> NS.Rect ---
 
+	@(objc_type=View, objc_selector="textSelectionManager", objc_name="textSelectionManager")
+	View_textSelectionManager :: proc(self: ^View) -> ^TextSelectionManager ---
+
+	@(objc_type=View, objc_selector="setTextSelectionManager:", objc_name="setTextSelectionManager")
+	View_setTextSelectionManager :: proc(self: ^View, textSelectionManager: ^TextSelectionManager) ---
+
 	@(objc_type=View, objc_selector="rulerView:shouldMoveMarker:", objc_name="rulerView_shouldMoveMarker")
 	View_rulerView_shouldMoveMarker :: proc(self: ^View, ruler: ^RulerView, marker: ^RulerMarker) -> bool ---
 
@@ -1056,6 +1083,12 @@ View_addSubview :: proc {
 View_displayRectIgnoringOpacity :: proc {
 	View_displayRectIgnoringOpacity_,
 	View_displayRectIgnoringOpacity_inContext,
+}
+
+@(objc_type=View, objc_name="beginDraggingSessionWithItems")
+View_beginDraggingSessionWithItems :: proc {
+	View_beginDraggingSessionWithItems_gesture_source,
+	View_beginDraggingSessionWithItems_event_source,
 }
 
 @(objc_type=View, objc_name="showDefinitionForAttributedString")

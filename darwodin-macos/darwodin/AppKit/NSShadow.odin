@@ -30,14 +30,17 @@ foreign lib {
     @(objc_type=Shadow, objc_selector="init", objc_name="init")
     Shadow_init :: proc(self: ^Shadow) -> instancetype ---
 
+    @(objc_type=Shadow, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    Shadow_initWithCoder :: proc(self: ^Shadow, coder: ^NS.Coder) -> instancetype ---
+
     @(objc_type=Shadow, objc_selector="set", objc_name="set")
     Shadow_set :: proc(self: ^Shadow) ---
 
     @(objc_type=Shadow, objc_selector="shadowOffset", objc_name="shadowOffset")
-    Shadow_shadowOffset :: proc(self: ^Shadow) -> NS.Size ---
+    Shadow_shadowOffset :: proc(self: ^Shadow) -> CG.Size ---
 
     @(objc_type=Shadow, objc_selector="setShadowOffset:", objc_name="setShadowOffset")
-    Shadow_setShadowOffset :: proc(self: ^Shadow, shadowOffset: NS.Size) ---
+    Shadow_setShadowOffset :: proc(self: ^Shadow, shadowOffset: CG.Size) ---
 
     @(objc_type=Shadow, objc_selector="shadowBlurRadius", objc_name="shadowBlurRadius")
     Shadow_shadowBlurRadius :: proc(self: ^Shadow) -> CG.Float ---

@@ -53,6 +53,12 @@ foreign lib {
     @(objc_type=ToolbarItemGroup, objc_selector="setSelectionMode:", objc_name="setSelectionMode")
     ToolbarItemGroup_setSelectionMode :: proc(self: ^ToolbarItemGroup, selectionMode: ToolbarItemGroupSelectionMode) ---
 
+    @(objc_type=ToolbarItemGroup, objc_selector="role", objc_name="role")
+    ToolbarItemGroup_role :: proc(self: ^ToolbarItemGroup) -> ToolbarItemGroupRole ---
+
+    @(objc_type=ToolbarItemGroup, objc_selector="setRole:", objc_name="setRole")
+    ToolbarItemGroup_setRole :: proc(self: ^ToolbarItemGroup, role: ToolbarItemGroupRole) ---
+
     @(objc_type=ToolbarItemGroup, objc_selector="selectedIndex", objc_name="selectedIndex")
     ToolbarItemGroup_selectedIndex :: proc(self: ^ToolbarItemGroup) -> NS.Integer ---
 

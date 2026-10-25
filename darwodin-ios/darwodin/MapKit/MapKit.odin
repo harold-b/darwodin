@@ -17,7 +17,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(export, require)
+@(export)
 foreign import lib {
     "system:MapKit.framework",
 }
@@ -26,6 +26,9 @@ foreign import lib {
 // -auto-text-end
 // +user-text-begin
 CNPostalAddress :: NS.Object
+
+// Composite SDK masks that also contain reserved or unnamed bits.
+DirectionsTransportType_Any :: transmute(DirectionsTransportType)cffi.ulong(268435455)
 
 // -user-text-end
 
@@ -45,9 +48,11 @@ foreign lib {
     @(link_name="MKMapRectNull") MapRectNull: MapRect
     @(link_name="MKPointOfInterestCategoryAnimalService") PointOfInterestCategoryAnimalService: ^NS.String
     @(link_name="MKPointOfInterestCategoryAirport") PointOfInterestCategoryAirport: ^NS.String
+    @(link_name="MKPointOfInterestCategoryAirportTerminal") PointOfInterestCategoryAirportTerminal: ^NS.String
     @(link_name="MKPointOfInterestCategoryAmusementPark") PointOfInterestCategoryAmusementPark: ^NS.String
     @(link_name="MKPointOfInterestCategoryAquarium") PointOfInterestCategoryAquarium: ^NS.String
     @(link_name="MKPointOfInterestCategoryATM") PointOfInterestCategoryATM: ^NS.String
+    @(link_name="MKPointOfInterestCategoryAutomotiveDealership") PointOfInterestCategoryAutomotiveDealership: ^NS.String
     @(link_name="MKPointOfInterestCategoryAutomotiveRepair") PointOfInterestCategoryAutomotiveRepair: ^NS.String
     @(link_name="MKPointOfInterestCategoryBakery") PointOfInterestCategoryBakery: ^NS.String
     @(link_name="MKPointOfInterestCategoryBank") PointOfInterestCategoryBank: ^NS.String
@@ -61,6 +66,7 @@ foreign lib {
     @(link_name="MKPointOfInterestCategoryCampground") PointOfInterestCategoryCampground: ^NS.String
     @(link_name="MKPointOfInterestCategoryCarRental") PointOfInterestCategoryCarRental: ^NS.String
     @(link_name="MKPointOfInterestCategoryCastle") PointOfInterestCategoryCastle: ^NS.String
+    @(link_name="MKPointOfInterestCategoryCommercialVehicleDealership") PointOfInterestCategoryCommercialVehicleDealership: ^NS.String
     @(link_name="MKPointOfInterestCategoryConventionCenter") PointOfInterestCategoryConventionCenter: ^NS.String
     @(link_name="MKPointOfInterestCategoryDistillery") PointOfInterestCategoryDistillery: ^NS.String
     @(link_name="MKPointOfInterestCategoryEVCharger") PointOfInterestCategoryEVCharger: ^NS.String
@@ -76,6 +82,7 @@ foreign lib {
     @(link_name="MKPointOfInterestCategoryHiking") PointOfInterestCategoryHiking: ^NS.String
     @(link_name="MKPointOfInterestCategoryHospital") PointOfInterestCategoryHospital: ^NS.String
     @(link_name="MKPointOfInterestCategoryHotel") PointOfInterestCategoryHotel: ^NS.String
+    @(link_name="MKPointOfInterestCategoryInformationBooth") PointOfInterestCategoryInformationBooth: ^NS.String
     @(link_name="MKPointOfInterestCategoryKayaking") PointOfInterestCategoryKayaking: ^NS.String
     @(link_name="MKPointOfInterestCategoryLandmark") PointOfInterestCategoryLandmark: ^NS.String
     @(link_name="MKPointOfInterestCategoryLaundry") PointOfInterestCategoryLaundry: ^NS.String
@@ -83,6 +90,7 @@ foreign lib {
     @(link_name="MKPointOfInterestCategoryMailbox") PointOfInterestCategoryMailbox: ^NS.String
     @(link_name="MKPointOfInterestCategoryMarina") PointOfInterestCategoryMarina: ^NS.String
     @(link_name="MKPointOfInterestCategoryMiniGolf") PointOfInterestCategoryMiniGolf: ^NS.String
+    @(link_name="MKPointOfInterestCategoryMotorbikeDealership") PointOfInterestCategoryMotorbikeDealership: ^NS.String
     @(link_name="MKPointOfInterestCategoryMovieTheater") PointOfInterestCategoryMovieTheater: ^NS.String
     @(link_name="MKPointOfInterestCategoryMuseum") PointOfInterestCategoryMuseum: ^NS.String
     @(link_name="MKPointOfInterestCategoryMusicVenue") PointOfInterestCategoryMusicVenue: ^NS.String
@@ -92,14 +100,18 @@ foreign lib {
     @(link_name="MKPointOfInterestCategoryPark") PointOfInterestCategoryPark: ^NS.String
     @(link_name="MKPointOfInterestCategoryParking") PointOfInterestCategoryParking: ^NS.String
     @(link_name="MKPointOfInterestCategoryPharmacy") PointOfInterestCategoryPharmacy: ^NS.String
+    @(link_name="MKPointOfInterestCategoryPicnicArea") PointOfInterestCategoryPicnicArea: ^NS.String
     @(link_name="MKPointOfInterestCategoryPlanetarium") PointOfInterestCategoryPlanetarium: ^NS.String
     @(link_name="MKPointOfInterestCategoryPolice") PointOfInterestCategoryPolice: ^NS.String
     @(link_name="MKPointOfInterestCategoryPostOffice") PointOfInterestCategoryPostOffice: ^NS.String
     @(link_name="MKPointOfInterestCategoryPublicTransport") PointOfInterestCategoryPublicTransport: ^NS.String
+    @(link_name="MKPointOfInterestCategoryRangerStation") PointOfInterestCategoryRangerStation: ^NS.String
+    @(link_name="MKPointOfInterestCategoryRestArea") PointOfInterestCategoryRestArea: ^NS.String
     @(link_name="MKPointOfInterestCategoryRestaurant") PointOfInterestCategoryRestaurant: ^NS.String
     @(link_name="MKPointOfInterestCategoryRestroom") PointOfInterestCategoryRestroom: ^NS.String
     @(link_name="MKPointOfInterestCategoryRockClimbing") PointOfInterestCategoryRockClimbing: ^NS.String
     @(link_name="MKPointOfInterestCategoryRVPark") PointOfInterestCategoryRVPark: ^NS.String
+    @(link_name="MKPointOfInterestCategoryScenicView") PointOfInterestCategoryScenicView: ^NS.String
     @(link_name="MKPointOfInterestCategorySchool") PointOfInterestCategorySchool: ^NS.String
     @(link_name="MKPointOfInterestCategorySkatePark") PointOfInterestCategorySkatePark: ^NS.String
     @(link_name="MKPointOfInterestCategorySkating") PointOfInterestCategorySkating: ^NS.String
@@ -112,7 +124,9 @@ foreign lib {
     @(link_name="MKPointOfInterestCategorySwimming") PointOfInterestCategorySwimming: ^NS.String
     @(link_name="MKPointOfInterestCategoryTennis") PointOfInterestCategoryTennis: ^NS.String
     @(link_name="MKPointOfInterestCategoryTheater") PointOfInterestCategoryTheater: ^NS.String
+    @(link_name="MKPointOfInterestCategoryTicketOffice") PointOfInterestCategoryTicketOffice: ^NS.String
     @(link_name="MKPointOfInterestCategoryUniversity") PointOfInterestCategoryUniversity: ^NS.String
+    @(link_name="MKPointOfInterestCategoryVisitorCenter") PointOfInterestCategoryVisitorCenter: ^NS.String
     @(link_name="MKPointOfInterestCategoryWinery") PointOfInterestCategoryWinery: ^NS.String
     @(link_name="MKPointOfInterestCategoryVolleyball") PointOfInterestCategoryVolleyball: ^NS.String
     @(link_name="MKPointOfInterestCategoryZoo") PointOfInterestCategoryZoo: ^NS.String
@@ -266,13 +280,13 @@ LocalSearchRegionPriority :: enum cffi.long {
 }
 
 /// MKDirectionsTransportType
-DirectionsTransportType :: enum cffi.ulong {
-    Automobile = 1,
-    Walking    = 2,
-    Transit    = 4,
-    Cycling    = 8,
-    Any        = 268435455,
+DirectionsTransportTypeFlag :: enum cffi.ulong {
+    Automobile = 0,
+    Walking    = 1,
+    Transit    = 2,
+    Cycling    = 3,
 }
+DirectionsTransportType :: bit_set[DirectionsTransportTypeFlag; cffi.ulong]
 
 /// MKDirectionsRoutePreference
 DirectionsRoutePreference :: enum cffi.long {
@@ -296,11 +310,12 @@ DistanceFormatterUnitStyle :: enum cffi.ulong {
 }
 
 /// MKLocalSearchResultType
-LocalSearchResultType :: enum cffi.ulong {
-    Address         = 1,
-    PointOfInterest = 2,
-    PhysicalFeature = 4,
+LocalSearchResultTypeFlag :: enum cffi.ulong {
+    Address         = 0,
+    PointOfInterest = 1,
+    PhysicalFeature = 2,
 }
+LocalSearchResultType :: bit_set[LocalSearchResultTypeFlag; cffi.ulong]
 
 /// MKSearchCompletionFilterType
 SearchCompletionFilterType :: enum cffi.long {
@@ -309,12 +324,13 @@ SearchCompletionFilterType :: enum cffi.long {
 }
 
 /// MKLocalSearchCompleterResultType
-LocalSearchCompleterResultType :: enum cffi.ulong {
-    Address         = 1,
-    PointOfInterest = 2,
-    Query           = 4,
-    PhysicalFeature = 8,
+LocalSearchCompleterResultTypeFlag :: enum cffi.ulong {
+    Address         = 0,
+    PointOfInterest = 1,
+    Query           = 2,
+    PhysicalFeature = 3,
 }
+LocalSearchCompleterResultType :: bit_set[LocalSearchCompleterResultTypeFlag; cffi.ulong]
 
 /// MKMapElevationStyle
 MapElevationStyle :: enum cffi.long {

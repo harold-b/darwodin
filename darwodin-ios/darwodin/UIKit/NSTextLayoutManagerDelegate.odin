@@ -31,6 +31,12 @@ foreign lib {
 
     @(objc_type=NSTextLayoutManagerDelegate, objc_selector="textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:", objc_name="textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes")
     NSTextLayoutManagerDelegate_textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes :: proc(self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, link: id, location: ^NSTextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary ---
+
+    @(objc_type=NSTextLayoutManagerDelegate, objc_selector="textLayoutManager:cacheTextAttachmentViewProvider:forTextAttachment:", objc_name="textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment")
+    NSTextLayoutManagerDelegate_textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment :: proc(self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, viewProvider: ^NSTextAttachmentViewProvider, textAttachment: ^NSTextAttachment) ---
+
+    @(objc_type=NSTextLayoutManagerDelegate, objc_selector="textLayoutManager:retrieveCachedTextAttachmentViewProviderForTextAttachment:", objc_name="textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment")
+    NSTextLayoutManagerDelegate_textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment :: proc(self: ^NSTextLayoutManagerDelegate, textLayoutManager: ^NSTextLayoutManager, attachment: ^NSTextAttachment) -> ^NSTextAttachmentViewProvider ---
 }
 
 @(objc_type=NSTextLayoutManagerDelegate, objc_name="textLayoutManager")
@@ -38,5 +44,7 @@ NSTextLayoutManagerDelegate_textLayoutManager :: proc {
     NSTextLayoutManagerDelegate_textLayoutManager_textLayoutFragmentForLocation_inTextElement,
     NSTextLayoutManagerDelegate_textLayoutManager_shouldBreakLineBeforeLocation_hyphenating,
     NSTextLayoutManagerDelegate_textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes,
+    NSTextLayoutManagerDelegate_textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment,
+    NSTextLayoutManagerDelegate_textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment,
 }
 

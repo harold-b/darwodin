@@ -22,6 +22,8 @@ VTable :: struct {
     setDelegate: proc(self: ^UI.SheetPresentationController, delegate: ^UI.SheetPresentationControllerDelegate),
     sourceView: proc(self: ^UI.SheetPresentationController) -> ^UI.View,
     setSourceView: proc(self: ^UI.SheetPresentationController, sourceView: ^UI.View),
+    preferredPlacement: proc(self: ^UI.SheetPresentationController) -> UI.SheetPresentationControllerPlacement,
+    setPreferredPlacement: proc(self: ^UI.SheetPresentationController, preferredPlacement: UI.SheetPresentationControllerPlacement),
     prefersPageSizing: proc(self: ^UI.SheetPresentationController) -> bool,
     setPrefersPageSizing: proc(self: ^UI.SheetPresentationController, prefersPageSizing: bool),
     prefersEdgeAttachedInCompactHeight: proc(self: ^UI.SheetPresentationController) -> bool,
@@ -108,6 +110,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSourceView:"), auto_cast setSourceView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.preferredPlacement != nil {
+        preferredPlacement :: proc "c" (self: ^UI.SheetPresentationController, _: SEL) -> UI.SheetPresentationControllerPlacement {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredPlacement(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredPlacement"), auto_cast preferredPlacement, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredPlacement != nil {
+        setPreferredPlacement :: proc "c" (self: ^UI.SheetPresentationController, _: SEL, preferredPlacement: UI.SheetPresentationControllerPlacement) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredPlacement(self, preferredPlacement)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredPlacement:"), auto_cast setPreferredPlacement, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.prefersPageSizing != nil {
         prefersPageSizing :: proc "c" (self: ^UI.SheetPresentationController, _: SEL) -> bool {

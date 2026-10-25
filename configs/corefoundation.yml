@@ -142,7 +142,6 @@ Odin:
       Filter: .*
       Export: CF
       LinkLibs: [system:CoreFoundation.framework]
-      RequiredLink: true
 
       Imports:
         - |
@@ -185,6 +184,11 @@ Odin:
           }
 
 
+
+        - |
+          // Composite SDK masks that also contain reserved or unnamed bits.
+          RunLoopActivity_AllActivities :: transmute(RunLoopActivity)cffi.ulong(268435455)
+          when ODIN_PLATFORM_SUBTARGET == .Default { XMLParserOptions_AllOptions :: transmute(XMLParserOptions)cffi.ulong(16777215) }
 
       TypeMap:
         NSObject:          NSObject
@@ -244,6 +248,16 @@ Odin:
       - Kind  : RemoveUnderscorePrefix
       - Kind  : UnderscoreNumbers
 
+  # Restore complete SDK words after the generic enum-name transforms.
+  - Type: '^CFGregorianUnitFlags$'
+    Transforms:
+    - { Kind: ReplacePrefix, Source: sYears, Target: Years }
+    - { Kind: ReplacePrefix, Source: sMonths, Target: Months }
+    - { Kind: ReplacePrefix, Source: sDays, Target: Days }
+    - { Kind: ReplacePrefix, Source: sHours, Target: Hours }
+    - { Kind: ReplacePrefix, Source: sMinutes, Target: Minutes }
+    - { Kind: ReplacePrefix, Source: sSeconds, Target: Seconds }
+
   TypeTransforms:
     - Type: ^CFStringEncodings$
       Transforms:
@@ -263,6 +277,41 @@ Odin:
       
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # CFPropertyListMutabilityOptions and CFXMLParserStatusCode select modes/statuses, not flags.
+    # block.h: documented flag bits.
+    - Type: '^dispatch_block_flags_t$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFCalendar.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFCalendarUnit$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFDateFormatter.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFISO8601DateFormatOptions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFURL.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^(?:CFURLBookmarkCreationOptions|CFURLBookmarkResolutionOptions)$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFRunLoop.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFRunLoopActivity$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFSocket.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFSocketCallBackType$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFStream.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFStreamEventType$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFURLEnumerator.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFURLEnumeratorOptions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFFileSecurity.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFFileSecurityClearOptions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFStringTokenizer.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFStringTokenizerTokenType$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CFXMLParser.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CFXMLParserOptions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: Flags?$
       Transforms:
         - Kind  : RemoveSuffix

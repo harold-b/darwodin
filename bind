@@ -84,19 +84,13 @@ function bind_framework() {
   local framework_lower="${f,,}"
 
   local framework_cfg="configs/${framework_lower}.yml"
-  if [[ -e "configs/${framework_lower}.toml" ]]; then
-    framework_cfg="configs/${framework_lower}.toml"
-  fi
 
   # Check ios-specific version
   if [[ ${use_ios} -eq 1 ]]; then
-    local framework_cfg_ios_toml="configs/${framework_lower}_ios.toml"
-    local framework_cfg_ios_yaml="configs/${framework_lower}_ios.yml"
+    local framework_cfg_ios="configs/${framework_lower}_ios.yml"
 
-    if [[ -e "${framework_cfg_ios_toml}" ]]; then
-      framework_cfg=$framework_cfg_ios_toml
-    elif [[ -e "${framework_cfg_ios_yaml}" ]]; then
-      framework_cfg=$framework_cfg_ios_yaml
+    if [[ -e "${framework_cfg_ios}" ]]; then
+      framework_cfg=$framework_cfg_ios
     fi
   fi
 

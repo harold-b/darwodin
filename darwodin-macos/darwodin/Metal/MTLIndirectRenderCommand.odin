@@ -81,7 +81,7 @@ foreign lib {
     IndirectRenderCommand_setCullMode :: proc(self: ^IndirectRenderCommand, cullMode: CullMode) ---
 
     @(objc_type=IndirectRenderCommand, objc_selector="setFrontFacingWinding:", objc_name="setFrontFacingWinding")
-    IndirectRenderCommand_setFrontFacingWinding :: proc(self: ^IndirectRenderCommand, frontFacingWindning: Winding) ---
+    IndirectRenderCommand_setFrontFacingWinding :: proc(self: ^IndirectRenderCommand, frontFacingWinding: Winding) ---
 
     @(objc_type=IndirectRenderCommand, objc_selector="setTriangleFillMode:", objc_name="setTriangleFillMode")
     IndirectRenderCommand_setTriangleFillMode :: proc(self: ^IndirectRenderCommand, fillMode: TriangleFillMode) ---

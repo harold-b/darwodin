@@ -25,6 +25,7 @@ VTable :: struct {
     notificationResponse: proc(self: ^UI.SceneConnectionOptions) -> ^UI.UNNotificationResponse,
     shortcutItem: proc(self: ^UI.SceneConnectionOptions) -> ^UI.ApplicationShortcutItem,
     cloudKitShareMetadata: proc(self: ^UI.SceneConnectionOptions) -> ^UI.CKShareMetadata,
+    sceneAccessoryUserInfo: proc(self: ^UI.SceneConnectionOptions) -> id,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -123,6 +124,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("cloudKitShareMetadata"), auto_cast cloudKitShareMetadata, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.sceneAccessoryUserInfo != nil {
+        sceneAccessoryUserInfo :: proc "c" (self: ^UI.SceneConnectionOptions, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).sceneAccessoryUserInfo(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sceneAccessoryUserInfo"), auto_cast sceneAccessoryUserInfo, "@@:") do panic("Failed to register objC method.")
     }
 }
 

@@ -79,4 +79,13 @@ foreign lib {
 
     @(objc_type=WritingToolsCoordinator, objc_selector="resultOptions", objc_name="resultOptions")
     WritingToolsCoordinator_resultOptions :: proc(self: ^WritingToolsCoordinator) -> WritingToolsResultOptions ---
+
+    @(objc_type=WritingToolsCoordinator, objc_selector="startTextAnimation:forRange:inContext:writingDirection:", objc_name="startTextAnimation")
+    WritingToolsCoordinator_startTextAnimation :: proc(self: ^WritingToolsCoordinator, textAnimation: WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^WritingToolsCoordinatorContext, writingDirection: NSWritingDirection) -> ^NS.UUID ---
+
+    @(objc_type=WritingToolsCoordinator, objc_selector="cancelTextAnimationsWithIdentifiers:", objc_name="cancelTextAnimationsWithIdentifiers")
+    WritingToolsCoordinator_cancelTextAnimationsWithIdentifiers :: proc(self: ^WritingToolsCoordinator, identifiers: ^NS.Array) ---
+
+    @(objc_type=WritingToolsCoordinator, objc_selector="showGrammarPresentationForRange:inContext:", objc_name="showGrammarPresentationForRange")
+    WritingToolsCoordinator_showGrammarPresentationForRange :: proc(self: ^WritingToolsCoordinator, range: NS._NSRange, _context: ^WritingToolsCoordinatorContext) -> bool ---
 }

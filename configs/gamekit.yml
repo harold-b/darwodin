@@ -139,6 +139,11 @@ Odin:
       - Kind: RemoveUnderscorePrefix
       - Kind: UnderscoreNumbers
 
+    # Restore complete SDK words after the generic enum-name transforms.
+    - Type: '^GKInviteRecipientResponse$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: eResponse, Target: InviteeResponse }
+
   TypeTransforms:
     - Type: ^(GK).+
       Transforms:
@@ -150,6 +155,11 @@ Odin:
         Source: s
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # GKReleaseState selects one release state despite its NS_OPTIONS declaration.
+    # GKMeshGraph.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^GKMeshGraphTriangulationMode$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:
         - Kind  : RemoveSuffix

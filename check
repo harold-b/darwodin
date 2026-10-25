@@ -78,9 +78,6 @@ for t in ${targets[@]}; do
     t="${t,,}"  # Lower case
 
     cfg_path="configs/${t}.yml"
-    if [[ -e "configs/${t}.toml" ]]; then
-      cfg_path="configs/${t}.toml"
-    fi
   
     csgen --odin-check-enums "$cfg_path"
     echo ""

@@ -29,6 +29,8 @@ VTable :: struct {
     setInlinePredictionType: proc(self: ^UI.TextInputTraitsProtocol, inlinePredictionType: UI.TextInlinePredictionType),
     mathExpressionCompletionType: proc(self: ^UI.TextInputTraitsProtocol) -> UI.TextMathExpressionCompletionType,
     setMathExpressionCompletionType: proc(self: ^UI.TextInputTraitsProtocol, mathExpressionCompletionType: UI.TextMathExpressionCompletionType),
+    grammarCheckingType: proc(self: ^UI.TextInputTraitsProtocol) -> UI.TextGrammarCheckingType,
+    setGrammarCheckingType: proc(self: ^UI.TextInputTraitsProtocol, grammarCheckingType: UI.TextGrammarCheckingType),
     keyboardType: proc(self: ^UI.TextInputTraitsProtocol) -> UI.KeyboardType,
     setKeyboardType: proc(self: ^UI.TextInputTraitsProtocol, keyboardType: UI.KeyboardType),
     keyboardAppearance: proc(self: ^UI.TextInputTraitsProtocol) -> UI.KeyboardAppearance,
@@ -216,6 +218,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMathExpressionCompletionType:"), auto_cast setMathExpressionCompletionType, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.grammarCheckingType != nil {
+        grammarCheckingType :: proc "c" (self: ^UI.TextInputTraitsProtocol, _: SEL) -> UI.TextGrammarCheckingType {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).grammarCheckingType(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("grammarCheckingType"), auto_cast grammarCheckingType, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setGrammarCheckingType != nil {
+        setGrammarCheckingType :: proc "c" (self: ^UI.TextInputTraitsProtocol, _: SEL, grammarCheckingType: UI.TextGrammarCheckingType) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setGrammarCheckingType(self, grammarCheckingType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setGrammarCheckingType:"), auto_cast setGrammarCheckingType, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.keyboardType != nil {
         keyboardType :: proc "c" (self: ^UI.TextInputTraitsProtocol, _: SEL) -> UI.KeyboardType {

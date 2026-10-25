@@ -23,10 +23,10 @@ foreign lib {
 	TextTable_drawBackgroundForBlock :: proc(self: ^TextTable, block: ^TextTableBlock, frameRect: NS.Rect, controlView: ^View, charRange: NS._NSRange, layoutManager: ^LayoutManager) ---
 
 	@(objc_type=TextTable, objc_selector="numberOfColumns", objc_name="numberOfColumns")
-	TextTable_numberOfColumns :: proc(self: ^TextTable) -> NS.UInteger ---
+	TextTable_numberOfColumns :: proc(self: ^TextTable) -> NS.Integer ---
 
 	@(objc_type=TextTable, objc_selector="setNumberOfColumns:", objc_name="setNumberOfColumns")
-	TextTable_setNumberOfColumns :: proc(self: ^TextTable, numberOfColumns: NS.UInteger) ---
+	TextTable_setNumberOfColumns :: proc(self: ^TextTable, numberOfColumns: NS.Integer) ---
 
 	@(objc_type=TextTable, objc_selector="layoutAlgorithm", objc_name="layoutAlgorithm")
 	TextTable_layoutAlgorithm :: proc(self: ^TextTable) -> TextTableLayoutAlgorithm ---

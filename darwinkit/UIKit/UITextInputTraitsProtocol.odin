@@ -64,6 +64,12 @@ foreign lib {
 	@(objc_type=TextInputTraitsProtocol, objc_selector="setMathExpressionCompletionType:", objc_name="setMathExpressionCompletionType")
 	TextInputTraitsProtocol_setMathExpressionCompletionType :: proc(self: ^TextInputTraitsProtocol, mathExpressionCompletionType: TextMathExpressionCompletionType) ---
 
+	@(objc_type=TextInputTraitsProtocol, objc_selector="grammarCheckingType", objc_name="grammarCheckingType")
+	TextInputTraitsProtocol_grammarCheckingType :: proc(self: ^TextInputTraitsProtocol) -> TextGrammarCheckingType ---
+
+	@(objc_type=TextInputTraitsProtocol, objc_selector="setGrammarCheckingType:", objc_name="setGrammarCheckingType")
+	TextInputTraitsProtocol_setGrammarCheckingType :: proc(self: ^TextInputTraitsProtocol, grammarCheckingType: TextGrammarCheckingType) ---
+
 	@(objc_type=TextInputTraitsProtocol, objc_selector="keyboardType", objc_name="keyboardType")
 	TextInputTraitsProtocol_keyboardType :: proc(self: ^TextInputTraitsProtocol) -> KeyboardType ---
 

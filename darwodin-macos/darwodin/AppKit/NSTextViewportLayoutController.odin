@@ -41,6 +41,9 @@ foreign lib {
     @(objc_type=TextViewportLayoutController, objc_selector="adjustViewportByVerticalOffset:", objc_name="adjustViewportByVerticalOffset")
     TextViewportLayoutController_adjustViewportByVerticalOffset :: proc(self: ^TextViewportLayoutController, verticalOffset: CG.Float) ---
 
+    @(objc_type=TextViewportLayoutController, objc_selector="renderingSurfaceForKey:", objc_name="renderingSurfaceForKey")
+    TextViewportLayoutController_renderingSurfaceForKey :: proc(self: ^TextViewportLayoutController, key: ^TextViewportRenderingSurfaceKey) -> ^TextViewportRenderingSurface ---
+
     @(objc_type=TextViewportLayoutController, objc_selector="delegate", objc_name="delegate")
     TextViewportLayoutController_delegate :: proc(self: ^TextViewportLayoutController) -> ^TextViewportLayoutControllerDelegate ---
 

@@ -146,4 +146,19 @@ foreign lib {
 
 	@(objc_type=CaptureConnection, objc_selector="setCameraIntrinsicMatrixDeliveryEnabled:", objc_name="setCameraIntrinsicMatrixDeliveryEnabled")
 	CaptureConnection_setCameraIntrinsicMatrixDeliveryEnabled :: proc(self: ^CaptureConnection, cameraIntrinsicMatrixDeliveryEnabled: bool) ---
+
+	@(objc_type=CaptureConnection, objc_selector="isLowLightVideoNoiseReductionSupported", objc_name="isLowLightVideoNoiseReductionSupported")
+	CaptureConnection_isLowLightVideoNoiseReductionSupported :: proc(self: ^CaptureConnection) -> bool ---
+
+	@(objc_type=CaptureConnection, objc_selector="automaticallyEnablesLowLightVideoNoiseReduction", objc_name="automaticallyEnablesLowLightVideoNoiseReduction")
+	CaptureConnection_automaticallyEnablesLowLightVideoNoiseReduction :: proc(self: ^CaptureConnection) -> bool ---
+
+	@(objc_type=CaptureConnection, objc_selector="setAutomaticallyEnablesLowLightVideoNoiseReduction:", objc_name="setAutomaticallyEnablesLowLightVideoNoiseReduction")
+	CaptureConnection_setAutomaticallyEnablesLowLightVideoNoiseReduction :: proc(self: ^CaptureConnection, automaticallyEnablesLowLightVideoNoiseReduction: bool) ---
+
+	@(objc_type=CaptureConnection, objc_selector="isLowLightVideoNoiseReductionEnabled", objc_name="isLowLightVideoNoiseReductionEnabled")
+	CaptureConnection_isLowLightVideoNoiseReductionEnabled :: proc(self: ^CaptureConnection) -> bool ---
+
+	@(objc_type=CaptureConnection, objc_selector="setLowLightVideoNoiseReductionEnabled:", objc_name="setLowLightVideoNoiseReductionEnabled")
+	CaptureConnection_setLowLightVideoNoiseReductionEnabled :: proc(self: ^CaptureConnection, lowLightVideoNoiseReductionEnabled: bool) ---
 }

@@ -14,7 +14,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(export, require)
+@(export)
 foreign import lib {
     "system:CoreFoundation.framework",
 }
@@ -59,6 +59,10 @@ StringCopyToOdinString :: proc( theString: StringRef, allocator := context.alloc
     StringGetBytes(theString, {0, length}, StringEncoding(StringBuiltInEncodings.UTF8), 0, false, raw_data(buf), Index(len(buf)), &n)
     return string(buf[:n]), true
 }
+
+// Composite SDK masks that also contain reserved or unnamed bits.
+RunLoopActivity_AllActivities :: transmute(RunLoopActivity)cffi.ulong(268435455)
+when ODIN_PLATFORM_SUBTARGET == .Default { XMLParserOptions_AllOptions :: transmute(XMLParserOptions)cffi.ulong(16777215) }
 
 // -user-text-end
 
@@ -3815,14 +3819,15 @@ dispatch_autorelease_frequency_t :: enum cffi.ulong {
 }
 
 /// dispatch_block_flags_t
-dispatch_block_flags_t :: enum cffi.ulong {
-    BARRIER           = 1,
-    DETACHED          = 2,
-    ASSIGN_CURRENT    = 4,
-    NO_QOS_CLASS      = 8,
-    INHERIT_QOS_CLASS = 16,
-    ENFORCE_QOS_CLASS = 32,
+dispatch_block_flags_tFlag :: enum cffi.ulong {
+    BARRIER           = 0,
+    DETACHED          = 1,
+    ASSIGN_CURRENT    = 2,
+    NO_QOS_CLASS      = 3,
+    INHERIT_QOS_CLASS = 4,
+    ENFORCE_QOS_CLASS = 5,
 }
+dispatch_block_flags_t :: bit_set[dispatch_block_flags_tFlag; cffi.ulong]
 
 /// CFComparisonResult
 ComparisonResult :: enum cffi.long {
@@ -3857,12 +3862,12 @@ LocaleLanguageDirection :: enum cffi.long {
 
 /// CFGregorianUnitFlags
 GregorianUnitFlag :: enum cffi.ulong {
-    sYears   = 0,
-    sMonths  = 1,
-    sDays    = 2,
-    sHours   = 3,
-    sMinutes = 4,
-    sSeconds = 5,
+    Years   = 0,
+    Months  = 1,
+    Days    = 2,
+    Hours   = 3,
+    Minutes = 4,
+    Seconds = 5,
 }
 GregorianUnitFlags :: bit_set[GregorianUnitFlag; cffi.ulong]
 
@@ -3943,23 +3948,24 @@ TimeZoneNameStyle :: enum cffi.long {
 }
 
 /// CFCalendarUnit
-CalendarUnit :: enum cffi.ulong {
-    Era               = 2,
-    Year              = 4,
-    Month             = 8,
-    Day               = 16,
-    Hour              = 32,
-    Minute            = 64,
-    Second            = 128,
-    Week              = 256,
-    Weekday           = 512,
-    WeekdayOrdinal    = 1024,
-    Quarter           = 2048,
-    WeekOfMonth       = 4096,
-    WeekOfYear        = 8192,
-    YearForWeekOfYear = 16384,
-    DayOfYear         = 65536,
+CalendarUnitFlag :: enum cffi.ulong {
+    Era               = 1,
+    Year              = 2,
+    Month             = 3,
+    Day               = 4,
+    Hour              = 5,
+    Minute            = 6,
+    Second            = 7,
+    Week              = 8,
+    Weekday           = 9,
+    WeekdayOrdinal    = 10,
+    Quarter           = 11,
+    WeekOfMonth       = 12,
+    WeekOfYear        = 13,
+    YearForWeekOfYear = 14,
+    DayOfYear         = 16,
 }
+CalendarUnit :: bit_set[CalendarUnitFlag; cffi.ulong]
 
 /// CFDateFormatterStyle
 DateFormatterStyle :: enum cffi.long {
@@ -3971,22 +3977,26 @@ DateFormatterStyle :: enum cffi.long {
 }
 
 /// CFISO8601DateFormatOptions
-ISO8601DateFormatOptions :: enum cffi.ulong {
-    Year                     = 1,
-    Month                    = 2,
-    WeekOfYear               = 4,
-    Day                      = 16,
-    Time                     = 32,
-    TimeZone                 = 64,
-    SpaceBetweenDateAndTime  = 128,
-    DashSeparatorInDate      = 256,
-    ColonSeparatorInTime     = 512,
-    ColonSeparatorInTimeZone = 1024,
-    FractionalSeconds        = 2048,
-    FullDate                 = 275,
-    FullTime                 = 1632,
-    InternetDateTime         = 1907,
+ISO8601DateFormatOptionsFlag :: enum cffi.ulong {
+    Year                     = 0,
+    Month                    = 1,
+    WeekOfYear               = 2,
+    Day                      = 4,
+    Time                     = 5,
+    TimeZone                 = 6,
+    SpaceBetweenDateAndTime  = 7,
+    DashSeparatorInDate      = 8,
+    ColonSeparatorInTime     = 9,
+    ColonSeparatorInTimeZone = 10,
+    FractionalSeconds        = 11,
 }
+ISO8601DateFormatOptions :: bit_set[ISO8601DateFormatOptionsFlag; cffi.ulong]
+
+ISO8601DateFormatOptions_FullDate :: ISO8601DateFormatOptions { .Year, .Month, .Day, .DashSeparatorInDate, }
+
+ISO8601DateFormatOptions_FullTime :: ISO8601DateFormatOptions { .Time, .TimeZone, .ColonSeparatorInTime, .ColonSeparatorInTimeZone, }
+
+ISO8601DateFormatOptions_InternetDateTime :: ISO8601DateFormatOptions { .Year, .Month, .Day, .Time, .TimeZone, .DashSeparatorInDate, .ColonSeparatorInTime, .ColonSeparatorInTimeZone, }
 
 /// CFNumberType
 NumberType :: enum cffi.long {
@@ -4072,24 +4082,26 @@ URLComponentType :: enum cffi.long {
 }
 
 /// CFURLBookmarkCreationOptions
-URLBookmarkCreationOptions :: enum cffi.ulong {
-    MinimalBookmarkMask              = 512,
-    SuitableForBookmarkFile          = 1024,
-    WithSecurityScope                = 2048,
-    SecurityScopeAllowOnlyReadAccess = 4096,
-    WithoutImplicitSecurityScope     = 536870912,
-    PreferFileIDResolutionMask       = 256,
+URLBookmarkCreationOptionsFlag :: enum cffi.ulong {
+    MinimalBookmarkMask              = 9,
+    SuitableForBookmarkFile          = 10,
+    WithSecurityScope                = 11,
+    SecurityScopeAllowOnlyReadAccess = 12,
+    WithoutImplicitSecurityScope     = 29,
+    PreferFileIDResolutionMask       = 8,
 }
+URLBookmarkCreationOptions :: bit_set[URLBookmarkCreationOptionsFlag; cffi.ulong]
 
 /// CFURLBookmarkResolutionOptions
-URLBookmarkResolutionOptions :: enum cffi.ulong {
-    WithoutUIMask                 = 256,
-    WithoutMountingMask           = 512,
-    WithSecurityScope             = 1024,
-    WithoutImplicitStartAccessing = 32768,
-    kWithoutUIMask                = 256,
-    kWithoutMountingMask          = 512,
+URLBookmarkResolutionOptionsFlag :: enum cffi.ulong {
+    WithoutUIMask                 = 8,
+    WithoutMountingMask           = 9,
+    WithSecurityScope             = 10,
+    WithoutImplicitStartAccessing = 15,
+    kWithoutUIMask                = 8,
+    kWithoutMountingMask          = 9,
 }
+URLBookmarkResolutionOptions :: bit_set[URLBookmarkResolutionOptionsFlag; cffi.ulong]
 
 /// CFRunLoopRunResult
 RunLoopRunResult :: enum cffi.int {
@@ -4100,15 +4112,15 @@ RunLoopRunResult :: enum cffi.int {
 }
 
 /// CFRunLoopActivity
-RunLoopActivity :: enum cffi.ulong {
-    Entry         = 1,
-    BeforeTimers  = 2,
-    BeforeSources = 4,
-    BeforeWaiting = 32,
-    AfterWaiting  = 64,
-    Exit          = 128,
-    AllActivities = 268435455,
+RunLoopActivityFlag :: enum cffi.ulong {
+    Entry         = 0,
+    BeforeTimers  = 1,
+    BeforeSources = 2,
+    BeforeWaiting = 5,
+    AfterWaiting  = 6,
+    Exit          = 7,
 }
+RunLoopActivity :: bit_set[RunLoopActivityFlag; cffi.ulong]
 
 /// CFSocketError
 SocketError :: enum cffi.long {
@@ -4118,14 +4130,15 @@ SocketError :: enum cffi.long {
 }
 
 /// CFSocketCallBackType
-SocketCallBackType :: enum cffi.ulong {
-    NoCallBack      = 0,
-    ReadCallBack    = 1,
-    AcceptCallBack  = 2,
-    DataCallBack    = 3,
-    ConnectCallBack = 4,
-    WriteCallBack   = 8,
+SocketCallBackTypeFlag :: enum cffi.ulong {
+    ReadCallBack    = 0,
+    AcceptCallBack  = 1,
+    ConnectCallBack = 2,
+    WriteCallBack   = 3,
 }
+SocketCallBackType :: bit_set[SocketCallBackTypeFlag; cffi.ulong]
+
+SocketCallBackType_DataCallBack :: SocketCallBackType { .ReadCallBack, .AcceptCallBack, }
 
 /// CFStreamStatus
 StreamStatus :: enum cffi.long {
@@ -4140,14 +4153,14 @@ StreamStatus :: enum cffi.long {
 }
 
 /// CFStreamEventType
-StreamEventType :: enum cffi.ulong {
-    None              = 0,
-    OpenCompleted     = 1,
-    HasBytesAvailable = 2,
-    CanAcceptBytes    = 4,
-    ErrorOccurred     = 8,
-    EndEncountered    = 16,
+StreamEventTypeFlag :: enum cffi.ulong {
+    OpenCompleted     = 0,
+    HasBytesAvailable = 1,
+    CanAcceptBytes    = 2,
+    ErrorOccurred     = 3,
+    EndEncountered    = 4,
 }
+StreamEventType :: bit_set[StreamEventTypeFlag; cffi.ulong]
 
 /// CFStreamErrorDomain
 StreamErrorDomain :: enum cffi.long {
@@ -4317,16 +4330,16 @@ URLError :: enum cffi.long {
 }
 
 /// CFURLEnumeratorOptions
-URLEnumeratorOptions :: enum cffi.ulong {
-    DefaultBehavior             = 0,
-    DescendRecursively          = 1,
-    SkipInvisibles              = 2,
-    GenerateFileReferenceURLs   = 4,
-    SkipPackageContents         = 8,
-    IncludeDirectoriesPreOrder  = 16,
-    IncludeDirectoriesPostOrder = 32,
-    GenerateRelativePathURLs    = 64,
+URLEnumeratorOptionsFlag :: enum cffi.ulong {
+    DescendRecursively          = 0,
+    SkipInvisibles              = 1,
+    GenerateFileReferenceURLs   = 2,
+    SkipPackageContents         = 3,
+    IncludeDirectoriesPreOrder  = 4,
+    IncludeDirectoriesPostOrder = 5,
+    GenerateRelativePathURLs    = 6,
 }
+URLEnumeratorOptions :: bit_set[URLEnumeratorOptionsFlag; cffi.ulong]
 
 /// CFURLEnumeratorResult
 URLEnumeratorResult :: enum cffi.long {
@@ -4337,25 +4350,26 @@ URLEnumeratorResult :: enum cffi.long {
 }
 
 /// CFFileSecurityClearOptions
-FileSecurityClearOptions :: enum cffi.ulong {
-    Owner             = 1,
-    Group             = 2,
-    Mode              = 4,
-    OwnerUUID         = 8,
-    GroupUUID         = 16,
-    AccessControlList = 32,
+FileSecurityClearOptionsFlag :: enum cffi.ulong {
+    Owner             = 0,
+    Group             = 1,
+    Mode              = 2,
+    OwnerUUID         = 3,
+    GroupUUID         = 4,
+    AccessControlList = 5,
 }
+FileSecurityClearOptions :: bit_set[FileSecurityClearOptionsFlag; cffi.ulong]
 
 /// CFStringTokenizerTokenType
-StringTokenizerTokenType :: enum cffi.ulong {
-    None                    = 0,
-    Normal                  = 1,
-    HasSubTokensMask        = 2,
-    HasDerivedSubTokensMask = 4,
-    HasHasNumbersMask       = 8,
-    HasNonLettersMask       = 16,
-    IsCJWordMask            = 32,
+StringTokenizerTokenTypeFlag :: enum cffi.ulong {
+    Normal                  = 0,
+    HasSubTokensMask        = 1,
+    HasDerivedSubTokensMask = 2,
+    HasHasNumbersMask       = 3,
+    HasNonLettersMask       = 4,
+    IsCJWordMask            = 5,
 }
+StringTokenizerTokenType :: bit_set[StringTokenizerTokenTypeFlag; cffi.ulong]
 
 /// UnsignedWide
 UnsignedWide :: struct #align (2) {

@@ -22,6 +22,9 @@ VTable :: struct {
     new: proc() -> ^UI.TabBarControllerSidebar,
     delegate: proc(self: ^UI.TabBarControllerSidebar) -> ^UI.TabBarControllerSidebarDelegate,
     setDelegate: proc(self: ^UI.TabBarControllerSidebar, delegate: ^UI.TabBarControllerSidebarDelegate),
+    isAvailable: proc(self: ^UI.TabBarControllerSidebar) -> bool,
+    preferredPlacement: proc(self: ^UI.TabBarControllerSidebar) -> UI.TabBarControllerSidebarPlacement,
+    setPreferredPlacement: proc(self: ^UI.TabBarControllerSidebar, preferredPlacement: UI.TabBarControllerSidebarPlacement),
     isHidden: proc(self: ^UI.TabBarControllerSidebar) -> bool,
     setHidden: proc(self: ^UI.TabBarControllerSidebar, hidden: bool),
     preferredLayout: proc(self: ^UI.TabBarControllerSidebar) -> UI.TabBarControllerSidebarLayout,
@@ -102,6 +105,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.isAvailable != nil {
+        isAvailable :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isAvailable(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isAvailable"), auto_cast isAvailable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.preferredPlacement != nil {
+        preferredPlacement :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL) -> UI.TabBarControllerSidebarPlacement {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredPlacement(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredPlacement"), auto_cast preferredPlacement, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredPlacement != nil {
+        setPreferredPlacement :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL, preferredPlacement: UI.TabBarControllerSidebarPlacement) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredPlacement(self, preferredPlacement)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredPlacement:"), auto_cast setPreferredPlacement, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isHidden != nil {
         isHidden :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL) -> bool {

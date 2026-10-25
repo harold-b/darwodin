@@ -2,6 +2,7 @@
 package darwin_Metal
 
 import "base:intrinsics"
+import cffi "core:c"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
@@ -132,6 +133,9 @@ foreign lib {
 
 	@(objc_type=Texture, objc_selector="sparseTextureTier", objc_name="sparseTextureTier")
 	Texture_sparseTextureTier :: proc(self: ^Texture) -> TextureSparseTier ---
+
+	@(objc_type=Texture, objc_selector="minLOD", objc_name="minLOD")
+	Texture_minLOD :: proc(self: ^Texture) -> cffi.float ---
 }
 
 

@@ -17,6 +17,7 @@ import "../UIScene"
 VTable :: struct {
     super: UIScene.VTable,
     requestGeometryUpdateWithPreferences: proc(self: ^UI.WindowScene, geometryPreferences: ^UI.WindowSceneGeometryPreferences, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    displayLinkWithTarget: proc(self: ^UI.WindowScene, target: id, sel: SEL) -> ^CA.DisplayLink,
     screen: proc(self: ^UI.WindowScene) -> ^UI.Screen,
     interfaceOrientation: proc(self: ^UI.WindowScene) -> UI.InterfaceOrientation,
     coordinateSpace: proc(self: ^UI.WindowScene) -> ^UI.CoordinateSpace,
@@ -29,6 +30,8 @@ VTable :: struct {
     setActivityItemsConfigurationSource: proc(self: ^UI.WindowScene, activityItemsConfigurationSource: ^UI.ActivityItemsConfigurationProviding),
     windowingBehaviors: proc(self: ^UI.WindowScene) -> ^UI.SceneWindowingBehaviors,
     isFullScreen: proc(self: ^UI.WindowScene) -> bool,
+    closureConfirmation: proc(self: ^UI.WindowScene) -> ^UI.SceneClosureConfirmation,
+    setClosureConfirmation: proc(self: ^UI.WindowScene, closureConfirmation: ^UI.SceneClosureConfirmation),
     traitOverrides: proc(self: ^UI.WindowScene) -> ^UI.TraitOverrides,
     focusSystem: proc(self: ^UI.WindowScene) -> ^UI.FocusSystem,
     statusBarManager: proc(self: ^UI.WindowScene) -> ^UI.StatusBarManager,
@@ -51,6 +54,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("requestGeometryUpdateWithPreferences:errorHandler:"), auto_cast requestGeometryUpdateWithPreferences, "v@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.displayLinkWithTarget != nil {
+        displayLinkWithTarget :: proc "c" (self: ^UI.WindowScene, _: SEL, target: id, sel: SEL) -> ^CA.DisplayLink {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).displayLinkWithTarget(self, target, sel)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("displayLinkWithTarget:selector:"), auto_cast displayLinkWithTarget, "@@:@:") do panic("Failed to register objC method.")
     }
     if vt.screen != nil {
         screen :: proc "c" (self: ^UI.WindowScene, _: SEL) -> ^UI.Screen {
@@ -171,6 +184,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFullScreen"), auto_cast isFullScreen, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.closureConfirmation != nil {
+        closureConfirmation :: proc "c" (self: ^UI.WindowScene, _: SEL) -> ^UI.SceneClosureConfirmation {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).closureConfirmation(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("closureConfirmation"), auto_cast closureConfirmation, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setClosureConfirmation != nil {
+        setClosureConfirmation :: proc "c" (self: ^UI.WindowScene, _: SEL, closureConfirmation: ^UI.SceneClosureConfirmation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setClosureConfirmation(self, closureConfirmation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setClosureConfirmation:"), auto_cast setClosureConfirmation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.traitOverrides != nil {
         traitOverrides :: proc "c" (self: ^UI.WindowScene, _: SEL) -> ^UI.TraitOverrides {

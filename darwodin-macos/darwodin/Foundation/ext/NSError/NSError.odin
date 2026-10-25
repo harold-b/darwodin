@@ -14,6 +14,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
+    new: proc() -> ^NS.Error,
+    init: proc(self: ^NS.Error) -> instancetype,
     initWithDomain: proc(self: ^NS.Error, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> instancetype,
     errorWithDomain: proc(domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> instancetype,
     setUserInfoValueProviderForDomain: proc(errorDomain: ^NS.String, provider: ^Objc_Block(proc "c" ( err: ^NS.Error, userInfoKey: ^NS.String ) -> id)),
@@ -37,6 +39,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
     
     NSObject.extend(cls, &vt.super)
 
+    if vt.new != nil {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.Error {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).new()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.init != nil {
+        init :: proc "c" (self: ^NS.Error, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).init(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.initWithDomain != nil {
         initWithDomain :: proc "c" (self: ^NS.Error, _: SEL, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> instancetype {
 

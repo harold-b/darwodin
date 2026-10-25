@@ -24,6 +24,8 @@ VTable :: struct {
     setBadgeCount: proc(self: ^UI.ContextMenuConfiguration, badgeCount: NS.Integer),
     preferredMenuElementOrder: proc(self: ^UI.ContextMenuConfiguration) -> UI.ContextMenuConfigurationElementOrder,
     setPreferredMenuElementOrder: proc(self: ^UI.ContextMenuConfiguration, preferredMenuElementOrder: UI.ContextMenuConfigurationElementOrder),
+    allowsTypeSelect: proc(self: ^UI.ContextMenuConfiguration) -> bool,
+    setAllowsTypeSelect: proc(self: ^UI.ContextMenuConfiguration, allowsTypeSelect: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -112,6 +114,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredMenuElementOrder:"), auto_cast setPreferredMenuElementOrder, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.allowsTypeSelect != nil {
+        allowsTypeSelect :: proc "c" (self: ^UI.ContextMenuConfiguration, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowsTypeSelect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsTypeSelect"), auto_cast allowsTypeSelect, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsTypeSelect != nil {
+        setAllowsTypeSelect :: proc "c" (self: ^UI.ContextMenuConfiguration, _: SEL, allowsTypeSelect: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAllowsTypeSelect(self, allowsTypeSelect)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsTypeSelect:"), auto_cast setAllowsTypeSelect, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

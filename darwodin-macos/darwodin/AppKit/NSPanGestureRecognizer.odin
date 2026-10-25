@@ -46,4 +46,16 @@ foreign lib {
 
     @(objc_type=PanGestureRecognizer, objc_selector="setNumberOfTouchesRequired:", objc_name="setNumberOfTouchesRequired")
     PanGestureRecognizer_setNumberOfTouchesRequired :: proc(self: ^PanGestureRecognizer, numberOfTouchesRequired: NS.Integer) ---
+
+    @(objc_type=PanGestureRecognizer, objc_selector="minimumNumberOfTouches", objc_name="minimumNumberOfTouches")
+    PanGestureRecognizer_minimumNumberOfTouches :: proc(self: ^PanGestureRecognizer) -> NS.Integer ---
+
+    @(objc_type=PanGestureRecognizer, objc_selector="setMinimumNumberOfTouches:", objc_name="setMinimumNumberOfTouches")
+    PanGestureRecognizer_setMinimumNumberOfTouches :: proc(self: ^PanGestureRecognizer, minimumNumberOfTouches: NS.Integer) ---
+
+    @(objc_type=PanGestureRecognizer, objc_selector="maximumNumberOfTouches", objc_name="maximumNumberOfTouches")
+    PanGestureRecognizer_maximumNumberOfTouches :: proc(self: ^PanGestureRecognizer) -> NS.Integer ---
+
+    @(objc_type=PanGestureRecognizer, objc_selector="setMaximumNumberOfTouches:", objc_name="setMaximumNumberOfTouches")
+    PanGestureRecognizer_setMaximumNumberOfTouches :: proc(self: ^PanGestureRecognizer, maximumNumberOfTouches: NS.Integer) ---
 }

@@ -61,6 +61,8 @@ VTable :: struct {
     setSplitViewControllerLayoutEnvironment: proc(self: ^UI.MutableTraits, splitViewControllerLayoutEnvironment: UI.SplitViewControllerLayoutEnvironment),
     resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.MutableTraits) -> bool,
     setResolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.MutableTraits, resolvesNaturalAlignmentWithBaseWritingDirection: bool),
+    systemPrefersReducedResourceUsage: proc(self: ^UI.MutableTraits) -> bool,
+    setSystemPrefersReducedResourceUsage: proc(self: ^UI.MutableTraits, systemPrefersReducedResourceUsage: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -546,6 +548,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setResolvesNaturalAlignmentWithBaseWritingDirection:"), auto_cast setResolvesNaturalAlignmentWithBaseWritingDirection, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.systemPrefersReducedResourceUsage != nil {
+        systemPrefersReducedResourceUsage :: proc "c" (self: ^UI.MutableTraits, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).systemPrefersReducedResourceUsage(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("systemPrefersReducedResourceUsage"), auto_cast systemPrefersReducedResourceUsage, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSystemPrefersReducedResourceUsage != nil {
+        setSystemPrefersReducedResourceUsage :: proc "c" (self: ^UI.MutableTraits, _: SEL, systemPrefersReducedResourceUsage: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setSystemPrefersReducedResourceUsage(self, systemPrefersReducedResourceUsage)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSystemPrefersReducedResourceUsage:"), auto_cast setSystemPrefersReducedResourceUsage, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

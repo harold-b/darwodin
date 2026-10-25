@@ -23,12 +23,6 @@ NSTextStorage :: struct {
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=NSTextStorage, objc_selector="addLayoutManager:", objc_name="addLayoutManager")
-    NSTextStorage_addLayoutManager :: proc(self: ^NSTextStorage, aLayoutManager: ^NSLayoutManager) ---
-
-    @(objc_type=NSTextStorage, objc_selector="removeLayoutManager:", objc_name="removeLayoutManager")
-    NSTextStorage_removeLayoutManager :: proc(self: ^NSTextStorage, aLayoutManager: ^NSLayoutManager) ---
-
     @(objc_type=NSTextStorage, objc_selector="edited:range:changeInLength:", objc_name="edited")
     NSTextStorage_edited :: proc(self: ^NSTextStorage, editedMask: NSTextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer) ---
 
@@ -40,9 +34,6 @@ foreign lib {
 
     @(objc_type=NSTextStorage, objc_selector="ensureAttributesAreFixedInRange:", objc_name="ensureAttributesAreFixedInRange")
     NSTextStorage_ensureAttributesAreFixedInRange :: proc(self: ^NSTextStorage, range: NS._NSRange) ---
-
-    @(objc_type=NSTextStorage, objc_selector="layoutManagers", objc_name="layoutManagers")
-    NSTextStorage_layoutManagers :: proc(self: ^NSTextStorage) -> ^NS.Array ---
 
     @(objc_type=NSTextStorage, objc_selector="editedMask", objc_name="editedMask")
     NSTextStorage_editedMask :: proc(self: ^NSTextStorage) -> NSTextStorageEditActions ---
@@ -67,4 +58,13 @@ foreign lib {
 
     @(objc_type=NSTextStorage, objc_selector="setTextStorageObserver:", objc_name="setTextStorageObserver")
     NSTextStorage_setTextStorageObserver :: proc(self: ^NSTextStorage, textStorageObserver: ^NSTextStorageObserving) ---
+
+    @(objc_type=NSTextStorage, objc_selector="addLayoutManager:", objc_name="addLayoutManager")
+    NSTextStorage_addLayoutManager :: proc(self: ^NSTextStorage, aLayoutManager: ^NSLayoutManager) ---
+
+    @(objc_type=NSTextStorage, objc_selector="removeLayoutManager:", objc_name="removeLayoutManager")
+    NSTextStorage_removeLayoutManager :: proc(self: ^NSTextStorage, aLayoutManager: ^NSLayoutManager) ---
+
+    @(objc_type=NSTextStorage, objc_selector="layoutManagers", objc_name="layoutManagers")
+    NSTextStorage_layoutManagers :: proc(self: ^NSTextStorage) -> ^NS.Array ---
 }

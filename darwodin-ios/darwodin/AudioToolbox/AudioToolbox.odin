@@ -17,6 +17,7 @@ instancetype  :: intrinsics.objc_instancetype
 
 @(export)
 foreign import lib {
+    "system:CoreAudio.framework",
     "system:AudioToolbox.framework",
 }
 
@@ -609,6 +610,7 @@ kUnitType_Generator                                       :: 1635084142
 kUnitType_OfflineEffect                                   :: 1635086188
 kUnitType_MIDIProcessor                                   :: 1635085673
 kUnitType_SpeechSynthesizer                               :: 1635087216
+kUnitType_HeadTrackingBinauralRenderer                    :: 1635084404
 kUnitType_RemoteEffect                                    :: 1635086968
 kUnitType_RemoteGenerator                                 :: 1635086951
 kUnitType_RemoteInstrument                                :: 1635086953
@@ -2407,9 +2409,9 @@ ComponentFlags :: bit_set[ComponentFlag; cffi.uint]
 
 /// AudioComponentInstantiationOptions
 ComponentInstantiationOption :: enum cffi.uint {
-    OutOfProcess = 0,
-    InProcess    = 1,
-    edRemotely   = 31,
+    OutOfProcess   = 0,
+    InProcess      = 1,
+    LoadedRemotely = 31,
 }
 ComponentInstantiationOptions :: bit_set[ComponentInstantiationOption; cffi.uint]
 
@@ -2548,27 +2550,28 @@ AUSpatializationAlgorithm :: enum cffi.uint {
 
 /// AUSpatialMixerSourceMode
 AUSpatialMixerSourceMode :: enum cffi.uint {
-    izeIfMono   = 0,
-    Bypass      = 1,
-    PointSource = 2,
-    AmbienceBed = 3,
+    SpatializeIfMono = 0,
+    Bypass           = 1,
+    PointSource      = 2,
+    AmbienceBed      = 3,
 }
 
 /// AUReverbRoomType
 AUReverbRoomType :: enum cffi.uint {
-    SmallRoom     = 0,
-    MediumRoom    = 1,
-    LargeRoom     = 2,
-    MediumHall    = 3,
-    LargeHall     = 4,
-    Plate         = 5,
-    MediumChamber = 6,
-    LargeChamber  = 7,
-    Cathedral     = 8,
-    LargeRoom2    = 9,
-    MediumHall2   = 10,
-    MediumHall3   = 11,
-    LargeHall2    = 12,
+    SmallRoom      = 0,
+    MediumRoom     = 1,
+    LargeRoom      = 2,
+    MediumHall     = 3,
+    LargeHall      = 4,
+    Plate          = 5,
+    MediumChamber  = 6,
+    LargeChamber   = 7,
+    Cathedral      = 8,
+    LargeRoom2     = 9,
+    MediumHall2    = 10,
+    MediumHall3    = 11,
+    LargeHall2     = 12,
+    OutdoorGeneral = 24,
 }
 
 /// AUSpatialMixerAttenuationCurve
@@ -2588,9 +2591,9 @@ AUSpatialMixerRenderingFlags :: bit_set[AUSpatialMixerRenderingFlag; cffi.uint]
 
 /// AUSpatialMixerPersonalizedHRTFMode
 AUSpatialMixerPersonalizedHRTFMode :: enum cffi.uint {
-    Off = 0,
-    On  = 1,
-    to  = 2,
+    Off  = 0,
+    On   = 1,
+    Auto = 2,
 }
 
 /// AUSpatialMixerOutputType
@@ -2727,11 +2730,13 @@ FileFlag :: enum cffi.uint {
 FileFlags :: bit_set[FileFlag; cffi.uint]
 
 /// AudioFilePermissions
-FilePermissions :: enum cffi.schar {
-    ReadPermission      = 1,
-    WritePermission     = 2,
-    ReadWritePermission = 3,
+FilePermissionsFlag :: enum cffi.schar {
+    ReadPermission  = 0,
+    WritePermission = 1,
 }
+FilePermissions :: bit_set[FilePermissionsFlag; cffi.schar]
+
+FilePermissions_ReadWritePermission :: FilePermissions { .ReadPermission, .WritePermission, }
 
 /// AudioFileRegionFlags
 FileRegionFlag :: enum cffi.uint {
@@ -2797,10 +2802,11 @@ UnitEventType :: enum cffi.uint {
 }
 
 /// CAFFormatFlags
-FFormatFlags :: enum cffi.uint {
-    Float        = 1,
-    LittleEndian = 2,
+FFormatFlagsFlag :: enum cffi.uint {
+    Float        = 0,
+    LittleEndian = 1,
 }
+FFormatFlags :: bit_set[FFormatFlagsFlag; cffi.uint]
 
 /// CAFRegionFlags
 FRegionFlag :: enum cffi.uint {

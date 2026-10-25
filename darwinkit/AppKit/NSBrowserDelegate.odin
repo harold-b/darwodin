@@ -80,6 +80,15 @@ foreign lib {
 	@(objc_type=BrowserDelegate, objc_selector="browser:shouldShowCellExpansionForRow:column:", objc_name="browser_shouldShowCellExpansionForRow_column")
 	BrowserDelegate_browser_shouldShowCellExpansionForRow_column :: proc(self: ^BrowserDelegate, browser: ^Browser, row: NS.Integer, column: NS.Integer) -> bool ---
 
+	@(objc_type=BrowserDelegate, objc_selector="browser:pasteboardWriterForRow:column:", objc_name="browser_pasteboardWriterForRow_column")
+	BrowserDelegate_browser_pasteboardWriterForRow_column :: proc(self: ^BrowserDelegate, browser: ^Browser, row: NS.Integer, column: NS.Integer) -> ^PasteboardWriting ---
+
+	@(objc_type=BrowserDelegate, objc_selector="browser:draggingSession:willBeginAtPoint:forRowsWithIndexes:column:", objc_name="browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column")
+	BrowserDelegate_browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column :: proc(self: ^BrowserDelegate, browser: ^Browser, session: ^DraggingSession, screenPoint: CG.Point, rowIndexes: ^NS.IndexSet, column: NS.Integer) ---
+
+	@(objc_type=BrowserDelegate, objc_selector="browser:draggingSession:endedAtPoint:operation:", objc_name="browser_draggingSession_endedAtPoint_operation")
+	BrowserDelegate_browser_draggingSession_endedAtPoint_operation :: proc(self: ^BrowserDelegate, browser: ^Browser, session: ^DraggingSession, screenPoint: CG.Point, operation: DragOperation) ---
+
 	@(objc_type=BrowserDelegate, objc_selector="browser:writeRowsWithIndexes:inColumn:toPasteboard:", objc_name="browser_writeRowsWithIndexes_inColumn_toPasteboard")
 	BrowserDelegate_browser_writeRowsWithIndexes_inColumn_toPasteboard :: proc(self: ^BrowserDelegate, browser: ^Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, pasteboard: ^Pasteboard) -> bool ---
 

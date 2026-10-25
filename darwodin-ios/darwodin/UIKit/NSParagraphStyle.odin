@@ -28,6 +28,9 @@ foreign lib {
     @(objc_type=NSParagraphStyle, objc_selector="defaultWritingDirectionForLanguage:", objc_name="defaultWritingDirectionForLanguage", objc_is_class_method=true)
     NSParagraphStyle_defaultWritingDirectionForLanguage :: proc(languageName: ^NS.String) -> NSWritingDirection ---
 
+    @(objc_type=NSParagraphStyle, objc_selector="alignment", objc_name="alignment")
+    NSParagraphStyle_alignment :: proc(self: ^NSParagraphStyle) -> NSTextAlignment ---
+
     @(objc_type=NSParagraphStyle, objc_selector="defaultParagraphStyle", objc_name="defaultParagraphStyle", objc_is_class_method=true)
     NSParagraphStyle_defaultParagraphStyle :: proc() -> ^NSParagraphStyle ---
 
@@ -79,12 +82,12 @@ foreign lib {
     @(objc_type=NSParagraphStyle, objc_selector="textLists", objc_name="textLists")
     NSParagraphStyle_textLists :: proc(self: ^NSParagraphStyle) -> ^NS.Array ---
 
+    @(objc_type=NSParagraphStyle, objc_selector="textBlocks", objc_name="textBlocks")
+    NSParagraphStyle_textBlocks :: proc(self: ^NSParagraphStyle) -> ^NS.Array ---
+
     @(objc_type=NSParagraphStyle, objc_selector="allowsDefaultTighteningForTruncation", objc_name="allowsDefaultTighteningForTruncation")
     NSParagraphStyle_allowsDefaultTighteningForTruncation :: proc(self: ^NSParagraphStyle) -> bool ---
 
     @(objc_type=NSParagraphStyle, objc_selector="lineBreakStrategy", objc_name="lineBreakStrategy")
     NSParagraphStyle_lineBreakStrategy :: proc(self: ^NSParagraphStyle) -> NSLineBreakStrategy ---
-
-    @(objc_type=NSParagraphStyle, objc_selector="alignment", objc_name="alignment")
-    NSParagraphStyle_alignment :: proc(self: ^NSParagraphStyle) -> NSTextAlignment ---
 }

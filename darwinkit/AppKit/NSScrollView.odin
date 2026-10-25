@@ -241,6 +241,33 @@ foreign lib {
 	@(objc_type=ScrollView, objc_selector="setScrollerInsets:", objc_name="setScrollerInsets")
 	ScrollView_setScrollerInsets :: proc(self: ^ScrollView, scrollerInsets: NS.EdgeInsets) ---
 
+	@(objc_type=ScrollView, objc_selector="isTouchScrollingEnabled", objc_name="isTouchScrollingEnabled")
+	ScrollView_isTouchScrollingEnabled :: proc(self: ^ScrollView) -> bool ---
+
+	@(objc_type=ScrollView, objc_selector="setTouchScrollingEnabled:", objc_name="setTouchScrollingEnabled")
+	ScrollView_setTouchScrollingEnabled :: proc(self: ^ScrollView, touchScrollingEnabled: bool) ---
+
+	@(objc_type=ScrollView, objc_selector="minimumNumberOfTouchesForScrolling", objc_name="minimumNumberOfTouchesForScrolling")
+	ScrollView_minimumNumberOfTouchesForScrolling :: proc(self: ^ScrollView) -> NS.Integer ---
+
+	@(objc_type=ScrollView, objc_selector="setMinimumNumberOfTouchesForScrolling:", objc_name="setMinimumNumberOfTouchesForScrolling")
+	ScrollView_setMinimumNumberOfTouchesForScrolling :: proc(self: ^ScrollView, minimumNumberOfTouchesForScrolling: NS.Integer) ---
+
+	@(objc_type=ScrollView, objc_selector="maximumNumberOfTouchesForScrolling", objc_name="maximumNumberOfTouchesForScrolling")
+	ScrollView_maximumNumberOfTouchesForScrolling :: proc(self: ^ScrollView) -> NS.Integer ---
+
+	@(objc_type=ScrollView, objc_selector="setMaximumNumberOfTouchesForScrolling:", objc_name="setMaximumNumberOfTouchesForScrolling")
+	ScrollView_setMaximumNumberOfTouchesForScrolling :: proc(self: ^ScrollView, maximumNumberOfTouchesForScrolling: NS.Integer) ---
+
+	@(objc_type=ScrollView, objc_selector="scrollGestureForRelationships", objc_name="scrollGestureForRelationships")
+	ScrollView_scrollGestureForRelationships :: proc(self: ^ScrollView) -> ^GestureRecognizer ---
+
+	@(objc_type=ScrollView, objc_selector="refreshController", objc_name="refreshController")
+	ScrollView_refreshController :: proc(self: ^ScrollView) -> ^RefreshController ---
+
+	@(objc_type=ScrollView, objc_selector="setRefreshController:", objc_name="setRefreshController")
+	ScrollView_setRefreshController :: proc(self: ^ScrollView, refreshController: ^RefreshController) ---
+
 	@(objc_type=ScrollView, objc_selector="rulerViewClass", objc_name="rulerViewClass", objc_is_class_method=true)
 	ScrollView_rulerViewClass :: proc() -> Class ---
 

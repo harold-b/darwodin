@@ -7,9 +7,6 @@ import NS "../Foundation"
 DeviceHaptics :: struct { using _: NS.Object}
 
 foreign lib {
-	@(objc_type=DeviceHaptics, objc_selector="init", objc_name="init")
-	DeviceHaptics_init :: proc(self: ^DeviceHaptics) -> instancetype ---
-
 	@(objc_type=DeviceHaptics, objc_selector="createEngineWithLocality:", objc_name="createEngineWithLocality")
 	DeviceHaptics_createEngineWithLocality :: proc(self: ^DeviceHaptics, locality: ^NS.String) -> ^CHHapticEngine ---
 

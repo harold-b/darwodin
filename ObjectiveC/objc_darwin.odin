@@ -145,8 +145,8 @@ object_get_protocol_vtable :: #force_inline proc "contextless" ( $T: typeid, obj
 
 
 register_subclass :: proc(
-    class_name: cstring, 
-    superclass: Class, 
+    class_name: cstring,
+    superclass: Class,
     superclass_overrides: Maybe(ObjectVTableInfo) = nil,
     protocol: Maybe(ObjectVTableInfo) = nil,
     _context := context

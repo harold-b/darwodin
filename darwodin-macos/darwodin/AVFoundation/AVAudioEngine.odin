@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -33,11 +35,20 @@ foreign lib {
     @(objc_type=AudioEngine, objc_selector="connect:to:fromBus:toBus:format:", objc_name="connect_to_fromBus_toBus_format")
     AudioEngine_connect_to_fromBus_toBus_format :: proc(self: ^AudioEngine, node1: ^AudioNode, node2: ^AudioNode, bus1: AudioNodeBus, bus2: AudioNodeBus, format: ^AudioFormat) ---
 
+    @(objc_type=AudioEngine, objc_selector="connect:to:fromBus:toBus:format:error:", objc_name="connect_to_fromBus_toBus_format_error")
+    AudioEngine_connect_to_fromBus_toBus_format_error :: proc(self: ^AudioEngine, node1: ^AudioNode, node2: ^AudioNode, bus1: AudioNodeBus, bus2: AudioNodeBus, format: ^AudioFormat, error: ^^NS.Error) -> bool ---
+
     @(objc_type=AudioEngine, objc_selector="connect:to:format:", objc_name="connect_to_format")
     AudioEngine_connect_to_format :: proc(self: ^AudioEngine, node1: ^AudioNode, node2: ^AudioNode, format: ^AudioFormat) ---
 
+    @(objc_type=AudioEngine, objc_selector="connect:to:format:error:", objc_name="connect_to_format_error")
+    AudioEngine_connect_to_format_error :: proc(self: ^AudioEngine, node1: ^AudioNode, node2: ^AudioNode, format: ^AudioFormat, error: ^^NS.Error) -> bool ---
+
     @(objc_type=AudioEngine, objc_selector="connect:toConnectionPoints:fromBus:format:", objc_name="connect_toConnectionPoints_fromBus_format")
     AudioEngine_connect_toConnectionPoints_fromBus_format :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destNodes: ^NS.Array, sourceBus: AudioNodeBus, format: ^AudioFormat) ---
+
+    @(objc_type=AudioEngine, objc_selector="connect:toConnectionPoints:fromBus:format:error:", objc_name="connect_toConnectionPoints_fromBus_format_error")
+    AudioEngine_connect_toConnectionPoints_fromBus_format_error :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destNodes: ^NS.Array, sourceBus: AudioNodeBus, format: ^AudioFormat, error: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioEngine, objc_selector="disconnectNodeInput:bus:", objc_name="disconnectNodeInput_bus")
     AudioEngine_disconnectNodeInput_bus :: proc(self: ^AudioEngine, node: ^AudioNode, bus: AudioNodeBus) ---
@@ -87,11 +98,17 @@ foreign lib {
     @(objc_type=AudioEngine, objc_selector="connectMIDI:to:format:eventListBlock:", objc_name="connectMIDI_to_format_eventListBlock")
     AudioEngine_connectMIDI_to_format_eventListBlock :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode, format: ^AudioFormat, tapBlock: AT.AUMIDIEventListBlock) ---
 
+    @(objc_type=AudioEngine, objc_selector="connectMIDI:to:format:eventListProvider:", objc_name="connectMIDI_to_format_eventListProvider")
+    AudioEngine_connectMIDI_to_format_eventListProvider :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode, format: ^AudioFormat, tapBlock: MIDIEventListBlock) ---
+
     @(objc_type=AudioEngine, objc_selector="connectMIDI:toNodes:format:block:", objc_name="connectMIDI_toNodes_format_block")
     AudioEngine_connectMIDI_toNodes_format_block :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNodes: ^NS.Array, format: ^AudioFormat, tapBlock: AT.AUMIDIOutputEventBlock) ---
 
     @(objc_type=AudioEngine, objc_selector="connectMIDI:toNodes:format:eventListBlock:", objc_name="connectMIDI_toNodes_format_eventListBlock")
     AudioEngine_connectMIDI_toNodes_format_eventListBlock :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNodes: ^NS.Array, format: ^AudioFormat, tapBlock: AT.AUMIDIEventListBlock) ---
+
+    @(objc_type=AudioEngine, objc_selector="connectMIDI:toNodes:format:eventListProvider:", objc_name="connectMIDI_toNodes_format_eventListProvider")
+    AudioEngine_connectMIDI_toNodes_format_eventListProvider :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNodes: ^NS.Array, format: ^AudioFormat, tapBlock: MIDIEventListBlock) ---
 
     @(objc_type=AudioEngine, objc_selector="disconnectMIDI:from:", objc_name="disconnectMIDI_from")
     AudioEngine_disconnectMIDI_from :: proc(self: ^AudioEngine, sourceNode: ^AudioNode, destinationNode: ^AudioNode) ---
@@ -154,8 +171,11 @@ foreign lib {
 @(objc_type=AudioEngine, objc_name="connect")
 AudioEngine_connect :: proc {
     AudioEngine_connect_to_fromBus_toBus_format,
+    AudioEngine_connect_to_fromBus_toBus_format_error,
     AudioEngine_connect_to_format,
+    AudioEngine_connect_to_format_error,
     AudioEngine_connect_toConnectionPoints_fromBus_format,
+    AudioEngine_connect_toConnectionPoints_fromBus_format_error,
 }
 
 @(objc_type=AudioEngine, objc_name="disconnectNodeInput")
@@ -174,8 +194,10 @@ AudioEngine_disconnectNodeOutput :: proc {
 AudioEngine_connectMIDI :: proc {
     AudioEngine_connectMIDI_to_format_block,
     AudioEngine_connectMIDI_to_format_eventListBlock,
+    AudioEngine_connectMIDI_to_format_eventListProvider,
     AudioEngine_connectMIDI_toNodes_format_block,
     AudioEngine_connectMIDI_toNodes_format_eventListBlock,
+    AudioEngine_connectMIDI_toNodes_format_eventListProvider,
 }
 
 @(objc_type=AudioEngine, objc_name="disconnectMIDI")

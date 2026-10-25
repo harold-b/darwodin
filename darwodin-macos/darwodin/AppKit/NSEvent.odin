@@ -252,6 +252,9 @@ foreign lib {
     @(objc_type=Event, objc_selector="pressureBehavior", objc_name="pressureBehavior")
     Event_pressureBehavior :: proc(self: ^Event) -> PressureBehavior ---
 
+    @(objc_type=Event, objc_selector="isTouchSwipeNavigationEnabled", objc_name="isTouchSwipeNavigationEnabled", objc_is_class_method=true)
+    Event_isTouchSwipeNavigationEnabled :: proc() -> bool ---
+
     @(objc_type=Event, objc_selector="isSwipeTrackingFromScrollEventsEnabled", objc_name="isSwipeTrackingFromScrollEventsEnabled", objc_is_class_method=true)
     Event_isSwipeTrackingFromScrollEventsEnabled :: proc() -> bool ---
 

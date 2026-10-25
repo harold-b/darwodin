@@ -17,7 +17,9 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     configurationWithName: proc(name: ^NS.String, sessionRole: ^NS.String) -> instancetype,
-    initWithName: proc(self: ^UI.SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype,
+    initWithName_sessionRole: proc(self: ^UI.SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype,
+    init: proc(self: ^UI.SceneConfiguration) -> instancetype,
+    initWithName_: proc(self: ^UI.SceneConfiguration, name: ^NS.String) -> instancetype,
     name: proc(self: ^UI.SceneConfiguration) -> ^NS.String,
     role: proc(self: ^UI.SceneConfiguration) -> ^NS.String,
     sceneClass: proc(self: ^UI.SceneConfiguration) -> Class,
@@ -45,15 +47,35 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithName:sessionRole:"), auto_cast configurationWithName, "@#:@@") do panic("Failed to register objC method.")
     }
-    if vt.initWithName != nil {
-        initWithName :: proc "c" (self: ^UI.SceneConfiguration, _: SEL, name: ^NS.String, sessionRole: ^NS.String) -> instancetype {
+    if vt.initWithName_sessionRole != nil {
+        initWithName_sessionRole :: proc "c" (self: ^UI.SceneConfiguration, _: SEL, name: ^NS.String, sessionRole: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).initWithName(self, name, sessionRole)
+            return (cast(^VTable)vt_ctx.super_vt).initWithName_sessionRole(self, name, sessionRole)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:sessionRole:"), auto_cast initWithName, "@@:@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:sessionRole:"), auto_cast initWithName_sessionRole, "@@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.init != nil {
+        init :: proc "c" (self: ^UI.SceneConfiguration, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).init(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.initWithName_ != nil {
+        initWithName_ :: proc "c" (self: ^UI.SceneConfiguration, _: SEL, name: ^NS.String) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).initWithName_(self, name)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:"), auto_cast initWithName_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.name != nil {
         name :: proc "c" (self: ^UI.SceneConfiguration, _: SEL) -> ^NS.String {

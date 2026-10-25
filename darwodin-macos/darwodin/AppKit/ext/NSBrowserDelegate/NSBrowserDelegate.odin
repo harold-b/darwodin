@@ -37,6 +37,9 @@ VTable :: struct {
     browser_sizeToFitWidthOfColumn: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, columnIndex: NS.Integer) -> CG.Float,
     browserColumnConfigurationDidChange: proc(self: ^NS.BrowserDelegate, notification: ^NS.Notification),
     browser_shouldShowCellExpansionForRow_column: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, row: NS.Integer, column: NS.Integer) -> bool,
+    browser_pasteboardWriterForRow_column: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, row: NS.Integer, column: NS.Integer) -> ^NS.PasteboardWriting,
+    browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, session: ^NS.DraggingSession, screenPoint: CG.Point, rowIndexes: ^NS.IndexSet, column: NS.Integer),
+    browser_draggingSession_endedAtPoint_operation: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, session: ^NS.DraggingSession, screenPoint: CG.Point, operation: NS.DragOperation),
     browser_writeRowsWithIndexes_inColumn_toPasteboard: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, pasteboard: ^NS.Pasteboard) -> bool,
     browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, dropDestination: ^NS.URL, rowIndexes: ^NS.IndexSet, column: NS.Integer) -> ^NS.Array,
     browser_canDragRowsWithIndexes_inColumn_withEvent: proc(self: ^NS.BrowserDelegate, browser: ^NS.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^NS.Event) -> bool,
@@ -265,6 +268,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("browser:shouldShowCellExpansionForRow:column:"), auto_cast browser_shouldShowCellExpansionForRow_column, "B@:@ll") do panic("Failed to register objC method.")
+    }
+    if vt.browser_pasteboardWriterForRow_column != nil {
+        browser_pasteboardWriterForRow_column :: proc "c" (self: ^NS.BrowserDelegate, _: SEL, browser: ^NS.Browser, row: NS.Integer, column: NS.Integer) -> ^NS.PasteboardWriting {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).browser_pasteboardWriterForRow_column(self, browser, row, column)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("browser:pasteboardWriterForRow:column:"), auto_cast browser_pasteboardWriterForRow_column, "@@:@ll") do panic("Failed to register objC method.")
+    }
+    if vt.browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column != nil {
+        browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column :: proc "c" (self: ^NS.BrowserDelegate, _: SEL, browser: ^NS.Browser, session: ^NS.DraggingSession, screenPoint: CG.Point, rowIndexes: ^NS.IndexSet, column: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column(self, browser, session, screenPoint, rowIndexes, column)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("browser:draggingSession:willBeginAtPoint:forRowsWithIndexes:column:"), auto_cast browser_draggingSession_willBeginAtPoint_forRowsWithIndexes_column, "v@:@@{CGPoint=dd}@l") do panic("Failed to register objC method.")
+    }
+    if vt.browser_draggingSession_endedAtPoint_operation != nil {
+        browser_draggingSession_endedAtPoint_operation :: proc "c" (self: ^NS.BrowserDelegate, _: SEL, browser: ^NS.Browser, session: ^NS.DraggingSession, screenPoint: CG.Point, operation: NS.DragOperation) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).browser_draggingSession_endedAtPoint_operation(self, browser, session, screenPoint, operation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("browser:draggingSession:endedAtPoint:operation:"), auto_cast browser_draggingSession_endedAtPoint_operation, "v@:@@{CGPoint=dd}L") do panic("Failed to register objC method.")
     }
     if vt.browser_writeRowsWithIndexes_inColumn_toPasteboard != nil {
         browser_writeRowsWithIndexes_inColumn_toPasteboard :: proc "c" (self: ^NS.BrowserDelegate, _: SEL, browser: ^NS.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, pasteboard: ^NS.Pasteboard) -> bool {

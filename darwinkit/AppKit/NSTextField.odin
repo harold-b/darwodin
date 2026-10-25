@@ -105,6 +105,12 @@ foreign lib {
 	@(objc_type=TextField, objc_selector="setBezelStyle:", objc_name="setBezelStyle")
 	TextField_setBezelStyle :: proc(self: ^TextField, bezelStyle: TextFieldBezelStyle) ---
 
+	@(objc_type=TextField, objc_selector="borderShape", objc_name="borderShape")
+	TextField_borderShape :: proc(self: ^TextField) -> ControlBorderShape ---
+
+	@(objc_type=TextField, objc_selector="setBorderShape:", objc_name="setBorderShape")
+	TextField_setBorderShape :: proc(self: ^TextField, borderShape: ControlBorderShape) ---
+
 	@(objc_type=TextField, objc_selector="preferredMaxLayoutWidth", objc_name="preferredMaxLayoutWidth")
 	TextField_preferredMaxLayoutWidth :: proc(self: ^TextField) -> CG.Float ---
 

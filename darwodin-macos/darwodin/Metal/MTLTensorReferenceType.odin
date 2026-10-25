@@ -29,6 +29,9 @@ foreign lib {
     @(objc_type=TensorReferenceType, objc_selector="dimensions", objc_name="dimensions")
     TensorReferenceType_dimensions :: proc(self: ^TensorReferenceType) -> ^TensorExtents ---
 
+    @(objc_type=TensorReferenceType, objc_selector="auxiliaryPlanes", objc_name="auxiliaryPlanes")
+    TensorReferenceType_auxiliaryPlanes :: proc(self: ^TensorReferenceType) -> ^NS.Array ---
+
     @(objc_type=TensorReferenceType, objc_selector="access", objc_name="access")
     TensorReferenceType_access :: proc(self: ^TensorReferenceType) -> BindingAccess ---
 }

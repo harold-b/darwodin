@@ -29,6 +29,8 @@ VTable :: struct {
     setControlRepresentation: proc(self: ^NS.ToolbarItemGroup, controlRepresentation: NS.ToolbarItemGroupControlRepresentation),
     selectionMode: proc(self: ^NS.ToolbarItemGroup) -> NS.ToolbarItemGroupSelectionMode,
     setSelectionMode: proc(self: ^NS.ToolbarItemGroup, selectionMode: NS.ToolbarItemGroupSelectionMode),
+    role: proc(self: ^NS.ToolbarItemGroup) -> NS.ToolbarItemGroupRole,
+    setRole: proc(self: ^NS.ToolbarItemGroup, role: NS.ToolbarItemGroupRole),
     selectedIndex: proc(self: ^NS.ToolbarItemGroup) -> NS.Integer,
     setSelectedIndex: proc(self: ^NS.ToolbarItemGroup, selectedIndex: NS.Integer),
 }
@@ -139,6 +141,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionMode:"), auto_cast setSelectionMode, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.role != nil {
+        role :: proc "c" (self: ^NS.ToolbarItemGroup, _: SEL) -> NS.ToolbarItemGroupRole {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).role(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("role"), auto_cast role, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRole != nil {
+        setRole :: proc "c" (self: ^NS.ToolbarItemGroup, _: SEL, role: NS.ToolbarItemGroupRole) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setRole(self, role)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRole:"), auto_cast setRole, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.selectedIndex != nil {
         selectedIndex :: proc "c" (self: ^NS.ToolbarItemGroup, _: SEL) -> NS.Integer {

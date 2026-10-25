@@ -14,6 +14,7 @@ TextView :: struct {
 	using _: TextInput,
 	using _: ContentSizeCategoryAdjusting,
 	using _: LetterformAwareAdjusting,
+	using _: NSTextViewportLayoutControllerDelegate,
 }
 
 @(default_calling_convention="c")
@@ -32,6 +33,24 @@ foreign lib {
 
 	@(objc_type=TextView, objc_selector="drawTextHighlightBackgroundForTextRange:origin:", objc_name="drawTextHighlightBackgroundForTextRange")
 	TextView_drawTextHighlightBackgroundForTextRange :: proc(self: ^TextView, textRange: ^NSTextRange, origin: CG.Point) ---
+
+	@(objc_type=TextView, objc_selector="registerTextAttachmentViewProviderReusePolicy:forTextAttachmentViewProviderType:", objc_name="registerTextAttachmentViewProviderReusePolicy")
+	TextView_registerTextAttachmentViewProviderReusePolicy :: proc(self: ^TextView, policy: TextAttachmentViewProviderReusePolicy, viewProviderType: Class) ---
+
+	@(objc_type=TextView, objc_selector="textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController")
+	TextView_textViewportLayoutController :: proc(self: ^TextView, textViewportLayoutController: ^NSTextViewportLayoutController, textLayoutFragment: ^NSTextLayoutFragment) ---
+
+	@(objc_type=TextView, objc_selector="viewportBoundsForTextViewportLayoutController:", objc_name="viewportBoundsForTextViewportLayoutController")
+	TextView_viewportBoundsForTextViewportLayoutController :: proc(self: ^TextView, textViewportLayoutController: ^NSTextViewportLayoutController) -> CG.Rect ---
+
+	@(objc_type=TextView, objc_selector="textViewportLayoutControllerWillLayout:", objc_name="textViewportLayoutControllerWillLayout")
+	TextView_textViewportLayoutControllerWillLayout :: proc(self: ^TextView, textViewportLayoutController: ^NSTextViewportLayoutController) ---
+
+	@(objc_type=TextView, objc_selector="textViewportLayoutControllerDidLayout:", objc_name="textViewportLayoutControllerDidLayout")
+	TextView_textViewportLayoutControllerDidLayout :: proc(self: ^TextView, textViewportLayoutController: ^NSTextViewportLayoutController) ---
+
+	@(objc_type=TextView, objc_selector="textViewportLayoutControllerReceivedSetNeedsLayout:", objc_name="textViewportLayoutControllerReceivedSetNeedsLayout")
+	TextView_textViewportLayoutControllerReceivedSetNeedsLayout :: proc(self: ^TextView, textViewportLayoutController: ^NSTextViewportLayoutController) ---
 
 	@(objc_type=TextView, objc_selector="delegate", objc_name="delegate")
 	TextView_delegate :: proc(self: ^TextView) -> ^TextViewDelegate ---

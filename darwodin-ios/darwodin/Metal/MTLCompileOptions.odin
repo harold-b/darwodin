@@ -112,4 +112,10 @@ foreign lib {
 
     @(objc_type=CompileOptions, objc_selector="setEnableLogging:", objc_name="setEnableLogging")
     CompileOptions_setEnableLogging :: proc(self: ^CompileOptions, enableLogging: bool) ---
+
+    @(objc_type=CompileOptions, objc_selector="floatingPointConversionRoundingMode", objc_name="floatingPointConversionRoundingMode")
+    CompileOptions_floatingPointConversionRoundingMode :: proc(self: ^CompileOptions) -> FloatingPointConversionRoundingMode ---
+
+    @(objc_type=CompileOptions, objc_selector="setFloatingPointConversionRoundingMode:", objc_name="setFloatingPointConversionRoundingMode")
+    CompileOptions_setFloatingPointConversionRoundingMode :: proc(self: ^CompileOptions, floatingPointConversionRoundingMode: FloatingPointConversionRoundingMode) ---
 }

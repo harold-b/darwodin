@@ -20,6 +20,9 @@ foreign lib {
 	@(objc_type=ShareParticipant, objc_selector="oneTimeURLParticipant", objc_name="oneTimeURLParticipant", objc_is_class_method=true)
 	ShareParticipant_oneTimeURLParticipant :: proc() -> instancetype ---
 
+	@(objc_type=ShareParticipant, objc_selector="isEqual:", objc_name="isEqual")
+	ShareParticipant_isEqual :: proc(self: ^ShareParticipant, object: id) -> bool ---
+
 	@(objc_type=ShareParticipant, objc_selector="userIdentity", objc_name="userIdentity")
 	ShareParticipant_userIdentity :: proc(self: ^ShareParticipant) -> ^UserIdentity ---
 

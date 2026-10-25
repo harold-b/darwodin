@@ -143,6 +143,9 @@ foreign lib {
     @(objc_type=Application, objc_selector="preferredContentSizeCategory", objc_name="preferredContentSizeCategory")
     Application_preferredContentSizeCategory :: proc(self: ^Application) -> ^NS.String ---
 
+    @(objc_type=Application, objc_selector="systemPrefersReducedResourceUsage", objc_name="systemPrefersReducedResourceUsage")
+    Application_systemPrefersReducedResourceUsage :: proc(self: ^Application) -> bool ---
+
     @(objc_type=Application, objc_selector="connectedScenes", objc_name="connectedScenes")
     Application_connectedScenes :: proc(self: ^Application) -> ^NS.Set ---
 

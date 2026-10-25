@@ -116,9 +116,10 @@ AccountStatus :: enum cffi.long {
 }
 
 /// CKApplicationPermissions
-ApplicationPermissions :: enum cffi.ulong {
-    PermissionUserDiscoverability = 1,
+ApplicationPermissionsFlag :: enum cffi.ulong {
+    PermissionUserDiscoverability = 0,
 }
+ApplicationPermissions :: bit_set[ApplicationPermissionsFlag; cffi.ulong]
 
 /// CKApplicationPermissionStatus
 ApplicationPermissionStatus :: enum cffi.long {
@@ -185,12 +186,13 @@ QueryNotificationReason :: enum cffi.long {
 }
 
 /// CKRecordZoneCapabilities
-RecordZoneCapabilities :: enum cffi.ulong {
-    apabilityFetchChanges    = 1,
-    apabilityAtomic          = 2,
-    apabilitySharing         = 4,
-    apabilityZoneWideSharing = 8,
+RecordZoneCapabilitiesFlag :: enum cffi.ulong {
+    CapabilityFetchChanges    = 0,
+    CapabilityAtomic          = 1,
+    CapabilitySharing         = 2,
+    CapabilityZoneWideSharing = 3,
 }
+RecordZoneCapabilities :: bit_set[RecordZoneCapabilitiesFlag; cffi.ulong]
 
 /// CKRecordZoneEncryptionScope
 RecordZoneEncryptionScope :: enum cffi.long {

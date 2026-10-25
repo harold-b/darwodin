@@ -114,4 +114,7 @@ foreign lib {
 
 	@(objc_type=NSFileProviderItem, objc_selector="contentPolicy", objc_name="contentPolicy")
 	NSFileProviderItem_contentPolicy :: proc(self: ^NSFileProviderItem) -> NSFileProviderContentPolicy ---
+
+	@(objc_type=NSFileProviderItem, objc_selector="namespacePolicy", objc_name="namespacePolicy")
+	NSFileProviderItem_namespacePolicy :: proc(self: ^NSFileProviderItem) -> NSFileProviderNamespacePolicy ---
 }

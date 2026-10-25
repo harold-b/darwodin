@@ -35,6 +35,15 @@ foreign lib {
     @(objc_type=WritingToolsCoordinator, objc_selector="updateForReflowedTextInContextWithIdentifier:", objc_name="updateForReflowedTextInContextWithIdentifier")
     WritingToolsCoordinator_updateForReflowedTextInContextWithIdentifier :: proc(self: ^WritingToolsCoordinator, contextID: ^NS.UUID) ---
 
+    @(objc_type=WritingToolsCoordinator, objc_selector="startTextAnimation:forRange:inContext:writingDirection:", objc_name="startTextAnimation")
+    WritingToolsCoordinator_startTextAnimation :: proc(self: ^WritingToolsCoordinator, textAnimation: WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^WritingToolsCoordinatorContext, writingDirection: WritingDirection) -> ^NS.UUID ---
+
+    @(objc_type=WritingToolsCoordinator, objc_selector="cancelTextAnimationsWithIdentifiers:", objc_name="cancelTextAnimationsWithIdentifiers")
+    WritingToolsCoordinator_cancelTextAnimationsWithIdentifiers :: proc(self: ^WritingToolsCoordinator, identifiers: ^NS.Array) ---
+
+    @(objc_type=WritingToolsCoordinator, objc_selector="showGrammarPresentationForRange:inContext:", objc_name="showGrammarPresentationForRange")
+    WritingToolsCoordinator_showGrammarPresentationForRange :: proc(self: ^WritingToolsCoordinator, range: NS._NSRange, _context: ^WritingToolsCoordinatorContext) -> bool ---
+
     @(objc_type=WritingToolsCoordinator, objc_selector="isWritingToolsAvailable", objc_name="isWritingToolsAvailable", objc_is_class_method=true)
     WritingToolsCoordinator_isWritingToolsAvailable :: proc() -> bool ---
 

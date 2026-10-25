@@ -29,6 +29,10 @@ OpaquePolicySearchRef :: struct {}
 OpaqueSecTransformImplementation :: struct {}
 xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead of exporting from Foundation
 
+// Composite SDK masks that also contain reserved or unnamed bits.
+when ODIN_PLATFORM_SUBTARGET == .Default { SecKeyUsage_kSecKeyUsageAll :: transmute(SecKeyUsage)cffi.uint(2147483647) }
+when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)cffi.uint(4294967295) }
+
 // -user-text-end
 
 
@@ -1020,6 +1024,7 @@ SSLCiphersuiteGroup :: enum cffi.int {
     kSSLCiphersuiteGroupLegacy       = 2,
     kSSLCiphersuiteGroupATS          = 3,
     kSSLCiphersuiteGroupATSCompatibility = 4,
+    kSSLCiphersuiteGroupATSFCP_v2_1  = 5,
 }
 
 /// tls_protocol_version_t
@@ -1069,6 +1074,7 @@ tls_ciphersuite_group_t :: enum cffi.ushort {
     legacy            = 2,
     ats               = 3,
     ats_compatibility = 4,
+    ats_fcp_v2_1      = 5,
 }
 
 /// SSLProtocol

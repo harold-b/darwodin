@@ -96,9 +96,6 @@ foreign lib {
     @(objc_type=Font, objc_selector="fontWithSize:", objc_name="fontWithSize")
     Font_fontWithSize :: proc(self: ^Font, fontSize: CG.Float) -> ^Font ---
 
-    @(objc_type=Font, objc_selector="systemFontSizeForControlSize:", objc_name="systemFontSizeForControlSize", objc_is_class_method=true)
-    Font_systemFontSizeForControlSize :: proc(controlSize: ControlSize) -> CG.Float ---
-
     @(objc_type=Font, objc_selector="boundingRectForCGGlyph:", objc_name="boundingRectForCGGlyph")
     Font_boundingRectForCGGlyph :: proc(self: ^Font, glyph: CG.Glyph) -> NS.Rect ---
 
@@ -227,6 +224,9 @@ foreign lib {
 
     @(objc_type=Font, objc_selector="preferredFontForTextStyle:options:", objc_name="preferredFontForTextStyle", objc_is_class_method=true)
     Font_preferredFontForTextStyle :: proc(style: ^NS.String, options: ^NS.Dictionary) -> ^Font ---
+
+    @(objc_type=Font, objc_selector="systemFontSizeForControlSize:", objc_name="systemFontSizeForControlSize", objc_is_class_method=true)
+    Font_systemFontSizeForControlSize :: proc(controlSize: ControlSize) -> CG.Float ---
 }
 
 @(objc_type=Font, objc_name="fontWithName")

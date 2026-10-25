@@ -24,10 +24,10 @@ VTable :: struct {
     setDefaultChildIdentifier: proc(self: ^UI.TabGroup, defaultChildIdentifier: ^NS.String),
     children: proc(self: ^UI.TabGroup) -> ^NS.Array,
     setChildren: proc(self: ^UI.TabGroup, children: ^NS.Array),
-    displayOrderIdentifiers: proc(self: ^UI.TabGroup) -> ^NS.Array,
-    setDisplayOrderIdentifiers: proc(self: ^UI.TabGroup, displayOrderIdentifiers: ^NS.Array),
     allowsReordering: proc(self: ^UI.TabGroup) -> bool,
     setAllowsReordering: proc(self: ^UI.TabGroup, allowsReordering: bool),
+    displayOrderIdentifiers: proc(self: ^UI.TabGroup) -> ^NS.Array,
+    setDisplayOrderIdentifiers: proc(self: ^UI.TabGroup, displayOrderIdentifiers: ^NS.Array),
     displayOrder: proc(self: ^UI.TabGroup) -> ^NS.Array,
     managingNavigationController: proc(self: ^UI.TabGroup) -> ^UI.NavigationController,
     setManagingNavigationController: proc(self: ^UI.TabGroup, managingNavigationController: ^UI.NavigationController),
@@ -37,6 +37,8 @@ VTable :: struct {
     setSidebarAppearance: proc(self: ^UI.TabGroup, sidebarAppearance: UI.TabGroupSidebarAppearance),
     isSidebarDestination: proc(self: ^UI.TabGroup) -> bool,
     setIsSidebarDestination: proc(self: ^UI.TabGroup, isSidebarDestination: bool),
+    isCollapsedByDefault: proc(self: ^UI.TabGroup) -> bool,
+    setCollapsedByDefault: proc(self: ^UI.TabGroup, collapsedByDefault: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -126,26 +128,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setChildren:"), auto_cast setChildren, "v@:^void") do panic("Failed to register objC method.")
     }
-    if vt.displayOrderIdentifiers != nil {
-        displayOrderIdentifiers :: proc "c" (self: ^UI.TabGroup, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).displayOrderIdentifiers(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("displayOrderIdentifiers"), auto_cast displayOrderIdentifiers, "^void@:") do panic("Failed to register objC method.")
-    }
-    if vt.setDisplayOrderIdentifiers != nil {
-        setDisplayOrderIdentifiers :: proc "c" (self: ^UI.TabGroup, _: SEL, displayOrderIdentifiers: ^NS.Array) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setDisplayOrderIdentifiers(self, displayOrderIdentifiers)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setDisplayOrderIdentifiers:"), auto_cast setDisplayOrderIdentifiers, "v@:^void") do panic("Failed to register objC method.")
-    }
     if vt.allowsReordering != nil {
         allowsReordering :: proc "c" (self: ^UI.TabGroup, _: SEL) -> bool {
 
@@ -165,6 +147,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsReordering:"), auto_cast setAllowsReordering, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.displayOrderIdentifiers != nil {
+        displayOrderIdentifiers :: proc "c" (self: ^UI.TabGroup, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).displayOrderIdentifiers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("displayOrderIdentifiers"), auto_cast displayOrderIdentifiers, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDisplayOrderIdentifiers != nil {
+        setDisplayOrderIdentifiers :: proc "c" (self: ^UI.TabGroup, _: SEL, displayOrderIdentifiers: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setDisplayOrderIdentifiers(self, displayOrderIdentifiers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDisplayOrderIdentifiers:"), auto_cast setDisplayOrderIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.displayOrder != nil {
         displayOrder :: proc "c" (self: ^UI.TabGroup, _: SEL) -> ^NS.Array {
@@ -255,6 +257,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIsSidebarDestination:"), auto_cast setIsSidebarDestination, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isCollapsedByDefault != nil {
+        isCollapsedByDefault :: proc "c" (self: ^UI.TabGroup, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isCollapsedByDefault(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isCollapsedByDefault"), auto_cast isCollapsedByDefault, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCollapsedByDefault != nil {
+        setCollapsedByDefault :: proc "c" (self: ^UI.TabGroup, _: SEL, collapsedByDefault: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setCollapsedByDefault(self, collapsedByDefault)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCollapsedByDefault:"), auto_cast setCollapsedByDefault, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

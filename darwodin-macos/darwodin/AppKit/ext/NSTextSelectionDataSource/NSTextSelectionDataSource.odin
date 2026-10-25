@@ -25,6 +25,7 @@ VTable :: struct {
     lineFragmentRangeForPoint: proc(self: ^NS.TextSelectionDataSource, point: CG.Point, location: ^NS.TextLocation) -> ^NS.TextRange,
     enumerateContainerBoundariesFromLocation: proc(self: ^NS.TextSelectionDataSource, location: ^NS.TextLocation, reverse: bool, block: ^Objc_Block(proc "c" ( boundaryLocation: ^NS.TextLocation, stop: ^bool ))),
     textLayoutOrientationAtLocation: proc(self: ^NS.TextSelectionDataSource, location: ^NS.TextLocation) -> NS.TextSelectionNavigationLayoutOrientation,
+    convertInteractionPoint: proc(self: ^NS.TextSelectionDataSource, point: CG.Point, containerLocation: ^NS.TextLocation) -> CG.Point,
     documentRange: proc(self: ^NS.TextSelectionDataSource) -> ^NS.TextRange,
 }
 
@@ -121,6 +122,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutOrientationAtLocation:"), auto_cast textLayoutOrientationAtLocation, "l@:@") do panic("Failed to register objC method.")
+    }
+    if vt.convertInteractionPoint != nil {
+        convertInteractionPoint :: proc "c" (self: ^NS.TextSelectionDataSource, _: SEL, point: CG.Point, containerLocation: ^NS.TextLocation) -> CG.Point {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).convertInteractionPoint(self, point, containerLocation)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("convertInteractionPoint:toContainerAtLocation:"), auto_cast convertInteractionPoint, "{CGPoint=dd}@:{CGPoint=dd}@") do panic("Failed to register objC method.")
     }
     if vt.documentRange != nil {
         documentRange :: proc "c" (self: ^NS.TextSelectionDataSource, _: SEL) -> ^NS.TextRange {

@@ -43,7 +43,6 @@ Odin:
   Packages:
     - Name  : MapKit
       Export: MK
-      RequiredLink: true # TODO: Remove this if we are able to link when using objc_method calls
       LinkLibs: [system:MapKit.framework]
       NoCanonicalRelativeLinkPath: true
       Filter: .*
@@ -51,6 +50,10 @@ Odin:
       Imports:
         - |
           CNPostalAddress :: NS.Object
+
+        - |
+          // Composite SDK masks that also contain reserved or unnamed bits.
+          DirectionsTransportType_Any :: transmute(DirectionsTransportType)cffi.ulong(268435455)
 
       # TypeMap:
 
@@ -75,6 +78,16 @@ Odin:
         Source: s
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # MKDirectionsTypes.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MKDirectionsTransportType$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MKLocalSearchRequest.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MKLocalSearchResultType$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MKLocalSearchCompleter.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MKLocalSearchCompleterResultType$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:
         - Kind  : RemoveSuffix

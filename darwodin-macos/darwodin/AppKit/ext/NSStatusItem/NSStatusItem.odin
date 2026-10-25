@@ -31,15 +31,20 @@ VTable :: struct {
     setVisible: proc(self: ^NS.StatusItem, visible: bool),
     autosaveName: proc(self: ^NS.StatusItem) -> ^NS.String,
     setAutosaveName: proc(self: ^NS.StatusItem, autosaveName: ^NS.String),
+    expandedInterfaceDelegate: proc(self: ^NS.StatusItem) -> ^NS.StatusItemExpandedInterfaceDelegate,
+    setExpandedInterfaceDelegate: proc(self: ^NS.StatusItem, expandedInterfaceDelegate: ^NS.StatusItemExpandedInterfaceDelegate),
+    expandedInterfaceSession: proc(self: ^NS.StatusItem) -> ^NS.StatusItemExpandedInterfaceSession,
+    view: proc(self: ^NS.StatusItem) -> ^NS.View,
+    setView: proc(self: ^NS.StatusItem, view: ^NS.View),
+    target: proc(self: ^NS.StatusItem) -> id,
+    setTarget: proc(self: ^NS.StatusItem, target: id),
+    action: proc(self: ^NS.StatusItem) -> SEL,
+    setAction: proc(self: ^NS.StatusItem, action: SEL),
     sendActionOn: proc(self: ^NS.StatusItem, mask: NS.EventMask) -> NS.Integer,
     drawStatusBarBackgroundInRect: proc(self: ^NS.StatusItem, rect: NS.Rect, highlight: bool),
     popUpStatusItemMenu: proc(self: ^NS.StatusItem, menu: ^NS.Menu),
-    action: proc(self: ^NS.StatusItem) -> SEL,
-    setAction: proc(self: ^NS.StatusItem, action: SEL),
     doubleAction: proc(self: ^NS.StatusItem) -> SEL,
     setDoubleAction: proc(self: ^NS.StatusItem, doubleAction: SEL),
-    target: proc(self: ^NS.StatusItem) -> id,
-    setTarget: proc(self: ^NS.StatusItem, target: id),
     title: proc(self: ^NS.StatusItem) -> ^NS.String,
     setTitle: proc(self: ^NS.StatusItem, title: ^NS.String),
     attributedTitle: proc(self: ^NS.StatusItem) -> ^NS.AttributedString,
@@ -54,8 +59,6 @@ VTable :: struct {
     setHighlightMode: proc(self: ^NS.StatusItem, highlightMode: bool),
     toolTip: proc(self: ^NS.StatusItem) -> ^NS.String,
     setToolTip: proc(self: ^NS.StatusItem, toolTip: ^NS.String),
-    view: proc(self: ^NS.StatusItem) -> ^NS.View,
-    setView: proc(self: ^NS.StatusItem, view: ^NS.View),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -185,6 +188,96 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutosaveName:"), auto_cast setAutosaveName, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.expandedInterfaceDelegate != nil {
+        expandedInterfaceDelegate :: proc "c" (self: ^NS.StatusItem, _: SEL) -> ^NS.StatusItemExpandedInterfaceDelegate {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).expandedInterfaceDelegate(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("expandedInterfaceDelegate"), auto_cast expandedInterfaceDelegate, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setExpandedInterfaceDelegate != nil {
+        setExpandedInterfaceDelegate :: proc "c" (self: ^NS.StatusItem, _: SEL, expandedInterfaceDelegate: ^NS.StatusItemExpandedInterfaceDelegate) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setExpandedInterfaceDelegate(self, expandedInterfaceDelegate)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setExpandedInterfaceDelegate:"), auto_cast setExpandedInterfaceDelegate, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.expandedInterfaceSession != nil {
+        expandedInterfaceSession :: proc "c" (self: ^NS.StatusItem, _: SEL) -> ^NS.StatusItemExpandedInterfaceSession {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).expandedInterfaceSession(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("expandedInterfaceSession"), auto_cast expandedInterfaceSession, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.view != nil {
+        view :: proc "c" (self: ^NS.StatusItem, _: SEL) -> ^NS.View {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).view(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("view"), auto_cast view, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setView != nil {
+        setView :: proc "c" (self: ^NS.StatusItem, _: SEL, view: ^NS.View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setView(self, view)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setView:"), auto_cast setView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.target != nil {
+        target :: proc "c" (self: ^NS.StatusItem, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).target(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTarget != nil {
+        setTarget :: proc "c" (self: ^NS.StatusItem, _: SEL, target: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTarget(self, target)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.action != nil {
+        action :: proc "c" (self: ^NS.StatusItem, _: SEL) -> SEL {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).action(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAction != nil {
+        setAction :: proc "c" (self: ^NS.StatusItem, _: SEL, action: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAction(self, action)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
+    }
     if vt.sendActionOn != nil {
         sendActionOn :: proc "c" (self: ^NS.StatusItem, _: SEL, mask: NS.EventMask) -> NS.Integer {
 
@@ -215,26 +308,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("popUpStatusItemMenu:"), auto_cast popUpStatusItemMenu, "v@:@") do panic("Failed to register objC method.")
     }
-    if vt.action != nil {
-        action :: proc "c" (self: ^NS.StatusItem, _: SEL) -> SEL {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).action(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
-    }
-    if vt.setAction != nil {
-        setAction :: proc "c" (self: ^NS.StatusItem, _: SEL, action: SEL) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setAction(self, action)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
-    }
     if vt.doubleAction != nil {
         doubleAction :: proc "c" (self: ^NS.StatusItem, _: SEL) -> SEL {
 
@@ -254,26 +327,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDoubleAction:"), auto_cast setDoubleAction, "v@::") do panic("Failed to register objC method.")
-    }
-    if vt.target != nil {
-        target :: proc "c" (self: ^NS.StatusItem, _: SEL) -> id {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).target(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.setTarget != nil {
-        setTarget :: proc "c" (self: ^NS.StatusItem, _: SEL, target: id) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setTarget(self, target)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
         title :: proc "c" (self: ^NS.StatusItem, _: SEL) -> ^NS.String {
@@ -414,26 +467,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setToolTip:"), auto_cast setToolTip, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.view != nil {
-        view :: proc "c" (self: ^NS.StatusItem, _: SEL) -> ^NS.View {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).view(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("view"), auto_cast view, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.setView != nil {
-        setView :: proc "c" (self: ^NS.StatusItem, _: SEL, view: ^NS.View) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setView(self, view)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setView:"), auto_cast setView, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

@@ -12,7 +12,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(export, require)
+@(export)
 foreign import lib {
 	"system:LocalAuthentication.framework",
 }

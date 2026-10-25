@@ -133,6 +133,12 @@ foreign lib {
     @(objc_type=MenuItem, objc_selector="setImage:", objc_name="setImage")
     MenuItem_setImage :: proc(self: ^MenuItem, image: ^Image) ---
 
+    @(objc_type=MenuItem, objc_selector="preferredImageVisibility", objc_name="preferredImageVisibility")
+    MenuItem_preferredImageVisibility :: proc(self: ^MenuItem) -> MenuItemImageVisibility ---
+
+    @(objc_type=MenuItem, objc_selector="setPreferredImageVisibility:", objc_name="setPreferredImageVisibility")
+    MenuItem_setPreferredImageVisibility :: proc(self: ^MenuItem, preferredImageVisibility: MenuItemImageVisibility) ---
+
     @(objc_type=MenuItem, objc_selector="state", objc_name="state")
     MenuItem_state :: proc(self: ^MenuItem) -> ControlStateValue ---
 

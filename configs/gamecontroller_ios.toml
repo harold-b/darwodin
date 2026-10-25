@@ -1,9 +1,0 @@
-Includes = [ 'gamecontroller.toml' ]
-
-[Odin]
-ExternalTypes = [
-  '../exports/CoreFoundation.exports.yml',
-  '../exports/CoreGraphics.exports.yml',
-  '../exports/Foundation.exports.yml',
-  '../exports/UIKit.exports.yml',
-]

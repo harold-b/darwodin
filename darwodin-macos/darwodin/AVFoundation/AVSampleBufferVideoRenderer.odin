@@ -8,6 +8,7 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
 import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -28,6 +29,18 @@ foreign lib {
     @(objc_type=SampleBufferVideoRenderer, objc_selector="flushWithRemovalOfDisplayedImage:completionHandler:", objc_name="flushWithRemovalOfDisplayedImage")
     SampleBufferVideoRenderer_flushWithRemovalOfDisplayedImage :: proc(self: ^SampleBufferVideoRenderer, removeDisplayedImage: bool, handler: ^Objc_Block(proc "c" ())) ---
 
+    @(objc_type=SampleBufferVideoRenderer, objc_selector="enqueueSampleBuffer:", objc_name="enqueueSampleBuffer")
+    SampleBufferVideoRenderer_enqueueSampleBuffer :: proc(self: ^SampleBufferVideoRenderer, sampleBuffer: CM.SampleBufferRef) ---
+
+    @(objc_type=SampleBufferVideoRenderer, objc_selector="flush", objc_name="flush")
+    SampleBufferVideoRenderer_flush :: proc(self: ^SampleBufferVideoRenderer) ---
+
+    @(objc_type=SampleBufferVideoRenderer, objc_selector="requestMediaDataWhenReadyOnQueue:usingBlock:", objc_name="requestMediaDataWhenReadyOnQueue")
+    SampleBufferVideoRenderer_requestMediaDataWhenReadyOnQueue :: proc(self: ^SampleBufferVideoRenderer, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=SampleBufferVideoRenderer, objc_selector="stopRequestingMediaData", objc_name="stopRequestingMediaData")
+    SampleBufferVideoRenderer_stopRequestingMediaData :: proc(self: ^SampleBufferVideoRenderer) ---
+
     @(objc_type=SampleBufferVideoRenderer, objc_selector="status", objc_name="status")
     SampleBufferVideoRenderer_status :: proc(self: ^SampleBufferVideoRenderer) -> QueuedSampleBufferRenderingStatus ---
 
@@ -36,6 +49,12 @@ foreign lib {
 
     @(objc_type=SampleBufferVideoRenderer, objc_selector="requiresFlushToResumeDecoding", objc_name="requiresFlushToResumeDecoding")
     SampleBufferVideoRenderer_requiresFlushToResumeDecoding :: proc(self: ^SampleBufferVideoRenderer) -> bool ---
+
+    @(objc_type=SampleBufferVideoRenderer, objc_selector="isReadyForMoreMediaData", objc_name="isReadyForMoreMediaData")
+    SampleBufferVideoRenderer_isReadyForMoreMediaData :: proc(self: ^SampleBufferVideoRenderer) -> bool ---
+
+    @(objc_type=SampleBufferVideoRenderer, objc_selector="hasSufficientMediaDataForReliablePlaybackStart", objc_name="hasSufficientMediaDataForReliablePlaybackStart")
+    SampleBufferVideoRenderer_hasSufficientMediaDataForReliablePlaybackStart :: proc(self: ^SampleBufferVideoRenderer) -> bool ---
 
     @(objc_type=SampleBufferVideoRenderer, objc_selector="copyDisplayedPixelBuffer", objc_name="copyDisplayedPixelBuffer")
     SampleBufferVideoRenderer_copyDisplayedPixelBuffer :: proc(self: ^SampleBufferVideoRenderer) -> CV.PixelBufferRef ---

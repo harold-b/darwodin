@@ -27,6 +27,8 @@ VTable :: struct {
     setSize: proc(self: ^NS.TextContainer, size: CG.Size),
     lineBreakMode: proc(self: ^NS.TextContainer) -> NS.LineBreakMode,
     setLineBreakMode: proc(self: ^NS.TextContainer, lineBreakMode: NS.LineBreakMode),
+    exclusionPaths: proc(self: ^NS.TextContainer) -> ^NS.Array,
+    setExclusionPaths: proc(self: ^NS.TextContainer, exclusionPaths: ^NS.Array),
     lineFragmentPadding: proc(self: ^NS.TextContainer) -> CG.Float,
     setLineFragmentPadding: proc(self: ^NS.TextContainer, lineFragmentPadding: CG.Float),
     maximumNumberOfLines: proc(self: ^NS.TextContainer) -> NS.UInteger,
@@ -36,13 +38,11 @@ VTable :: struct {
     setWidthTracksTextView: proc(self: ^NS.TextContainer, widthTracksTextView: bool),
     heightTracksTextView: proc(self: ^NS.TextContainer) -> bool,
     setHeightTracksTextView: proc(self: ^NS.TextContainer, heightTracksTextView: bool),
-    layoutManager: proc(self: ^NS.TextContainer) -> ^NS.LayoutManager,
-    setLayoutManager: proc(self: ^NS.TextContainer, layoutManager: ^NS.LayoutManager),
-    replaceLayoutManager: proc(self: ^NS.TextContainer, newLayoutManager: ^NS.LayoutManager),
-    exclusionPaths: proc(self: ^NS.TextContainer) -> ^NS.Array,
-    setExclusionPaths: proc(self: ^NS.TextContainer, exclusionPaths: ^NS.Array),
     textView: proc(self: ^NS.TextContainer) -> ^NS.TextView,
     setTextView: proc(self: ^NS.TextContainer, textView: ^NS.TextView),
+    replaceLayoutManager: proc(self: ^NS.TextContainer, newLayoutManager: ^NS.LayoutManager),
+    layoutManager: proc(self: ^NS.TextContainer) -> ^NS.LayoutManager,
+    setLayoutManager: proc(self: ^NS.TextContainer, layoutManager: ^NS.LayoutManager),
     initWithContainerSize: proc(self: ^NS.TextContainer, aContainerSize: NS.Size) -> instancetype,
     lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect: proc(self: ^NS.TextContainer, proposedRect: NS.Rect, sweepDirection: NS.LineSweepDirection, movementDirection: NS.LineMovementDirection, remainingRect: ^NS.Rect) -> NS.Rect,
     containsPoint: proc(self: ^NS.TextContainer, point: CG.Point) -> bool,
@@ -137,6 +137,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineBreakMode:"), auto_cast setLineBreakMode, "v@:L") do panic("Failed to register objC method.")
     }
+    if vt.exclusionPaths != nil {
+        exclusionPaths :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).exclusionPaths(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionPaths"), auto_cast exclusionPaths, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setExclusionPaths != nil {
+        setExclusionPaths :: proc "c" (self: ^NS.TextContainer, _: SEL, exclusionPaths: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setExclusionPaths(self, exclusionPaths)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusionPaths:"), auto_cast setExclusionPaths, "v@:^void") do panic("Failed to register objC method.")
+    }
     if vt.lineFragmentPadding != nil {
         lineFragmentPadding :: proc "c" (self: ^NS.TextContainer, _: SEL) -> CG.Float {
 
@@ -227,56 +247,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHeightTracksTextView:"), auto_cast setHeightTracksTextView, "v@:B") do panic("Failed to register objC method.")
     }
-    if vt.layoutManager != nil {
-        layoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.LayoutManager {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).layoutManager(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager"), auto_cast layoutManager, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.setLayoutManager != nil {
-        setLayoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL, layoutManager: ^NS.LayoutManager) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setLayoutManager(self, layoutManager)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutManager:"), auto_cast setLayoutManager, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.replaceLayoutManager != nil {
-        replaceLayoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL, newLayoutManager: ^NS.LayoutManager) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).replaceLayoutManager(self, newLayoutManager)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceLayoutManager:"), auto_cast replaceLayoutManager, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.exclusionPaths != nil {
-        exclusionPaths :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).exclusionPaths(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionPaths"), auto_cast exclusionPaths, "^void@:") do panic("Failed to register objC method.")
-    }
-    if vt.setExclusionPaths != nil {
-        setExclusionPaths :: proc "c" (self: ^NS.TextContainer, _: SEL, exclusionPaths: ^NS.Array) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setExclusionPaths(self, exclusionPaths)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusionPaths:"), auto_cast setExclusionPaths, "v@:^void") do panic("Failed to register objC method.")
-    }
     if vt.textView != nil {
         textView :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.TextView {
 
@@ -296,6 +266,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextView:"), auto_cast setTextView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.replaceLayoutManager != nil {
+        replaceLayoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL, newLayoutManager: ^NS.LayoutManager) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).replaceLayoutManager(self, newLayoutManager)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceLayoutManager:"), auto_cast replaceLayoutManager, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.layoutManager != nil {
+        layoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.LayoutManager {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).layoutManager(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager"), auto_cast layoutManager, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLayoutManager != nil {
+        setLayoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL, layoutManager: ^NS.LayoutManager) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLayoutManager(self, layoutManager)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutManager:"), auto_cast setLayoutManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerSize != nil {
         initWithContainerSize :: proc "c" (self: ^NS.TextContainer, _: SEL, aContainerSize: NS.Size) -> instancetype {

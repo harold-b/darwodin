@@ -94,6 +94,15 @@ VTable :: struct {
     setContentInsets: proc(self: ^NS.ScrollView, contentInsets: NS.EdgeInsets),
     scrollerInsets: proc(self: ^NS.ScrollView) -> NS.EdgeInsets,
     setScrollerInsets: proc(self: ^NS.ScrollView, scrollerInsets: NS.EdgeInsets),
+    isTouchScrollingEnabled: proc(self: ^NS.ScrollView) -> bool,
+    setTouchScrollingEnabled: proc(self: ^NS.ScrollView, touchScrollingEnabled: bool),
+    minimumNumberOfTouchesForScrolling: proc(self: ^NS.ScrollView) -> NS.Integer,
+    setMinimumNumberOfTouchesForScrolling: proc(self: ^NS.ScrollView, minimumNumberOfTouchesForScrolling: NS.Integer),
+    maximumNumberOfTouchesForScrolling: proc(self: ^NS.ScrollView) -> NS.Integer,
+    setMaximumNumberOfTouchesForScrolling: proc(self: ^NS.ScrollView, maximumNumberOfTouchesForScrolling: NS.Integer),
+    scrollGestureForRelationships: proc(self: ^NS.ScrollView) -> ^NS.GestureRecognizer,
+    refreshController: proc(self: ^NS.ScrollView) -> ^NS.RefreshController,
+    setRefreshController: proc(self: ^NS.ScrollView, refreshController: ^NS.RefreshController),
     rulerViewClass: proc() -> Class,
     setRulerViewClass: proc(rulerViewClass: Class),
     rulersVisible: proc(self: ^NS.ScrollView) -> bool,
@@ -866,6 +875,96 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollerInsets:"), auto_cast setScrollerInsets, "v@:{NSEdgeInsets=dddd}") do panic("Failed to register objC method.")
+    }
+    if vt.isTouchScrollingEnabled != nil {
+        isTouchScrollingEnabled :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isTouchScrollingEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isTouchScrollingEnabled"), auto_cast isTouchScrollingEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTouchScrollingEnabled != nil {
+        setTouchScrollingEnabled :: proc "c" (self: ^NS.ScrollView, _: SEL, touchScrollingEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTouchScrollingEnabled(self, touchScrollingEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTouchScrollingEnabled:"), auto_cast setTouchScrollingEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.minimumNumberOfTouchesForScrolling != nil {
+        minimumNumberOfTouchesForScrolling :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).minimumNumberOfTouchesForScrolling(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minimumNumberOfTouchesForScrolling"), auto_cast minimumNumberOfTouchesForScrolling, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMinimumNumberOfTouchesForScrolling != nil {
+        setMinimumNumberOfTouchesForScrolling :: proc "c" (self: ^NS.ScrollView, _: SEL, minimumNumberOfTouchesForScrolling: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMinimumNumberOfTouchesForScrolling(self, minimumNumberOfTouchesForScrolling)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumNumberOfTouchesForScrolling:"), auto_cast setMinimumNumberOfTouchesForScrolling, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.maximumNumberOfTouchesForScrolling != nil {
+        maximumNumberOfTouchesForScrolling :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).maximumNumberOfTouchesForScrolling(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("maximumNumberOfTouchesForScrolling"), auto_cast maximumNumberOfTouchesForScrolling, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMaximumNumberOfTouchesForScrolling != nil {
+        setMaximumNumberOfTouchesForScrolling :: proc "c" (self: ^NS.ScrollView, _: SEL, maximumNumberOfTouchesForScrolling: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMaximumNumberOfTouchesForScrolling(self, maximumNumberOfTouchesForScrolling)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumNumberOfTouchesForScrolling:"), auto_cast setMaximumNumberOfTouchesForScrolling, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.scrollGestureForRelationships != nil {
+        scrollGestureForRelationships :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.GestureRecognizer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).scrollGestureForRelationships(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("scrollGestureForRelationships"), auto_cast scrollGestureForRelationships, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.refreshController != nil {
+        refreshController :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.RefreshController {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).refreshController(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("refreshController"), auto_cast refreshController, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRefreshController != nil {
+        setRefreshController :: proc "c" (self: ^NS.ScrollView, _: SEL, refreshController: ^NS.RefreshController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setRefreshController(self, refreshController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRefreshController:"), auto_cast setRefreshController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.rulerViewClass != nil {
         rulerViewClass :: proc "c" (self: Class, _: SEL) -> Class {

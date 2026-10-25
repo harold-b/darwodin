@@ -10,7 +10,10 @@ import NS "../Foundation"
 
 
 @(objc_class="NSTextInputClient")
-TextInputClient :: struct { using _: intrinsics.objc_object}
+TextInputClient :: struct {
+	using _: intrinsics.objc_object,
+	using _: NS.ObjectProtocol,
+}
 
 @(default_calling_convention="c")
 foreign lib {

@@ -43,7 +43,6 @@ Odin:
     - Name  : LocalAuthentication
       Export: LA
       LinkLibs: [system:LocalAuthentication.framework]
-      RequiredLink: true
       Filter: .*
 
       # Imports:

@@ -51,4 +51,22 @@ foreign lib {
 
 	@(objc_type=MTL4ComputePipelineDescriptor, objc_selector="setSupportIndirectCommandBuffers:", objc_name="setSupportIndirectCommandBuffers")
 	MTL4ComputePipelineDescriptor_setSupportIndirectCommandBuffers :: proc(self: ^MTL4ComputePipelineDescriptor, supportIndirectCommandBuffers: MTL4IndirectCommandBufferSupportState) ---
+
+	@(objc_type=MTL4ComputePipelineDescriptor, objc_selector="forwardProgressUsage", objc_name="forwardProgressUsage")
+	MTL4ComputePipelineDescriptor_forwardProgressUsage :: proc(self: ^MTL4ComputePipelineDescriptor) -> ForwardProgressUsage ---
+
+	@(objc_type=MTL4ComputePipelineDescriptor, objc_selector="setForwardProgressUsage:", objc_name="setForwardProgressUsage")
+	MTL4ComputePipelineDescriptor_setForwardProgressUsage :: proc(self: ^MTL4ComputePipelineDescriptor, forwardProgressUsage: ForwardProgressUsage) ---
+
+	@(objc_type=MTL4ComputePipelineDescriptor, objc_selector="contentionRelief", objc_name="contentionRelief")
+	MTL4ComputePipelineDescriptor_contentionRelief :: proc(self: ^MTL4ComputePipelineDescriptor) -> ContentionRelief ---
+
+	@(objc_type=MTL4ComputePipelineDescriptor, objc_selector="setContentionRelief:", objc_name="setContentionRelief")
+	MTL4ComputePipelineDescriptor_setContentionRelief :: proc(self: ^MTL4ComputePipelineDescriptor, contentionRelief: ContentionRelief) ---
+
+	@(objc_type=MTL4ComputePipelineDescriptor, objc_selector="optimizeForPersistentKernel", objc_name="optimizeForPersistentKernel")
+	MTL4ComputePipelineDescriptor_optimizeForPersistentKernel :: proc(self: ^MTL4ComputePipelineDescriptor) -> bool ---
+
+	@(objc_type=MTL4ComputePipelineDescriptor, objc_selector="setOptimizeForPersistentKernel:", objc_name="setOptimizeForPersistentKernel")
+	MTL4ComputePipelineDescriptor_setOptimizeForPersistentKernel :: proc(self: ^MTL4ComputePipelineDescriptor, optimizeForPersistentKernel: bool) ---
 }

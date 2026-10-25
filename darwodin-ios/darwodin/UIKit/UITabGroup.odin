@@ -44,17 +44,17 @@ foreign lib {
     @(objc_type=TabGroup, objc_selector="setChildren:", objc_name="setChildren")
     TabGroup_setChildren :: proc(self: ^TabGroup, children: ^NS.Array) ---
 
-    @(objc_type=TabGroup, objc_selector="displayOrderIdentifiers", objc_name="displayOrderIdentifiers")
-    TabGroup_displayOrderIdentifiers :: proc(self: ^TabGroup) -> ^NS.Array ---
-
-    @(objc_type=TabGroup, objc_selector="setDisplayOrderIdentifiers:", objc_name="setDisplayOrderIdentifiers")
-    TabGroup_setDisplayOrderIdentifiers :: proc(self: ^TabGroup, displayOrderIdentifiers: ^NS.Array) ---
-
     @(objc_type=TabGroup, objc_selector="allowsReordering", objc_name="allowsReordering")
     TabGroup_allowsReordering :: proc(self: ^TabGroup) -> bool ---
 
     @(objc_type=TabGroup, objc_selector="setAllowsReordering:", objc_name="setAllowsReordering")
     TabGroup_setAllowsReordering :: proc(self: ^TabGroup, allowsReordering: bool) ---
+
+    @(objc_type=TabGroup, objc_selector="displayOrderIdentifiers", objc_name="displayOrderIdentifiers")
+    TabGroup_displayOrderIdentifiers :: proc(self: ^TabGroup) -> ^NS.Array ---
+
+    @(objc_type=TabGroup, objc_selector="setDisplayOrderIdentifiers:", objc_name="setDisplayOrderIdentifiers")
+    TabGroup_setDisplayOrderIdentifiers :: proc(self: ^TabGroup, displayOrderIdentifiers: ^NS.Array) ---
 
     @(objc_type=TabGroup, objc_selector="displayOrder", objc_name="displayOrder")
     TabGroup_displayOrder :: proc(self: ^TabGroup) -> ^NS.Array ---
@@ -82,4 +82,10 @@ foreign lib {
 
     @(objc_type=TabGroup, objc_selector="setIsSidebarDestination:", objc_name="setIsSidebarDestination")
     TabGroup_setIsSidebarDestination :: proc(self: ^TabGroup, isSidebarDestination: bool) ---
+
+    @(objc_type=TabGroup, objc_selector="isCollapsedByDefault", objc_name="isCollapsedByDefault")
+    TabGroup_isCollapsedByDefault :: proc(self: ^TabGroup) -> bool ---
+
+    @(objc_type=TabGroup, objc_selector="setCollapsedByDefault:", objc_name="setCollapsedByDefault")
+    TabGroup_setCollapsedByDefault :: proc(self: ^TabGroup, collapsedByDefault: bool) ---
 }

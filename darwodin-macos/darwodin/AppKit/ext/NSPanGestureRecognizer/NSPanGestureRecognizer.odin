@@ -26,6 +26,10 @@ VTable :: struct {
     setButtonMask: proc(self: ^NS.PanGestureRecognizer, buttonMask: NS.UInteger),
     numberOfTouchesRequired: proc(self: ^NS.PanGestureRecognizer) -> NS.Integer,
     setNumberOfTouchesRequired: proc(self: ^NS.PanGestureRecognizer, numberOfTouchesRequired: NS.Integer),
+    minimumNumberOfTouches: proc(self: ^NS.PanGestureRecognizer) -> NS.Integer,
+    setMinimumNumberOfTouches: proc(self: ^NS.PanGestureRecognizer, minimumNumberOfTouches: NS.Integer),
+    maximumNumberOfTouches: proc(self: ^NS.PanGestureRecognizer) -> NS.Integer,
+    setMaximumNumberOfTouches: proc(self: ^NS.PanGestureRecognizer, maximumNumberOfTouches: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -104,6 +108,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNumberOfTouchesRequired:"), auto_cast setNumberOfTouchesRequired, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.minimumNumberOfTouches != nil {
+        minimumNumberOfTouches :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).minimumNumberOfTouches(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minimumNumberOfTouches"), auto_cast minimumNumberOfTouches, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMinimumNumberOfTouches != nil {
+        setMinimumNumberOfTouches :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL, minimumNumberOfTouches: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMinimumNumberOfTouches(self, minimumNumberOfTouches)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumNumberOfTouches:"), auto_cast setMinimumNumberOfTouches, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.maximumNumberOfTouches != nil {
+        maximumNumberOfTouches :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL) -> NS.Integer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).maximumNumberOfTouches(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("maximumNumberOfTouches"), auto_cast maximumNumberOfTouches, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMaximumNumberOfTouches != nil {
+        setMaximumNumberOfTouches :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL, maximumNumberOfTouches: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMaximumNumberOfTouches(self, maximumNumberOfTouches)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumNumberOfTouches:"), auto_cast setMaximumNumberOfTouches, "v@:l") do panic("Failed to register objC method.")
     }
 }
 

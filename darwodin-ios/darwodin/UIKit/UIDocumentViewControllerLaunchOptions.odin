@@ -35,6 +35,12 @@ foreign lib {
     @(objc_type=DocumentViewControllerLaunchOptions, objc_selector="setTitle:", objc_name="setTitle")
     DocumentViewControllerLaunchOptions_setTitle :: proc(self: ^DocumentViewControllerLaunchOptions, title: ^NS.String) ---
 
+    @(objc_type=DocumentViewControllerLaunchOptions, objc_selector="subtitle", objc_name="subtitle")
+    DocumentViewControllerLaunchOptions_subtitle :: proc(self: ^DocumentViewControllerLaunchOptions) -> ^NS.String ---
+
+    @(objc_type=DocumentViewControllerLaunchOptions, objc_selector="setSubtitle:", objc_name="setSubtitle")
+    DocumentViewControllerLaunchOptions_setSubtitle :: proc(self: ^DocumentViewControllerLaunchOptions, subtitle: ^NS.String) ---
+
     @(objc_type=DocumentViewControllerLaunchOptions, objc_selector="primaryAction", objc_name="primaryAction")
     DocumentViewControllerLaunchOptions_primaryAction :: proc(self: ^DocumentViewControllerLaunchOptions) -> ^Action ---
 

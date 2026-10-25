@@ -21,17 +21,17 @@ foreign lib {
 	@(objc_type=TextTab, objc_selector="columnTerminatorsForLocale:", objc_name="columnTerminatorsForLocale", objc_is_class_method=true)
 	TextTab_columnTerminatorsForLocale :: proc(aLocale: ^NS.Locale) -> ^NS.CharacterSet ---
 
-	@(objc_type=TextTab, objc_selector="location", objc_name="location")
-	TextTab_location :: proc(self: ^TextTab) -> CG.Float ---
-
-	@(objc_type=TextTab, objc_selector="options", objc_name="options")
-	TextTab_options :: proc(self: ^TextTab) -> ^NS.Dictionary ---
-
 	@(objc_type=TextTab, objc_selector="initWithTextAlignment:location:options:", objc_name="initWithTextAlignment")
 	TextTab_initWithTextAlignment :: proc(self: ^TextTab, alignment: TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype ---
 
 	@(objc_type=TextTab, objc_selector="alignment", objc_name="alignment")
 	TextTab_alignment :: proc(self: ^TextTab) -> TextAlignment ---
+
+	@(objc_type=TextTab, objc_selector="location", objc_name="location")
+	TextTab_location :: proc(self: ^TextTab) -> CG.Float ---
+
+	@(objc_type=TextTab, objc_selector="options", objc_name="options")
+	TextTab_options :: proc(self: ^TextTab) -> ^NS.Dictionary ---
 
 	@(objc_type=TextTab, objc_selector="initWithType:location:", objc_name="initWithType")
 	TextTab_initWithType :: proc(self: ^TextTab, type: TextTabType, loc: CG.Float) -> instancetype ---

@@ -23,6 +23,12 @@ foreign lib {
 	@(objc_type=MutableParagraphStyle, objc_selector="setParagraphStyle:", objc_name="setParagraphStyle")
 	MutableParagraphStyle_setParagraphStyle :: proc(self: ^MutableParagraphStyle, obj: ^ParagraphStyle) ---
 
+	@(objc_type=MutableParagraphStyle, objc_selector="alignment", objc_name="alignment")
+	MutableParagraphStyle_alignment :: proc(self: ^MutableParagraphStyle) -> TextAlignment ---
+
+	@(objc_type=MutableParagraphStyle, objc_selector="setAlignment:", objc_name="setAlignment")
+	MutableParagraphStyle_setAlignment :: proc(self: ^MutableParagraphStyle, alignment: TextAlignment) ---
+
 	@(objc_type=MutableParagraphStyle, objc_selector="lineSpacing", objc_name="lineSpacing")
 	MutableParagraphStyle_lineSpacing :: proc(self: ^MutableParagraphStyle) -> CG.Float ---
 
@@ -131,23 +137,17 @@ foreign lib {
 	@(objc_type=MutableParagraphStyle, objc_selector="setTextLists:", objc_name="setTextLists")
 	MutableParagraphStyle_setTextLists :: proc(self: ^MutableParagraphStyle, textLists: ^NS.Array) ---
 
-	@(objc_type=MutableParagraphStyle, objc_selector="alignment", objc_name="alignment")
-	MutableParagraphStyle_alignment :: proc(self: ^MutableParagraphStyle) -> TextAlignment ---
+	@(objc_type=MutableParagraphStyle, objc_selector="textBlocks", objc_name="textBlocks")
+	MutableParagraphStyle_textBlocks :: proc(self: ^MutableParagraphStyle) -> ^NS.Array ---
 
-	@(objc_type=MutableParagraphStyle, objc_selector="setAlignment:", objc_name="setAlignment")
-	MutableParagraphStyle_setAlignment :: proc(self: ^MutableParagraphStyle, alignment: TextAlignment) ---
+	@(objc_type=MutableParagraphStyle, objc_selector="setTextBlocks:", objc_name="setTextBlocks")
+	MutableParagraphStyle_setTextBlocks :: proc(self: ^MutableParagraphStyle, textBlocks: ^NS.Array) ---
 
 	@(objc_type=MutableParagraphStyle, objc_selector="tighteningFactorForTruncation", objc_name="tighteningFactorForTruncation")
 	MutableParagraphStyle_tighteningFactorForTruncation :: proc(self: ^MutableParagraphStyle) -> cffi.float ---
 
 	@(objc_type=MutableParagraphStyle, objc_selector="setTighteningFactorForTruncation:", objc_name="setTighteningFactorForTruncation")
 	MutableParagraphStyle_setTighteningFactorForTruncation :: proc(self: ^MutableParagraphStyle, tighteningFactorForTruncation: cffi.float) ---
-
-	@(objc_type=MutableParagraphStyle, objc_selector="textBlocks", objc_name="textBlocks")
-	MutableParagraphStyle_textBlocks :: proc(self: ^MutableParagraphStyle) -> ^NS.Array ---
-
-	@(objc_type=MutableParagraphStyle, objc_selector="setTextBlocks:", objc_name="setTextBlocks")
-	MutableParagraphStyle_setTextBlocks :: proc(self: ^MutableParagraphStyle, textBlocks: ^NS.Array) ---
 
 	@(objc_type=MutableParagraphStyle, objc_selector="headerLevel", objc_name="headerLevel")
 	MutableParagraphStyle_headerLevel :: proc(self: ^MutableParagraphStyle) -> NS.Integer ---

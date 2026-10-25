@@ -19,13 +19,10 @@ import "../../../Foundation/ext/NSMutableAttributedString"
 
 VTable :: struct {
     super: NSMutableAttributedString.VTable,
-    addLayoutManager: proc(self: ^NS.TextStorage, aLayoutManager: ^NS.LayoutManager),
-    removeLayoutManager: proc(self: ^NS.TextStorage, aLayoutManager: ^NS.LayoutManager),
     edited: proc(self: ^NS.TextStorage, editedMask: NS.TextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer),
     processEditing: proc(self: ^NS.TextStorage),
     invalidateAttributesInRange: proc(self: ^NS.TextStorage, range: NS._NSRange),
     ensureAttributesAreFixedInRange: proc(self: ^NS.TextStorage, range: NS._NSRange),
-    layoutManagers: proc(self: ^NS.TextStorage) -> ^NS.Array,
     editedMask: proc(self: ^NS.TextStorage) -> NS.TextStorageEditActions,
     editedRange: proc(self: ^NS.TextStorage) -> NS._NSRange,
     changeInLength: proc(self: ^NS.TextStorage) -> NS.Integer,
@@ -34,6 +31,9 @@ VTable :: struct {
     fixesAttributesLazily: proc(self: ^NS.TextStorage) -> bool,
     textStorageObserver: proc(self: ^NS.TextStorage) -> ^NS.TextStorageObserving,
     setTextStorageObserver: proc(self: ^NS.TextStorage, textStorageObserver: ^NS.TextStorageObserving),
+    addLayoutManager: proc(self: ^NS.TextStorage, aLayoutManager: ^NS.LayoutManager),
+    removeLayoutManager: proc(self: ^NS.TextStorage, aLayoutManager: ^NS.LayoutManager),
+    layoutManagers: proc(self: ^NS.TextStorage) -> ^NS.Array,
     attributeRuns: proc(self: ^NS.TextStorage) -> ^NS.Array,
     setAttributeRuns: proc(self: ^NS.TextStorage, attributeRuns: ^NS.Array),
     paragraphs: proc(self: ^NS.TextStorage) -> ^NS.Array,
@@ -55,26 +55,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
     
     NSMutableAttributedString.extend(cls, &vt.super)
 
-    if vt.addLayoutManager != nil {
-        addLayoutManager :: proc "c" (self: ^NS.TextStorage, _: SEL, aLayoutManager: ^NS.LayoutManager) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).addLayoutManager(self, aLayoutManager)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("addLayoutManager:"), auto_cast addLayoutManager, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.removeLayoutManager != nil {
-        removeLayoutManager :: proc "c" (self: ^NS.TextStorage, _: SEL, aLayoutManager: ^NS.LayoutManager) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).removeLayoutManager(self, aLayoutManager)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("removeLayoutManager:"), auto_cast removeLayoutManager, "v@:@") do panic("Failed to register objC method.")
-    }
     if vt.edited != nil {
         edited :: proc "c" (self: ^NS.TextStorage, _: SEL, editedMask: NS.TextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer) {
 
@@ -114,16 +94,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("ensureAttributesAreFixedInRange:"), auto_cast ensureAttributesAreFixedInRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
-    }
-    if vt.layoutManagers != nil {
-        layoutManagers :: proc "c" (self: ^NS.TextStorage, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).layoutManagers(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManagers"), auto_cast layoutManagers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.editedMask != nil {
         editedMask :: proc "c" (self: ^NS.TextStorage, _: SEL) -> NS.TextStorageEditActions {
@@ -204,6 +174,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextStorageObserver:"), auto_cast setTextStorageObserver, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.addLayoutManager != nil {
+        addLayoutManager :: proc "c" (self: ^NS.TextStorage, _: SEL, aLayoutManager: ^NS.LayoutManager) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).addLayoutManager(self, aLayoutManager)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addLayoutManager:"), auto_cast addLayoutManager, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.removeLayoutManager != nil {
+        removeLayoutManager :: proc "c" (self: ^NS.TextStorage, _: SEL, aLayoutManager: ^NS.LayoutManager) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).removeLayoutManager(self, aLayoutManager)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeLayoutManager:"), auto_cast removeLayoutManager, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.layoutManagers != nil {
+        layoutManagers :: proc "c" (self: ^NS.TextStorage, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).layoutManagers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManagers"), auto_cast layoutManagers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.attributeRuns != nil {
         attributeRuns :: proc "c" (self: ^NS.TextStorage, _: SEL) -> ^NS.Array {

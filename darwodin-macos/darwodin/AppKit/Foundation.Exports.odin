@@ -1077,7 +1077,7 @@ NotificationDeliverImmediately                       :: NS.NotificationDeliverIm
 NotificationPostToAllSessions                        :: NS.NotificationPostToAllSessions
 
 /// Externs
-@(require) foreign import Foundation_exports "system:Foundation.framework"
+foreign import Foundation_exports "system:Foundation.framework"
 foreign Foundation_exports {
     @(link_name="NSFoundationVersionNumber") FoundationVersionNumber: cffi.double
     @(link_name="NSItemProviderPreferredImageSizeKey") ItemProviderPreferredImageSizeKey: ^String

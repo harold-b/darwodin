@@ -62,6 +62,15 @@ foreign lib {
     @(objc_type=WritingToolsCoordinatorDelegate, objc_selector="writingToolsCoordinator:willChangeToState:completion:", objc_name="writingToolsCoordinator_willChangeToState_completion")
     WritingToolsCoordinatorDelegate_writingToolsCoordinator_willChangeToState_completion :: proc(self: ^WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^WritingToolsCoordinator, newState: WritingToolsCoordinatorState, completion: ^Objc_Block(proc "c" ())) ---
 
+    @(objc_type=WritingToolsCoordinatorDelegate, objc_selector="writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:textDecoration:completion:", objc_name="writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_textDecoration_completion")
+    WritingToolsCoordinatorDelegate_writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_textDecoration_completion :: proc(self: ^WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^WritingToolsCoordinator, textAnimation: WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^WritingToolsCoordinatorContext, textDecoration: WritingToolsCoordinatorTextDecoration, completion: ^Objc_Block(proc "c" ( textPreviews: ^NS.Array ))) ---
+
+    @(objc_type=WritingToolsCoordinatorDelegate, objc_selector="writingToolsCoordinator:requestsGrammarResultsForContext:completion:", objc_name="writingToolsCoordinator_requestsGrammarResultsForContext_completion")
+    WritingToolsCoordinatorDelegate_writingToolsCoordinator_requestsGrammarResultsForContext_completion :: proc(self: ^WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^WritingToolsCoordinator, _context: ^WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( results: ^NS.Array ))) ---
+
+    @(objc_type=WritingToolsCoordinatorDelegate, objc_selector="writingToolsCoordinator:setGrammarCheckingEnabled:", objc_name="writingToolsCoordinator_setGrammarCheckingEnabled")
+    WritingToolsCoordinatorDelegate_writingToolsCoordinator_setGrammarCheckingEnabled :: proc(self: ^WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^WritingToolsCoordinator, enabled: bool) ---
+
     @(objc_type=WritingToolsCoordinatorDelegate, objc_selector="writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:", objc_name="writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion")
     WritingToolsCoordinatorDelegate_writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion :: proc(self: ^WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^WritingToolsCoordinator, point: CG.Point, completion: ^Objc_Block(proc "c" ( range: NS._NSRange, contextID: ^NS.UUID ))) ---
 }

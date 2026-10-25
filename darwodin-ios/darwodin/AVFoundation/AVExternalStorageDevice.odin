@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -44,6 +46,9 @@ foreign lib {
 
     @(objc_type=ExternalStorageDevice, objc_selector="uuid", objc_name="uuid")
     ExternalStorageDevice_uuid :: proc(self: ^ExternalStorageDevice) -> ^NS.UUID ---
+
+    @(objc_type=ExternalStorageDevice, objc_selector="reasonsNotRecommendedForCaptureUse", objc_name="reasonsNotRecommendedForCaptureUse")
+    ExternalStorageDevice_reasonsNotRecommendedForCaptureUse :: proc(self: ^ExternalStorageDevice) -> ^NS.Set ---
 
     @(objc_type=ExternalStorageDevice, objc_selector="isNotRecommendedForCaptureUse", objc_name="isNotRecommendedForCaptureUse")
     ExternalStorageDevice_isNotRecommendedForCaptureUse :: proc(self: ^ExternalStorageDevice) -> bool ---

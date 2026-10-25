@@ -22,6 +22,10 @@ VTable :: struct {
     delegate: proc(self: ^UI.DragInteraction) -> ^UI.DragInteractionDelegate,
     allowsSimultaneousRecognitionDuringLift: proc(self: ^UI.DragInteraction) -> bool,
     setAllowsSimultaneousRecognitionDuringLift: proc(self: ^UI.DragInteraction, allowsSimultaneousRecognitionDuringLift: bool),
+    allowsPointerDragBeforeLiftDelay: proc(self: ^UI.DragInteraction) -> bool,
+    setAllowsPointerDragBeforeLiftDelay: proc(self: ^UI.DragInteraction, allowsPointerDragBeforeLiftDelay: bool),
+    liftBehavior: proc(self: ^UI.DragInteraction) -> UI.DragLiftBehavior,
+    setLiftBehavior: proc(self: ^UI.DragInteraction, liftBehavior: UI.DragLiftBehavior),
     isEnabled: proc(self: ^UI.DragInteraction) -> bool,
     setEnabled: proc(self: ^UI.DragInteraction, enabled: bool),
     isEnabledByDefault: proc() -> bool,
@@ -93,6 +97,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsSimultaneousRecognitionDuringLift:"), auto_cast setAllowsSimultaneousRecognitionDuringLift, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowsPointerDragBeforeLiftDelay != nil {
+        allowsPointerDragBeforeLiftDelay :: proc "c" (self: ^UI.DragInteraction, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowsPointerDragBeforeLiftDelay(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsPointerDragBeforeLiftDelay"), auto_cast allowsPointerDragBeforeLiftDelay, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsPointerDragBeforeLiftDelay != nil {
+        setAllowsPointerDragBeforeLiftDelay :: proc "c" (self: ^UI.DragInteraction, _: SEL, allowsPointerDragBeforeLiftDelay: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAllowsPointerDragBeforeLiftDelay(self, allowsPointerDragBeforeLiftDelay)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsPointerDragBeforeLiftDelay:"), auto_cast setAllowsPointerDragBeforeLiftDelay, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.liftBehavior != nil {
+        liftBehavior :: proc "c" (self: ^UI.DragInteraction, _: SEL) -> UI.DragLiftBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).liftBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("liftBehavior"), auto_cast liftBehavior, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLiftBehavior != nil {
+        setLiftBehavior :: proc "c" (self: ^UI.DragInteraction, _: SEL, liftBehavior: UI.DragLiftBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLiftBehavior(self, liftBehavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLiftBehavior:"), auto_cast setLiftBehavior, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.isEnabled != nil {
         isEnabled :: proc "c" (self: ^UI.DragInteraction, _: SEL) -> bool {

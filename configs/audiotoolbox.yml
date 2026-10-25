@@ -114,6 +114,13 @@ Odin:
     - { Type: ^ChannelBitmap$,                Transforms: [{ Kind: RemoveSuffix, Source: Bit }] }
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # AudioFile.h: documented flag bits.
+    - Type: '^AudioFilePermissions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CAFFile.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CAFFormatFlags$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
     #   Transforms:
     #     - Kind  : RemoveSuffix
@@ -146,6 +153,17 @@ Odin:
         Source: sAre
         Target: Are
  
+    # Restore complete SDK words after the generic enum-name transforms.
+    - Type: '^AUSpatialMixerPersonalizedHRTFMode$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: to, Target: Auto }
+    - Type: '^AUSpatialMixerSourceMode$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: izeIfMono, Target: SpatializeIfMono }
+    - Type: '^AudioComponentInstantiationOptions$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: edRemotely, Target: LoadedRemotely }
+
   ProcTransforms:
     - Type: ^(_*Audio).+
       Transforms:

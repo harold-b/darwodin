@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -32,6 +34,9 @@ foreign lib {
 
     @(objc_type=ExternalSyncDevice, objc_selector="clock", objc_name="clock")
     ExternalSyncDevice_clock :: proc(self: ^ExternalSyncDevice) -> CM.ClockRef ---
+
+    @(objc_type=ExternalSyncDevice, objc_selector="isSignalCompensationDelaySupported", objc_name="isSignalCompensationDelaySupported")
+    ExternalSyncDevice_isSignalCompensationDelaySupported :: proc(self: ^ExternalSyncDevice) -> bool ---
 
     @(objc_type=ExternalSyncDevice, objc_selector="signalCompensationDelay", objc_name="signalCompensationDelay")
     ExternalSyncDevice_signalCompensationDelay :: proc(self: ^ExternalSyncDevice) -> CM.Time ---

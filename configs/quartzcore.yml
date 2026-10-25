@@ -56,7 +56,6 @@ Odin:
     - Name  : QuartzCore
       Export: CA
       LinkLibs: [system:QuartzCore.framework]
-      RequiredLink: true
       Filter: .*
 
       Imports:

@@ -160,4 +160,10 @@ foreign lib {
 
 	@(objc_type=MutableTraits, objc_selector="setResolvesNaturalAlignmentWithBaseWritingDirection:", objc_name="setResolvesNaturalAlignmentWithBaseWritingDirection")
 	MutableTraits_setResolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^MutableTraits, resolvesNaturalAlignmentWithBaseWritingDirection: bool) ---
+
+	@(objc_type=MutableTraits, objc_selector="systemPrefersReducedResourceUsage", objc_name="systemPrefersReducedResourceUsage")
+	MutableTraits_systemPrefersReducedResourceUsage :: proc(self: ^MutableTraits) -> bool ---
+
+	@(objc_type=MutableTraits, objc_selector="setSystemPrefersReducedResourceUsage:", objc_name="setSystemPrefersReducedResourceUsage")
+	MutableTraits_setSystemPrefersReducedResourceUsage :: proc(self: ^MutableTraits, systemPrefersReducedResourceUsage: bool) ---
 }

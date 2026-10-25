@@ -19,7 +19,8 @@ import "../NSTextBlock"
 
 VTable :: struct {
     super: NSTextBlock.VTable,
-    initWithTable: proc(self: ^NS.TextTableBlock, table: ^NS.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype,
+    initWithTable: proc(self: ^NS.TextTableBlock, table: ^NS.TextTable, row: NS.Integer, rowSpan: NS.Integer, column: NS.Integer, columnSpan: NS.Integer) -> instancetype,
+    initWithCoder: proc(self: ^NS.TextTableBlock, coder: ^NS.Coder) -> instancetype,
     table: proc(self: ^NS.TextTableBlock) -> ^NS.TextTable,
     startingRow: proc(self: ^NS.TextTableBlock) -> NS.Integer,
     rowSpan: proc(self: ^NS.TextTableBlock) -> NS.Integer,
@@ -35,14 +36,24 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextBlock.extend(cls, &vt.super)
 
     if vt.initWithTable != nil {
-        initWithTable :: proc "c" (self: ^NS.TextTableBlock, _: SEL, table: ^NS.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype {
+        initWithTable :: proc "c" (self: ^NS.TextTableBlock, _: SEL, table: ^NS.TextTable, row: NS.Integer, rowSpan: NS.Integer, column: NS.Integer, columnSpan: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).initWithTable(self, table, row, rowSpan, col, colSpan)
+            return (cast(^VTable)vt_ctx.super_vt).initWithTable(self, table, row, rowSpan, column, columnSpan)
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTable:startingRow:rowSpan:startingColumn:columnSpan:"), auto_cast initWithTable, "@@:@llll") do panic("Failed to register objC method.")
+    }
+    if vt.initWithCoder != nil {
+        initWithCoder :: proc "c" (self: ^NS.TextTableBlock, _: SEL, coder: ^NS.Coder) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).initWithCoder(self, coder)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.table != nil {
         table :: proc "c" (self: ^NS.TextTableBlock, _: SEL) -> ^NS.TextTable {

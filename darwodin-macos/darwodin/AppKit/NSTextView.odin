@@ -31,6 +31,7 @@ TextView :: struct {
     using _: TextInput,
     using _: AccessibilityNavigableStaticText,
     using _: TextContent,
+    using _: TextViewportLayoutControllerDelegate,
 }
 
 @(default_calling_convention="c")
@@ -595,6 +596,24 @@ foreign lib {
 
     @(objc_type=TextView, objc_selector="checkTextInDocument:", objc_name="checkTextInDocument")
     TextView_checkTextInDocument :: proc(self: ^TextView, sender: id) ---
+
+    @(objc_type=TextView, objc_selector="registerTextAttachmentViewProviderReusePolicy:forTextAttachmentViewProviderType:", objc_name="registerTextAttachmentViewProviderReusePolicy")
+    TextView_registerTextAttachmentViewProviderReusePolicy :: proc(self: ^TextView, policy: TextAttachmentViewProviderReusePolicy, viewProviderType: Class) ---
+
+    @(objc_type=TextView, objc_selector="textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController")
+    TextView_textViewportLayoutController :: proc(self: ^TextView, textViewportLayoutController: ^TextViewportLayoutController, textLayoutFragment: ^TextLayoutFragment) ---
+
+    @(objc_type=TextView, objc_selector="viewportBoundsForTextViewportLayoutController:", objc_name="viewportBoundsForTextViewportLayoutController")
+    TextView_viewportBoundsForTextViewportLayoutController :: proc(self: ^TextView, textViewportLayoutController: ^TextViewportLayoutController) -> CG.Rect ---
+
+    @(objc_type=TextView, objc_selector="textViewportLayoutControllerWillLayout:", objc_name="textViewportLayoutControllerWillLayout")
+    TextView_textViewportLayoutControllerWillLayout :: proc(self: ^TextView, textViewportLayoutController: ^TextViewportLayoutController) ---
+
+    @(objc_type=TextView, objc_selector="textViewportLayoutControllerDidLayout:", objc_name="textViewportLayoutControllerDidLayout")
+    TextView_textViewportLayoutControllerDidLayout :: proc(self: ^TextView, textViewportLayoutController: ^TextViewportLayoutController) ---
+
+    @(objc_type=TextView, objc_selector="textViewportLayoutControllerReceivedSetNeedsLayout:", objc_name="textViewportLayoutControllerReceivedSetNeedsLayout")
+    TextView_textViewportLayoutControllerReceivedSetNeedsLayout :: proc(self: ^TextView, textViewportLayoutController: ^TextViewportLayoutController) ---
 
     @(objc_type=TextView, objc_selector="smartInsertDeleteEnabled", objc_name="smartInsertDeleteEnabled")
     TextView_smartInsertDeleteEnabled :: proc(self: ^TextView) -> bool ---

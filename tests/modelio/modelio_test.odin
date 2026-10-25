@@ -8,10 +8,6 @@ import "core:testing"
 import NS "darwodin:Foundation"
 import MDL "darwodin:ModelIO"
 
-// The tests exercise Objective-C-only methods, so explicitly load their framework.
-@(require)
-foreign import modelio "system:ModelIO.framework"
-
 String :: NS.String
 MaterialProperty :: MDL.MaterialProperty
 AnimatedVector3 :: MDL.AnimatedVector3

@@ -50,6 +50,8 @@ VTable :: struct {
     setSelectedSegment: proc(self: ^NS.SegmentedControl, selectedSegment: NS.Integer),
     segmentStyle: proc(self: ^NS.SegmentedControl) -> NS.SegmentStyle,
     setSegmentStyle: proc(self: ^NS.SegmentedControl, segmentStyle: NS.SegmentStyle),
+    role: proc(self: ^NS.SegmentedControl) -> NS.SegmentedControlRole,
+    setRole: proc(self: ^NS.SegmentedControl, role: NS.SegmentedControlRole),
     isSpringLoaded: proc(self: ^NS.SegmentedControl) -> bool,
     setSpringLoaded: proc(self: ^NS.SegmentedControl, springLoaded: bool),
     trackingMode: proc(self: ^NS.SegmentedControl) -> NS.SegmentSwitchTracking,
@@ -383,6 +385,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSegmentStyle:"), auto_cast setSegmentStyle, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.role != nil {
+        role :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.SegmentedControlRole {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).role(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("role"), auto_cast role, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRole != nil {
+        setRole :: proc "c" (self: ^NS.SegmentedControl, _: SEL, role: NS.SegmentedControlRole) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setRole(self, role)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRole:"), auto_cast setRole, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isSpringLoaded != nil {
         isSpringLoaded :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> bool {

@@ -36,6 +36,9 @@ foreign lib {
 	@(objc_type=ComputePipelineState, objc_selector="newIntersectionFunctionTableWithDescriptor:", objc_name="newIntersectionFunctionTableWithDescriptor")
 	ComputePipelineState_newIntersectionFunctionTableWithDescriptor :: proc(self: ^ComputePipelineState, descriptor: ^IntersectionFunctionTableDescriptor) -> ^IntersectionFunctionTable ---
 
+	@(objc_type=ComputePipelineState, objc_selector="recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup:", objc_name="recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup")
+	ComputePipelineState_recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup :: proc(self: ^ComputePipelineState, threadsPerThreadgroup: Size) -> NS.UInteger ---
+
 	@(objc_type=ComputePipelineState, objc_selector="label", objc_name="label")
 	ComputePipelineState_label :: proc(self: ^ComputePipelineState) -> ^NS.String ---
 
@@ -65,4 +68,7 @@ foreign lib {
 
 	@(objc_type=ComputePipelineState, objc_selector="requiredThreadsPerThreadgroup", objc_name="requiredThreadsPerThreadgroup")
 	ComputePipelineState_requiredThreadsPerThreadgroup :: proc(self: ^ComputePipelineState) -> Size ---
+
+	@(objc_type=ComputePipelineState, objc_selector="forwardProgressUsage", objc_name="forwardProgressUsage")
+	ComputePipelineState_forwardProgressUsage :: proc(self: ^ComputePipelineState) -> ForwardProgressUsage ---
 }

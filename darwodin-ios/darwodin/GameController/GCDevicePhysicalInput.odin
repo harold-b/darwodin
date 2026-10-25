@@ -27,6 +27,9 @@ foreign lib {
     @(objc_type=DevicePhysicalInput, objc_selector="nextInputState", objc_name="nextInputState")
     DevicePhysicalInput_nextInputState :: proc(self: ^DevicePhysicalInput) -> ^id ---
 
+    @(objc_type=DevicePhysicalInput, objc_selector="inputStateForSpatialAccessoryAnchorTimestamp:", objc_name="inputStateForSpatialAccessoryAnchorTimestamp")
+    DevicePhysicalInput_inputStateForSpatialAccessoryAnchorTimestamp :: proc(self: ^DevicePhysicalInput, timestamp: NS.TimeInterval) -> ^DevicePhysicalInputState ---
+
     @(objc_type=DevicePhysicalInput, objc_selector="device", objc_name="device")
     DevicePhysicalInput_device :: proc(self: ^DevicePhysicalInput) -> ^Device ---
 

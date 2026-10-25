@@ -24,12 +24,6 @@ foreign lib {
 	@(objc_type=OpenPanel, objc_selector="setResolvesAliases:", objc_name="setResolvesAliases")
 	OpenPanel_setResolvesAliases :: proc(self: ^OpenPanel, resolvesAliases: bool) ---
 
-	@(objc_type=OpenPanel, objc_selector="canChooseDirectories", objc_name="canChooseDirectories")
-	OpenPanel_canChooseDirectories :: proc(self: ^OpenPanel) -> bool ---
-
-	@(objc_type=OpenPanel, objc_selector="setCanChooseDirectories:", objc_name="setCanChooseDirectories")
-	OpenPanel_setCanChooseDirectories :: proc(self: ^OpenPanel, canChooseDirectories: bool) ---
-
 	@(objc_type=OpenPanel, objc_selector="allowsMultipleSelection", objc_name="allowsMultipleSelection")
 	OpenPanel_allowsMultipleSelection :: proc(self: ^OpenPanel) -> bool ---
 
@@ -41,6 +35,12 @@ foreign lib {
 
 	@(objc_type=OpenPanel, objc_selector="setCanChooseFiles:", objc_name="setCanChooseFiles")
 	OpenPanel_setCanChooseFiles :: proc(self: ^OpenPanel, canChooseFiles: bool) ---
+
+	@(objc_type=OpenPanel, objc_selector="canChooseDirectories", objc_name="canChooseDirectories")
+	OpenPanel_canChooseDirectories :: proc(self: ^OpenPanel) -> bool ---
+
+	@(objc_type=OpenPanel, objc_selector="setCanChooseDirectories:", objc_name="setCanChooseDirectories")
+	OpenPanel_setCanChooseDirectories :: proc(self: ^OpenPanel, canChooseDirectories: bool) ---
 
 	@(objc_type=OpenPanel, objc_selector="canResolveUbiquitousConflicts", objc_name="canResolveUbiquitousConflicts")
 	OpenPanel_canResolveUbiquitousConflicts :: proc(self: ^OpenPanel) -> bool ---

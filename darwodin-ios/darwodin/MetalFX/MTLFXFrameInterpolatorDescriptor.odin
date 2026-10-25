@@ -93,6 +93,18 @@ foreign lib {
 
     @(objc_type=FrameInterpolatorDescriptor, objc_selector="setOutputHeight:", objc_name="setOutputHeight")
     FrameInterpolatorDescriptor_setOutputHeight :: proc(self: ^FrameInterpolatorDescriptor, outputHeight: NS.UInteger) ---
+
+    @(objc_type=FrameInterpolatorDescriptor, objc_selector="isDistortionTextureEnabled", objc_name="isDistortionTextureEnabled")
+    FrameInterpolatorDescriptor_isDistortionTextureEnabled :: proc(self: ^FrameInterpolatorDescriptor) -> bool ---
+
+    @(objc_type=FrameInterpolatorDescriptor, objc_selector="setDistortionTextureEnabled:", objc_name="setDistortionTextureEnabled")
+    FrameInterpolatorDescriptor_setDistortionTextureEnabled :: proc(self: ^FrameInterpolatorDescriptor, distortionTextureEnabled: bool) ---
+
+    @(objc_type=FrameInterpolatorDescriptor, objc_selector="requiresPrevColorTexture", objc_name="requiresPrevColorTexture")
+    FrameInterpolatorDescriptor_requiresPrevColorTexture :: proc(self: ^FrameInterpolatorDescriptor) -> bool ---
+
+    @(objc_type=FrameInterpolatorDescriptor, objc_selector="setRequiresPrevColorTexture:", objc_name="setRequiresPrevColorTexture")
+    FrameInterpolatorDescriptor_setRequiresPrevColorTexture :: proc(self: ^FrameInterpolatorDescriptor, requiresPrevColorTexture: bool) ---
 }
 
 @(objc_type=FrameInterpolatorDescriptor, objc_name="newFrameInterpolatorWithDevice")

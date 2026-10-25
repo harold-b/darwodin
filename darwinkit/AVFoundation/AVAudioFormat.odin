@@ -37,6 +37,9 @@ foreign lib {
 	@(objc_type=AudioFormat, objc_selector="initWithCMAudioFormatDescription:", objc_name="initWithCMAudioFormatDescription")
 	AudioFormat_initWithCMAudioFormatDescription :: proc(self: ^AudioFormat, formatDescription: CM.AudioFormatDescriptionRef) -> instancetype ---
 
+	@(objc_type=AudioFormat, objc_selector="initWithFormatDescription:", objc_name="initWithFormatDescription")
+	AudioFormat_initWithFormatDescription :: proc(self: ^AudioFormat, formatDescription: CM.AudioFormatDescriptionRef) -> instancetype ---
+
 	@(objc_type=AudioFormat, objc_selector="isEqual:", objc_name="isEqual")
 	AudioFormat_isEqual :: proc(self: ^AudioFormat, object: id) -> bool ---
 

@@ -28,4 +28,10 @@ TextLocation :: struct {
 foreign lib {
     @(objc_type=TextLocation, objc_selector="compare:", objc_name="compare")
     TextLocation_compare :: proc(self: ^TextLocation, location: ^TextLocation) -> NS.ComparisonResult ---
+
+    @(objc_type=TextLocation, objc_selector="isEqual:", objc_name="isEqual")
+    TextLocation_isEqual :: proc(self: ^TextLocation, location: id) -> bool ---
+
+    @(objc_type=TextLocation, objc_selector="hash", objc_name="hash")
+    TextLocation_hash :: proc(self: ^TextLocation) -> NS.UInteger ---
 }

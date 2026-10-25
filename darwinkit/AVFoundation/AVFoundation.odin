@@ -38,6 +38,10 @@ DepthData                  :: ^NS.Object
 PortraitEffectsMatte       :: ^NS.Object
 SemanticSegmentationMatte  :: ^NS.Object
 
+AssetReferenceRestrictions_RestrictionForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
+AudioSpatializationFormats_FormatMonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
+AudioSpatializationFormats_FormatMonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
+
 
 
 foreign lib {
@@ -1352,6 +1356,15 @@ foreign lib {
 	@(link_name="AVVideoYCbCrMatrix_ITU_R_2020")
 	VideoYCbCrMatrix_ITU_R_2020: ^NS.String
 
+	@(link_name="AVVideoLogTransferFunctionKey")
+	VideoLogTransferFunctionKey: ^NS.String
+
+	@(link_name="AVVideoLogTransferFunction_AppleLog")
+	VideoLogTransferFunction_AppleLog: ^NS.String
+
+	@(link_name="AVVideoLogTransferFunction_AppleLog2")
+	VideoLogTransferFunction_AppleLog2: ^NS.String
+
 	@(link_name="AVVideoAllowWideColorKey")
 	VideoAllowWideColorKey: ^NS.String
 
@@ -1603,6 +1616,18 @@ foreign lib {
 		AssetExportPresetAppleM4V1080pHD: ^NS.String
 	}
 
+	@(link_name="AVAssetExportSessionResumptionFailureReasonUnsupportedForPresetOnPlatform")
+	AssetExportSessionResumptionFailureReasonUnsupportedForPresetOnPlatform: ^NS.String
+
+	@(link_name="AVAssetExportSessionResumptionFailureReasonTemporaryDirectoryDoesNotExist")
+	AssetExportSessionResumptionFailureReasonTemporaryDirectoryDoesNotExist: ^NS.String
+
+	@(link_name="AVAssetExportSessionResumptionFailureReasonIncompatibleSessionSettings")
+	AssetExportSessionResumptionFailureReasonIncompatibleSessionSettings: ^NS.String
+
+	@(link_name="AVAssetExportSessionResumptionFailureReasonIncompatibleTemporaryDirectoryContents")
+	AssetExportSessionResumptionFailureReasonIncompatibleTemporaryDirectoryContents: ^NS.String
+
 	@(link_name="AVAssetImageGeneratorApertureModeCleanAperture")
 	AssetImageGeneratorApertureModeCleanAperture: ^NS.String
 
@@ -1617,15 +1642,6 @@ foreign lib {
 
 	@(link_name="AVAssetImageGeneratorDynamicRangePolicyMatchSource")
 	AssetImageGeneratorDynamicRangePolicyMatchSource: ^NS.String
-
-	@(link_name="AVVideoCompositionPerFrameHDRDisplayMetadataPolicyPropagate")
-	VideoCompositionPerFrameHDRDisplayMetadataPolicyPropagate: ^NS.String
-
-	@(link_name="AVVideoCompositionPerFrameHDRDisplayMetadataPolicyGenerate")
-	VideoCompositionPerFrameHDRDisplayMetadataPolicyGenerate: ^NS.String
-
-	@(link_name="AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey")
-	AssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey: ^NS.String
 
 	@(link_name="AVTrackAssociationTypeAudioFallback")
 	TrackAssociationTypeAudioFallback: ^NS.String
@@ -1665,6 +1681,15 @@ foreign lib {
 
 	@(link_name="AVAssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData")
 	AssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData: ^NS.String
+
+	@(link_name="AVVideoCompositionPerFrameHDRDisplayMetadataPolicyPropagate")
+	VideoCompositionPerFrameHDRDisplayMetadataPolicyPropagate: ^NS.String
+
+	@(link_name="AVVideoCompositionPerFrameHDRDisplayMetadataPolicyGenerate")
+	VideoCompositionPerFrameHDRDisplayMetadataPolicyGenerate: ^NS.String
+
+	@(link_name="AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey")
+	AssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey: ^NS.String
 
 	@(link_name="AVAssetPlaybackConfigurationOptionStereoVideo")
 	AssetPlaybackConfigurationOptionStereoVideo: ^NS.String
@@ -2957,6 +2982,9 @@ foreign lib {
 	@(link_name="AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotification")
 	SampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotification: ^NS.String
 
+	@(link_name="AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotificationRequiresFlushKey")
+	SampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotificationRequiresFlushKey: ^NS.String
+
 	@(link_name="AVFormatIDKey")
 	FormatIDKey: ^NS.String
 
@@ -3104,6 +3132,9 @@ foreign lib {
 	@(link_name="AVAudioSessionPortThunderbolt")
 	AudioSessionPortThunderbolt: ^NS.String
 
+	@(link_name="AVAudioSessionPortMediaDeviceExtension")
+	AudioSessionPortMediaDeviceExtension: ^NS.String
+
 	@(link_name="AVAudioSessionCategoryAmbient")
 	AudioSessionCategoryAmbient: ^NS.String
 
@@ -3194,6 +3225,15 @@ foreign lib {
 	@(link_name="AVAudioSessionUserIntentToUnmuteOutputNotification")
 	AudioSessionUserIntentToUnmuteOutputNotification: ^NS.String
 
+	@(link_name="AVAudioSessionDidBecomeActiveNotification")
+	AudioSessionDidBecomeActiveNotification: ^NS.String
+
+	@(link_name="AVAudioSessionDidBecomeInactiveNotification")
+	AudioSessionDidBecomeInactiveNotification: ^NS.String
+
+	@(link_name="AVAudioSessionResumptionRecommendationNotification")
+	AudioSessionResumptionRecommendationNotification: ^NS.String
+
 	@(link_name="AVAudioSessionSpatialAudioEnabledKey")
 	AudioSessionSpatialAudioEnabledKey: ^NS.String
 
@@ -3223,6 +3263,12 @@ foreign lib {
 
 	@(link_name="AVAudioSessionMicrophoneInjectionIsAvailableKey")
 	AudioSessionMicrophoneInjectionIsAvailableKey: ^NS.String
+
+	@(link_name="AVAudioSessionDeactivationContextKey")
+	AudioSessionDeactivationContextKey: ^NS.String
+
+	@(link_name="AVAudioSessionResumptionContextKey")
+	AudioSessionResumptionContextKey: ^NS.String
 
 	@(link_name="AVAudioSessionAvailableInputsChangeNotification")
 	AudioSessionAvailableInputsChangeNotification: ^NS.String
@@ -3395,6 +3441,15 @@ foreign lib {
 	@(link_name="AVAudioApplicationMuteStateKey")
 	AudioApplicationMuteStateKey: ^NS.String
 
+	@(link_name="AVCaptureAncillaryDataUserKeyRDD18InstanceUID")
+	CaptureAncillaryDataUserKeyRDD18InstanceUID: ^NS.String
+
+	@(link_name="AVCaptureAncillaryDataUserKeyRDD18UDAMSetVersion")
+	CaptureAncillaryDataUserKeyRDD18UDAMSetVersion: ^NS.String
+
+	@(link_name="AVCaptureAncillaryDataUserKeyRDD18UserItems")
+	CaptureAncillaryDataUserKeyRDD18UserItems: ^NS.String
+
 	@(link_name="AVCaptureSessionPresetPhoto")
 	CaptureSessionPresetPhoto: ^NS.String
 
@@ -3470,6 +3525,39 @@ foreign lib {
 	@(link_name="AVCaptureDeviceSubjectAreaDidChangeNotification")
 	CaptureDeviceSubjectAreaDidChangeNotification: ^NS.String
 
+	@(link_name="AVCaptureLensApertureCurrent")
+	CaptureLensApertureCurrent: cffi.float
+
+	@(link_name="AVCaptureExposureDurationCurrent")
+	CaptureExposureDurationCurrent: CM.Time
+
+	@(link_name="AVCaptureISOCurrent")
+	CaptureISOCurrent: cffi.float
+
+	@(link_name="AVCaptureLensApertureAuto")
+	CaptureLensApertureAuto: cffi.float
+
+	@(link_name="AVCaptureExposureDurationAuto")
+	CaptureExposureDurationAuto: CM.Time
+
+	@(link_name="AVCaptureISOAuto")
+	CaptureISOAuto: cffi.float
+
+	@(link_name="AVCaptureDeviceExposureSignalSubjectMotion")
+	CaptureDeviceExposureSignalSubjectMotion: ^NS.String
+
+	@(link_name="AVCaptureDeviceExposureSignalGroupPhoto")
+	CaptureDeviceExposureSignalGroupPhoto: ^NS.String
+
+	@(link_name="AVCaptureDeviceExposureSignalDocument")
+	CaptureDeviceExposureSignalDocument: ^NS.String
+
+	@(link_name="AVCaptureDeviceExposureSignalStarburst")
+	CaptureDeviceExposureSignalStarburst: ^NS.String
+
+	@(link_name="AVCaptureDeviceExposureSignalFlicker")
+	CaptureDeviceExposureSignalFlicker: ^NS.String
+
 	@(link_name="AVCaptureDeviceTypeExternal")
 	CaptureDeviceTypeExternal: ^NS.String
 
@@ -3520,12 +3608,6 @@ foreign lib {
 
 	@(link_name="AVCaptureLensPositionCurrent")
 	CaptureLensPositionCurrent: cffi.float
-
-	@(link_name="AVCaptureExposureDurationCurrent")
-	CaptureExposureDurationCurrent: CM.Time
-
-	@(link_name="AVCaptureISOCurrent")
-	CaptureISOCurrent: cffi.float
 
 	@(link_name="AVCaptureExposureTargetBiasCurrent")
 	CaptureExposureTargetBiasCurrent: cffi.float
@@ -3595,6 +3677,12 @@ foreign lib {
 
 	@(link_name="AVCaptureSessionInterruptionEndedNotification")
 	CaptureSessionInterruptionEndedNotification: ^NS.String
+
+	@(link_name="AVMetadataObjectTypeFocusTrackedObject")
+	MetadataObjectTypeFocusTrackedObject: ^NS.String
+
+	@(link_name="AVMetadataObjectTypeCinematicVideoMetadata")
+	MetadataObjectTypeCinematicVideoMetadata: ^NS.String
 
 	@(link_name="AVMetadataObjectTypeHumanBody")
 	MetadataObjectTypeHumanBody: ^NS.String
@@ -3707,6 +3795,27 @@ foreign lib {
 	@(link_name="AVCaptureSystemPressureLevelShutdown")
 	CaptureSystemPressureLevelShutdown: ^NS.String
 
+	@(link_name="AVExternalStorageDeviceReasonNotRecommendedForCaptureUseEncrypted")
+	ExternalStorageDeviceReasonNotRecommendedForCaptureUseEncrypted: ^NS.String
+
+	@(link_name="AVExternalStorageDeviceReasonNotRecommendedForCaptureUseUnsupportedFileSystem")
+	ExternalStorageDeviceReasonNotRecommendedForCaptureUseUnsupportedFileSystem: ^NS.String
+
+	@(link_name="AVExternalStorageDeviceReasonNotRecommendedForCaptureUseSlowWritingSpeed")
+	ExternalStorageDeviceReasonNotRecommendedForCaptureUseSlowWritingSpeed: ^NS.String
+
+	@(link_name="AVExternalStorageDeviceReasonNotRecommendedForCaptureUseUnknownWritingSpeed")
+	ExternalStorageDeviceReasonNotRecommendedForCaptureUseUnknownWritingSpeed: ^NS.String
+
+	@(link_name="AVProVideoStorageBusyReasonAdjustingCapacity")
+	ProVideoStorageBusyReasonAdjustingCapacity: ^NS.String
+
+	@(link_name="AVProVideoStorageBusyReasonReplenishing")
+	ProVideoStorageBusyReasonReplenishing: ^NS.String
+
+	@(link_name="AVProVideoStorageBusyReasonCapturing")
+	ProVideoStorageBusyReasonCapturing: ^NS.String
+
 	@(link_name="AVSampleBufferAttachContentKey")
 	SampleBufferAttachContentKey :: proc(sbuf: CM.SampleBufferRef, contentKey: ^ContentKey, outError: ^^NS.Error) -> bool ---
 
@@ -3765,12 +3874,13 @@ MetadataExtraAttributeKey :: ^NS.String
 VideoCodecType :: ^NS.String
 VideoApertureMode :: ^NS.String
 AudioTimePitchAlgorithm :: ^NS.String
+AssetExportSessionResumptionFailureReason :: ^NS.String
 AssetImageGeneratorApertureMode :: ^NS.String
 AssetImageGeneratorDynamicRangePolicy :: ^NS.String
 AssetImageGeneratorCompletionHandler :: ^Objc_Block(proc "c" ( requestedTime: CM.Time, image: CG.ImageRef, actualTime: CM.Time, result: AssetImageGeneratorResult, error: ^NS.Error ))
-VideoCompositionPerFrameHDRDisplayMetadataPolicy :: ^NS.String
 TrackAssociationType :: ^NS.String
 AssetWriterInputMediaDataLocation :: ^NS.String
+VideoCompositionPerFrameHDRDisplayMetadataPolicy :: ^NS.String
 AssetPlaybackConfigurationOptions :: ^NS.String
 AssetDownloadedAssetEvictionPriority :: ^NS.String
 CaptionSettingsKey :: ^NS.String
@@ -3795,7 +3905,9 @@ Audio3DVector :: Audio3DPoint
 AudioConverterInputBlock :: ^Objc_Block(proc "c" ( inNumberOfPackets: AudioPacketCount, outStatus: ^AudioConverterInputStatus ) -> ^AudioBuffer)
 AudioNodeTapBlock :: ^Objc_Block(proc "c" ( buffer: ^AudioPCMBuffer, _when: ^AudioTime ))
 AudioIONodeInputBlock :: ^Objc_Block(proc "c" ( inNumberOfFrames: AudioFrameCount ) -> ^AT.BufferList)
+AudioIONodeInputBlockRealtimeSafe :: ^Objc_Block(proc "c" ( inNumberOfFrames: AudioFrameCount ) -> ^AT.BufferList)
 AudioEngineManualRenderingBlock :: ^Objc_Block(proc "c" ( numberOfFrames: AudioFrameCount, outBuffer: ^AT.BufferList, outError: ^CF.OSStatus ) -> AudioEngineManualRenderingStatus)
+MIDIEventListBlock :: distinct ^Objc_Block(proc "c" ( eventSampleTime: CF.SInt64, cable: CF.UInt8, eventList: ^AT.MIDIEventList ) -> CF.OSStatus)
 AudioSessionPort :: ^NS.String
 AudioSessionCategory :: ^NS.String
 AudioSessionMode :: ^NS.String
@@ -3808,13 +3920,17 @@ AudioSequencerInfoDictionaryKey :: ^NS.String
 AudioSequencerUserCallback :: ^Objc_Block(proc "c" ( track: ^MusicTrack, userData: ^NS.Data, timeStamp: MusicTimeStamp ))
 MusicEventEnumerationBlock :: ^Objc_Block(proc "c" ( event: ^MusicEvent, timeStamp: ^MusicTimeStamp, removeEvent: ^bool ))
 AudioSinkNodeReceiverBlock :: ^Objc_Block(proc "c" ( timestamp: ^AT.TimeStamp, frameCount: AudioFrameCount, inputData: ^AT.BufferList ) -> CF.OSStatus)
+AudioSinkNodeReceiverBlockRealtimeSafe :: ^Objc_Block(proc "c" ( timestamp: ^AT.TimeStamp, frameCount: AudioFrameCount, inputData: ^AT.BufferList ) -> CF.OSStatus)
 AudioSourceNodeRenderBlock :: ^Objc_Block(proc "c" ( isSilence: ^bool, timestamp: ^AT.TimeStamp, frameCount: AudioFrameCount, outputData: ^AT.BufferList ) -> CF.OSStatus)
+AudioSourceNodeRenderBlockRealtimeSafe :: distinct ^Objc_Block(proc "c" ( isSilence: ^bool, timestamp: ^AT.TimeStamp, frameCount: AudioFrameCount, outputData: ^AT.BufferList ) -> CF.OSStatus)
 MIDIPlayerCompletionHandler :: ^Objc_Block(proc "c" ())
 SpeechSynthesizerBufferCallback :: ^Objc_Block(proc "c" ( buffer: ^AudioBuffer ))
 SpeechSynthesizerMarkerCallback :: ^Objc_Block(proc "c" ( markers: ^NS.Array ))
 SpeechSynthesisProviderOutputBlock :: ^Objc_Block(proc "c" ( markers: ^NS.Array, speechRequest: ^SpeechSynthesisProviderRequest ))
+CaptureAncillaryDataUserKey :: ^NS.String
 CaptureSessionPreset :: ^NS.String
 CaptureReactionType :: ^NS.String
+CaptureDeviceExposureSignal :: ^NS.String
 CaptureDeviceType :: ^NS.String
 CaptureDeviceTransportControlsSpeed :: cffi.float
 SpatialCaptureDiscomfortReason :: ^NS.String
@@ -3823,6 +3939,8 @@ CaptureAspectRatio :: ^NS.String
 MetadataObjectType :: ^NS.String
 SemanticSegmentationMatteType :: ^NS.String
 CaptureSystemPressureLevel :: ^NS.String
+ExternalStorageDeviceReasonNotRecommendedForCaptureUse :: ^NS.String
+ProVideoStorageBusyReason :: ^NS.String
 
 KeyValueStatus :: enum cffi.long {
 	Unknown   = 0,
@@ -3865,22 +3983,21 @@ ExternalContentProtectionStatus :: enum cffi.long {
 	Insufficient = 2,
 }
 
-AssetReferenceRestrictions :: enum cffi.ulong {
-	RestrictionForbidNone            = 0,
-	RestrictionForbidRemoteReferenceToLocal = 1,
-	RestrictionForbidLocalReferenceToRemote = 2,
-	RestrictionForbidCrossSiteReference = 4,
-	RestrictionForbidLocalReferenceToLocal = 8,
-	RestrictionForbidAll             = 65535,
-	RestrictionDefaultPolicy         = 2,
+AssetReferenceRestrictionsFlag :: enum cffi.ulong {
+	RestrictionForbidRemoteReferenceToLocal = 0,
+	RestrictionForbidLocalReferenceToRemote = 1,
+	RestrictionForbidCrossSiteReference = 2,
+	RestrictionForbidLocalReferenceToLocal = 3,
+	RestrictionDefaultPolicy         = 1,
 }
 
-AudioSpatializationFormats :: enum cffi.ulong {
-	FormatNone                      = 0,
-	FormatMonoAndStereo             = 3,
-	FormatMultichannel              = 4,
-	FormatMonoStereoAndMultichannel = 7,
+AssetReferenceRestrictions :: bit_set[AssetReferenceRestrictionsFlag; cffi.ulong]
+
+AudioSpatializationFormatsFlag :: enum cffi.ulong {
+	FormatMultichannel = 2,
 }
+
+AudioSpatializationFormats :: bit_set[AudioSpatializationFormatsFlag; cffi.ulong]
 
 AssetExportSessionStatus :: enum cffi.long {
 	Unknown   = 0,
@@ -3891,11 +4008,11 @@ AssetExportSessionStatus :: enum cffi.long {
 	Cancelled = 5,
 }
 
-AssetTrackGroupOutputHandling :: enum cffi.ulong {
-	None                    = 0,
-	PreserveAlternateTracks = 1,
-	DefaultPolicy           = 0,
+AssetTrackGroupOutputHandlingFlag :: enum cffi.ulong {
+	PreserveAlternateTracks = 0,
 }
+
+AssetTrackGroupOutputHandling :: bit_set[AssetTrackGroupOutputHandlingFlag; cffi.ulong]
 
 AssetImageGeneratorResult :: enum cffi.long {
 	Succeeded = 0,
@@ -3922,6 +4039,15 @@ AssetWriterStatus :: enum cffi.long {
 	Completed = 2,
 	Failed    = 3,
 	Cancelled = 4,
+}
+
+AudioMixInputParametersTrackID :: enum cffi.int {
+	MixID = 0,
+}
+
+MetricPlaybackMode :: enum cffi.long {
+	Local        = 0,
+	AirPlayVideo = 1,
 }
 
 CaptionUnitsType :: enum cffi.long {
@@ -3963,12 +4089,13 @@ CaptionFontStyle :: enum cffi.long {
 	Italic  = 2,
 }
 
-CaptionDecoration :: enum cffi.ulong {
-	None        = 0,
-	Underline   = 1,
-	LineThrough = 2,
-	Overline    = 4,
+CaptionDecorationFlag :: enum cffi.ulong {
+	Underline   = 0,
+	LineThrough = 1,
+	Overline    = 2,
 }
+
+CaptionDecoration :: bit_set[CaptionDecorationFlag; cffi.ulong]
 
 CaptionTextCombine :: enum cffi.long {
 	All         = -1,
@@ -4093,6 +4220,10 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 		NoSmartFramingsEnabled           = -11890,
 		AutoWhiteBalanceNotLocked        = -11891,
 		FollowExternalSyncDeviceTimedOut = -11892,
+		FollowExternalSyncFailed         = -11894,
+		ExternalSyncDeviceFrequencyHigherThanSpecified = -11895,
+		ExternalSyncDeviceFrequencyLowerThanSpecified = -11896,
+		NotEnoughSpaceForProVideoStorageReplenishment = -11897,
 	}
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
 	Error :: enum cffi.long {
@@ -4185,6 +4316,10 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 		NoSmartFramingsEnabled           = -11890,
 		AutoWhiteBalanceNotLocked        = -11891,
 		FollowExternalSyncDeviceTimedOut = -11892,
+		FollowExternalSyncFailed         = -11894,
+		ExternalSyncDeviceFrequencyHigherThanSpecified = -11895,
+		ExternalSyncDeviceFrequencyLowerThanSpecified = -11896,
+		NotEnoughSpaceForProVideoStorageReplenishment = -11897,
 	}
 }
 
@@ -4212,11 +4347,13 @@ PlayerActionAtItemEnd :: enum cffi.long {
 	None    = 2,
 }
 
-PlayerHDRMode :: enum cffi.long {
-	HLG         = 1,
-	HDR10       = 2,
-	DolbyVision = 4,
+PlayerHDRModeFlag :: enum cffi.long {
+	HLG         = 0,
+	HDR10       = 1,
+	DolbyVision = 2,
 }
+
+PlayerHDRMode :: bit_set[PlayerHDRModeFlag; cffi.long]
 
 PlayerAudiovisualBackgroundPlaybackPolicy :: enum cffi.long {
 	Automatic           = 1,
@@ -4248,10 +4385,11 @@ PlayerItemStatus :: enum cffi.long {
 	Failed      = 2,
 }
 
-VariantPreferences :: enum cffi.ulong {
-	PreferenceNone            = 0,
-	calabilityToLosslessAudio = 1,
+VariantPreferencesFlag :: enum cffi.ulong {
+	PreferenceScalabilityToLosslessAudio = 0,
 }
+
+VariantPreferences :: bit_set[VariantPreferencesFlag; cffi.ulong]
 
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	ContentAuthorizationStatus :: enum cffi.long {
@@ -4277,12 +4415,12 @@ PlayerLooperItemOrdering :: enum cffi.long {
 	LoopingItemsFollowExistingItems  = 1,
 }
 
-PlayerInterstitialEventRestrictions :: enum cffi.ulong {
-	RestrictionNone                  = 0,
-	RestrictionConstrainsSeekingForwardInPrimaryContent = 1,
-	RestrictionRequiresPlaybackAtPreferredRateForAdvancement = 4,
-	RestrictionDefaultPolicy         = 0,
+PlayerInterstitialEventRestrictionsFlag :: enum cffi.ulong {
+	RestrictionConstrainsSeekingForwardInPrimaryContent = 0,
+	RestrictionRequiresPlaybackAtPreferredRateForAdvancement = 2,
 }
+
+PlayerInterstitialEventRestrictions :: bit_set[PlayerInterstitialEventRestrictionsFlag; cffi.ulong]
 
 PlayerInterstitialEventTimelineOccupancy :: enum cffi.long {
 	SinglePoint = 0,
@@ -4446,19 +4584,20 @@ AudioEngineManualRenderingMode :: enum cffi.long {
 }
 
 AudioUnitReverbPreset :: enum cffi.long {
-	SmallRoom     = 0,
-	MediumRoom    = 1,
-	LargeRoom     = 2,
-	MediumHall    = 3,
-	LargeHall     = 4,
-	Plate         = 5,
-	MediumChamber = 6,
-	LargeChamber  = 7,
-	Cathedral     = 8,
-	LargeRoom2    = 9,
-	MediumHall2   = 10,
-	MediumHall3   = 11,
-	LargeHall2    = 12,
+	SmallRoom      = 0,
+	MediumRoom     = 1,
+	LargeRoom      = 2,
+	MediumHall     = 3,
+	LargeHall      = 4,
+	Plate          = 5,
+	MediumChamber  = 6,
+	LargeChamber   = 7,
+	Cathedral      = 8,
+	LargeRoom2     = 9,
+	MediumHall2    = 10,
+	MediumHall3    = 11,
+	LargeHall2     = 12,
+	OutdoorGeneral = 24,
 }
 
 AudioUnitEQFilterType :: enum cffi.long {
@@ -4492,6 +4631,12 @@ AudioSessionActivationOption :: enum cffi.ulong {
 }
 
 AudioSessionActivationOptions :: bit_set[AudioSessionActivationOption; cffi.ulong]
+
+AudioSessionDeactivationOption :: enum cffi.ulong {
+	OptionNotifyOthersOnDeactivation = 0,
+}
+
+AudioSessionDeactivationOptions :: bit_set[AudioSessionDeactivationOption; cffi.ulong]
 
 AudioSessionPortOverride :: enum cffi.ulong {
 	None    = 0,
@@ -4530,7 +4675,7 @@ AudioSessionInterruptionType :: enum cffi.ulong {
 }
 
 AudioSessionInterruptionOption :: enum cffi.ulong {
-	houldResume = 0,
+	ShouldResume = 0,
 }
 
 AudioSessionInterruptionOptions :: bit_set[AudioSessionInterruptionOption; cffi.ulong]
@@ -4540,6 +4685,16 @@ AudioSessionInterruptionReason :: enum cffi.ulong {
 	AppWasSuspended   = 1,
 	BuiltInMicMuted   = 2,
 	RouteDisconnected = 4,
+}
+
+AudioSessionDeactivationSource :: enum cffi.long {
+	App    = 1,
+	System = 2,
+}
+
+AudioSessionResumptionRecommendation :: enum cffi.long {
+	ShouldNotResume = 0,
+	ShouldResume    = 1,
 }
 
 AudioSessionSetActiveOption :: enum cffi.ulong {
@@ -4744,11 +4899,12 @@ SpeechSynthesisPersonalVoiceAuthorizationStatus :: enum cffi.ulong {
 	Authorized    = 3,
 }
 
-SpeechSynthesisVoiceTraits :: enum cffi.ulong {
-	TraitNone            = 0,
-	TraitIsNoveltyVoice  = 1,
-	TraitIsPersonalVoice = 2,
+SpeechSynthesisVoiceTraitsFlag :: enum cffi.ulong {
+	TraitIsNoveltyVoice  = 0,
+	TraitIsPersonalVoice = 1,
 }
+
+SpeechSynthesisVoiceTraits :: bit_set[SpeechSynthesisVoiceTraitsFlag; cffi.ulong]
 
 AudioApplicationRecordPermission :: enum cffi.long {
 	Undetermined = 1970168948,
@@ -4761,6 +4917,13 @@ AudioApplicationMicrophoneInjectionPermission :: enum cffi.long {
 	Undetermined    = 1970168948,
 	Denied          = 1684369017,
 	Granted         = 1735552628,
+}
+
+CaptureVideoOrientation :: enum cffi.long {
+	Portrait           = 1,
+	PortraitUpsideDown = 2,
+	LandscapeRight     = 3,
+	LandscapeLeft      = 4,
 }
 
 CaptureDevicePosition :: enum cffi.long {
@@ -4776,12 +4939,13 @@ CapturePrimaryConstituentDeviceSwitchingBehavior :: enum cffi.long {
 	Locked      = 3,
 }
 
-CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions :: enum cffi.ulong {
-	ConditionNone                = 0,
-	ConditionVideoZoomChanged    = 1,
-	ConditionFocusModeChanged    = 2,
-	ConditionExposureModeChanged = 4,
+CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsFlag :: enum cffi.ulong {
+	ConditionVideoZoomChanged    = 0,
+	ConditionFocusModeChanged    = 1,
+	ConditionExposureModeChanged = 2,
 }
+
+CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions :: bit_set[CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsFlag; cffi.ulong]
 
 CaptureFlashMode :: enum cffi.long {
 	Off  = 0,
@@ -4896,13 +5060,6 @@ CaptureSessionInterruptionReason :: enum cffi.long {
 	SensitiveContentMitigationActivated = 6,
 }
 
-CaptureVideoOrientation :: enum cffi.long {
-	Portrait           = 1,
-	PortraitUpsideDown = 2,
-	LandscapeRight     = 3,
-	LandscapeLeft      = 4,
-}
-
 VideoFieldMode :: enum cffi.long {
 	Both        = 0,
 	TopOnly     = 1,
@@ -4915,6 +5072,28 @@ CaptureOutputDataDroppedReason :: enum cffi.long {
 	LateData      = 1,
 	OutOfBuffers  = 2,
 	Discontinuity = 3,
+}
+
+CaptureTimecodeSourceType :: enum cffi.long {
+	FrameCount    = 0,
+	RealTimeClock = 1,
+	External      = 2,
+}
+
+CaptureTimecodeGeneratorSynchronizationStatus :: enum cffi.long {
+	Unknown           = 0,
+	SourceSelected    = 1,
+	Synchronizing     = 2,
+	Synchronized      = 3,
+	TimedOut          = 4,
+	SourceUnavailable = 5,
+	SourceUnsupported = 6,
+	NotRequired       = 7,
+}
+
+CaptureBroadcastVideoOutputDroppedFrameReplacementPolicy :: enum cffi.long {
+	RepeatPreviousFrame = 0,
+	BlackFrame          = 1,
 }
 
 CapturePhotoQualityPrioritization :: enum cffi.long {
@@ -4953,30 +5132,15 @@ CaptureMultichannelAudioMode :: enum cffi.long {
 	FirstOrderAmbisonics = 2,
 }
 
-CaptureSystemPressureFactors :: enum cffi.ulong {
-	FactorNone                   = 0,
-	ystemTemperature             = 1,
-	FactorPeakPower              = 2,
-	FactorDepthModuleTemperature = 4,
-	FactorCameraTemperature      = 8,
+CaptureSystemPressureFactorsFlag :: enum cffi.ulong {
+	FactorSystemTemperature      = 0,
+	FactorPeakPower              = 1,
+	FactorDepthModuleTemperature = 2,
+	FactorCameraTemperature      = 3,
+	FactorBatteryStress          = 4,
 }
 
-CaptureTimecodeSourceType :: enum cffi.long {
-	FrameCount    = 0,
-	RealTimeClock = 1,
-	External      = 2,
-}
-
-CaptureTimecodeGeneratorSynchronizationStatus :: enum cffi.long {
-	Unknown           = 0,
-	SourceSelected    = 1,
-	Synchronizing     = 2,
-	Synchronized      = 3,
-	TimedOut          = 4,
-	SourceUnavailable = 5,
-	SourceUnsupported = 6,
-	NotRequired       = 7,
-}
+CaptureSystemPressureFactors :: bit_set[CaptureSystemPressureFactorsFlag; cffi.ulong]
 
 DepthDataQuality :: enum cffi.long {
 	Low  = 0,
@@ -4986,6 +5150,11 @@ DepthDataQuality :: enum cffi.long {
 DepthDataAccuracy :: enum cffi.long {
 	Relative = 0,
 	Absolute = 1,
+}
+
+PlannedVideoSegmentBoundaryGuidelines :: struct #align (8) {
+	minimumFrameCount: NS.Integer,
+	minimumDuration:   CM.Time,
 }
 
 PixelAspectRatio :: struct #align (8) {

@@ -16,11 +16,17 @@ TabBarController :: struct {
 
 @(default_calling_convention="c")
 foreign lib {
+	@(objc_type=TabBarController, objc_selector="setProminentTabIdentifier:animated:", objc_name="setProminentTabIdentifier_animated")
+	TabBarController_setProminentTabIdentifier_animated :: proc(self: ^TabBarController, identifier: ^NS.String, animated: bool) ---
+
 	@(objc_type=TabBarController, objc_selector="setTabs:animated:", objc_name="setTabs_animated")
 	TabBarController_setTabs_animated :: proc(self: ^TabBarController, tabs: ^NS.Array, animated: bool) ---
 
 	@(objc_type=TabBarController, objc_selector="tabForIdentifier:", objc_name="tabForIdentifier")
 	TabBarController_tabForIdentifier :: proc(self: ^TabBarController, identifier: ^NS.String) -> ^Tab ---
+
+	@(objc_type=TabBarController, objc_selector="performBatchUpdates:", objc_name="performBatchUpdates")
+	TabBarController_performBatchUpdates :: proc(self: ^TabBarController, updates: ^Objc_Block(proc "c" ())) ---
 
 	@(objc_type=TabBarController, objc_selector="initWithTabs:", objc_name="initWithTabs")
 	TabBarController_initWithTabs :: proc(self: ^TabBarController, tabs: ^NS.Array) -> instancetype ---
@@ -60,6 +66,12 @@ foreign lib {
 
 	@(objc_type=TabBarController, objc_selector="setCompactTabIdentifiers:", objc_name="setCompactTabIdentifiers")
 	TabBarController_setCompactTabIdentifiers :: proc(self: ^TabBarController, compactTabIdentifiers: ^NS.Array) ---
+
+	@(objc_type=TabBarController, objc_selector="prominentTabIdentifier", objc_name="prominentTabIdentifier")
+	TabBarController_prominentTabIdentifier :: proc(self: ^TabBarController) -> ^NS.String ---
+
+	@(objc_type=TabBarController, objc_selector="setProminentTabIdentifier:", objc_name="setProminentTabIdentifier_")
+	TabBarController_setProminentTabIdentifier_ :: proc(self: ^TabBarController, prominentTabIdentifier: ^NS.String) ---
 
 	@(objc_type=TabBarController, objc_selector="selectedTab", objc_name="selectedTab")
 	TabBarController_selectedTab :: proc(self: ^TabBarController) -> ^Tab ---
@@ -123,6 +135,12 @@ foreign lib {
 
 	@(objc_type=TabBarController, objc_selector="tabBar", objc_name="tabBar")
 	TabBarController_tabBar :: proc(self: ^TabBarController) -> ^TabBar ---
+}
+
+@(objc_type=TabBarController, objc_name="setProminentTabIdentifier")
+TabBarController_setProminentTabIdentifier :: proc {
+	TabBarController_setProminentTabIdentifier_animated,
+	TabBarController_setProminentTabIdentifier_,
 }
 
 @(objc_type=TabBarController, objc_name="setTabs")

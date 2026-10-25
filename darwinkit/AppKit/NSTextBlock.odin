@@ -20,8 +20,11 @@ foreign lib {
 	@(objc_type=TextBlock, objc_selector="init", objc_name="init")
 	TextBlock_init :: proc(self: ^TextBlock) -> instancetype ---
 
+	@(objc_type=TextBlock, objc_selector="initWithCoder:", objc_name="initWithCoder")
+	TextBlock_initWithCoder :: proc(self: ^TextBlock, coder: ^NS.Coder) -> instancetype ---
+
 	@(objc_type=TextBlock, objc_selector="setValue:type:forDimension:", objc_name="setValue")
-	TextBlock_setValue :: proc(self: ^TextBlock, val: CG.Float, type: TextBlockValueType, dimension: TextBlockDimension) ---
+	TextBlock_setValue :: proc(self: ^TextBlock, value: CG.Float, type: TextBlockValueType, dimension: TextBlockDimension) ---
 
 	@(objc_type=TextBlock, objc_selector="valueForDimension:", objc_name="valueForDimension")
 	TextBlock_valueForDimension :: proc(self: ^TextBlock, dimension: TextBlockDimension) -> CG.Float ---
@@ -30,25 +33,40 @@ foreign lib {
 	TextBlock_valueTypeForDimension :: proc(self: ^TextBlock, dimension: TextBlockDimension) -> TextBlockValueType ---
 
 	@(objc_type=TextBlock, objc_selector="setContentWidth:type:", objc_name="setContentWidth")
-	TextBlock_setContentWidth :: proc(self: ^TextBlock, val: CG.Float, type: TextBlockValueType) ---
+	TextBlock_setContentWidth :: proc(self: ^TextBlock, contentWidth: CG.Float, type: TextBlockValueType) ---
+
+	@(objc_type=TextBlock, objc_selector="setWidth:type:forLayer:", objc_name="setWidth_type_forLayer")
+	TextBlock_setWidth_type_forLayer :: proc(self: ^TextBlock, width: CG.Float, type: TextBlockValueType, layer: TextBlockLayer) ---
+
+	@(objc_type=TextBlock, objc_selector="setWidth:type:forLayer:rectEdge:", objc_name="setWidth_type_forLayer_rectEdge")
+	TextBlock_setWidth_type_forLayer_rectEdge :: proc(self: ^TextBlock, width: CG.Float, type: TextBlockValueType, layer: TextBlockLayer, rectEdge: CG.RectEdge) ---
+
+	@(objc_type=TextBlock, objc_selector="widthForLayer:rectEdge:", objc_name="widthForLayer_rectEdge")
+	TextBlock_widthForLayer_rectEdge :: proc(self: ^TextBlock, layer: TextBlockLayer, rectEdge: CG.RectEdge) -> CG.Float ---
+
+	@(objc_type=TextBlock, objc_selector="widthValueTypeForLayer:rectEdge:", objc_name="widthValueTypeForLayer_rectEdge")
+	TextBlock_widthValueTypeForLayer_rectEdge :: proc(self: ^TextBlock, layer: TextBlockLayer, rectEdge: CG.RectEdge) -> TextBlockValueType ---
+
+	@(objc_type=TextBlock, objc_selector="widthForLayer:edge:", objc_name="widthForLayer_edge")
+	TextBlock_widthForLayer_edge :: proc(self: ^TextBlock, layer: TextBlockLayer, edge: NS.RectEdge) -> CG.Float ---
 
 	@(objc_type=TextBlock, objc_selector="setWidth:type:forLayer:edge:", objc_name="setWidth_type_forLayer_edge")
 	TextBlock_setWidth_type_forLayer_edge :: proc(self: ^TextBlock, val: CG.Float, type: TextBlockValueType, layer: TextBlockLayer, edge: NS.RectEdge) ---
 
-	@(objc_type=TextBlock, objc_selector="setWidth:type:forLayer:", objc_name="setWidth_type_forLayer")
-	TextBlock_setWidth_type_forLayer :: proc(self: ^TextBlock, val: CG.Float, type: TextBlockValueType, layer: TextBlockLayer) ---
-
-	@(objc_type=TextBlock, objc_selector="widthForLayer:edge:", objc_name="widthForLayer")
-	TextBlock_widthForLayer :: proc(self: ^TextBlock, layer: TextBlockLayer, edge: NS.RectEdge) -> CG.Float ---
-
-	@(objc_type=TextBlock, objc_selector="widthValueTypeForLayer:edge:", objc_name="widthValueTypeForLayer")
-	TextBlock_widthValueTypeForLayer :: proc(self: ^TextBlock, layer: TextBlockLayer, edge: NS.RectEdge) -> TextBlockValueType ---
-
-	@(objc_type=TextBlock, objc_selector="setBorderColor:forEdge:", objc_name="setBorderColor_forEdge")
-	TextBlock_setBorderColor_forEdge :: proc(self: ^TextBlock, color: ^Color, edge: NS.RectEdge) ---
+	@(objc_type=TextBlock, objc_selector="widthValueTypeForLayer:edge:", objc_name="widthValueTypeForLayer_edge")
+	TextBlock_widthValueTypeForLayer_edge :: proc(self: ^TextBlock, layer: TextBlockLayer, edge: NS.RectEdge) -> TextBlockValueType ---
 
 	@(objc_type=TextBlock, objc_selector="setBorderColor:", objc_name="setBorderColor_")
 	TextBlock_setBorderColor_ :: proc(self: ^TextBlock, color: ^Color) ---
+
+	@(objc_type=TextBlock, objc_selector="setBorderColor:rectEdge:", objc_name="setBorderColor_rectEdge")
+	TextBlock_setBorderColor_rectEdge :: proc(self: ^TextBlock, borderColor: ^Color, rectEdge: CG.RectEdge) ---
+
+	@(objc_type=TextBlock, objc_selector="borderColorForRectEdge:", objc_name="borderColorForRectEdge")
+	TextBlock_borderColorForRectEdge :: proc(self: ^TextBlock, rectEdge: CG.RectEdge) -> ^Color ---
+
+	@(objc_type=TextBlock, objc_selector="setBorderColor:forEdge:", objc_name="setBorderColor_forEdge")
+	TextBlock_setBorderColor_forEdge :: proc(self: ^TextBlock, color: ^Color, edge: NS.RectEdge) ---
 
 	@(objc_type=TextBlock, objc_selector="borderColorForEdge:", objc_name="borderColorForEdge")
 	TextBlock_borderColorForEdge :: proc(self: ^TextBlock, edge: NS.RectEdge) -> ^Color ---
@@ -83,12 +101,26 @@ foreign lib {
 
 @(objc_type=TextBlock, objc_name="setWidth")
 TextBlock_setWidth :: proc {
-	TextBlock_setWidth_type_forLayer_edge,
 	TextBlock_setWidth_type_forLayer,
+	TextBlock_setWidth_type_forLayer_rectEdge,
+	TextBlock_setWidth_type_forLayer_edge,
+}
+
+@(objc_type=TextBlock, objc_name="widthForLayer")
+TextBlock_widthForLayer :: proc {
+	TextBlock_widthForLayer_rectEdge,
+	TextBlock_widthForLayer_edge,
+}
+
+@(objc_type=TextBlock, objc_name="widthValueTypeForLayer")
+TextBlock_widthValueTypeForLayer :: proc {
+	TextBlock_widthValueTypeForLayer_rectEdge,
+	TextBlock_widthValueTypeForLayer_edge,
 }
 
 @(objc_type=TextBlock, objc_name="setBorderColor")
 TextBlock_setBorderColor :: proc {
-	TextBlock_setBorderColor_forEdge,
 	TextBlock_setBorderColor_,
+	TextBlock_setBorderColor_rectEdge,
+	TextBlock_setBorderColor_forEdge,
 }

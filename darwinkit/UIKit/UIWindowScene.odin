@@ -2,6 +2,7 @@
 package darwin_UIKit
 
 import NS "../Foundation"
+import CA "../QuartzCore"
 
 
 
@@ -14,6 +15,9 @@ WindowScene :: struct { using _: Scene}
 foreign lib {
 	@(objc_type=WindowScene, objc_selector="requestGeometryUpdateWithPreferences:errorHandler:", objc_name="requestGeometryUpdateWithPreferences")
 	WindowScene_requestGeometryUpdateWithPreferences :: proc(self: ^WindowScene, geometryPreferences: ^WindowSceneGeometryPreferences, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
+
+	@(objc_type=WindowScene, objc_selector="displayLinkWithTarget:selector:", objc_name="displayLinkWithTarget")
+	WindowScene_displayLinkWithTarget :: proc(self: ^WindowScene, target: id, sel: SEL) -> ^CA.DisplayLink ---
 
 	@(objc_type=WindowScene, objc_selector="screen", objc_name="screen")
 	WindowScene_screen :: proc(self: ^WindowScene) -> ^Screen ---
@@ -50,6 +54,12 @@ foreign lib {
 
 	@(objc_type=WindowScene, objc_selector="isFullScreen", objc_name="isFullScreen")
 	WindowScene_isFullScreen :: proc(self: ^WindowScene) -> bool ---
+
+	@(objc_type=WindowScene, objc_selector="closureConfirmation", objc_name="closureConfirmation")
+	WindowScene_closureConfirmation :: proc(self: ^WindowScene) -> ^SceneClosureConfirmation ---
+
+	@(objc_type=WindowScene, objc_selector="setClosureConfirmation:", objc_name="setClosureConfirmation")
+	WindowScene_setClosureConfirmation :: proc(self: ^WindowScene, closureConfirmation: ^SceneClosureConfirmation) ---
 
 	@(objc_type=WindowScene, objc_selector="traitOverrides", objc_name="traitOverrides")
 	WindowScene_traitOverrides :: proc(self: ^WindowScene) -> ^TraitOverrides ---

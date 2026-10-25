@@ -22,6 +22,12 @@ Error :: struct {
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=Error, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    Error_new :: proc() -> ^Error ---
+
+    @(objc_type=Error, objc_selector="init", objc_name="init")
+    Error_init :: proc(self: ^Error) -> instancetype ---
+
     @(objc_type=Error, objc_selector="initWithDomain:code:userInfo:", objc_name="initWithDomain")
     Error_initWithDomain :: proc(self: ^Error, domain: ^String, code: Integer, dict: ^Dictionary) -> instancetype ---
 

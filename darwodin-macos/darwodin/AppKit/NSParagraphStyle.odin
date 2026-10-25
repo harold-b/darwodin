@@ -31,6 +31,9 @@ foreign lib {
     @(objc_type=ParagraphStyle, objc_selector="defaultWritingDirectionForLanguage:", objc_name="defaultWritingDirectionForLanguage", objc_is_class_method=true)
     ParagraphStyle_defaultWritingDirectionForLanguage :: proc(languageName: ^NS.String) -> WritingDirection ---
 
+    @(objc_type=ParagraphStyle, objc_selector="alignment", objc_name="alignment")
+    ParagraphStyle_alignment :: proc(self: ^ParagraphStyle) -> TextAlignment ---
+
     @(objc_type=ParagraphStyle, objc_selector="defaultParagraphStyle", objc_name="defaultParagraphStyle", objc_is_class_method=true)
     ParagraphStyle_defaultParagraphStyle :: proc() -> ^ParagraphStyle ---
 
@@ -82,20 +85,17 @@ foreign lib {
     @(objc_type=ParagraphStyle, objc_selector="textLists", objc_name="textLists")
     ParagraphStyle_textLists :: proc(self: ^ParagraphStyle) -> ^NS.Array ---
 
+    @(objc_type=ParagraphStyle, objc_selector="textBlocks", objc_name="textBlocks")
+    ParagraphStyle_textBlocks :: proc(self: ^ParagraphStyle) -> ^NS.Array ---
+
     @(objc_type=ParagraphStyle, objc_selector="allowsDefaultTighteningForTruncation", objc_name="allowsDefaultTighteningForTruncation")
     ParagraphStyle_allowsDefaultTighteningForTruncation :: proc(self: ^ParagraphStyle) -> bool ---
 
     @(objc_type=ParagraphStyle, objc_selector="lineBreakStrategy", objc_name="lineBreakStrategy")
     ParagraphStyle_lineBreakStrategy :: proc(self: ^ParagraphStyle) -> LineBreakStrategy ---
 
-    @(objc_type=ParagraphStyle, objc_selector="alignment", objc_name="alignment")
-    ParagraphStyle_alignment :: proc(self: ^ParagraphStyle) -> TextAlignment ---
-
     @(objc_type=ParagraphStyle, objc_selector="tighteningFactorForTruncation", objc_name="tighteningFactorForTruncation")
     ParagraphStyle_tighteningFactorForTruncation :: proc(self: ^ParagraphStyle) -> cffi.float ---
-
-    @(objc_type=ParagraphStyle, objc_selector="textBlocks", objc_name="textBlocks")
-    ParagraphStyle_textBlocks :: proc(self: ^ParagraphStyle) -> ^NS.Array ---
 
     @(objc_type=ParagraphStyle, objc_selector="headerLevel", objc_name="headerLevel")
     ParagraphStyle_headerLevel :: proc(self: ^ParagraphStyle) -> NS.Integer ---

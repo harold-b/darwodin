@@ -23,14 +23,14 @@ ColorPanel :: struct { using _: Panel}
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=ColorPanel, objc_selector="dragColor:withEvent:fromView:", objc_name="dragColor", objc_is_class_method=true)
-    ColorPanel_dragColor :: proc(color: ^Color, event: ^Event, sourceView: ^View) -> bool ---
-
     @(objc_type=ColorPanel, objc_selector="setPickerMask:", objc_name="setPickerMask", objc_is_class_method=true)
     ColorPanel_setPickerMask :: proc(mask: ColorPanelOptions) ---
 
     @(objc_type=ColorPanel, objc_selector="setPickerMode:", objc_name="setPickerMode", objc_is_class_method=true)
     ColorPanel_setPickerMode :: proc(mode: ColorPanelMode) ---
+
+    @(objc_type=ColorPanel, objc_selector="dragColor:withEvent:fromView:", objc_name="dragColor", objc_is_class_method=true)
+    ColorPanel_dragColor :: proc(color: ^Color, event: ^Event, sourceView: ^View) -> bool ---
 
     @(objc_type=ColorPanel, objc_selector="setAction:", objc_name="setAction")
     ColorPanel_setAction :: proc(self: ^ColorPanel, selector: SEL) ---
@@ -49,12 +49,6 @@ foreign lib {
 
     @(objc_type=ColorPanel, objc_selector="sharedColorPanelExists", objc_name="sharedColorPanelExists", objc_is_class_method=true)
     ColorPanel_sharedColorPanelExists :: proc() -> bool ---
-
-    @(objc_type=ColorPanel, objc_selector="accessoryView", objc_name="accessoryView")
-    ColorPanel_accessoryView :: proc(self: ^ColorPanel) -> ^View ---
-
-    @(objc_type=ColorPanel, objc_selector="setAccessoryView:", objc_name="setAccessoryView")
-    ColorPanel_setAccessoryView :: proc(self: ^ColorPanel, accessoryView: ^View) ---
 
     @(objc_type=ColorPanel, objc_selector="isContinuous", objc_name="isContinuous")
     ColorPanel_isContinuous :: proc(self: ^ColorPanel) -> bool ---
@@ -88,4 +82,10 @@ foreign lib {
 
     @(objc_type=ColorPanel, objc_selector="setMaximumLinearExposure:", objc_name="setMaximumLinearExposure")
     ColorPanel_setMaximumLinearExposure :: proc(self: ^ColorPanel, maximumLinearExposure: CG.Float) ---
+
+    @(objc_type=ColorPanel, objc_selector="accessoryView", objc_name="accessoryView")
+    ColorPanel_accessoryView :: proc(self: ^ColorPanel) -> ^View ---
+
+    @(objc_type=ColorPanel, objc_selector="setAccessoryView:", objc_name="setAccessoryView")
+    ColorPanel_setAccessoryView :: proc(self: ^ColorPanel, accessoryView: ^View) ---
 }

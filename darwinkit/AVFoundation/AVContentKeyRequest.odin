@@ -10,6 +10,9 @@ foreign lib {
 	@(objc_type=ContentKeyRequest, objc_selector="makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:", objc_name="makeStreamingContentKeyRequestDataForApp")
 	ContentKeyRequest_makeStreamingContentKeyRequestDataForApp :: proc(self: ^ContentKeyRequest, appIdentifier: ^NS.Data, contentIdentifier: ^NS.Data, options: ^NS.Dictionary, handler: ^Objc_Block(proc "c" ( contentKeyRequestData: ^NS.Data, error: ^NS.Error ))) ---
 
+	@(objc_type=ContentKeyRequest, objc_selector="makeOptionalStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:", objc_name="makeOptionalStreamingContentKeyRequestDataForApp")
+	ContentKeyRequest_makeOptionalStreamingContentKeyRequestDataForApp :: proc(self: ^ContentKeyRequest, appIdentifier: ^NS.Data, contentIdentifier: ^NS.Data, options: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, error: ^NS.Error ))) ---
+
 	@(objc_type=ContentKeyRequest, objc_selector="processContentKeyResponse:", objc_name="processContentKeyResponse")
 	ContentKeyRequest_processContentKeyResponse :: proc(self: ^ContentKeyRequest, keyResponse: ^ContentKeyResponse) ---
 

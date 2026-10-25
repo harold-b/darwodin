@@ -19,8 +19,14 @@ foreign lib {
 	@(objc_type=SceneConfiguration, objc_selector="configurationWithName:sessionRole:", objc_name="configurationWithName", objc_is_class_method=true)
 	SceneConfiguration_configurationWithName :: proc(name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
 
-	@(objc_type=SceneConfiguration, objc_selector="initWithName:sessionRole:", objc_name="initWithName")
-	SceneConfiguration_initWithName :: proc(self: ^SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
+	@(objc_type=SceneConfiguration, objc_selector="initWithName:sessionRole:", objc_name="initWithName_sessionRole")
+	SceneConfiguration_initWithName_sessionRole :: proc(self: ^SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
+
+	@(objc_type=SceneConfiguration, objc_selector="init", objc_name="init")
+	SceneConfiguration_init :: proc(self: ^SceneConfiguration) -> instancetype ---
+
+	@(objc_type=SceneConfiguration, objc_selector="initWithName:", objc_name="initWithName_")
+	SceneConfiguration_initWithName_ :: proc(self: ^SceneConfiguration, name: ^NS.String) -> instancetype ---
 
 	@(objc_type=SceneConfiguration, objc_selector="name", objc_name="name")
 	SceneConfiguration_name :: proc(self: ^SceneConfiguration) -> ^NS.String ---
@@ -45,4 +51,10 @@ foreign lib {
 
 	@(objc_type=SceneConfiguration, objc_selector="setStoryboard:", objc_name="setStoryboard")
 	SceneConfiguration_setStoryboard :: proc(self: ^SceneConfiguration, storyboard: ^Storyboard) ---
+}
+
+@(objc_type=SceneConfiguration, objc_name="initWithName")
+SceneConfiguration_initWithName :: proc {
+	SceneConfiguration_initWithName_sessionRole,
+	SceneConfiguration_initWithName_,
 }

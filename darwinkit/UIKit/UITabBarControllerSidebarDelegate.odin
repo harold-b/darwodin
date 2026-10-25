@@ -16,6 +16,9 @@ TabBarControllerSidebarDelegate :: struct {
 
 @(default_calling_convention="c")
 foreign lib {
+	@(objc_type=TabBarControllerSidebarDelegate, objc_selector="tabBarController:sidebarAvailabilityDidChange:", objc_name="tabBarController_sidebarAvailabilityDidChange")
+	TabBarControllerSidebarDelegate_tabBarController_sidebarAvailabilityDidChange :: proc(self: ^TabBarControllerSidebarDelegate, tabBarController: ^TabBarController, sidebar: ^TabBarControllerSidebar) ---
+
 	@(objc_type=TabBarControllerSidebarDelegate, objc_selector="tabBarController:sidebarVisibilityWillChange:animator:", objc_name="tabBarController_sidebarVisibilityWillChange_animator")
 	TabBarControllerSidebarDelegate_tabBarController_sidebarVisibilityWillChange_animator :: proc(self: ^TabBarControllerSidebarDelegate, tabBarController: ^TabBarController, sidebar: ^TabBarControllerSidebar, animator: ^TabBarControllerSidebarAnimating) ---
 

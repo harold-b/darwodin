@@ -75,6 +75,11 @@ Odin:
           OpaqueSecTransformImplementation :: struct {}
           xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead of exporting from Foundation
 
+        - |
+          // Composite SDK masks that also contain reserved or unnamed bits.
+          when ODIN_PLATFORM_SUBTARGET == .Default { SecKeyUsage_kSecKeyUsageAll :: transmute(SecKeyUsage)cffi.uint(2147483647) }
+          when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)cffi.uint(4294967295) }
+
       # TypeMap:
 
 
@@ -103,6 +108,26 @@ Odin:
         Source: s
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # SecPadding selects one padding algorithm; keep it as an enum.
+    # SecCertificate.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^SecKeyUsage$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # cssmapple.h: documented flag bits.
+    - Type: '^cssm_appledl_open_parameters_mask$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AuthSession.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^SessionAttributeBits$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # SecACL.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^SecKeychainPromptSelector$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # SecTrustSettings.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^SecTrustSettingsKeyUsage$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CSCommon.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^SecCodeStatus$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:
         - Kind  : RemoveSuffix

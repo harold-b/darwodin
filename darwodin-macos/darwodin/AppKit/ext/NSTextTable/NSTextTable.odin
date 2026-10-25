@@ -22,8 +22,8 @@ VTable :: struct {
     rectForBlock: proc(self: ^NS.TextTable, block: ^NS.TextTableBlock, startingPoint: CG.Point, rect: NS.Rect, textContainer: ^NS.TextContainer, charRange: NS._NSRange) -> NS.Rect,
     boundsRectForBlock: proc(self: ^NS.TextTable, block: ^NS.TextTableBlock, contentRect: NS.Rect, rect: NS.Rect, textContainer: ^NS.TextContainer, charRange: NS._NSRange) -> NS.Rect,
     drawBackgroundForBlock: proc(self: ^NS.TextTable, block: ^NS.TextTableBlock, frameRect: NS.Rect, controlView: ^NS.View, charRange: NS._NSRange, layoutManager: ^NS.LayoutManager),
-    numberOfColumns: proc(self: ^NS.TextTable) -> NS.UInteger,
-    setNumberOfColumns: proc(self: ^NS.TextTable, numberOfColumns: NS.UInteger),
+    numberOfColumns: proc(self: ^NS.TextTable) -> NS.Integer,
+    setNumberOfColumns: proc(self: ^NS.TextTable, numberOfColumns: NS.Integer),
     layoutAlgorithm: proc(self: ^NS.TextTable) -> NS.TextTableLayoutAlgorithm,
     setLayoutAlgorithm: proc(self: ^NS.TextTable, layoutAlgorithm: NS.TextTableLayoutAlgorithm),
     collapsesBorders: proc(self: ^NS.TextTable) -> bool,
@@ -70,24 +70,24 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:"), auto_cast drawBackgroundForBlock, "v@:@{CGRect={CGPoint=dd}{CGSize=dd}}@{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
     if vt.numberOfColumns != nil {
-        numberOfColumns :: proc "c" (self: ^NS.TextTable, _: SEL) -> NS.UInteger {
+        numberOfColumns :: proc "c" (self: ^NS.TextTable, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             return (cast(^VTable)vt_ctx.super_vt).numberOfColumns(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfColumns"), auto_cast numberOfColumns, "L@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfColumns"), auto_cast numberOfColumns, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setNumberOfColumns != nil {
-        setNumberOfColumns :: proc "c" (self: ^NS.TextTable, _: SEL, numberOfColumns: NS.UInteger) {
+        setNumberOfColumns :: proc "c" (self: ^NS.TextTable, _: SEL, numberOfColumns: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
             (cast(^VTable)vt_ctx.super_vt).setNumberOfColumns(self, numberOfColumns)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setNumberOfColumns:"), auto_cast setNumberOfColumns, "v@:L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNumberOfColumns:"), auto_cast setNumberOfColumns, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.layoutAlgorithm != nil {
         layoutAlgorithm :: proc "c" (self: ^NS.TextTable, _: SEL) -> NS.TextTableLayoutAlgorithm {
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             return (cast(^VTable)vt_ctx.super_vt).layoutAlgorithm(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAlgorithm"), auto_cast layoutAlgorithm, "L@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAlgorithm"), auto_cast layoutAlgorithm, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setLayoutAlgorithm != nil {
         setLayoutAlgorithm :: proc "c" (self: ^NS.TextTable, _: SEL, layoutAlgorithm: NS.TextTableLayoutAlgorithm) {
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
             (cast(^VTable)vt_ctx.super_vt).setLayoutAlgorithm(self, layoutAlgorithm)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutAlgorithm:"), auto_cast setLayoutAlgorithm, "v@:L") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutAlgorithm:"), auto_cast setLayoutAlgorithm, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.collapsesBorders != nil {
         collapsesBorders :: proc "c" (self: ^NS.TextTable, _: SEL) -> bool {

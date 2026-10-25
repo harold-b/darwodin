@@ -16,8 +16,10 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
+    setProminentTabIdentifier_animated: proc(self: ^UI.TabBarController, identifier: ^NS.String, animated: bool),
     setTabs_animated: proc(self: ^UI.TabBarController, tabs: ^NS.Array, animated: bool),
     tabForIdentifier: proc(self: ^UI.TabBarController, identifier: ^NS.String) -> ^UI.Tab,
+    performBatchUpdates: proc(self: ^UI.TabBarController, updates: ^Objc_Block(proc "c" ())),
     initWithTabs: proc(self: ^UI.TabBarController, tabs: ^NS.Array) -> instancetype,
     setTabBarHidden_animated: proc(self: ^UI.TabBarController, hidden: bool, animated: bool),
     setBottomAccessory_animated: proc(self: ^UI.TabBarController, bottomAccessory: ^UI.TabAccessory, animated: bool),
@@ -31,6 +33,8 @@ VTable :: struct {
     setCustomizationIdentifier: proc(self: ^UI.TabBarController, customizationIdentifier: ^NS.String),
     compactTabIdentifiers: proc(self: ^UI.TabBarController) -> ^NS.Array,
     setCompactTabIdentifiers: proc(self: ^UI.TabBarController, compactTabIdentifiers: ^NS.Array),
+    prominentTabIdentifier: proc(self: ^UI.TabBarController) -> ^NS.String,
+    setProminentTabIdentifier_: proc(self: ^UI.TabBarController, prominentTabIdentifier: ^NS.String),
     selectedTab: proc(self: ^UI.TabBarController) -> ^UI.Tab,
     setSelectedTab: proc(self: ^UI.TabBarController, selectedTab: ^UI.Tab),
     tabs: proc(self: ^UI.TabBarController) -> ^NS.Array,
@@ -61,6 +65,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
     
     UIViewController.extend(cls, &vt.super)
 
+    if vt.setProminentTabIdentifier_animated != nil {
+        setProminentTabIdentifier_animated :: proc "c" (self: ^UI.TabBarController, _: SEL, identifier: ^NS.String, animated: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setProminentTabIdentifier_animated(self, identifier, animated)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setProminentTabIdentifier:animated:"), auto_cast setProminentTabIdentifier_animated, "v@:@B") do panic("Failed to register objC method.")
+    }
     if vt.setTabs_animated != nil {
         setTabs_animated :: proc "c" (self: ^UI.TabBarController, _: SEL, tabs: ^NS.Array, animated: bool) {
 
@@ -80,6 +94,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("tabForIdentifier:"), auto_cast tabForIdentifier, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.performBatchUpdates != nil {
+        performBatchUpdates :: proc "c" (self: ^UI.TabBarController, _: SEL, updates: ^Objc_Block(proc "c" ())) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).performBatchUpdates(self, updates)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performBatchUpdates:"), auto_cast performBatchUpdates, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.initWithTabs != nil {
         initWithTabs :: proc "c" (self: ^UI.TabBarController, _: SEL, tabs: ^NS.Array) -> instancetype {
@@ -210,6 +234,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCompactTabIdentifiers:"), auto_cast setCompactTabIdentifiers, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.prominentTabIdentifier != nil {
+        prominentTabIdentifier :: proc "c" (self: ^UI.TabBarController, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).prominentTabIdentifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prominentTabIdentifier"), auto_cast prominentTabIdentifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setProminentTabIdentifier_ != nil {
+        setProminentTabIdentifier_ :: proc "c" (self: ^UI.TabBarController, _: SEL, prominentTabIdentifier: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setProminentTabIdentifier_(self, prominentTabIdentifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setProminentTabIdentifier:"), auto_cast setProminentTabIdentifier_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectedTab != nil {
         selectedTab :: proc "c" (self: ^UI.TabBarController, _: SEL) -> ^UI.Tab {

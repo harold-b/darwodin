@@ -22,6 +22,7 @@ import CA "../QuartzCore"
 TextLayoutFragment :: struct {
     using _: NS.Object,
     using _: NS.SecureCoding,
+    using _: TextViewportRenderingSurfaceKey,
 }
 
 @(default_calling_convention="c")

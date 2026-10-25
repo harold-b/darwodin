@@ -15,6 +15,9 @@ foreign lib {
 	@(objc_type=AudioInputNode, objc_selector="setManualRenderingInputPCMFormat:inputBlock:", objc_name="setManualRenderingInputPCMFormat")
 	AudioInputNode_setManualRenderingInputPCMFormat :: proc(self: ^AudioInputNode, format: ^AudioFormat, block: AudioIONodeInputBlock) -> bool ---
 
+	@(objc_type=AudioInputNode, objc_selector="setRealtimeSafeManualRenderingInputPCMFormat:inputBlock:", objc_name="setRealtimeSafeManualRenderingInputPCMFormat")
+	AudioInputNode_setRealtimeSafeManualRenderingInputPCMFormat :: proc(self: ^AudioInputNode, format: ^AudioFormat, block: AudioIONodeInputBlockRealtimeSafe) -> bool ---
+
 	@(objc_type=AudioInputNode, objc_selector="setMutedSpeechActivityEventListener:", objc_name="setMutedSpeechActivityEventListener")
 	AudioInputNode_setMutedSpeechActivityEventListener :: proc(self: ^AudioInputNode, listenerBlock: ^Objc_Block(proc "c" ( event: AudioVoiceProcessingSpeechActivityEvent ))) -> bool ---
 

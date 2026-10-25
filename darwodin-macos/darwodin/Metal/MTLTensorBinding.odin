@@ -31,4 +31,7 @@ foreign lib {
 
     @(objc_type=TensorBinding, objc_selector="dimensions", objc_name="dimensions")
     TensorBinding_dimensions :: proc(self: ^TensorBinding) -> ^TensorExtents ---
+
+    @(objc_type=TensorBinding, objc_selector="auxiliaryPlanes", objc_name="auxiliaryPlanes")
+    TensorBinding_auxiliaryPlanes :: proc(self: ^TensorBinding) -> ^NS.Array ---
 }

@@ -92,6 +92,9 @@ foreign lib {
 	@(objc_type=TraitCollection, objc_selector="traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:", objc_name="traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection", objc_is_class_method=true)
 	TraitCollection_traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection :: proc(resolvesNaturalAlignmentWithBaseWritingDirection: bool) -> ^TraitCollection ---
 
+	@(objc_type=TraitCollection, objc_selector="traitCollectionWithSystemPrefersReducedResourceUsage:", objc_name="traitCollectionWithSystemPrefersReducedResourceUsage", objc_is_class_method=true)
+	TraitCollection_traitCollectionWithSystemPrefersReducedResourceUsage :: proc(systemPrefersReducedResourceUsage: bool) -> ^TraitCollection ---
+
 	@(objc_type=TraitCollection, objc_selector="userInterfaceIdiom", objc_name="userInterfaceIdiom")
 	TraitCollection_userInterfaceIdiom :: proc(self: ^TraitCollection) -> UserInterfaceIdiom ---
 
@@ -157,6 +160,9 @@ foreign lib {
 
 	@(objc_type=TraitCollection, objc_selector="resolvesNaturalAlignmentWithBaseWritingDirection", objc_name="resolvesNaturalAlignmentWithBaseWritingDirection")
 	TraitCollection_resolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^TraitCollection) -> bool ---
+
+	@(objc_type=TraitCollection, objc_selector="systemPrefersReducedResourceUsage", objc_name="systemPrefersReducedResourceUsage")
+	TraitCollection_systemPrefersReducedResourceUsage :: proc(self: ^TraitCollection) -> bool ---
 
 	@(objc_type=TraitCollection, objc_selector="traitCollectionWithTraits:", objc_name="traitCollectionWithTraits", objc_is_class_method=true)
 	TraitCollection_traitCollectionWithTraits :: proc(mutations: TraitMutations) -> ^TraitCollection ---

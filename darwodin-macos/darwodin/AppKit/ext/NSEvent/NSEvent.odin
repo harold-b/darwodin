@@ -94,6 +94,7 @@ VTable :: struct {
     stageTransition: proc(self: ^NS.Event) -> CG.Float,
     associatedEventsMask: proc(self: ^NS.Event) -> NS.EventMask,
     pressureBehavior: proc(self: ^NS.Event) -> NS.PressureBehavior,
+    isTouchSwipeNavigationEnabled: proc() -> bool,
     isSwipeTrackingFromScrollEventsEnabled: proc() -> bool,
     mouseLocation: proc() -> CG.Point,
     modifierFlagsStatic: proc() -> NS.EventModifierFlags,
@@ -859,6 +860,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("pressureBehavior"), auto_cast pressureBehavior, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.isTouchSwipeNavigationEnabled != nil {
+        isTouchSwipeNavigationEnabled :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isTouchSwipeNavigationEnabled()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("isTouchSwipeNavigationEnabled"), auto_cast isTouchSwipeNavigationEnabled, "B#:") do panic("Failed to register objC method.")
     }
     if vt.isSwipeTrackingFromScrollEventsEnabled != nil {
         isSwipeTrackingFromScrollEventsEnabled :: proc "c" (self: Class, _: SEL) -> bool {

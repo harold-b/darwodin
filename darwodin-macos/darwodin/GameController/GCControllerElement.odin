@@ -23,15 +23,6 @@ foreign lib {
     @(objc_type=ControllerElement, objc_selector="isAnalog", objc_name="isAnalog")
     ControllerElement_isAnalog :: proc(self: ^ControllerElement) -> bool ---
 
-    @(objc_type=ControllerElement, objc_selector="isBoundToSystemGesture", objc_name="isBoundToSystemGesture")
-    ControllerElement_isBoundToSystemGesture :: proc(self: ^ControllerElement) -> bool ---
-
-    @(objc_type=ControllerElement, objc_selector="preferredSystemGestureState", objc_name="preferredSystemGestureState")
-    ControllerElement_preferredSystemGestureState :: proc(self: ^ControllerElement) -> SystemGestureState ---
-
-    @(objc_type=ControllerElement, objc_selector="setPreferredSystemGestureState:", objc_name="setPreferredSystemGestureState")
-    ControllerElement_setPreferredSystemGestureState :: proc(self: ^ControllerElement, preferredSystemGestureState: SystemGestureState) ---
-
     @(objc_type=ControllerElement, objc_selector="sfSymbolsName", objc_name="sfSymbolsName")
     ControllerElement_sfSymbolsName :: proc(self: ^ControllerElement) -> ^NS.String ---
 
@@ -58,4 +49,13 @@ foreign lib {
 
     @(objc_type=ControllerElement, objc_selector="aliases", objc_name="aliases")
     ControllerElement_aliases :: proc(self: ^ControllerElement) -> ^NS.Set ---
+
+    @(objc_type=ControllerElement, objc_selector="isBoundToSystemGesture", objc_name="isBoundToSystemGesture")
+    ControllerElement_isBoundToSystemGesture :: proc(self: ^ControllerElement) -> bool ---
+
+    @(objc_type=ControllerElement, objc_selector="preferredSystemGestureState", objc_name="preferredSystemGestureState")
+    ControllerElement_preferredSystemGestureState :: proc(self: ^ControllerElement) -> SystemGestureState ---
+
+    @(objc_type=ControllerElement, objc_selector="setPreferredSystemGestureState:", objc_name="setPreferredSystemGestureState")
+    ControllerElement_setPreferredSystemGestureState :: proc(self: ^ControllerElement, preferredSystemGestureState: SystemGestureState) ---
 }

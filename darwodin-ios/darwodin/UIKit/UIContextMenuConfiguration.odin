@@ -43,4 +43,10 @@ foreign lib {
 
     @(objc_type=ContextMenuConfiguration, objc_selector="setPreferredMenuElementOrder:", objc_name="setPreferredMenuElementOrder")
     ContextMenuConfiguration_setPreferredMenuElementOrder :: proc(self: ^ContextMenuConfiguration, preferredMenuElementOrder: ContextMenuConfigurationElementOrder) ---
+
+    @(objc_type=ContextMenuConfiguration, objc_selector="allowsTypeSelect", objc_name="allowsTypeSelect")
+    ContextMenuConfiguration_allowsTypeSelect :: proc(self: ^ContextMenuConfiguration) -> bool ---
+
+    @(objc_type=ContextMenuConfiguration, objc_selector="setAllowsTypeSelect:", objc_name="setAllowsTypeSelect")
+    ContextMenuConfiguration_setAllowsTypeSelect :: proc(self: ^ContextMenuConfiguration, allowsTypeSelect: bool) ---
 }

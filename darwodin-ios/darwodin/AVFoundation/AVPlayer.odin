@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -143,6 +145,12 @@ foreign lib {
 
     @(objc_type=Player, objc_selector="setMuted:", objc_name="setMuted")
     Player_setMuted :: proc(self: ^Player, muted: bool) ---
+
+    @(objc_type=Player, objc_selector="setDisconnectedFromSystemAudio:completionHandler:", objc_name="setDisconnectedFromSystemAudio")
+    Player_setDisconnectedFromSystemAudio :: proc(self: ^Player, disconnected: bool, completionHandler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=Player, objc_selector="disconnectedFromSystemAudio", objc_name="disconnectedFromSystemAudio")
+    Player_disconnectedFromSystemAudio :: proc(self: ^Player) -> bool ---
 
     @(objc_type=Player, objc_selector="setMediaSelectionCriteria:forMediaCharacteristic:", objc_name="setMediaSelectionCriteria")
     Player_setMediaSelectionCriteria :: proc(self: ^Player, criteria: ^PlayerMediaSelectionCriteria, mediaCharacteristic: ^NS.String) ---

@@ -298,6 +298,12 @@ foreign lib {
 
     @(objc_type=NavigationItem, objc_selector="setCompactScrollEdgeAppearance:", objc_name="setCompactScrollEdgeAppearance")
     NavigationItem_setCompactScrollEdgeAppearance :: proc(self: ^NavigationItem, compactScrollEdgeAppearance: ^NavigationBarAppearance) ---
+
+    @(objc_type=NavigationItem, objc_selector="navigationBarMinimization", objc_name="navigationBarMinimization")
+    NavigationItem_navigationBarMinimization :: proc(self: ^NavigationItem) -> ^BarMinimization ---
+
+    @(objc_type=NavigationItem, objc_selector="setNavigationBarMinimization:", objc_name="setNavigationBarMinimization")
+    NavigationItem_setNavigationBarMinimization :: proc(self: ^NavigationItem, navigationBarMinimization: ^BarMinimization) ---
 }
 
 @(objc_type=NavigationItem, objc_name="setHidesBackButton")

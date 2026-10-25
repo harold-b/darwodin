@@ -100,6 +100,9 @@ foreign lib {
 	@(objc_type=CaptureDevice, objc_selector="minSupportedExternalSyncFrameDuration", objc_name="minSupportedExternalSyncFrameDuration")
 	CaptureDevice_minSupportedExternalSyncFrameDuration :: proc(self: ^CaptureDevice) -> CM.Time ---
 
+	@(objc_type=CaptureDevice, objc_selector="isAdjustingSignalCompensationDelayWhileRunningSupported", objc_name="isAdjustingSignalCompensationDelayWhileRunningSupported")
+	CaptureDevice_isAdjustingSignalCompensationDelayWhileRunningSupported :: proc(self: ^CaptureDevice) -> bool ---
+
 	@(objc_type=CaptureDevice, objc_selector="isAutoVideoFrameRateEnabled", objc_name="isAutoVideoFrameRateEnabled")
 	CaptureDevice_isAutoVideoFrameRateEnabled :: proc(self: ^CaptureDevice) -> bool ---
 
@@ -136,6 +139,9 @@ foreign lib {
 	@(objc_type=CaptureDevice, objc_selector="systemPressureState", objc_name="systemPressureState")
 	CaptureDevice_systemPressureState :: proc(self: ^CaptureDevice) -> ^CaptureSystemPressureState ---
 
+	@(objc_type=CaptureDevice, objc_selector="setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice:", objc_name="setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice")
+	CaptureDevice_setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice :: proc(self: ^CaptureDevice, device: ^CaptureDevice) ---
+
 	@(objc_type=CaptureDevice, objc_selector="setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:", objc_name="setPrimaryConstituentDeviceSwitchingBehavior")
 	CaptureDevice_setPrimaryConstituentDeviceSwitchingBehavior :: proc(self: ^CaptureDevice, switchingBehavior: CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions: CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) ---
 
@@ -147,6 +153,9 @@ foreign lib {
 
 	@(objc_type=CaptureDevice, objc_selector="virtualDeviceSwitchOverVideoZoomFactors", objc_name="virtualDeviceSwitchOverVideoZoomFactors")
 	CaptureDevice_virtualDeviceSwitchOverVideoZoomFactors :: proc(self: ^CaptureDevice) -> ^NS.Array ---
+
+	@(objc_type=CaptureDevice, objc_selector="isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported", objc_name="isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported")
+	CaptureDevice_isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported :: proc(self: ^CaptureDevice) -> bool ---
 
 	@(objc_type=CaptureDevice, objc_selector="primaryConstituentDeviceSwitchingBehavior", objc_name="primaryConstituentDeviceSwitchingBehavior")
 	CaptureDevice_primaryConstituentDeviceSwitchingBehavior :: proc(self: ^CaptureDevice) -> CapturePrimaryConstituentDeviceSwitchingBehavior ---
@@ -310,6 +319,9 @@ foreign lib {
 	@(objc_type=CaptureDevice, objc_selector="setExposureModeCustomWithDuration:ISO:completionHandler:", objc_name="setExposureModeCustomWithDuration")
 	CaptureDevice_setExposureModeCustomWithDuration :: proc(self: ^CaptureDevice, duration: CM.Time, ISO: cffi.float, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
 
+	@(objc_type=CaptureDevice, objc_selector="setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:", objc_name="setExposureModeCustomWithLensAperture")
+	CaptureDevice_setExposureModeCustomWithLensAperture :: proc(self: ^CaptureDevice, lensAperture: cffi.float, duration: CM.Time, ISO: cffi.float, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
+
 	@(objc_type=CaptureDevice, objc_selector="setExposureTargetBias:completionHandler:", objc_name="setExposureTargetBias")
 	CaptureDevice_setExposureTargetBias :: proc(self: ^CaptureDevice, bias: cffi.float, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
 
@@ -370,6 +382,21 @@ foreign lib {
 	@(objc_type=CaptureDevice, objc_selector="ISO", objc_name="ISO")
 	CaptureDevice_ISO :: proc(self: ^CaptureDevice) -> cffi.float ---
 
+	@(objc_type=CaptureDevice, objc_selector="autoExposureLensApertureRateLimit", objc_name="autoExposureLensApertureRateLimit")
+	CaptureDevice_autoExposureLensApertureRateLimit :: proc(self: ^CaptureDevice) -> cffi.float ---
+
+	@(objc_type=CaptureDevice, objc_selector="setAutoExposureLensApertureRateLimit:", objc_name="setAutoExposureLensApertureRateLimit")
+	CaptureDevice_setAutoExposureLensApertureRateLimit :: proc(self: ^CaptureDevice, autoExposureLensApertureRateLimit: cffi.float) ---
+
+	@(objc_type=CaptureDevice, objc_selector="automaticallyAdjustsLensAperture", objc_name="automaticallyAdjustsLensAperture")
+	CaptureDevice_automaticallyAdjustsLensAperture :: proc(self: ^CaptureDevice) -> bool ---
+
+	@(objc_type=CaptureDevice, objc_selector="automaticallyAdjustsExposureDuration", objc_name="automaticallyAdjustsExposureDuration")
+	CaptureDevice_automaticallyAdjustsExposureDuration :: proc(self: ^CaptureDevice) -> bool ---
+
+	@(objc_type=CaptureDevice, objc_selector="automaticallyAdjustsISO", objc_name="automaticallyAdjustsISO")
+	CaptureDevice_automaticallyAdjustsISO :: proc(self: ^CaptureDevice) -> bool ---
+
 	@(objc_type=CaptureDevice, objc_selector="exposureTargetOffset", objc_name="exposureTargetOffset")
 	CaptureDevice_exposureTargetOffset :: proc(self: ^CaptureDevice) -> cffi.float ---
 
@@ -381,6 +408,24 @@ foreign lib {
 
 	@(objc_type=CaptureDevice, objc_selector="maxExposureTargetBias", objc_name="maxExposureTargetBias")
 	CaptureDevice_maxExposureTargetBias :: proc(self: ^CaptureDevice) -> cffi.float ---
+
+	@(objc_type=CaptureDevice, objc_selector="activeExposureSignals", objc_name="activeExposureSignals")
+	CaptureDevice_activeExposureSignals :: proc(self: ^CaptureDevice) -> ^NS.Set ---
+
+	@(objc_type=CaptureDevice, objc_selector="enabledExposureSignals", objc_name="enabledExposureSignals")
+	CaptureDevice_enabledExposureSignals :: proc(self: ^CaptureDevice) -> ^NS.Set ---
+
+	@(objc_type=CaptureDevice, objc_selector="setEnabledExposureSignals:", objc_name="setEnabledExposureSignals")
+	CaptureDevice_setEnabledExposureSignals :: proc(self: ^CaptureDevice, enabledExposureSignals: ^NS.Set) ---
+
+	@(objc_type=CaptureDevice, objc_selector="supportedExposureSignals", objc_name="supportedExposureSignals")
+	CaptureDevice_supportedExposureSignals :: proc(self: ^CaptureDevice) -> ^NS.Set ---
+
+	@(objc_type=CaptureDevice, objc_selector="automaticallyEnablesExposureSignals", objc_name="automaticallyEnablesExposureSignals")
+	CaptureDevice_automaticallyEnablesExposureSignals :: proc(self: ^CaptureDevice) -> bool ---
+
+	@(objc_type=CaptureDevice, objc_selector="setAutomaticallyEnablesExposureSignals:", objc_name="setAutomaticallyEnablesExposureSignals")
+	CaptureDevice_setAutomaticallyEnablesExposureSignals :: proc(self: ^CaptureDevice, automaticallyEnablesExposureSignals: bool) ---
 
 	@(objc_type=CaptureDevice, objc_selector="isGlobalToneMappingEnabled", objc_name="isGlobalToneMappingEnabled")
 	CaptureDevice_isGlobalToneMappingEnabled :: proc(self: ^CaptureDevice) -> bool ---
@@ -624,6 +669,21 @@ foreign lib {
 
 	@(objc_type=CaptureDevice, objc_selector="nominalFocalLengthIn35mmFilm", objc_name="nominalFocalLengthIn35mmFilm")
 	CaptureDevice_nominalFocalLengthIn35mmFilm :: proc(self: ^CaptureDevice) -> cffi.float ---
+
+	@(objc_type=CaptureDevice, objc_selector="isContinuousAutoFocusTrackingEnabled", objc_name="isContinuousAutoFocusTrackingEnabled")
+	CaptureDevice_isContinuousAutoFocusTrackingEnabled :: proc(self: ^CaptureDevice) -> bool ---
+
+	@(objc_type=CaptureDevice, objc_selector="setContinuousAutoFocusTrackingEnabled:", objc_name="setContinuousAutoFocusTrackingEnabled")
+	CaptureDevice_setContinuousAutoFocusTrackingEnabled :: proc(self: ^CaptureDevice, continuousAutoFocusTrackingEnabled: bool) ---
+
+	@(objc_type=CaptureDevice, objc_selector="continuousAutoFocusTrackingLensPositionBias", objc_name="continuousAutoFocusTrackingLensPositionBias")
+	CaptureDevice_continuousAutoFocusTrackingLensPositionBias :: proc(self: ^CaptureDevice) -> cffi.float ---
+
+	@(objc_type=CaptureDevice, objc_selector="setContinuousAutoFocusTrackingLensPositionBias:", objc_name="setContinuousAutoFocusTrackingLensPositionBias")
+	CaptureDevice_setContinuousAutoFocusTrackingLensPositionBias :: proc(self: ^CaptureDevice, continuousAutoFocusTrackingLensPositionBias: cffi.float) ---
+
+	@(objc_type=CaptureDevice, objc_selector="isContinuousAutoFocusTrackingSubjectAcquired", objc_name="isContinuousAutoFocusTrackingSubjectAcquired")
+	CaptureDevice_isContinuousAutoFocusTrackingSubjectAcquired :: proc(self: ^CaptureDevice) -> bool ---
 
 	@(objc_type=CaptureDevice, objc_selector="isStudioLightEnabled", objc_name="isStudioLightEnabled", objc_is_class_method=true)
 	CaptureDevice_isStudioLightEnabled :: proc() -> bool ---

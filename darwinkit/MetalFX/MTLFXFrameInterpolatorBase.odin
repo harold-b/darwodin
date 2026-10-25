@@ -55,6 +55,78 @@ foreign lib {
 	@(objc_type=FrameInterpolatorBase, objc_selector="uiTextureFormat", objc_name="uiTextureFormat")
 	FrameInterpolatorBase_uiTextureFormat :: proc(self: ^FrameInterpolatorBase) -> MTL.PixelFormat ---
 
+	@(objc_type=FrameInterpolatorBase, objc_selector="contentWidth", objc_name="contentWidth")
+	FrameInterpolatorBase_contentWidth :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setContentWidth:", objc_name="setContentWidth")
+	FrameInterpolatorBase_setContentWidth :: proc(self: ^FrameInterpolatorBase, contentWidth: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="contentHeight", objc_name="contentHeight")
+	FrameInterpolatorBase_contentHeight :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setContentHeight:", objc_name="setContentHeight")
+	FrameInterpolatorBase_setContentHeight :: proc(self: ^FrameInterpolatorBase, contentHeight: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="depthContentOffsetX", objc_name="depthContentOffsetX")
+	FrameInterpolatorBase_depthContentOffsetX :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setDepthContentOffsetX:", objc_name="setDepthContentOffsetX")
+	FrameInterpolatorBase_setDepthContentOffsetX :: proc(self: ^FrameInterpolatorBase, depthContentOffsetX: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="depthContentOffsetY", objc_name="depthContentOffsetY")
+	FrameInterpolatorBase_depthContentOffsetY :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setDepthContentOffsetY:", objc_name="setDepthContentOffsetY")
+	FrameInterpolatorBase_setDepthContentOffsetY :: proc(self: ^FrameInterpolatorBase, depthContentOffsetY: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="motionContentOffsetX", objc_name="motionContentOffsetX")
+	FrameInterpolatorBase_motionContentOffsetX :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setMotionContentOffsetX:", objc_name="setMotionContentOffsetX")
+	FrameInterpolatorBase_setMotionContentOffsetX :: proc(self: ^FrameInterpolatorBase, motionContentOffsetX: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="motionContentOffsetY", objc_name="motionContentOffsetY")
+	FrameInterpolatorBase_motionContentOffsetY :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setMotionContentOffsetY:", objc_name="setMotionContentOffsetY")
+	FrameInterpolatorBase_setMotionContentOffsetY :: proc(self: ^FrameInterpolatorBase, motionContentOffsetY: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="outputOffsetX", objc_name="outputOffsetX")
+	FrameInterpolatorBase_outputOffsetX :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setOutputOffsetX:", objc_name="setOutputOffsetX")
+	FrameInterpolatorBase_setOutputOffsetX :: proc(self: ^FrameInterpolatorBase, outputOffsetX: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="outputOffsetY", objc_name="outputOffsetY")
+	FrameInterpolatorBase_outputOffsetY :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setOutputOffsetY:", objc_name="setOutputOffsetY")
+	FrameInterpolatorBase_setOutputOffsetY :: proc(self: ^FrameInterpolatorBase, outputOffsetY: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="distortionOffsetX", objc_name="distortionOffsetX")
+	FrameInterpolatorBase_distortionOffsetX :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setDistortionOffsetX:", objc_name="setDistortionOffsetX")
+	FrameInterpolatorBase_setDistortionOffsetX :: proc(self: ^FrameInterpolatorBase, distortionOffsetX: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="distortionOffsetY", objc_name="distortionOffsetY")
+	FrameInterpolatorBase_distortionOffsetY :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setDistortionOffsetY:", objc_name="setDistortionOffsetY")
+	FrameInterpolatorBase_setDistortionOffsetY :: proc(self: ^FrameInterpolatorBase, distortionOffsetY: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="distortionWidth", objc_name="distortionWidth")
+	FrameInterpolatorBase_distortionWidth :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setDistortionWidth:", objc_name="setDistortionWidth")
+	FrameInterpolatorBase_setDistortionWidth :: proc(self: ^FrameInterpolatorBase, distortionWidth: NS.UInteger) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="distortionHeight", objc_name="distortionHeight")
+	FrameInterpolatorBase_distortionHeight :: proc(self: ^FrameInterpolatorBase) -> NS.UInteger ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setDistortionHeight:", objc_name="setDistortionHeight")
+	FrameInterpolatorBase_setDistortionHeight :: proc(self: ^FrameInterpolatorBase, distortionHeight: NS.UInteger) ---
+
 	@(objc_type=FrameInterpolatorBase, objc_selector="colorTexture", objc_name="colorTexture")
 	FrameInterpolatorBase_colorTexture :: proc(self: ^FrameInterpolatorBase) -> ^MTL.Texture ---
 
@@ -121,6 +193,18 @@ foreign lib {
 	@(objc_type=FrameInterpolatorBase, objc_selector="setAspectRatio:", objc_name="setAspectRatio")
 	FrameInterpolatorBase_setAspectRatio :: proc(self: ^FrameInterpolatorBase, aspectRatio: cffi.float) ---
 
+	@(objc_type=FrameInterpolatorBase, objc_selector="worldToViewMatrix", objc_name="worldToViewMatrix")
+	FrameInterpolatorBase_worldToViewMatrix :: proc(self: ^FrameInterpolatorBase) -> matrix[4,4]f32 ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setWorldToViewMatrix:", objc_name="setWorldToViewMatrix")
+	FrameInterpolatorBase_setWorldToViewMatrix :: proc(self: ^FrameInterpolatorBase, worldToViewMatrix: matrix[4,4]f32) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="viewToClipMatrix", objc_name="viewToClipMatrix")
+	FrameInterpolatorBase_viewToClipMatrix :: proc(self: ^FrameInterpolatorBase) -> matrix[4,4]f32 ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setViewToClipMatrix:", objc_name="setViewToClipMatrix")
+	FrameInterpolatorBase_setViewToClipMatrix :: proc(self: ^FrameInterpolatorBase, viewToClipMatrix: matrix[4,4]f32) ---
+
 	@(objc_type=FrameInterpolatorBase, objc_selector="uiTexture", objc_name="uiTexture")
 	FrameInterpolatorBase_uiTexture :: proc(self: ^FrameInterpolatorBase) -> ^MTL.Texture ---
 
@@ -156,6 +240,12 @@ foreign lib {
 
 	@(objc_type=FrameInterpolatorBase, objc_selector="setOutputTexture:", objc_name="setOutputTexture")
 	FrameInterpolatorBase_setOutputTexture :: proc(self: ^FrameInterpolatorBase, outputTexture: ^MTL.Texture) ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="distortionTexture", objc_name="distortionTexture")
+	FrameInterpolatorBase_distortionTexture :: proc(self: ^FrameInterpolatorBase) -> ^MTL.Texture ---
+
+	@(objc_type=FrameInterpolatorBase, objc_selector="setDistortionTexture:", objc_name="setDistortionTexture")
+	FrameInterpolatorBase_setDistortionTexture :: proc(self: ^FrameInterpolatorBase, distortionTexture: ^MTL.Texture) ---
 
 	@(objc_type=FrameInterpolatorBase, objc_selector="fence", objc_name="fence")
 	FrameInterpolatorBase_fence :: proc(self: ^FrameInterpolatorBase) -> ^MTL.Fence ---

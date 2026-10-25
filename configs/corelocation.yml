@@ -41,7 +41,6 @@ Odin:
   Packages:
     - Name  : CoreLocation
       Export: CL
-      RequiredLink: true # TODO: Remove this if we are able to link when using objc_method calls
       LinkLibs: [system:CoreLocation.framework]
       NoCanonicalRelativeLinkPath: true
       Filter: .*

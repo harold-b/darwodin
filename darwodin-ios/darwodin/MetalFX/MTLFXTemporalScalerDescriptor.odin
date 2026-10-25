@@ -118,6 +118,18 @@ foreign lib {
     @(objc_type=TemporalScalerDescriptor, objc_selector="setInputContentMaxScale:", objc_name="setInputContentMaxScale")
     TemporalScalerDescriptor_setInputContentMaxScale :: proc(self: ^TemporalScalerDescriptor, inputContentMaxScale: cffi.float) ---
 
+    @(objc_type=TemporalScalerDescriptor, objc_selector="isOutputResolutionMotionVectorsEnabled", objc_name="isOutputResolutionMotionVectorsEnabled")
+    TemporalScalerDescriptor_isOutputResolutionMotionVectorsEnabled :: proc(self: ^TemporalScalerDescriptor) -> bool ---
+
+    @(objc_type=TemporalScalerDescriptor, objc_selector="setOutputResolutionMotionVectorsEnabled:", objc_name="setOutputResolutionMotionVectorsEnabled")
+    TemporalScalerDescriptor_setOutputResolutionMotionVectorsEnabled :: proc(self: ^TemporalScalerDescriptor, outputResolutionMotionVectorsEnabled: bool) ---
+
+    @(objc_type=TemporalScalerDescriptor, objc_selector="isJitteredMotionVectorsEnabled", objc_name="isJitteredMotionVectorsEnabled")
+    TemporalScalerDescriptor_isJitteredMotionVectorsEnabled :: proc(self: ^TemporalScalerDescriptor) -> bool ---
+
+    @(objc_type=TemporalScalerDescriptor, objc_selector="setJitteredMotionVectorsEnabled:", objc_name="setJitteredMotionVectorsEnabled")
+    TemporalScalerDescriptor_setJitteredMotionVectorsEnabled :: proc(self: ^TemporalScalerDescriptor, jitteredMotionVectorsEnabled: bool) ---
+
     @(objc_type=TemporalScalerDescriptor, objc_selector="isReactiveMaskTextureEnabled", objc_name="isReactiveMaskTextureEnabled")
     TemporalScalerDescriptor_isReactiveMaskTextureEnabled :: proc(self: ^TemporalScalerDescriptor) -> bool ---
 

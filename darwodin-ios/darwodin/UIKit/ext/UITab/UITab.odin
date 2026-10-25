@@ -26,6 +26,8 @@ VTable :: struct {
     setTitle: proc(self: ^UI.Tab, title: ^NS.String),
     image: proc(self: ^UI.Tab) -> ^UI.Image,
     setImage: proc(self: ^UI.Tab, image: ^UI.Image),
+    selectedImage: proc(self: ^UI.Tab) -> ^UI.Image,
+    setSelectedImage: proc(self: ^UI.Tab, selectedImage: ^UI.Image),
     subtitle: proc(self: ^UI.Tab) -> ^NS.String,
     setSubtitle: proc(self: ^UI.Tab, subtitle: ^NS.String),
     badgeValue: proc(self: ^UI.Tab) -> ^NS.String,
@@ -153,6 +155,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.selectedImage != nil {
+        selectedImage :: proc "c" (self: ^UI.Tab, _: SEL) -> ^UI.Image {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).selectedImage(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedImage"), auto_cast selectedImage, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedImage != nil {
+        setSelectedImage :: proc "c" (self: ^UI.Tab, _: SEL, selectedImage: ^UI.Image) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSelectedImage(self, selectedImage)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedImage:"), auto_cast setSelectedImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.subtitle != nil {
         subtitle :: proc "c" (self: ^UI.Tab, _: SEL) -> ^NS.String {

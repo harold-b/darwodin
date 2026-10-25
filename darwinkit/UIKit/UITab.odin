@@ -42,6 +42,12 @@ foreign lib {
 	@(objc_type=Tab, objc_selector="setImage:", objc_name="setImage")
 	Tab_setImage :: proc(self: ^Tab, image: ^Image) ---
 
+	@(objc_type=Tab, objc_selector="selectedImage", objc_name="selectedImage")
+	Tab_selectedImage :: proc(self: ^Tab) -> ^Image ---
+
+	@(objc_type=Tab, objc_selector="setSelectedImage:", objc_name="setSelectedImage")
+	Tab_setSelectedImage :: proc(self: ^Tab, selectedImage: ^Image) ---
+
 	@(objc_type=Tab, objc_selector="subtitle", objc_name="subtitle")
 	Tab_subtitle :: proc(self: ^Tab) -> ^NS.String ---
 

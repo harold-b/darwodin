@@ -63,6 +63,7 @@ ObjCClasses:
 
 ObjCProtocols:
     'CLLocationManagerDelegate': 'CL.LocationManagerDelegate'
+    'CLBodyIdentifiable': 'CL.BodyIdentifiable'
     'CLLocationPushServiceExtension': 'CL.LocationPushServiceExtension'
 
 

@@ -1,0 +1,92 @@
+Includes:
+  - './base.yml'
+
+Defs: '../definitions/macos/coremedia.json'
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  ExportTypes:
+    - '^_?CM.+'
+    - '^OpaqueCM.+'
+    - '^opaqueCM.+'
+    - '^ColorSync.+'
+    - '^OpaqueIconRef$' # From LaunchServices.framework; exported here for now.
+    - '^IconRef$'
+  ExportMethods:
+    - '^::CM.+'
+  ExportVars:
+    - '^::k?CM.+'
+
+Odin:
+  ExternalTypes:
+    - '../global.exports.yml'
+    - '../mach/exports/mach.exports.yml'
+    - '../exports/CoreFoundation.exports.yml'
+    - '../exports/CoreGraphics.exports.yml'
+    - '../exports/CoreVideo.exports.yml'
+    - '../exports/Security.exports.yml'
+    - '../exports/AudioToolbox.exports.yml'
+  ResolvedTypedefs:
+    - '[su]?int.*'
+    - '^CGFloat'
+    - '^Fixed$'
+    - '^Float32$'
+    - '^Float64$'
+    - '^Byte$'
+  NoDistinctTypedefs: true
+  DistinctTypeDefs: []
+
+  Packages:
+    - Name: 'CoreMedia'
+      Export: 'CM'
+      LinkLibs:
+        - 'system:CoreMedia.framework'
+      Filter: '.*'
+      Imports:
+        - |2
+
+          NCMDeviceProfileInfo :: struct {}
+      MacroFilter:
+        - Match: '^CM.+'
+      TypeMap:
+        CFStringEncoding: 'CF.StringEncoding'
+
+  EnumTransforms:
+    - Type: '.*'
+      Transforms:
+        - {Kind: 'RemoveTypeWordsFromElements'}
+        - {Kind: 'RemovePartialTypeNamePrefix'}
+        - {Kind: 'RemoveUnderscorePrefix'}
+        - {Kind: 'UnderscoreNumbers'}
+
+  TypeTransforms:
+    - Type: '^(CM).+'
+      Transforms: [{Kind: 'RemovePrefix', Source: '$group0'}]
+    - Type: '^[0-9].+'
+      Transforms: [{Kind: 'AppendPrefix', Source: '_'}]
+    - Type: '(Flag|Option|Mask)$' # Transforms for bit_set types
+      Transforms: [{Kind: 'AppendSuffix', Source: 's'}]
+
+  BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # CMSEncoder.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CMSSignedAttributes$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CMTag.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CMStereoViewComponents$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    - Type: '(Mask|Flags?|Options?)$' # Avoid collisions with the generated bit_set type
+      Transforms: [{Kind: 'RemoveSuffix', Source: 's'}]
+
+  ProcTransforms:
+    - Type: '^(_*CM).+'
+      Transforms: [{Kind: 'RemovePrefix', Source: '$group0'}]
+
+  VarTransforms:
+    - Type: '^(_?kCM).+'
+      Transforms: [{Kind: 'ReplacePrefix', Source: '$group0', Target: 'k'}]
+    - Type: '^(_*CM).+'
+      Transforms: [{Kind: 'RemovePrefix', Source: '$group0'}]

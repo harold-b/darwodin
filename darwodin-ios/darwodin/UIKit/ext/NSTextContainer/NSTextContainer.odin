@@ -24,6 +24,8 @@ VTable :: struct {
     setSize: proc(self: ^UI.NSTextContainer, size: CG.Size),
     lineBreakMode: proc(self: ^UI.NSTextContainer) -> UI.NSLineBreakMode,
     setLineBreakMode: proc(self: ^UI.NSTextContainer, lineBreakMode: UI.NSLineBreakMode),
+    exclusionPaths: proc(self: ^UI.NSTextContainer) -> ^NS.Array,
+    setExclusionPaths: proc(self: ^UI.NSTextContainer, exclusionPaths: ^NS.Array),
     lineFragmentPadding: proc(self: ^UI.NSTextContainer) -> CG.Float,
     setLineFragmentPadding: proc(self: ^UI.NSTextContainer, lineFragmentPadding: CG.Float),
     maximumNumberOfLines: proc(self: ^UI.NSTextContainer) -> NS.UInteger,
@@ -33,11 +35,9 @@ VTable :: struct {
     setWidthTracksTextView: proc(self: ^UI.NSTextContainer, widthTracksTextView: bool),
     heightTracksTextView: proc(self: ^UI.NSTextContainer) -> bool,
     setHeightTracksTextView: proc(self: ^UI.NSTextContainer, heightTracksTextView: bool),
+    replaceLayoutManager: proc(self: ^UI.NSTextContainer, newLayoutManager: ^UI.NSLayoutManager),
     layoutManager: proc(self: ^UI.NSTextContainer) -> ^UI.NSLayoutManager,
     setLayoutManager: proc(self: ^UI.NSTextContainer, layoutManager: ^UI.NSLayoutManager),
-    replaceLayoutManager: proc(self: ^UI.NSTextContainer, newLayoutManager: ^UI.NSLayoutManager),
-    exclusionPaths: proc(self: ^UI.NSTextContainer) -> ^NS.Array,
-    setExclusionPaths: proc(self: ^UI.NSTextContainer, exclusionPaths: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -126,6 +126,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineBreakMode:"), auto_cast setLineBreakMode, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.exclusionPaths != nil {
+        exclusionPaths :: proc "c" (self: ^UI.NSTextContainer, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).exclusionPaths(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionPaths"), auto_cast exclusionPaths, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setExclusionPaths != nil {
+        setExclusionPaths :: proc "c" (self: ^UI.NSTextContainer, _: SEL, exclusionPaths: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setExclusionPaths(self, exclusionPaths)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusionPaths:"), auto_cast setExclusionPaths, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.lineFragmentPadding != nil {
         lineFragmentPadding :: proc "c" (self: ^UI.NSTextContainer, _: SEL) -> CG.Float {
@@ -217,6 +237,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHeightTracksTextView:"), auto_cast setHeightTracksTextView, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.replaceLayoutManager != nil {
+        replaceLayoutManager :: proc "c" (self: ^UI.NSTextContainer, _: SEL, newLayoutManager: ^UI.NSLayoutManager) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).replaceLayoutManager(self, newLayoutManager)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceLayoutManager:"), auto_cast replaceLayoutManager, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.layoutManager != nil {
         layoutManager :: proc "c" (self: ^UI.NSTextContainer, _: SEL) -> ^UI.NSLayoutManager {
 
@@ -236,36 +266,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutManager:"), auto_cast setLayoutManager, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.replaceLayoutManager != nil {
-        replaceLayoutManager :: proc "c" (self: ^UI.NSTextContainer, _: SEL, newLayoutManager: ^UI.NSLayoutManager) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).replaceLayoutManager(self, newLayoutManager)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("replaceLayoutManager:"), auto_cast replaceLayoutManager, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.exclusionPaths != nil {
-        exclusionPaths :: proc "c" (self: ^UI.NSTextContainer, _: SEL) -> ^NS.Array {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).exclusionPaths(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionPaths"), auto_cast exclusionPaths, "^void@:") do panic("Failed to register objC method.")
-    }
-    if vt.setExclusionPaths != nil {
-        setExclusionPaths :: proc "c" (self: ^UI.NSTextContainer, _: SEL, exclusionPaths: ^NS.Array) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setExclusionPaths(self, exclusionPaths)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusionPaths:"), auto_cast setExclusionPaths, "v@:^void") do panic("Failed to register objC method.")
     }
 }
 

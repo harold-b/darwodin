@@ -100,6 +100,8 @@ VTable :: struct {
     setCellClass: proc(cellClass: Class),
     cell: proc(self: ^NS.Control) -> ^NS.Cell,
     setCell: proc(self: ^NS.Control, cell: ^NS.Cell),
+    addTarget: proc(self: ^NS.Control, target: id, action: SEL, controlEvents: NS.ControlEvents),
+    removeTarget: proc(self: ^NS.Control, target: id, action: SEL, controlEvents: NS.ControlEvents),
     invalidateIntrinsicContentSizeForCell: proc(self: ^NS.Control, cell: ^NS.Cell),
 }
 
@@ -919,6 +921,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCell:"), auto_cast setCell, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.addTarget != nil {
+        addTarget :: proc "c" (self: ^NS.Control, _: SEL, target: id, action: SEL, controlEvents: NS.ControlEvents) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).addTarget(self, target, action, controlEvents)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addTarget:action:forControlEvents:"), auto_cast addTarget, "v@:@:L") do panic("Failed to register objC method.")
+    }
+    if vt.removeTarget != nil {
+        removeTarget :: proc "c" (self: ^NS.Control, _: SEL, target: id, action: SEL, controlEvents: NS.ControlEvents) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).removeTarget(self, target, action, controlEvents)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeTarget:action:forControlEvents:"), auto_cast removeTarget, "v@:@:L") do panic("Failed to register objC method.")
     }
     if vt.invalidateIntrinsicContentSizeForCell != nil {
         invalidateIntrinsicContentSizeForCell :: proc "c" (self: ^NS.Control, _: SEL, cell: ^NS.Cell) {

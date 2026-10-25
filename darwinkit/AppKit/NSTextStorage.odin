@@ -15,12 +15,6 @@ TextStorage :: struct {
 
 @(default_calling_convention="c")
 foreign lib {
-	@(objc_type=TextStorage, objc_selector="addLayoutManager:", objc_name="addLayoutManager")
-	TextStorage_addLayoutManager :: proc(self: ^TextStorage, aLayoutManager: ^LayoutManager) ---
-
-	@(objc_type=TextStorage, objc_selector="removeLayoutManager:", objc_name="removeLayoutManager")
-	TextStorage_removeLayoutManager :: proc(self: ^TextStorage, aLayoutManager: ^LayoutManager) ---
-
 	@(objc_type=TextStorage, objc_selector="edited:range:changeInLength:", objc_name="edited")
 	TextStorage_edited :: proc(self: ^TextStorage, editedMask: TextStorageEditActions, editedRange: NS._NSRange, delta: NS.Integer) ---
 
@@ -32,9 +26,6 @@ foreign lib {
 
 	@(objc_type=TextStorage, objc_selector="ensureAttributesAreFixedInRange:", objc_name="ensureAttributesAreFixedInRange")
 	TextStorage_ensureAttributesAreFixedInRange :: proc(self: ^TextStorage, range: NS._NSRange) ---
-
-	@(objc_type=TextStorage, objc_selector="layoutManagers", objc_name="layoutManagers")
-	TextStorage_layoutManagers :: proc(self: ^TextStorage) -> ^NS.Array ---
 
 	@(objc_type=TextStorage, objc_selector="editedMask", objc_name="editedMask")
 	TextStorage_editedMask :: proc(self: ^TextStorage) -> TextStorageEditActions ---
@@ -59,6 +50,15 @@ foreign lib {
 
 	@(objc_type=TextStorage, objc_selector="setTextStorageObserver:", objc_name="setTextStorageObserver")
 	TextStorage_setTextStorageObserver :: proc(self: ^TextStorage, textStorageObserver: ^TextStorageObserving) ---
+
+	@(objc_type=TextStorage, objc_selector="addLayoutManager:", objc_name="addLayoutManager")
+	TextStorage_addLayoutManager :: proc(self: ^TextStorage, aLayoutManager: ^LayoutManager) ---
+
+	@(objc_type=TextStorage, objc_selector="removeLayoutManager:", objc_name="removeLayoutManager")
+	TextStorage_removeLayoutManager :: proc(self: ^TextStorage, aLayoutManager: ^LayoutManager) ---
+
+	@(objc_type=TextStorage, objc_selector="layoutManagers", objc_name="layoutManagers")
+	TextStorage_layoutManagers :: proc(self: ^TextStorage) -> ^NS.Array ---
 
 	@(objc_type=TextStorage, objc_selector="attributeRuns", objc_name="attributeRuns")
 	TextStorage_attributeRuns :: proc(self: ^TextStorage) -> ^NS.Array ---

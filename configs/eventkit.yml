@@ -45,7 +45,6 @@ Odin:
   Packages:
     - Name  : EventKit
       Export: EK
-      RequiredLink: true # TODO: Remove this if we are able to link when using objc_method calls
       LinkLibs: [system:EventKit.framework]
       NoCanonicalRelativeLinkPath: true
       Filter: .*

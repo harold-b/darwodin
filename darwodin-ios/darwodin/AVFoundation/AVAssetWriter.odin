@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -170,4 +172,13 @@ foreign lib {
 
     @(objc_type=AssetWriter, objc_selector="setDelegate:", objc_name="setDelegate")
     AssetWriter_setDelegate :: proc(self: ^AssetWriter, delegate: ^AssetWriterDelegate) ---
+
+    @(objc_type=AssetWriter, objc_selector="isProVideoStorageSupported", objc_name="isProVideoStorageSupported")
+    AssetWriter_isProVideoStorageSupported :: proc(self: ^AssetWriter) -> bool ---
+
+    @(objc_type=AssetWriter, objc_selector="usesProVideoStorage", objc_name="usesProVideoStorage")
+    AssetWriter_usesProVideoStorage :: proc(self: ^AssetWriter) -> bool ---
+
+    @(objc_type=AssetWriter, objc_selector="setUsesProVideoStorage:", objc_name="setUsesProVideoStorage")
+    AssetWriter_setUsesProVideoStorage :: proc(self: ^AssetWriter, usesProVideoStorage: bool) ---
 }

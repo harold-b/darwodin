@@ -37,6 +37,8 @@ VTable :: struct {
     setShadowColor: proc(self: ^UI.BarAppearance, shadowColor: ^UI.Color),
     shadowImage: proc(self: ^UI.BarAppearance) -> ^UI.Image,
     setShadowImage: proc(self: ^UI.BarAppearance, shadowImage: ^UI.Image),
+    overrideUserInterfaceStyle: proc(self: ^UI.BarAppearance) -> UI.UserInterfaceStyle,
+    setOverrideUserInterfaceStyle: proc(self: ^UI.BarAppearance, overrideUserInterfaceStyle: UI.UserInterfaceStyle),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -255,6 +257,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShadowImage:"), auto_cast setShadowImage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.overrideUserInterfaceStyle != nil {
+        overrideUserInterfaceStyle :: proc "c" (self: ^UI.BarAppearance, _: SEL) -> UI.UserInterfaceStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).overrideUserInterfaceStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("overrideUserInterfaceStyle"), auto_cast overrideUserInterfaceStyle, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setOverrideUserInterfaceStyle != nil {
+        setOverrideUserInterfaceStyle :: proc "c" (self: ^UI.BarAppearance, _: SEL, overrideUserInterfaceStyle: UI.UserInterfaceStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setOverrideUserInterfaceStyle(self, overrideUserInterfaceStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setOverrideUserInterfaceStyle:"), auto_cast setOverrideUserInterfaceStyle, "v@:l") do panic("Failed to register objC method.")
     }
 }
 

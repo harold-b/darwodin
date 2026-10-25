@@ -21,6 +21,8 @@ VTable :: struct {
     setBrowserViewController: proc(self: ^UI.DocumentViewControllerLaunchOptions, browserViewController: ^UI.DocumentBrowserViewController),
     title: proc(self: ^UI.DocumentViewControllerLaunchOptions) -> ^NS.String,
     setTitle: proc(self: ^UI.DocumentViewControllerLaunchOptions, title: ^NS.String),
+    subtitle: proc(self: ^UI.DocumentViewControllerLaunchOptions) -> ^NS.String,
+    setSubtitle: proc(self: ^UI.DocumentViewControllerLaunchOptions, subtitle: ^NS.String),
     primaryAction: proc(self: ^UI.DocumentViewControllerLaunchOptions) -> ^UI.Action,
     setPrimaryAction: proc(self: ^UI.DocumentViewControllerLaunchOptions, primaryAction: ^UI.Action),
     secondaryAction: proc(self: ^UI.DocumentViewControllerLaunchOptions) -> ^UI.Action,
@@ -91,6 +93,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.subtitle != nil {
+        subtitle :: proc "c" (self: ^UI.DocumentViewControllerLaunchOptions, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).subtitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subtitle"), auto_cast subtitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSubtitle != nil {
+        setSubtitle :: proc "c" (self: ^UI.DocumentViewControllerLaunchOptions, _: SEL, subtitle: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSubtitle(self, subtitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSubtitle:"), auto_cast setSubtitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.primaryAction != nil {
         primaryAction :: proc "c" (self: ^UI.DocumentViewControllerLaunchOptions, _: SEL) -> ^UI.Action {

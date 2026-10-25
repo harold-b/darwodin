@@ -34,6 +34,12 @@ foreign lib {
 
     @(objc_type=TextLayoutManagerDelegate, objc_selector="textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:", objc_name="textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes")
     TextLayoutManagerDelegate_textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes :: proc(self: ^TextLayoutManagerDelegate, textLayoutManager: ^TextLayoutManager, link: id, location: ^TextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary ---
+
+    @(objc_type=TextLayoutManagerDelegate, objc_selector="textLayoutManager:cacheTextAttachmentViewProvider:forTextAttachment:", objc_name="textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment")
+    TextLayoutManagerDelegate_textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment :: proc(self: ^TextLayoutManagerDelegate, textLayoutManager: ^TextLayoutManager, viewProvider: ^TextAttachmentViewProvider, textAttachment: ^TextAttachment) ---
+
+    @(objc_type=TextLayoutManagerDelegate, objc_selector="textLayoutManager:retrieveCachedTextAttachmentViewProviderForTextAttachment:", objc_name="textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment")
+    TextLayoutManagerDelegate_textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment :: proc(self: ^TextLayoutManagerDelegate, textLayoutManager: ^TextLayoutManager, attachment: ^TextAttachment) -> ^TextAttachmentViewProvider ---
 }
 
 @(objc_type=TextLayoutManagerDelegate, objc_name="textLayoutManager")
@@ -41,5 +47,7 @@ TextLayoutManagerDelegate_textLayoutManager :: proc {
     TextLayoutManagerDelegate_textLayoutManager_textLayoutFragmentForLocation_inTextElement,
     TextLayoutManagerDelegate_textLayoutManager_shouldBreakLineBeforeLocation_hyphenating,
     TextLayoutManagerDelegate_textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes,
+    TextLayoutManagerDelegate_textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment,
+    TextLayoutManagerDelegate_textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment,
 }
 

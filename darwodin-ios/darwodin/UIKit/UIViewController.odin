@@ -144,6 +144,12 @@ foreign lib {
     @(objc_type=ViewController, objc_selector="setNeedsUserInterfaceAppearanceUpdate", objc_name="setNeedsUserInterfaceAppearanceUpdate")
     ViewController_setNeedsUserInterfaceAppearanceUpdate :: proc(self: ^ViewController) ---
 
+    @(objc_type=ViewController, objc_selector="registerSceneAccessory:", objc_name="registerSceneAccessory")
+    ViewController_registerSceneAccessory :: proc(self: ^ViewController, accessory: ^SceneAccessory) -> ^SceneAccessoryRegistration ---
+
+    @(objc_type=ViewController, objc_selector="unregisterSceneAccessory:", objc_name="unregisterSceneAccessory")
+    ViewController_unregisterSceneAccessory :: proc(self: ^ViewController, registration: ^SceneAccessoryRegistration) ---
+
     @(objc_type=ViewController, objc_selector="view", objc_name="view")
     ViewController_view :: proc(self: ^ViewController) -> ^View ---
 

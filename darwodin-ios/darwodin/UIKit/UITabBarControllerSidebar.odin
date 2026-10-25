@@ -38,6 +38,15 @@ foreign lib {
     @(objc_type=TabBarControllerSidebar, objc_selector="setDelegate:", objc_name="setDelegate")
     TabBarControllerSidebar_setDelegate :: proc(self: ^TabBarControllerSidebar, delegate: ^TabBarControllerSidebarDelegate) ---
 
+    @(objc_type=TabBarControllerSidebar, objc_selector="isAvailable", objc_name="isAvailable")
+    TabBarControllerSidebar_isAvailable :: proc(self: ^TabBarControllerSidebar) -> bool ---
+
+    @(objc_type=TabBarControllerSidebar, objc_selector="preferredPlacement", objc_name="preferredPlacement")
+    TabBarControllerSidebar_preferredPlacement :: proc(self: ^TabBarControllerSidebar) -> TabBarControllerSidebarPlacement ---
+
+    @(objc_type=TabBarControllerSidebar, objc_selector="setPreferredPlacement:", objc_name="setPreferredPlacement")
+    TabBarControllerSidebar_setPreferredPlacement :: proc(self: ^TabBarControllerSidebar, preferredPlacement: TabBarControllerSidebarPlacement) ---
+
     @(objc_type=TabBarControllerSidebar, objc_selector="isHidden", objc_name="isHidden")
     TabBarControllerSidebar_isHidden :: proc(self: ^TabBarControllerSidebar) -> bool ---
 

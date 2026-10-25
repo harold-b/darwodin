@@ -19,6 +19,7 @@ import CA "../QuartzCore"
 NSTextContainer :: struct {
     using _: NS.Object,
     using _: NS.SecureCoding,
+    using _: NSTextLayoutOrientationProvider,
 }
 
 @(default_calling_convention="c")
@@ -47,6 +48,12 @@ foreign lib {
     @(objc_type=NSTextContainer, objc_selector="setLineBreakMode:", objc_name="setLineBreakMode")
     NSTextContainer_setLineBreakMode :: proc(self: ^NSTextContainer, lineBreakMode: NSLineBreakMode) ---
 
+    @(objc_type=NSTextContainer, objc_selector="exclusionPaths", objc_name="exclusionPaths")
+    NSTextContainer_exclusionPaths :: proc(self: ^NSTextContainer) -> ^NS.Array ---
+
+    @(objc_type=NSTextContainer, objc_selector="setExclusionPaths:", objc_name="setExclusionPaths")
+    NSTextContainer_setExclusionPaths :: proc(self: ^NSTextContainer, exclusionPaths: ^NS.Array) ---
+
     @(objc_type=NSTextContainer, objc_selector="lineFragmentPadding", objc_name="lineFragmentPadding")
     NSTextContainer_lineFragmentPadding :: proc(self: ^NSTextContainer) -> CG.Float ---
 
@@ -74,18 +81,12 @@ foreign lib {
     @(objc_type=NSTextContainer, objc_selector="setHeightTracksTextView:", objc_name="setHeightTracksTextView")
     NSTextContainer_setHeightTracksTextView :: proc(self: ^NSTextContainer, heightTracksTextView: bool) ---
 
+    @(objc_type=NSTextContainer, objc_selector="replaceLayoutManager:", objc_name="replaceLayoutManager")
+    NSTextContainer_replaceLayoutManager :: proc(self: ^NSTextContainer, newLayoutManager: ^NSLayoutManager) ---
+
     @(objc_type=NSTextContainer, objc_selector="layoutManager", objc_name="layoutManager")
     NSTextContainer_layoutManager :: proc(self: ^NSTextContainer) -> ^NSLayoutManager ---
 
     @(objc_type=NSTextContainer, objc_selector="setLayoutManager:", objc_name="setLayoutManager")
     NSTextContainer_setLayoutManager :: proc(self: ^NSTextContainer, layoutManager: ^NSLayoutManager) ---
-
-    @(objc_type=NSTextContainer, objc_selector="replaceLayoutManager:", objc_name="replaceLayoutManager")
-    NSTextContainer_replaceLayoutManager :: proc(self: ^NSTextContainer, newLayoutManager: ^NSLayoutManager) ---
-
-    @(objc_type=NSTextContainer, objc_selector="exclusionPaths", objc_name="exclusionPaths")
-    NSTextContainer_exclusionPaths :: proc(self: ^NSTextContainer) -> ^NS.Array ---
-
-    @(objc_type=NSTextContainer, objc_selector="setExclusionPaths:", objc_name="setExclusionPaths")
-    NSTextContainer_setExclusionPaths :: proc(self: ^NSTextContainer, exclusionPaths: ^NS.Array) ---
 }

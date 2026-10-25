@@ -155,4 +155,7 @@ foreign lib {
 
 	@(objc_type=AssetExportSession, objc_selector="setDirectoryForTemporaryFiles:", objc_name="setDirectoryForTemporaryFiles")
 	AssetExportSession_setDirectoryForTemporaryFiles :: proc(self: ^AssetExportSession, directoryForTemporaryFiles: ^NS.URL) ---
+
+	@(objc_type=AssetExportSession, objc_selector="configureForResumableExportWithCompletionHandler:", objc_name="configureForResumableExportWithCompletionHandler")
+	AssetExportSession_configureForResumableExportWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" ( resumptionState: ^AssetExportSessionResumptionState ))) ---
 }

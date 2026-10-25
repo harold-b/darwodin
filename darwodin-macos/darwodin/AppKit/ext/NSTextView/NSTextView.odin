@@ -206,6 +206,12 @@ VTable :: struct {
     orderFrontSubstitutionsPanel: proc(self: ^NS.TextView, sender: id),
     checkTextInSelection: proc(self: ^NS.TextView, sender: id),
     checkTextInDocument: proc(self: ^NS.TextView, sender: id),
+    registerTextAttachmentViewProviderReusePolicy: proc(self: ^NS.TextView, policy: NS.TextAttachmentViewProviderReusePolicy, viewProviderType: Class),
+    textViewportLayoutController: proc(self: ^NS.TextView, textViewportLayoutController: ^NS.TextViewportLayoutController, textLayoutFragment: ^NS.TextLayoutFragment),
+    viewportBoundsForTextViewportLayoutController: proc(self: ^NS.TextView, textViewportLayoutController: ^NS.TextViewportLayoutController) -> CG.Rect,
+    textViewportLayoutControllerWillLayout: proc(self: ^NS.TextView, textViewportLayoutController: ^NS.TextViewportLayoutController),
+    textViewportLayoutControllerDidLayout: proc(self: ^NS.TextView, textViewportLayoutController: ^NS.TextViewportLayoutController),
+    textViewportLayoutControllerReceivedSetNeedsLayout: proc(self: ^NS.TextView, textViewportLayoutController: ^NS.TextViewportLayoutController),
     smartInsertDeleteEnabled: proc(self: ^NS.TextView) -> bool,
     setSmartInsertDeleteEnabled: proc(self: ^NS.TextView, smartInsertDeleteEnabled: bool),
     isAutomaticQuoteSubstitutionEnabled: proc(self: ^NS.TextView) -> bool,
@@ -2132,6 +2138,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInDocument:"), auto_cast checkTextInDocument, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.registerTextAttachmentViewProviderReusePolicy != nil {
+        registerTextAttachmentViewProviderReusePolicy :: proc "c" (self: ^NS.TextView, _: SEL, policy: NS.TextAttachmentViewProviderReusePolicy, viewProviderType: Class) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).registerTextAttachmentViewProviderReusePolicy(self, policy, viewProviderType)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerTextAttachmentViewProviderReusePolicy:forTextAttachmentViewProviderType:"), auto_cast registerTextAttachmentViewProviderReusePolicy, "v@:L#") do panic("Failed to register objC method.")
+    }
+    if vt.textViewportLayoutController != nil {
+        textViewportLayoutController :: proc "c" (self: ^NS.TextView, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController, textLayoutFragment: ^NS.TextLayoutFragment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).textViewportLayoutController(self, textViewportLayoutController, textLayoutFragment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:"), auto_cast textViewportLayoutController, "v@:@@") do panic("Failed to register objC method.")
+    }
+    if vt.viewportBoundsForTextViewportLayoutController != nil {
+        viewportBoundsForTextViewportLayoutController :: proc "c" (self: ^NS.TextView, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController) -> CG.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).viewportBoundsForTextViewportLayoutController(self, textViewportLayoutController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("viewportBoundsForTextViewportLayoutController:"), auto_cast viewportBoundsForTextViewportLayoutController, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textViewportLayoutControllerWillLayout != nil {
+        textViewportLayoutControllerWillLayout :: proc "c" (self: ^NS.TextView, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).textViewportLayoutControllerWillLayout(self, textViewportLayoutController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewportLayoutControllerWillLayout:"), auto_cast textViewportLayoutControllerWillLayout, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textViewportLayoutControllerDidLayout != nil {
+        textViewportLayoutControllerDidLayout :: proc "c" (self: ^NS.TextView, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).textViewportLayoutControllerDidLayout(self, textViewportLayoutController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewportLayoutControllerDidLayout:"), auto_cast textViewportLayoutControllerDidLayout, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textViewportLayoutControllerReceivedSetNeedsLayout != nil {
+        textViewportLayoutControllerReceivedSetNeedsLayout :: proc "c" (self: ^NS.TextView, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).textViewportLayoutControllerReceivedSetNeedsLayout(self, textViewportLayoutController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textViewportLayoutControllerReceivedSetNeedsLayout:"), auto_cast textViewportLayoutControllerReceivedSetNeedsLayout, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.smartInsertDeleteEnabled != nil {
         smartInsertDeleteEnabled :: proc "c" (self: ^NS.TextView, _: SEL) -> bool {

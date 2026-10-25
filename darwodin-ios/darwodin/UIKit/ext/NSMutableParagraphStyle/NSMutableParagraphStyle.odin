@@ -19,6 +19,8 @@ VTable :: struct {
     addTabStop: proc(self: ^UI.NSMutableParagraphStyle, anObject: ^UI.NSTextTab),
     removeTabStop: proc(self: ^UI.NSMutableParagraphStyle, anObject: ^UI.NSTextTab),
     setParagraphStyle: proc(self: ^UI.NSMutableParagraphStyle, obj: ^UI.NSParagraphStyle),
+    alignment: proc(self: ^UI.NSMutableParagraphStyle) -> UI.NSTextAlignment,
+    setAlignment: proc(self: ^UI.NSMutableParagraphStyle, alignment: UI.NSTextAlignment),
     lineSpacing: proc(self: ^UI.NSMutableParagraphStyle) -> CG.Float,
     setLineSpacing: proc(self: ^UI.NSMutableParagraphStyle, lineSpacing: CG.Float),
     paragraphSpacing: proc(self: ^UI.NSMutableParagraphStyle) -> CG.Float,
@@ -55,8 +57,8 @@ VTable :: struct {
     setLineBreakStrategy: proc(self: ^UI.NSMutableParagraphStyle, lineBreakStrategy: UI.NSLineBreakStrategy),
     textLists: proc(self: ^UI.NSMutableParagraphStyle) -> ^NS.Array,
     setTextLists: proc(self: ^UI.NSMutableParagraphStyle, textLists: ^NS.Array),
-    alignment: proc(self: ^UI.NSMutableParagraphStyle) -> UI.NSTextAlignment,
-    setAlignment: proc(self: ^UI.NSMutableParagraphStyle, alignment: UI.NSTextAlignment),
+    textBlocks: proc(self: ^UI.NSMutableParagraphStyle) -> ^NS.Array,
+    setTextBlocks: proc(self: ^UI.NSMutableParagraphStyle, textBlocks: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -95,6 +97,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setParagraphStyle:"), auto_cast setParagraphStyle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignment != nil {
+        alignment :: proc "c" (self: ^UI.NSMutableParagraphStyle, _: SEL) -> UI.NSTextAlignment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).alignment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAlignment != nil {
+        setAlignment :: proc "c" (self: ^UI.NSMutableParagraphStyle, _: SEL, alignment: UI.NSTextAlignment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAlignment(self, alignment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlignment:"), auto_cast setAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.lineSpacing != nil {
         lineSpacing :: proc "c" (self: ^UI.NSMutableParagraphStyle, _: SEL) -> CG.Float {
@@ -456,25 +478,25 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextLists:"), auto_cast setTextLists, "v@:^void") do panic("Failed to register objC method.")
     }
-    if vt.alignment != nil {
-        alignment :: proc "c" (self: ^UI.NSMutableParagraphStyle, _: SEL) -> UI.NSTextAlignment {
+    if vt.textBlocks != nil {
+        textBlocks :: proc "c" (self: ^UI.NSMutableParagraphStyle, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).alignment(self)
+            return (cast(^VTable)vt_ctx.super_vt).textBlocks(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textBlocks"), auto_cast textBlocks, "^void@:") do panic("Failed to register objC method.")
     }
-    if vt.setAlignment != nil {
-        setAlignment :: proc "c" (self: ^UI.NSMutableParagraphStyle, _: SEL, alignment: UI.NSTextAlignment) {
+    if vt.setTextBlocks != nil {
+        setTextBlocks :: proc "c" (self: ^UI.NSMutableParagraphStyle, _: SEL, textBlocks: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setAlignment(self, alignment)
+            (cast(^VTable)vt_ctx.super_vt).setTextBlocks(self, textBlocks)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setAlignment:"), auto_cast setAlignment, "v@:l") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextBlocks:"), auto_cast setTextBlocks, "v@:^void") do panic("Failed to register objC method.")
     }
 }
 

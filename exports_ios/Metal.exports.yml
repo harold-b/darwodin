@@ -74,6 +74,7 @@ Typedefs:
     'MTLIOCompressionContext': 'MTL.IOCompressionContext'
 
 Enums:
+    'MTLContentionRelief': 'MTL.ContentionRelief'
     'MTLResourceUsage': 'MTL.ResourceUsage'
     'MTLBarrierScope': 'MTL.BarrierScope'
     'MTLStages': 'MTL.Stages'
@@ -90,6 +91,7 @@ Enums:
     'MTLTensorDataType': 'MTL.TensorDataType'
     'MTLTensorError': 'MTL.TensorError'
     'MTLTensorUsage': 'MTL.TensorUsage'
+    'MTLTensorPlaneType': 'MTL.TensorPlaneType'
     'MTLTextureType': 'MTL.TextureType'
     'MTLTextureSwizzle': 'MTL.TextureSwizzle'
     'MTLTextureUsage': 'MTL.TextureUsage'
@@ -107,6 +109,7 @@ Enums:
     'MTLCompileSymbolVisibility': 'MTL.CompileSymbolVisibility'
     'MTLMathMode': 'MTL.MathMode'
     'MTLMathFloatingPointFunctions': 'MTL.MathFloatingPointFunctions'
+    'MTLFloatingPointConversionRoundingMode': 'MTL.FloatingPointConversionRoundingMode'
     'MTLLibraryError': 'MTL.LibraryError'
     'MTLCounterSampleBufferError': 'MTL.CounterSampleBufferError'
     'MTL4CompilerTaskStatus': 'MTL.MTL4CompilerTaskStatus'
@@ -142,6 +145,7 @@ Enums:
     'MTLStepFunction': 'MTL.StepFunction'
     'MTLMutability': 'MTL.Mutability'
     'MTLShaderValidation': 'MTL.ShaderValidation'
+    'MTLForwardProgressUsage': 'MTL.ForwardProgressUsage'
     'MTLPrimitiveType': 'MTL.PrimitiveType'
     'MTLVisibilityResultMode': 'MTL.VisibilityResultMode'
     'MTLCullMode': 'MTL.CullMode'
@@ -202,7 +206,10 @@ Enums:
 
 ObjCClasses:
     'MTLTensorExtents': 'MTL.TensorExtents'
+    'MTLTensorAuxiliaryPlaneDescriptor': 'MTL.TensorAuxiliaryPlaneDescriptor'
+    'MTLTensorAuxiliaryPlaneDescriptorMap': 'MTL.TensorAuxiliaryPlaneDescriptorMap'
     'MTLTensorDescriptor': 'MTL.TensorDescriptor'
+    'MTLTensorBufferAttachments': 'MTL.TensorBufferAttachments'
     'MTLTextureDescriptor': 'MTL.TextureDescriptor'
     'MTLSharedTextureHandle': 'MTL.SharedTextureHandle'
     'MTLTextureViewDescriptor': 'MTL.TextureViewDescriptor'
@@ -214,6 +221,7 @@ ObjCClasses:
     'MTLTensorReferenceType': 'MTL.TensorReferenceType'
     'MTLType': 'MTL.Type'
     'MTLStructMember': 'MTL.StructMember'
+    'MTLTensorAuxiliaryPlaneType': 'MTL.TensorAuxiliaryPlaneType'
     'MTLFunctionConstantValues': 'MTL.FunctionConstantValues'
     'MTLFunctionDescriptor': 'MTL.FunctionDescriptor'
     'MTLIntersectionFunctionDescriptor': 'MTL.IntersectionFunctionDescriptor'
@@ -361,6 +369,7 @@ ObjCProtocols:
     'MTLHeap': 'MTL.Heap'
     'MTLResource': 'MTL.Resource'
     'MTLBuffer': 'MTL.Buffer'
+    'MTLTensorAuxiliaryPlane': 'MTL.TensorAuxiliaryPlane'
     'MTLTensor': 'MTL.Tensor'
     'MTLTexture': 'MTL.Texture'
     'MTLBinding': 'MTL.Binding'

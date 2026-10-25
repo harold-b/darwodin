@@ -16,10 +16,14 @@ VTable :: struct {
     performWithSender: proc(self: ^UI.MenuLeaf, sender: id, target: id),
     title: proc(self: ^UI.MenuLeaf) -> ^NS.String,
     setTitle: proc(self: ^UI.MenuLeaf, title: ^NS.String),
+    subtitle: proc(self: ^UI.MenuLeaf) -> ^NS.String,
+    setSubtitle: proc(self: ^UI.MenuLeaf, subtitle: ^NS.String),
     image: proc(self: ^UI.MenuLeaf) -> ^UI.Image,
     setImage: proc(self: ^UI.MenuLeaf, image: ^UI.Image),
     selectedImage: proc(self: ^UI.MenuLeaf) -> ^UI.Image,
     setSelectedImage: proc(self: ^UI.MenuLeaf, selectedImage: ^UI.Image),
+    preferredImageVisibility: proc(self: ^UI.MenuLeaf) -> UI.MenuElementImageVisibility,
+    setPreferredImageVisibility: proc(self: ^UI.MenuLeaf, preferredImageVisibility: UI.MenuElementImageVisibility),
     discoverabilityTitle: proc(self: ^UI.MenuLeaf) -> ^NS.String,
     setDiscoverabilityTitle: proc(self: ^UI.MenuLeaf, discoverabilityTitle: ^NS.String),
     attributes: proc(self: ^UI.MenuLeaf) -> UI.MenuElementAttributes,
@@ -66,6 +70,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.subtitle != nil {
+        subtitle :: proc "c" (self: ^UI.MenuLeaf, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).subtitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subtitle"), auto_cast subtitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSubtitle != nil {
+        setSubtitle :: proc "c" (self: ^UI.MenuLeaf, _: SEL, subtitle: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setSubtitle(self, subtitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSubtitle:"), auto_cast setSubtitle, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.image != nil {
         image :: proc "c" (self: ^UI.MenuLeaf, _: SEL) -> ^UI.Image {
 
@@ -105,6 +129,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedImage:"), auto_cast setSelectedImage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.preferredImageVisibility != nil {
+        preferredImageVisibility :: proc "c" (self: ^UI.MenuLeaf, _: SEL) -> UI.MenuElementImageVisibility {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).preferredImageVisibility(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredImageVisibility"), auto_cast preferredImageVisibility, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredImageVisibility != nil {
+        setPreferredImageVisibility :: proc "c" (self: ^UI.MenuLeaf, _: SEL, preferredImageVisibility: UI.MenuElementImageVisibility) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setPreferredImageVisibility(self, preferredImageVisibility)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredImageVisibility:"), auto_cast setPreferredImageVisibility, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.discoverabilityTitle != nil {
         discoverabilityTitle :: proc "c" (self: ^UI.MenuLeaf, _: SEL) -> ^NS.String {

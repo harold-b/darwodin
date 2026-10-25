@@ -5,7 +5,7 @@ import "base:runtime"
 import cffi "core:c"
 
 when ODIN_OS == .Darwin {
-    @(require, export) foreign import lib_mach {
+    @(export) foreign import lib_mach {
         "system:System",
     }
 }

@@ -13,6 +13,7 @@ import CA "../../../QuartzCore"
 import UI "../../"
 
 VTable :: struct {
+    tabBarController_sidebarAvailabilityDidChange: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar),
     tabBarController_sidebarVisibilityWillChange_animator: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, animator: ^UI.TabBarControllerSidebarAnimating),
     tabBarController_sidebar_itemForRequest: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, request: ^UI.TabSidebarItemRequest) -> ^UI.TabSidebarItem,
     tabBarController_sidebar_updateItem: proc(self: ^UI.TabBarControllerSidebarDelegate, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, item: ^UI.TabSidebarItem),
@@ -31,6 +32,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
+    if vt.tabBarController_sidebarAvailabilityDidChange != nil {
+        tabBarController_sidebarAvailabilityDidChange :: proc "c" (self: ^UI.TabBarControllerSidebarDelegate, _: SEL, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).tabBarController_sidebarAvailabilityDidChange(self, tabBarController, sidebar)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarController:sidebarAvailabilityDidChange:"), auto_cast tabBarController_sidebarAvailabilityDidChange, "v@:@@") do panic("Failed to register objC method.")
+    }
     if vt.tabBarController_sidebarVisibilityWillChange_animator != nil {
         tabBarController_sidebarVisibilityWillChange_animator :: proc "c" (self: ^UI.TabBarControllerSidebarDelegate, _: SEL, tabBarController: ^UI.TabBarController, sidebar: ^UI.TabBarControllerSidebar, animator: ^UI.TabBarControllerSidebarAnimating) {
 

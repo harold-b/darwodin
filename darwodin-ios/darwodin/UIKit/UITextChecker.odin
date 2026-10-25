@@ -41,6 +41,12 @@ foreign lib {
     @(objc_type=TextChecker, objc_selector="unlearnWord:", objc_name="unlearnWord", objc_is_class_method=true)
     TextChecker_unlearnWord :: proc(word: ^NS.String) ---
 
+    @(objc_type=TextChecker, objc_selector="requestGrammarCheckingOfString:range:waitForAllResults:completionHandler:", objc_name="requestGrammarCheckingOfString")
+    TextChecker_requestGrammarCheckingOfString :: proc(self: ^TextChecker, stringToCheck: ^NS.String, range: NS._NSRange, waitForAllResults: bool, completionHandler: ^Objc_Block(proc "c" ( results: ^NS.Array ))) ---
+
+    @(objc_type=TextChecker, objc_selector="ignoreGrammarRange:inSentence:", objc_name="ignoreGrammarRange")
+    TextChecker_ignoreGrammarRange :: proc(self: ^TextChecker, grammarRange: NS._NSRange, sentence: ^NS.String) ---
+
     @(objc_type=TextChecker, objc_selector="ignoredWords", objc_name="ignoredWords")
     TextChecker_ignoredWords :: proc(self: ^TextChecker) -> ^NS.Array ---
 

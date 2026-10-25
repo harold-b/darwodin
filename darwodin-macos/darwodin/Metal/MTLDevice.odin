@@ -257,8 +257,11 @@ foreign lib {
     @(objc_type=Device, objc_selector="tensorSizeAndAlignWithDescriptor:", objc_name="tensorSizeAndAlignWithDescriptor")
     Device_tensorSizeAndAlignWithDescriptor :: proc(self: ^Device, descriptor: ^TensorDescriptor) -> SizeAndAlign ---
 
-    @(objc_type=Device, objc_selector="newTensorWithDescriptor:error:", objc_name="newTensorWithDescriptor")
-    Device_newTensorWithDescriptor :: proc(self: ^Device, descriptor: ^TensorDescriptor, error: ^^NS.Error) -> ^Tensor ---
+    @(objc_type=Device, objc_selector="newTensorWithDescriptor:error:", objc_name="newTensorWithDescriptor_error")
+    Device_newTensorWithDescriptor_error :: proc(self: ^Device, descriptor: ^TensorDescriptor, error: ^^NS.Error) -> ^Tensor ---
+
+    @(objc_type=Device, objc_selector="newTensorWithDescriptor:attachments:error:", objc_name="newTensorWithDescriptor_attachments_error")
+    Device_newTensorWithDescriptor_attachments_error :: proc(self: ^Device, descriptor: ^TensorDescriptor, attachments: ^TensorBufferAttachments, error: ^^NS.Error) -> ^Tensor ---
 
     @(objc_type=Device, objc_selector="functionHandleWithFunction:", objc_name="functionHandleWithFunction")
     Device_functionHandleWithFunction :: proc(self: ^Device, function: ^Function) -> ^FunctionHandle ---
@@ -509,6 +512,12 @@ Device_newIOFileHandleWithURL :: proc {
 Device_sparseTileSizeWithTextureType :: proc {
     Device_sparseTileSizeWithTextureType_pixelFormat_sampleCount,
     Device_sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize,
+}
+
+@(objc_type=Device, objc_name="newTensorWithDescriptor")
+Device_newTensorWithDescriptor :: proc {
+    Device_newTensorWithDescriptor_error,
+    Device_newTensorWithDescriptor_attachments_error,
 }
 
 @(objc_type=Device, objc_name="newBufferWithLength")

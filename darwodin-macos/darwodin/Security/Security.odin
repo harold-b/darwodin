@@ -29,6 +29,10 @@ OpaquePolicySearchRef :: struct {}
 OpaqueSecTransformImplementation :: struct {}
 xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead of exporting from Foundation
 
+// Composite SDK masks that also contain reserved or unnamed bits.
+when ODIN_PLATFORM_SUBTARGET == .Default { SecKeyUsage_kSecKeyUsageAll :: transmute(SecKeyUsage)cffi.uint(2147483647) }
+when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)cffi.uint(4294967295) }
+
 // -user-text-end
 
 
@@ -464,6 +468,7 @@ kSecUnlockStateStatus                     :: 1
 kSecReadPermStatus                        :: 2
 kSecWritePermStatus                       :: 4
 kAuthorizationFlagCanNotPreAuthorize      :: 1
+kSecCSMaxSignatures                       :: 2
 errSecCSUnimplemented                     :: -67072
 errSecCSInvalidObjectRef                  :: -67071
 errSecCSInvalidFlags                      :: -67070
@@ -548,6 +553,11 @@ errSecCSInvalidRuntimeVersion             :: -66993
 errSecCSRevokedNotarization               :: -66992
 errSecCSCMSConstructionFailed             :: -66991
 errSecCSRemoteSignerFailed                :: -66990
+errSecCSRemoteSignerFirstSlotFull         :: -66989
+errSecCSRemoteSignerSecondSlotFull        :: -66988
+errSecCSUnsupportedAlgorithm              :: -66987
+errSecCSMultipleSelfSigning               :: -66986
+errSecCSDetachedCertificates              :: -66985
 kSecNoGuest                               :: 0
 kSecCSCheckAllArchitectures               :: 1
 kSecCSDoNotValidateExecutable             :: 2
@@ -1081,6 +1091,7 @@ foreign lib {
     @(link_name="kSecCFErrorGuestAttributes") kSecCFErrorGuestAttributes: CF.StringRef
     @(link_name="kSecCFErrorRequirementSyntax") kSecCFErrorRequirementSyntax: CF.StringRef
     @(link_name="kSecCFErrorPath") kSecCFErrorPath: CF.StringRef
+    @(link_name="kSecCFErrorDetachedCertificates") kSecCFErrorDetachedCertificates: CF.StringRef
     @(link_name="kSecCodeAttributeArchitecture") kSecCodeAttributeArchitecture: CF.StringRef
     @(link_name="kSecCodeAttributeSubarchitecture") kSecCodeAttributeSubarchitecture: CF.StringRef
     @(link_name="kSecCodeAttributeUniversalFileOffset") kSecCodeAttributeUniversalFileOffset: CF.StringRef
@@ -1097,6 +1108,8 @@ foreign lib {
     @(link_name="kSecCodeInfoCertificates") kSecCodeInfoCertificates: CF.StringRef
     @(link_name="kSecCodeInfoChangedFiles") kSecCodeInfoChangedFiles: CF.StringRef
     @(link_name="kSecCodeInfoCMS") kSecCodeInfoCMS: CF.StringRef
+    @(link_name="kSecCodeInfoTotalSignatures") kSecCodeInfoTotalSignatures: CF.StringRef
+    @(link_name="kSecCodeInfoChosenSignature") kSecCodeInfoChosenSignature: CF.StringRef
     @(link_name="kSecCodeInfoDesignatedRequirement") kSecCodeInfoDesignatedRequirement: CF.StringRef
     @(link_name="kSecCodeInfoEntitlements") kSecCodeInfoEntitlements: CF.StringRef
     @(link_name="kSecCodeInfoEntitlementsDict") kSecCodeInfoEntitlementsDict: CF.StringRef
@@ -1122,6 +1135,7 @@ foreign lib {
     @(link_name="kSecCodeInfoCdHashes") kSecCodeInfoCdHashes: CF.StringRef
     @(link_name="kSecCodeInfoRuntimeVersion") kSecCodeInfoRuntimeVersion: CF.StringRef
     @(link_name="kSecCodeInfoStapledNotarizationTicket") kSecCodeInfoStapledNotarizationTicket: CF.StringRef
+    @(link_name="kSecCodeInfoSignerInfoSKID") kSecCodeInfoSignerInfoSKID: CF.StringRef
     @(link_name="kSecTransformErrorDomain") kSecTransformErrorDomain: CF.StringRef
     @(link_name="kSecTransformPreviousErrorKey") kSecTransformPreviousErrorKey: CF.StringRef
     @(link_name="kSecTransformAbortOriginatorKey") kSecTransformAbortOriginatorKey: CF.StringRef
@@ -3349,21 +3363,20 @@ CE_DataType :: enum cffi.uint {
 }
 
 /// SecKeyUsage
-SecKeyUsage :: enum cffi.uint {
-    kSecKeyUsageUnspecified       = 0,
-    kSecKeyUsageDigitalSignature  = 1,
-    kSecKeyUsageNonRepudiation    = 2,
-    kSecKeyUsageContentCommitment = 2,
-    kSecKeyUsageKeyEncipherment   = 4,
-    kSecKeyUsageDataEncipherment  = 8,
-    kSecKeyUsageKeyAgreement      = 16,
-    kSecKeyUsageKeyCertSign       = 32,
-    kSecKeyUsageCRLSign           = 64,
-    kSecKeyUsageEncipherOnly      = 128,
-    kSecKeyUsageDecipherOnly      = 256,
-    kSecKeyUsageCritical          = 2147483648,
-    kSecKeyUsageAll               = 2147483647,
+SecKeyUsageFlag :: enum cffi.uint {
+    kSecKeyUsageDigitalSignature  = 0,
+    kSecKeyUsageNonRepudiation    = 1,
+    kSecKeyUsageContentCommitment = 1,
+    kSecKeyUsageKeyEncipherment   = 2,
+    kSecKeyUsageDataEncipherment  = 3,
+    kSecKeyUsageKeyAgreement      = 4,
+    kSecKeyUsageKeyCertSign       = 5,
+    kSecKeyUsageCRLSign           = 6,
+    kSecKeyUsageEncipherOnly      = 7,
+    kSecKeyUsageDecipherOnly      = 8,
+    kSecKeyUsageCritical          = 31,
 }
+SecKeyUsage :: bit_set[SecKeyUsageFlag; cffi.uint]
 
 /// SecAccessControlCreateFlags
 SecAccessControlCreateFlag :: enum cffi.ulong {
@@ -3429,9 +3442,10 @@ SecKeyOperationType :: enum cffi.long {
 }
 
 /// cssm_appledl_open_parameters_mask
-cssm_appledl_open_parameters_mask :: enum cffi.uint {
-    kCSSM_APPLEDL_MASK_MODE = 1,
+cssm_appledl_open_parameters_maskFlag :: enum cffi.uint {
+    kCSSM_APPLEDL_MASK_MODE = 0,
 }
+cssm_appledl_open_parameters_mask :: bit_set[cssm_appledl_open_parameters_maskFlag; cffi.uint]
 
 /// SecAuthenticationType
 SecAuthenticationType :: enum cffi.uint {
@@ -3596,6 +3610,7 @@ SSLCiphersuiteGroup :: enum cffi.int {
     kSSLCiphersuiteGroupLegacy       = 2,
     kSSLCiphersuiteGroupATS          = 3,
     kSSLCiphersuiteGroupATSCompatibility = 4,
+    kSSLCiphersuiteGroupATSFCP_v2_1  = 5,
 }
 
 /// tls_protocol_version_t
@@ -3645,6 +3660,7 @@ tls_ciphersuite_group_t :: enum cffi.ushort {
     legacy            = 2,
     ats               = 3,
     ats_compatibility = 4,
+    ats_fcp_v2_1      = 5,
 }
 
 /// SSLProtocol
@@ -3677,12 +3693,13 @@ AuthorizationFlag :: enum cffi.uint {
 AuthorizationFlags :: bit_set[AuthorizationFlag; cffi.uint]
 
 /// SessionAttributeBits
-SessionAttributeBits :: enum cffi.uint {
-    IsRoot           = 1,
-    HasGraphicAccess = 16,
-    HasTTY           = 32,
-    IsRemote         = 4096,
+SessionAttributeBitsFlag :: enum cffi.uint {
+    IsRoot           = 0,
+    HasGraphicAccess = 4,
+    HasTTY           = 5,
+    IsRemote         = 12,
 }
+SessionAttributeBits :: bit_set[SessionAttributeBitsFlag; cffi.uint]
 
 /// SessionCreationFlags
 SessionCreationFlag :: enum cffi.uint {
@@ -3691,13 +3708,14 @@ SessionCreationFlag :: enum cffi.uint {
 SessionCreationFlags :: bit_set[SessionCreationFlag; cffi.uint]
 
 /// SecKeychainPromptSelector
-SecKeychainPromptSelector :: enum cffi.ushort {
-    kSecKeychainPromptRequirePassphase = 1,
-    kSecKeychainPromptUnsigned       = 16,
-    kSecKeychainPromptUnsignedAct    = 32,
-    kSecKeychainPromptInvalid        = 64,
-    kSecKeychainPromptInvalidAct     = 128,
+SecKeychainPromptSelectorFlag :: enum cffi.ushort {
+    kSecKeychainPromptRequirePassphase = 0,
+    kSecKeychainPromptUnsigned       = 4,
+    kSecKeychainPromptUnsignedAct    = 5,
+    kSecKeychainPromptInvalid        = 6,
+    kSecKeychainPromptInvalidAct     = 7,
 }
+SecKeychainPromptSelector :: bit_set[SecKeychainPromptSelectorFlag; cffi.ushort]
 
 /// SecItemClass
 SecItemClass :: enum cffi.uint {
@@ -3743,15 +3761,15 @@ SecItemAttr :: enum cffi.uint {
 }
 
 /// SecTrustSettingsKeyUsage
-SecTrustSettingsKeyUsage :: enum cffi.uint {
-    kSecTrustSettingsKeyUseSignature = 1,
-    kSecTrustSettingsKeyUseEnDecryptData = 2,
-    kSecTrustSettingsKeyUseEnDecryptKey = 4,
-    kSecTrustSettingsKeyUseSignCert  = 8,
-    kSecTrustSettingsKeyUseSignRevocation = 16,
-    kSecTrustSettingsKeyUseKeyExchange = 32,
-    kSecTrustSettingsKeyUseAny       = 4294967295,
+SecTrustSettingsKeyUsageFlag :: enum cffi.uint {
+    kSecTrustSettingsKeyUseSignature = 0,
+    kSecTrustSettingsKeyUseEnDecryptData = 1,
+    kSecTrustSettingsKeyUseEnDecryptKey = 2,
+    kSecTrustSettingsKeyUseSignCert  = 3,
+    kSecTrustSettingsKeyUseSignRevocation = 4,
+    kSecTrustSettingsKeyUseKeyExchange = 5,
 }
+SecTrustSettingsKeyUsage :: bit_set[SecTrustSettingsKeyUsageFlag; cffi.uint]
 
 /// SecTrustSettingsResult
 SecTrustSettingsResult :: enum cffi.uint {
@@ -3780,6 +3798,10 @@ SecCSFlag :: enum cffi.uint {
     kSecCSApplyEmbeddedPolicy        = 25,
     kSecCSStripDisallowedXattrs      = 24,
     kSecCSMatchGuestRequirementInKernel = 23,
+    kSecCSUseClassicalSignature      = 22,
+    kSecCSUsePostQuantumSignature    = 21,
+    kSecCSUseSignature1              = 22,
+    kSecCSUseSignature2              = 21,
 }
 SecCSFlags :: bit_set[SecCSFlag; cffi.uint]
 
@@ -3799,13 +3821,14 @@ SecCodeSignatureFlag :: enum cffi.uint {
 SecCodeSignatureFlags :: bit_set[SecCodeSignatureFlag; cffi.uint]
 
 /// SecCodeStatus
-SecCodeStatus :: enum cffi.uint {
-    kSecCodeStatusValid    = 1,
-    kSecCodeStatusHard     = 256,
-    kSecCodeStatusKill     = 512,
-    kSecCodeStatusDebugged = 268435456,
-    kSecCodeStatusPlatform = 67108864,
+SecCodeStatusFlag :: enum cffi.uint {
+    kSecCodeStatusValid    = 0,
+    kSecCodeStatusHard     = 8,
+    kSecCodeStatusKill     = 9,
+    kSecCodeStatusDebugged = 28,
+    kSecCodeStatusPlatform = 26,
 }
+SecCodeStatus :: bit_set[SecCodeStatusFlag; cffi.uint]
 
 /// SecRequirementType
 SecRequirementType :: enum cffi.uint {

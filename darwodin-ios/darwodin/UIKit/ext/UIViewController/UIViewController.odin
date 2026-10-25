@@ -55,6 +55,8 @@ VTable :: struct {
     showViewController: proc(self: ^UI.ViewController, vc: ^UI.ViewController, sender: id),
     showDetailViewController: proc(self: ^UI.ViewController, vc: ^UI.ViewController, sender: id),
     setNeedsUserInterfaceAppearanceUpdate: proc(self: ^UI.ViewController),
+    registerSceneAccessory: proc(self: ^UI.ViewController, accessory: ^UI.SceneAccessory) -> ^UI.SceneAccessoryRegistration,
+    unregisterSceneAccessory: proc(self: ^UI.ViewController, registration: ^UI.SceneAccessoryRegistration),
     view: proc(self: ^UI.ViewController) -> ^UI.View,
     setView: proc(self: ^UI.ViewController, view: ^UI.View),
     viewIfLoaded: proc(self: ^UI.ViewController) -> ^UI.View,
@@ -616,6 +618,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsUserInterfaceAppearanceUpdate"), auto_cast setNeedsUserInterfaceAppearanceUpdate, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.registerSceneAccessory != nil {
+        registerSceneAccessory :: proc "c" (self: ^UI.ViewController, _: SEL, accessory: ^UI.SceneAccessory) -> ^UI.SceneAccessoryRegistration {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).registerSceneAccessory(self, accessory)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("registerSceneAccessory:"), auto_cast registerSceneAccessory, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.unregisterSceneAccessory != nil {
+        unregisterSceneAccessory :: proc "c" (self: ^UI.ViewController, _: SEL, registration: ^UI.SceneAccessoryRegistration) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).unregisterSceneAccessory(self, registration)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("unregisterSceneAccessory:"), auto_cast unregisterSceneAccessory, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.view != nil {
         view :: proc "c" (self: ^UI.ViewController, _: SEL) -> ^UI.View {

@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -60,8 +62,14 @@ foreign lib {
     @(objc_type=AudioPlayerNode, objc_selector="play", objc_name="play")
     AudioPlayerNode_play :: proc(self: ^AudioPlayerNode) ---
 
-    @(objc_type=AudioPlayerNode, objc_selector="playAtTime:", objc_name="playAtTime")
-    AudioPlayerNode_playAtTime :: proc(self: ^AudioPlayerNode, _when: ^AudioTime) ---
+    @(objc_type=AudioPlayerNode, objc_selector="playAndReturnError:", objc_name="playAndReturnError")
+    AudioPlayerNode_playAndReturnError :: proc(self: ^AudioPlayerNode, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=AudioPlayerNode, objc_selector="playAtTime:", objc_name="playAtTime_")
+    AudioPlayerNode_playAtTime_ :: proc(self: ^AudioPlayerNode, _when: ^AudioTime) ---
+
+    @(objc_type=AudioPlayerNode, objc_selector="playAtTime:error:", objc_name="playAtTime_error")
+    AudioPlayerNode_playAtTime_error :: proc(self: ^AudioPlayerNode, _when: ^AudioTime, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioPlayerNode, objc_selector="pause", objc_name="pause")
     AudioPlayerNode_pause :: proc(self: ^AudioPlayerNode) ---
@@ -94,5 +102,11 @@ AudioPlayerNode_scheduleFile :: proc {
 AudioPlayerNode_scheduleSegment :: proc {
     AudioPlayerNode_scheduleSegment_startingFrame_frameCount_atTime_completionHandler,
     AudioPlayerNode_scheduleSegment_startingFrame_frameCount_atTime_completionCallbackType_completionHandler,
+}
+
+@(objc_type=AudioPlayerNode, objc_name="playAtTime")
+AudioPlayerNode_playAtTime :: proc {
+    AudioPlayerNode_playAtTime_,
+    AudioPlayerNode_playAtTime_error,
 }
 

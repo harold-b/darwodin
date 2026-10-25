@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -26,4 +28,7 @@ foreign lib {
 
     @(objc_type=AudioSinkNode, objc_selector="initWithReceiverBlock:", objc_name="initWithReceiverBlock")
     AudioSinkNode_initWithReceiverBlock :: proc(self: ^AudioSinkNode, block: AudioSinkNodeReceiverBlock) -> instancetype ---
+
+    @(objc_type=AudioSinkNode, objc_selector="initWithRealtimeSafeReceiverBlock:", objc_name="initWithRealtimeSafeReceiverBlock")
+    AudioSinkNode_initWithRealtimeSafeReceiverBlock :: proc(self: ^AudioSinkNode, block: AudioSinkNodeReceiverBlockRealtimeSafe) -> instancetype ---
 }

@@ -57,6 +57,7 @@ VTable :: struct {
     isProtectedDataAvailable: proc(self: ^UI.Application) -> bool,
     userInterfaceLayoutDirection: proc(self: ^UI.Application) -> UI.UserInterfaceLayoutDirection,
     preferredContentSizeCategory: proc(self: ^UI.Application) -> ^NS.String,
+    systemPrefersReducedResourceUsage: proc(self: ^UI.Application) -> bool,
     connectedScenes: proc(self: ^UI.Application) -> ^NS.Set,
     openSessions: proc(self: ^UI.Application) -> ^NS.Set,
     supportsMultipleScenes: proc(self: ^UI.Application) -> bool,
@@ -515,6 +516,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredContentSizeCategory"), auto_cast preferredContentSizeCategory, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.systemPrefersReducedResourceUsage != nil {
+        systemPrefersReducedResourceUsage :: proc "c" (self: ^UI.Application, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).systemPrefersReducedResourceUsage(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("systemPrefersReducedResourceUsage"), auto_cast systemPrefersReducedResourceUsage, "B@:") do panic("Failed to register objC method.")
     }
     if vt.connectedScenes != nil {
         connectedScenes :: proc "c" (self: ^UI.Application, _: SEL) -> ^NS.Set {

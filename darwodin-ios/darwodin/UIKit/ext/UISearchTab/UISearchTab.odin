@@ -17,6 +17,7 @@ import "../UITab"
 VTable :: struct {
     super: UITab.VTable,
     initWithViewControllerProvider: proc(self: ^UI.SearchTab, viewControllerProvider: ^Objc_Block(proc "c" ( _0: ^UI.Tab ) -> ^UI.ViewController)) -> instancetype,
+    identifier: proc() -> ^NS.String,
     automaticallyActivatesSearch: proc(self: ^UI.SearchTab) -> bool,
     setAutomaticallyActivatesSearch: proc(self: ^UI.SearchTab, automaticallyActivatesSearch: bool),
 }
@@ -37,6 +38,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithViewControllerProvider:"), auto_cast initWithViewControllerProvider, "@@:?") do panic("Failed to register objC method.")
+    }
+    if vt.identifier != nil {
+        identifier :: proc "c" (self: Class, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).identifier()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@#:") do panic("Failed to register objC method.")
     }
     if vt.automaticallyActivatesSearch != nil {
         automaticallyActivatesSearch :: proc "c" (self: ^UI.SearchTab, _: SEL) -> bool {

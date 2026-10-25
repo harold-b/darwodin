@@ -22,6 +22,9 @@ foreign lib {
 	@(objc_type=TemporalDenoisedScalerBase, objc_selector="motionTextureUsage", objc_name="motionTextureUsage")
 	TemporalDenoisedScalerBase_motionTextureUsage :: proc(self: ^TemporalDenoisedScalerBase) -> MTL.TextureUsage ---
 
+	@(objc_type=TemporalDenoisedScalerBase, objc_selector="reactiveMaskTextureUsage", objc_name="reactiveMaskTextureUsage")
+	TemporalDenoisedScalerBase_reactiveMaskTextureUsage :: proc(self: ^TemporalDenoisedScalerBase) -> MTL.TextureUsage ---
+
 	@(objc_type=TemporalDenoisedScalerBase, objc_selector="reactiveTextureUsage", objc_name="reactiveTextureUsage")
 	TemporalDenoisedScalerBase_reactiveTextureUsage :: proc(self: ^TemporalDenoisedScalerBase) -> MTL.TextureUsage ---
 

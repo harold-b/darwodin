@@ -235,7 +235,8 @@ VTable :: struct {
     pageHeader: proc(self: ^NS.View) -> ^NS.AttributedString,
     pageFooter: proc(self: ^NS.View) -> ^NS.AttributedString,
     printJobTitle: proc(self: ^NS.View) -> ^NS.String,
-    beginDraggingSessionWithItems: proc(self: ^NS.View, items: ^NS.Array, event: ^NS.Event, source: ^NS.DraggingSource) -> ^NS.DraggingSession,
+    beginDraggingSessionWithItems_gesture_source: proc(self: ^NS.View, items: ^NS.Array, gesture: ^NS.GestureRecognizer, source: ^NS.DraggingSource) -> ^NS.DraggingSession,
+    beginDraggingSessionWithItems_event_source: proc(self: ^NS.View, items: ^NS.Array, event: ^NS.Event, source: ^NS.DraggingSource) -> ^NS.DraggingSession,
     registerForDraggedTypes: proc(self: ^NS.View, newTypes: ^NS.Array),
     unregisterDraggedTypes: proc(self: ^NS.View),
     registeredDraggedTypes: proc(self: ^NS.View) -> ^NS.Array,
@@ -249,6 +250,8 @@ VTable :: struct {
     removeGestureRecognizer: proc(self: ^NS.View, gestureRecognizer: ^NS.GestureRecognizer),
     gestureRecognizers: proc(self: ^NS.View) -> ^NS.Array,
     setGestureRecognizers: proc(self: ^NS.View, gestureRecognizers: ^NS.Array),
+    exclusiveGestureBehavior: proc(self: ^NS.View) -> NS.ViewExclusiveGestureBehavior,
+    setExclusiveGestureBehavior: proc(self: ^NS.View, exclusiveGestureBehavior: NS.ViewExclusiveGestureBehavior),
     allowedTouchTypes: proc(self: ^NS.View) -> NS.TouchTypeMask,
     setAllowedTouchTypes: proc(self: ^NS.View, allowedTouchTypes: NS.TouchTypeMask),
     safeAreaInsets: proc(self: ^NS.View) -> NS.EdgeInsets,
@@ -257,6 +260,10 @@ VTable :: struct {
     safeAreaLayoutGuide: proc(self: ^NS.View) -> ^NS.LayoutGuide,
     safeAreaRect: proc(self: ^NS.View) -> NS.Rect,
     layoutMarginsGuide: proc(self: ^NS.View) -> ^NS.LayoutGuide,
+    viewDidChangeEffectiveCornerRadii: proc(self: ^NS.View),
+    invalidateCornerConfiguration: proc(self: ^NS.View),
+    cornerConfiguration: proc(self: ^NS.View) -> ^NS.ViewCornerConfiguration,
+    effectiveCornerRadii: proc(self: ^NS.View) -> ^NS.ViewCornerRadii,
     prefersCompactControlSizeMetrics: proc(self: ^NS.View) -> bool,
     setPrefersCompactControlSizeMetrics: proc(self: ^NS.View, prefersCompactControlSizeMetrics: bool),
     addTrackingArea: proc(self: ^NS.View, trackingArea: ^NS.TrackingArea),
@@ -342,6 +349,8 @@ VTable :: struct {
     layoutGuideForLayoutRegion: proc(self: ^NS.View, layoutRegion: ^NS.ViewLayoutRegion) -> ^NS.LayoutGuide,
     edgeInsetsForLayoutRegion: proc(self: ^NS.View, layoutRegion: ^NS.ViewLayoutRegion) -> NS.EdgeInsets,
     rectForLayoutRegion: proc(self: ^NS.View, layoutRegion: ^NS.ViewLayoutRegion) -> NS.Rect,
+    textSelectionManager: proc(self: ^NS.View) -> ^NS.TextSelectionManager,
+    setTextSelectionManager: proc(self: ^NS.View, textSelectionManager: ^NS.TextSelectionManager),
     rulerView_shouldMoveMarker: proc(self: ^NS.View, ruler: ^NS.RulerView, marker: ^NS.RulerMarker) -> bool,
     rulerView_willMoveMarker_toLocation: proc(self: ^NS.View, ruler: ^NS.RulerView, marker: ^NS.RulerMarker, location: CG.Float) -> CG.Float,
     rulerView_didMoveMarker: proc(self: ^NS.View, ruler: ^NS.RulerView, marker: ^NS.RulerMarker),
@@ -2529,15 +2538,25 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("printJobTitle"), auto_cast printJobTitle, "@@:") do panic("Failed to register objC method.")
     }
-    if vt.beginDraggingSessionWithItems != nil {
-        beginDraggingSessionWithItems :: proc "c" (self: ^NS.View, _: SEL, items: ^NS.Array, event: ^NS.Event, source: ^NS.DraggingSource) -> ^NS.DraggingSession {
+    if vt.beginDraggingSessionWithItems_gesture_source != nil {
+        beginDraggingSessionWithItems_gesture_source :: proc "c" (self: ^NS.View, _: SEL, items: ^NS.Array, gesture: ^NS.GestureRecognizer, source: ^NS.DraggingSource) -> ^NS.DraggingSession {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).beginDraggingSessionWithItems(self, items, event, source)
+            return (cast(^VTable)vt_ctx.super_vt).beginDraggingSessionWithItems_gesture_source(self, items, gesture, source)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("beginDraggingSessionWithItems:event:source:"), auto_cast beginDraggingSessionWithItems, "@@:^void@@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("beginDraggingSessionWithItems:gesture:source:"), auto_cast beginDraggingSessionWithItems_gesture_source, "@@:^void@@") do panic("Failed to register objC method.")
+    }
+    if vt.beginDraggingSessionWithItems_event_source != nil {
+        beginDraggingSessionWithItems_event_source :: proc "c" (self: ^NS.View, _: SEL, items: ^NS.Array, event: ^NS.Event, source: ^NS.DraggingSource) -> ^NS.DraggingSession {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).beginDraggingSessionWithItems_event_source(self, items, event, source)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("beginDraggingSessionWithItems:event:source:"), auto_cast beginDraggingSessionWithItems_event_source, "@@:^void@@") do panic("Failed to register objC method.")
     }
     if vt.registerForDraggedTypes != nil {
         registerForDraggedTypes :: proc "c" (self: ^NS.View, _: SEL, newTypes: ^NS.Array) {
@@ -2669,6 +2688,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setGestureRecognizers:"), auto_cast setGestureRecognizers, "v@:^void") do panic("Failed to register objC method.")
     }
+    if vt.exclusiveGestureBehavior != nil {
+        exclusiveGestureBehavior :: proc "c" (self: ^NS.View, _: SEL) -> NS.ViewExclusiveGestureBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).exclusiveGestureBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("exclusiveGestureBehavior"), auto_cast exclusiveGestureBehavior, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setExclusiveGestureBehavior != nil {
+        setExclusiveGestureBehavior :: proc "c" (self: ^NS.View, _: SEL, exclusiveGestureBehavior: NS.ViewExclusiveGestureBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setExclusiveGestureBehavior(self, exclusiveGestureBehavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusiveGestureBehavior:"), auto_cast setExclusiveGestureBehavior, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.allowedTouchTypes != nil {
         allowedTouchTypes :: proc "c" (self: ^NS.View, _: SEL) -> NS.TouchTypeMask {
 
@@ -2748,6 +2787,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutMarginsGuide"), auto_cast layoutMarginsGuide, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.viewDidChangeEffectiveCornerRadii != nil {
+        viewDidChangeEffectiveCornerRadii :: proc "c" (self: ^NS.View, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).viewDidChangeEffectiveCornerRadii(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("viewDidChangeEffectiveCornerRadii"), auto_cast viewDidChangeEffectiveCornerRadii, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.invalidateCornerConfiguration != nil {
+        invalidateCornerConfiguration :: proc "c" (self: ^NS.View, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).invalidateCornerConfiguration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateCornerConfiguration"), auto_cast invalidateCornerConfiguration, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.cornerConfiguration != nil {
+        cornerConfiguration :: proc "c" (self: ^NS.View, _: SEL) -> ^NS.ViewCornerConfiguration {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).cornerConfiguration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cornerConfiguration"), auto_cast cornerConfiguration, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.effectiveCornerRadii != nil {
+        effectiveCornerRadii :: proc "c" (self: ^NS.View, _: SEL) -> ^NS.ViewCornerRadii {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).effectiveCornerRadii(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("effectiveCornerRadii"), auto_cast effectiveCornerRadii, "@@:") do panic("Failed to register objC method.")
     }
     if vt.prefersCompactControlSizeMetrics != nil {
         prefersCompactControlSizeMetrics :: proc "c" (self: ^NS.View, _: SEL) -> bool {
@@ -3598,6 +3677,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("rectForLayoutRegion:"), auto_cast rectForLayoutRegion, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@") do panic("Failed to register objC method.")
+    }
+    if vt.textSelectionManager != nil {
+        textSelectionManager :: proc "c" (self: ^NS.View, _: SEL) -> ^NS.TextSelectionManager {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).textSelectionManager(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textSelectionManager"), auto_cast textSelectionManager, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTextSelectionManager != nil {
+        setTextSelectionManager :: proc "c" (self: ^NS.View, _: SEL, textSelectionManager: ^NS.TextSelectionManager) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTextSelectionManager(self, textSelectionManager)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTextSelectionManager:"), auto_cast setTextSelectionManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.rulerView_shouldMoveMarker != nil {
         rulerView_shouldMoveMarker :: proc "c" (self: ^NS.View, _: SEL, ruler: ^NS.RulerView, marker: ^NS.RulerMarker) -> bool {

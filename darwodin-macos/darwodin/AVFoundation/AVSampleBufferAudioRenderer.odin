@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -24,6 +26,18 @@ SampleBufferAudioRenderer :: struct {
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=SampleBufferAudioRenderer, objc_selector="enqueueSampleBuffer:", objc_name="enqueueSampleBuffer")
+    SampleBufferAudioRenderer_enqueueSampleBuffer :: proc(self: ^SampleBufferAudioRenderer, sampleBuffer: CM.SampleBufferRef) ---
+
+    @(objc_type=SampleBufferAudioRenderer, objc_selector="flush", objc_name="flush")
+    SampleBufferAudioRenderer_flush :: proc(self: ^SampleBufferAudioRenderer) ---
+
+    @(objc_type=SampleBufferAudioRenderer, objc_selector="requestMediaDataWhenReadyOnQueue:usingBlock:", objc_name="requestMediaDataWhenReadyOnQueue")
+    SampleBufferAudioRenderer_requestMediaDataWhenReadyOnQueue :: proc(self: ^SampleBufferAudioRenderer, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=SampleBufferAudioRenderer, objc_selector="stopRequestingMediaData", objc_name="stopRequestingMediaData")
+    SampleBufferAudioRenderer_stopRequestingMediaData :: proc(self: ^SampleBufferAudioRenderer) ---
+
     @(objc_type=SampleBufferAudioRenderer, objc_selector="status", objc_name="status")
     SampleBufferAudioRenderer_status :: proc(self: ^SampleBufferAudioRenderer) -> QueuedSampleBufferRenderingStatus ---
 
@@ -47,6 +61,12 @@ foreign lib {
 
     @(objc_type=SampleBufferAudioRenderer, objc_selector="setAllowedAudioSpatializationFormats:", objc_name="setAllowedAudioSpatializationFormats")
     SampleBufferAudioRenderer_setAllowedAudioSpatializationFormats :: proc(self: ^SampleBufferAudioRenderer, allowedAudioSpatializationFormats: AudioSpatializationFormats) ---
+
+    @(objc_type=SampleBufferAudioRenderer, objc_selector="isReadyForMoreMediaData", objc_name="isReadyForMoreMediaData")
+    SampleBufferAudioRenderer_isReadyForMoreMediaData :: proc(self: ^SampleBufferAudioRenderer) -> bool ---
+
+    @(objc_type=SampleBufferAudioRenderer, objc_selector="hasSufficientMediaDataForReliablePlaybackStart", objc_name="hasSufficientMediaDataForReliablePlaybackStart")
+    SampleBufferAudioRenderer_hasSufficientMediaDataForReliablePlaybackStart :: proc(self: ^SampleBufferAudioRenderer) -> bool ---
 
     @(objc_type=SampleBufferAudioRenderer, objc_selector="volume", objc_name="volume")
     SampleBufferAudioRenderer_volume :: proc(self: ^SampleBufferAudioRenderer) -> cffi.float ---

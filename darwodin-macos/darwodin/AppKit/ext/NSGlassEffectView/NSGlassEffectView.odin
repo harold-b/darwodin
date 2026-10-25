@@ -27,6 +27,8 @@ VTable :: struct {
     setTintColor: proc(self: ^NS.GlassEffectView, tintColor: ^NS.Color),
     style: proc(self: ^NS.GlassEffectView) -> NS.GlassEffectViewStyle,
     setStyle: proc(self: ^NS.GlassEffectView, style: NS.GlassEffectViewStyle),
+    effectIsInteractive: proc(self: ^NS.GlassEffectView) -> bool,
+    setEffectIsInteractive: proc(self: ^NS.GlassEffectView, effectIsInteractive: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -115,6 +117,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setStyle:"), auto_cast setStyle, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.effectIsInteractive != nil {
+        effectIsInteractive :: proc "c" (self: ^NS.GlassEffectView, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).effectIsInteractive(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("effectIsInteractive"), auto_cast effectIsInteractive, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setEffectIsInteractive != nil {
+        setEffectIsInteractive :: proc "c" (self: ^NS.GlassEffectView, _: SEL, effectIsInteractive: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setEffectIsInteractive(self, effectIsInteractive)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setEffectIsInteractive:"), auto_cast setEffectIsInteractive, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

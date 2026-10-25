@@ -41,6 +41,7 @@ VTable :: struct {
     traitCollectionWithTabAccessoryEnvironment: proc(tabAccessoryEnvironment: UI.TabAccessoryEnvironment) -> ^UI.TraitCollection,
     traitCollectionWithHDRHeadroomUsageLimit: proc(hdrHeadroomUsageLimit: UI.HDRHeadroomUsageLimit) -> ^UI.TraitCollection,
     traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection: proc(resolvesNaturalAlignmentWithBaseWritingDirection: bool) -> ^UI.TraitCollection,
+    traitCollectionWithSystemPrefersReducedResourceUsage: proc(systemPrefersReducedResourceUsage: bool) -> ^UI.TraitCollection,
     userInterfaceIdiom: proc(self: ^UI.TraitCollection) -> UI.UserInterfaceIdiom,
     userInterfaceStyle: proc(self: ^UI.TraitCollection) -> UI.UserInterfaceStyle,
     layoutDirection: proc(self: ^UI.TraitCollection) -> UI.TraitEnvironmentLayoutDirection,
@@ -63,6 +64,7 @@ VTable :: struct {
     splitViewControllerLayoutEnvironment: proc(self: ^UI.TraitCollection) -> UI.SplitViewControllerLayoutEnvironment,
     hdrHeadroomUsageLimit: proc(self: ^UI.TraitCollection) -> UI.HDRHeadroomUsageLimit,
     resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.TraitCollection) -> bool,
+    systemPrefersReducedResourceUsage: proc(self: ^UI.TraitCollection) -> bool,
     traitCollectionWithTraits: proc(mutations: UI.TraitMutations) -> ^UI.TraitCollection,
     traitCollectionByModifyingTraits: proc(self: ^UI.TraitCollection, mutations: UI.TraitMutations) -> ^UI.TraitCollection,
     traitCollectionWithCGFloatValue: proc(value: CG.Float, trait: ^Class) -> ^UI.TraitCollection,
@@ -341,6 +343,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:"), auto_cast traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection, "@#:B") do panic("Failed to register objC method.")
     }
+    if vt.traitCollectionWithSystemPrefersReducedResourceUsage != nil {
+        traitCollectionWithSystemPrefersReducedResourceUsage :: proc "c" (self: Class, _: SEL, systemPrefersReducedResourceUsage: bool) -> ^UI.TraitCollection {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).traitCollectionWithSystemPrefersReducedResourceUsage( systemPrefersReducedResourceUsage)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithSystemPrefersReducedResourceUsage:"), auto_cast traitCollectionWithSystemPrefersReducedResourceUsage, "@#:B") do panic("Failed to register objC method.")
+    }
     if vt.userInterfaceIdiom != nil {
         userInterfaceIdiom :: proc "c" (self: ^UI.TraitCollection, _: SEL) -> UI.UserInterfaceIdiom {
 
@@ -560,6 +572,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvesNaturalAlignmentWithBaseWritingDirection"), auto_cast resolvesNaturalAlignmentWithBaseWritingDirection, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.systemPrefersReducedResourceUsage != nil {
+        systemPrefersReducedResourceUsage :: proc "c" (self: ^UI.TraitCollection, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).systemPrefersReducedResourceUsage(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("systemPrefersReducedResourceUsage"), auto_cast systemPrefersReducedResourceUsage, "B@:") do panic("Failed to register objC method.")
     }
     if vt.traitCollectionWithTraits != nil {
         traitCollectionWithTraits :: proc "c" (self: Class, _: SEL, mutations: UI.TraitMutations) -> ^UI.TraitCollection {

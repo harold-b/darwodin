@@ -53,6 +53,8 @@ VTable :: struct {
     setAllowsAutomaticKeyEquivalentMirroring: proc(self: ^NS.MenuItem, allowsAutomaticKeyEquivalentMirroring: bool),
     image: proc(self: ^NS.MenuItem) -> ^NS.Image,
     setImage: proc(self: ^NS.MenuItem, image: ^NS.Image),
+    preferredImageVisibility: proc(self: ^NS.MenuItem) -> NS.MenuItemImageVisibility,
+    setPreferredImageVisibility: proc(self: ^NS.MenuItem, preferredImageVisibility: NS.MenuItemImageVisibility),
     state: proc(self: ^NS.MenuItem) -> NS.ControlStateValue,
     setState: proc(self: ^NS.MenuItem, state: NS.ControlStateValue),
     onStateImage: proc(self: ^NS.MenuItem) -> ^NS.Image,
@@ -437,6 +439,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.preferredImageVisibility != nil {
+        preferredImageVisibility :: proc "c" (self: ^NS.MenuItem, _: SEL) -> NS.MenuItemImageVisibility {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredImageVisibility(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredImageVisibility"), auto_cast preferredImageVisibility, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredImageVisibility != nil {
+        setPreferredImageVisibility :: proc "c" (self: ^NS.MenuItem, _: SEL, preferredImageVisibility: NS.MenuItemImageVisibility) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredImageVisibility(self, preferredImageVisibility)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredImageVisibility:"), auto_cast setPreferredImageVisibility, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.state != nil {
         state :: proc "c" (self: ^NS.MenuItem, _: SEL) -> NS.ControlStateValue {

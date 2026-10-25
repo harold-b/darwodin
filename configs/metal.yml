@@ -54,6 +54,11 @@ Odin:
       LinkLibs: [system:Metal.framework]
       Filter: .*
 
+      Imports:
+        - |
+          // Composite SDK masks that also contain reserved or unnamed bits.
+          Stages_StageAll :: transmute(Stages)cffi.ulong(9223372036854775807)
+
       # Imports:
       #   - 
 
@@ -63,6 +68,31 @@ Odin:
 
   # Symbol Transformers
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # MTLCommandEncoder.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^(?:MTLResourceUsage|MTLBarrierScope|MTLStages)$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MTLTensor.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MTLTensorUsage$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MTLTexture.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MTLTextureUsage$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MTLAccelerationStructure.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MTLAccelerationStructureUsage$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MTLIndirectCommandBuffer.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MTLIndirectCommandType$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MTLIntersectionFunctionTable.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MTLIntersectionFunctionSignature$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MTL4PipelineState.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MTL4ShaderReflection$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # MTL4PipelineDataSetSerializer.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^MTL4PipelineDataSetSerializerConfiguration$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # - Type: (Mask|Flags?|(?<!MTLResource)Options?|MTLRenderStages)$ # Transforms the enum that will generate a bit_set to not have a collision type
     - Type: (Mask|Flags?|Options?|MTLRenderStages)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:

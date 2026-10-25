@@ -52,4 +52,10 @@ foreign lib {
 
     @(objc_type=TextureViewDescriptor, objc_selector="setSwizzle:", objc_name="setSwizzle")
     TextureViewDescriptor_setSwizzle :: proc(self: ^TextureViewDescriptor, swizzle: TextureSwizzleChannels) ---
+
+    @(objc_type=TextureViewDescriptor, objc_selector="minLOD", objc_name="minLOD")
+    TextureViewDescriptor_minLOD :: proc(self: ^TextureViewDescriptor) -> cffi.float ---
+
+    @(objc_type=TextureViewDescriptor, objc_selector="setMinLOD:", objc_name="setMinLOD")
+    TextureViewDescriptor_setMinLOD :: proc(self: ^TextureViewDescriptor, minLOD: cffi.float) ---
 }

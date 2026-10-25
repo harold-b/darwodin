@@ -77,6 +77,10 @@ VTable :: struct {
     setHidden: proc(self: ^UI.BarButtonItem, hidden: bool),
     isSymbolAnimationEnabled: proc(self: ^UI.BarButtonItem) -> bool,
     setSymbolAnimationEnabled: proc(self: ^UI.BarButtonItem, symbolAnimationEnabled: bool),
+    visibilityPriority: proc(self: ^UI.BarButtonItem) -> UI.BarButtonItemVisibilityPriority,
+    setVisibilityPriority: proc(self: ^UI.BarButtonItem, visibilityPriority: UI.BarButtonItemVisibilityPriority),
+    isPaddingRemoved: proc(self: ^UI.BarButtonItem) -> bool,
+    setPaddingRemoved: proc(self: ^UI.BarButtonItem, paddingRemoved: bool),
     menuRepresentation: proc(self: ^UI.BarButtonItem) -> ^UI.MenuElement,
     setMenuRepresentation: proc(self: ^UI.BarButtonItem, menuRepresentation: ^UI.MenuElement),
     hidesSharedBackground: proc(self: ^UI.BarButtonItem) -> bool,
@@ -719,6 +723,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSymbolAnimationEnabled:"), auto_cast setSymbolAnimationEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.visibilityPriority != nil {
+        visibilityPriority :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> UI.BarButtonItemVisibilityPriority {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).visibilityPriority(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("visibilityPriority"), auto_cast visibilityPriority, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setVisibilityPriority != nil {
+        setVisibilityPriority :: proc "c" (self: ^UI.BarButtonItem, _: SEL, visibilityPriority: UI.BarButtonItemVisibilityPriority) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setVisibilityPriority(self, visibilityPriority)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setVisibilityPriority:"), auto_cast setVisibilityPriority, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.isPaddingRemoved != nil {
+        isPaddingRemoved :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isPaddingRemoved(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isPaddingRemoved"), auto_cast isPaddingRemoved, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPaddingRemoved != nil {
+        setPaddingRemoved :: proc "c" (self: ^UI.BarButtonItem, _: SEL, paddingRemoved: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPaddingRemoved(self, paddingRemoved)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPaddingRemoved:"), auto_cast setPaddingRemoved, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.menuRepresentation != nil {
         menuRepresentation :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> ^UI.MenuElement {

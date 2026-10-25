@@ -61,6 +61,11 @@ Odin:
       - Kind: RemoveUnderscorePrefix
       - Kind: UnderscoreNumbers
 
+    # Restore SDK words truncated by the generic plural type-name transforms.
+    - Type: '^CKRecordZoneCapabilities$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: apability, Target: Capability }
+
   TypeTransforms:
     - Type: ^(CK).+
       Transforms:
@@ -72,6 +77,13 @@ Odin:
         Source: s
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # CKContainer.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CKApplicationPermissions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CKRecordZone.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CKRecordZoneCapabilities$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:
         - Kind  : RemoveSuffix

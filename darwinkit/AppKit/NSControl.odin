@@ -256,6 +256,12 @@ foreign lib {
 	@(objc_type=Control, objc_selector="setCell:", objc_name="setCell")
 	Control_setCell :: proc(self: ^Control, cell: ^Cell) ---
 
+	@(objc_type=Control, objc_selector="addTarget:action:forControlEvents:", objc_name="addTarget")
+	Control_addTarget :: proc(self: ^Control, target: id, action: SEL, controlEvents: ControlEvents) ---
+
+	@(objc_type=Control, objc_selector="removeTarget:action:forControlEvents:", objc_name="removeTarget")
+	Control_removeTarget :: proc(self: ^Control, target: id, action: SEL, controlEvents: ControlEvents) ---
+
 	@(objc_type=Control, objc_selector="invalidateIntrinsicContentSizeForCell:", objc_name="invalidateIntrinsicContentSizeForCell")
 	Control_invalidateIntrinsicContentSizeForCell :: proc(self: ^Control, cell: ^Cell) ---
 }

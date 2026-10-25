@@ -1881,6 +1881,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecBadPropertySizeError                                      :: 561211770
 	kCodecIllegalOperationError                                     :: 1852797029
 	kCodecUnsupportedFormatError                                    :: 560226676
+	kCodecStateError                                                :: 561214580
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
 	kCodecPropertySupportedInputFormats                       :: 1768320291
 	kCodecPropertySupportedOutputFormats                      :: 1868983587
@@ -2000,12 +2001,12 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecBadPropertySizeError                                :: 561211770
 	kCodecIllegalOperationError                               :: 1852797029
 	kCodecUnsupportedFormatError                              :: 560226676
+	kCodecStateError                                          :: 561214580
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kUnitSubType_RemoteIO                                     :: 1919512419
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
-	kCodecStateError                                                :: 561214580
 	kCodecNotEnoughBufferSpaceError                                 :: 560100710
 	kCodecBadDataError                                              :: 1650549857
 	kCodecPropertyMinimumDelayMode                                  :: 1835296108
@@ -2018,8 +2019,8 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecUseRecommendedSampleRate                                  :: 1970434930
 	kCodecOutputPrecedence                                          :: 1869639794
 	kCodecBitRateFormat                                             :: 1633903206
+	kCodecDoesSampleRateConversion                                  :: 1819112035
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
-	kCodecStateError                                          :: 561214580
 	kCodecNotEnoughBufferSpaceError                           :: 560100710
 	kCodecBadDataError                                        :: 1650549857
 	kCodecPropertyMinimumDelayMode                            :: 1835296108
@@ -2032,12 +2033,12 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecUseRecommendedSampleRate                            :: 1970434930
 	kCodecOutputPrecedence                                    :: 1869639794
 	kCodecBitRateFormat                                       :: 1633903206
+	kCodecDoesSampleRateConversion                            :: 1819112035
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kUnitSubType_AUiPodTime                                   :: 1768977517
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
-	kCodecDoesSampleRateConversion                                  :: 1819112035
 	kCodecInputFormatsForOutputFormat                               :: 1768305775
 	kCodecOutputFormatsForInputFormat                               :: 1868969065
 	kCodecPropertyInputChannelLayout                                :: 1768123424
@@ -2051,8 +2052,9 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecOutputPrecedenceNone                                      :: 0
 	kCodecOutputPrecedenceBitRate                                   :: 1
 	kCodecOutputPrecedenceSampleRate                                :: 2
+	kUnitType_Output                                                :: 1635086197
+	kUnitType_MusicDevice                                           :: 1635085685
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
-	kCodecDoesSampleRateConversion                            :: 1819112035
 	kCodecInputFormatsForOutputFormat                         :: 1768305775
 	kCodecOutputFormatsForInputFormat                         :: 1868969065
 	kCodecPropertyInputChannelLayout                          :: 1768123424
@@ -2066,32 +2068,32 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecOutputPrecedenceNone                                :: 0
 	kCodecOutputPrecedenceBitRate                             :: 1
 	kCodecOutputPrecedenceSampleRate                          :: 2
+	kUnitType_Output                                          :: 1635086197
+	kUnitType_MusicDevice                                     :: 1635085685
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kUnitSubType_AUiPodEQ                                     :: 1768973681
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
-	kUnitType_Output                                                :: 1635086197
-	kUnitType_MusicDevice                                           :: 1635085685
 	kUnitType_MusicEffect                                           :: 1635085670
 	kUnitType_FormatConverter                                       :: 1635083875
+	kUnitType_Effect                                                :: 1635083896
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
-	kUnitType_Output                                          :: 1635086197
-	kUnitType_MusicDevice                                     :: 1635085685
 	kUnitType_MusicEffect                                     :: 1635085670
 	kUnitType_FormatConverter                                 :: 1635083875
+	kUnitType_Effect                                          :: 1635083896
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kUnitSubType_AU3DMixerEmbedded                            :: 862217581
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
-	kUnitType_Effect                                                :: 1635083896
 	kUnitType_Mixer                                                 :: 1635085688
 	kUnitType_Panner                                                :: 1635086446
 	kUnitType_Generator                                             :: 1635084142
 	kUnitType_OfflineEffect                                         :: 1635086188
 	kUnitType_MIDIProcessor                                         :: 1635085673
 	kUnitType_SpeechSynthesizer                                     :: 1635087216
+	kUnitType_HeadTrackingBinauralRenderer                          :: 1635084404
 	kUnitType_RemoteEffect                                          :: 1635086968
 	kUnitType_RemoteGenerator                                       :: 1635086951
 	kUnitType_RemoteInstrument                                      :: 1635086953
@@ -2100,13 +2102,13 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kUnitSubType_GenericOutput                                      :: 1734700658
 	kUnitSubType_VoiceProcessingIO                                  :: 1987078511
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
-	kUnitType_Effect                                          :: 1635083896
 	kUnitType_Mixer                                           :: 1635085688
 	kUnitType_Panner                                          :: 1635086446
 	kUnitType_Generator                                       :: 1635084142
 	kUnitType_OfflineEffect                                   :: 1635086188
 	kUnitType_MIDIProcessor                                   :: 1635085673
 	kUnitType_SpeechSynthesizer                               :: 1635087216
+	kUnitType_HeadTrackingBinauralRenderer                    :: 1635084404
 	kUnitType_RemoteEffect                                    :: 1635086968
 	kUnitType_RemoteGenerator                                 :: 1635086951
 	kUnitType_RemoteInstrument                                :: 1635086953
@@ -2271,6 +2273,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kUnitScope_Part                                                 :: 4
 	kUnitScope_Note                                                 :: 5
 	kUnitScope_Layer                                                :: 6
+	kUnitScope_LayerItem                                            :: 7
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
 	kUnitSubType_ScheduledSoundPlayer                         :: 1936945260
 	kUnitSubType_AudioFilePlayer                              :: 1634103404
@@ -2337,12 +2340,12 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kUnitScope_Part                                           :: 4
 	kUnitScope_Note                                           :: 5
 	kUnitScope_Layer                                          :: 6
+	kUnitScope_LayerItem                                      :: 7
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kAUVoiceIOProperty_DuckNonVoiceAudio                      :: 2102
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
-	kUnitScope_LayerItem                                            :: 7
 	kUnitProperty_ClassInfo                                         :: 0
 	kUnitProperty_MakeConnection                                    :: 1
 	kUnitProperty_SampleRate                                        :: 2
@@ -2388,7 +2391,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kUnitProperty_LastRenderSampleTime                              :: 61
 	kUnitProperty_LoadedOutOfProcess                                :: 62
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
-	kUnitScope_LayerItem                                      :: 7
 	kUnitProperty_ClassInfo                                   :: 0
 	kUnitProperty_MakeConnection                              :: 1
 	kUnitProperty_SampleRate                                  :: 2
@@ -2944,6 +2946,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kConverterPropertyMaximumInputBufferSize                        :: 2020172403
 	kConverterSampleRateConverterAlgorithm                          :: 1936876393
 	kFileAIFFType                                                   :: 1095321158
+	kFileAIFCType                                                   :: 1095321155
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
 	kConverterQuality_Max                                     :: 127
 	kConverterQuality_High                                    :: 96
@@ -2967,12 +2970,12 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kConverterPropertyMaximumInputBufferSize                  :: 2020172403
 	kConverterSampleRateConverterAlgorithm                    :: 1936876393
 	kFileAIFFType                                             :: 1095321158
+	kFileAIFCType                                             :: 1095321155
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kFormatProperty_HardwareCodecCapabilities                 :: 1752654691
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
-	kFileAIFCType                                                   :: 1095321155
 	kFileWAVEType                                                   :: 1463899717
 	kFileRF64Type                                                   :: 1380333108
 	kFileBW64Type                                                   :: 1113011764
@@ -3023,7 +3026,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyAudioDataPacketCount                               :: 1885564532
 	kFilePropertyMaximumPacketSize                                  :: 1886616165
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
-	kFileAIFCType                                             :: 1095321155
 	kFileWAVEType                                             :: 1463899717
 	kFileRF64Type                                             :: 1380333108
 	kFileBW64Type                                             :: 1113011764
@@ -3084,7 +3086,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kQueueProperty_HardwareCodecPolicy                        :: 1634820976
-	kQueueHardwareCodecPolicy_Default                         :: 0
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyChannelLayout                                      :: 1668112752
@@ -3092,7 +3093,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyChannelLayout                                :: 1668112752
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
-	kQueueHardwareCodecPolicy_UseSoftwareOnly                 :: 1
+	kQueueHardwareCodecPolicy_Default                         :: 0
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyDeferSizeUpdates                                   :: 1685289589
@@ -3100,6 +3101,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyDeferSizeUpdates                             :: 1685289589
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
+	kQueueHardwareCodecPolicy_UseSoftwareOnly                 :: 1
 	kQueueHardwareCodecPolicy_UseHardwareOnly                 :: 2
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
@@ -3550,7 +3552,8 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kDeviceTransportTypeThunderbolt                                 :: 1953002862
 	kDeviceTransportTypeContinuityCaptureWired                      :: 1667463012
 	kDeviceTransportTypeContinuityCaptureWireless                   :: 1667463020
-	kDeviceTransportTypeContinuityCapture                           :: 1667457392
+	kDeviceTransportTypeRemoteScreen                                :: 1920164722
+	kDeviceTransportTypeRemoteStreaming                             :: 1920169074
 	kDevicePropertyConfigurationApplication                         :: 1667330160
 	kDevicePropertyDeviceUID                                        :: 1969841184
 	kDevicePropertyModelUID                                         :: 1836411236
@@ -3571,6 +3574,8 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kDevicePropertyIsHidden                                         :: 1751737454
 	kDevicePropertyPreferredChannelsForStereo                       :: 1684236338
 	kDevicePropertyPreferredChannelLayout                           :: 1936879204
+	kDevicePropertyWantsControlsRestored                            :: 1919251299
+	kDevicePropertyWantsStreamFormatsRestored                       :: 1919251302
 	kClockDeviceClassID                                             :: 1633905771
 	kClockDevicePropertyDeviceUID                                   :: 1668639076
 	kClockDevicePropertyTransportType                               :: 1953653102
@@ -3706,6 +3711,9 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kDevicePropertyClockDevice                                      :: 1634755428
 	kDevicePropertyIOThreadOSWorkgroup                              :: 1869838183
 	kDevicePropertyProcessMute                                      :: 1634758765
+	kDevicePropertyVoiceActivityDetectionEnable                     :: 1983996971
+	kDevicePropertyVoiceActivityDetectionState                      :: 1983997011
+	kDevicePropertySuggestedReferenceDevice                         :: 1701802596
 	kDevicePropertyJackIsConnected                                  :: 1784767339
 	kDevicePropertyVolumeScalar                                     :: 1987013741
 	kDevicePropertyVolumeDecibels                                   :: 1987013732
@@ -3753,10 +3761,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kDevicePropertySubVolumeScalarToDecibels                        :: 1937125988
 	kDevicePropertySubVolumeDecibelsToScalar                        :: 1935946358
 	kDevicePropertySubMute                                          :: 1936553332
-	kDevicePropertyVoiceActivityDetectionEnable                     :: 1983996971
-	kDevicePropertyVoiceActivityDetectionState                      :: 1983997011
-	kDevicePropertyWantsControlsRestored                            :: 1919251299
-	kDevicePropertyWantsStreamFormatsRestored                       :: 1919251302
 	kAggregateDeviceClassID                                         :: 1633773415
 	kAggregateDevicePropertyFullSubDeviceList                       :: 1735554416
 	kAggregateDevicePropertyActiveSubDeviceList                     :: 1634169456
@@ -3814,6 +3818,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kHardwarePropertyBootChimeVolumeDecibelsToScalarTransferFunction:: 1651930214
 	kDeviceUnknown                                                  :: 0
 	kDeviceTransportTypeAutoAggregate                               :: 1718055536
+	kDeviceTransportTypeContinuityCapture                           :: 1667457392
 	kDevicePropertyVolumeDecibelsToScalarTransferFunction           :: 1986229350
 	kDevicePropertyPlayThruVolumeDecibelsToScalarTransferFunction   :: 1836479590
 	kDevicePropertyDriverShouldOwniSub                              :: 1769174370
@@ -4313,6 +4318,7 @@ TimeStampFlags_SampleHostTimeValid :: TimeStampFlags { .SampleTimeValid, .HostTi
 UnitParameterOptions_DisplayMask :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, .DisplayCubeRoot, .DisplayLogarithmic, }
 UnitParameterOptions_DisplayCubed :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, }
 UnitParameterOptions_DisplayExponential :: UnitParameterOptions { .DisplaySquareRoot, .DisplayCubeRoot, }
+FilePermissions_ReadWritePermission :: FilePermissions { .ReadPermission, .WritePermission, }
 FormatFlags_LinearPCMFormatFlagsSampleFractionShift :: FormatFlags { .AppleLosslessFormatFlag_16BitSourceData, .AppleLosslessFormatFlag_20BitSourceData, .AppleLosslessFormatFlag_32BitSourceData, }
 FormatFlags_AppleLosslessFormatFlag_24BitSourceData :: FormatFlags { .AppleLosslessFormatFlag_16BitSourceData, .AppleLosslessFormatFlag_20BitSourceData, }
 
@@ -4417,9 +4423,9 @@ ComponentFlag :: enum cffi.uint {
 ComponentFlags :: bit_set[ComponentFlag; cffi.uint]
 
 ComponentInstantiationOption :: enum cffi.uint {
-	OutOfProcess = 0,
-	InProcess    = 1,
-	edRemotely   = 31,
+	OutOfProcess   = 0,
+	InProcess      = 1,
+	LoadedRemotely = 31,
 }
 
 ComponentInstantiationOptions :: bit_set[ComponentInstantiationOption; cffi.uint]
@@ -4558,26 +4564,27 @@ AUSpatializationAlgorithm :: enum cffi.uint {
 }
 
 AUSpatialMixerSourceMode :: enum cffi.uint {
-	izeIfMono   = 0,
-	Bypass      = 1,
-	PointSource = 2,
-	AmbienceBed = 3,
+	SpatializeIfMono = 0,
+	Bypass           = 1,
+	PointSource      = 2,
+	AmbienceBed      = 3,
 }
 
 AUReverbRoomType :: enum cffi.uint {
-	SmallRoom     = 0,
-	MediumRoom    = 1,
-	LargeRoom     = 2,
-	MediumHall    = 3,
-	LargeHall     = 4,
-	Plate         = 5,
-	MediumChamber = 6,
-	LargeChamber  = 7,
-	Cathedral     = 8,
-	LargeRoom2    = 9,
-	MediumHall2   = 10,
-	MediumHall3   = 11,
-	LargeHall2    = 12,
+	SmallRoom      = 0,
+	MediumRoom     = 1,
+	LargeRoom      = 2,
+	MediumHall     = 3,
+	LargeHall      = 4,
+	Plate          = 5,
+	MediumChamber  = 6,
+	LargeChamber   = 7,
+	Cathedral      = 8,
+	LargeRoom2     = 9,
+	MediumHall2    = 10,
+	MediumHall3    = 11,
+	LargeHall2     = 12,
+	OutdoorGeneral = 24,
 }
 
 AUSpatialMixerAttenuationCurve :: enum cffi.uint {
@@ -4595,9 +4602,9 @@ AUSpatialMixerRenderingFlag :: enum cffi.uint {
 AUSpatialMixerRenderingFlags :: bit_set[AUSpatialMixerRenderingFlag; cffi.uint]
 
 AUSpatialMixerPersonalizedHRTFMode :: enum cffi.uint {
-	Off = 0,
-	On  = 1,
-	to  = 2,
+	Off  = 0,
+	On   = 1,
+	Auto = 2,
 }
 
 AUSpatialMixerOutputType :: enum cffi.uint {
@@ -4723,11 +4730,12 @@ FileFlag :: enum cffi.uint {
 
 FileFlags :: bit_set[FileFlag; cffi.uint]
 
-FilePermissions :: enum cffi.schar {
-	ReadPermission      = 1,
-	WritePermission     = 2,
-	ReadWritePermission = 3,
+FilePermissionsFlag :: enum cffi.schar {
+	ReadPermission  = 0,
+	WritePermission = 1,
 }
+
+FilePermissions :: bit_set[FilePermissionsFlag; cffi.schar]
 
 FileRegionFlag :: enum cffi.uint {
 	LoopEnable   = 0,
@@ -4815,10 +4823,12 @@ UnitEventType :: enum cffi.uint {
 	PropertyChange              = 3,
 }
 
-FFormatFlags :: enum cffi.uint {
-	Float        = 1,
-	LittleEndian = 2,
+FFormatFlagsFlag :: enum cffi.uint {
+	Float        = 0,
+	LittleEndian = 1,
 }
+
+FFormatFlags :: bit_set[FFormatFlagsFlag; cffi.uint]
 
 FRegionFlag :: enum cffi.uint {
 	LoopEnable   = 0,

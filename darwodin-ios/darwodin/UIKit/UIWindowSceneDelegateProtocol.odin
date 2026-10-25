@@ -29,6 +29,9 @@ foreign lib {
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:didUpdateEffectiveGeometry:", objc_name="windowScene_didUpdateEffectiveGeometry")
     WindowSceneDelegateProtocol_windowScene_didUpdateEffectiveGeometry :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, previousEffectiveGeometry: ^WindowSceneGeometry) ---
 
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="supportedInterfaceOrientationsForWindowScene:", objc_name="supportedInterfaceOrientationsForWindowScene")
+    WindowSceneDelegateProtocol_supportedInterfaceOrientationsForWindowScene :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene) -> InterfaceOrientationMask ---
+
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:performActionForShortcutItem:completionHandler:", objc_name="windowScene_performActionForShortcutItem_completionHandler")
     WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" ( succeeded: bool ))) ---
 

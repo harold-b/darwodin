@@ -74,6 +74,9 @@ foreign lib {
 	@(objc_type=Screen, objc_selector="CGDirectDisplayID", objc_name="CGDirectDisplayID")
 	Screen_CGDirectDisplayID :: proc(self: ^Screen) -> CG.DirectDisplayID ---
 
+	@(objc_type=Screen, objc_selector="touchCapabilities", objc_name="touchCapabilities")
+	Screen_touchCapabilities :: proc(self: ^Screen) -> ScreenTouchCapabilities ---
+
 	@(objc_type=Screen, objc_selector="maximumExtendedDynamicRangeColorComponentValue", objc_name="maximumExtendedDynamicRangeColorComponentValue")
 	Screen_maximumExtendedDynamicRangeColorComponentValue :: proc(self: ^Screen) -> CG.Float ---
 

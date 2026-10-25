@@ -23,12 +23,12 @@ VTable :: struct {
     _URLs: proc(self: ^NS.OpenPanel) -> ^NS.Array,
     resolvesAliases: proc(self: ^NS.OpenPanel) -> bool,
     setResolvesAliases: proc(self: ^NS.OpenPanel, resolvesAliases: bool),
-    canChooseDirectories: proc(self: ^NS.OpenPanel) -> bool,
-    setCanChooseDirectories: proc(self: ^NS.OpenPanel, canChooseDirectories: bool),
     allowsMultipleSelection: proc(self: ^NS.OpenPanel) -> bool,
     setAllowsMultipleSelection: proc(self: ^NS.OpenPanel, allowsMultipleSelection: bool),
     canChooseFiles: proc(self: ^NS.OpenPanel) -> bool,
     setCanChooseFiles: proc(self: ^NS.OpenPanel, canChooseFiles: bool),
+    canChooseDirectories: proc(self: ^NS.OpenPanel) -> bool,
+    setCanChooseDirectories: proc(self: ^NS.OpenPanel, canChooseDirectories: bool),
     canResolveUbiquitousConflicts: proc(self: ^NS.OpenPanel) -> bool,
     setCanResolveUbiquitousConflicts: proc(self: ^NS.OpenPanel, canResolveUbiquitousConflicts: bool),
     canDownloadUbiquitousContents: proc(self: ^NS.OpenPanel) -> bool,
@@ -91,26 +91,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setResolvesAliases:"), auto_cast setResolvesAliases, "v@:B") do panic("Failed to register objC method.")
     }
-    if vt.canChooseDirectories != nil {
-        canChooseDirectories :: proc "c" (self: ^NS.OpenPanel, _: SEL) -> bool {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).canChooseDirectories(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("canChooseDirectories"), auto_cast canChooseDirectories, "B@:") do panic("Failed to register objC method.")
-    }
-    if vt.setCanChooseDirectories != nil {
-        setCanChooseDirectories :: proc "c" (self: ^NS.OpenPanel, _: SEL, canChooseDirectories: bool) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setCanChooseDirectories(self, canChooseDirectories)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setCanChooseDirectories:"), auto_cast setCanChooseDirectories, "v@:B") do panic("Failed to register objC method.")
-    }
     if vt.allowsMultipleSelection != nil {
         allowsMultipleSelection :: proc "c" (self: ^NS.OpenPanel, _: SEL) -> bool {
 
@@ -150,6 +130,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCanChooseFiles:"), auto_cast setCanChooseFiles, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.canChooseDirectories != nil {
+        canChooseDirectories :: proc "c" (self: ^NS.OpenPanel, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).canChooseDirectories(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("canChooseDirectories"), auto_cast canChooseDirectories, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCanChooseDirectories != nil {
+        setCanChooseDirectories :: proc "c" (self: ^NS.OpenPanel, _: SEL, canChooseDirectories: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setCanChooseDirectories(self, canChooseDirectories)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCanChooseDirectories:"), auto_cast setCanChooseDirectories, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.canResolveUbiquitousConflicts != nil {
         canResolveUbiquitousConflicts :: proc "c" (self: ^NS.OpenPanel, _: SEL) -> bool {

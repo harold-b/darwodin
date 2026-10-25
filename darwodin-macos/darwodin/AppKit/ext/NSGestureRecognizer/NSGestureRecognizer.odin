@@ -46,6 +46,8 @@ VTable :: struct {
     setDelaysMagnificationEvents: proc(self: ^NS.GestureRecognizer, delaysMagnificationEvents: bool),
     delaysRotationEvents: proc(self: ^NS.GestureRecognizer) -> bool,
     setDelaysRotationEvents: proc(self: ^NS.GestureRecognizer, delaysRotationEvents: bool),
+    isCancellableByScrollGesture: proc(self: ^NS.GestureRecognizer) -> bool,
+    setCancellableByScrollGesture: proc(self: ^NS.GestureRecognizer, cancellableByScrollGesture: bool),
     name: proc(self: ^NS.GestureRecognizer) -> ^NS.String,
     setName: proc(self: ^NS.GestureRecognizer, name: ^NS.String),
     modifierFlags: proc(self: ^NS.GestureRecognizer) -> NS.EventModifierFlags,
@@ -356,6 +358,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelaysRotationEvents:"), auto_cast setDelaysRotationEvents, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isCancellableByScrollGesture != nil {
+        isCancellableByScrollGesture :: proc "c" (self: ^NS.GestureRecognizer, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isCancellableByScrollGesture(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isCancellableByScrollGesture"), auto_cast isCancellableByScrollGesture, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCancellableByScrollGesture != nil {
+        setCancellableByScrollGesture :: proc "c" (self: ^NS.GestureRecognizer, _: SEL, cancellableByScrollGesture: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setCancellableByScrollGesture(self, cancellableByScrollGesture)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCancellableByScrollGesture:"), auto_cast setCancellableByScrollGesture, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.name != nil {
         name :: proc "c" (self: ^NS.GestureRecognizer, _: SEL) -> ^NS.String {

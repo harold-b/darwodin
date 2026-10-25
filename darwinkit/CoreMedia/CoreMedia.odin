@@ -344,6 +344,9 @@ foreign lib {
 	@(link_name="kCMFormatDescriptionLogTransferFunction_AppleLog")
 	kFormatDescriptionLogTransferFunction_AppleLog: CF.StringRef
 
+	@(link_name="kCMFormatDescriptionLogTransferFunction_AppleLog2")
+	kFormatDescriptionLogTransferFunction_AppleLog2: CF.StringRef
+
 	@(link_name="kCMFormatDescriptionExtension_HeroEye")
 	kFormatDescriptionExtension_HeroEye: CF.StringRef
 
@@ -575,6 +578,9 @@ foreign lib {
 	@(link_name="kCMMetadataFormatDescriptionKey_SetupData")
 	kMetadataFormatDescriptionKey_SetupData: CF.StringRef
 
+	@(link_name="kCMMetadataFormatDescriptionKey_HumanReadableString")
+	kMetadataFormatDescriptionKey_HumanReadableString: CF.StringRef
+
 	@(link_name="kCMMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag")
 	kMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag: CF.StringRef
 
@@ -593,29 +599,8 @@ foreign lib {
 	@(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData")
 	kMetadataFormatDescriptionMetadataSpecificationKey_SetupData: CF.StringRef
 
-	@(link_name="kCMImageDescriptionFlavor_QuickTimeMovie")
-	kImageDescriptionFlavor_QuickTimeMovie: ImageDescriptionFlavor
-
-	@(link_name="kCMImageDescriptionFlavor_ISOFamily")
-	kImageDescriptionFlavor_ISOFamily: ImageDescriptionFlavor
-
-	@(link_name="kCMImageDescriptionFlavor_3GPFamily")
-	kImageDescriptionFlavor_3GPFamily: ImageDescriptionFlavor
-
-	@(link_name="kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions")
-	kImageDescriptionFlavor_ISOFamilyWithAppleExtensions: ImageDescriptionFlavor
-
-	@(link_name="kCMSoundDescriptionFlavor_QuickTimeMovie")
-	kSoundDescriptionFlavor_QuickTimeMovie: SoundDescriptionFlavor
-
-	@(link_name="kCMSoundDescriptionFlavor_QuickTimeMovieV2")
-	kSoundDescriptionFlavor_QuickTimeMovieV2: SoundDescriptionFlavor
-
-	@(link_name="kCMSoundDescriptionFlavor_ISOFamily")
-	kSoundDescriptionFlavor_ISOFamily: SoundDescriptionFlavor
-
-	@(link_name="kCMSoundDescriptionFlavor_3GPFamily")
-	kSoundDescriptionFlavor_3GPFamily: SoundDescriptionFlavor
+	@(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_HumanReadableString")
+	kMetadataFormatDescriptionMetadataSpecificationKey_HumanReadableString: CF.StringRef
 
 	@(link_name="kCMTimingInfoInvalid")
 	kTimingInfoInvalid: SampleTimingInfo
@@ -878,6 +863,30 @@ foreign lib {
 	@(link_name="kCMTagCollectionTagsArrayKey")
 	kTagCollectionTagsArrayKey: CF.StringRef
 
+	@(link_name="kCMImageDescriptionFlavor_QuickTimeMovie")
+	kImageDescriptionFlavor_QuickTimeMovie: ImageDescriptionFlavor
+
+	@(link_name="kCMImageDescriptionFlavor_ISOFamily")
+	kImageDescriptionFlavor_ISOFamily: ImageDescriptionFlavor
+
+	@(link_name="kCMImageDescriptionFlavor_3GPFamily")
+	kImageDescriptionFlavor_3GPFamily: ImageDescriptionFlavor
+
+	@(link_name="kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions")
+	kImageDescriptionFlavor_ISOFamilyWithAppleExtensions: ImageDescriptionFlavor
+
+	@(link_name="kCMSoundDescriptionFlavor_QuickTimeMovie")
+	kSoundDescriptionFlavor_QuickTimeMovie: SoundDescriptionFlavor
+
+	@(link_name="kCMSoundDescriptionFlavor_QuickTimeMovieV2")
+	kSoundDescriptionFlavor_QuickTimeMovieV2: SoundDescriptionFlavor
+
+	@(link_name="kCMSoundDescriptionFlavor_ISOFamily")
+	kSoundDescriptionFlavor_ISOFamily: SoundDescriptionFlavor
+
+	@(link_name="kCMSoundDescriptionFlavor_3GPFamily")
+	kSoundDescriptionFlavor_3GPFamily: SoundDescriptionFlavor
+
 	@(link_name="kCMMemoryPoolOption_AgeOutPeriod")
 	kMemoryPoolOption_AgeOutPeriod: CF.StringRef
 
@@ -1073,6 +1082,9 @@ foreign lib {
 	@(link_name="kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia")
 	kMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: CF.StringRef
 
+	@(link_name="kCMMetadataIdentifier_ITUT_T35MetadataSMPTE2094_50")
+	kMetadataIdentifier_ITUT_T35MetadataSMPTE2094_50: CF.StringRef
+
 	@(link_name="kCMMetadataBaseDataType_RawData")
 	kMetadataBaseDataType_RawData: CF.StringRef
 
@@ -1081,6 +1093,12 @@ foreign lib {
 
 	@(link_name="kCMMetadataBaseDataType_UTF16")
 	kMetadataBaseDataType_UTF16: CF.StringRef
+
+	@(link_name="kCMMetadataBaseDataType_MacRoman")
+	kMetadataBaseDataType_MacRoman: CF.StringRef
+
+	@(link_name="kCMMetadataBaseDataType_ISOLatin1")
+	kMetadataBaseDataType_ISOLatin1: CF.StringRef
 
 	@(link_name="kCMMetadataBaseDataType_GIF")
 	kMetadataBaseDataType_GIF: CF.StringRef
@@ -1165,6 +1183,9 @@ foreign lib {
 
 	@(link_name="kCMMetadataDataType_QuickTimeMetadataMilliLux")
 	kMetadataDataType_QuickTimeMetadataMilliLux: CF.StringRef
+
+	@(link_name="kCMMetadataDataType_QuickTimeMetadataSMPTE2094_50")
+	kMetadataDataType_QuickTimeMetadataSMPTE2094_50: CF.StringRef
 
 	@(link_name="CMTimeMake")
 	TimeMake :: proc(value: cffi.int64_t, timescale: cffi.int32_t) -> Time ---
@@ -1285,6 +1306,75 @@ foreign lib {
 
 	@(link_name="CMTimeMappingShow")
 	TimeMappingShow :: proc(mapping: TimeMapping) ---
+
+	@(link_name="CMSetAttachment")
+	SetAttachment :: proc(target: AttachmentBearerRef, key: CF.StringRef, value: CF.TypeRef, attachmentMode: AttachmentMode) ---
+
+	@(link_name="CMGetAttachment")
+	GetAttachment :: proc(target: AttachmentBearerRef, key: CF.StringRef, attachmentModeOut: ^AttachmentMode) -> CF.TypeRef ---
+
+	@(link_name="CMRemoveAttachment")
+	RemoveAttachment :: proc(target: AttachmentBearerRef, key: CF.StringRef) ---
+
+	@(link_name="CMRemoveAllAttachments")
+	RemoveAllAttachments :: proc(target: AttachmentBearerRef) ---
+
+	@(link_name="CMCopyDictionaryOfAttachments")
+	CopyDictionaryOfAttachments :: proc(allocator: CF.AllocatorRef, target: AttachmentBearerRef, attachmentMode: AttachmentMode) -> CF.DictionaryRef ---
+
+	@(link_name="CMSetAttachments")
+	SetAttachments :: proc(target: AttachmentBearerRef, theAttachments: CF.DictionaryRef, attachmentMode: AttachmentMode) ---
+
+	@(link_name="CMPropagateAttachments")
+	PropagateAttachments :: proc(source: AttachmentBearerRef, destination: AttachmentBearerRef) ---
+
+	@(link_name="CMBlockBufferCreateEmpty")
+	BlockBufferCreateEmpty :: proc(structureAllocator: CF.AllocatorRef, subBlockCapacity: cffi.uint32_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferCreateWithMemoryBlock")
+	BlockBufferCreateWithMemoryBlock :: proc(structureAllocator: CF.AllocatorRef, memoryBlock: rawptr, blockLength: cffi.size_t, blockAllocator: CF.AllocatorRef, customBlockSource: ^BlockBufferCustomBlockSource, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferCreateWithBufferReference")
+	BlockBufferCreateWithBufferReference :: proc(structureAllocator: CF.AllocatorRef, bufferReference: BlockBufferRef, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferCreateContiguous")
+	BlockBufferCreateContiguous :: proc(structureAllocator: CF.AllocatorRef, sourceBuffer: BlockBufferRef, blockAllocator: CF.AllocatorRef, customBlockSource: ^BlockBufferCustomBlockSource, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferGetTypeID")
+	BlockBufferGetTypeID :: proc() -> CF.TypeID ---
+
+	@(link_name="CMBlockBufferAppendMemoryBlock")
+	BlockBufferAppendMemoryBlock :: proc(theBuffer: BlockBufferRef, memoryBlock: rawptr, blockLength: cffi.size_t, blockAllocator: CF.AllocatorRef, customBlockSource: ^BlockBufferCustomBlockSource, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferAppendBufferReference")
+	BlockBufferAppendBufferReference :: proc(theBuffer: BlockBufferRef, targetBBuf: BlockBufferRef, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferAssureBlockMemory")
+	BlockBufferAssureBlockMemory :: proc(theBuffer: BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferAccessDataBytes")
+	BlockBufferAccessDataBytes :: proc(theBuffer: BlockBufferRef, offset: cffi.size_t, length: cffi.size_t, temporaryBlock: rawptr, returnedPointerOut: ^cstring) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferCopyDataBytes")
+	BlockBufferCopyDataBytes :: proc(theSourceBuffer: BlockBufferRef, offsetToData: cffi.size_t, dataLength: cffi.size_t, destination: rawptr) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferReplaceDataBytes")
+	BlockBufferReplaceDataBytes :: proc(sourceBytes: rawptr, destinationBuffer: BlockBufferRef, offsetIntoDestination: cffi.size_t, dataLength: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferFillDataBytes")
+	BlockBufferFillDataBytes :: proc(fillByte: cffi.char, destinationBuffer: BlockBufferRef, offsetIntoDestination: cffi.size_t, dataLength: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferGetDataPointer")
+	BlockBufferGetDataPointer :: proc(theBuffer: BlockBufferRef, offset: cffi.size_t, lengthAtOffsetOut: ^cffi.size_t, totalLengthOut: ^cffi.size_t, dataPointerOut: ^cstring) -> CF.OSStatus ---
+
+	@(link_name="CMBlockBufferGetDataLength")
+	BlockBufferGetDataLength :: proc(theBuffer: BlockBufferRef) -> cffi.size_t ---
+
+	@(link_name="CMBlockBufferIsRangeContiguous")
+	BlockBufferIsRangeContiguous :: proc(theBuffer: BlockBufferRef, offset: cffi.size_t, length: cffi.size_t) -> CF.Boolean ---
+
+	@(link_name="CMBlockBufferIsEmpty")
+	BlockBufferIsEmpty :: proc(theBuffer: BlockBufferRef) -> CF.Boolean ---
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
 		@(link_name="CMSDecoderGetTypeID")
@@ -1548,270 +1638,6 @@ foreign lib {
 
 	@(link_name="CMMetadataFormatDescriptionGetIdentifiers")
 	MetadataFormatDescriptionGetIdentifiers :: proc(desc: MetadataFormatDescriptionRef) -> CF.ArrayRef ---
-
-	@(link_name="CMSetAttachment")
-	SetAttachment :: proc(target: AttachmentBearerRef, key: CF.StringRef, value: CF.TypeRef, attachmentMode: AttachmentMode) ---
-
-	@(link_name="CMGetAttachment")
-	GetAttachment :: proc(target: AttachmentBearerRef, key: CF.StringRef, attachmentModeOut: ^AttachmentMode) -> CF.TypeRef ---
-
-	@(link_name="CMRemoveAttachment")
-	RemoveAttachment :: proc(target: AttachmentBearerRef, key: CF.StringRef) ---
-
-	@(link_name="CMRemoveAllAttachments")
-	RemoveAllAttachments :: proc(target: AttachmentBearerRef) ---
-
-	@(link_name="CMCopyDictionaryOfAttachments")
-	CopyDictionaryOfAttachments :: proc(allocator: CF.AllocatorRef, target: AttachmentBearerRef, attachmentMode: AttachmentMode) -> CF.DictionaryRef ---
-
-	@(link_name="CMSetAttachments")
-	SetAttachments :: proc(target: AttachmentBearerRef, theAttachments: CF.DictionaryRef, attachmentMode: AttachmentMode) ---
-
-	@(link_name="CMPropagateAttachments")
-	PropagateAttachments :: proc(source: AttachmentBearerRef, destination: AttachmentBearerRef) ---
-
-	@(link_name="CMBlockBufferCreateEmpty")
-	BlockBufferCreateEmpty :: proc(structureAllocator: CF.AllocatorRef, subBlockCapacity: cffi.uint32_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferCreateWithMemoryBlock")
-	BlockBufferCreateWithMemoryBlock :: proc(structureAllocator: CF.AllocatorRef, memoryBlock: rawptr, blockLength: cffi.size_t, blockAllocator: CF.AllocatorRef, customBlockSource: ^BlockBufferCustomBlockSource, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferCreateWithBufferReference")
-	BlockBufferCreateWithBufferReference :: proc(structureAllocator: CF.AllocatorRef, bufferReference: BlockBufferRef, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferCreateContiguous")
-	BlockBufferCreateContiguous :: proc(structureAllocator: CF.AllocatorRef, sourceBuffer: BlockBufferRef, blockAllocator: CF.AllocatorRef, customBlockSource: ^BlockBufferCustomBlockSource, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferGetTypeID")
-	BlockBufferGetTypeID :: proc() -> CF.TypeID ---
-
-	@(link_name="CMBlockBufferAppendMemoryBlock")
-	BlockBufferAppendMemoryBlock :: proc(theBuffer: BlockBufferRef, memoryBlock: rawptr, blockLength: cffi.size_t, blockAllocator: CF.AllocatorRef, customBlockSource: ^BlockBufferCustomBlockSource, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferAppendBufferReference")
-	BlockBufferAppendBufferReference :: proc(theBuffer: BlockBufferRef, targetBBuf: BlockBufferRef, offsetToData: cffi.size_t, dataLength: cffi.size_t, flags: BlockBufferFlags) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferAssureBlockMemory")
-	BlockBufferAssureBlockMemory :: proc(theBuffer: BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferAccessDataBytes")
-	BlockBufferAccessDataBytes :: proc(theBuffer: BlockBufferRef, offset: cffi.size_t, length: cffi.size_t, temporaryBlock: rawptr, returnedPointerOut: ^cstring) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferCopyDataBytes")
-	BlockBufferCopyDataBytes :: proc(theSourceBuffer: BlockBufferRef, offsetToData: cffi.size_t, dataLength: cffi.size_t, destination: rawptr) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferReplaceDataBytes")
-	BlockBufferReplaceDataBytes :: proc(sourceBytes: rawptr, destinationBuffer: BlockBufferRef, offsetIntoDestination: cffi.size_t, dataLength: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferFillDataBytes")
-	BlockBufferFillDataBytes :: proc(fillByte: cffi.char, destinationBuffer: BlockBufferRef, offsetIntoDestination: cffi.size_t, dataLength: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferGetDataPointer")
-	BlockBufferGetDataPointer :: proc(theBuffer: BlockBufferRef, offset: cffi.size_t, lengthAtOffsetOut: ^cffi.size_t, totalLengthOut: ^cffi.size_t, dataPointerOut: ^cstring) -> CF.OSStatus ---
-
-	@(link_name="CMBlockBufferGetDataLength")
-	BlockBufferGetDataLength :: proc(theBuffer: BlockBufferRef) -> cffi.size_t ---
-
-	@(link_name="CMBlockBufferIsRangeContiguous")
-	BlockBufferIsRangeContiguous :: proc(theBuffer: BlockBufferRef, offset: cffi.size_t, length: cffi.size_t) -> CF.Boolean ---
-
-	@(link_name="CMBlockBufferIsEmpty")
-	BlockBufferIsEmpty :: proc(theBuffer: BlockBufferRef) -> CF.Boolean ---
-
-	@(link_name="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData")
-	VideoFormatDescriptionCreateFromBigEndianImageDescriptionData :: proc(allocator: CF.AllocatorRef, imageDescriptionData: ^cffi.uint8_t, size: cffi.size_t, stringEncoding: CF.StringEncoding, flavor: ImageDescriptionFlavor, formatDescriptionOut: ^VideoFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer")
-	VideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, imageDescriptionBlockBuffer: BlockBufferRef, stringEncoding: CF.StringEncoding, flavor: ImageDescriptionFlavor, formatDescriptionOut: ^VideoFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer")
-	VideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, videoFormatDescription: VideoFormatDescriptionRef, stringEncoding: CF.StringEncoding, flavor: ImageDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMSwapBigEndianImageDescriptionToHost")
-	SwapBigEndianImageDescriptionToHost :: proc(imageDescriptionData: ^cffi.uint8_t, imageDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMSwapHostEndianImageDescriptionToBig")
-	SwapHostEndianImageDescriptionToBig :: proc(imageDescriptionData: ^cffi.uint8_t, imageDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData")
-	AudioFormatDescriptionCreateFromBigEndianSoundDescriptionData :: proc(allocator: CF.AllocatorRef, soundDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: SoundDescriptionFlavor, formatDescriptionOut: ^AudioFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer")
-	AudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, soundDescriptionBlockBuffer: BlockBufferRef, flavor: SoundDescriptionFlavor, formatDescriptionOut: ^AudioFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer")
-	AudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, audioFormatDescription: AudioFormatDescriptionRef, flavor: SoundDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout")
-	DoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout :: proc(soundDescriptionBlockBuffer: BlockBufferRef, flavor: SoundDescriptionFlavor) -> CF.Boolean ---
-
-	@(link_name="CMSwapBigEndianSoundDescriptionToHost")
-	SwapBigEndianSoundDescriptionToHost :: proc(soundDescriptionData: ^cffi.uint8_t, soundDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMSwapHostEndianSoundDescriptionToBig")
-	SwapHostEndianSoundDescriptionToBig :: proc(soundDescriptionData: ^cffi.uint8_t, soundDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData")
-	TextFormatDescriptionCreateFromBigEndianTextDescriptionData :: proc(allocator: CF.AllocatorRef, textDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: TextDescriptionFlavor, mediaType: MediaType, formatDescriptionOut: ^TextFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer")
-	TextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, textDescriptionBlockBuffer: BlockBufferRef, flavor: TextDescriptionFlavor, mediaType: MediaType, formatDescriptionOut: ^TextFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer")
-	TextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, textFormatDescription: TextFormatDescriptionRef, flavor: TextDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMSwapBigEndianTextDescriptionToHost")
-	SwapBigEndianTextDescriptionToHost :: proc(textDescriptionData: ^cffi.uint8_t, textDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMSwapHostEndianTextDescriptionToBig")
-	SwapHostEndianTextDescriptionToBig :: proc(textDescriptionData: ^cffi.uint8_t, textDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData")
-	ClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData :: proc(allocator: CF.AllocatorRef, closedCaptionDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: ClosedCaptionDescriptionFlavor, formatDescriptionOut: ^ClosedCaptionFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer")
-	ClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, closedCaptionDescriptionBlockBuffer: BlockBufferRef, flavor: ClosedCaptionDescriptionFlavor, formatDescriptionOut: ^ClosedCaptionFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer")
-	ClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, closedCaptionFormatDescription: ClosedCaptionFormatDescriptionRef, flavor: ClosedCaptionDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMSwapBigEndianClosedCaptionDescriptionToHost")
-	SwapBigEndianClosedCaptionDescriptionToHost :: proc(closedCaptionDescriptionData: ^cffi.uint8_t, closedCaptionDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMSwapHostEndianClosedCaptionDescriptionToBig")
-	SwapHostEndianClosedCaptionDescriptionToBig :: proc(closedCaptionDescriptionData: ^cffi.uint8_t, closedCaptionDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData")
-	TimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData :: proc(allocator: CF.AllocatorRef, timeCodeDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: TimeCodeDescriptionFlavor, formatDescriptionOut: ^TimeCodeFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer")
-	TimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, timeCodeDescriptionBlockBuffer: BlockBufferRef, flavor: TimeCodeDescriptionFlavor, formatDescriptionOut: ^TimeCodeFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer")
-	TimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, timeCodeFormatDescription: TimeCodeFormatDescriptionRef, flavor: TimeCodeDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMSwapBigEndianTimeCodeDescriptionToHost")
-	SwapBigEndianTimeCodeDescriptionToHost :: proc(timeCodeDescriptionData: ^cffi.uint8_t, timeCodeDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMSwapHostEndianTimeCodeDescriptionToBig")
-	SwapHostEndianTimeCodeDescriptionToBig :: proc(timeCodeDescriptionData: ^cffi.uint8_t, timeCodeDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData")
-	MetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData :: proc(allocator: CF.AllocatorRef, metadataDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: MetadataDescriptionFlavor, formatDescriptionOut: ^MetadataFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer")
-	MetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, metadataDescriptionBlockBuffer: BlockBufferRef, flavor: MetadataDescriptionFlavor, formatDescriptionOut: ^MetadataFormatDescriptionRef) -> CF.OSStatus ---
-
-	@(link_name="CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer")
-	MetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, metadataFormatDescription: MetadataFormatDescriptionRef, flavor: MetadataDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMSwapBigEndianMetadataDescriptionToHost")
-	SwapBigEndianMetadataDescriptionToHost :: proc(metadataDescriptionData: ^cffi.uint8_t, metadataDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMSwapHostEndianMetadataDescriptionToBig")
-	SwapHostEndianMetadataDescriptionToBig :: proc(metadataDescriptionData: ^cffi.uint8_t, metadataDescriptionSize: cffi.size_t) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueGetCallbacksForUnsortedSampleBuffers")
-	BufferQueueGetCallbacksForUnsortedSampleBuffers :: proc() -> ^BufferCallbacks ---
-
-	@(link_name="CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS")
-	BufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS :: proc() -> ^BufferCallbacks ---
-
-	@(link_name="CMBufferQueueCreate")
-	BufferQueueCreate :: proc(allocator: CF.AllocatorRef, capacity: ItemCount, callbacks: ^BufferCallbacks, queueOut: ^BufferQueueRef) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueCreateWithHandlers")
-	BufferQueueCreateWithHandlers :: proc(allocator: CF.AllocatorRef, capacity: ItemCount, handlers: ^BufferHandlers, queueOut: ^BufferQueueRef) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueGetTypeID")
-	BufferQueueGetTypeID :: proc() -> CF.TypeID ---
-
-	@(link_name="CMBufferQueueEnqueue")
-	BufferQueueEnqueue :: proc(queue: BufferQueueRef, buf: BufferRef) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueDequeueAndRetain")
-	BufferQueueDequeueAndRetain :: proc(queue: BufferQueueRef) -> BufferRef ---
-
-	@(link_name="CMBufferQueueDequeueIfDataReadyAndRetain")
-	BufferQueueDequeueIfDataReadyAndRetain :: proc(queue: BufferQueueRef) -> BufferRef ---
-
-	@(link_name="CMBufferQueueGetHead")
-	BufferQueueGetHead :: proc(queue: BufferQueueRef) -> BufferRef ---
-
-	@(link_name="CMBufferQueueCopyHead")
-	BufferQueueCopyHead :: proc(queue: BufferQueueRef) -> BufferRef ---
-
-	@(link_name="CMBufferQueueIsEmpty")
-	BufferQueueIsEmpty :: proc(queue: BufferQueueRef) -> CF.Boolean ---
-
-	@(link_name="CMBufferQueueMarkEndOfData")
-	BufferQueueMarkEndOfData :: proc(queue: BufferQueueRef) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueContainsEndOfData")
-	BufferQueueContainsEndOfData :: proc(queue: BufferQueueRef) -> CF.Boolean ---
-
-	@(link_name="CMBufferQueueIsAtEndOfData")
-	BufferQueueIsAtEndOfData :: proc(queue: BufferQueueRef) -> CF.Boolean ---
-
-	@(link_name="CMBufferQueueReset")
-	BufferQueueReset :: proc(queue: BufferQueueRef) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueResetWithCallback")
-	BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ), refcon: rawptr) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueGetBufferCount")
-	BufferQueueGetBufferCount :: proc(queue: BufferQueueRef) -> ItemCount ---
-
-	@(link_name="CMBufferQueueGetDuration")
-	BufferQueueGetDuration :: proc(queue: BufferQueueRef) -> Time ---
-
-	@(link_name="CMBufferQueueGetMinDecodeTimeStamp")
-	BufferQueueGetMinDecodeTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
-
-	@(link_name="CMBufferQueueGetFirstDecodeTimeStamp")
-	BufferQueueGetFirstDecodeTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
-
-	@(link_name="CMBufferQueueGetMinPresentationTimeStamp")
-	BufferQueueGetMinPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
-
-	@(link_name="CMBufferQueueGetFirstPresentationTimeStamp")
-	BufferQueueGetFirstPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
-
-	@(link_name="CMBufferQueueGetMaxPresentationTimeStamp")
-	BufferQueueGetMaxPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
-
-	@(link_name="CMBufferQueueGetEndPresentationTimeStamp")
-	BufferQueueGetEndPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
-
-	@(link_name="CMBufferQueueGetTotalSize")
-	BufferQueueGetTotalSize :: proc(queue: BufferQueueRef) -> cffi.size_t ---
-
-	@(link_name="CMBufferQueueInstallTrigger")
-	BufferQueueInstallTrigger :: proc(queue: BufferQueueRef, callback: BufferQueueTriggerCallback, refcon: rawptr, condition: BufferQueueTriggerCondition, time: Time, triggerTokenOut: ^BufferQueueTriggerToken) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueInstallTriggerWithIntegerThreshold")
-	BufferQueueInstallTriggerWithIntegerThreshold :: proc(queue: BufferQueueRef, callback: BufferQueueTriggerCallback, refcon: rawptr, condition: BufferQueueTriggerCondition, threshold: ItemCount, triggerTokenOut: ^BufferQueueTriggerToken) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueInstallTriggerHandler")
-	BufferQueueInstallTriggerHandler :: proc(queue: BufferQueueRef, condition: BufferQueueTriggerCondition, time: Time, triggerTokenOut: ^BufferQueueTriggerToken, handler: BufferQueueTriggerHandler) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueInstallTriggerHandlerWithIntegerThreshold")
-	BufferQueueInstallTriggerHandlerWithIntegerThreshold :: proc(queue: BufferQueueRef, condition: BufferQueueTriggerCondition, threshold: ItemCount, triggerTokenOut: ^BufferQueueTriggerToken, handler: BufferQueueTriggerHandler) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueRemoveTrigger")
-	BufferQueueRemoveTrigger :: proc(queue: BufferQueueRef, triggerToken: BufferQueueTriggerToken) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueTestTrigger")
-	BufferQueueTestTrigger :: proc(queue: BufferQueueRef, triggerToken: BufferQueueTriggerToken) -> CF.Boolean ---
-
-	@(link_name="CMBufferQueueCallForEachBuffer")
-	BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueSetValidationCallback")
-	BufferQueueSetValidationCallback :: proc(queue: BufferQueueRef, callback: BufferValidationCallback, refcon: rawptr) -> CF.OSStatus ---
-
-	@(link_name="CMBufferQueueSetValidationHandler")
-	BufferQueueSetValidationHandler :: proc(queue: BufferQueueRef, handler: BufferValidationHandler) -> CF.OSStatus ---
 
 	@(link_name="CMSampleBufferCreate")
 	SampleBufferCreate :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, dataReady: CF.Boolean, makeDataReadyCallback: SampleBufferMakeDataReadyCallback, makeDataReadyRefcon: rawptr, formatDescription: FormatDescriptionRef, numSamples: ItemCount, numSampleTimingEntries: ItemCount, sampleTimingArray: ^SampleTimingInfo, numSampleSizeEntries: ItemCount, sampleSizeArray: ^cffi.size_t, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
@@ -2170,6 +1996,201 @@ foreign lib {
 	@(link_name="CMSampleBufferGetTaggedBufferGroup")
 	SampleBufferGetTaggedBufferGroup :: proc(sbuf: SampleBufferRef) -> TaggedBufferGroupRef ---
 
+	@(link_name="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData")
+	VideoFormatDescriptionCreateFromBigEndianImageDescriptionData :: proc(allocator: CF.AllocatorRef, imageDescriptionData: ^cffi.uint8_t, size: cffi.size_t, stringEncoding: CF.StringEncoding, flavor: ImageDescriptionFlavor, formatDescriptionOut: ^VideoFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer")
+	VideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, imageDescriptionBlockBuffer: BlockBufferRef, stringEncoding: CF.StringEncoding, flavor: ImageDescriptionFlavor, formatDescriptionOut: ^VideoFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer")
+	VideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, videoFormatDescription: VideoFormatDescriptionRef, stringEncoding: CF.StringEncoding, flavor: ImageDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMSwapBigEndianImageDescriptionToHost")
+	SwapBigEndianImageDescriptionToHost :: proc(imageDescriptionData: ^cffi.uint8_t, imageDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMSwapHostEndianImageDescriptionToBig")
+	SwapHostEndianImageDescriptionToBig :: proc(imageDescriptionData: ^cffi.uint8_t, imageDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData")
+	AudioFormatDescriptionCreateFromBigEndianSoundDescriptionData :: proc(allocator: CF.AllocatorRef, soundDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: SoundDescriptionFlavor, formatDescriptionOut: ^AudioFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer")
+	AudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, soundDescriptionBlockBuffer: BlockBufferRef, flavor: SoundDescriptionFlavor, formatDescriptionOut: ^AudioFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer")
+	AudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, audioFormatDescription: AudioFormatDescriptionRef, flavor: SoundDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout")
+	DoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout :: proc(soundDescriptionBlockBuffer: BlockBufferRef, flavor: SoundDescriptionFlavor) -> CF.Boolean ---
+
+	@(link_name="CMSwapBigEndianSoundDescriptionToHost")
+	SwapBigEndianSoundDescriptionToHost :: proc(soundDescriptionData: ^cffi.uint8_t, soundDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMSwapHostEndianSoundDescriptionToBig")
+	SwapHostEndianSoundDescriptionToBig :: proc(soundDescriptionData: ^cffi.uint8_t, soundDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData")
+	TextFormatDescriptionCreateFromBigEndianTextDescriptionData :: proc(allocator: CF.AllocatorRef, textDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: TextDescriptionFlavor, mediaType: MediaType, formatDescriptionOut: ^TextFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer")
+	TextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, textDescriptionBlockBuffer: BlockBufferRef, flavor: TextDescriptionFlavor, mediaType: MediaType, formatDescriptionOut: ^TextFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer")
+	TextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, textFormatDescription: TextFormatDescriptionRef, flavor: TextDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMSwapBigEndianTextDescriptionToHost")
+	SwapBigEndianTextDescriptionToHost :: proc(textDescriptionData: ^cffi.uint8_t, textDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMSwapHostEndianTextDescriptionToBig")
+	SwapHostEndianTextDescriptionToBig :: proc(textDescriptionData: ^cffi.uint8_t, textDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData")
+	ClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData :: proc(allocator: CF.AllocatorRef, closedCaptionDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: ClosedCaptionDescriptionFlavor, formatDescriptionOut: ^ClosedCaptionFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer")
+	ClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, closedCaptionDescriptionBlockBuffer: BlockBufferRef, flavor: ClosedCaptionDescriptionFlavor, formatDescriptionOut: ^ClosedCaptionFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer")
+	ClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, closedCaptionFormatDescription: ClosedCaptionFormatDescriptionRef, flavor: ClosedCaptionDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMSwapBigEndianClosedCaptionDescriptionToHost")
+	SwapBigEndianClosedCaptionDescriptionToHost :: proc(closedCaptionDescriptionData: ^cffi.uint8_t, closedCaptionDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMSwapHostEndianClosedCaptionDescriptionToBig")
+	SwapHostEndianClosedCaptionDescriptionToBig :: proc(closedCaptionDescriptionData: ^cffi.uint8_t, closedCaptionDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData")
+	TimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData :: proc(allocator: CF.AllocatorRef, timeCodeDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: TimeCodeDescriptionFlavor, formatDescriptionOut: ^TimeCodeFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer")
+	TimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, timeCodeDescriptionBlockBuffer: BlockBufferRef, flavor: TimeCodeDescriptionFlavor, formatDescriptionOut: ^TimeCodeFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer")
+	TimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, timeCodeFormatDescription: TimeCodeFormatDescriptionRef, flavor: TimeCodeDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMSwapBigEndianTimeCodeDescriptionToHost")
+	SwapBigEndianTimeCodeDescriptionToHost :: proc(timeCodeDescriptionData: ^cffi.uint8_t, timeCodeDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMSwapHostEndianTimeCodeDescriptionToBig")
+	SwapHostEndianTimeCodeDescriptionToBig :: proc(timeCodeDescriptionData: ^cffi.uint8_t, timeCodeDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData")
+	MetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData :: proc(allocator: CF.AllocatorRef, metadataDescriptionData: ^cffi.uint8_t, size: cffi.size_t, flavor: MetadataDescriptionFlavor, formatDescriptionOut: ^MetadataFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer")
+	MetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, metadataDescriptionBlockBuffer: BlockBufferRef, flavor: MetadataDescriptionFlavor, formatDescriptionOut: ^MetadataFormatDescriptionRef) -> CF.OSStatus ---
+
+	@(link_name="CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer")
+	MetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer :: proc(allocator: CF.AllocatorRef, metadataFormatDescription: MetadataFormatDescriptionRef, flavor: MetadataDescriptionFlavor, blockBufferOut: ^BlockBufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMSwapBigEndianMetadataDescriptionToHost")
+	SwapBigEndianMetadataDescriptionToHost :: proc(metadataDescriptionData: ^cffi.uint8_t, metadataDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMSwapHostEndianMetadataDescriptionToBig")
+	SwapHostEndianMetadataDescriptionToBig :: proc(metadataDescriptionData: ^cffi.uint8_t, metadataDescriptionSize: cffi.size_t) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueGetCallbacksForUnsortedSampleBuffers")
+	BufferQueueGetCallbacksForUnsortedSampleBuffers :: proc() -> ^BufferCallbacks ---
+
+	@(link_name="CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS")
+	BufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS :: proc() -> ^BufferCallbacks ---
+
+	@(link_name="CMBufferQueueCreate")
+	BufferQueueCreate :: proc(allocator: CF.AllocatorRef, capacity: ItemCount, callbacks: ^BufferCallbacks, queueOut: ^BufferQueueRef) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueCreateWithHandlers")
+	BufferQueueCreateWithHandlers :: proc(allocator: CF.AllocatorRef, capacity: ItemCount, handlers: ^BufferHandlers, queueOut: ^BufferQueueRef) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueGetTypeID")
+	BufferQueueGetTypeID :: proc() -> CF.TypeID ---
+
+	@(link_name="CMBufferQueueEnqueue")
+	BufferQueueEnqueue :: proc(queue: BufferQueueRef, buf: BufferRef) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueDequeueAndRetain")
+	BufferQueueDequeueAndRetain :: proc(queue: BufferQueueRef) -> BufferRef ---
+
+	@(link_name="CMBufferQueueDequeueIfDataReadyAndRetain")
+	BufferQueueDequeueIfDataReadyAndRetain :: proc(queue: BufferQueueRef) -> BufferRef ---
+
+	@(link_name="CMBufferQueueGetHead")
+	BufferQueueGetHead :: proc(queue: BufferQueueRef) -> BufferRef ---
+
+	@(link_name="CMBufferQueueCopyHead")
+	BufferQueueCopyHead :: proc(queue: BufferQueueRef) -> BufferRef ---
+
+	@(link_name="CMBufferQueueIsEmpty")
+	BufferQueueIsEmpty :: proc(queue: BufferQueueRef) -> CF.Boolean ---
+
+	@(link_name="CMBufferQueueMarkEndOfData")
+	BufferQueueMarkEndOfData :: proc(queue: BufferQueueRef) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueContainsEndOfData")
+	BufferQueueContainsEndOfData :: proc(queue: BufferQueueRef) -> CF.Boolean ---
+
+	@(link_name="CMBufferQueueIsAtEndOfData")
+	BufferQueueIsAtEndOfData :: proc(queue: BufferQueueRef) -> CF.Boolean ---
+
+	@(link_name="CMBufferQueueReset")
+	BufferQueueReset :: proc(queue: BufferQueueRef) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueResetWithCallback")
+	BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ), refcon: rawptr) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueGetBufferCount")
+	BufferQueueGetBufferCount :: proc(queue: BufferQueueRef) -> ItemCount ---
+
+	@(link_name="CMBufferQueueGetDuration")
+	BufferQueueGetDuration :: proc(queue: BufferQueueRef) -> Time ---
+
+	@(link_name="CMBufferQueueGetMinDecodeTimeStamp")
+	BufferQueueGetMinDecodeTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
+
+	@(link_name="CMBufferQueueGetFirstDecodeTimeStamp")
+	BufferQueueGetFirstDecodeTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
+
+	@(link_name="CMBufferQueueGetMinPresentationTimeStamp")
+	BufferQueueGetMinPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
+
+	@(link_name="CMBufferQueueGetFirstPresentationTimeStamp")
+	BufferQueueGetFirstPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
+
+	@(link_name="CMBufferQueueGetMaxPresentationTimeStamp")
+	BufferQueueGetMaxPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
+
+	@(link_name="CMBufferQueueGetEndPresentationTimeStamp")
+	BufferQueueGetEndPresentationTimeStamp :: proc(queue: BufferQueueRef) -> Time ---
+
+	@(link_name="CMBufferQueueGetTotalSize")
+	BufferQueueGetTotalSize :: proc(queue: BufferQueueRef) -> cffi.size_t ---
+
+	@(link_name="CMBufferQueueInstallTrigger")
+	BufferQueueInstallTrigger :: proc(queue: BufferQueueRef, callback: BufferQueueTriggerCallback, refcon: rawptr, condition: BufferQueueTriggerCondition, time: Time, triggerTokenOut: ^BufferQueueTriggerToken) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueInstallTriggerWithIntegerThreshold")
+	BufferQueueInstallTriggerWithIntegerThreshold :: proc(queue: BufferQueueRef, callback: BufferQueueTriggerCallback, refcon: rawptr, condition: BufferQueueTriggerCondition, threshold: ItemCount, triggerTokenOut: ^BufferQueueTriggerToken) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueInstallTriggerHandler")
+	BufferQueueInstallTriggerHandler :: proc(queue: BufferQueueRef, condition: BufferQueueTriggerCondition, time: Time, triggerTokenOut: ^BufferQueueTriggerToken, handler: BufferQueueTriggerHandler) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueInstallTriggerHandlerWithIntegerThreshold")
+	BufferQueueInstallTriggerHandlerWithIntegerThreshold :: proc(queue: BufferQueueRef, condition: BufferQueueTriggerCondition, threshold: ItemCount, triggerTokenOut: ^BufferQueueTriggerToken, handler: BufferQueueTriggerHandler) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueRemoveTrigger")
+	BufferQueueRemoveTrigger :: proc(queue: BufferQueueRef, triggerToken: BufferQueueTriggerToken) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueTestTrigger")
+	BufferQueueTestTrigger :: proc(queue: BufferQueueRef, triggerToken: BufferQueueTriggerToken) -> CF.Boolean ---
+
+	@(link_name="CMBufferQueueCallForEachBuffer")
+	BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueSetValidationCallback")
+	BufferQueueSetValidationCallback :: proc(queue: BufferQueueRef, callback: BufferValidationCallback, refcon: rawptr) -> CF.OSStatus ---
+
+	@(link_name="CMBufferQueueSetValidationHandler")
+	BufferQueueSetValidationHandler :: proc(queue: BufferQueueRef, handler: BufferValidationHandler) -> CF.OSStatus ---
+
 	@(link_name="CMSimpleQueueGetTypeID")
 	SimpleQueueGetTypeID :: proc() -> CF.TypeID ---
 
@@ -2229,6 +2250,12 @@ foreign lib {
 
 	@(link_name="CMClockMightDrift")
 	ClockMightDrift :: proc(clock: ClockRef, otherClock: ClockRef) -> CF.Boolean ---
+
+	@(link_name="CMClockImplementsGetPreferredStartTimePattern")
+	ClockImplementsGetPreferredStartTimePattern :: proc(clock: ClockRef) -> CF.Boolean ---
+
+	@(link_name="CMClockGetPreferredStartTimePattern")
+	ClockGetPreferredStartTimePattern :: proc(clock: ClockRef, outClockStartTime: ^Time, outHostClockStartTime: ^Time, outDeltaBetweenPreferredStartTimes: ^Time) -> CF.OSStatus ---
 
 	@(link_name="CMClockInvalidate")
 	ClockInvalidate :: proc(clock: ClockRef) ---
@@ -2400,12 +2427,29 @@ foreign lib {
 
 
 
-ASK                             :: 22
+ASK                             :: 18
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	BITMAPCALLBACKPROCPTR_DEFINED   :: 1
 }
 TIMEBASE_USE_SOURCE_TERMINOLOGY :: 1
 kPersistentTrackID_Invalid                                      :: 0
+kAttachmentMode_ShouldNotPropagate                              :: 0
+kAttachmentMode_ShouldPropagate                                 :: 1
+kBlockBufferNoErr                                               :: 0
+kBlockBufferStructureAllocationFailedErr                        :: -12700
+kBlockBufferBlockAllocationFailedErr                            :: -12701
+kBlockBufferBadCustomBlockSourceErr                             :: -12702
+kBlockBufferBadOffsetParameterErr                               :: -12703
+kBlockBufferBadLengthParameterErr                               :: -12704
+kBlockBufferBadPointerParameterErr                              :: -12705
+kBlockBufferEmptyBBufErr                                        :: -12706
+kBlockBufferUnallocatedBlockErr                                 :: -12707
+kBlockBufferInsufficientSpaceErr                                :: -12708
+kBlockBufferAssureMemoryNowFlag                                 :: 1
+kBlockBufferAlwaysCopyDataFlag                                  :: 2
+kBlockBufferDontOptimizeDepthFlag                               :: 4
+kBlockBufferPermitEmptyReferenceFlag                            :: 8
+kBlockBufferCustomBlockSourceVersion                            :: 0
 kFormatDescriptionError_InvalidParameter                        :: -12710
 kFormatDescriptionError_AllocationFailed                        :: -12711
 kFormatDescriptionError_ValueNotAvailable                       :: -12718
@@ -2559,23 +2603,24 @@ kMetadataFormatType_ICY                                         :: 1768126752
 kMetadataFormatType_ID3                                         :: 1768174368
 kMetadataFormatType_Boxed                                       :: 1835360888
 kMetadataFormatType_EMSG                                        :: 1701671783
-kAttachmentMode_ShouldNotPropagate                              :: 0
-kAttachmentMode_ShouldPropagate                                 :: 1
-kBlockBufferNoErr                                               :: 0
-kBlockBufferStructureAllocationFailedErr                        :: -12700
-kBlockBufferBlockAllocationFailedErr                            :: -12701
-kBlockBufferBadCustomBlockSourceErr                             :: -12702
-kBlockBufferBadOffsetParameterErr                               :: -12703
-kBlockBufferBadLengthParameterErr                               :: -12704
-kBlockBufferBadPointerParameterErr                              :: -12705
-kBlockBufferEmptyBBufErr                                        :: -12706
-kBlockBufferUnallocatedBlockErr                                 :: -12707
-kBlockBufferInsufficientSpaceErr                                :: -12708
-kBlockBufferAssureMemoryNowFlag                                 :: 1
-kBlockBufferAlwaysCopyDataFlag                                  :: 2
-kBlockBufferDontOptimizeDepthFlag                               :: 4
-kBlockBufferPermitEmptyReferenceFlag                            :: 8
-kBlockBufferCustomBlockSourceVersion                            :: 0
+kSampleBufferError_AllocationFailed                             :: -12730
+kSampleBufferError_RequiredParameterMissing                     :: -12731
+kSampleBufferError_AlreadyHasDataBuffer                         :: -12732
+kSampleBufferError_BufferNotReady                               :: -12733
+kSampleBufferError_SampleIndexOutOfRange                        :: -12734
+kSampleBufferError_BufferHasNoSampleSizes                       :: -12735
+kSampleBufferError_BufferHasNoSampleTimingInfo                  :: -12736
+kSampleBufferError_ArrayTooSmall                                :: -12737
+kSampleBufferError_InvalidEntryCount                            :: -12738
+kSampleBufferError_CannotSubdivide                              :: -12739
+kSampleBufferError_SampleTimingInfoInvalid                      :: -12740
+kSampleBufferError_InvalidMediaTypeForOperation                 :: -12741
+kSampleBufferError_InvalidSampleData                            :: -12742
+kSampleBufferError_InvalidMediaFormat                           :: -12743
+kSampleBufferError_Invalidated                                  :: -12744
+kSampleBufferError_DataFailed                                   :: -16750
+kSampleBufferError_DataCanceled                                 :: -16751
+kSampleBufferFlag_AudioBufferList_Assure16ByteAlignment         :: 1
 kFormatDescriptionBridgeError_InvalidParameter                  :: -12712
 kFormatDescriptionBridgeError_AllocationFailed                  :: -12713
 kFormatDescriptionBridgeError_InvalidSerializedSampleDescription:: -12714
@@ -2605,24 +2650,6 @@ kBufferQueueTrigger_WhenReset                                   :: 9
 kBufferQueueTrigger_WhenBufferCountBecomesLessThan              :: 10
 kBufferQueueTrigger_WhenBufferCountBecomesGreaterThan           :: 11
 kBufferQueueTrigger_WhenDurationBecomesGreaterThanOrEqualToAndBufferCountBecomesGreaterThan:: 12
-kSampleBufferError_AllocationFailed                             :: -12730
-kSampleBufferError_RequiredParameterMissing                     :: -12731
-kSampleBufferError_AlreadyHasDataBuffer                         :: -12732
-kSampleBufferError_BufferNotReady                               :: -12733
-kSampleBufferError_SampleIndexOutOfRange                        :: -12734
-kSampleBufferError_BufferHasNoSampleSizes                       :: -12735
-kSampleBufferError_BufferHasNoSampleTimingInfo                  :: -12736
-kSampleBufferError_ArrayTooSmall                                :: -12737
-kSampleBufferError_InvalidEntryCount                            :: -12738
-kSampleBufferError_CannotSubdivide                              :: -12739
-kSampleBufferError_SampleTimingInfoInvalid                      :: -12740
-kSampleBufferError_InvalidMediaTypeForOperation                 :: -12741
-kSampleBufferError_InvalidSampleData                            :: -12742
-kSampleBufferError_InvalidMediaFormat                           :: -12743
-kSampleBufferError_Invalidated                                  :: -12744
-kSampleBufferError_DataFailed                                   :: -16750
-kSampleBufferError_DataCanceled                                 :: -16751
-kSampleBufferFlag_AudioBufferList_Assure16ByteAlignment         :: 1
 kSimpleQueueError_AllocationFailed                              :: -12770
 kSimpleQueueError_RequiredParameterMissing                      :: -12771
 kSimpleQueueError_ParameterOutOfRange                           :: -12772
@@ -2633,6 +2660,7 @@ kClockError_MissingRequiredParameter                            :: -12745
 kClockError_InvalidParameter                                    :: -12746
 kClockError_AllocationFailed                                    :: -12747
 kClockError_UnsupportedOperation                                :: -12756
+kClockError_PreferredStartTimeNotAvailable                      :: -12758
 kTimebaseError_MissingRequiredParameter                         :: -12748
 kTimebaseError_InvalidParameter                                 :: -12749
 kTimebaseError_AllocationFailed                                 :: -12750
@@ -2665,6 +2693,10 @@ PersistentTrackID :: cffi.int32_t
 TimeValue :: cffi.int64_t
 TimeScale :: cffi.int32_t
 TimeEpoch :: cffi.int64_t
+AttachmentBearerRef :: CF.TypeRef
+AttachmentMode :: cffi.uint32_t
+BlockBufferFlags :: cffi.uint32_t
+BlockBufferRef :: ^OpaqueCMBlockBuffer
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	SDecoderRef :: ^_CMSDecoder
 	SEncoderRef :: ^_CMSEncoder
@@ -2736,10 +2768,17 @@ TimeCodeFormatDescriptionRef :: FormatDescriptionRef
 TimeCodeFormatType :: CF.FourCharCode
 MetadataFormatDescriptionRef :: FormatDescriptionRef
 MetadataFormatType :: CF.FourCharCode
-AttachmentBearerRef :: CF.TypeRef
-AttachmentMode :: cffi.uint32_t
-BlockBufferFlags :: cffi.uint32_t
-BlockBufferRef :: ^OpaqueCMBlockBuffer
+SampleBufferRef :: ^opaqueCMSampleBuffer
+SampleBufferMakeDataReadyCallback :: proc "c" ( sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr ) -> CF.OSStatus
+SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ) -> CF.OSStatus)
+SampleBufferInvalidateCallback :: proc "c" ( sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t )
+SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ))
+TagValue :: cffi.uint64_t
+TagCollectionRef :: ^OpaqueCMTagCollection
+MutableTagCollectionRef :: ^OpaqueCMTagCollection
+TagCollectionApplierFunction :: proc "c" ( tag: Tag, _context: rawptr )
+TagCollectionTagFilterFunction :: proc "c" ( tag: Tag, _context: rawptr ) -> CF.Boolean
+TaggedBufferGroupRef :: ^OpaqueCMTaggedBufferGroup
 ImageDescriptionFlavor :: CF.StringRef
 SoundDescriptionFlavor :: CF.StringRef
 TextDescriptionFlavor :: CF.StringRef
@@ -2762,17 +2801,6 @@ BufferQueueTriggerHandler :: ^Objc_Block(proc "c" ( triggerToken: BufferQueueTri
 BufferQueueTriggerCondition :: cffi.int32_t
 BufferValidationCallback :: proc "c" ( queue: BufferQueueRef, buf: BufferRef, validationRefCon: rawptr ) -> CF.OSStatus
 BufferValidationHandler :: ^Objc_Block(proc "c" ( queue: BufferQueueRef, buf: BufferRef ) -> CF.OSStatus)
-SampleBufferRef :: ^opaqueCMSampleBuffer
-SampleBufferMakeDataReadyCallback :: proc "c" ( sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr ) -> CF.OSStatus
-SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ) -> CF.OSStatus)
-SampleBufferInvalidateCallback :: proc "c" ( sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t )
-SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ))
-TagValue :: cffi.uint64_t
-TagCollectionRef :: ^OpaqueCMTagCollection
-MutableTagCollectionRef :: ^OpaqueCMTagCollection
-TagCollectionApplierFunction :: proc "c" ( tag: Tag, _context: rawptr )
-TagCollectionTagFilterFunction :: proc "c" ( tag: Tag, _context: rawptr ) -> CF.Boolean
-TaggedBufferGroupRef :: ^OpaqueCMTaggedBufferGroup
 SimpleQueueRef :: ^opaqueCMSimpleQueue
 MemoryPoolRef :: ^OpaqueCMMemoryPool
 ClockRef :: ^OpaqueCMClock
@@ -2810,16 +2838,17 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 		kCMSSignerInvalidIndex         = 5,
 	}
 
-	SSignedAttributes :: enum cffi.uint {
-		kCMSAttrNone                     = 0,
-		kCMSAttrSmimeCapabilities        = 1,
-		kCMSAttrSmimeEncryptionKeyPrefs  = 2,
-		kCMSAttrSmimeMSEncryptionKeyPrefs = 4,
-		kCMSAttrSigningTime              = 8,
-		kCMSAttrAppleCodesigningHashAgility = 16,
-		kCMSAttrAppleCodesigningHashAgilityV2 = 32,
-		kCMSAttrAppleExpirationTime      = 64,
+	SSignedAttributesFlag :: enum cffi.uint {
+		kCMSAttrSmimeCapabilities        = 0,
+		kCMSAttrSmimeEncryptionKeyPrefs  = 1,
+		kCMSAttrSmimeMSEncryptionKeyPrefs = 2,
+		kCMSAttrSigningTime              = 3,
+		kCMSAttrAppleCodesigningHashAgility = 4,
+		kCMSAttrAppleCodesigningHashAgilityV2 = 5,
+		kCMSAttrAppleExpirationTime      = 6,
 	}
+
+	SSignedAttributes :: bit_set[SSignedAttributesFlag; cffi.uint]
 
 	SCertificateChainMode :: enum cffi.uint {
 		kCMSCertificateNone              = 0,
@@ -2886,11 +2915,12 @@ TagDataType :: enum cffi.uint {
 	kCMTagDataType_Flags   = 7,
 }
 
-StereoViewComponents :: enum cffi.ulonglong {
-	kCMStereoView_None     = 0,
-	kCMStereoView_LeftEye  = 1,
-	kCMStereoView_RightEye = 2,
+StereoViewComponentsFlag :: enum cffi.ulonglong {
+	kCMStereoView_LeftEye  = 0,
+	kCMStereoView_RightEye = 1,
 }
+
+StereoViewComponents :: bit_set[StereoViewComponentsFlag; cffi.ulonglong]
 
 StereoViewInterpretationOption :: enum cffi.ulonglong {
 	kCMStereoViewInterpretation_StereoOrderReversed = 0,
@@ -2947,6 +2977,15 @@ TimeRange :: struct #align (4) {
 TimeMapping :: struct #align (4) {
 	source: TimeRange,
 	target: TimeRange,
+}
+
+OpaqueCMBlockBuffer :: struct {}
+
+BlockBufferCustomBlockSource :: struct #align (4) #max_field_align(4) {
+	version:       cffi.uint32_t,
+	AllocateBlock: proc "c" ( refcon: rawptr, sizeInBytes: cffi.size_t ) -> rawptr,
+	FreeBlock:     proc "c" ( refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t ),
+	refCon:        rawptr,
 }
 
 when ODIN_PLATFORM_SUBTARGET == .Default {
@@ -3549,14 +3588,23 @@ VideoDimensions :: struct #align (4) {
 	height: cffi.int32_t,
 }
 
-OpaqueCMBlockBuffer :: struct {}
+opaqueCMSampleBuffer :: struct {}
 
-BlockBufferCustomBlockSource :: struct #align (4) #max_field_align(4) {
-	version:       cffi.uint32_t,
-	AllocateBlock: proc "c" ( refcon: rawptr, sizeInBytes: cffi.size_t ) -> rawptr,
-	FreeBlock:     proc "c" ( refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t ),
-	refCon:        rawptr,
+SampleTimingInfo :: struct #align (4) {
+	duration:              Time,
+	presentationTimeStamp: Time,
+	decodeTimeStamp:       Time,
 }
+
+Tag :: struct #align (8) {
+	category: TagCategory,
+	dataType: TagDataType,
+	value:    TagValue,
+}
+
+OpaqueCMTagCollection :: struct {}
+
+OpaqueCMTaggedBufferGroup :: struct {}
 
 opaqueCMBufferQueue :: struct {}
 
@@ -3584,24 +3632,6 @@ BufferHandlers :: struct #align (8) {
 }
 
 opaqueCMBufferQueueTriggerToken :: struct {}
-
-opaqueCMSampleBuffer :: struct {}
-
-SampleTimingInfo :: struct #align (4) {
-	duration:              Time,
-	presentationTimeStamp: Time,
-	decodeTimeStamp:       Time,
-}
-
-Tag :: struct #align (8) {
-	category: TagCategory,
-	dataType: TagDataType,
-	value:    TagValue,
-}
-
-OpaqueCMTagCollection :: struct {}
-
-OpaqueCMTaggedBufferGroup :: struct {}
 
 opaqueCMSimpleQueue :: struct {}
 

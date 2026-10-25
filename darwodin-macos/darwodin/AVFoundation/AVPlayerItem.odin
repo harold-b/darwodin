@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -276,6 +278,9 @@ foreign lib {
     @(objc_type=PlayerItem, objc_selector="selectMediaOptionAutomaticallyInMediaSelectionGroup:", objc_name="selectMediaOptionAutomaticallyInMediaSelectionGroup")
     PlayerItem_selectMediaOptionAutomaticallyInMediaSelectionGroup :: proc(self: ^PlayerItem, mediaSelectionGroup: ^MediaSelectionGroup) ---
 
+    @(objc_type=PlayerItem, objc_selector="selectableMediaSelectionOptionsInMediaSelectionGroup:", objc_name="selectableMediaSelectionOptionsInMediaSelectionGroup")
+    PlayerItem_selectableMediaSelectionOptionsInMediaSelectionGroup :: proc(self: ^PlayerItem, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
+
     @(objc_type=PlayerItem, objc_selector="currentMediaSelection", objc_name="currentMediaSelection")
     PlayerItem_currentMediaSelection :: proc(self: ^PlayerItem) -> ^MediaSelection ---
 
@@ -305,6 +310,12 @@ foreign lib {
 
     @(objc_type=PlayerItem, objc_selector="errorLog", objc_name="errorLog")
     PlayerItem_errorLog :: proc(self: ^PlayerItem) -> ^PlayerItemErrorLog ---
+
+    @(objc_type=PlayerItem, objc_selector="fetchAccessLogWithCompletionHandler:", objc_name="fetchAccessLogWithCompletionHandler")
+    PlayerItem_fetchAccessLogWithCompletionHandler :: proc(self: ^PlayerItem, completionHandler: ^Objc_Block(proc "c" ( accessLog: ^PlayerItemAccessLog ))) ---
+
+    @(objc_type=PlayerItem, objc_selector="fetchErrorLogWithCompletionHandler:", objc_name="fetchErrorLogWithCompletionHandler")
+    PlayerItem_fetchErrorLogWithCompletionHandler :: proc(self: ^PlayerItem, completionHandler: ^Objc_Block(proc "c" ( errorLog: ^PlayerItemErrorLog ))) ---
 
     @(objc_type=PlayerItem, objc_selector="addOutput:", objc_name="addOutput")
     PlayerItem_addOutput :: proc(self: ^PlayerItem, output: ^PlayerItemOutput) ---

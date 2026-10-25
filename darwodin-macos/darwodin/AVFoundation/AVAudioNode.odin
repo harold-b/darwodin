@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -36,8 +38,11 @@ foreign lib {
     @(objc_type=AudioNode, objc_selector="nameForOutputBus:", objc_name="nameForOutputBus")
     AudioNode_nameForOutputBus :: proc(self: ^AudioNode, bus: AudioNodeBus) -> ^NS.String ---
 
-    @(objc_type=AudioNode, objc_selector="installTapOnBus:bufferSize:format:block:", objc_name="installTapOnBus")
-    AudioNode_installTapOnBus :: proc(self: ^AudioNode, bus: AudioNodeBus, bufferSize: AudioFrameCount, format: ^AudioFormat, tapBlock: AudioNodeTapBlock) ---
+    @(objc_type=AudioNode, objc_selector="installTapOnBus:bufferSize:format:block:", objc_name="installTapOnBus_bufferSize_format_block")
+    AudioNode_installTapOnBus_bufferSize_format_block :: proc(self: ^AudioNode, bus: AudioNodeBus, bufferSize: AudioFrameCount, format: ^AudioFormat, tapBlock: AudioNodeTapBlock) ---
+
+    @(objc_type=AudioNode, objc_selector="installTapOnBus:bufferSize:format:error:block:", objc_name="installTapOnBus_bufferSize_format_error_block")
+    AudioNode_installTapOnBus_bufferSize_format_error_block :: proc(self: ^AudioNode, bus: AudioNodeBus, bufferSize: AudioFrameCount, format: ^AudioFormat, outError: ^^NS.Error, tapBlock: AudioNodeTapBlock) -> bool ---
 
     @(objc_type=AudioNode, objc_selector="removeTapOnBus:", objc_name="removeTapOnBus")
     AudioNode_removeTapOnBus :: proc(self: ^AudioNode, bus: AudioNodeBus) ---
@@ -62,4 +67,10 @@ foreign lib {
 
     @(objc_type=AudioNode, objc_selector="outputPresentationLatency", objc_name="outputPresentationLatency")
     AudioNode_outputPresentationLatency :: proc(self: ^AudioNode) -> NS.TimeInterval ---
+}
+
+@(objc_type=AudioNode, objc_name="installTapOnBus")
+AudioNode_installTapOnBus :: proc {
+    AudioNode_installTapOnBus_bufferSize_format_block,
+    AudioNode_installTapOnBus_bufferSize_format_error_block,
 }

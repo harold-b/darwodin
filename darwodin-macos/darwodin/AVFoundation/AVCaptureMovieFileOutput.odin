@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -80,4 +82,28 @@ foreign lib {
 
     @(objc_type=CaptureMovieFileOutput, objc_selector="setSpatialVideoCaptureEnabled:", objc_name="setSpatialVideoCaptureEnabled")
     CaptureMovieFileOutput_setSpatialVideoCaptureEnabled :: proc(self: ^CaptureMovieFileOutput, spatialVideoCaptureEnabled: bool) ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="isCinematicVideoMetadataCaptureSupported", objc_name="isCinematicVideoMetadataCaptureSupported")
+    CaptureMovieFileOutput_isCinematicVideoMetadataCaptureSupported :: proc(self: ^CaptureMovieFileOutput) -> bool ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="automaticallyAdjustsCinematicVideoMetadataCaptureEnabled", objc_name="automaticallyAdjustsCinematicVideoMetadataCaptureEnabled")
+    CaptureMovieFileOutput_automaticallyAdjustsCinematicVideoMetadataCaptureEnabled :: proc(self: ^CaptureMovieFileOutput) -> bool ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="setAutomaticallyAdjustsCinematicVideoMetadataCaptureEnabled:", objc_name="setAutomaticallyAdjustsCinematicVideoMetadataCaptureEnabled")
+    CaptureMovieFileOutput_setAutomaticallyAdjustsCinematicVideoMetadataCaptureEnabled :: proc(self: ^CaptureMovieFileOutput, automaticallyAdjustsCinematicVideoMetadataCaptureEnabled: bool) ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="isCinematicVideoMetadataCaptureEnabled", objc_name="isCinematicVideoMetadataCaptureEnabled")
+    CaptureMovieFileOutput_isCinematicVideoMetadataCaptureEnabled :: proc(self: ^CaptureMovieFileOutput) -> bool ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="setCinematicVideoMetadataCaptureEnabled:", objc_name="setCinematicVideoMetadataCaptureEnabled")
+    CaptureMovieFileOutput_setCinematicVideoMetadataCaptureEnabled :: proc(self: ^CaptureMovieFileOutput, cinematicVideoMetadataCaptureEnabled: bool) ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="isProVideoStorageSupported", objc_name="isProVideoStorageSupported")
+    CaptureMovieFileOutput_isProVideoStorageSupported :: proc(self: ^CaptureMovieFileOutput) -> bool ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="usesProVideoStorage", objc_name="usesProVideoStorage")
+    CaptureMovieFileOutput_usesProVideoStorage :: proc(self: ^CaptureMovieFileOutput) -> bool ---
+
+    @(objc_type=CaptureMovieFileOutput, objc_selector="setUsesProVideoStorage:", objc_name="setUsesProVideoStorage")
+    CaptureMovieFileOutput_setUsesProVideoStorage :: proc(self: ^CaptureMovieFileOutput, usesProVideoStorage: bool) ---
 }

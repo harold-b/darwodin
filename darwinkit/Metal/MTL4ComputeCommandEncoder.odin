@@ -66,8 +66,11 @@ foreign lib {
 	@(objc_type=MTL4ComputeCommandEncoder, objc_selector="copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:", objc_name="copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options")
 	MTL4ComputeCommandEncoder_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options :: proc(self: ^MTL4ComputeCommandEncoder, sourceBuffer: ^Buffer, sourceOffset: NS.UInteger, sourceBytesPerRow: NS.UInteger, sourceBytesPerImage: NS.UInteger, sourceSize: Size, destinationTexture: ^Texture, destinationSlice: NS.UInteger, destinationLevel: NS.UInteger, destinationOrigin: Origin, options: BlitOptions) ---
 
-	@(objc_type=MTL4ComputeCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:", objc_name="copyFromTensor")
-	MTL4ComputeCommandEncoder_copyFromTensor :: proc(self: ^MTL4ComputeCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents) ---
+	@(objc_type=MTL4ComputeCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:", objc_name="copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions")
+	MTL4ComputeCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions :: proc(self: ^MTL4ComputeCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents) ---
+
+	@(objc_type=MTL4ComputeCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:", objc_name="copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane")
+	MTL4ComputeCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane :: proc(self: ^MTL4ComputeCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, sourcePlane: TensorPlaneType, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents, destinationPlane: TensorPlaneType) ---
 
 	@(objc_type=MTL4ComputeCommandEncoder, objc_selector="generateMipmapsForTexture:", objc_name="generateMipmapsForTexture")
 	MTL4ComputeCommandEncoder_generateMipmapsForTexture :: proc(self: ^MTL4ComputeCommandEncoder, texture: ^Texture) ---
@@ -143,6 +146,12 @@ MTL4ComputeCommandEncoder_copyFromBuffer :: proc {
 	MTL4ComputeCommandEncoder_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size,
 	MTL4ComputeCommandEncoder_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin,
 	MTL4ComputeCommandEncoder_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options,
+}
+
+@(objc_type=MTL4ComputeCommandEncoder, objc_name="copyFromTensor")
+MTL4ComputeCommandEncoder_copyFromTensor :: proc {
+	MTL4ComputeCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions,
+	MTL4ComputeCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane,
 }
 
 @(objc_type=MTL4ComputeCommandEncoder, objc_name="optimizeContentsForGPUAccess")

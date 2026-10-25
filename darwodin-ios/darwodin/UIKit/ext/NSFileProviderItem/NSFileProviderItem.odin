@@ -46,6 +46,7 @@ VTable :: struct {
     symlinkTargetPath: proc(self: ^UI.NSFileProviderItem) -> ^NS.String,
     userInfo: proc(self: ^UI.NSFileProviderItem) -> ^NS.Dictionary,
     contentPolicy: proc(self: ^UI.NSFileProviderItem) -> UI.NSFileProviderContentPolicy,
+    namespacePolicy: proc(self: ^UI.NSFileProviderItem) -> UI.NSFileProviderNamespacePolicy,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -381,6 +382,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentPolicy"), auto_cast contentPolicy, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.namespacePolicy != nil {
+        namespacePolicy :: proc "c" (self: ^UI.NSFileProviderItem, _: SEL) -> UI.NSFileProviderNamespacePolicy {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).namespacePolicy(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("namespacePolicy"), auto_cast namespacePolicy, "l@:") do panic("Failed to register objC method.")
     }
 }
 

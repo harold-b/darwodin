@@ -22,6 +22,9 @@ foreign lib {
 	@(objc_type=TemporalScalerBase, objc_selector="motionTextureUsage", objc_name="motionTextureUsage")
 	TemporalScalerBase_motionTextureUsage :: proc(self: ^TemporalScalerBase) -> MTL.TextureUsage ---
 
+	@(objc_type=TemporalScalerBase, objc_selector="reactiveMaskTextureUsage", objc_name="reactiveMaskTextureUsage")
+	TemporalScalerBase_reactiveMaskTextureUsage :: proc(self: ^TemporalScalerBase) -> MTL.TextureUsage ---
+
 	@(objc_type=TemporalScalerBase, objc_selector="reactiveTextureUsage", objc_name="reactiveTextureUsage")
 	TemporalScalerBase_reactiveTextureUsage :: proc(self: ^TemporalScalerBase) -> MTL.TextureUsage ---
 
@@ -39,6 +42,66 @@ foreign lib {
 
 	@(objc_type=TemporalScalerBase, objc_selector="setInputContentHeight:", objc_name="setInputContentHeight")
 	TemporalScalerBase_setInputContentHeight :: proc(self: ^TemporalScalerBase, inputContentHeight: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="colorContentOffsetX", objc_name="colorContentOffsetX")
+	TemporalScalerBase_colorContentOffsetX :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setColorContentOffsetX:", objc_name="setColorContentOffsetX")
+	TemporalScalerBase_setColorContentOffsetX :: proc(self: ^TemporalScalerBase, colorContentOffsetX: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="colorContentOffsetY", objc_name="colorContentOffsetY")
+	TemporalScalerBase_colorContentOffsetY :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setColorContentOffsetY:", objc_name="setColorContentOffsetY")
+	TemporalScalerBase_setColorContentOffsetY :: proc(self: ^TemporalScalerBase, colorContentOffsetY: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="depthContentOffsetX", objc_name="depthContentOffsetX")
+	TemporalScalerBase_depthContentOffsetX :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setDepthContentOffsetX:", objc_name="setDepthContentOffsetX")
+	TemporalScalerBase_setDepthContentOffsetX :: proc(self: ^TemporalScalerBase, depthContentOffsetX: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="depthContentOffsetY", objc_name="depthContentOffsetY")
+	TemporalScalerBase_depthContentOffsetY :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setDepthContentOffsetY:", objc_name="setDepthContentOffsetY")
+	TemporalScalerBase_setDepthContentOffsetY :: proc(self: ^TemporalScalerBase, depthContentOffsetY: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="motionContentOffsetX", objc_name="motionContentOffsetX")
+	TemporalScalerBase_motionContentOffsetX :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setMotionContentOffsetX:", objc_name="setMotionContentOffsetX")
+	TemporalScalerBase_setMotionContentOffsetX :: proc(self: ^TemporalScalerBase, motionContentOffsetX: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="motionContentOffsetY", objc_name="motionContentOffsetY")
+	TemporalScalerBase_motionContentOffsetY :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setMotionContentOffsetY:", objc_name="setMotionContentOffsetY")
+	TemporalScalerBase_setMotionContentOffsetY :: proc(self: ^TemporalScalerBase, motionContentOffsetY: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="reactiveMaskContentOffsetX", objc_name="reactiveMaskContentOffsetX")
+	TemporalScalerBase_reactiveMaskContentOffsetX :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setReactiveMaskContentOffsetX:", objc_name="setReactiveMaskContentOffsetX")
+	TemporalScalerBase_setReactiveMaskContentOffsetX :: proc(self: ^TemporalScalerBase, reactiveMaskContentOffsetX: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="reactiveMaskContentOffsetY", objc_name="reactiveMaskContentOffsetY")
+	TemporalScalerBase_reactiveMaskContentOffsetY :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setReactiveMaskContentOffsetY:", objc_name="setReactiveMaskContentOffsetY")
+	TemporalScalerBase_setReactiveMaskContentOffsetY :: proc(self: ^TemporalScalerBase, reactiveMaskContentOffsetY: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="outputOffsetX", objc_name="outputOffsetX")
+	TemporalScalerBase_outputOffsetX :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setOutputOffsetX:", objc_name="setOutputOffsetX")
+	TemporalScalerBase_setOutputOffsetX :: proc(self: ^TemporalScalerBase, outputOffsetX: NS.UInteger) ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="outputOffsetY", objc_name="outputOffsetY")
+	TemporalScalerBase_outputOffsetY :: proc(self: ^TemporalScalerBase) -> NS.UInteger ---
+
+	@(objc_type=TemporalScalerBase, objc_selector="setOutputOffsetY:", objc_name="setOutputOffsetY")
+	TemporalScalerBase_setOutputOffsetY :: proc(self: ^TemporalScalerBase, outputOffsetY: NS.UInteger) ---
 
 	@(objc_type=TemporalScalerBase, objc_selector="colorTexture", objc_name="colorTexture")
 	TemporalScalerBase_colorTexture :: proc(self: ^TemporalScalerBase) -> ^MTL.Texture ---

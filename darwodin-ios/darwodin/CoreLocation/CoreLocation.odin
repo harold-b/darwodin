@@ -14,7 +14,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(export, require)
+@(export)
 foreign import lib {
     "system:CoreLocation.framework",
 }
@@ -134,6 +134,7 @@ LiveUpdateConfiguration :: enum cffi.long {
     OtherNavigation      = 2,
     Fitness              = 3,
     Airborne             = 4,
+    Maritime             = 5,
 }
 
 /// CLMonitoringState
@@ -178,6 +179,7 @@ ActivityType :: enum cffi.long {
     Fitness              = 3,
     OtherNavigation      = 4,
     Airborne             = 5,
+    Maritime             = 6,
 }
 
 /// CLLocationPushServiceError

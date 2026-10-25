@@ -187,6 +187,12 @@ foreign lib {
 	@(objc_type=LocationManager, objc_selector="setHeadingOrientation:", objc_name="setHeadingOrientation")
 	LocationManager_setHeadingOrientation :: proc(self: ^LocationManager, headingOrientation: DeviceOrientation) ---
 
+	@(objc_type=LocationManager, objc_selector="headingBody", objc_name="headingBody")
+	LocationManager_headingBody :: proc(self: ^LocationManager) -> ^BodyIdentifiable ---
+
+	@(objc_type=LocationManager, objc_selector="setHeadingBody:", objc_name="setHeadingBody")
+	LocationManager_setHeadingBody :: proc(self: ^LocationManager, headingBody: ^BodyIdentifiable) ---
+
 	@(objc_type=LocationManager, objc_selector="heading", objc_name="heading")
 	LocationManager_heading :: proc(self: ^LocationManager) -> ^Heading ---
 

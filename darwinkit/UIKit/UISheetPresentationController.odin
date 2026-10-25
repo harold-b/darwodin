@@ -31,6 +31,12 @@ foreign lib {
 	@(objc_type=SheetPresentationController, objc_selector="setSourceView:", objc_name="setSourceView")
 	SheetPresentationController_setSourceView :: proc(self: ^SheetPresentationController, sourceView: ^View) ---
 
+	@(objc_type=SheetPresentationController, objc_selector="preferredPlacement", objc_name="preferredPlacement")
+	SheetPresentationController_preferredPlacement :: proc(self: ^SheetPresentationController) -> SheetPresentationControllerPlacement ---
+
+	@(objc_type=SheetPresentationController, objc_selector="setPreferredPlacement:", objc_name="setPreferredPlacement")
+	SheetPresentationController_setPreferredPlacement :: proc(self: ^SheetPresentationController, preferredPlacement: SheetPresentationControllerPlacement) ---
+
 	@(objc_type=SheetPresentationController, objc_selector="prefersPageSizing", objc_name="prefersPageSizing")
 	SheetPresentationController_prefersPageSizing :: proc(self: ^SheetPresentationController) -> bool ---
 

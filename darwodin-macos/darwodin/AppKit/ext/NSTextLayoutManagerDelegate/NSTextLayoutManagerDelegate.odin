@@ -19,6 +19,8 @@ VTable :: struct {
     textLayoutManager_textLayoutFragmentForLocation_inTextElement: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, location: ^NS.TextLocation, textElement: ^NS.TextElement) -> ^NS.TextLayoutFragment,
     textLayoutManager_shouldBreakLineBeforeLocation_hyphenating: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, location: ^NS.TextLocation, hyphenating: bool) -> bool,
     textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, link: id, location: ^NS.TextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary,
+    textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, viewProvider: ^NS.TextAttachmentViewProvider, textAttachment: ^NS.TextAttachment),
+    textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, attachment: ^NS.TextAttachment) -> ^NS.TextAttachmentViewProvider,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -54,6 +56,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:"), auto_cast textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes, "^void@:@@@^void") do panic("Failed to register objC method.")
+    }
+    if vt.textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment != nil {
+        textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment :: proc "c" (self: ^NS.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^NS.TextLayoutManager, viewProvider: ^NS.TextAttachmentViewProvider, textAttachment: ^NS.TextAttachment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment(self, textLayoutManager, viewProvider, textAttachment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutManager:cacheTextAttachmentViewProvider:forTextAttachment:"), auto_cast textLayoutManager_cacheTextAttachmentViewProvider_forTextAttachment, "v@:@@@") do panic("Failed to register objC method.")
+    }
+    if vt.textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment != nil {
+        textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment :: proc "c" (self: ^NS.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^NS.TextLayoutManager, attachment: ^NS.TextAttachment) -> ^NS.TextAttachmentViewProvider {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment(self, textLayoutManager, attachment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutManager:retrieveCachedTextAttachmentViewProviderForTextAttachment:"), auto_cast textLayoutManager_retrieveCachedTextAttachmentViewProviderForTextAttachment, "@@:@@") do panic("Failed to register objC method.")
     }
 }
 

@@ -91,6 +91,11 @@ Odin:
       - Kind  : None
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # CTFontStylisticClass and CTUnderlineStyle select classes/styles, not flags.
+    # CTRun.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CTRunStatus$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: (Flags?|Options?|UnderlineStyleModifiers|Traits)$
       Transforms:
         - Kind  : RemoveSuffix

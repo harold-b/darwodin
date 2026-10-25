@@ -66,7 +66,6 @@ Odin:
     - Name  : FSEvents
       Export: FS
       LinkLibs: [system:CoreServices.framework]
-      RequiredLink: true
       Filter: .*
 
       Imports:

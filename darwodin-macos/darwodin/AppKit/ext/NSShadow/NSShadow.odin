@@ -20,9 +20,10 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     init: proc(self: ^NS.Shadow) -> instancetype,
+    initWithCoder: proc(self: ^NS.Shadow, coder: ^NS.Coder) -> instancetype,
     set: proc(self: ^NS.Shadow),
-    shadowOffset: proc(self: ^NS.Shadow) -> NS.Size,
-    setShadowOffset: proc(self: ^NS.Shadow, shadowOffset: NS.Size),
+    shadowOffset: proc(self: ^NS.Shadow) -> CG.Size,
+    setShadowOffset: proc(self: ^NS.Shadow, shadowOffset: CG.Size),
     shadowBlurRadius: proc(self: ^NS.Shadow) -> CG.Float,
     setShadowBlurRadius: proc(self: ^NS.Shadow, shadowBlurRadius: CG.Float),
     shadowColor: proc(self: ^NS.Shadow) -> ^NS.Color,
@@ -46,6 +47,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.initWithCoder != nil {
+        initWithCoder :: proc "c" (self: ^NS.Shadow, _: SEL, coder: ^NS.Coder) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).initWithCoder(self, coder)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
+    }
     if vt.set != nil {
         set :: proc "c" (self: ^NS.Shadow, _: SEL) {
 
@@ -57,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("set"), auto_cast set, "v@:") do panic("Failed to register objC method.")
     }
     if vt.shadowOffset != nil {
-        shadowOffset :: proc "c" (self: ^NS.Shadow, _: SEL) -> NS.Size {
+        shadowOffset :: proc "c" (self: ^NS.Shadow, _: SEL) -> CG.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shadowOffset"), auto_cast shadowOffset, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setShadowOffset != nil {
-        setShadowOffset :: proc "c" (self: ^NS.Shadow, _: SEL, shadowOffset: NS.Size) {
+        setShadowOffset :: proc "c" (self: ^NS.Shadow, _: SEL, shadowOffset: CG.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

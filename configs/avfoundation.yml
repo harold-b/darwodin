@@ -1,0 +1,154 @@
+Includes:
+  - './base.yml'
+
+Defs: '../definitions/macos/avfoundation.json'
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  ExportTypes:
+    - '^_?AV.+'
+  ExportMethods:
+    - '^::AV.+'
+  ExportVars:
+    - '^::k?AV.+'
+  IgnoreTypes:
+    # Ignored for now because they depend on ImageIO.
+    - '^AVMetadataMachineReadableCodeObject$'
+    - '^AVPortraitEffectsMatte$'
+    - '^AVSemanticSegmentationMatte$'
+    - '^AVDepthData$'
+
+Odin:
+  ExternalTypes:
+    - '../global.exports.yml'
+    - '../mach/exports/mach.exports.yml'
+    - '../exports/CoreFoundation.exports.yml'
+    - '../exports/CoreGraphics.exports.yml'
+    - '../exports/CoreMedia.exports.yml'
+    - '../exports/CoreVideo.exports.yml'
+    - '../exports/VideoToolbox.exports.yml'
+    - '../exports/Foundation.exports.yml'
+    - '../exports/QuartzCore.exports.yml'
+    - '../exports/AudioToolbox.exports.yml'
+  ResolvedTypedefs:
+    - '[su]?int.*'
+    - '^CGFloat'
+    - '^Float32$'
+    - '^Float64$'
+  NoDistinctTypedefs: true
+  DistinctTypeDefs:
+    - '^IOCacheMode$'
+    - '^DeviceNumber$'
+    # SDK 27 introduces callbacks with the same ABI as existing overloads.
+    - '^AVAudioSourceNodeRenderBlockRealtimeSafe$'
+    - '^AVMIDIEventListBlock$'
+
+  Packages:
+    - Name: 'AVFoundation'
+      Export: 'AV'
+      LinkLibs:
+        - 'system:AVFoundation.framework'
+      Filter: '.*'
+      Imports:
+        - |2
+
+          // Avoiding binding CoreImage & CoreVideo for now, opaque references for the moment
+          CIContext            :: struct {}
+          CIImage              :: struct {}
+          UTType               :: struct {}
+          NSImage              :: struct {}
+          UIImage              :: struct {}
+          OpaqueCAClock        :: struct {}
+
+          MTAudioProcessingTapRef :: struct {} // From MediaToolbox
+
+          // NOTE: These have been ignored for the time being due to its dependence on the ImageIO framework
+          DepthData                  :: ^NS.Object
+          PortraitEffectsMatte       :: ^NS.Object
+          SemanticSegmentationMatte  :: ^NS.Object
+        - |
+          // Composite SDK masks that also contain reserved or unnamed bits.
+          AssetReferenceRestrictions_RestrictionForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
+          AudioSpatializationFormats_FormatMonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
+          AudioSpatializationFormats_FormatMonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
+
+      MacroFilter:
+        - Match: '^AV.+'
+      TypeMap:
+        # TODO: Ensure the alignment of these matches. See modelio.yml.
+        matrix_float3x3: 'matrix[3, 3]f32'
+        # simd_float4x3 has three rows and four columns.
+        matrix_float4x3: 'matrix[3, 4]f32'
+
+  EnumTransforms:
+    - Type: '.*'
+      Transforms:
+        - {Kind: 'RemoveTypeWordsFromElements'}
+        - {Kind: 'RemovePartialTypeNamePrefix'}
+        - {Kind: 'RemoveUnderscorePrefix'}
+        - {Kind: 'UnderscoreNumbers'}
+
+    # Restore SDK words truncated by the generic plural type-name transforms.
+    - Type: '^AVCaptureSystemPressureFactors$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: ystemTemperature, Target: FactorSystemTemperature }
+    - Type: '^AVVariantPreferences$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: calabilityToLosslessAudio, Target: PreferenceScalabilityToLosslessAudio }
+
+    # Restore complete SDK words after the generic enum-name transforms.
+    - Type: '^AVAudioSessionInterruptionOptions$'
+      Transforms:
+      - { Kind: ReplacePrefix, Source: houldResume, Target: ShouldResume }
+
+  TypeTransforms:
+    - Type: '^(AV).+'
+      Transforms: [{Kind: 'RemovePrefix', Source: '$group0'}]
+    - Type: '(Flag|Option|Mask)$' # Transforms for bit_set types
+      Transforms: [{Kind: 'AppendSuffix', Source: 's'}]
+
+  BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # AVAsset.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVAssetReferenceRestrictions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVAudioProcessingSettings.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVAudioSpatializationFormats$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVAssetExportSession.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVAssetTrackGroupOutputHandling$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVCaption.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVCaptionDecoration$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVPlayer.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVPlayerHDRMode$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVPlayerItem.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVVariantPreferences$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVPlayerInterstitialEventController.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVPlayerInterstitialEventRestrictions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVSpeechSynthesis.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVSpeechSynthesisVoiceTraits$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVCaptureDevice.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # AVCaptureSystemPressure.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^AVCaptureSystemPressureFactors$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    - Type: '(Mask|Flags?|Options?)$' # Avoid collisions with the generated bit_set type
+      Transforms: [{Kind: 'RemoveSuffix', Source: 's'}]
+
+  ProcTransforms:
+    - Type: '^(_*AV).+'
+      Transforms: [{Kind: 'RemovePrefix', Source: '$group0'}]
+
+  VarTransforms:
+    - Type: '^(_*AV).+'
+      Transforms: [{Kind: 'RemovePrefix', Source: '$group0'}]

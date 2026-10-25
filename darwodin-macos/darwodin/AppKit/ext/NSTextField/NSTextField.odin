@@ -48,6 +48,8 @@ VTable :: struct {
     acceptsFirstResponder: proc(self: ^NS.TextField) -> bool,
     bezelStyle: proc(self: ^NS.TextField) -> NS.TextFieldBezelStyle,
     setBezelStyle: proc(self: ^NS.TextField, bezelStyle: NS.TextFieldBezelStyle),
+    borderShape: proc(self: ^NS.TextField) -> NS.ControlBorderShape,
+    setBorderShape: proc(self: ^NS.TextField, borderShape: NS.ControlBorderShape),
     preferredMaxLayoutWidth: proc(self: ^NS.TextField) -> CG.Float,
     setPreferredMaxLayoutWidth: proc(self: ^NS.TextField, preferredMaxLayoutWidth: CG.Float),
     maximumNumberOfLines: proc(self: ^NS.TextField) -> NS.Integer,
@@ -377,6 +379,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBezelStyle:"), auto_cast setBezelStyle, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.borderShape != nil {
+        borderShape :: proc "c" (self: ^NS.TextField, _: SEL) -> NS.ControlBorderShape {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).borderShape(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("borderShape"), auto_cast borderShape, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBorderShape != nil {
+        setBorderShape :: proc "c" (self: ^NS.TextField, _: SEL, borderShape: NS.ControlBorderShape) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBorderShape(self, borderShape)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderShape:"), auto_cast setBorderShape, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.preferredMaxLayoutWidth != nil {
         preferredMaxLayoutWidth :: proc "c" (self: ^NS.TextField, _: SEL) -> CG.Float {

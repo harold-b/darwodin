@@ -39,6 +39,7 @@ VTable :: struct {
     auxiliaryTopLeftArea: proc(self: ^NS.Screen) -> NS.Rect,
     auxiliaryTopRightArea: proc(self: ^NS.Screen) -> NS.Rect,
     _CGDirectDisplayID: proc(self: ^NS.Screen) -> CG.DirectDisplayID,
+    touchCapabilities: proc(self: ^NS.Screen) -> NS.ScreenTouchCapabilities,
     maximumExtendedDynamicRangeColorComponentValue: proc(self: ^NS.Screen) -> CG.Float,
     maximumPotentialExtendedDynamicRangeColorComponentValue: proc(self: ^NS.Screen) -> CG.Float,
     maximumReferenceExtendedDynamicRangeColorComponentValue: proc(self: ^NS.Screen) -> CG.Float,
@@ -257,6 +258,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("CGDirectDisplayID"), auto_cast _CGDirectDisplayID, "I@:") do panic("Failed to register objC method.")
+    }
+    if vt.touchCapabilities != nil {
+        touchCapabilities :: proc "c" (self: ^NS.Screen, _: SEL) -> NS.ScreenTouchCapabilities {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).touchCapabilities(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("touchCapabilities"), auto_cast touchCapabilities, "L@:") do panic("Failed to register objC method.")
     }
     if vt.maximumExtendedDynamicRangeColorComponentValue != nil {
         maximumExtendedDynamicRangeColorComponentValue :: proc "c" (self: ^NS.Screen, _: SEL) -> CG.Float {

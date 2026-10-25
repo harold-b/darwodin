@@ -29,12 +29,24 @@ foreign lib {
     @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="viewportBoundsForTextViewportLayoutController:", objc_name="viewportBoundsForTextViewportLayoutController")
     TextViewportLayoutControllerDelegate_viewportBoundsForTextViewportLayoutController :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController) -> CG.Rect ---
 
-    @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController")
-    TextViewportLayoutControllerDelegate_textViewportLayoutController :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController, textLayoutFragment: ^TextLayoutFragment) ---
+    @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment")
+    TextViewportLayoutControllerDelegate_textViewportLayoutController_configureRenderingSurfaceForTextLayoutFragment :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController, textLayoutFragment: ^TextLayoutFragment) ---
 
     @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutControllerWillLayout:", objc_name="textViewportLayoutControllerWillLayout")
     TextViewportLayoutControllerDelegate_textViewportLayoutControllerWillLayout :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController) ---
 
     @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutControllerDidLayout:", objc_name="textViewportLayoutControllerDidLayout")
     TextViewportLayoutControllerDelegate_textViewportLayoutControllerDidLayout :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController) ---
+
+    @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:cacheRenderingSurface:forKey:", objc_name="textViewportLayoutController_cacheRenderingSurface_forKey")
+    TextViewportLayoutControllerDelegate_textViewportLayoutController_cacheRenderingSurface_forKey :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController, renderingSurface: ^TextViewportRenderingSurface, renderingSurfaceKey: ^TextViewportRenderingSurfaceKey) ---
+
+    @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:retrieveCachedRenderingSurfaceForKey:", objc_name="textViewportLayoutController_retrieveCachedRenderingSurfaceForKey")
+    TextViewportLayoutControllerDelegate_textViewportLayoutController_retrieveCachedRenderingSurfaceForKey :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController, renderingSurfaceKey: ^TextViewportRenderingSurfaceKey) -> ^TextViewportRenderingSurface ---
+
+    @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutControllerReceivedSetNeedsLayout:", objc_name="textViewportLayoutControllerReceivedSetNeedsLayout")
+    TextViewportLayoutControllerDelegate_textViewportLayoutControllerReceivedSetNeedsLayout :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController) ---
+
+    @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:renderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController_renderingSurfaceForTextLayoutFragment")
+    TextViewportLayoutControllerDelegate_textViewportLayoutController_renderingSurfaceForTextLayoutFragment :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController, textLayoutFragment: ^TextLayoutFragment) -> ^TextViewportRenderingSurface ---
 }

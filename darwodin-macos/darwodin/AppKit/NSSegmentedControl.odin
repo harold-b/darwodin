@@ -119,6 +119,12 @@ foreign lib {
     @(objc_type=SegmentedControl, objc_selector="setSegmentStyle:", objc_name="setSegmentStyle")
     SegmentedControl_setSegmentStyle :: proc(self: ^SegmentedControl, segmentStyle: SegmentStyle) ---
 
+    @(objc_type=SegmentedControl, objc_selector="role", objc_name="role")
+    SegmentedControl_role :: proc(self: ^SegmentedControl) -> SegmentedControlRole ---
+
+    @(objc_type=SegmentedControl, objc_selector="setRole:", objc_name="setRole")
+    SegmentedControl_setRole :: proc(self: ^SegmentedControl, role: SegmentedControlRole) ---
+
     @(objc_type=SegmentedControl, objc_selector="isSpringLoaded", objc_name="isSpringLoaded")
     SegmentedControl_isSpringLoaded :: proc(self: ^SegmentedControl) -> bool ---
 

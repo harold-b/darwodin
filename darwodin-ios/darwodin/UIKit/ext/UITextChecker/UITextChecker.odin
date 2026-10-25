@@ -23,6 +23,8 @@ VTable :: struct {
     learnWord: proc(word: ^NS.String),
     hasLearnedWord: proc(word: ^NS.String) -> bool,
     unlearnWord: proc(word: ^NS.String),
+    requestGrammarCheckingOfString: proc(self: ^UI.TextChecker, stringToCheck: ^NS.String, range: NS._NSRange, waitForAllResults: bool, completionHandler: ^Objc_Block(proc "c" ( results: ^NS.Array ))),
+    ignoreGrammarRange: proc(self: ^UI.TextChecker, grammarRange: NS._NSRange, sentence: ^NS.String),
     ignoredWords: proc(self: ^UI.TextChecker) -> ^NS.Array,
     setIgnoredWords: proc(self: ^UI.TextChecker, ignoredWords: ^NS.Array),
     availableLanguages: proc() -> ^NS.Array,
@@ -104,6 +106,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("unlearnWord:"), auto_cast unlearnWord, "v#:@") do panic("Failed to register objC method.")
+    }
+    if vt.requestGrammarCheckingOfString != nil {
+        requestGrammarCheckingOfString :: proc "c" (self: ^UI.TextChecker, _: SEL, stringToCheck: ^NS.String, range: NS._NSRange, waitForAllResults: bool, completionHandler: ^Objc_Block(proc "c" ( results: ^NS.Array ))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).requestGrammarCheckingOfString(self, stringToCheck, range, waitForAllResults, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("requestGrammarCheckingOfString:range:waitForAllResults:completionHandler:"), auto_cast requestGrammarCheckingOfString, "v@:@{_NSRange=LL}B?") do panic("Failed to register objC method.")
+    }
+    if vt.ignoreGrammarRange != nil {
+        ignoreGrammarRange :: proc "c" (self: ^UI.TextChecker, _: SEL, grammarRange: NS._NSRange, sentence: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).ignoreGrammarRange(self, grammarRange, sentence)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("ignoreGrammarRange:inSentence:"), auto_cast ignoreGrammarRange, "v@:{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
     if vt.ignoredWords != nil {
         ignoredWords :: proc "c" (self: ^UI.TextChecker, _: SEL) -> ^NS.Array {

@@ -87,8 +87,11 @@ foreign lib {
 	@(objc_type=BlitCommandEncoder, objc_selector="resolveCounters:inRange:destinationBuffer:destinationOffset:", objc_name="resolveCounters")
 	BlitCommandEncoder_resolveCounters :: proc(self: ^BlitCommandEncoder, sampleBuffer: ^CounterSampleBuffer, range: NS._NSRange, destinationBuffer: ^Buffer, destinationOffset: NS.UInteger) ---
 
-	@(objc_type=BlitCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:", objc_name="copyFromTensor")
-	BlitCommandEncoder_copyFromTensor :: proc(self: ^BlitCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents) ---
+	@(objc_type=BlitCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:", objc_name="copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions")
+	BlitCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions :: proc(self: ^BlitCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents) ---
+
+	@(objc_type=BlitCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:", objc_name="copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane")
+	BlitCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane :: proc(self: ^BlitCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, sourcePlane: TensorPlaneType, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents, destinationPlane: TensorPlaneType) ---
 }
 
 
@@ -119,4 +122,10 @@ BlitCommandEncoder_optimizeContentsForGPUAccess :: proc {
 BlitCommandEncoder_optimizeContentsForCPUAccess :: proc {
 	BlitCommandEncoder_optimizeContentsForCPUAccess_,
 	BlitCommandEncoder_optimizeContentsForCPUAccess_slice_level,
+}
+
+@(objc_type=BlitCommandEncoder, objc_name="copyFromTensor")
+BlitCommandEncoder_copyFromTensor :: proc {
+	BlitCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions,
+	BlitCommandEncoder_copyFromTensor_sourceOrigin_sourceDimensions_sourcePlane_toTensor_destinationOrigin_destinationDimensions_destinationPlane,
 }

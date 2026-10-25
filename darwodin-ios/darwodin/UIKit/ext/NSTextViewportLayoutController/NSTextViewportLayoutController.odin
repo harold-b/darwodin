@@ -22,6 +22,7 @@ VTable :: struct {
     layoutViewport: proc(self: ^UI.NSTextViewportLayoutController),
     relocateViewportToTextLocation: proc(self: ^UI.NSTextViewportLayoutController, textLocation: ^UI.NSTextLocation) -> CG.Float,
     adjustViewportByVerticalOffset: proc(self: ^UI.NSTextViewportLayoutController, verticalOffset: CG.Float),
+    renderingSurfaceForKey: proc(self: ^UI.NSTextViewportLayoutController, key: ^UI.NSTextViewportRenderingSurfaceKey) -> ^UI.NSTextViewportRenderingSurface,
     delegate: proc(self: ^UI.NSTextViewportLayoutController) -> ^UI.NSTextViewportLayoutControllerDelegate,
     setDelegate: proc(self: ^UI.NSTextViewportLayoutController, delegate: ^UI.NSTextViewportLayoutControllerDelegate),
     textLayoutManager: proc(self: ^UI.NSTextViewportLayoutController) -> ^UI.NSTextLayoutManager,
@@ -95,6 +96,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("adjustViewportByVerticalOffset:"), auto_cast adjustViewportByVerticalOffset, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.renderingSurfaceForKey != nil {
+        renderingSurfaceForKey :: proc "c" (self: ^UI.NSTextViewportLayoutController, _: SEL, key: ^UI.NSTextViewportRenderingSurfaceKey) -> ^UI.NSTextViewportRenderingSurface {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).renderingSurfaceForKey(self, key)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("renderingSurfaceForKey:"), auto_cast renderingSurfaceForKey, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
         delegate :: proc "c" (self: ^UI.NSTextViewportLayoutController, _: SEL) -> ^UI.NSTextViewportLayoutControllerDelegate {

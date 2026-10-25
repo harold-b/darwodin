@@ -4,7 +4,10 @@ package darwin_Metal
 import NS "../Foundation"
 
 @(objc_class="MTLTensorExtents", objc_superclass=NS.Object)
-TensorExtents :: struct { using _: NS.Object}
+TensorExtents :: struct {
+	using _: NS.Object,
+	using _: NS.Copying,
+}
 
 foreign lib {
 	@(objc_type=TensorExtents, objc_selector="initWithRank:values:", objc_name="initWithRank")

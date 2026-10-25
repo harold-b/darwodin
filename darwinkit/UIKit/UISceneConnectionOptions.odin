@@ -38,4 +38,7 @@ foreign lib {
 
 	@(objc_type=SceneConnectionOptions, objc_selector="cloudKitShareMetadata", objc_name="cloudKitShareMetadata")
 	SceneConnectionOptions_cloudKitShareMetadata :: proc(self: ^SceneConnectionOptions) -> ^CKShareMetadata ---
+
+	@(objc_type=SceneConnectionOptions, objc_selector="sceneAccessoryUserInfo", objc_name="sceneAccessoryUserInfo")
+	SceneConnectionOptions_sceneAccessoryUserInfo :: proc(self: ^SceneConnectionOptions) -> id ---
 }

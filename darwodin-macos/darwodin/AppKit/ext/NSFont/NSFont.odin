@@ -42,7 +42,6 @@ VTable :: struct {
     systemFontOfSize_weight_width: proc(fontSize: CG.Float, weight: NS.FontWeight, width: NS.FontWidth) -> ^NS.Font,
     monospacedSystemFontOfSize: proc(fontSize: CG.Float, weight: NS.FontWeight) -> ^NS.Font,
     fontWithSize: proc(self: ^NS.Font, fontSize: CG.Float) -> ^NS.Font,
-    systemFontSizeForControlSize: proc(controlSize: NS.ControlSize) -> CG.Float,
     boundingRectForCGGlyph: proc(self: ^NS.Font, glyph: CG.Glyph) -> NS.Rect,
     advancementForCGGlyph: proc(self: ^NS.Font, glyph: CG.Glyph) -> NS.Size,
     getBoundingRects_forCGGlyphs_count: proc(self: ^NS.Font, bounds: NS.RectArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger),
@@ -86,6 +85,7 @@ VTable :: struct {
     screenFont: proc(self: ^NS.Font) -> ^NS.Font,
     renderingMode: proc(self: ^NS.Font) -> NS.FontRenderingMode,
     preferredFontForTextStyle: proc(style: ^NS.String, options: ^NS.Dictionary) -> ^NS.Font,
+    systemFontSizeForControlSize: proc(controlSize: NS.ControlSize) -> CG.Float,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -324,16 +324,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontWithSize:"), auto_cast fontWithSize, "@@:d") do panic("Failed to register objC method.")
-    }
-    if vt.systemFontSizeForControlSize != nil {
-        systemFontSizeForControlSize :: proc "c" (self: Class, _: SEL, controlSize: NS.ControlSize) -> CG.Float {
-
-            vt_ctx := ObjC.class_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).systemFontSizeForControlSize( controlSize)
-        }
-
-        if !class_addMethod(meta, intrinsics.objc_find_selector("systemFontSizeForControlSize:"), auto_cast systemFontSizeForControlSize, "d#:L") do panic("Failed to register objC method.")
     }
     if vt.boundingRectForCGGlyph != nil {
         boundingRectForCGGlyph :: proc "c" (self: ^NS.Font, _: SEL, glyph: CG.Glyph) -> NS.Rect {
@@ -764,6 +754,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("preferredFontForTextStyle:options:"), auto_cast preferredFontForTextStyle, "@#:@^void") do panic("Failed to register objC method.")
+    }
+    if vt.systemFontSizeForControlSize != nil {
+        systemFontSizeForControlSize :: proc "c" (self: Class, _: SEL, controlSize: NS.ControlSize) -> CG.Float {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).systemFontSizeForControlSize( controlSize)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("systemFontSizeForControlSize:"), auto_cast systemFontSizeForControlSize, "d#:L") do panic("Failed to register objC method.")
     }
 }
 

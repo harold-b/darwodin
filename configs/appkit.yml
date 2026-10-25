@@ -54,7 +54,6 @@ Odin:
     - Name  : AppKit
       Export: NS
       LinkLibs: [system:AppKit.framework]
-      RequiredLink: true
       Filter: .*
 
       Imports:
@@ -135,6 +134,17 @@ Odin:
 
 
   
+        - |
+          // Composite SDK masks that also contain reserved or unnamed bits.
+          TouchPhase_Any :: transmute(TouchPhase)cffi.ulong(18446744073709551615)
+          DragOperation_Every :: transmute(DragOperation)cffi.ulong(18446744073709551615)
+          LineBreakStrategy_Standard :: transmute(LineBreakStrategy)cffi.ulong(65535)
+          ControlEvents_EventAllTrackingEvents :: transmute(ControlEvents)cffi.ulong(4095)
+          ControlEvents_EventApplicationReserved :: transmute(ControlEvents)cffi.ulong(251658240)
+          ControlEvents_EventSystemReserved :: transmute(ControlEvents)cffi.ulong(4026531840)
+          ControlEvents_EventAllEvents :: transmute(ControlEvents)cffi.ulong(4294967295)
+          UnderlineStyle_Double :: transmute(UnderlineStyle)cffi.long(9)
+
       TypeMap:
         CKShare: CKShare
         CKShareMetadata: CKShareMetadata
@@ -160,6 +170,12 @@ Odin:
 
   # Symbol Transformers
   EnumTransforms:
+  # SDK 27 adds fully qualified names while retaining the deprecated aliases.
+  - Type: ^NSTextBlock(Dimension|Layer)$
+    Transforms:
+    - { Kind: RemovePrefix, Source: NSTextBlockDimension }
+    - { Kind: RemovePrefix, Source: NSTextBlockLayer }
+    - { Kind: ReplacePrefix, Source: NSTextBlock, Target: DEPRECATED_ }
   - Type: ^NSEventModifierFlags$
     Transforms:
     - Kind  : RemovePrefix
@@ -190,6 +206,20 @@ Odin:
       - Kind  : RemovePrefix
         Source: Flag
 
+  # Restore SDK words truncated by the generic plural type-name transforms.
+  - Type: '^NSControlEvents$'
+    Transforms:
+    - { Kind: ReplacePrefix, Source: ystemReserved, Target: EventSystemReserved }
+  - Type: '^NSTextStorageEditActions$'
+    Transforms:
+    - { Kind: ReplacePrefix, Source: edAttributes, Target: EditedAttributes }
+    - { Kind: ReplacePrefix, Source: edCharacters, Target: EditedCharacters }
+
+  # Restore complete SDK words after the generic enum-name transforms.
+  - Type: '^NSScrollArrowPosition$'
+    Transforms:
+    - { Kind: ReplacePrefix, Source: erArrows, Target: ScrollerArrows }
+
   TypeTransforms:
     - Type: ^(NS).+
       Transforms:
@@ -204,6 +234,85 @@ Odin:
       - Kind  : None
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # NSTouch.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSTouchPhase$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSEvent.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSEventPhase$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSDragging.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSDragOperation$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSParagraphStyle.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSLineBreakStrategy$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSCell.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSCellHitResult$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSMenu.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSMenuProperties$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSApplication.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^(?:NSApplicationOcclusionState|NSRemoteNotificationType)$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSControl.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSControlEvents$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSCollectionView.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSCollectionViewScrollPosition$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSCollectionViewCompositionalLayout.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSDirectionalRectEdge$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSDirection.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^(?:NSHorizontalDirections|NSVerticalDirections)$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSFontDescriptor.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSFontDescriptorSymbolicTraits$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSFontCollection.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSFontCollectionVisibility$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSWindow.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^(?:NSWindowCollectionBehavior|NSWindowOcclusionState)$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSBitmapImageRep.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSBitmapFormat$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSCursor.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSCursorFrameResizeDirections$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSMediaLibraryBrowserController.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSMediaLibrary$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSScreen.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSScreenTouchCapabilities$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSAttributedString.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSUnderlineStyle$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSTextStorage.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSTextStorageEditActions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSLayoutManager.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^(?:NSGlyphProperty|NSControlCharacterAction)$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSTextView.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSTextAttachmentViewProviderReusePolicy$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSTableView.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSTableViewGridLineStyle$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSTextSelectionNavigation.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSTextSelectionNavigationModifier$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSStatusItem.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSStatusItemBehavior$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # NSTypesetter.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^NSTypesetterControlCharacterAction$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: Flags?$
       Transforms:
         - Kind  : RemoveSuffix

@@ -61,6 +61,9 @@ foreign lib {
 	@(objc_type=SpellChecker, objc_selector="setIgnoredWords:inSpellDocumentWithTag:", objc_name="setIgnoredWords")
 	SpellChecker_setIgnoredWords :: proc(self: ^SpellChecker, words: ^NS.Array, tag: NS.Integer) ---
 
+	@(objc_type=SpellChecker, objc_selector="ignoreGrammarRange:inSentence:inSpellDocumentWithTag:", objc_name="ignoreGrammarRange")
+	SpellChecker_ignoreGrammarRange :: proc(self: ^SpellChecker, grammarRange: NS._NSRange, sentence: ^NS.String, tag: NS.Integer) ---
+
 	@(objc_type=SpellChecker, objc_selector="guessesForWordRange:inString:language:inSpellDocumentWithTag:", objc_name="guessesForWordRange")
 	SpellChecker_guessesForWordRange :: proc(self: ^SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array ---
 

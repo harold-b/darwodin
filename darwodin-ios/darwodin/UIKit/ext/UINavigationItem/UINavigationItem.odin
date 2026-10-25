@@ -108,6 +108,8 @@ VTable :: struct {
     setScrollEdgeAppearance: proc(self: ^UI.NavigationItem, scrollEdgeAppearance: ^UI.NavigationBarAppearance),
     compactScrollEdgeAppearance: proc(self: ^UI.NavigationItem) -> ^UI.NavigationBarAppearance,
     setCompactScrollEdgeAppearance: proc(self: ^UI.NavigationItem, compactScrollEdgeAppearance: ^UI.NavigationBarAppearance),
+    navigationBarMinimization: proc(self: ^UI.NavigationItem) -> ^UI.BarMinimization,
+    setNavigationBarMinimization: proc(self: ^UI.NavigationItem, navigationBarMinimization: ^UI.BarMinimization),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -1036,6 +1038,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCompactScrollEdgeAppearance:"), auto_cast setCompactScrollEdgeAppearance, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.navigationBarMinimization != nil {
+        navigationBarMinimization :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^UI.BarMinimization {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).navigationBarMinimization(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("navigationBarMinimization"), auto_cast navigationBarMinimization, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setNavigationBarMinimization != nil {
+        setNavigationBarMinimization :: proc "c" (self: ^UI.NavigationItem, _: SEL, navigationBarMinimization: ^UI.BarMinimization) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setNavigationBarMinimization(self, navigationBarMinimization)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNavigationBarMinimization:"), auto_cast setNavigationBarMinimization, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

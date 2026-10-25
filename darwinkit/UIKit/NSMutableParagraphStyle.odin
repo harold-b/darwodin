@@ -23,6 +23,12 @@ foreign lib {
 	@(objc_type=NSMutableParagraphStyle, objc_selector="setParagraphStyle:", objc_name="setParagraphStyle")
 	NSMutableParagraphStyle_setParagraphStyle :: proc(self: ^NSMutableParagraphStyle, obj: ^NSParagraphStyle) ---
 
+	@(objc_type=NSMutableParagraphStyle, objc_selector="alignment", objc_name="alignment")
+	NSMutableParagraphStyle_alignment :: proc(self: ^NSMutableParagraphStyle) -> NSTextAlignment ---
+
+	@(objc_type=NSMutableParagraphStyle, objc_selector="setAlignment:", objc_name="setAlignment")
+	NSMutableParagraphStyle_setAlignment :: proc(self: ^NSMutableParagraphStyle, alignment: NSTextAlignment) ---
+
 	@(objc_type=NSMutableParagraphStyle, objc_selector="lineSpacing", objc_name="lineSpacing")
 	NSMutableParagraphStyle_lineSpacing :: proc(self: ^NSMutableParagraphStyle) -> CG.Float ---
 
@@ -131,9 +137,9 @@ foreign lib {
 	@(objc_type=NSMutableParagraphStyle, objc_selector="setTextLists:", objc_name="setTextLists")
 	NSMutableParagraphStyle_setTextLists :: proc(self: ^NSMutableParagraphStyle, textLists: ^NS.Array) ---
 
-	@(objc_type=NSMutableParagraphStyle, objc_selector="alignment", objc_name="alignment")
-	NSMutableParagraphStyle_alignment :: proc(self: ^NSMutableParagraphStyle) -> NSTextAlignment ---
+	@(objc_type=NSMutableParagraphStyle, objc_selector="textBlocks", objc_name="textBlocks")
+	NSMutableParagraphStyle_textBlocks :: proc(self: ^NSMutableParagraphStyle) -> ^NS.Array ---
 
-	@(objc_type=NSMutableParagraphStyle, objc_selector="setAlignment:", objc_name="setAlignment")
-	NSMutableParagraphStyle_setAlignment :: proc(self: ^NSMutableParagraphStyle, alignment: NSTextAlignment) ---
+	@(objc_type=NSMutableParagraphStyle, objc_selector="setTextBlocks:", objc_name="setTextBlocks")
+	NSMutableParagraphStyle_setTextBlocks :: proc(self: ^NSMutableParagraphStyle, textBlocks: ^NS.Array) ---
 }

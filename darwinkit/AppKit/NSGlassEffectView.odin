@@ -35,4 +35,10 @@ foreign lib {
 
 	@(objc_type=GlassEffectView, objc_selector="setStyle:", objc_name="setStyle")
 	GlassEffectView_setStyle :: proc(self: ^GlassEffectView, style: GlassEffectViewStyle) ---
+
+	@(objc_type=GlassEffectView, objc_selector="effectIsInteractive", objc_name="effectIsInteractive")
+	GlassEffectView_effectIsInteractive :: proc(self: ^GlassEffectView) -> bool ---
+
+	@(objc_type=GlassEffectView, objc_selector="setEffectIsInteractive:", objc_name="setEffectIsInteractive")
+	GlassEffectView_setEffectIsInteractive :: proc(self: ^GlassEffectView, effectIsInteractive: bool) ---
 }

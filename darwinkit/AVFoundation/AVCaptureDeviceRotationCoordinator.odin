@@ -18,6 +18,9 @@ foreign lib {
 	@(objc_type=CaptureDeviceRotationCoordinator, objc_selector="initWithDevice:previewLayer:", objc_name="initWithDevice")
 	CaptureDeviceRotationCoordinator_initWithDevice :: proc(self: ^CaptureDeviceRotationCoordinator, device: ^CaptureDevice, previewLayer: ^CA.Layer) -> instancetype ---
 
+	@(objc_type=CaptureDeviceRotationCoordinator, objc_selector="videoRotationAngleRelativeToDeviceOrientation:", objc_name="videoRotationAngleRelativeToDeviceOrientation")
+	CaptureDeviceRotationCoordinator_videoRotationAngleRelativeToDeviceOrientation :: proc(self: ^CaptureDeviceRotationCoordinator, deviceOrientation: CaptureVideoOrientation) -> CG.Float ---
+
 	@(objc_type=CaptureDeviceRotationCoordinator, objc_selector="device", objc_name="device")
 	CaptureDeviceRotationCoordinator_device :: proc(self: ^CaptureDeviceRotationCoordinator) -> ^CaptureDevice ---
 

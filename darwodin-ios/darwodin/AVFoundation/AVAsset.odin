@@ -7,6 +7,8 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
+import VT "../VideoToolbox"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -48,6 +50,9 @@ foreign lib {
 
     @(objc_type=Asset, objc_selector="minimumTimeOffsetFromLive", objc_name="minimumTimeOffsetFromLive")
     Asset_minimumTimeOffsetFromLive :: proc(self: ^Asset) -> CM.Time ---
+
+    @(objc_type=Asset, objc_selector="constituentFileURLs", objc_name="constituentFileURLs")
+    Asset_constituentFileURLs :: proc(self: ^Asset) -> ^NS.Array ---
 
     @(objc_type=Asset, objc_selector="cancelLoading", objc_name="cancelLoading")
     Asset_cancelLoading :: proc(self: ^Asset) ---

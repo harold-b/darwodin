@@ -23,6 +23,9 @@ VTable :: struct {
     stopWritingTools: proc(self: ^NS.WritingToolsCoordinator),
     updateRange: proc(self: ^NS.WritingToolsCoordinator, range: NS._NSRange, replacementText: ^NS.AttributedString, reason: NS.WritingToolsCoordinatorTextUpdateReason, contextID: ^NS.UUID),
     updateForReflowedTextInContextWithIdentifier: proc(self: ^NS.WritingToolsCoordinator, contextID: ^NS.UUID),
+    startTextAnimation: proc(self: ^NS.WritingToolsCoordinator, textAnimation: NS.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^NS.WritingToolsCoordinatorContext, writingDirection: NS.WritingDirection) -> ^NS.UUID,
+    cancelTextAnimationsWithIdentifiers: proc(self: ^NS.WritingToolsCoordinator, identifiers: ^NS.Array),
+    showGrammarPresentationForRange: proc(self: ^NS.WritingToolsCoordinator, range: NS._NSRange, _context: ^NS.WritingToolsCoordinatorContext) -> bool,
     isWritingToolsAvailable: proc() -> bool,
     delegate: proc(self: ^NS.WritingToolsCoordinator) -> ^NS.WritingToolsCoordinatorDelegate,
     view: proc(self: ^NS.WritingToolsCoordinator) -> ^NS.View,
@@ -87,6 +90,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateForReflowedTextInContextWithIdentifier:"), auto_cast updateForReflowedTextInContextWithIdentifier, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.startTextAnimation != nil {
+        startTextAnimation :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, textAnimation: NS.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^NS.WritingToolsCoordinatorContext, writingDirection: NS.WritingDirection) -> ^NS.UUID {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).startTextAnimation(self, textAnimation, range, _context, writingDirection)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("startTextAnimation:forRange:inContext:writingDirection:"), auto_cast startTextAnimation, "@@:l{_NSRange=LL}@l") do panic("Failed to register objC method.")
+    }
+    if vt.cancelTextAnimationsWithIdentifiers != nil {
+        cancelTextAnimationsWithIdentifiers :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, identifiers: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).cancelTextAnimationsWithIdentifiers(self, identifiers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cancelTextAnimationsWithIdentifiers:"), auto_cast cancelTextAnimationsWithIdentifiers, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.showGrammarPresentationForRange != nil {
+        showGrammarPresentationForRange :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, range: NS._NSRange, _context: ^NS.WritingToolsCoordinatorContext) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).showGrammarPresentationForRange(self, range, _context)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("showGrammarPresentationForRange:inContext:"), auto_cast showGrammarPresentationForRange, "B@:{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
     if vt.isWritingToolsAvailable != nil {
         isWritingToolsAvailable :: proc "c" (self: Class, _: SEL) -> bool {

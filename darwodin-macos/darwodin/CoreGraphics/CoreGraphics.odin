@@ -15,7 +15,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(export, require)
+@(export)
 foreign import lib {
     "system:CoreGraphics.framework",
 }
@@ -1599,7 +1599,7 @@ foreign lib {
     ColorConversionInfoCreateFromListWithArguments :: proc(options: CF.DictionaryRef, _0: ColorSpaceRef, _1: ColorConversionInfoTransformType, _2: ColorRenderingIntent, _3: ^cffi.va_list) -> ColorConversionInfoRef ---
 
     @(link_name="CGColorConversionInfoCreateForToneMapping")
-    ColorConversionInfoCreateForToneMapping :: proc(from: ColorSpaceRef, source_headroom: cffi.float, to: ColorSpaceRef, target_headroom: cffi.float, method: ToneMapping, options: CF.DictionaryRef, error: ^CF.ErrorRef) -> ColorConversionInfoRef ---
+    ColorConversionInfoCreateForToneMapping :: proc(source: ColorSpaceRef, source_headroom: cffi.float, target: ColorSpaceRef, target_headroom: cffi.float, method: ToneMapping, options: CF.DictionaryRef, error: ^CF.ErrorRef) -> ColorConversionInfoRef ---
 
     @(link_name="CGColorConversionInfoConvertData")
     ColorConversionInfoConvertData :: proc(info: ColorConversionInfoRef, width: cffi.size_t, height: cffi.size_t, dst_data: rawptr, dst_format: ColorBufferFormat, src_data: rawptr, src_format: ColorBufferFormat, options: CF.DictionaryRef) -> cffi.bool ---
@@ -1670,6 +1670,12 @@ foreign lib {
     @(link_name="CGPDFContentStreamGetResource")
     PDFContentStreamGetResource :: proc(cs: PDFContentStreamRef, category: cstring, name: cstring) -> PDFObjectRef ---
 
+    @(link_name="CGPDFMarkedContentItemRetain")
+    PDFMarkedContentItemRetain :: proc(markedContentItem: PDFMarkedContentItemRef) -> PDFMarkedContentItemRef ---
+
+    @(link_name="CGPDFMarkedContentItemRelease")
+    PDFMarkedContentItemRelease :: proc(markedContentItem: PDFMarkedContentItemRef) ---
+
     @(link_name="CGPDFContextCreate")
     PDFContextCreate :: proc(consumer: DataConsumerRef, mediaBox: ^Rect, auxiliaryInfo: CF.DictionaryRef) -> ContextRef ---
 
@@ -1717,6 +1723,54 @@ foreign lib {
 
     @(link_name="CGPDFContextEndTag")
     PDFContextEndTag :: proc(_context: ContextRef) ---
+
+    @(link_name="CGPDFContextBeginMarkedContentSequence")
+    PDFContextBeginMarkedContentSequence :: proc(_context: ContextRef, tagType: PDFTagType) -> PDFMarkedContentItemRef ---
+
+    @(link_name="CGPDFContextBeginNonStructuralMarkedContentSequence")
+    PDFContextBeginNonStructuralMarkedContentSequence :: proc(_context: ContextRef, tagType: PDFTagType) ---
+
+    @(link_name="CGPDFContextEndMarkedContentSequence")
+    PDFContextEndMarkedContentSequence :: proc(_context: ContextRef) ---
+
+    @(link_name="CGPDFContextBeginObjectReference")
+    PDFContextBeginObjectReference :: proc(_context: ContextRef) -> PDFMarkedContentItemRef ---
+
+    @(link_name="CGPDFContextEndObjectReference")
+    PDFContextEndObjectReference :: proc(_context: ContextRef) ---
+
+    @(link_name="CGPDFContextAddStructureTreeRootChild")
+    PDFContextAddStructureTreeRootChild :: proc(_context: ContextRef, structureElement: PDFStructureElementRef) -> CF.OSStatus ---
+
+    @(link_name="CGPDFStructureElementCreate")
+    PDFStructureElementCreate :: proc(type: PDFTagType) -> PDFStructureElementRef ---
+
+    @(link_name="CGPDFStructureElementRetain")
+    PDFStructureElementRetain :: proc(structureElemnt: PDFStructureElementRef) -> PDFStructureElementRef ---
+
+    @(link_name="CGPDFStructureElementRelease")
+    PDFStructureElementRelease :: proc(structureElemnt: PDFStructureElementRef) ---
+
+    @(link_name="CGPDFStructureElementSetTitle")
+    PDFStructureElementSetTitle :: proc(structureElement: PDFStructureElementRef, title: CF.StringRef) ---
+
+    @(link_name="CGPDFStructureElementSetLanguageIdentifier")
+    PDFStructureElementSetLanguageIdentifier :: proc(structureElement: PDFStructureElementRef, languageID: CF.StringRef) ---
+
+    @(link_name="CGPDFStructureElementSetAlternativeText")
+    PDFStructureElementSetAlternativeText :: proc(structureElement: PDFStructureElementRef, alternativeText: CF.StringRef) ---
+
+    @(link_name="CGPDFStructureElementSetExpansionText")
+    PDFStructureElementSetExpansionText :: proc(structureElement: PDFStructureElementRef, expansionText: CF.StringRef) ---
+
+    @(link_name="CGPDFStructureElementSetActualText")
+    PDFStructureElementSetActualText :: proc(structureElement: PDFStructureElementRef, actualText: CF.StringRef) ---
+
+    @(link_name="CGPDFStructureElementAddStructureElement")
+    PDFStructureElementAddStructureElement :: proc(structureElement: PDFStructureElementRef, childStructureElement: PDFStructureElementRef) -> CF.OSStatus ---
+
+    @(link_name="CGPDFStructureElementAddMarkedContentItem")
+    PDFStructureElementAddMarkedContentItem :: proc(structureElement: PDFStructureElementRef, markedContentItem: PDFMarkedContentItemRef) -> CF.OSStatus ---
 
     @(link_name="CGPDFScannerCreate")
     PDFScannerCreate :: proc(cs: PDFContentStreamRef, table: PDFOperatorTableRef, info: rawptr) -> PDFScannerRef ---
@@ -2515,6 +2569,12 @@ LayerRef :: distinct ^Layer
 /// CGPDFContentStreamRef
 PDFContentStreamRef :: distinct ^PDFContentStream
 
+/// CGPDFMarkedContentItemRef
+PDFMarkedContentItemRef :: distinct ^PDFMarkedContentItem
+
+/// CGPDFStructureElementRef
+PDFStructureElementRef :: distinct ^PDFStructureElement
+
 /// CGPDFTagProperty
 PDFTagProperty :: distinct CF.StringRef
 
@@ -2704,10 +2764,11 @@ GlyphDeprecatedEnum :: enum cffi.int {
 }
 
 /// CGGradientDrawingOptions
-GradientDrawingOptions :: enum cffi.uint {
-    DrawsBeforeStartLocation = 1,
-    DrawsAfterEndLocation    = 2,
+GradientDrawingOptionsFlag :: enum cffi.uint {
+    DrawsBeforeStartLocation = 0,
+    DrawsAfterEndLocation    = 1,
 }
+GradientDrawingOptions :: bit_set[GradientDrawingOptionsFlag; cffi.uint]
 
 /// CGImageAlphaInfo
 ImageAlphaInfo :: enum cffi.uint {
@@ -2818,25 +2879,27 @@ PDFBox :: enum cffi.int {
 }
 
 /// CGPDFAccessPermissions
-PDFAccessPermissions :: enum cffi.uint {
-    AllowsLowQualityPrinting   = 1,
-    AllowsHighQualityPrinting  = 2,
-    AllowsDocumentChanges      = 4,
-    AllowsDocumentAssembly     = 8,
-    AllowsContentCopying       = 16,
-    AllowsContentAccessibility = 32,
-    AllowsCommenting           = 64,
-    AllowsFormFieldEntry       = 128,
+PDFAccessPermissionsFlag :: enum cffi.uint {
+    AllowsLowQualityPrinting   = 0,
+    AllowsHighQualityPrinting  = 1,
+    AllowsDocumentChanges      = 2,
+    AllowsDocumentAssembly     = 3,
+    AllowsContentCopying       = 4,
+    AllowsContentAccessibility = 5,
+    AllowsCommenting           = 6,
+    AllowsFormFieldEntry       = 7,
 }
+PDFAccessPermissions :: bit_set[PDFAccessPermissionsFlag; cffi.uint]
 
 /// CGToneMapping
 ToneMapping :: enum cffi.uint {
-    Default                  = 0,
-    ImageSpecificLumaScaling = 1,
-    ReferenceWhiteBased      = 2,
-    ITURecommended           = 3,
-    EXRGamma                 = 4,
-    None                     = 5,
+    Default                   = 0,
+    ImageSpecificLumaScaling  = 1,
+    HeadroomAdaptiveGainCurve = 6,
+    ReferenceWhiteBased       = 2,
+    ITURecommended            = 3,
+    EXRGamma                  = 4,
+    None                      = 5,
 }
 
 /// CGPathDrawingMode
@@ -2908,14 +2971,14 @@ BlendMode :: enum cffi.int {
 }
 
 /// CGColorModel
-ColorModel :: enum cffi.uint {
-    NoColorant = 0,
-    Gray       = 1,
-    RGB        = 2,
-    CMYK       = 4,
-    Lab        = 8,
-    DeviceN    = 16,
+ColorModelFlag :: enum cffi.uint {
+    Gray    = 0,
+    RGB     = 1,
+    CMYK    = 2,
+    Lab     = 3,
+    DeviceN = 4,
 }
+ColorModel :: bit_set[ColorModelFlag; cffi.uint]
 
 /// CGComponent
 Component :: enum cffi.uint {
@@ -3018,6 +3081,7 @@ PDFTagType :: enum cffi.int {
     Formula            = 701,
     Form               = 702,
     Object             = 800,
+    Artifact           = 900,
 }
 
 /// CGWindowSharingType
@@ -3035,24 +3099,24 @@ WindowBackingType :: enum cffi.uint {
 }
 
 /// CGWindowListOption
-WindowListOption :: enum cffi.uint {
-    All                    = 0,
-    OnScreenOnly           = 1,
-    OnScreenAboveWindow    = 2,
-    OnScreenBelowWindow    = 4,
-    IncludingWindow        = 8,
-    ExcludeDesktopElements = 16,
+WindowListOptionFlag :: enum cffi.uint {
+    OnScreenOnly           = 0,
+    OnScreenAboveWindow    = 1,
+    OnScreenBelowWindow    = 2,
+    IncludingWindow        = 3,
+    ExcludeDesktopElements = 4,
 }
+WindowListOption :: bit_set[WindowListOptionFlag; cffi.uint]
 
 /// CGWindowImageOption
-WindowImageOption :: enum cffi.uint {
-    Default             = 0,
-    BoundsIgnoreFraming = 1,
-    ShouldBeOpaque      = 2,
-    OnlyShadows         = 4,
-    BestResolution      = 8,
-    NominalResolution   = 16,
+WindowImageOptionFlag :: enum cffi.uint {
+    BoundsIgnoreFraming = 0,
+    ShouldBeOpaque      = 1,
+    OnlyShadows         = 2,
+    BestResolution      = 3,
+    NominalResolution   = 4,
 }
+WindowImageOption :: bit_set[WindowImageOptionFlag; cffi.uint]
 
 /// CGWindowLevelKey
 WindowLevelKey :: enum cffi.int {
@@ -3081,17 +3145,17 @@ WindowLevelKey :: enum cffi.int {
 }
 
 /// CGCaptureOptions
-CaptureOptions :: enum cffi.uint {
-    NoOptions = 0,
-    NoFill    = 1,
+CaptureOptionsFlag :: enum cffi.uint {
+    NoFill = 0,
 }
+CaptureOptions :: bit_set[CaptureOptionsFlag; cffi.uint]
 
 /// CGConfigureOption
-ConfigureOption :: enum cffi.uint {
-    ForAppOnly  = 0,
-    ForSession  = 1,
-    Permanently = 2,
+ConfigureOptionFlag :: enum cffi.uint {
+    ForSession  = 0,
+    Permanently = 1,
 }
+ConfigureOption :: bit_set[ConfigureOptionFlag; cffi.uint]
 
 /// CGDisplayChangeSummaryFlags
 DisplayChangeSummaryFlag :: enum cffi.uint {
@@ -3126,11 +3190,11 @@ DisplayStreamFrameStatus :: enum cffi.int {
 }
 
 /// CGScreenUpdateOperation
-ScreenUpdateOperation :: enum cffi.uint {
-    Refresh                    = 0,
-    Move                       = 1,
-    ReducedDirtyRectangleCount = 2147483648,
+ScreenUpdateOperationFlag :: enum cffi.uint {
+    Move                       = 0,
+    ReducedDirtyRectangleCount = 31,
 }
+ScreenUpdateOperation :: bit_set[ScreenUpdateOperationFlag; cffi.uint]
 
 /// CGEventFilterMask
 EventFilterMaskFlag :: enum cffi.uint {
@@ -3553,6 +3617,12 @@ Layer :: struct {}
 
 /// CGPDFContentStream
 PDFContentStream :: struct {}
+
+/// CGPDFMarkedContentItem
+PDFMarkedContentItem :: struct {}
+
+/// CGPDFStructureElement
+PDFStructureElement :: struct {}
 
 /// CGPDFOperatorTable
 PDFOperatorTable :: struct {}

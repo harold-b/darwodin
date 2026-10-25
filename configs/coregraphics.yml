@@ -56,7 +56,6 @@ Odin:
     - Name  : CoreGraphics
       Export: CG
       LinkLibs: [system:CoreGraphics.framework]
-      RequiredLink: true
       Filter: .*
 
       Imports:
@@ -112,6 +111,29 @@ Odin:
       - Kind  : None
 
   BitSetMap:
+    # SDK 27 flag declarations, verified against the headers named below.
+    # CGBitmapInfo packs alpha/component/byte-order/pixel-format fields; keep it as an enum.
+    # CGGradient.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CGGradientDrawingOptions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CGPDFDocument.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CGPDFAccessPermissions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CGWindow.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^(?:CGWindowListOption|CGWindowImageOption)$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CGDirectDisplay.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CGCaptureOptions$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CGDisplayConfiguration.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CGConfigureOption$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CGRemoteOperation.h: NS_OPTIONS / CF_OPTIONS.
+    - Type: '^CGScreenUpdateOperation$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    # CGBitmapContext.h: CGContentInfo accumulates all color models drawn.
+    - Type: '^CGColorModel$'
+      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     - Type: Flags?$
       Transforms:
         - Kind  : RemoveSuffix

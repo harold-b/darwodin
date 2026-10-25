@@ -17,6 +17,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     defaultWritingDirectionForLanguage: proc(languageName: ^NS.String) -> UI.NSWritingDirection,
+    alignment: proc(self: ^UI.NSParagraphStyle) -> UI.NSTextAlignment,
     defaultParagraphStyle: proc() -> ^UI.NSParagraphStyle,
     lineSpacing: proc(self: ^UI.NSParagraphStyle) -> CG.Float,
     paragraphSpacing: proc(self: ^UI.NSParagraphStyle) -> CG.Float,
@@ -34,9 +35,9 @@ VTable :: struct {
     tabStops: proc(self: ^UI.NSParagraphStyle) -> ^NS.Array,
     defaultTabInterval: proc(self: ^UI.NSParagraphStyle) -> CG.Float,
     textLists: proc(self: ^UI.NSParagraphStyle) -> ^NS.Array,
+    textBlocks: proc(self: ^UI.NSParagraphStyle) -> ^NS.Array,
     allowsDefaultTighteningForTruncation: proc(self: ^UI.NSParagraphStyle) -> bool,
     lineBreakStrategy: proc(self: ^UI.NSParagraphStyle) -> UI.NSLineBreakStrategy,
-    alignment: proc(self: ^UI.NSParagraphStyle) -> UI.NSTextAlignment,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -55,6 +56,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultWritingDirectionForLanguage:"), auto_cast defaultWritingDirectionForLanguage, "l#:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignment != nil {
+        alignment :: proc "c" (self: ^UI.NSParagraphStyle, _: SEL) -> UI.NSTextAlignment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).alignment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.defaultParagraphStyle != nil {
         defaultParagraphStyle :: proc "c" (self: Class, _: SEL) -> ^UI.NSParagraphStyle {
@@ -226,6 +237,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLists"), auto_cast textLists, "^void@:") do panic("Failed to register objC method.")
     }
+    if vt.textBlocks != nil {
+        textBlocks :: proc "c" (self: ^UI.NSParagraphStyle, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).textBlocks(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textBlocks"), auto_cast textBlocks, "^void@:") do panic("Failed to register objC method.")
+    }
     if vt.allowsDefaultTighteningForTruncation != nil {
         allowsDefaultTighteningForTruncation :: proc "c" (self: ^UI.NSParagraphStyle, _: SEL) -> bool {
 
@@ -245,16 +266,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
-    }
-    if vt.alignment != nil {
-        alignment :: proc "c" (self: ^UI.NSParagraphStyle, _: SEL) -> UI.NSTextAlignment {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).alignment(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
 }
 
