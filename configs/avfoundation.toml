@@ -10,10 +10,6 @@ ExportForwardDeclarations = true
 
 ExportTypes = [
   '^_?AV.+',
-
-  # These belong to CoreVideo, but we're adding it for now in order to avoid including CV entirely
-  '^CVTimeStamp$',
-  '^CVSMPTETime$',
 ]
 
 ExportMethods = [
@@ -39,6 +35,7 @@ ExternalTypes = [
   '../exports/CoreFoundation.exports.yml',
   '../exports/CoreGraphics.exports.yml',
   '../exports/CoreMedia.exports.yml',
+  '../exports/CoreVideo.exports.yml',
   '../exports/Foundation.exports.yml',
   '../exports/QuartzCore.exports.yml',
   '../exports/AudioToolbox.exports.yml',
@@ -66,9 +63,6 @@ Filter         = '.*'
 
 Imports = ["""
 // Avoiding binding CoreImage & CoreVideo for now, opaque references for the moment
-CVImageBufferRef     :: struct {}
-CVPixelBufferPoolRef :: struct {}
-CVPixelBufferRef     :: struct {}
 CIContext            :: struct {}
 CIImage              :: struct {}
 UTType               :: struct {}

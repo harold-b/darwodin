@@ -7,6 +7,7 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -31,7 +32,7 @@ foreign lib {
     PlayerItemVideoOutput_hasNewPixelBufferForItemTime :: proc(self: ^PlayerItemVideoOutput, itemTime: CM.Time) -> bool ---
 
     @(objc_type=PlayerItemVideoOutput, objc_selector="copyPixelBufferForItemTime:itemTimeForDisplay:", objc_name="copyPixelBufferForItemTime")
-    PlayerItemVideoOutput_copyPixelBufferForItemTime :: proc(self: ^PlayerItemVideoOutput, itemTime: CM.Time, outItemTimeForDisplay: ^CM.Time) -> CVPixelBufferRef ---
+    PlayerItemVideoOutput_copyPixelBufferForItemTime :: proc(self: ^PlayerItemVideoOutput, itemTime: CM.Time, outItemTimeForDisplay: ^CM.Time) -> CV.PixelBufferRef ---
 
     @(objc_type=PlayerItemVideoOutput, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     PlayerItemVideoOutput_setDelegate :: proc(self: ^PlayerItemVideoOutput, delegate: ^PlayerItemOutputPullDelegate, delegateQueue: CF.dispatch_queue_t) ---

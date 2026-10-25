@@ -1,0 +1,62 @@
+Includes: [base.yml]
+Defs: ../definitions/macos/corevideo.json
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  ExportTypes: ['^_*CV.+']
+  ExportMethods: ['^::CV.+']
+  ExportVars: ['^::k?CV.+']
+
+Odin:
+  ExternalTypes:
+    - ../global.exports.yml
+    - ../mach/exports/mach.exports.yml
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/Foundation.exports.yml
+    - ../exports/QuartzCore.exports.yml
+    - ../exports/Metal.exports.yml
+  ResolvedTypedefs: ['[su]?int.*', '^Float32$', '^Float64$', '^CGFloat$', '^GL(enum|int|uint|sizei|float)$']
+  NoDistinctTypedefs: true
+
+  Packages:
+    - Name: CoreVideo
+      Export: CV
+      LinkLibs: [system:CoreVideo.framework]
+      RequiredLink: false
+      Filter: '.*'
+      MacroFilter: [{Match: '^CV.+'}]
+
+  TypeTransforms:
+    - Type: '^(_*CV).+'
+      Transforms: [{Kind: RemovePrefix, Source: '$group0'}]
+
+  BitSetMap:
+    - Type: '^CV(SMPTETime|Time|TimeStamp|PixelBufferLock|PixelBufferPoolFlush)Flags$'
+      Transforms: [{Kind: RemoveSuffix, Source: s}]
+
+  EnumTransforms:
+    - Type: '^CVSMPTETimeType$'
+      Transforms: [{Kind: RemovePrefix, Source: kCVSMPTETimeType}]
+    - Type: '^CVSMPTETimeFlags$'
+      Transforms: [{Kind: RemovePrefix, Source: kCVSMPTETime}]
+    - Type: '.*'
+      Transforms:
+        - {Kind: RemovePrefix, Source: kCV}
+        - {Kind: RemoveTypeWordsFromElements}
+        - {Kind: RemovePartialTypeNamePrefix}
+        - {Kind: RemoveUnderscorePrefix}
+        - {Kind: UnderscoreNumbers}
+
+  ProcTransforms:
+    - Type: '^(_*CV).+'
+      Transforms: [{Kind: RemovePrefix, Source: '$group0'}]
+
+  VarTransforms:
+    - Type: '^(_?kCV).+'
+      Transforms: [{Kind: ReplacePrefix, Source: '$group0', Target: k}]
+    - Type: '^(_*CV).+'
+      Transforms: [{Kind: RemovePrefix, Source: '$group0'}]

@@ -1,0 +1,59 @@
+Includes: [base.yml]
+Defs: ../definitions/macos/videotoolbox.json
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  ExportTypes: ['^_*VT.+', '^OpaqueVT.+']
+  ExportMethods: ['^::VT.+']
+  ExportVars: ['^::k?VT.+']
+
+Odin:
+  ExternalTypes:
+    - ../global.exports.yml
+    - ../mach/exports/mach.exports.yml
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/CoreMedia.exports.yml
+    - ../exports/CoreVideo.exports.yml
+    - ../exports/Foundation.exports.yml
+    - ../exports/Metal.exports.yml
+  ResolvedTypedefs: ['[su]?int.*', '^Float32$', '^Float64$', '^CGFloat$']
+  NoDistinctTypedefs: true
+
+  Packages:
+    - Name: VideoToolbox
+      Export: VT
+      LinkLibs: [system:VideoToolbox.framework]
+      RequiredLink: false
+      Filter: '.*'
+      MacroFilter: [{Match: '^VT.+'}]
+
+  TypeTransforms:
+    - Type: '^(_*VT).+'
+      Transforms: [{Kind: RemovePrefix, Source: '$group0'}]
+
+  BitSetMap:
+    - Type: '^VT(DecodeFrame|DecodeInfo|EncodeInfo|CompressionSessionOption|MotionEstimationFrame|MotionEstimationInfo)Flags$'
+      Transforms: [{Kind: RemoveSuffix, Source: s}]
+
+  EnumTransforms:
+    - Type: '.*'
+      Transforms:
+        - {Kind: RemovePrefix, Source: kVT}
+        - {Kind: RemoveTypeWordsFromElements}
+        - {Kind: RemovePartialTypeNamePrefix}
+        - {Kind: RemoveUnderscorePrefix}
+        - {Kind: UnderscoreNumbers}
+
+  ProcTransforms:
+    - Type: '^(_*VT).+'
+      Transforms: [{Kind: RemovePrefix, Source: '$group0'}]
+
+  VarTransforms:
+    - Type: '^(_?kVT).+'
+      Transforms: [{Kind: ReplacePrefix, Source: '$group0', Target: k}]
+    - Type: '^(_*VT).+'
+      Transforms: [{Kind: RemovePrefix, Source: '$group0'}]

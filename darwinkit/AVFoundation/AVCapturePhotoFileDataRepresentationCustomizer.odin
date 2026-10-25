@@ -2,6 +2,7 @@
 package darwin_AVFoundation
 
 import "base:intrinsics"
+import CV "../CoreVideo"
 import NS "../Foundation"
 
 @(objc_class="AVCapturePhotoFileDataRepresentationCustomizer")
@@ -15,7 +16,7 @@ foreign lib {
 	CapturePhotoFileDataRepresentationCustomizer_replacementMetadataForPhoto :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, photo: ^CapturePhoto) -> ^NS.Dictionary ---
 
 	@(objc_type=CapturePhotoFileDataRepresentationCustomizer, objc_selector="replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:", objc_name="replacementEmbeddedThumbnailPixelBufferWithPhotoFormat")
-	CapturePhotoFileDataRepresentationCustomizer_replacementEmbeddedThumbnailPixelBufferWithPhotoFormat :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, replacementEmbeddedThumbnailPhotoFormatOut: ^^NS.Dictionary, photo: ^CapturePhoto) -> CVPixelBufferRef ---
+	CapturePhotoFileDataRepresentationCustomizer_replacementEmbeddedThumbnailPixelBufferWithPhotoFormat :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, replacementEmbeddedThumbnailPhotoFormatOut: ^^NS.Dictionary, photo: ^CapturePhoto) -> CV.PixelBufferRef ---
 
 	@(objc_type=CapturePhotoFileDataRepresentationCustomizer, objc_selector="replacementDepthDataForPhoto:", objc_name="replacementDepthDataForPhoto")
 	CapturePhotoFileDataRepresentationCustomizer_replacementDepthDataForPhoto :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, photo: ^CapturePhoto) -> ^DepthData ---

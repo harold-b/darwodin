@@ -7,6 +7,7 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -28,7 +29,7 @@ foreign lib {
     CapturePhotoFileDataRepresentationCustomizer_replacementMetadataForPhoto :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, photo: ^CapturePhoto) -> ^NS.Dictionary ---
 
     @(objc_type=CapturePhotoFileDataRepresentationCustomizer, objc_selector="replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:", objc_name="replacementEmbeddedThumbnailPixelBufferWithPhotoFormat")
-    CapturePhotoFileDataRepresentationCustomizer_replacementEmbeddedThumbnailPixelBufferWithPhotoFormat :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, replacementEmbeddedThumbnailPhotoFormatOut: ^^NS.Dictionary, photo: ^CapturePhoto) -> CVPixelBufferRef ---
+    CapturePhotoFileDataRepresentationCustomizer_replacementEmbeddedThumbnailPixelBufferWithPhotoFormat :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, replacementEmbeddedThumbnailPhotoFormatOut: ^^NS.Dictionary, photo: ^CapturePhoto) -> CV.PixelBufferRef ---
 
     @(objc_type=CapturePhotoFileDataRepresentationCustomizer, objc_selector="replacementDepthDataForPhoto:", objc_name="replacementDepthDataForPhoto")
     CapturePhotoFileDataRepresentationCustomizer_replacementDepthDataForPhoto :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, photo: ^CapturePhoto) -> ^DepthData ---

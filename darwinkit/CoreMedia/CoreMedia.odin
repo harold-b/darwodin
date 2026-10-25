@@ -5,6 +5,7 @@ import "base:intrinsics"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
+import CV "../CoreVideo"
 import Sec "../Security"
 import AT "../AudioToolbox"
 
@@ -25,9 +26,6 @@ foreign import lib {
 
 
 NCMDeviceProfileInfo :: struct {}
-CVImageBufferRef     :: struct {}
-CVPixelBufferPoolRef :: struct {}
-CVPixelBufferRef     :: struct {}
 
 
 
@@ -1471,7 +1469,7 @@ foreign lib {
 	VideoFormatDescriptionCreate :: proc(allocator: CF.AllocatorRef, codecType: VideoCodecType, width: cffi.int32_t, height: cffi.int32_t, extensions: CF.DictionaryRef, formatDescriptionOut: ^VideoFormatDescriptionRef) -> CF.OSStatus ---
 
 	@(link_name="CMVideoFormatDescriptionCreateForImageBuffer")
-	VideoFormatDescriptionCreateForImageBuffer :: proc(allocator: CF.AllocatorRef, imageBuffer: CVImageBufferRef, formatDescriptionOut: ^VideoFormatDescriptionRef) -> CF.OSStatus ---
+	VideoFormatDescriptionCreateForImageBuffer :: proc(allocator: CF.AllocatorRef, imageBuffer: CV.ImageBufferRef, formatDescriptionOut: ^VideoFormatDescriptionRef) -> CF.OSStatus ---
 
 	@(link_name="CMVideoFormatDescriptionCreateFromH264ParameterSets")
 	VideoFormatDescriptionCreateFromH264ParameterSets :: proc(allocator: CF.AllocatorRef, parameterSetCount: cffi.size_t, parameterSetPointers: ^^cffi.uint8_t, parameterSetSizes: ^cffi.size_t, NALUnitHeaderLength: cffi.int, formatDescriptionOut: ^FormatDescriptionRef) -> CF.OSStatus ---
@@ -1498,7 +1496,7 @@ foreign lib {
 	VideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers :: proc() -> CF.ArrayRef ---
 
 	@(link_name="CMVideoFormatDescriptionMatchesImageBuffer")
-	VideoFormatDescriptionMatchesImageBuffer :: proc(desc: VideoFormatDescriptionRef, imageBuffer: CVImageBufferRef) -> CF.Boolean ---
+	VideoFormatDescriptionMatchesImageBuffer :: proc(desc: VideoFormatDescriptionRef, imageBuffer: CV.ImageBufferRef) -> CF.Boolean ---
 
 	@(link_name="CMVideoFormatDescriptionCopyTagCollectionArray")
 	VideoFormatDescriptionCopyTagCollectionArray :: proc(formatDescription: VideoFormatDescriptionRef, tagCollectionsOut: ^CF.ArrayRef) -> CF.OSStatus ---
@@ -1834,13 +1832,13 @@ foreign lib {
 	AudioSampleBufferCreateReadyWithPacketDescriptions :: proc(allocator: CF.AllocatorRef, dataBuffer: BlockBufferRef, formatDescription: FormatDescriptionRef, numSamples: ItemCount, presentationTimeStamp: Time, packetDescriptions: ^AT.StreamPacketDescription, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
 
 	@(link_name="CMSampleBufferCreateForImageBuffer")
-	SampleBufferCreateForImageBuffer :: proc(allocator: CF.AllocatorRef, imageBuffer: CVImageBufferRef, dataReady: CF.Boolean, makeDataReadyCallback: SampleBufferMakeDataReadyCallback, makeDataReadyRefcon: rawptr, formatDescription: VideoFormatDescriptionRef, sampleTiming: ^SampleTimingInfo, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
+	SampleBufferCreateForImageBuffer :: proc(allocator: CF.AllocatorRef, imageBuffer: CV.ImageBufferRef, dataReady: CF.Boolean, makeDataReadyCallback: SampleBufferMakeDataReadyCallback, makeDataReadyRefcon: rawptr, formatDescription: VideoFormatDescriptionRef, sampleTiming: ^SampleTimingInfo, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
 
 	@(link_name="CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler")
-	SampleBufferCreateForImageBufferWithMakeDataReadyHandler :: proc(allocator: CF.AllocatorRef, imageBuffer: CVImageBufferRef, dataReady: CF.Boolean, formatDescription: VideoFormatDescriptionRef, sampleTiming: ^SampleTimingInfo, sampleBufferOut: ^SampleBufferRef, makeDataReadyHandler: SampleBufferMakeDataReadyHandler) -> CF.OSStatus ---
+	SampleBufferCreateForImageBufferWithMakeDataReadyHandler :: proc(allocator: CF.AllocatorRef, imageBuffer: CV.ImageBufferRef, dataReady: CF.Boolean, formatDescription: VideoFormatDescriptionRef, sampleTiming: ^SampleTimingInfo, sampleBufferOut: ^SampleBufferRef, makeDataReadyHandler: SampleBufferMakeDataReadyHandler) -> CF.OSStatus ---
 
 	@(link_name="CMSampleBufferCreateReadyWithImageBuffer")
-	SampleBufferCreateReadyWithImageBuffer :: proc(allocator: CF.AllocatorRef, imageBuffer: CVImageBufferRef, formatDescription: VideoFormatDescriptionRef, sampleTiming: ^SampleTimingInfo, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
+	SampleBufferCreateReadyWithImageBuffer :: proc(allocator: CF.AllocatorRef, imageBuffer: CV.ImageBufferRef, formatDescription: VideoFormatDescriptionRef, sampleTiming: ^SampleTimingInfo, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
 
 	@(link_name="CMSampleBufferCreateCopy")
 	SampleBufferCreateCopy :: proc(allocator: CF.AllocatorRef, sbuf: SampleBufferRef, sampleBufferOut: ^SampleBufferRef) -> CF.OSStatus ---
@@ -1861,7 +1859,7 @@ foreign lib {
 	SampleBufferGetDataBuffer :: proc(sbuf: SampleBufferRef) -> BlockBufferRef ---
 
 	@(link_name="CMSampleBufferGetImageBuffer")
-	SampleBufferGetImageBuffer :: proc(sbuf: SampleBufferRef) -> CVImageBufferRef ---
+	SampleBufferGetImageBuffer :: proc(sbuf: SampleBufferRef) -> CV.ImageBufferRef ---
 
 	@(link_name="CMSampleBufferSetDataBufferFromAudioBufferList")
 	SampleBufferSetDataBufferFromAudioBufferList :: proc(sbuf: SampleBufferRef, blockBufferStructureAllocator: CF.AllocatorRef, blockBufferBlockAllocator: CF.AllocatorRef, flags: cffi.uint32_t, bufferList: ^AT.BufferList) -> CF.OSStatus ---
@@ -2137,13 +2135,13 @@ foreign lib {
 	TaggedBufferGroupGetTagCollectionAtIndex :: proc(group: TaggedBufferGroupRef, index: CF.Index) -> TagCollectionRef ---
 
 	@(link_name="CMTaggedBufferGroupGetCVPixelBufferAtIndex")
-	TaggedBufferGroupGetCVPixelBufferAtIndex :: proc(group: TaggedBufferGroupRef, index: CF.Index) -> CVPixelBufferRef ---
+	TaggedBufferGroupGetCVPixelBufferAtIndex :: proc(group: TaggedBufferGroupRef, index: CF.Index) -> CV.PixelBufferRef ---
 
 	@(link_name="CMTaggedBufferGroupGetCVPixelBufferForTag")
-	TaggedBufferGroupGetCVPixelBufferForTag :: proc(group: TaggedBufferGroupRef, tag: Tag, indexOut: ^CF.Index) -> CVPixelBufferRef ---
+	TaggedBufferGroupGetCVPixelBufferForTag :: proc(group: TaggedBufferGroupRef, tag: Tag, indexOut: ^CF.Index) -> CV.PixelBufferRef ---
 
 	@(link_name="CMTaggedBufferGroupGetCVPixelBufferForTagCollection")
-	TaggedBufferGroupGetCVPixelBufferForTagCollection :: proc(group: TaggedBufferGroupRef, tagCollection: TagCollectionRef, indexOut: ^CF.Index) -> CVPixelBufferRef ---
+	TaggedBufferGroupGetCVPixelBufferForTagCollection :: proc(group: TaggedBufferGroupRef, tagCollection: TagCollectionRef, indexOut: ^CF.Index) -> CV.PixelBufferRef ---
 
 	@(link_name="CMTaggedBufferGroupGetCMSampleBufferAtIndex")
 	TaggedBufferGroupGetCMSampleBufferAtIndex :: proc(group: TaggedBufferGroupRef, index: CF.Index) -> SampleBufferRef ---

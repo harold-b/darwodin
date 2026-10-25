@@ -32,6 +32,7 @@ ExternalTypes = [
   '../mach/exports/mach.exports.yml',
   '../exports/CoreFoundation.exports.yml',
   '../exports/CoreGraphics.exports.yml',
+  '../exports/CoreVideo.exports.yml',
   '../exports/Security.exports.yml',
   '../exports/AudioToolbox.exports.yml',
 ]
@@ -60,9 +61,6 @@ Filter         = '.*'
 
 Imports = ["""
 NCMDeviceProfileInfo :: struct {}
-CVImageBufferRef     :: struct {}
-CVPixelBufferPoolRef :: struct {}
-CVPixelBufferRef     :: struct {}
 """]
 
 MacroFilter = [

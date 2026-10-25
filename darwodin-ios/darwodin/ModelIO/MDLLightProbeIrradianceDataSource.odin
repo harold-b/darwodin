@@ -23,7 +23,7 @@ LightProbeIrradianceDataSource :: struct {
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LightProbeIrradianceDataSource, objc_selector="sphericalHarmonicsCoefficientsAtPosition:", objc_name="sphericalHarmonicsCoefficientsAtPosition")
-    LightProbeIrradianceDataSource_sphericalHarmonicsCoefficientsAtPosition :: proc(self: ^LightProbeIrradianceDataSource, position: ^vector_float3) -> ^NS.Data ---
+    LightProbeIrradianceDataSource_sphericalHarmonicsCoefficientsAtPosition :: proc(self: ^LightProbeIrradianceDataSource, position: simd_float4) -> ^NS.Data ---
 
     @(objc_type=LightProbeIrradianceDataSource, objc_selector="boundingBox", objc_name="boundingBox")
     LightProbeIrradianceDataSource_boundingBox :: proc(self: ^LightProbeIrradianceDataSource) -> AxisAlignedBoundingBox ---

@@ -7,6 +7,7 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -43,5 +44,5 @@ foreign lib {
     AssetWriterInputTaggedPixelBufferGroupAdaptor_sourcePixelBufferAttributes :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> ^NS.Dictionary ---
 
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="pixelBufferPool", objc_name="pixelBufferPool")
-    AssetWriterInputTaggedPixelBufferGroupAdaptor_pixelBufferPool :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> CVPixelBufferPoolRef ---
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_pixelBufferPool :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> CV.PixelBufferPoolRef ---
 }

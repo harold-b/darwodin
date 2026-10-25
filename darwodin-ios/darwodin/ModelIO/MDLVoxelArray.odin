@@ -62,10 +62,10 @@ foreign lib {
     VoxelArray_differenceWithVoxels :: proc(self: ^VoxelArray, voxels: ^VoxelArray) ---
 
     @(objc_type=VoxelArray, objc_selector="indexOfSpatialLocation:", objc_name="indexOfSpatialLocation")
-    VoxelArray_indexOfSpatialLocation :: proc(self: ^VoxelArray, location: ^vector_float3) -> VoxelIndex ---
+    VoxelArray_indexOfSpatialLocation :: proc(self: ^VoxelArray, location: simd_float4) -> VoxelIndex ---
 
     @(objc_type=VoxelArray, objc_selector="spatialLocationOfIndex:", objc_name="spatialLocationOfIndex")
-    VoxelArray_spatialLocationOfIndex :: proc(self: ^VoxelArray, index: ^VoxelIndex) -> vector_float3 ---
+    VoxelArray_spatialLocationOfIndex :: proc(self: ^VoxelArray, index: ^VoxelIndex) -> simd_float4 ---
 
     @(objc_type=VoxelArray, objc_selector="voxelBoundingBoxAtIndex:", objc_name="voxelBoundingBoxAtIndex")
     VoxelArray_voxelBoundingBoxAtIndex :: proc(self: ^VoxelArray, index: ^VoxelIndex) -> AxisAlignedBoundingBox ---

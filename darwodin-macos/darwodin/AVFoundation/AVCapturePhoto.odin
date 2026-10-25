@@ -7,6 +7,7 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -37,10 +38,10 @@ foreign lib {
     CapturePhoto_isRawPhoto :: proc(self: ^CapturePhoto) -> bool ---
 
     @(objc_type=CapturePhoto, objc_selector="pixelBuffer", objc_name="pixelBuffer")
-    CapturePhoto_pixelBuffer :: proc(self: ^CapturePhoto) -> CVPixelBufferRef ---
+    CapturePhoto_pixelBuffer :: proc(self: ^CapturePhoto) -> CV.PixelBufferRef ---
 
     @(objc_type=CapturePhoto, objc_selector="previewPixelBuffer", objc_name="previewPixelBuffer")
-    CapturePhoto_previewPixelBuffer :: proc(self: ^CapturePhoto) -> CVPixelBufferRef ---
+    CapturePhoto_previewPixelBuffer :: proc(self: ^CapturePhoto) -> CV.PixelBufferRef ---
 
     @(objc_type=CapturePhoto, objc_selector="embeddedThumbnailPhotoFormat", objc_name="embeddedThumbnailPhotoFormat")
     CapturePhoto_embeddedThumbnailPhotoFormat :: proc(self: ^CapturePhoto) -> ^NS.Dictionary ---
@@ -67,7 +68,7 @@ foreign lib {
     CapturePhoto_sourceDeviceType :: proc(self: ^CapturePhoto) -> ^NS.String ---
 
     @(objc_type=CapturePhoto, objc_selector="constantColorConfidenceMap", objc_name="constantColorConfidenceMap")
-    CapturePhoto_constantColorConfidenceMap :: proc(self: ^CapturePhoto) -> CVPixelBufferRef ---
+    CapturePhoto_constantColorConfidenceMap :: proc(self: ^CapturePhoto) -> CV.PixelBufferRef ---
 
     @(objc_type=CapturePhoto, objc_selector="constantColorCenterWeightedMeanConfidenceLevel", objc_name="constantColorCenterWeightedMeanConfidenceLevel")
     CapturePhoto_constantColorCenterWeightedMeanConfidenceLevel :: proc(self: ^CapturePhoto) -> cffi.float ---
@@ -82,7 +83,7 @@ foreign lib {
     CapturePhoto_fileDataRepresentationWithCustomizer :: proc(self: ^CapturePhoto, customizer: ^CapturePhotoFileDataRepresentationCustomizer) -> ^NS.Data ---
 
     @(objc_type=CapturePhoto, objc_selector="fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:", objc_name="fileDataRepresentationWithReplacementMetadata")
-    CapturePhoto_fileDataRepresentationWithReplacementMetadata :: proc(self: ^CapturePhoto, replacementMetadata: ^NS.Dictionary, replacementEmbeddedThumbnailPhotoFormat: ^NS.Dictionary, replacementEmbeddedThumbnailPixelBuffer: CVPixelBufferRef, replacementDepthData: ^DepthData) -> ^NS.Data ---
+    CapturePhoto_fileDataRepresentationWithReplacementMetadata :: proc(self: ^CapturePhoto, replacementMetadata: ^NS.Dictionary, replacementEmbeddedThumbnailPhotoFormat: ^NS.Dictionary, replacementEmbeddedThumbnailPixelBuffer: CV.PixelBufferRef, replacementDepthData: ^DepthData) -> ^NS.Data ---
 
     @(objc_type=CapturePhoto, objc_selector="CGImageRepresentation", objc_name="CGImageRepresentation")
     CapturePhoto_CGImageRepresentation :: proc(self: ^CapturePhoto) -> CG.ImageRef ---

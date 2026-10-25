@@ -7,6 +7,7 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -25,7 +26,7 @@ AsynchronousVideoCompositionRequest :: struct {
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="sourceFrameByTrackID:", objc_name="sourceFrameByTrackID")
-    AsynchronousVideoCompositionRequest_sourceFrameByTrackID :: proc(self: ^AsynchronousVideoCompositionRequest, trackID: CM.PersistentTrackID) -> CVPixelBufferRef ---
+    AsynchronousVideoCompositionRequest_sourceFrameByTrackID :: proc(self: ^AsynchronousVideoCompositionRequest, trackID: CM.PersistentTrackID) -> CV.PixelBufferRef ---
 
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="sourceSampleBufferByTrackID:", objc_name="sourceSampleBufferByTrackID")
     AsynchronousVideoCompositionRequest_sourceSampleBufferByTrackID :: proc(self: ^AsynchronousVideoCompositionRequest, trackID: CM.PersistentTrackID) -> CM.SampleBufferRef ---
@@ -34,7 +35,7 @@ foreign lib {
     AsynchronousVideoCompositionRequest_sourceTimedMetadataByTrackID :: proc(self: ^AsynchronousVideoCompositionRequest, trackID: CM.PersistentTrackID) -> ^TimedMetadataGroup ---
 
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="finishWithComposedVideoFrame:", objc_name="finishWithComposedVideoFrame")
-    AsynchronousVideoCompositionRequest_finishWithComposedVideoFrame :: proc(self: ^AsynchronousVideoCompositionRequest, composedVideoFrame: CVPixelBufferRef) ---
+    AsynchronousVideoCompositionRequest_finishWithComposedVideoFrame :: proc(self: ^AsynchronousVideoCompositionRequest, composedVideoFrame: CV.PixelBufferRef) ---
 
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="finishWithError:", objc_name="finishWithError")
     AsynchronousVideoCompositionRequest_finishWithError :: proc(self: ^AsynchronousVideoCompositionRequest, error: ^NS.Error) ---
@@ -49,7 +50,7 @@ foreign lib {
     AsynchronousVideoCompositionRequest_finishWithComposedTaggedBufferGroup :: proc(self: ^AsynchronousVideoCompositionRequest, taggedBufferGroup: CM.TaggedBufferGroupRef) ---
 
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="attachSpatialVideoConfiguration:toPixelBuffer:", objc_name="attachSpatialVideoConfiguration")
-    AsynchronousVideoCompositionRequest_attachSpatialVideoConfiguration :: proc(self: ^AsynchronousVideoCompositionRequest, spatialVideoConfiguration: ^SpatialVideoConfiguration, pixelBuffer: CVPixelBufferRef) ---
+    AsynchronousVideoCompositionRequest_attachSpatialVideoConfiguration :: proc(self: ^AsynchronousVideoCompositionRequest, spatialVideoConfiguration: ^SpatialVideoConfiguration, pixelBuffer: CV.PixelBufferRef) ---
 
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="renderContext", objc_name="renderContext")
     AsynchronousVideoCompositionRequest_renderContext :: proc(self: ^AsynchronousVideoCompositionRequest) -> ^VideoCompositionRenderContext ---

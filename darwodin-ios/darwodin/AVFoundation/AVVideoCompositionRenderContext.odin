@@ -7,6 +7,7 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -22,7 +23,7 @@ VideoCompositionRenderContext :: struct { using _: NS.Object}
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoCompositionRenderContext, objc_selector="newPixelBuffer", objc_name="newPixelBuffer")
-    VideoCompositionRenderContext_newPixelBuffer :: proc(self: ^VideoCompositionRenderContext) -> CVPixelBufferRef ---
+    VideoCompositionRenderContext_newPixelBuffer :: proc(self: ^VideoCompositionRenderContext) -> CV.PixelBufferRef ---
 
     @(objc_type=VideoCompositionRenderContext, objc_selector="size", objc_name="size")
     VideoCompositionRenderContext_size :: proc(self: ^VideoCompositionRenderContext) -> CG.Size ---

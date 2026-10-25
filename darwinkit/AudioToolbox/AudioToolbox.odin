@@ -15,8 +15,8 @@ instancetype  :: intrinsics.objc_instancetype
 
 @(export)
 foreign import lib {
-	"system:AudioToolbox.framework",
 	"system:CoreAudio.framework",
+	"system:AudioToolbox.framework",
 }
 
 
@@ -2051,7 +2051,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecOutputPrecedenceNone                                      :: 0
 	kCodecOutputPrecedenceBitRate                                   :: 1
 	kCodecOutputPrecedenceSampleRate                                :: 2
-	kUnitType_Output                                                :: 1635086197
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
 	kCodecDoesSampleRateConversion                            :: 1819112035
 	kCodecInputFormatsForOutputFormat                         :: 1768305775
@@ -2067,16 +2066,17 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kCodecOutputPrecedenceNone                                :: 0
 	kCodecOutputPrecedenceBitRate                             :: 1
 	kCodecOutputPrecedenceSampleRate                          :: 2
-	kUnitType_Output                                          :: 1635086197
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kUnitSubType_AUiPodEQ                                     :: 1768973681
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
+	kUnitType_Output                                                :: 1635086197
 	kUnitType_MusicDevice                                           :: 1635085685
 	kUnitType_MusicEffect                                           :: 1635085670
 	kUnitType_FormatConverter                                       :: 1635083875
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
+	kUnitType_Output                                          :: 1635086197
 	kUnitType_MusicDevice                                     :: 1635085685
 	kUnitType_MusicEffect                                     :: 1635085670
 	kUnitType_FormatConverter                                 :: 1635083875
@@ -2271,7 +2271,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kUnitScope_Part                                                 :: 4
 	kUnitScope_Note                                                 :: 5
 	kUnitScope_Layer                                                :: 6
-	kUnitScope_LayerItem                                            :: 7
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
 	kUnitSubType_ScheduledSoundPlayer                         :: 1936945260
 	kUnitSubType_AudioFilePlayer                              :: 1634103404
@@ -2338,12 +2337,12 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kUnitScope_Part                                           :: 4
 	kUnitScope_Note                                           :: 5
 	kUnitScope_Layer                                          :: 6
-	kUnitScope_LayerItem                                      :: 7
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kAUVoiceIOProperty_DuckNonVoiceAudio                      :: 2102
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
+	kUnitScope_LayerItem                                            :: 7
 	kUnitProperty_ClassInfo                                         :: 0
 	kUnitProperty_MakeConnection                                    :: 1
 	kUnitProperty_SampleRate                                        :: 2
@@ -2389,6 +2388,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kUnitProperty_LastRenderSampleTime                              :: 61
 	kUnitProperty_LoadedOutOfProcess                                :: 62
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
+	kUnitScope_LayerItem                                      :: 7
 	kUnitProperty_ClassInfo                                   :: 0
 	kUnitProperty_MakeConnection                              :: 1
 	kUnitProperty_SampleRate                                  :: 2
@@ -2944,7 +2944,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kConverterPropertyMaximumInputBufferSize                        :: 2020172403
 	kConverterSampleRateConverterAlgorithm                          :: 1936876393
 	kFileAIFFType                                                   :: 1095321158
-	kFileAIFCType                                                   :: 1095321155
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
 	kConverterQuality_Max                                     :: 127
 	kConverterQuality_High                                    :: 96
@@ -2968,12 +2967,12 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kConverterPropertyMaximumInputBufferSize                  :: 2020172403
 	kConverterSampleRateConverterAlgorithm                    :: 1936876393
 	kFileAIFFType                                             :: 1095321158
-	kFileAIFCType                                             :: 1095321155
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kFormatProperty_HardwareCodecCapabilities                 :: 1752654691
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
+	kFileAIFCType                                                   :: 1095321155
 	kFileWAVEType                                                   :: 1463899717
 	kFileRF64Type                                                   :: 1380333108
 	kFileBW64Type                                                   :: 1113011764
@@ -3024,6 +3023,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyAudioDataPacketCount                               :: 1885564532
 	kFilePropertyMaximumPacketSize                                  :: 1886616165
 } else when ODIN_PLATFORM_SUBTARGET_IOS {
+	kFileAIFCType                                             :: 1095321155
 	kFileWAVEType                                             :: 1463899717
 	kFileRF64Type                                             :: 1380333108
 	kFileBW64Type                                             :: 1113011764
@@ -3084,6 +3084,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
 	kQueueProperty_HardwareCodecPolicy                        :: 1634820976
+	kQueueHardwareCodecPolicy_Default                         :: 0
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyChannelLayout                                      :: 1668112752
@@ -3091,7 +3092,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyChannelLayout                                :: 1668112752
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
-	kQueueHardwareCodecPolicy_Default                         :: 0
+	kQueueHardwareCodecPolicy_UseSoftwareOnly                 :: 1
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyDeferSizeUpdates                                   :: 1685289589
@@ -3099,7 +3100,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyDeferSizeUpdates                             :: 1685289589
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
-	kQueueHardwareCodecPolicy_UseSoftwareOnly                 :: 1
+	kQueueHardwareCodecPolicy_UseHardwareOnly                 :: 2
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyDataFormatName                                     :: 1718512997
@@ -3107,7 +3108,6 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	kFilePropertyDataFormatName                               :: 1718512997
 }
 when ODIN_PLATFORM_SUBTARGET_IOS {
-	kQueueHardwareCodecPolicy_UseHardwareOnly                 :: 2
 	kQueueHardwareCodecPolicy_PreferSoftware                  :: 3
 }
 when ODIN_PLATFORM_SUBTARGET == .Default {

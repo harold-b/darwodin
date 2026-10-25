@@ -25,9 +25,6 @@ foreign import lib {
 
 
 
-CVImageBufferRef     :: struct {}
-CVPixelBufferPoolRef :: struct {}
-CVPixelBufferRef     :: struct {}
 CIContext            :: struct {}
 CIImage              :: struct {}
 UTType               :: struct {}
@@ -4989,30 +4986,6 @@ DepthDataQuality :: enum cffi.long {
 DepthDataAccuracy :: enum cffi.long {
 	Relative = 0,
 	Absolute = 1,
-}
-
-CVSMPTETime :: struct #align (4) {
-	subframes:       CF.SInt16,
-	subframeDivisor: CF.SInt16,
-	counter:         CF.UInt32,
-	type:            CF.UInt32,
-	flags:           CF.UInt32,
-	hours:           CF.SInt16,
-	minutes:         CF.SInt16,
-	seconds:         CF.SInt16,
-	frames:          CF.SInt16,
-}
-
-CVTimeStamp :: struct #align (8) {
-	version:            cffi.uint32_t,
-	videoTimeScale:     cffi.int32_t,
-	videoTime:          cffi.int64_t,
-	hostTime:           cffi.uint64_t,
-	rateScalar:         cffi.double,
-	videoRefreshPeriod: cffi.int64_t,
-	smpteTime:          CVSMPTETime,
-	flags:              cffi.uint64_t,
-	reserved:           cffi.uint64_t,
 }
 
 PixelAspectRatio :: struct #align (8) {

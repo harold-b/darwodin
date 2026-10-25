@@ -2,6 +2,7 @@
 package darwin_AVFoundation
 
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 
 @(objc_class="AVSampleBufferVideoRenderer", objc_superclass=NS.Object)
@@ -24,7 +25,7 @@ foreign lib {
 	SampleBufferVideoRenderer_requiresFlushToResumeDecoding :: proc(self: ^SampleBufferVideoRenderer) -> bool ---
 
 	@(objc_type=SampleBufferVideoRenderer, objc_selector="copyDisplayedPixelBuffer", objc_name="copyDisplayedPixelBuffer")
-	SampleBufferVideoRenderer_copyDisplayedPixelBuffer :: proc(self: ^SampleBufferVideoRenderer) -> CVPixelBufferRef ---
+	SampleBufferVideoRenderer_copyDisplayedPixelBuffer :: proc(self: ^SampleBufferVideoRenderer) -> CV.PixelBufferRef ---
 
 	@(objc_type=SampleBufferVideoRenderer, objc_selector="expectMinimumUpcomingSampleBufferPresentationTime:", objc_name="expectMinimumUpcomingSampleBufferPresentationTime")
 	SampleBufferVideoRenderer_expectMinimumUpcomingSampleBufferPresentationTime :: proc(self: ^SampleBufferVideoRenderer, minimumUpcomingPresentationTime: CM.Time) ---

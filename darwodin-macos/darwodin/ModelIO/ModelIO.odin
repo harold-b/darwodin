@@ -76,8 +76,8 @@ simd_float8      :: struct { using v: [2]#simd[4]f32 } // #simd[8 ]f32 // size =
 simd_float16     :: struct { using v: [4]#simd[4]f32 } // #simd[16]f32 // size = 64 | align = 16
 simd_double1     :: #simd[1 ]f64                       // size = 8  | align = 8
 simd_double2     :: #simd[2 ]f64                       // size = 16 | align = 16
-simd_double3     :: struct { using v: [2]#simd[2]f64 } // #simd[4 ]f64 // size = 32 | align = 16
-simd_double4     :: struct { using v: [2]#simd[2]f64 } // #simd[4 ]f64 // size = 32 | align = 16
+simd_double3     :: #simd[4 ]f64                       // size = 32 | align = 16
+simd_double4     :: #simd[4 ]f64                       // size = 32 | align = 16
 simd_double8     :: struct { using v: [4]#simd[2]f64 } // #simd[8 ]f64 // size = 64 | align = 16
 simd_long1       :: #simd[1 ]i64                       // size = 8  | align = 8
 simd_long2       :: #simd[2 ]i64                       // size = 16 | align = 16
@@ -404,8 +404,8 @@ __MDLabel :: struct {}
 
 /// MDLAxisAlignedBoundingBox
 AxisAlignedBoundingBox :: struct #align (16) {
-    maxBounds: vector_float3,
-    minBounds: vector_float3,
+    maxBounds: simd_float4,
+    minBounds: simd_float4,
 }
 #assert(size_of(AxisAlignedBoundingBox) == 32)
 

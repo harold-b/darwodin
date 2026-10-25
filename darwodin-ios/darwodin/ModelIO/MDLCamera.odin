@@ -23,13 +23,13 @@ foreign lib {
     Camera_frameBoundingBox :: proc(self: ^Camera, boundingBox: AxisAlignedBoundingBox, setNearAndFar: bool) ---
 
     @(objc_type=Camera, objc_selector="lookAt:", objc_name="lookAt_")
-    Camera_lookAt_ :: proc(self: ^Camera, focusPosition: ^vector_float3) ---
+    Camera_lookAt_ :: proc(self: ^Camera, focusPosition: simd_float4) ---
 
     @(objc_type=Camera, objc_selector="lookAt:from:", objc_name="lookAt_from")
-    Camera_lookAt_from :: proc(self: ^Camera, focusPosition: ^vector_float3, cameraPosition: ^vector_float3) ---
+    Camera_lookAt_from :: proc(self: ^Camera, focusPosition: simd_float4, cameraPosition: simd_float4) ---
 
     @(objc_type=Camera, objc_selector="rayTo:forViewPort:", objc_name="rayTo")
-    Camera_rayTo :: proc(self: ^Camera, pixel: ^[2]cffi.int, size: ^[2]cffi.int) -> vector_float3 ---
+    Camera_rayTo :: proc(self: ^Camera, pixel: ^[2]cffi.int, size: ^[2]cffi.int) -> simd_float4 ---
 
     @(objc_type=Camera, objc_selector="bokehKernelWithSize:", objc_name="bokehKernelWithSize")
     Camera_bokehKernelWithSize :: proc(self: ^Camera, size: ^[2]cffi.int) -> ^Texture ---
@@ -143,31 +143,31 @@ foreign lib {
     Camera_sensorEnlargement :: proc(self: ^Camera) -> vector_float2 ---
 
     @(objc_type=Camera, objc_selector="setSensorEnlargement:", objc_name="setSensorEnlargement")
-    Camera_setSensorEnlargement :: proc(self: ^Camera, sensorEnlargement: ^vector_float2) ---
+    Camera_setSensorEnlargement :: proc(self: ^Camera, sensorEnlargement: vector_float2) ---
 
     @(objc_type=Camera, objc_selector="sensorShift", objc_name="sensorShift")
     Camera_sensorShift :: proc(self: ^Camera) -> vector_float2 ---
 
     @(objc_type=Camera, objc_selector="setSensorShift:", objc_name="setSensorShift")
-    Camera_setSensorShift :: proc(self: ^Camera, sensorShift: ^vector_float2) ---
+    Camera_setSensorShift :: proc(self: ^Camera, sensorShift: vector_float2) ---
 
     @(objc_type=Camera, objc_selector="flash", objc_name="flash")
-    Camera_flash :: proc(self: ^Camera) -> vector_float3 ---
+    Camera_flash :: proc(self: ^Camera) -> simd_float4 ---
 
     @(objc_type=Camera, objc_selector="setFlash:", objc_name="setFlash")
-    Camera_setFlash :: proc(self: ^Camera, flash: ^vector_float3) ---
+    Camera_setFlash :: proc(self: ^Camera, flash: simd_float4) ---
 
     @(objc_type=Camera, objc_selector="exposureCompression", objc_name="exposureCompression")
     Camera_exposureCompression :: proc(self: ^Camera) -> vector_float2 ---
 
     @(objc_type=Camera, objc_selector="setExposureCompression:", objc_name="setExposureCompression")
-    Camera_setExposureCompression :: proc(self: ^Camera, exposureCompression: ^vector_float2) ---
+    Camera_setExposureCompression :: proc(self: ^Camera, exposureCompression: vector_float2) ---
 
     @(objc_type=Camera, objc_selector="exposure", objc_name="exposure")
-    Camera_exposure :: proc(self: ^Camera) -> vector_float3 ---
+    Camera_exposure :: proc(self: ^Camera) -> simd_float4 ---
 
     @(objc_type=Camera, objc_selector="setExposure:", objc_name="setExposure")
-    Camera_setExposure :: proc(self: ^Camera, exposure: ^vector_float3) ---
+    Camera_setExposure :: proc(self: ^Camera, exposure: simd_float4) ---
 }
 
 @(objc_type=Camera, objc_name="lookAt")

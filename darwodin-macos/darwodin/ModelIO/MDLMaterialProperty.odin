@@ -33,13 +33,13 @@ foreign lib {
     MaterialProperty_initWithName_semantic_float :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: cffi.float) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float2:", objc_name="initWithName_semantic_float2")
-    MaterialProperty_initWithName_semantic_float2 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float2) -> instancetype ---
+    MaterialProperty_initWithName_semantic_float2 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: vector_float2) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float3:", objc_name="initWithName_semantic_float3")
-    MaterialProperty_initWithName_semantic_float3 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float3) -> instancetype ---
+    MaterialProperty_initWithName_semantic_float3 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: simd_float4) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float4:", objc_name="initWithName_semantic_float4")
-    MaterialProperty_initWithName_semantic_float4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float4) -> instancetype ---
+    MaterialProperty_initWithName_semantic_float4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: simd_float4) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:matrix4x4:", objc_name="initWithName_semantic_matrix4x4")
     MaterialProperty_initWithName_semantic_matrix4x4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix[4,4]f32) -> instancetype ---
@@ -111,19 +111,19 @@ foreign lib {
     MaterialProperty_float2Value :: proc(self: ^MaterialProperty) -> vector_float2 ---
 
     @(objc_type=MaterialProperty, objc_selector="setFloat2Value:", objc_name="setFloat2Value")
-    MaterialProperty_setFloat2Value :: proc(self: ^MaterialProperty, float2Value: ^vector_float2) ---
+    MaterialProperty_setFloat2Value :: proc(self: ^MaterialProperty, float2Value: vector_float2) ---
 
     @(objc_type=MaterialProperty, objc_selector="float3Value", objc_name="float3Value")
-    MaterialProperty_float3Value :: proc(self: ^MaterialProperty) -> vector_float3 ---
+    MaterialProperty_float3Value :: proc(self: ^MaterialProperty) -> simd_float4 ---
 
     @(objc_type=MaterialProperty, objc_selector="setFloat3Value:", objc_name="setFloat3Value")
-    MaterialProperty_setFloat3Value :: proc(self: ^MaterialProperty, float3Value: ^vector_float3) ---
+    MaterialProperty_setFloat3Value :: proc(self: ^MaterialProperty, float3Value: simd_float4) ---
 
     @(objc_type=MaterialProperty, objc_selector="float4Value", objc_name="float4Value")
-    MaterialProperty_float4Value :: proc(self: ^MaterialProperty) -> vector_float4 ---
+    MaterialProperty_float4Value :: proc(self: ^MaterialProperty) -> simd_float4 ---
 
     @(objc_type=MaterialProperty, objc_selector="setFloat4Value:", objc_name="setFloat4Value")
-    MaterialProperty_setFloat4Value :: proc(self: ^MaterialProperty, float4Value: ^vector_float4) ---
+    MaterialProperty_setFloat4Value :: proc(self: ^MaterialProperty, float4Value: simd_float4) ---
 
     @(objc_type=MaterialProperty, objc_selector="matrix4x4", objc_name="matrix4x4")
     MaterialProperty_matrix4x4 :: proc(self: ^MaterialProperty) -> matrix[4,4]f32 ---
@@ -136,19 +136,5 @@ foreign lib {
 
     @(objc_type=MaterialProperty, objc_selector="setLuminance:", objc_name="setLuminance")
     MaterialProperty_setLuminance :: proc(self: ^MaterialProperty, luminance: cffi.float) ---
-}
-
-@(objc_type=MaterialProperty, objc_name="initWithName")
-MaterialProperty_initWithName :: proc {
-    MaterialProperty_initWithName_semantic,
-    MaterialProperty_initWithName_semantic_float,
-    MaterialProperty_initWithName_semantic_float2,
-    MaterialProperty_initWithName_semantic_float3,
-    MaterialProperty_initWithName_semantic_float4,
-    MaterialProperty_initWithName_semantic_matrix4x4,
-    MaterialProperty_initWithName_semantic_URL,
-    MaterialProperty_initWithName_semantic_string,
-    MaterialProperty_initWithName_semantic_textureSampler,
-    MaterialProperty_initWithName_semantic_color,
 }
 

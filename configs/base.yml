@@ -1,0 +1,6 @@
+Odin:
+  Emit: true
+  ExportPath: ..
+  BasePackageName: darwodin
+  SingleFile: false
+  ExportTypeMapDir: ../exports

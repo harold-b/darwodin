@@ -2,6 +2,7 @@
 package darwin_AVFoundation
 
 import CG "../CoreGraphics"
+import CV "../CoreVideo"
 import NS "../Foundation"
 
 @(objc_class="AVRenderedCaptionImage", objc_superclass=NS.Object)
@@ -15,7 +16,7 @@ foreign lib {
 	RenderedCaptionImage_new :: proc() -> ^RenderedCaptionImage ---
 
 	@(objc_type=RenderedCaptionImage, objc_selector="pixelBuffer", objc_name="pixelBuffer")
-	RenderedCaptionImage_pixelBuffer :: proc(self: ^RenderedCaptionImage) -> CVPixelBufferRef ---
+	RenderedCaptionImage_pixelBuffer :: proc(self: ^RenderedCaptionImage) -> CV.PixelBufferRef ---
 
 	@(objc_type=RenderedCaptionImage, objc_selector="position", objc_name="position")
 	RenderedCaptionImage_position :: proc(self: ^RenderedCaptionImage) -> CG.Point ---

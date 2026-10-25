@@ -2,6 +2,7 @@
 package darwin_AVFoundation
 
 import CG "../CoreGraphics"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
@@ -13,7 +14,7 @@ foreign lib {
 	PlayerLayer_playerLayerWithPlayer :: proc(player: ^Player) -> ^PlayerLayer ---
 
 	@(objc_type=PlayerLayer, objc_selector="copyDisplayedPixelBuffer", objc_name="copyDisplayedPixelBuffer")
-	PlayerLayer_copyDisplayedPixelBuffer :: proc(self: ^PlayerLayer) -> CVPixelBufferRef ---
+	PlayerLayer_copyDisplayedPixelBuffer :: proc(self: ^PlayerLayer) -> CV.PixelBufferRef ---
 
 	@(objc_type=PlayerLayer, objc_selector="setCaptionPreviewProfileID:position:text:", objc_name="setCaptionPreviewProfileID")
 	PlayerLayer_setCaptionPreviewProfileID :: proc(self: ^PlayerLayer, profileID: ^NS.String, position: CG.Point, text: ^NS.String) ---

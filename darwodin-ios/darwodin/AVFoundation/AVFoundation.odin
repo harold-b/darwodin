@@ -29,9 +29,6 @@ foreign import lib {
 // +user-text-begin
 
 // Avoiding binding CoreImage & CoreVideo for now, opaque references for the moment
-CVImageBufferRef     :: struct {}
-CVPixelBufferPoolRef :: struct {}
-CVPixelBufferRef     :: struct {}
 CIContext            :: struct {}
 CIImage              :: struct {}
 UTType               :: struct {}
@@ -2716,34 +2713,6 @@ DepthDataAccuracy :: enum cffi.long {
     Relative = 0,
     Absolute = 1,
 }
-
-/// CVSMPTETime
-CVSMPTETime :: struct #align (4) {
-    subframes:       CF.SInt16,
-    subframeDivisor: CF.SInt16,
-    counter:         CF.UInt32,
-    type:            CF.UInt32,
-    flags:           CF.UInt32,
-    hours:           CF.SInt16,
-    minutes:         CF.SInt16,
-    seconds:         CF.SInt16,
-    frames:          CF.SInt16,
-}
-#assert(size_of(CVSMPTETime) == 24)
-
-/// CVTimeStamp
-CVTimeStamp :: struct #align (8) {
-    version:            cffi.uint32_t,
-    videoTimeScale:     cffi.int32_t,
-    videoTime:          cffi.int64_t,
-    hostTime:           cffi.uint64_t,
-    rateScalar:         cffi.double,
-    videoRefreshPeriod: cffi.int64_t,
-    smpteTime:          CVSMPTETime,
-    flags:              cffi.uint64_t,
-    reserved:           cffi.uint64_t,
-}
-#assert(size_of(CVTimeStamp) == 80)
 
 /// AVPixelAspectRatio
 PixelAspectRatio :: struct #align (8) {

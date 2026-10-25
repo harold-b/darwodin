@@ -42,6 +42,9 @@ Odin:
   ResolvedTypedefs:
     - '[su]?int.*'
 
+  NoArrayAsPointerParam:
+    - '^vector_(float|double)[234]$'
+
   Packages:
     - Name  : ModelIO
       Export: MDL
@@ -101,8 +104,8 @@ Odin:
           simd_float16     :: struct { using v: [4]#simd[4]f32 } // #simd[16]f32 // size = 64 | align = 16
           simd_double1     :: #simd[1 ]f64                       // size = 8  | align = 8
           simd_double2     :: #simd[2 ]f64                       // size = 16 | align = 16
-          simd_double3     :: struct { using v: [2]#simd[2]f64 } // #simd[4 ]f64 // size = 32 | align = 16
-          simd_double4     :: struct { using v: [2]#simd[2]f64 } // #simd[4 ]f64 // size = 32 | align = 16
+          simd_double3     :: #simd[4 ]f64                       // size = 32 | align = 16
+          simd_double4     :: #simd[4 ]f64                       // size = 32 | align = 16
           simd_double8     :: struct { using v: [4]#simd[2]f64 } // #simd[8 ]f64 // size = 64 | align = 16
           simd_long1       :: #simd[1 ]i64                       // size = 8  | align = 8
           simd_long2       :: #simd[2 ]i64                       // size = 16 | align = 16
@@ -122,6 +125,8 @@ Odin:
           vector_double4   :: simd_double4
 
       TypeMap:
+        vector_float3: simd_float4
+        vector_float4: simd_float4
         matrix_float4x4:  matrix[4,4]f32
         matrix_double4x4: matrix[4,4]f64
         simd_float4x4:    matrix[4,4]f32

@@ -2,6 +2,7 @@
 package darwin_AVFoundation
 
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 
 @(objc_class="AVAssetWriterInputPixelBufferAdaptor", objc_superclass=NS.Object)
@@ -21,7 +22,7 @@ foreign lib {
 	AssetWriterInputPixelBufferAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputPixelBufferAdaptor, input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> instancetype ---
 
 	@(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="appendPixelBuffer:withPresentationTime:", objc_name="appendPixelBuffer")
-	AssetWriterInputPixelBufferAdaptor_appendPixelBuffer :: proc(self: ^AssetWriterInputPixelBufferAdaptor, pixelBuffer: CVPixelBufferRef, presentationTime: CM.Time) -> bool ---
+	AssetWriterInputPixelBufferAdaptor_appendPixelBuffer :: proc(self: ^AssetWriterInputPixelBufferAdaptor, pixelBuffer: CV.PixelBufferRef, presentationTime: CM.Time) -> bool ---
 
 	@(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="assetWriterInput", objc_name="assetWriterInput")
 	AssetWriterInputPixelBufferAdaptor_assetWriterInput :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> ^AssetWriterInput ---
@@ -30,5 +31,5 @@ foreign lib {
 	AssetWriterInputPixelBufferAdaptor_sourcePixelBufferAttributes :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> ^NS.Dictionary ---
 
 	@(objc_type=AssetWriterInputPixelBufferAdaptor, objc_selector="pixelBufferPool", objc_name="pixelBufferPool")
-	AssetWriterInputPixelBufferAdaptor_pixelBufferPool :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> CVPixelBufferPoolRef ---
+	AssetWriterInputPixelBufferAdaptor_pixelBufferPool :: proc(self: ^AssetWriterInputPixelBufferAdaptor) -> CV.PixelBufferPoolRef ---
 }

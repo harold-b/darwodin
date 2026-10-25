@@ -4,6 +4,7 @@ package darwin_AVFoundation
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 
 @(objc_class="AVPlayerItemOutput", objc_superclass=NS.Object)
@@ -18,7 +19,7 @@ foreign lib {
 
 	when ODIN_PLATFORM_SUBTARGET == .Default {
 		@(objc_type=PlayerItemOutput, objc_selector="itemTimeForCVTimeStamp:", objc_name="itemTimeForCVTimeStamp")
-		PlayerItemOutput_itemTimeForCVTimeStamp :: proc(self: ^PlayerItemOutput, timestamp: CVTimeStamp) -> CM.Time ---
+		PlayerItemOutput_itemTimeForCVTimeStamp :: proc(self: ^PlayerItemOutput, timestamp: CV.TimeStamp) -> CM.Time ---
 	}
 
 	@(objc_type=PlayerItemOutput, objc_selector="suppressesPlayerRendering", objc_name="suppressesPlayerRendering")

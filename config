@@ -12,7 +12,9 @@ darwodin_base_frameworks=(
   FSEvents
   Foundation
   AudioToolbox
+  CoreVideo
   CoreMedia
+  VideoToolbox
   CoreLocation
   QuartzCore
   AppKit

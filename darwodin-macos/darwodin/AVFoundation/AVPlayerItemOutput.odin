@@ -7,6 +7,7 @@ import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CM "../CoreMedia"
+import CV "../CoreVideo"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import AT "../AudioToolbox"
@@ -28,7 +29,7 @@ foreign lib {
     PlayerItemOutput_itemTimeForMachAbsoluteTime :: proc(self: ^PlayerItemOutput, machAbsoluteTime: cffi.int64_t) -> CM.Time ---
 
     @(objc_type=PlayerItemOutput, objc_selector="itemTimeForCVTimeStamp:", objc_name="itemTimeForCVTimeStamp")
-    PlayerItemOutput_itemTimeForCVTimeStamp :: proc(self: ^PlayerItemOutput, timestamp: CVTimeStamp) -> CM.Time ---
+    PlayerItemOutput_itemTimeForCVTimeStamp :: proc(self: ^PlayerItemOutput, timestamp: CV.TimeStamp) -> CM.Time ---
 
     @(objc_type=PlayerItemOutput, objc_selector="suppressesPlayerRendering", objc_name="suppressesPlayerRendering")
     PlayerItemOutput_suppressesPlayerRendering :: proc(self: ^PlayerItemOutput) -> bool ---

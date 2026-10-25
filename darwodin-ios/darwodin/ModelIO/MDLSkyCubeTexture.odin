@@ -104,7 +104,7 @@ foreign lib {
     SkyCubeTexture_highDynamicRangeCompression :: proc(self: ^SkyCubeTexture) -> vector_float2 ---
 
     @(objc_type=SkyCubeTexture, objc_selector="setHighDynamicRangeCompression:", objc_name="setHighDynamicRangeCompression")
-    SkyCubeTexture_setHighDynamicRangeCompression :: proc(self: ^SkyCubeTexture, highDynamicRangeCompression: ^vector_float2) ---
+    SkyCubeTexture_setHighDynamicRangeCompression :: proc(self: ^SkyCubeTexture, highDynamicRangeCompression: vector_float2) ---
 }
 
 @(objc_type=SkyCubeTexture, objc_name="initWithName")

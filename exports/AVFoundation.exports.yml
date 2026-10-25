@@ -2,8 +2,6 @@ PackageName: "AVFoundation"
 ImportName: "AV"
 
 Structs:
-    'CVSMPTETime': 'AV.CVSMPTETime'
-    'CVTimeStamp': 'AV.CVTimeStamp'
     'AVPixelAspectRatio': 'AV.PixelAspectRatio'
     'AVEdgeWidths': 'AV.EdgeWidths'
     'AVCaptionDimension': 'AV.CaptionDimension'
