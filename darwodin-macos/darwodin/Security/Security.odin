@@ -31,7 +31,7 @@ xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead o
 
 // Composite SDK masks that also contain reserved or unnamed bits.
 when ODIN_PLATFORM_SUBTARGET == .Default { SecKeyUsage_kSecKeyUsageAll :: transmute(SecKeyUsage)cffi.uint(2147483647) }
-when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)cffi.uint(4294967295) }
+when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)max(cffi.uint) }
 
 // -user-text-end
 
@@ -3693,13 +3693,13 @@ AuthorizationFlag :: enum cffi.uint {
 AuthorizationFlags :: bit_set[AuthorizationFlag; cffi.uint]
 
 /// SessionAttributeBits
-SessionAttributeBitsFlag :: enum cffi.uint {
+SessionAttributeBit :: enum cffi.uint {
     IsRoot           = 0,
     HasGraphicAccess = 4,
     HasTTY           = 5,
     IsRemote         = 12,
 }
-SessionAttributeBits :: bit_set[SessionAttributeBitsFlag; cffi.uint]
+SessionAttributeBits :: bit_set[SessionAttributeBit; cffi.uint]
 
 /// SessionCreationFlags
 SessionCreationFlag :: enum cffi.uint {

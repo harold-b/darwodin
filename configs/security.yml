@@ -78,7 +78,7 @@ Odin:
         - |
           // Composite SDK masks that also contain reserved or unnamed bits.
           when ODIN_PLATFORM_SUBTARGET == .Default { SecKeyUsage_kSecKeyUsageAll :: transmute(SecKeyUsage)cffi.uint(2147483647) }
-          when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)cffi.uint(4294967295) }
+          when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)max(cffi.uint) }
 
       # TypeMap:
 
@@ -118,7 +118,7 @@ Odin:
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # AuthSession.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^SessionAttributeBits$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # SecACL.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^SecKeychainPromptSelector$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]

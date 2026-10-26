@@ -2039,11 +2039,11 @@ TagDataType :: enum cffi.uint {
 }
 
 /// CMStereoViewComponents
-StereoViewComponentsFlag :: enum cffi.ulonglong {
-    kCMStereoView_LeftEye  = 0,
-    kCMStereoView_RightEye = 1,
+StereoViewComponent :: enum cffi.ulonglong {
+    LeftEye  = 0,
+    RightEye = 1,
 }
-StereoViewComponents :: bit_set[StereoViewComponentsFlag; cffi.ulonglong]
+StereoViewComponents :: bit_set[StereoViewComponent; cffi.ulonglong]
 
 /// CMStereoViewInterpretationOptions
 StereoViewInterpretationOption :: enum cffi.ulonglong {

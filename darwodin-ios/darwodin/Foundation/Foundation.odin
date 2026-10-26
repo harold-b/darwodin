@@ -1602,19 +1602,19 @@ UndoManagerUserInfoKey :: distinct ^String
 UserActivityPersistentIdentifier :: distinct ^String
 
 /// xpc_session_create_flags_t
-xpc_session_create_flags_tFlag :: enum cffi.ulonglong {
+xpc_session_create_flag :: enum cffi.ulonglong {
     INACTIVE        = 0,
     MACH_PRIVILEGED = 1,
 }
-xpc_session_create_flags_t :: bit_set[xpc_session_create_flags_tFlag; cffi.ulonglong]
+xpc_session_create_flags_t :: bit_set[xpc_session_create_flag; cffi.ulonglong]
 
 /// xpc_listener_create_flags_t
-xpc_listener_create_flags_tFlag :: enum cffi.ulonglong {
+xpc_listener_create_flag :: enum cffi.ulonglong {
     INACTIVE         = 0,
     FORCE_MACH       = 1,
     FORCE_XPCSERVICE = 2,
 }
-xpc_listener_create_flags_t :: bit_set[xpc_listener_create_flags_tFlag; cffi.ulonglong]
+xpc_listener_create_flags_t :: bit_set[xpc_listener_create_flag; cffi.ulonglong]
 
 /// NSComparisonResult
 ComparisonResult :: enum cffi.long {
@@ -1624,18 +1624,18 @@ ComparisonResult :: enum cffi.long {
 }
 
 /// NSEnumerationOptions
-EnumerationOptionsFlag :: enum cffi.ulong {
+EnumerationOption :: enum cffi.ulong {
     Concurrent = 0,
     Reverse    = 1,
 }
-EnumerationOptions :: bit_set[EnumerationOptionsFlag; cffi.ulong]
+EnumerationOptions :: bit_set[EnumerationOption; cffi.ulong]
 
 /// NSSortOptions
-SortOptionsFlag :: enum cffi.ulong {
+SortOption :: enum cffi.ulong {
     Concurrent = 0,
     Stable     = 4,
 }
-SortOptions :: bit_set[SortOptionsFlag; cffi.ulong]
+SortOptions :: bit_set[SortOption; cffi.ulong]
 
 /// NSQualityOfService
 QualityOfService :: enum cffi.long {
@@ -1653,20 +1653,20 @@ CollectionChangeType :: enum cffi.long {
 }
 
 /// NSOrderedCollectionDifferenceCalculationOptions
-OrderedCollectionDifferenceCalculationOptionsFlag :: enum cffi.ulong {
+OrderedCollectionDifferenceCalculationOption :: enum cffi.ulong {
     OmitInsertedObjects = 0,
     OmitRemovedObjects  = 1,
     InferMoves          = 2,
 }
-OrderedCollectionDifferenceCalculationOptions :: bit_set[OrderedCollectionDifferenceCalculationOptionsFlag; cffi.ulong]
+OrderedCollectionDifferenceCalculationOptions :: bit_set[OrderedCollectionDifferenceCalculationOption; cffi.ulong]
 
 /// NSBinarySearchingOptions
-BinarySearchingOptionsFlag :: enum cffi.ulong {
+BinarySearchingOption :: enum cffi.ulong {
     FirstEqual     = 8,
     LastEqual      = 9,
     InsertionIndex = 10,
 }
-BinarySearchingOptions :: bit_set[BinarySearchingOptionsFlag; cffi.ulong]
+BinarySearchingOptions :: bit_set[BinarySearchingOption; cffi.ulong]
 
 /// NSItemProviderRepresentationVisibility
 ItemProviderRepresentationVisibility :: enum cffi.long {
@@ -1677,10 +1677,10 @@ ItemProviderRepresentationVisibility :: enum cffi.long {
 }
 
 /// NSItemProviderFileOptions
-ItemProviderFileOptionsFlag :: enum cffi.long {
-    OptionOpenInPlace = 0,
+ItemProviderFileOption :: enum cffi.long {
+    OpenInPlace = 0,
 }
-ItemProviderFileOptions :: bit_set[ItemProviderFileOptionsFlag; cffi.long]
+ItemProviderFileOptions :: bit_set[ItemProviderFileOption; cffi.long]
 
 /// NSItemProviderErrorCode
 ItemProviderErrorCode :: enum cffi.long {
@@ -1691,7 +1691,7 @@ ItemProviderErrorCode :: enum cffi.long {
 }
 
 /// NSStringCompareOptions
-StringCompareOptionsFlag :: enum cffi.ulong {
+StringCompareOption :: enum cffi.ulong {
     CaseInsensitiveSearch      = 0,
     LiteralSearch              = 1,
     BackwardsSearch            = 2,
@@ -1702,17 +1702,17 @@ StringCompareOptionsFlag :: enum cffi.ulong {
     ForcedOrderingSearch       = 9,
     RegularExpressionSearch    = 10,
 }
-StringCompareOptions :: bit_set[StringCompareOptionsFlag; cffi.ulong]
+StringCompareOptions :: bit_set[StringCompareOption; cffi.ulong]
 
 /// NSStringEncodingConversionOptions
-StringEncodingConversionOptionsFlag :: enum cffi.ulong {
+StringEncodingConversionOption :: enum cffi.ulong {
     AllowLossy             = 0,
     ExternalRepresentation = 1,
 }
-StringEncodingConversionOptions :: bit_set[StringEncodingConversionOptionsFlag; cffi.ulong]
+StringEncodingConversionOptions :: bit_set[StringEncodingConversionOption; cffi.ulong]
 
 /// NSStringEnumerationOptions
-StringEnumerationOptionsFlag :: enum cffi.ulong {
+StringEnumerationOption :: enum cffi.ulong {
     ByParagraphs                 = 0,
     ByComposedCharacterSequences = 1,
     BySentences                  = 2,
@@ -1720,7 +1720,7 @@ StringEnumerationOptionsFlag :: enum cffi.ulong {
     SubstringNotRequired         = 9,
     Localized                    = 10,
 }
-StringEnumerationOptions :: bit_set[StringEnumerationOptionsFlag; cffi.ulong]
+StringEnumerationOptions :: bit_set[StringEnumerationOption; cffi.ulong]
 
 StringEnumerationOptions_ByWords :: StringEnumerationOptions { .ByParagraphs, .ByComposedCharacterSequences, }
 
@@ -1769,7 +1769,7 @@ CalendarUnitFlag :: enum cffi.ulong {
 CalendarUnit :: bit_set[CalendarUnitFlag; cffi.ulong]
 
 /// NSCalendarOptions
-CalendarOptionsFlag :: enum cffi.ulong {
+CalendarOption :: enum cffi.ulong {
     WrapComponents                   = 0,
     MatchStrictly                    = 1,
     SearchBackwards                  = 2,
@@ -1779,7 +1779,7 @@ CalendarOptionsFlag :: enum cffi.ulong {
     MatchFirst                       = 12,
     MatchLast                        = 13,
 }
-CalendarOptions :: bit_set[CalendarOptionsFlag; cffi.ulong]
+CalendarOptions :: bit_set[CalendarOption; cffi.ulong]
 
 /// NSDecodingFailurePolicy
 DecodingFailurePolicy :: enum cffi.long {
@@ -1788,7 +1788,7 @@ DecodingFailurePolicy :: enum cffi.long {
 }
 
 /// NSDataReadingOptions
-DataReadingOptionsFlag :: enum cffi.ulong {
+DataReadingOption :: enum cffi.ulong {
     MappedIfSafe = 0,
     Uncached     = 1,
     MappedAlways = 3,
@@ -1796,10 +1796,10 @@ DataReadingOptionsFlag :: enum cffi.ulong {
     MappedRead   = 0,
     UncachedRead = 1,
 }
-DataReadingOptions :: bit_set[DataReadingOptionsFlag; cffi.ulong]
+DataReadingOptions :: bit_set[DataReadingOption; cffi.ulong]
 
 /// NSDataWritingOptions
-DataWritingOptionsFlag :: enum cffi.ulong {
+DataWritingOption :: enum cffi.ulong {
     Atomic                           = 0,
     WithoutOverwriting               = 1,
     FileProtectionNone               = 28,
@@ -1807,33 +1807,33 @@ DataWritingOptionsFlag :: enum cffi.ulong {
     FileProtectionCompleteUntilFirstUserAuthentication = 30,
     AtomicWrite                      = 0,
 }
-DataWritingOptions :: bit_set[DataWritingOptionsFlag; cffi.ulong]
+DataWritingOptions :: bit_set[DataWritingOption; cffi.ulong]
 
 DataWritingOptions_FileProtectionCompleteUnlessOpen :: DataWritingOptions { .FileProtectionNone, .FileProtectionComplete, }
 
 DataWritingOptions_FileProtectionCompleteWhenUserInactive :: DataWritingOptions { .FileProtectionNone, .FileProtectionCompleteUntilFirstUserAuthentication, }
 
 /// NSDataSearchOptions
-DataSearchOptionsFlag :: enum cffi.ulong {
+DataSearchOption :: enum cffi.ulong {
     Backwards = 0,
     Anchored  = 1,
 }
-DataSearchOptions :: bit_set[DataSearchOptionsFlag; cffi.ulong]
+DataSearchOptions :: bit_set[DataSearchOption; cffi.ulong]
 
 /// NSDataBase64EncodingOptions
-DataBase64EncodingOptionsFlag :: enum cffi.ulong {
+DataBase64EncodingOption :: enum cffi.ulong {
     _64CharacterLineLength    = 0,
     _76CharacterLineLength    = 1,
     EndLineWithCarriageReturn = 4,
     EndLineWithLineFeed       = 5,
 }
-DataBase64EncodingOptions :: bit_set[DataBase64EncodingOptionsFlag; cffi.ulong]
+DataBase64EncodingOptions :: bit_set[DataBase64EncodingOption; cffi.ulong]
 
 /// NSDataBase64DecodingOptions
-DataBase64DecodingOptionsFlag :: enum cffi.ulong {
+DataBase64DecodingOption :: enum cffi.ulong {
     IgnoreUnknownCharacters = 0,
 }
-DataBase64DecodingOptions :: bit_set[DataBase64DecodingOptionsFlag; cffi.ulong]
+DataBase64DecodingOptions :: bit_set[DataBase64DecodingOption; cffi.ulong]
 
 /// NSDataCompressionAlgorithm
 DataCompressionAlgorithm :: enum cffi.long {
@@ -1844,11 +1844,11 @@ DataCompressionAlgorithm :: enum cffi.long {
 }
 
 /// NSAttributedStringEnumerationOptions
-AttributedStringEnumerationOptionsFlag :: enum cffi.ulong {
+AttributedStringEnumerationOption :: enum cffi.ulong {
     Reverse                          = 1,
     LongestEffectiveRangeNotRequired = 20,
 }
-AttributedStringEnumerationOptions :: bit_set[AttributedStringEnumerationOptionsFlag; cffi.ulong]
+AttributedStringEnumerationOptions :: bit_set[AttributedStringEnumerationOption; cffi.ulong]
 
 /// NSInlinePresentationIntent
 InlinePresentationIntentFlag :: enum cffi.ulong {
@@ -1877,11 +1877,11 @@ AttributedStringMarkdownInterpretedSyntax :: enum cffi.long {
 }
 
 /// NSAttributedStringFormattingOptions
-AttributedStringFormattingOptionsFlag :: enum cffi.ulong {
+AttributedStringFormattingOption :: enum cffi.ulong {
     InsertArgumentAttributesWithoutMerging = 0,
     ApplyReplacementIndexAttribute   = 1,
 }
-AttributedStringFormattingOptions :: bit_set[AttributedStringFormattingOptionsFlag; cffi.ulong]
+AttributedStringFormattingOptions :: bit_set[AttributedStringFormattingOption; cffi.ulong]
 
 /// NSPresentationIntentKind
 PresentationIntentKind :: enum cffi.long {
@@ -1948,7 +1948,7 @@ DateIntervalFormatterStyle :: enum cffi.ulong {
 }
 
 /// NSISO8601DateFormatOptions
-ISO8601DateFormatOptionsFlag :: enum cffi.ulong {
+ISO8601DateFormatOption :: enum cffi.ulong {
     WithYear                     = 0,
     WithMonth                    = 1,
     WithWeekOfYear               = 2,
@@ -1961,7 +1961,7 @@ ISO8601DateFormatOptionsFlag :: enum cffi.ulong {
     WithColonSeparatorInTimeZone = 10,
     WithFractionalSeconds        = 11,
 }
-ISO8601DateFormatOptions :: bit_set[ISO8601DateFormatOptionsFlag; cffi.ulong]
+ISO8601DateFormatOptions :: bit_set[ISO8601DateFormatOption; cffi.ulong]
 
 ISO8601DateFormatOptions_WithFullDate :: ISO8601DateFormatOptions { .WithYear, .WithMonth, .WithDay, .WithDashSeparatorInDate, }
 
@@ -2047,12 +2047,12 @@ LocaleLanguageDirection :: enum cffi.ulong {
 }
 
 /// NSMeasurementFormatterUnitOptions
-MeasurementFormatterUnitOptionsFlag :: enum cffi.ulong {
+MeasurementFormatterUnitOption :: enum cffi.ulong {
     ProvidedUnit           = 0,
     NaturalScale           = 1,
     TemperatureWithoutUnit = 2,
 }
-MeasurementFormatterUnitOptions :: bit_set[MeasurementFormatterUnitOptionsFlag; cffi.ulong]
+MeasurementFormatterUnitOptions :: bit_set[MeasurementFormatterUnitOption; cffi.ulong]
 
 /// NSPersonNameComponentsFormatterStyle
 PersonNameComponentsFormatterStyle :: enum cffi.long {
@@ -2064,10 +2064,10 @@ PersonNameComponentsFormatterStyle :: enum cffi.long {
 }
 
 /// NSPersonNameComponentsFormatterOptions
-PersonNameComponentsFormatterOptionsFlag :: enum cffi.ulong {
+PersonNameComponentsFormatterOption :: enum cffi.ulong {
     Phonetic = 1,
 }
-PersonNameComponentsFormatterOptions :: bit_set[PersonNameComponentsFormatterOptionsFlag; cffi.ulong]
+PersonNameComponentsFormatterOptions :: bit_set[PersonNameComponentsFormatterOption; cffi.ulong]
 
 /// NSRelativeDateTimeFormatterStyle
 RelativeDateTimeFormatterStyle :: enum cffi.long {
@@ -2132,16 +2132,16 @@ SearchPathDirectory :: enum cffi.ulong {
 }
 
 /// NSSearchPathDomainMask
-SearchPathDomainMaskFlag :: enum cffi.ulong {
+SearchPathDomainFlag :: enum cffi.ulong {
     UserDomainMask    = 0,
     LocalDomainMask   = 1,
     NetworkDomainMask = 2,
     SystemDomainMask  = 3,
 }
-SearchPathDomainMask :: bit_set[SearchPathDomainMaskFlag; cffi.ulong]
+SearchPathDomainMask :: bit_set[SearchPathDomainFlag; cffi.ulong]
 
 /// NSURLBookmarkCreationOptions
-URLBookmarkCreationOptionsFlag :: enum cffi.ulong {
+URLBookmarkCreationOption :: enum cffi.ulong {
     PreferFileIDResolution           = 8,
     MinimalBookmark                  = 9,
     SuitableForBookmarkFile          = 10,
@@ -2149,40 +2149,40 @@ URLBookmarkCreationOptionsFlag :: enum cffi.ulong {
     SecurityScopeAllowOnlyReadAccess = 12,
     WithoutImplicitSecurityScope     = 29,
 }
-URLBookmarkCreationOptions :: bit_set[URLBookmarkCreationOptionsFlag; cffi.ulong]
+URLBookmarkCreationOptions :: bit_set[URLBookmarkCreationOption; cffi.ulong]
 
 /// NSURLBookmarkResolutionOptions
-URLBookmarkResolutionOptionsFlag :: enum cffi.ulong {
+URLBookmarkResolutionOption :: enum cffi.ulong {
     WithoutUI                     = 8,
     WithoutMounting               = 9,
     WithSecurityScope             = 10,
     WithoutImplicitStartAccessing = 15,
 }
-URLBookmarkResolutionOptions :: bit_set[URLBookmarkResolutionOptionsFlag; cffi.ulong]
+URLBookmarkResolutionOptions :: bit_set[URLBookmarkResolutionOption; cffi.ulong]
 
 /// NSVolumeEnumerationOptions
-VolumeEnumerationOptionsFlag :: enum cffi.ulong {
+VolumeEnumerationOption :: enum cffi.ulong {
     SkipHiddenVolumes        = 1,
     ProduceFileReferenceURLs = 2,
 }
-VolumeEnumerationOptions :: bit_set[VolumeEnumerationOptionsFlag; cffi.ulong]
+VolumeEnumerationOptions :: bit_set[VolumeEnumerationOption; cffi.ulong]
 
 /// NSDirectoryEnumerationOptions
-DirectoryEnumerationOptionsFlag :: enum cffi.ulong {
+DirectoryEnumerationOption :: enum cffi.ulong {
     SkipsSubdirectoryDescendants = 0,
     SkipsPackageDescendants      = 1,
     SkipsHiddenFiles             = 2,
     IncludesDirectoriesPostOrder = 3,
     ProducesRelativePathURLs     = 4,
 }
-DirectoryEnumerationOptions :: bit_set[DirectoryEnumerationOptionsFlag; cffi.ulong]
+DirectoryEnumerationOptions :: bit_set[DirectoryEnumerationOption; cffi.ulong]
 
 /// NSFileManagerItemReplacementOptions
-FileManagerItemReplacementOptionsFlag :: enum cffi.ulong {
+FileManagerItemReplacementOption :: enum cffi.ulong {
     UsingNewMetadataOnly      = 0,
     WithoutDeletingBackupItem = 1,
 }
-FileManagerItemReplacementOptions :: bit_set[FileManagerItemReplacementOptionsFlag; cffi.ulong]
+FileManagerItemReplacementOptions :: bit_set[FileManagerItemReplacementOption; cffi.ulong]
 
 /// NSURLRelationship
 URLRelationship :: enum cffi.long {
@@ -2192,18 +2192,18 @@ URLRelationship :: enum cffi.long {
 }
 
 /// NSFileManagerUnmountOptions
-FileManagerUnmountOptionsFlag :: enum cffi.ulong {
+FileManagerUnmountOption :: enum cffi.ulong {
     AllPartitionsAndEjectDisk = 0,
     WithoutUI                 = 1,
 }
-FileManagerUnmountOptions :: bit_set[FileManagerUnmountOptionsFlag; cffi.ulong]
+FileManagerUnmountOptions :: bit_set[FileManagerUnmountOption; cffi.ulong]
 
 /// NSFileManagerSupportedSyncControls
-FileManagerSupportedSyncControlsFlag :: enum cffi.ulong {
+FileManagerSupportedSyncControl :: enum cffi.ulong {
     PauseSync            = 0,
     FailUploadOnConflict = 1,
 }
-FileManagerSupportedSyncControls :: bit_set[FileManagerSupportedSyncControlsFlag; cffi.ulong]
+FileManagerSupportedSyncControls :: bit_set[FileManagerSupportedSyncControl; cffi.ulong]
 
 /// NSFileManagerResumeSyncBehavior
 FileManagerResumeSyncBehavior :: enum cffi.long {
@@ -2219,7 +2219,7 @@ FileManagerUploadLocalVersionConflictPolicy :: enum cffi.long {
 }
 
 /// NSPointerFunctionsOptions
-PointerFunctionsOptionsFlag :: enum cffi.ulong {
+PointerFunctionsOption :: enum cffi.ulong {
     ZeroingWeakMemory        = 0,
     OpaqueMemory             = 1,
     MachVirtualMemory        = 2,
@@ -2228,7 +2228,7 @@ PointerFunctionsOptionsFlag :: enum cffi.ulong {
     StructPersonality        = 10,
     CopyIn                   = 16,
 }
-PointerFunctionsOptions :: bit_set[PointerFunctionsOptionsFlag; cffi.ulong]
+PointerFunctionsOptions :: bit_set[PointerFunctionsOption; cffi.ulong]
 
 PointerFunctionsOptions_MallocMemory :: PointerFunctionsOptions { .ZeroingWeakMemory, .OpaqueMemory, }
 
@@ -2246,7 +2246,7 @@ HTTPCookieAcceptPolicy :: enum cffi.ulong {
 }
 
 /// NSJSONReadingOptions
-JSONReadingOptionsFlag :: enum cffi.ulong {
+JSONReadingOption :: enum cffi.ulong {
     MutableContainers         = 0,
     MutableLeaves             = 1,
     FragmentsAllowed          = 2,
@@ -2254,25 +2254,25 @@ JSONReadingOptionsFlag :: enum cffi.ulong {
     TopLevelDictionaryAssumed = 4,
     AllowFragments            = 2,
 }
-JSONReadingOptions :: bit_set[JSONReadingOptionsFlag; cffi.ulong]
+JSONReadingOptions :: bit_set[JSONReadingOption; cffi.ulong]
 
 /// NSJSONWritingOptions
-JSONWritingOptionsFlag :: enum cffi.ulong {
+JSONWritingOption :: enum cffi.ulong {
     PrettyPrinted          = 0,
     SortedKeys             = 1,
     FragmentsAllowed       = 2,
     WithoutEscapingSlashes = 3,
 }
-JSONWritingOptions :: bit_set[JSONWritingOptionsFlag; cffi.ulong]
+JSONWritingOptions :: bit_set[JSONWritingOption; cffi.ulong]
 
 /// NSKeyValueObservingOptions
-KeyValueObservingOptionsFlag :: enum cffi.ulong {
-    OptionNew     = 0,
-    OptionOld     = 1,
-    OptionInitial = 2,
-    OptionPrior   = 3,
+KeyValueObservingOption :: enum cffi.ulong {
+    New     = 0,
+    Old     = 1,
+    Initial = 2,
+    Prior   = 3,
 }
-KeyValueObservingOptions :: bit_set[KeyValueObservingOptionsFlag; cffi.ulong]
+KeyValueObservingOptions :: bit_set[KeyValueObservingOption; cffi.ulong]
 
 /// NSKeyValueChange
 KeyValueChange :: enum cffi.ulong {
@@ -2415,14 +2415,14 @@ OperationQueuePriority :: enum cffi.long {
 }
 
 /// NSMachPortOptions
-MachPortOptionsFlag :: enum cffi.ulong {
+MachPortOption :: enum cffi.ulong {
     DeallocateSendRight    = 0,
     DeallocateReceiveRight = 1,
 }
-MachPortOptions :: bit_set[MachPortOptionsFlag; cffi.ulong]
+MachPortOptions :: bit_set[MachPortOption; cffi.ulong]
 
 /// NSActivityOptions
-ActivityOptionsFlag :: enum cffi.ulonglong {
+ActivityOption :: enum cffi.ulonglong {
     IdleDisplaySleepDisabled     = 40,
     IdleSystemSleepDisabled      = 20,
     SuddenTerminationDisabled    = 14,
@@ -2430,7 +2430,7 @@ ActivityOptionsFlag :: enum cffi.ulonglong {
     AnimationTrackingEnabled     = 45,
     TrackingEnabled              = 46,
 }
-ActivityOptions :: bit_set[ActivityOptionsFlag; cffi.ulonglong]
+ActivityOptions :: bit_set[ActivityOption; cffi.ulonglong]
 
 /// NSProcessInfoThermalState
 ProcessInfoThermalState :: enum cffi.long {
@@ -2459,7 +2459,7 @@ TextCheckingTypeFlag :: enum cffi.ulonglong {
 TextCheckingType :: bit_set[TextCheckingTypeFlag; cffi.ulonglong]
 
 /// NSRegularExpressionOptions
-RegularExpressionOptionsFlag :: enum cffi.ulong {
+RegularExpressionOption :: enum cffi.ulong {
     CaseInsensitive            = 0,
     AllowCommentsAndWhitespace = 1,
     IgnoreMetacharacters       = 2,
@@ -2468,17 +2468,17 @@ RegularExpressionOptionsFlag :: enum cffi.ulong {
     UseUnixLineSeparators      = 5,
     UseUnicodeWordBoundaries   = 6,
 }
-RegularExpressionOptions :: bit_set[RegularExpressionOptionsFlag; cffi.ulong]
+RegularExpressionOptions :: bit_set[RegularExpressionOption; cffi.ulong]
 
 /// NSMatchingOptions
-MatchingOptionsFlag :: enum cffi.ulong {
+MatchingOption :: enum cffi.ulong {
     ReportProgress         = 0,
     ReportCompletion       = 1,
     Anchored               = 2,
     WithTransparentBounds  = 3,
     WithoutAnchoringBounds = 4,
 }
-MatchingOptions :: bit_set[MatchingOptionsFlag; cffi.ulong]
+MatchingOptions :: bit_set[MatchingOption; cffi.ulong]
 
 /// NSMatchingFlags
 MatchingFlag :: enum cffi.ulong {
@@ -2681,13 +2681,13 @@ XMLParserError :: enum cffi.long {
 }
 
 /// NSXPCConnectionOptions
-XPCConnectionOptionsFlag :: enum cffi.ulong {
+XPCConnectionOption :: enum cffi.ulong {
     Privileged = 12,
 }
-XPCConnectionOptions :: bit_set[XPCConnectionOptionsFlag; cffi.ulong]
+XPCConnectionOptions :: bit_set[XPCConnectionOption; cffi.ulong]
 
 /// NSByteCountFormatterUnits
-ByteCountFormatterUnitsFlag :: enum cffi.ulong {
+ByteCountFormatterUnit :: enum cffi.ulong {
     UseBytes = 0,
     UseKB    = 1,
     UseMB    = 2,
@@ -2697,7 +2697,7 @@ ByteCountFormatterUnitsFlag :: enum cffi.ulong {
     UseEB    = 6,
     UseZB    = 7,
 }
-ByteCountFormatterUnits :: bit_set[ByteCountFormatterUnitsFlag; cffi.ulong]
+ByteCountFormatterUnits :: bit_set[ByteCountFormatterUnit; cffi.ulong]
 
 /// NSByteCountFormatterCountStyle
 ByteCountFormatterCountStyle :: enum cffi.long {
@@ -2708,12 +2708,12 @@ ByteCountFormatterCountStyle :: enum cffi.long {
 }
 
 /// NSComparisonPredicateOptions
-ComparisonPredicateOptionsFlag :: enum cffi.ulong {
-    CaseInsensitivePredicateOption   = 0,
-    DiacriticInsensitivePredicateOption = 1,
-    NormalizedPredicateOption        = 2,
+ComparisonPredicateOption :: enum cffi.ulong {
+    CaseInsensitive      = 0,
+    DiacriticInsensitive = 1,
+    Normalized           = 2,
 }
-ComparisonPredicateOptions :: bit_set[ComparisonPredicateOptionsFlag; cffi.ulong]
+ComparisonPredicateOptions :: bit_set[ComparisonPredicateOption; cffi.ulong]
 
 /// NSComparisonPredicateModifier
 ComparisonPredicateModifier :: enum cffi.ulong {
@@ -2787,49 +2787,49 @@ ExpressionType :: enum cffi.ulong {
 }
 
 /// NSFileCoordinatorReadingOptions
-FileCoordinatorReadingOptionsFlag :: enum cffi.ulong {
+FileCoordinatorReadingOption :: enum cffi.ulong {
     WithoutChanges                   = 0,
     ResolvesSymbolicLink             = 1,
     ImmediatelyAvailableMetadataOnly = 2,
     ForUploading                     = 3,
 }
-FileCoordinatorReadingOptions :: bit_set[FileCoordinatorReadingOptionsFlag; cffi.ulong]
+FileCoordinatorReadingOptions :: bit_set[FileCoordinatorReadingOption; cffi.ulong]
 
 /// NSFileCoordinatorWritingOptions
-FileCoordinatorWritingOptionsFlag :: enum cffi.ulong {
+FileCoordinatorWritingOption :: enum cffi.ulong {
     ForDeleting                    = 0,
     ForMoving                      = 1,
     ForMerging                     = 2,
     ForReplacing                   = 3,
     ContentIndependentMetadataOnly = 4,
 }
-FileCoordinatorWritingOptions :: bit_set[FileCoordinatorWritingOptionsFlag; cffi.ulong]
+FileCoordinatorWritingOptions :: bit_set[FileCoordinatorWritingOption; cffi.ulong]
 
 /// NSFileVersionAddingOptions
-FileVersionAddingOptionsFlag :: enum cffi.ulong {
+FileVersionAddingOption :: enum cffi.ulong {
     ByMoving = 0,
 }
-FileVersionAddingOptions :: bit_set[FileVersionAddingOptionsFlag; cffi.ulong]
+FileVersionAddingOptions :: bit_set[FileVersionAddingOption; cffi.ulong]
 
 /// NSFileVersionReplacingOptions
-FileVersionReplacingOptionsFlag :: enum cffi.ulong {
+FileVersionReplacingOption :: enum cffi.ulong {
     ByMoving = 0,
 }
-FileVersionReplacingOptions :: bit_set[FileVersionReplacingOptionsFlag; cffi.ulong]
+FileVersionReplacingOptions :: bit_set[FileVersionReplacingOption; cffi.ulong]
 
 /// NSFileWrapperReadingOptions
-FileWrapperReadingOptionsFlag :: enum cffi.ulong {
+FileWrapperReadingOption :: enum cffi.ulong {
     Immediate      = 0,
     WithoutMapping = 1,
 }
-FileWrapperReadingOptions :: bit_set[FileWrapperReadingOptionsFlag; cffi.ulong]
+FileWrapperReadingOptions :: bit_set[FileWrapperReadingOption; cffi.ulong]
 
 /// NSFileWrapperWritingOptions
-FileWrapperWritingOptionsFlag :: enum cffi.ulong {
+FileWrapperWritingOption :: enum cffi.ulong {
     Atomic           = 0,
     WithNameUpdating = 1,
 }
-FileWrapperWritingOptions :: bit_set[FileWrapperWritingOptionsFlag; cffi.ulong]
+FileWrapperWritingOptions :: bit_set[FileWrapperWritingOption; cffi.ulong]
 
 /// NSLinguisticTaggerUnit
 LinguisticTaggerUnit :: enum cffi.long {
@@ -2840,14 +2840,14 @@ LinguisticTaggerUnit :: enum cffi.long {
 }
 
 /// NSLinguisticTaggerOptions
-LinguisticTaggerOptionsFlag :: enum cffi.ulong {
+LinguisticTaggerOption :: enum cffi.ulong {
     OmitWords       = 0,
     OmitPunctuation = 1,
     OmitWhitespace  = 2,
     OmitOther       = 3,
     JoinNames       = 4,
 }
-LinguisticTaggerOptions :: bit_set[LinguisticTaggerOptionsFlag; cffi.ulong]
+LinguisticTaggerOptions :: bit_set[LinguisticTaggerOption; cffi.ulong]
 
 /// NSNetServicesError
 NetServicesError :: enum cffi.long {
@@ -2863,11 +2863,11 @@ NetServicesError :: enum cffi.long {
 }
 
 /// NSNetServiceOptions
-NetServiceOptionsFlag :: enum cffi.ulong {
+NetServiceOption :: enum cffi.ulong {
     NoAutoRename         = 0,
     ListenForConnections = 1,
 }
-NetServiceOptions :: bit_set[NetServiceOptionsFlag; cffi.ulong]
+NetServiceOptions :: bit_set[NetServiceOption; cffi.ulong]
 
 /// NSURLSessionTaskState
 URLSessionTaskState :: enum cffi.long {

@@ -3716,13 +3716,13 @@ FileFlag :: enum cffi.uint {
 FileFlags :: bit_set[FileFlag; cffi.uint]
 
 /// AudioFilePermissions
-FilePermissionsFlag :: enum cffi.schar {
-    ReadPermission  = 0,
-    WritePermission = 1,
+FilePermission :: enum cffi.schar {
+    Read  = 0,
+    Write = 1,
 }
-FilePermissions :: bit_set[FilePermissionsFlag; cffi.schar]
+FilePermissions :: bit_set[FilePermission; cffi.schar]
 
-FilePermissions_ReadWritePermission :: FilePermissions { .ReadPermission, .WritePermission, }
+FilePermissions_ReadWrite :: FilePermissions { .Read, .Write, }
 
 /// AudioFileRegionFlags
 FileRegionFlag :: enum cffi.uint {
@@ -3814,11 +3814,11 @@ UnitEventType :: enum cffi.uint {
 }
 
 /// CAFFormatFlags
-FFormatFlagsFlag :: enum cffi.uint {
+FFormatFlag :: enum cffi.uint {
     Float        = 0,
     LittleEndian = 1,
 }
-FFormatFlags :: bit_set[FFormatFlagsFlag; cffi.uint]
+FFormatFlags :: bit_set[FFormatFlag; cffi.uint]
 
 /// CAFRegionFlags
 FRegionFlag :: enum cffi.uint {

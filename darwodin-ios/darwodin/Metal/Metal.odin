@@ -27,7 +27,7 @@ foreign import lib {
 // -auto-text-end
 // +user-text-begin
 // Composite SDK masks that also contain reserved or unnamed bits.
-Stages_StageAll :: transmute(Stages)cffi.ulong(9223372036854775807)
+Stages_All :: transmute(Stages)cffi.ulong(max(NS.Integer))
 
 // -user-text-end
 
@@ -191,19 +191,19 @@ BarrierScopeFlag :: enum cffi.ulong {
 BarrierScope :: bit_set[BarrierScopeFlag; cffi.ulong]
 
 /// MTLStages
-StagesFlag :: enum cffi.ulong {
-    StageVertex                = 0,
-    StageFragment              = 1,
-    StageTile                  = 2,
-    StageObject                = 3,
-    StageMesh                  = 4,
-    StageResourceState         = 26,
-    StageDispatch              = 27,
-    StageBlit                  = 28,
-    StageAccelerationStructure = 29,
-    StageMachineLearning       = 30,
+Stage :: enum cffi.ulong {
+    Vertex                = 0,
+    Fragment              = 1,
+    Tile                  = 2,
+    Object                = 3,
+    Mesh                  = 4,
+    ResourceState         = 26,
+    Dispatch              = 27,
+    Blit                  = 28,
+    AccelerationStructure = 29,
+    MachineLearning       = 30,
 }
-Stages :: bit_set[StagesFlag; cffi.ulong]
+Stages :: bit_set[Stage; cffi.ulong]
 
 /// MTLPurgeableState
 PurgeableState :: enum cffi.ulong {
@@ -1214,11 +1214,11 @@ TriangleFillMode :: enum cffi.ulong {
 
 /// MTLRenderStages
 RenderStage :: enum cffi.ulong {
-    StageVertex   = 0,
-    StageFragment = 1,
-    StageTile     = 2,
-    StageObject   = 3,
-    StageMesh     = 4,
+    Vertex   = 0,
+    Fragment = 1,
+    Tile     = 2,
+    Object   = 3,
+    Mesh     = 4,
 }
 RenderStages :: bit_set[RenderStage; cffi.ulong]
 

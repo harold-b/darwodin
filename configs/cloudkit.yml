@@ -64,7 +64,15 @@ Odin:
     # Restore SDK words truncated by the generic plural type-name transforms.
     - Type: '^CKRecordZoneCapabilities$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: apability, Target: Capability }
+      - { Kind: RemovePrefix, Source: apability }
+
+    # Remove redundant singular type words left by the plural SDK names.
+    - Type: '^CKApplicationPermissions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Permission }
+    - Type: '^CKRecordZoneCapabilities$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Capability }
 
   TypeTransforms:
     - Type: ^(CK).+
@@ -80,10 +88,10 @@ Odin:
     # SDK 27 flag declarations, verified against the headers named below.
     # CKContainer.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CKApplicationPermissions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # CKRecordZone.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CKRecordZoneCapabilities$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: ReplaceSuffix, Source: ies, Target: y }]
     - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
       Transforms:
         - Kind  : RemoveSuffix

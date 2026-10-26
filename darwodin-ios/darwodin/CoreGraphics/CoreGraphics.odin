@@ -2028,11 +2028,11 @@ GlyphDeprecatedEnum :: enum cffi.int {
 }
 
 /// CGGradientDrawingOptions
-GradientDrawingOptionsFlag :: enum cffi.uint {
+GradientDrawingOption :: enum cffi.uint {
     DrawsBeforeStartLocation = 0,
     DrawsAfterEndLocation    = 1,
 }
-GradientDrawingOptions :: bit_set[GradientDrawingOptionsFlag; cffi.uint]
+GradientDrawingOptions :: bit_set[GradientDrawingOption; cffi.uint]
 
 /// CGImageAlphaInfo
 ImageAlphaInfo :: enum cffi.uint {
@@ -2143,7 +2143,7 @@ PDFBox :: enum cffi.int {
 }
 
 /// CGPDFAccessPermissions
-PDFAccessPermissionsFlag :: enum cffi.uint {
+PDFAccessPermission :: enum cffi.uint {
     AllowsLowQualityPrinting   = 0,
     AllowsHighQualityPrinting  = 1,
     AllowsDocumentChanges      = 2,
@@ -2153,7 +2153,7 @@ PDFAccessPermissionsFlag :: enum cffi.uint {
     AllowsCommenting           = 6,
     AllowsFormFieldEntry       = 7,
 }
-PDFAccessPermissions :: bit_set[PDFAccessPermissionsFlag; cffi.uint]
+PDFAccessPermissions :: bit_set[PDFAccessPermission; cffi.uint]
 
 /// CGToneMapping
 ToneMapping :: enum cffi.uint {

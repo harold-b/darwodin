@@ -31,7 +31,7 @@ xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead o
 
 // Composite SDK masks that also contain reserved or unnamed bits.
 when ODIN_PLATFORM_SUBTARGET == .Default { SecKeyUsage_kSecKeyUsageAll :: transmute(SecKeyUsage)cffi.uint(2147483647) }
-when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)cffi.uint(4294967295) }
+when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)max(cffi.uint) }
 
 // -user-text-end
 

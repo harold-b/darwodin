@@ -20,7 +20,7 @@ foreign import lib {
 
 
 
-Stages_StageAll :: transmute(Stages)cffi.ulong(9223372036854775807)
+Stages_All :: transmute(Stages)cffi.ulong(max(NS.Integer))
 
 
 
@@ -211,20 +211,20 @@ BarrierScopeFlag :: enum cffi.ulong {
 
 BarrierScope :: bit_set[BarrierScopeFlag; cffi.ulong]
 
-StagesFlag :: enum cffi.ulong {
-	StageVertex                = 0,
-	StageFragment              = 1,
-	StageTile                  = 2,
-	StageObject                = 3,
-	StageMesh                  = 4,
-	StageResourceState         = 26,
-	StageDispatch              = 27,
-	StageBlit                  = 28,
-	StageAccelerationStructure = 29,
-	StageMachineLearning       = 30,
+Stage :: enum cffi.ulong {
+	Vertex                = 0,
+	Fragment              = 1,
+	Tile                  = 2,
+	Object                = 3,
+	Mesh                  = 4,
+	ResourceState         = 26,
+	Dispatch              = 27,
+	Blit                  = 28,
+	AccelerationStructure = 29,
+	MachineLearning       = 30,
 }
 
-Stages :: bit_set[StagesFlag; cffi.ulong]
+Stages :: bit_set[Stage; cffi.ulong]
 
 PurgeableState :: enum cffi.ulong {
 	KeepCurrent = 1,
@@ -1175,11 +1175,11 @@ TriangleFillMode :: enum cffi.ulong {
 }
 
 RenderStage :: enum cffi.ulong {
-	StageVertex   = 0,
-	StageFragment = 1,
-	StageTile     = 2,
-	StageObject   = 3,
-	StageMesh     = 4,
+	Vertex   = 0,
+	Fragment = 1,
+	Tile     = 2,
+	Object   = 3,
+	Mesh     = 4,
 }
 
 RenderStages :: bit_set[RenderStage; cffi.ulong]

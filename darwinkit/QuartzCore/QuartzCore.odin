@@ -815,7 +815,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 	}
 }
 
-AutoresizingMaskFlag :: enum cffi.uint {
+AutoresizingFlag :: enum cffi.uint {
 	kCALayerMinXMargin    = 0,
 	kCALayerWidthSizable  = 1,
 	kCALayerMaxXMargin    = 2,
@@ -824,25 +824,25 @@ AutoresizingMaskFlag :: enum cffi.uint {
 	kCALayerMaxYMargin    = 5,
 }
 
-AutoresizingMask :: bit_set[AutoresizingMaskFlag; cffi.uint]
+AutoresizingMask :: bit_set[AutoresizingFlag; cffi.uint]
 
-EdgeAntialiasingMaskFlag :: enum cffi.uint {
+EdgeAntialiasingFlag :: enum cffi.uint {
 	kCALayerLeftEdge   = 0,
 	kCALayerRightEdge  = 1,
 	kCALayerBottomEdge = 2,
 	kCALayerTopEdge    = 3,
 }
 
-EdgeAntialiasingMask :: bit_set[EdgeAntialiasingMaskFlag; cffi.uint]
+EdgeAntialiasingMask :: bit_set[EdgeAntialiasingFlag; cffi.uint]
 
-CornerMaskFlag :: enum cffi.ulong {
+CornerFlag :: enum cffi.ulong {
 	kCALayerMinXMinYCorner = 0,
 	kCALayerMaxXMinYCorner = 1,
 	kCALayerMinXMaxYCorner = 2,
 	kCALayerMaxXMaxYCorner = 3,
 }
 
-CornerMask :: bit_set[CornerMaskFlag; cffi.ulong]
+CornerMask :: bit_set[CornerFlag; cffi.ulong]
 
 ConstraintAttribute :: enum cffi.int {
 	kCAConstraintMinX   = 0,

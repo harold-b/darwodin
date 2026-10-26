@@ -2820,12 +2820,12 @@ GlyphDeprecatedEnum :: enum cffi.int {
 	Max = 1,
 }
 
-GradientDrawingOptionsFlag :: enum cffi.uint {
+GradientDrawingOption :: enum cffi.uint {
 	DrawsBeforeStartLocation = 0,
 	DrawsAfterEndLocation    = 1,
 }
 
-GradientDrawingOptions :: bit_set[GradientDrawingOptionsFlag; cffi.uint]
+GradientDrawingOptions :: bit_set[GradientDrawingOption; cffi.uint]
 
 ImageAlphaInfo :: enum cffi.uint {
 	None               = 0,
@@ -2924,7 +2924,7 @@ PDFBox :: enum cffi.int {
 	ArtBox   = 4,
 }
 
-PDFAccessPermissionsFlag :: enum cffi.uint {
+PDFAccessPermission :: enum cffi.uint {
 	AllowsLowQualityPrinting   = 0,
 	AllowsHighQualityPrinting  = 1,
 	AllowsDocumentChanges      = 2,
@@ -2935,7 +2935,7 @@ PDFAccessPermissionsFlag :: enum cffi.uint {
 	AllowsFormFieldEntry       = 7,
 }
 
-PDFAccessPermissions :: bit_set[PDFAccessPermissionsFlag; cffi.uint]
+PDFAccessPermissions :: bit_set[PDFAccessPermission; cffi.uint]
 
 ToneMapping :: enum cffi.uint {
 	Default                   = 0,
@@ -3177,11 +3177,11 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 		NumberOfWindowLevelKeys         = 21,
 	}
 
-	CaptureOptionsFlag :: enum cffi.uint {
+	CaptureOption :: enum cffi.uint {
 		NoFill = 0,
 	}
 
-	CaptureOptions :: bit_set[CaptureOptionsFlag; cffi.uint]
+	CaptureOptions :: bit_set[CaptureOption; cffi.uint]
 
 	ConfigureOptionFlag :: enum cffi.uint {
 		ForSession  = 0,
@@ -3227,13 +3227,13 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 
 	ScreenUpdateOperation :: bit_set[ScreenUpdateOperationFlag; cffi.uint]
 
-	EventFilterMaskFlag :: enum cffi.uint {
+	EventFilterFlag :: enum cffi.uint {
 		PermitLocalMouseEvents    = 0,
 		PermitLocalKeyboardEvents = 1,
 		PermitSystemDefinedEvents = 2,
 	}
 
-	EventFilterMask :: bit_set[EventFilterMaskFlag; cffi.uint]
+	EventFilterMask :: bit_set[EventFilterFlag; cffi.uint]
 
 	EventSuppressionState :: enum cffi.uint {
 		SuppressionInterval            = 0,

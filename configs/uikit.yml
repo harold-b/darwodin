@@ -73,19 +73,19 @@ Odin:
           // Composite SDK masks that also contain reserved or unnamed bits.
           NSLineBreakStrategy_Standard :: transmute(NSLineBreakStrategy)cffi.ulong(65535)
           NSUnderlineStyle_Double :: transmute(NSUnderlineStyle)cffi.long(9)
-          RectCorner_AllCorners :: transmute(RectCorner)cffi.ulong(18446744073709551615)
+          RectCorner_AllCorners :: transmute(RectCorner)max(cffi.ulong)
           NSLayoutFormatOptions_AlignmentMask :: transmute(NSLayoutFormatOptions)cffi.ulong(65535)
-          ViewAnimationOptions_OptionPreferredFramesPerSecond60 :: transmute(ViewAnimationOptions)cffi.ulong(50331648)
-          ViewAnimationOptions_OptionPreferredFramesPerSecond30 :: transmute(ViewAnimationOptions)cffi.ulong(117440512)
-          ControlEvents_EventAllTouchEvents :: transmute(ControlEvents)cffi.ulong(4095)
-          ControlEvents_EventApplicationReserved :: transmute(ControlEvents)cffi.ulong(251658240)
-          ControlEvents_EventSystemReserved :: transmute(ControlEvents)cffi.ulong(4026531840)
-          ControlEvents_EventAllEvents :: transmute(ControlEvents)cffi.ulong(4294967295)
+          ViewAnimationOptions_PreferredFramesPerSecond60 :: transmute(ViewAnimationOptions)cffi.ulong(50331648)
+          ViewAnimationOptions_PreferredFramesPerSecond30 :: transmute(ViewAnimationOptions)cffi.ulong(117440512)
+          ControlEvents_AllTouchEvents :: transmute(ControlEvents)cffi.ulong(4095)
+          ControlEvents_ApplicationReserved :: transmute(ControlEvents)cffi.ulong(251658240)
+          ControlEvents_SystemReserved :: transmute(ControlEvents)cffi.ulong(4026531840)
+          ControlEvents_AllEvents :: transmute(ControlEvents)cffi.ulong(4294967295)
           ControlState_Application :: transmute(ControlState)cffi.ulong(16711680)
           ControlState_Reserved :: transmute(ControlState)cffi.ulong(4278190080)
-          DataDetectorTypes_TypeAll :: transmute(DataDetectorTypes)cffi.ulong(18446744073709551615)
-          PopoverArrowDirection_Unknown :: transmute(PopoverArrowDirection)cffi.ulong(18446744073709551615)
-          CollisionBehaviorMode_Everything :: transmute(CollisionBehaviorMode)cffi.ulong(18446744073709551615)
+          DataDetectorTypes_All :: transmute(DataDetectorTypes)max(cffi.ulong)
+          PopoverArrowDirection_Unknown :: transmute(PopoverArrowDirection)max(cffi.ulong)
+          CollisionBehaviorMode_Everything :: transmute(CollisionBehaviorMode)max(cffi.ulong)
 
       TypeMap:
         LPLinkMetadata: LPLinkMetadata
@@ -124,28 +124,57 @@ Odin:
     # Restore SDK words truncated by the generic plural type-name transforms.
     - Type: '^UIControlEvents$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: ystemReserved, Target: EventSystemReserved }
+      - { Kind: ReplacePrefix, Source: ystemReserved, Target: SystemReserved }
     - Type: '^NSTextStorageEditActions$'
       Transforms:
       - { Kind: ReplacePrefix, Source: edAttributes, Target: EditedAttributes }
       - { Kind: ReplacePrefix, Source: edCharacters, Target: EditedCharacters }
     - Type: '^UIViewAnimationOptions$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: howHideTransitionViews, Target: OptionShowHideTransitionViews }
+      - { Kind: ReplacePrefix, Source: howHideTransitionViews, Target: ShowHideTransitionViews }
     - Type: '^UIAccessibilityDirectTouchOptions$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: ilentOnTouch, Target: OptionSilentOnTouch }
+      - { Kind: ReplacePrefix, Source: ilentOnTouch, Target: SilentOnTouch }
     - Type: '^UIDataDetectorTypes$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: hipmentTrackingNumber, Target: TypeShipmentTrackingNumber }
+      - { Kind: ReplacePrefix, Source: hipmentTrackingNumber, Target: ShipmentTrackingNumber }
     - Type: '^UITextDragOptions$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: tripTextColorFromPreviews, Target: OptionStripTextColorFromPreviews }
+      - { Kind: ReplacePrefix, Source: tripTextColorFromPreviews, Target: StripTextColorFromPreviews }
 
     # Restore complete SDK words after the generic enum-name transforms.
     - Type: '^UIPrintErrorCode$'
       Transforms:
       - { Kind: ReplacePrefix, Source: ingNotAvailableError, Target: PrintingNotAvailableError }
+
+    # Remove redundant singular type words left by the plural SDK names.
+    - Type: '^UIFontDescriptorSymbolicTraits$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Trait }
+    - Type: '^UIAccessibilityDirectTouchOptions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Option }
+    - Type: '^UITouchProperties$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Property }
+    - Type: '^UIViewAnimationOptions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Option }
+    - Type: '^UIViewKeyframeAnimationOptions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Option }
+    - Type: '^UIControlEvents$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Event }
+    - Type: '^UITextDragOptions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Option }
+    - Type: '^UIDataDetectorTypes$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Type }
+    - Type: '^UIPrinterJobTypes$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Type }
 
   TypeTransforms:
     - Type: ^(UI).+
@@ -164,19 +193,19 @@ Odin:
     # SDK 27 flag declarations, verified against the headers named below.
     # NSTextList.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSTextListOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSTextSelectionNavigation.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSTextSelectionNavigationModifier$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # NSTextContentManager.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSTextContentManagerEnumerationOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSTextLayoutFragment.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSTextLayoutFragmentEnumerationOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSTextLayoutManager.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSTextLayoutManagerSegmentOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSParagraphStyle.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSLineBreakStrategy$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
@@ -185,49 +214,53 @@ Odin:
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # NSStringDrawing.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSStringDrawingOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSTextStorage.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSTextStorageEditActions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIFontDescriptor.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIFontDescriptorSymbolicTraits$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSLayoutManager.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSGlyphProperty|NSControlCharacterAction)$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # UIAccessibilityConstants.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIAccessibilityDirectTouchOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIGeometry.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:UIRectEdge|UIAxis|UIRectCorner|NSDirectionalRectEdge|UIDirectionalRectEdge)$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # UIMenuElement.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIMenuElementAttributes$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIMenu.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIMenuOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSLayoutConstraint.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSLayoutFormatOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UITouch.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UITouchProperties$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: ReplaceSuffix, Source: ies, Target: y }]
     # UIFocus.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIFocusHeading$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # UIView.h: NS_OPTIONS / CF_OPTIONS.
-    - Type: '^(?:UIViewAutoresizing|UIViewAnimationOptions|UIViewKeyframeAnimationOptions)$'
+    - Type: '^UIViewAutoresizing$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    - Type: '^(?:UIViewAnimationOptions|UIViewKeyframeAnimationOptions)$'
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIControl.h: NS_OPTIONS / CF_OPTIONS.
-    - Type: '^(?:UIControlEvents|UIControlState)$'
+    - Type: '^UIControlEvents$'
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
+    - Type: '^UIControlState$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # UITextInputTraits.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIWritingToolsResultOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UITextDragging.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UITextDragOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIApplication.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIRemoteNotificationType$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
@@ -245,22 +278,24 @@ Odin:
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # UITableView.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UITableViewContentHuggingElements$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UICollectionLayoutList.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UICollectionLayoutListContentHuggingElements$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIDataDetectors.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIDataDetectorTypes$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIDocument.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIDocumentState$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # UICloudSharingController.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UICloudSharingPermissionOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSFileProviderItem.h: NS_OPTIONS / CF_OPTIONS.
-    - Type: '^(?:NSFileProviderItemCapabilities|NSFileProviderItemFields)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    - Type: '^NSFileProviderItemCapabilities$'
+      Transforms: [{ Kind: ReplaceSuffix, Source: ies, Target: y }]
+    - Type: '^NSFileProviderItemFields$'
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIUserNotificationSettings.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIUserNotificationType$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
@@ -278,10 +313,10 @@ Odin:
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # UIActivityViewController.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIActivitySectionTypes$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # UIPrinter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^UIPrinterJobTypes$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: Flags?$
       Transforms:
         - Kind  : RemoveSuffix

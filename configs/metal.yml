@@ -57,7 +57,7 @@ Odin:
       Imports:
         - |
           // Composite SDK masks that also contain reserved or unnamed bits.
-          Stages_StageAll :: transmute(Stages)cffi.ulong(9223372036854775807)
+          Stages_All :: transmute(Stages)cffi.ulong(max(NS.Integer))
 
       # Imports:
       #   - 
@@ -70,8 +70,10 @@ Odin:
   BitSetMap:
     # SDK 27 flag declarations, verified against the headers named below.
     # MTLCommandEncoder.h: NS_OPTIONS / CF_OPTIONS.
-    - Type: '^(?:MTLResourceUsage|MTLBarrierScope|MTLStages)$'
+    - Type: '^(?:MTLResourceUsage|MTLBarrierScope)$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    - Type: '^MTLStages$'
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # MTLTensor.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^MTLTensorUsage$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
@@ -113,6 +115,14 @@ Odin:
     - Kind: RemovePartialTypeNamePrefix
     - Kind: RemoveUnderscorePrefix
     - Kind: UnderscoreNumbers
+
+  # Remove redundant singular type words left by the plural SDK names.
+  - Type: '^MTLStages$'
+    Transforms:
+    - { Kind: RemovePrefix, Source: Stage }
+  - Type: '^MTLRenderStages$'
+    Transforms:
+    - { Kind: RemovePrefix, Source: Stage }
 
   TypeTransforms:
     - Type: ^(MTL(?!4)).+

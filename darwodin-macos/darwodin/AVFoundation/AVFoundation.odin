@@ -46,9 +46,9 @@ PortraitEffectsMatte       :: ^NS.Object
 SemanticSegmentationMatte  :: ^NS.Object
 
 // Composite SDK masks that also contain reserved or unnamed bits.
-AssetReferenceRestrictions_RestrictionForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
-AudioSpatializationFormats_FormatMonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
-AudioSpatializationFormats_FormatMonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
+AssetReferenceRestrictions_ForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
+AudioSpatializationFormats_MonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
+AudioSpatializationFormats_MonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
 
 // -user-text-end
 
@@ -1654,20 +1654,20 @@ ExternalContentProtectionStatus :: enum cffi.long {
 }
 
 /// AVAssetReferenceRestrictions
-AssetReferenceRestrictionsFlag :: enum cffi.ulong {
-    RestrictionForbidRemoteReferenceToLocal = 0,
-    RestrictionForbidLocalReferenceToRemote = 1,
-    RestrictionForbidCrossSiteReference = 2,
-    RestrictionForbidLocalReferenceToLocal = 3,
-    RestrictionDefaultPolicy         = 1,
+AssetReferenceRestriction :: enum cffi.ulong {
+    ForbidRemoteReferenceToLocal = 0,
+    ForbidLocalReferenceToRemote = 1,
+    ForbidCrossSiteReference     = 2,
+    ForbidLocalReferenceToLocal  = 3,
+    DefaultPolicy                = 1,
 }
-AssetReferenceRestrictions :: bit_set[AssetReferenceRestrictionsFlag; cffi.ulong]
+AssetReferenceRestrictions :: bit_set[AssetReferenceRestriction; cffi.ulong]
 
 /// AVAudioSpatializationFormats
-AudioSpatializationFormatsFlag :: enum cffi.ulong {
-    FormatMultichannel = 2,
+AudioSpatializationFormat :: enum cffi.ulong {
+    Multichannel = 2,
 }
-AudioSpatializationFormats :: bit_set[AudioSpatializationFormatsFlag; cffi.ulong]
+AudioSpatializationFormats :: bit_set[AudioSpatializationFormat; cffi.ulong]
 
 /// AVAssetExportSessionStatus
 AssetExportSessionStatus :: enum cffi.long {
@@ -1984,10 +1984,10 @@ PlayerItemStatus :: enum cffi.long {
 }
 
 /// AVVariantPreferences
-VariantPreferencesFlag :: enum cffi.ulong {
-    PreferenceScalabilityToLosslessAudio = 0,
+VariantPreference :: enum cffi.ulong {
+    ScalabilityToLosslessAudio = 0,
 }
-VariantPreferences :: bit_set[VariantPreferencesFlag; cffi.ulong]
+VariantPreferences :: bit_set[VariantPreference; cffi.ulong]
 
 /// AVContentAuthorizationStatus
 ContentAuthorizationStatus :: enum cffi.long {
@@ -2015,11 +2015,11 @@ PlayerLooperItemOrdering :: enum cffi.long {
 }
 
 /// AVPlayerInterstitialEventRestrictions
-PlayerInterstitialEventRestrictionsFlag :: enum cffi.ulong {
-    RestrictionConstrainsSeekingForwardInPrimaryContent = 0,
-    RestrictionRequiresPlaybackAtPreferredRateForAdvancement = 2,
+PlayerInterstitialEventRestriction :: enum cffi.ulong {
+    ConstrainsSeekingForwardInPrimaryContent = 0,
+    RequiresPlaybackAtPreferredRateForAdvancement = 2,
 }
-PlayerInterstitialEventRestrictions :: bit_set[PlayerInterstitialEventRestrictionsFlag; cffi.ulong]
+PlayerInterstitialEventRestrictions :: bit_set[PlayerInterstitialEventRestriction; cffi.ulong]
 
 /// AVPlayerInterstitialEventTimelineOccupancy
 PlayerInterstitialEventTimelineOccupancy :: enum cffi.long {
@@ -2550,11 +2550,11 @@ SpeechSynthesisPersonalVoiceAuthorizationStatus :: enum cffi.ulong {
 }
 
 /// AVSpeechSynthesisVoiceTraits
-SpeechSynthesisVoiceTraitsFlag :: enum cffi.ulong {
-    TraitIsNoveltyVoice  = 0,
-    TraitIsPersonalVoice = 1,
+SpeechSynthesisVoiceTrait :: enum cffi.ulong {
+    IsNoveltyVoice  = 0,
+    IsPersonalVoice = 1,
 }
-SpeechSynthesisVoiceTraits :: bit_set[SpeechSynthesisVoiceTraitsFlag; cffi.ulong]
+SpeechSynthesisVoiceTraits :: bit_set[SpeechSynthesisVoiceTrait; cffi.ulong]
 
 /// AVAudioApplicationRecordPermission
 AudioApplicationRecordPermission :: enum cffi.long {
@@ -2595,12 +2595,12 @@ CapturePrimaryConstituentDeviceSwitchingBehavior :: enum cffi.long {
 }
 
 /// AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
-CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsFlag :: enum cffi.ulong {
-    ConditionVideoZoomChanged    = 0,
-    ConditionFocusModeChanged    = 1,
-    ConditionExposureModeChanged = 2,
+CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorCondition :: enum cffi.ulong {
+    VideoZoomChanged    = 0,
+    FocusModeChanged    = 1,
+    ExposureModeChanged = 2,
 }
-CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions :: bit_set[CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsFlag; cffi.ulong]
+CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions :: bit_set[CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorCondition; cffi.ulong]
 
 /// AVCaptureFlashMode
 CaptureFlashMode :: enum cffi.long {
@@ -2815,14 +2815,14 @@ CaptureMultichannelAudioMode :: enum cffi.long {
 }
 
 /// AVCaptureSystemPressureFactors
-CaptureSystemPressureFactorsFlag :: enum cffi.ulong {
-    FactorSystemTemperature      = 0,
-    FactorPeakPower              = 1,
-    FactorDepthModuleTemperature = 2,
-    FactorCameraTemperature      = 3,
-    FactorBatteryStress          = 4,
+CaptureSystemPressureFactor :: enum cffi.ulong {
+    SystemTemperature      = 0,
+    PeakPower              = 1,
+    DepthModuleTemperature = 2,
+    CameraTemperature      = 3,
+    BatteryStress          = 4,
 }
-CaptureSystemPressureFactors :: bit_set[CaptureSystemPressureFactorsFlag; cffi.ulong]
+CaptureSystemPressureFactors :: bit_set[CaptureSystemPressureFactor; cffi.ulong]
 
 /// AVDepthDataQuality
 DepthDataQuality :: enum cffi.long {

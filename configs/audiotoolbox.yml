@@ -117,10 +117,10 @@ Odin:
     # SDK 27 flag declarations, verified against the headers named below.
     # AudioFile.h: documented flag bits.
     - Type: '^AudioFilePermissions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # CAFFile.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CAFFormatFlags$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
     #   Transforms:
     #     - Kind  : RemoveSuffix
@@ -163,6 +163,11 @@ Odin:
     - Type: '^AudioComponentInstantiationOptions$'
       Transforms:
       - { Kind: ReplacePrefix, Source: edRemotely, Target: LoadedRemotely }
+
+    # Remove redundant singular type words left by the plural SDK names.
+    - Type: '^AudioFilePermissions$'
+      Transforms:
+      - { Kind: RemoveSuffix, Source: Permission }
 
   ProcTransforms:
     - Type: ^(_*Audio).+

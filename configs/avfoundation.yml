@@ -71,9 +71,9 @@ Odin:
           SemanticSegmentationMatte  :: ^NS.Object
         - |
           // Composite SDK masks that also contain reserved or unnamed bits.
-          AssetReferenceRestrictions_RestrictionForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
-          AudioSpatializationFormats_FormatMonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
-          AudioSpatializationFormats_FormatMonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
+          AssetReferenceRestrictions_ForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
+          AudioSpatializationFormats_MonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
+          AudioSpatializationFormats_MonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
 
       MacroFilter:
         - Match: '^AV.+'
@@ -94,15 +94,38 @@ Odin:
     # Restore SDK words truncated by the generic plural type-name transforms.
     - Type: '^AVCaptureSystemPressureFactors$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: ystemTemperature, Target: FactorSystemTemperature }
+      - { Kind: ReplacePrefix, Source: ystemTemperature, Target: SystemTemperature }
     - Type: '^AVVariantPreferences$'
       Transforms:
-      - { Kind: ReplacePrefix, Source: calabilityToLosslessAudio, Target: PreferenceScalabilityToLosslessAudio }
+      - { Kind: ReplacePrefix, Source: calabilityToLosslessAudio, Target: ScalabilityToLosslessAudio }
 
     # Restore complete SDK words after the generic enum-name transforms.
     - Type: '^AVAudioSessionInterruptionOptions$'
       Transforms:
       - { Kind: ReplacePrefix, Source: houldResume, Target: ShouldResume }
+
+    # Remove redundant singular type words left by the plural SDK names.
+    - Type: '^AVAssetReferenceRestrictions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Restriction }
+    - Type: '^AVAudioSpatializationFormats$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Format }
+    - Type: '^AVVariantPreferences$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Preference }
+    - Type: '^AVPlayerInterstitialEventRestrictions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Restriction }
+    - Type: '^AVSpeechSynthesisVoiceTraits$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Trait }
+    - Type: '^AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Condition }
+    - Type: '^AVCaptureSystemPressureFactors$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: Factor }
 
   TypeTransforms:
     - Type: '^(AV).+'
@@ -114,10 +137,10 @@ Odin:
     # SDK 27 flag declarations, verified against the headers named below.
     # AVAsset.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVAssetReferenceRestrictions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # AVAudioProcessingSettings.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVAudioSpatializationFormats$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # AVAssetExportSession.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVAssetTrackGroupOutputHandling$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
@@ -129,19 +152,19 @@ Odin:
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # AVPlayerItem.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVVariantPreferences$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # AVPlayerInterstitialEventController.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVPlayerInterstitialEventRestrictions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # AVSpeechSynthesis.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVSpeechSynthesisVoiceTraits$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # AVCaptureDevice.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # AVCaptureSystemPressure.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^AVCaptureSystemPressureFactors$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: '(Mask|Flags?|Options?)$' # Avoid collisions with the generated bit_set type
       Transforms: [{Kind: 'RemoveSuffix', Source: 's'}]
 

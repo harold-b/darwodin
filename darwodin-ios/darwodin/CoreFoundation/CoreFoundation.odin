@@ -3819,7 +3819,7 @@ dispatch_autorelease_frequency_t :: enum cffi.ulong {
 }
 
 /// dispatch_block_flags_t
-dispatch_block_flags_tFlag :: enum cffi.ulong {
+dispatch_block_flag :: enum cffi.ulong {
     BARRIER           = 0,
     DETACHED          = 1,
     ASSIGN_CURRENT    = 2,
@@ -3827,7 +3827,7 @@ dispatch_block_flags_tFlag :: enum cffi.ulong {
     INHERIT_QOS_CLASS = 4,
     ENFORCE_QOS_CLASS = 5,
 }
-dispatch_block_flags_t :: bit_set[dispatch_block_flags_tFlag; cffi.ulong]
+dispatch_block_flags_t :: bit_set[dispatch_block_flag; cffi.ulong]
 
 /// CFComparisonResult
 ComparisonResult :: enum cffi.long {
@@ -3977,7 +3977,7 @@ DateFormatterStyle :: enum cffi.long {
 }
 
 /// CFISO8601DateFormatOptions
-ISO8601DateFormatOptionsFlag :: enum cffi.ulong {
+ISO8601DateFormatOption :: enum cffi.ulong {
     Year                     = 0,
     Month                    = 1,
     WeekOfYear               = 2,
@@ -3990,7 +3990,7 @@ ISO8601DateFormatOptionsFlag :: enum cffi.ulong {
     ColonSeparatorInTimeZone = 10,
     FractionalSeconds        = 11,
 }
-ISO8601DateFormatOptions :: bit_set[ISO8601DateFormatOptionsFlag; cffi.ulong]
+ISO8601DateFormatOptions :: bit_set[ISO8601DateFormatOption; cffi.ulong]
 
 ISO8601DateFormatOptions_FullDate :: ISO8601DateFormatOptions { .Year, .Month, .Day, .DashSeparatorInDate, }
 
@@ -4082,7 +4082,7 @@ URLComponentType :: enum cffi.long {
 }
 
 /// CFURLBookmarkCreationOptions
-URLBookmarkCreationOptionsFlag :: enum cffi.ulong {
+URLBookmarkCreationOption :: enum cffi.ulong {
     MinimalBookmarkMask              = 9,
     SuitableForBookmarkFile          = 10,
     WithSecurityScope                = 11,
@@ -4090,10 +4090,10 @@ URLBookmarkCreationOptionsFlag :: enum cffi.ulong {
     WithoutImplicitSecurityScope     = 29,
     PreferFileIDResolutionMask       = 8,
 }
-URLBookmarkCreationOptions :: bit_set[URLBookmarkCreationOptionsFlag; cffi.ulong]
+URLBookmarkCreationOptions :: bit_set[URLBookmarkCreationOption; cffi.ulong]
 
 /// CFURLBookmarkResolutionOptions
-URLBookmarkResolutionOptionsFlag :: enum cffi.ulong {
+URLBookmarkResolutionOption :: enum cffi.ulong {
     WithoutUIMask                 = 8,
     WithoutMountingMask           = 9,
     WithSecurityScope             = 10,
@@ -4101,7 +4101,7 @@ URLBookmarkResolutionOptionsFlag :: enum cffi.ulong {
     kWithoutUIMask                = 8,
     kWithoutMountingMask          = 9,
 }
-URLBookmarkResolutionOptions :: bit_set[URLBookmarkResolutionOptionsFlag; cffi.ulong]
+URLBookmarkResolutionOptions :: bit_set[URLBookmarkResolutionOption; cffi.ulong]
 
 /// CFRunLoopRunResult
 RunLoopRunResult :: enum cffi.int {
@@ -4330,7 +4330,7 @@ URLError :: enum cffi.long {
 }
 
 /// CFURLEnumeratorOptions
-URLEnumeratorOptionsFlag :: enum cffi.ulong {
+URLEnumeratorOption :: enum cffi.ulong {
     DescendRecursively          = 0,
     SkipInvisibles              = 1,
     GenerateFileReferenceURLs   = 2,
@@ -4339,7 +4339,7 @@ URLEnumeratorOptionsFlag :: enum cffi.ulong {
     IncludeDirectoriesPostOrder = 5,
     GenerateRelativePathURLs    = 6,
 }
-URLEnumeratorOptions :: bit_set[URLEnumeratorOptionsFlag; cffi.ulong]
+URLEnumeratorOptions :: bit_set[URLEnumeratorOption; cffi.ulong]
 
 /// CFURLEnumeratorResult
 URLEnumeratorResult :: enum cffi.long {
@@ -4350,7 +4350,7 @@ URLEnumeratorResult :: enum cffi.long {
 }
 
 /// CFFileSecurityClearOptions
-FileSecurityClearOptionsFlag :: enum cffi.ulong {
+FileSecurityClearOption :: enum cffi.ulong {
     Owner             = 0,
     Group             = 1,
     Mode              = 2,
@@ -4358,7 +4358,7 @@ FileSecurityClearOptionsFlag :: enum cffi.ulong {
     GroupUUID         = 4,
     AccessControlList = 5,
 }
-FileSecurityClearOptions :: bit_set[FileSecurityClearOptionsFlag; cffi.ulong]
+FileSecurityClearOptions :: bit_set[FileSecurityClearOption; cffi.ulong]
 
 /// CFStringTokenizerTokenType
 StringTokenizerTokenTypeFlag :: enum cffi.ulong {

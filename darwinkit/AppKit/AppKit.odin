@@ -97,13 +97,13 @@ STR :: #force_inline proc "contextless" ( #const s: cstring ) -> ^String {
 	return auto_cast CF.STR(s)
 }
 
-TouchPhase_Any :: transmute(TouchPhase)cffi.ulong(18446744073709551615)
-DragOperation_Every :: transmute(DragOperation)cffi.ulong(18446744073709551615)
+TouchPhase_Any :: transmute(TouchPhase)max(cffi.ulong)
+DragOperation_Every :: transmute(DragOperation)max(cffi.ulong)
 LineBreakStrategy_Standard :: transmute(LineBreakStrategy)cffi.ulong(65535)
-ControlEvents_EventAllTrackingEvents :: transmute(ControlEvents)cffi.ulong(4095)
-ControlEvents_EventApplicationReserved :: transmute(ControlEvents)cffi.ulong(251658240)
-ControlEvents_EventSystemReserved :: transmute(ControlEvents)cffi.ulong(4026531840)
-ControlEvents_EventAllEvents :: transmute(ControlEvents)cffi.ulong(4294967295)
+ControlEvents_AllTrackingEvents :: transmute(ControlEvents)cffi.ulong(4095)
+ControlEvents_ApplicationReserved :: transmute(ControlEvents)cffi.ulong(251658240)
+ControlEvents_SystemReserved :: transmute(ControlEvents)cffi.ulong(4026531840)
+ControlEvents_AllEvents :: transmute(ControlEvents)cffi.ulong(4294967295)
 UnderlineStyle_Double :: transmute(UnderlineStyle)cffi.long(9)
 
 
@@ -2999,11 +2999,11 @@ TouchType :: enum cffi.long {
 	Indirect = 1,
 }
 
-TouchTypeMaskFlag :: enum cffi.ulong {
+TouchTypeFlag :: enum cffi.ulong {
 	Direct   = 0,
 	Indirect = 1,
 }
-TouchTypeMask :: bit_set[TouchTypeMaskFlag; cffi.ulong]
+TouchTypeMask :: bit_set[TouchTypeFlag; cffi.ulong]
 
 EventType :: enum cffi.ulong {
 	LeftMouseDown      = 1,
@@ -3043,7 +3043,7 @@ EventType :: enum cffi.ulong {
 	MouseCancelled     = 40,
 }
 
-EventMaskFlag :: enum cffi.ulonglong {
+EventFlag :: enum cffi.ulonglong {
 	LeftMouseDown      = 1,
 	LeftMouseUp        = 2,
 	RightMouseDown     = 3,
@@ -3079,7 +3079,7 @@ EventMaskFlag :: enum cffi.ulonglong {
 	ChangeMode         = 38,
 	MouseCancelled     = 40,
 }
-EventMask :: bit_set[EventMaskFlag; cffi.ulonglong]
+EventMask :: bit_set[EventFlag; cffi.ulonglong]
 
 EventModifierFlag :: enum cffi.ulong {
 	CapsLock   = 16,
@@ -3100,12 +3100,12 @@ PointingDeviceType :: enum cffi.ulong {
 	Eraser  = 3,
 }
 
-EventButtonMaskFlag :: enum cffi.ulong {
+EventButtonFlag :: enum cffi.ulong {
 	PenTip       = 0,
 	PenLowerSide = 1,
 	PenUpperSide = 2,
 }
-EventButtonMask :: bit_set[EventButtonMaskFlag; cffi.ulong]
+EventButtonMask :: bit_set[EventButtonFlag; cffi.ulong]
 
 EventPhaseFlag :: enum cffi.ulong {
 	Began      = 0,
@@ -3399,13 +3399,13 @@ ImageScaling :: enum cffi.ulong {
 	DEPRECATED_None           = 2,
 }
 
-CellStyleMaskFlag :: enum cffi.ulong {
+CellStyleFlag :: enum cffi.ulong {
 	ContentsCellMask         = 0,
 	PushInCellMask           = 1,
 	ChangeGrayCellMask       = 2,
 	ChangeBackgroundCellMask = 3,
 }
-CellStyleMask :: bit_set[CellStyleMaskFlag; cffi.ulong]
+CellStyleMask :: bit_set[CellStyleFlag; cffi.ulong]
 
 ControlTint :: enum cffi.ulong {
 	DefaultControlTint  = 0,
@@ -3453,15 +3453,15 @@ MenuSelectionMode :: enum cffi.long {
 	SelectAny = 2,
 }
 
-MenuPropertiesFlag :: enum cffi.ulong {
-	PropertyItemTitle                = 0,
-	PropertyItemAttributedTitle      = 1,
-	PropertyItemKeyEquivalent        = 2,
-	PropertyItemImage                = 3,
-	PropertyItemEnabled              = 4,
-	PropertyItemAccessibilityDescription = 5,
+MenuProperty :: enum cffi.ulong {
+	ItemTitle                    = 0,
+	ItemAttributedTitle          = 1,
+	ItemKeyEquivalent            = 2,
+	ItemImage                    = 3,
+	ItemEnabled                  = 4,
+	ItemAccessibilityDescription = 5,
 }
-MenuProperties :: bit_set[MenuPropertiesFlag; cffi.ulong]
+MenuProperties :: bit_set[MenuProperty; cffi.ulong]
 
 PrinterTableStatus :: enum cffi.ulong {
 	OK       = 0,
@@ -3613,21 +3613,21 @@ ControlBorderShape :: enum cffi.long {
 	Circle           = 3,
 }
 
-ControlEventsFlag :: enum cffi.ulong {
-	EventTrackingBegan          = 0,
-	EventTrackingRepeated       = 1,
-	EventTrackingInside         = 2,
-	EventTrackingOutside        = 3,
-	EventTrackingEntered        = 4,
-	EventTrackingExited         = 5,
-	EventTrackingEndedInside    = 6,
-	EventTrackingEndedOutside   = 7,
-	EventTrackingCancelled      = 8,
-	EventValueChanged           = 12,
-	EventPrimaryActionTriggered = 13,
-	EventMenuActionTriggered    = 14,
+ControlEvent :: enum cffi.ulong {
+	TrackingBegan          = 0,
+	TrackingRepeated       = 1,
+	TrackingInside         = 2,
+	TrackingOutside        = 3,
+	TrackingEntered        = 4,
+	TrackingExited         = 5,
+	TrackingEndedInside    = 6,
+	TrackingEndedOutside   = 7,
+	TrackingCancelled      = 8,
+	ValueChanged           = 12,
+	PrimaryActionTriggered = 13,
+	MenuActionTriggered    = 14,
 }
-ControlEvents :: bit_set[ControlEventsFlag; cffi.ulong]
+ControlEvents :: bit_set[ControlEvent; cffi.ulong]
 
 ButtonType :: enum cffi.ulong {
 	MomentaryLight        = 0,
@@ -3780,39 +3780,39 @@ CollectionLayoutSectionOrthogonalScrollingBehavior :: enum cffi.long {
 	GroupPagingCentered            = 5,
 }
 
-HorizontalDirectionsFlag :: enum cffi.ulong {
+HorizontalDirection :: enum cffi.ulong {
 	Left  = 0,
 	Right = 1,
 }
-HorizontalDirections :: bit_set[HorizontalDirectionsFlag; cffi.ulong]
+HorizontalDirections :: bit_set[HorizontalDirection; cffi.ulong]
 
 HorizontalDirections_All :: HorizontalDirections { .Left, .Right, }
 
-VerticalDirectionsFlag :: enum cffi.ulong {
+VerticalDirection :: enum cffi.ulong {
 	Up   = 0,
 	Down = 1,
 }
-VerticalDirections :: bit_set[VerticalDirectionsFlag; cffi.ulong]
+VerticalDirections :: bit_set[VerticalDirection; cffi.ulong]
 
 VerticalDirections_All :: VerticalDirections { .Up, .Down, }
 
-FontDescriptorSymbolicTraitsFlag :: enum cffi.uint {
-	TraitItalic             = 0,
-	TraitBold               = 1,
-	TraitExpanded           = 5,
-	TraitCondensed          = 6,
-	TraitMonoSpace          = 10,
-	TraitVertical           = 11,
-	TraitUIOptimized        = 12,
-	TraitTightLeading       = 15,
-	TraitLooseLeading       = 16,
-	TraitEmphasized         = 1,
+FontDescriptorSymbolicTrait :: enum cffi.uint {
+	Italic                  = 0,
+	Bold                    = 1,
+	Expanded                = 5,
+	Condensed               = 6,
+	MonoSpace               = 10,
+	Vertical                = 11,
+	UIOptimized             = 12,
+	TightLeading            = 15,
+	LooseLeading            = 16,
+	Emphasized              = 1,
 	ClassOldStyleSerifs     = 28,
 	ClassTransitionalSerifs = 29,
 	ClassClarendonSerifs    = 30,
 	ClassSansSerif          = 31,
 }
-FontDescriptorSymbolicTraits :: bit_set[FontDescriptorSymbolicTraitsFlag; cffi.uint]
+FontDescriptorSymbolicTraits :: bit_set[FontDescriptorSymbolicTrait; cffi.uint]
 
 FontDescriptorSymbolicTraits_ClassMask :: FontDescriptorSymbolicTraits { .ClassOldStyleSerifs, .ClassTransitionalSerifs, .ClassClarendonSerifs, .ClassSansSerif, }
 
@@ -3851,7 +3851,7 @@ FontCollectionVisibilityFlag :: enum cffi.ulong {
 }
 FontCollectionVisibility :: bit_set[FontCollectionVisibilityFlag; cffi.ulong]
 
-FontTraitMaskFlag :: enum cffi.ulong {
+FontTraitFlag :: enum cffi.ulong {
 	ItalicFontMask                  = 0,
 	BoldFontMask                    = 1,
 	UnboldFontMask                  = 2,
@@ -3865,7 +3865,7 @@ FontTraitMaskFlag :: enum cffi.ulong {
 	FixedPitchFontMask              = 10,
 	UnitalicFontMask                = 24,
 }
-FontTraitMask :: bit_set[FontTraitMaskFlag; cffi.ulong]
+FontTraitMask :: bit_set[FontTraitFlag; cffi.ulong]
 
 FontCollectionOption :: enum cffi.ulong {
 	ApplicationOnlyMask = 0,
@@ -3883,7 +3883,7 @@ FontAction :: enum cffi.ulong {
 	RemoveTraitFontAction = 7,
 }
 
-WindowStyleMaskFlag :: enum cffi.ulong {
+WindowStyleFlag :: enum cffi.ulong {
 	Titled                 = 0,
 	Closable               = 1,
 	Miniaturizable         = 2,
@@ -3897,7 +3897,7 @@ WindowStyleMaskFlag :: enum cffi.ulong {
 	NonactivatingPanel     = 7,
 	HUDWindow              = 13,
 }
-WindowStyleMask :: bit_set[WindowStyleMaskFlag; cffi.ulong]
+WindowStyleMask :: bit_set[WindowStyleFlag; cffi.ulong]
 
 WindowSharingType :: enum cffi.ulong {
 	None     = 0,
@@ -3995,7 +3995,7 @@ WindowBackingLocation :: enum cffi.ulong {
 	MainMemory  = 2,
 }
 
-FontPanelModeMaskFlag :: enum cffi.ulong {
+FontPanelModeFlag :: enum cffi.ulong {
 	Face                = 0,
 	Size                = 1,
 	Collection          = 2,
@@ -4005,7 +4005,7 @@ FontPanelModeMaskFlag :: enum cffi.ulong {
 	DocumentColorEffect = 11,
 	ShadowEffect        = 12,
 }
-FontPanelModeMask :: bit_set[FontPanelModeMaskFlag; cffi.ulong]
+FontPanelModeMask :: bit_set[FontPanelModeFlag; cffi.ulong]
 
 MatrixMode :: enum cffi.ulong {
 	RadioModeMatrix     = 0,
@@ -4135,11 +4135,11 @@ CursorFrameResizePosition :: enum cffi.ulong {
 	BottomRight = 12,
 }
 
-CursorFrameResizeDirectionsFlag :: enum cffi.ulong {
+CursorFrameResizeDirection :: enum cffi.ulong {
 	Inward  = 0,
 	Outward = 1,
 }
-CursorFrameResizeDirections :: bit_set[CursorFrameResizeDirectionsFlag; cffi.ulong]
+CursorFrameResizeDirections :: bit_set[CursorFrameResizeDirection; cffi.ulong]
 
 CursorFrameResizeDirections_All :: CursorFrameResizeDirections { .Inward, .Outward, }
 
@@ -4392,10 +4392,10 @@ MediaLibraryFlag :: enum cffi.ulong {
 }
 MediaLibrary :: bit_set[MediaLibraryFlag; cffi.ulong]
 
-ScreenTouchCapabilitiesFlag :: enum cffi.ulong {
+ScreenTouchCapability :: enum cffi.ulong {
 	MultiTouch = 0,
 }
-ScreenTouchCapabilities :: bit_set[ScreenTouchCapabilitiesFlag; cffi.ulong]
+ScreenTouchCapabilities :: bit_set[ScreenTouchCapability; cffi.ulong]
 
 UsableScrollerParts :: enum cffi.ulong {
 	NoScrollerParts    = 0,
@@ -4632,11 +4632,11 @@ SpellingState :: enum cffi.long {
 	GrammarFlag  = 2,
 }
 
-TextStorageEditActionsFlag :: enum cffi.ulong {
+TextStorageEditAction :: enum cffi.ulong {
 	EditedAttributes = 0,
 	EditedCharacters = 1,
 }
-TextStorageEditActions :: bit_set[TextStorageEditActionsFlag; cffi.ulong]
+TextStorageEditActions :: bit_set[TextStorageEditAction; cffi.ulong]
 
 TextLayoutOrientation :: enum cffi.long {
 	Horizontal = 0,

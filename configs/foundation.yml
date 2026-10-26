@@ -191,6 +191,17 @@ Odin:
     - { Kind: ReplacePrefix, Source: amed, Target: Named }
     - { Kind: ReplacePrefix, Source: umeric, Target: Numeric }
 
+  # Remove redundant singular type words left by the plural SDK names.
+  - Type: '^NSItemProviderFileOptions$'
+    Transforms:
+    - { Kind: RemovePrefix, Source: Option }
+  - Type: '^NSKeyValueObservingOptions$'
+    Transforms:
+    - { Kind: RemovePrefix, Source: Option }
+  - Type: '^NSComparisonPredicateOptions$'
+    Transforms:
+    - { Kind: RemoveSuffix, Source: PredicateOption }
+
   TypeTransforms:
     - Type: ^(NS).+
       Transforms:
@@ -209,127 +220,132 @@ Odin:
     # NSPropertyListMutabilityOptions selects one mutability mode; keep it as an enum.
     # session.h: documented flag bits.
     - Type: '^xpc_session_create_flags_t$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: ReplaceSuffix, Source: flags_t, Target: flag }]
     # listener.h: documented flag bits.
     - Type: '^xpc_listener_create_flags_t$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: ReplaceSuffix, Source: flags_t, Target: flag }]
     # NSObjCRuntime.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSEnumerationOptions|NSSortOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSOrderedCollectionDifference.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSOrderedCollectionDifferenceCalculationOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSArray.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSBinarySearchingOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSItemProvider.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSItemProviderFileOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSString.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSStringCompareOptions|NSStringEncodingConversionOptions|NSStringEnumerationOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSCalendar.h: NS_OPTIONS / CF_OPTIONS.
-    - Type: '^(?:NSCalendarUnit|NSCalendarOptions)$'
+    - Type: '^NSCalendarUnit$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+    - Type: '^NSCalendarOptions$'
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSData.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSDataReadingOptions|NSDataWritingOptions|NSDataSearchOptions|NSDataBase64EncodingOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: '^NSDataBase64DecodingOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSAttributedString.h: NS_OPTIONS / CF_OPTIONS.
-    - Type: '^(?:NSAttributedStringEnumerationOptions|NSInlinePresentationIntent|NSAttributedStringFormattingOptions)$'
+    - Type: '^(?:NSAttributedStringEnumerationOptions|NSAttributedStringFormattingOptions)$'
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
+    - Type: '^NSInlinePresentationIntent$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # NSISO8601DateFormatter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSISO8601DateFormatOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSMeasurementFormatter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSMeasurementFormatterUnitOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSPersonNameComponentsFormatter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSPersonNameComponentsFormatterOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSURL.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSURLBookmarkCreationOptions|NSURLBookmarkResolutionOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSFileManager.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSVolumeEnumerationOptions|NSDirectoryEnumerationOptions|NSFileManagerItemReplacementOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: '^(?:NSFileManagerUnmountOptions|NSFileManagerSupportedSyncControls)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSPointerFunctions.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSPointerFunctionsOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSJSONSerialization.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSJSONReadingOptions|NSJSONWritingOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSKeyValueObserving.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSKeyValueObservingOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSGeometry.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSAlignmentOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSNotificationQueue.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSNotificationCoalescing$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # NSPort.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSMachPortOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSProcessInfo.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSActivityOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSTextCheckingResult.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSTextCheckingType$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # NSRegularExpression.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSRegularExpressionOptions|NSMatchingOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSStream.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSStreamEvent$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # NSXPCConnection.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSXPCConnectionOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSByteCountFormatter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSByteCountFormatterUnits$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSComparisonPredicate.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSComparisonPredicateOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSDateComponentsFormatter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSDateComponentsFormatterZeroFormattingBehavior$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # NSFileCoordinator.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSFileCoordinatorReadingOptions|NSFileCoordinatorWritingOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSFileVersion.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSFileVersionAddingOptions|NSFileVersionReplacingOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSFileWrapper.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:NSFileWrapperReadingOptions|NSFileWrapperWritingOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSLinguisticTagger.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSLinguisticTaggerOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSNetServices.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSNetServiceOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSDistributedNotificationCenter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSDistributedNotificationOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSXMLNodeOptions.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSXMLNodeOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # NSAppleEventDescriptor.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^NSAppleEventSendOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: Flags?$
       Transforms:
         - Kind  : RemoveSuffix
           Source: s
     - Type: Mask$
       Transforms:
-        - Kind  : AppendSuffix
-          Source: Flag
+        - Kind  : ReplaceSuffix
+          Source: Mask
+          Target: Flag
 
   ProcTransforms:
   - Type: ^(_*NS).+

@@ -281,16 +281,16 @@ Odin:
     # CFPropertyListMutabilityOptions and CFXMLParserStatusCode select modes/statuses, not flags.
     # block.h: documented flag bits.
     - Type: '^dispatch_block_flags_t$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: ReplaceSuffix, Source: flags_t, Target: flag }]
     # CFCalendar.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CFCalendarUnit$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # CFDateFormatter.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CFISO8601DateFormatOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # CFURL.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^(?:CFURLBookmarkCreationOptions|CFURLBookmarkResolutionOptions)$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # CFRunLoop.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CFRunLoopActivity$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
@@ -302,24 +302,25 @@ Odin:
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # CFURLEnumerator.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CFURLEnumeratorOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # CFFileSecurity.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CFFileSecurityClearOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # CFStringTokenizer.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CFStringTokenizerTokenType$'
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # CFXMLParser.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CFXMLParserOptions$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: Flags?$
       Transforms:
         - Kind  : RemoveSuffix
           Source: s
     - Type: Mask$
       Transforms:
-        - Kind  : AppendSuffix
-          Source: Flag
+        - Kind  : ReplaceSuffix
+          Source: Mask
+          Target: Flag
  
   ProcTransforms:
   - Type: ^(_*CF).+

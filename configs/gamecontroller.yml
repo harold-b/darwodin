@@ -66,11 +66,11 @@ Odin:
       Transforms: [{ Kind: AppendSuffix, Source: Flag }]
     # GCEventInteraction.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^GCUIEventTypes$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: 'Flags?$'
       Transforms: [{Kind: 'RemoveSuffix', Source: 's'}]
     - Type: 'Mask$'
-      Transforms: [{Kind: 'AppendSuffix', Source: 'Flag'}]
+      Transforms: [{Kind: 'ReplaceSuffix', Source: 'Mask', Target: 'Flag'}]
 
   ProcTransforms:
     - Type: '^(_*GC).+'

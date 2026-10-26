@@ -104,13 +104,13 @@ STR :: #force_inline proc "contextless" ( #const s: cstring ) -> ^String {
 }
 
 // Composite SDK masks that also contain reserved or unnamed bits.
-TouchPhase_Any :: transmute(TouchPhase)cffi.ulong(18446744073709551615)
-DragOperation_Every :: transmute(DragOperation)cffi.ulong(18446744073709551615)
+TouchPhase_Any :: transmute(TouchPhase)max(cffi.ulong)
+DragOperation_Every :: transmute(DragOperation)max(cffi.ulong)
 LineBreakStrategy_Standard :: transmute(LineBreakStrategy)cffi.ulong(65535)
-ControlEvents_EventAllTrackingEvents :: transmute(ControlEvents)cffi.ulong(4095)
-ControlEvents_EventApplicationReserved :: transmute(ControlEvents)cffi.ulong(251658240)
-ControlEvents_EventSystemReserved :: transmute(ControlEvents)cffi.ulong(4026531840)
-ControlEvents_EventAllEvents :: transmute(ControlEvents)cffi.ulong(4294967295)
+ControlEvents_AllTrackingEvents :: transmute(ControlEvents)cffi.ulong(4095)
+ControlEvents_ApplicationReserved :: transmute(ControlEvents)cffi.ulong(251658240)
+ControlEvents_SystemReserved :: transmute(ControlEvents)cffi.ulong(4026531840)
+ControlEvents_AllEvents :: transmute(ControlEvents)cffi.ulong(4294967295)
 UnderlineStyle_Double :: transmute(UnderlineStyle)cffi.long(9)
 
 // -user-text-end
@@ -3175,11 +3175,11 @@ TouchType :: enum cffi.long {
 }
 
 /// NSTouchTypeMask
-TouchTypeMaskFlag :: enum cffi.ulong {
+TouchTypeFlag :: enum cffi.ulong {
     Direct   = 0,
     Indirect = 1,
 }
-TouchTypeMask :: bit_set[TouchTypeMaskFlag; cffi.ulong]
+TouchTypeMask :: bit_set[TouchTypeFlag; cffi.ulong]
 
 /// NSEventType
 EventType :: enum cffi.ulong {
@@ -3221,7 +3221,7 @@ EventType :: enum cffi.ulong {
 }
 
 /// NSEventMask
-EventMaskFlag :: enum cffi.ulonglong {
+EventFlag :: enum cffi.ulonglong {
     LeftMouseDown      = 1,
     LeftMouseUp        = 2,
     RightMouseDown     = 3,
@@ -3257,7 +3257,7 @@ EventMaskFlag :: enum cffi.ulonglong {
     ChangeMode         = 38,
     MouseCancelled     = 40,
 }
-EventMask :: bit_set[EventMaskFlag; cffi.ulonglong]
+EventMask :: bit_set[EventFlag; cffi.ulonglong]
 
 /// NSEventModifierFlags
 EventModifierFlag :: enum cffi.ulong {
@@ -3281,12 +3281,12 @@ PointingDeviceType :: enum cffi.ulong {
 }
 
 /// NSEventButtonMask
-EventButtonMaskFlag :: enum cffi.ulong {
+EventButtonFlag :: enum cffi.ulong {
     PenTip       = 0,
     PenLowerSide = 1,
     PenUpperSide = 2,
 }
-EventButtonMask :: bit_set[EventButtonMaskFlag; cffi.ulong]
+EventButtonMask :: bit_set[EventButtonFlag; cffi.ulong]
 
 /// NSEventPhase
 EventPhaseFlag :: enum cffi.ulong {
@@ -3617,13 +3617,13 @@ ImageScaling :: enum cffi.ulong {
 }
 
 /// NSCellStyleMask
-CellStyleMaskFlag :: enum cffi.ulong {
+CellStyleFlag :: enum cffi.ulong {
     ContentsCellMask         = 0,
     PushInCellMask           = 1,
     ChangeGrayCellMask       = 2,
     ChangeBackgroundCellMask = 3,
 }
-CellStyleMask :: bit_set[CellStyleMaskFlag; cffi.ulong]
+CellStyleMask :: bit_set[CellStyleFlag; cffi.ulong]
 
 /// NSControlTint
 ControlTint :: enum cffi.ulong {
@@ -3679,15 +3679,15 @@ MenuSelectionMode :: enum cffi.long {
 }
 
 /// NSMenuProperties
-MenuPropertiesFlag :: enum cffi.ulong {
-    PropertyItemTitle                = 0,
-    PropertyItemAttributedTitle      = 1,
-    PropertyItemKeyEquivalent        = 2,
-    PropertyItemImage                = 3,
-    PropertyItemEnabled              = 4,
-    PropertyItemAccessibilityDescription = 5,
+MenuProperty :: enum cffi.ulong {
+    ItemTitle                    = 0,
+    ItemAttributedTitle          = 1,
+    ItemKeyEquivalent            = 2,
+    ItemImage                    = 3,
+    ItemEnabled                  = 4,
+    ItemAccessibilityDescription = 5,
 }
-MenuProperties :: bit_set[MenuPropertiesFlag; cffi.ulong]
+MenuProperties :: bit_set[MenuProperty; cffi.ulong]
 
 /// NSPrinterTableStatus
 PrinterTableStatus :: enum cffi.ulong {
@@ -3861,21 +3861,21 @@ ControlBorderShape :: enum cffi.long {
 }
 
 /// NSControlEvents
-ControlEventsFlag :: enum cffi.ulong {
-    EventTrackingBegan          = 0,
-    EventTrackingRepeated       = 1,
-    EventTrackingInside         = 2,
-    EventTrackingOutside        = 3,
-    EventTrackingEntered        = 4,
-    EventTrackingExited         = 5,
-    EventTrackingEndedInside    = 6,
-    EventTrackingEndedOutside   = 7,
-    EventTrackingCancelled      = 8,
-    EventValueChanged           = 12,
-    EventPrimaryActionTriggered = 13,
-    EventMenuActionTriggered    = 14,
+ControlEvent :: enum cffi.ulong {
+    TrackingBegan          = 0,
+    TrackingRepeated       = 1,
+    TrackingInside         = 2,
+    TrackingOutside        = 3,
+    TrackingEntered        = 4,
+    TrackingExited         = 5,
+    TrackingEndedInside    = 6,
+    TrackingEndedOutside   = 7,
+    TrackingCancelled      = 8,
+    ValueChanged           = 12,
+    PrimaryActionTriggered = 13,
+    MenuActionTriggered    = 14,
 }
-ControlEvents :: bit_set[ControlEventsFlag; cffi.ulong]
+ControlEvents :: bit_set[ControlEvent; cffi.ulong]
 
 /// NSButtonType
 ButtonType :: enum cffi.ulong {
@@ -4045,41 +4045,41 @@ CollectionLayoutSectionOrthogonalScrollingBehavior :: enum cffi.long {
 }
 
 /// NSHorizontalDirections
-HorizontalDirectionsFlag :: enum cffi.ulong {
+HorizontalDirection :: enum cffi.ulong {
     Left  = 0,
     Right = 1,
 }
-HorizontalDirections :: bit_set[HorizontalDirectionsFlag; cffi.ulong]
+HorizontalDirections :: bit_set[HorizontalDirection; cffi.ulong]
 
 HorizontalDirections_All :: HorizontalDirections { .Left, .Right, }
 
 /// NSVerticalDirections
-VerticalDirectionsFlag :: enum cffi.ulong {
+VerticalDirection :: enum cffi.ulong {
     Up   = 0,
     Down = 1,
 }
-VerticalDirections :: bit_set[VerticalDirectionsFlag; cffi.ulong]
+VerticalDirections :: bit_set[VerticalDirection; cffi.ulong]
 
 VerticalDirections_All :: VerticalDirections { .Up, .Down, }
 
 /// NSFontDescriptorSymbolicTraits
-FontDescriptorSymbolicTraitsFlag :: enum cffi.uint {
-    TraitItalic             = 0,
-    TraitBold               = 1,
-    TraitExpanded           = 5,
-    TraitCondensed          = 6,
-    TraitMonoSpace          = 10,
-    TraitVertical           = 11,
-    TraitUIOptimized        = 12,
-    TraitTightLeading       = 15,
-    TraitLooseLeading       = 16,
-    TraitEmphasized         = 1,
+FontDescriptorSymbolicTrait :: enum cffi.uint {
+    Italic                  = 0,
+    Bold                    = 1,
+    Expanded                = 5,
+    Condensed               = 6,
+    MonoSpace               = 10,
+    Vertical                = 11,
+    UIOptimized             = 12,
+    TightLeading            = 15,
+    LooseLeading            = 16,
+    Emphasized              = 1,
     ClassOldStyleSerifs     = 28,
     ClassTransitionalSerifs = 29,
     ClassClarendonSerifs    = 30,
     ClassSansSerif          = 31,
 }
-FontDescriptorSymbolicTraits :: bit_set[FontDescriptorSymbolicTraitsFlag; cffi.uint]
+FontDescriptorSymbolicTraits :: bit_set[FontDescriptorSymbolicTrait; cffi.uint]
 
 FontDescriptorSymbolicTraits_ClassMask :: FontDescriptorSymbolicTraits { .ClassOldStyleSerifs, .ClassTransitionalSerifs, .ClassClarendonSerifs, .ClassSansSerif, }
 
@@ -4123,7 +4123,7 @@ FontCollectionVisibilityFlag :: enum cffi.ulong {
 FontCollectionVisibility :: bit_set[FontCollectionVisibilityFlag; cffi.ulong]
 
 /// NSFontTraitMask
-FontTraitMaskFlag :: enum cffi.ulong {
+FontTraitFlag :: enum cffi.ulong {
     ItalicFontMask                  = 0,
     BoldFontMask                    = 1,
     UnboldFontMask                  = 2,
@@ -4137,7 +4137,7 @@ FontTraitMaskFlag :: enum cffi.ulong {
     FixedPitchFontMask              = 10,
     UnitalicFontMask                = 24,
 }
-FontTraitMask :: bit_set[FontTraitMaskFlag; cffi.ulong]
+FontTraitMask :: bit_set[FontTraitFlag; cffi.ulong]
 
 /// NSFontCollectionOptions
 FontCollectionOption :: enum cffi.ulong {
@@ -4158,7 +4158,7 @@ FontAction :: enum cffi.ulong {
 }
 
 /// NSWindowStyleMask
-WindowStyleMaskFlag :: enum cffi.ulong {
+WindowStyleFlag :: enum cffi.ulong {
     Titled                 = 0,
     Closable               = 1,
     Miniaturizable         = 2,
@@ -4172,7 +4172,7 @@ WindowStyleMaskFlag :: enum cffi.ulong {
     NonactivatingPanel     = 7,
     HUDWindow              = 13,
 }
-WindowStyleMask :: bit_set[WindowStyleMaskFlag; cffi.ulong]
+WindowStyleMask :: bit_set[WindowStyleFlag; cffi.ulong]
 
 /// NSWindowSharingType
 WindowSharingType :: enum cffi.ulong {
@@ -4284,7 +4284,7 @@ WindowBackingLocation :: enum cffi.ulong {
 }
 
 /// NSFontPanelModeMask
-FontPanelModeMaskFlag :: enum cffi.ulong {
+FontPanelModeFlag :: enum cffi.ulong {
     Face                = 0,
     Size                = 1,
     Collection          = 2,
@@ -4294,7 +4294,7 @@ FontPanelModeMaskFlag :: enum cffi.ulong {
     DocumentColorEffect = 11,
     ShadowEffect        = 12,
 }
-FontPanelModeMask :: bit_set[FontPanelModeMaskFlag; cffi.ulong]
+FontPanelModeMask :: bit_set[FontPanelModeFlag; cffi.ulong]
 
 /// NSMatrixMode
 MatrixMode :: enum cffi.ulong {
@@ -4440,11 +4440,11 @@ CursorFrameResizePosition :: enum cffi.ulong {
 }
 
 /// NSCursorFrameResizeDirections
-CursorFrameResizeDirectionsFlag :: enum cffi.ulong {
+CursorFrameResizeDirection :: enum cffi.ulong {
     Inward  = 0,
     Outward = 1,
 }
-CursorFrameResizeDirections :: bit_set[CursorFrameResizeDirectionsFlag; cffi.ulong]
+CursorFrameResizeDirections :: bit_set[CursorFrameResizeDirection; cffi.ulong]
 
 CursorFrameResizeDirections_All :: CursorFrameResizeDirections { .Inward, .Outward, }
 
@@ -4731,10 +4731,10 @@ MediaLibraryFlag :: enum cffi.ulong {
 MediaLibrary :: bit_set[MediaLibraryFlag; cffi.ulong]
 
 /// NSScreenTouchCapabilities
-ScreenTouchCapabilitiesFlag :: enum cffi.ulong {
+ScreenTouchCapability :: enum cffi.ulong {
     MultiTouch = 0,
 }
-ScreenTouchCapabilities :: bit_set[ScreenTouchCapabilitiesFlag; cffi.ulong]
+ScreenTouchCapabilities :: bit_set[ScreenTouchCapability; cffi.ulong]
 
 /// NSUsableScrollerParts
 UsableScrollerParts :: enum cffi.ulong {
@@ -5004,11 +5004,11 @@ SpellingState :: enum cffi.long {
 }
 
 /// NSTextStorageEditActions
-TextStorageEditActionsFlag :: enum cffi.ulong {
+TextStorageEditAction :: enum cffi.ulong {
     EditedAttributes = 0,
     EditedCharacters = 1,
 }
-TextStorageEditActions :: bit_set[TextStorageEditActionsFlag; cffi.ulong]
+TextStorageEditActions :: bit_set[TextStorageEditAction; cffi.ulong]
 
 /// NSTextLayoutOrientation
 TextLayoutOrientation :: enum cffi.long {

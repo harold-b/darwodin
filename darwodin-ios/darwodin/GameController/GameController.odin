@@ -594,11 +594,11 @@ ControllerHomeButtonSettingsCustomizationActivity :: enum cffi.long {
 }
 
 /// GCUIEventTypes
-UIEventTypesFlag :: enum cffi.ulong {
+UIEventType :: enum cffi.ulong {
     Gamepad = 0,
     Stylus  = 1,
 }
-UIEventTypes :: bit_set[UIEventTypesFlag; cffi.ulong]
+UIEventTypes :: bit_set[UIEventType; cffi.ulong]
 
 /// GCPoint2
 Point2 :: struct #align (4) {

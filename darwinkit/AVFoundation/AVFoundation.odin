@@ -38,9 +38,9 @@ DepthData                  :: ^NS.Object
 PortraitEffectsMatte       :: ^NS.Object
 SemanticSegmentationMatte  :: ^NS.Object
 
-AssetReferenceRestrictions_RestrictionForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
-AudioSpatializationFormats_FormatMonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
-AudioSpatializationFormats_FormatMonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
+AssetReferenceRestrictions_ForbidAll :: transmute(AssetReferenceRestrictions)cffi.ulong(65535)
+AudioSpatializationFormats_MonoAndStereo :: transmute(AudioSpatializationFormats)cffi.ulong(3)
+AudioSpatializationFormats_MonoStereoAndMultichannel :: transmute(AudioSpatializationFormats)cffi.ulong(7)
 
 
 
@@ -3983,21 +3983,21 @@ ExternalContentProtectionStatus :: enum cffi.long {
 	Insufficient = 2,
 }
 
-AssetReferenceRestrictionsFlag :: enum cffi.ulong {
-	RestrictionForbidRemoteReferenceToLocal = 0,
-	RestrictionForbidLocalReferenceToRemote = 1,
-	RestrictionForbidCrossSiteReference = 2,
-	RestrictionForbidLocalReferenceToLocal = 3,
-	RestrictionDefaultPolicy         = 1,
+AssetReferenceRestriction :: enum cffi.ulong {
+	ForbidRemoteReferenceToLocal = 0,
+	ForbidLocalReferenceToRemote = 1,
+	ForbidCrossSiteReference     = 2,
+	ForbidLocalReferenceToLocal  = 3,
+	DefaultPolicy                = 1,
 }
 
-AssetReferenceRestrictions :: bit_set[AssetReferenceRestrictionsFlag; cffi.ulong]
+AssetReferenceRestrictions :: bit_set[AssetReferenceRestriction; cffi.ulong]
 
-AudioSpatializationFormatsFlag :: enum cffi.ulong {
-	FormatMultichannel = 2,
+AudioSpatializationFormat :: enum cffi.ulong {
+	Multichannel = 2,
 }
 
-AudioSpatializationFormats :: bit_set[AudioSpatializationFormatsFlag; cffi.ulong]
+AudioSpatializationFormats :: bit_set[AudioSpatializationFormat; cffi.ulong]
 
 AssetExportSessionStatus :: enum cffi.long {
 	Unknown   = 0,
@@ -4385,11 +4385,11 @@ PlayerItemStatus :: enum cffi.long {
 	Failed      = 2,
 }
 
-VariantPreferencesFlag :: enum cffi.ulong {
-	PreferenceScalabilityToLosslessAudio = 0,
+VariantPreference :: enum cffi.ulong {
+	ScalabilityToLosslessAudio = 0,
 }
 
-VariantPreferences :: bit_set[VariantPreferencesFlag; cffi.ulong]
+VariantPreferences :: bit_set[VariantPreference; cffi.ulong]
 
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	ContentAuthorizationStatus :: enum cffi.long {
@@ -4415,12 +4415,12 @@ PlayerLooperItemOrdering :: enum cffi.long {
 	LoopingItemsFollowExistingItems  = 1,
 }
 
-PlayerInterstitialEventRestrictionsFlag :: enum cffi.ulong {
-	RestrictionConstrainsSeekingForwardInPrimaryContent = 0,
-	RestrictionRequiresPlaybackAtPreferredRateForAdvancement = 2,
+PlayerInterstitialEventRestriction :: enum cffi.ulong {
+	ConstrainsSeekingForwardInPrimaryContent = 0,
+	RequiresPlaybackAtPreferredRateForAdvancement = 2,
 }
 
-PlayerInterstitialEventRestrictions :: bit_set[PlayerInterstitialEventRestrictionsFlag; cffi.ulong]
+PlayerInterstitialEventRestrictions :: bit_set[PlayerInterstitialEventRestriction; cffi.ulong]
 
 PlayerInterstitialEventTimelineOccupancy :: enum cffi.long {
 	SinglePoint = 0,
@@ -4899,12 +4899,12 @@ SpeechSynthesisPersonalVoiceAuthorizationStatus :: enum cffi.ulong {
 	Authorized    = 3,
 }
 
-SpeechSynthesisVoiceTraitsFlag :: enum cffi.ulong {
-	TraitIsNoveltyVoice  = 0,
-	TraitIsPersonalVoice = 1,
+SpeechSynthesisVoiceTrait :: enum cffi.ulong {
+	IsNoveltyVoice  = 0,
+	IsPersonalVoice = 1,
 }
 
-SpeechSynthesisVoiceTraits :: bit_set[SpeechSynthesisVoiceTraitsFlag; cffi.ulong]
+SpeechSynthesisVoiceTraits :: bit_set[SpeechSynthesisVoiceTrait; cffi.ulong]
 
 AudioApplicationRecordPermission :: enum cffi.long {
 	Undetermined = 1970168948,
@@ -4939,13 +4939,13 @@ CapturePrimaryConstituentDeviceSwitchingBehavior :: enum cffi.long {
 	Locked      = 3,
 }
 
-CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsFlag :: enum cffi.ulong {
-	ConditionVideoZoomChanged    = 0,
-	ConditionFocusModeChanged    = 1,
-	ConditionExposureModeChanged = 2,
+CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorCondition :: enum cffi.ulong {
+	VideoZoomChanged    = 0,
+	FocusModeChanged    = 1,
+	ExposureModeChanged = 2,
 }
 
-CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions :: bit_set[CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsFlag; cffi.ulong]
+CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions :: bit_set[CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorCondition; cffi.ulong]
 
 CaptureFlashMode :: enum cffi.long {
 	Off  = 0,
@@ -5132,15 +5132,15 @@ CaptureMultichannelAudioMode :: enum cffi.long {
 	FirstOrderAmbisonics = 2,
 }
 
-CaptureSystemPressureFactorsFlag :: enum cffi.ulong {
-	FactorSystemTemperature      = 0,
-	FactorPeakPower              = 1,
-	FactorDepthModuleTemperature = 2,
-	FactorCameraTemperature      = 3,
-	FactorBatteryStress          = 4,
+CaptureSystemPressureFactor :: enum cffi.ulong {
+	SystemTemperature      = 0,
+	PeakPower              = 1,
+	DepthModuleTemperature = 2,
+	CameraTemperature      = 3,
+	BatteryStress          = 4,
 }
 
-CaptureSystemPressureFactors :: bit_set[CaptureSystemPressureFactorsFlag; cffi.ulong]
+CaptureSystemPressureFactors :: bit_set[CaptureSystemPressureFactor; cffi.ulong]
 
 DepthDataQuality :: enum cffi.long {
 	Low  = 0,

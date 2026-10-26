@@ -1260,12 +1260,12 @@ ControllerHomeButtonSettingsCustomizationActivity :: enum cffi.long {
 }
 
 when ODIN_PLATFORM_SUBTARGET_IOS {
-	UIEventTypesFlag :: enum cffi.ulong {
+	UIEventType :: enum cffi.ulong {
 		Gamepad = 0,
 		Stylus  = 1,
 	}
 
-	UIEventTypes :: bit_set[UIEventTypesFlag; cffi.ulong]
+	UIEventTypes :: bit_set[UIEventType; cffi.ulong]
 }
 
 Point2 :: struct #align (4) {

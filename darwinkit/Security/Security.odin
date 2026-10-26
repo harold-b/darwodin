@@ -29,7 +29,7 @@ OpaqueSecTransformImplementation :: struct {}
 xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead of exporting from Foundation
 
 when ODIN_PLATFORM_SUBTARGET == .Default { SecKeyUsage_kSecKeyUsageAll :: transmute(SecKeyUsage)cffi.uint(2147483647) }
-when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)cffi.uint(4294967295) }
+when ODIN_PLATFORM_SUBTARGET == .Default { SecTrustSettingsKeyUsage_kSecTrustSettingsKeyUseAny :: transmute(SecTrustSettingsKeyUsage)max(cffi.uint) }
 
 
 
@@ -4316,14 +4316,14 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 
 	AuthorizationFlags :: bit_set[AuthorizationFlag; cffi.uint]
 
-	SessionAttributeBitsFlag :: enum cffi.uint {
+	SessionAttributeBit :: enum cffi.uint {
 		IsRoot           = 0,
 		HasGraphicAccess = 4,
 		HasTTY           = 5,
 		IsRemote         = 12,
 	}
 
-	SessionAttributeBits :: bit_set[SessionAttributeBitsFlag; cffi.uint]
+	SessionAttributeBits :: bit_set[SessionAttributeBit; cffi.uint]
 
 	SessionCreationFlag :: enum cffi.uint {
 		KeepCurrentBootstrap = 15,

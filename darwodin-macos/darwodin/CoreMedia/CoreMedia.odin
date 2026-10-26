@@ -2305,16 +2305,16 @@ SSignerStatus :: enum cffi.uint {
 }
 
 /// CMSSignedAttributes
-SSignedAttributesFlag :: enum cffi.uint {
-    kCMSAttrSmimeCapabilities        = 0,
-    kCMSAttrSmimeEncryptionKeyPrefs  = 1,
-    kCMSAttrSmimeMSEncryptionKeyPrefs = 2,
-    kCMSAttrSigningTime              = 3,
-    kCMSAttrAppleCodesigningHashAgility = 4,
-    kCMSAttrAppleCodesigningHashAgilityV2 = 5,
-    kCMSAttrAppleExpirationTime      = 6,
+SSignedAttribute :: enum cffi.uint {
+    SmimeCapabilities             = 0,
+    SmimeEncryptionKeyPrefs       = 1,
+    SmimeMSEncryptionKeyPrefs     = 2,
+    SigningTime                   = 3,
+    AppleCodesigningHashAgility   = 4,
+    AppleCodesigningHashAgilityV2 = 5,
+    AppleExpirationTime           = 6,
 }
-SSignedAttributes :: bit_set[SSignedAttributesFlag; cffi.uint]
+SSignedAttributes :: bit_set[SSignedAttribute; cffi.uint]
 
 /// CMSCertificateChainMode
 SCertificateChainMode :: enum cffi.uint {
@@ -2387,11 +2387,11 @@ TagDataType :: enum cffi.uint {
 }
 
 /// CMStereoViewComponents
-StereoViewComponentsFlag :: enum cffi.ulonglong {
-    kCMStereoView_LeftEye  = 0,
-    kCMStereoView_RightEye = 1,
+StereoViewComponent :: enum cffi.ulonglong {
+    LeftEye  = 0,
+    RightEye = 1,
 }
-StereoViewComponents :: bit_set[StereoViewComponentsFlag; cffi.ulonglong]
+StereoViewComponents :: bit_set[StereoViewComponent; cffi.ulonglong]
 
 /// CMStereoViewInterpretationOptions
 StereoViewInterpretationOption :: enum cffi.ulonglong {

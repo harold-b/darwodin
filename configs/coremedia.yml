@@ -62,6 +62,14 @@ Odin:
         - {Kind: 'RemoveUnderscorePrefix'}
         - {Kind: 'UnderscoreNumbers'}
 
+    # Remove redundant singular type words left by the plural SDK names.
+    - Type: '^CMSSignedAttributes$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: kCMSAttr }
+    - Type: '^CMStereoViewComponents$'
+      Transforms:
+      - { Kind: RemovePrefix, Source: kCMStereoView_ }
+
   TypeTransforms:
     - Type: '^(CM).+'
       Transforms: [{Kind: 'RemovePrefix', Source: '$group0'}]
@@ -74,10 +82,10 @@ Odin:
     # SDK 27 flag declarations, verified against the headers named below.
     # CMSEncoder.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CMSSignedAttributes$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     # CMTag.h: NS_OPTIONS / CF_OPTIONS.
     - Type: '^CMStereoViewComponents$'
-      Transforms: [{ Kind: AppendSuffix, Source: Flag }]
+      Transforms: [{ Kind: RemoveSuffix, Source: s }]
     - Type: '(Mask|Flags?|Options?)$' # Avoid collisions with the generated bit_set type
       Transforms: [{Kind: 'RemoveSuffix', Source: 's'}]
 

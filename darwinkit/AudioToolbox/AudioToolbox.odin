@@ -4318,7 +4318,7 @@ TimeStampFlags_SampleHostTimeValid :: TimeStampFlags { .SampleTimeValid, .HostTi
 UnitParameterOptions_DisplayMask :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, .DisplayCubeRoot, .DisplayLogarithmic, }
 UnitParameterOptions_DisplayCubed :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, }
 UnitParameterOptions_DisplayExponential :: UnitParameterOptions { .DisplaySquareRoot, .DisplayCubeRoot, }
-FilePermissions_ReadWritePermission :: FilePermissions { .ReadPermission, .WritePermission, }
+FilePermissions_ReadWrite :: FilePermissions { .Read, .Write, }
 FormatFlags_LinearPCMFormatFlagsSampleFractionShift :: FormatFlags { .AppleLosslessFormatFlag_16BitSourceData, .AppleLosslessFormatFlag_20BitSourceData, .AppleLosslessFormatFlag_32BitSourceData, }
 FormatFlags_AppleLosslessFormatFlag_24BitSourceData :: FormatFlags { .AppleLosslessFormatFlag_16BitSourceData, .AppleLosslessFormatFlag_20BitSourceData, }
 
@@ -4730,12 +4730,12 @@ FileFlag :: enum cffi.uint {
 
 FileFlags :: bit_set[FileFlag; cffi.uint]
 
-FilePermissionsFlag :: enum cffi.schar {
-	ReadPermission  = 0,
-	WritePermission = 1,
+FilePermission :: enum cffi.schar {
+	Read  = 0,
+	Write = 1,
 }
 
-FilePermissions :: bit_set[FilePermissionsFlag; cffi.schar]
+FilePermissions :: bit_set[FilePermission; cffi.schar]
 
 FileRegionFlag :: enum cffi.uint {
 	LoopEnable   = 0,
@@ -4823,12 +4823,12 @@ UnitEventType :: enum cffi.uint {
 	PropertyChange              = 3,
 }
 
-FFormatFlagsFlag :: enum cffi.uint {
+FFormatFlag :: enum cffi.uint {
 	Float        = 0,
 	LittleEndian = 1,
 }
 
-FFormatFlags :: bit_set[FFormatFlagsFlag; cffi.uint]
+FFormatFlags :: bit_set[FFormatFlag; cffi.uint]
 
 FRegionFlag :: enum cffi.uint {
 	LoopEnable   = 0,
