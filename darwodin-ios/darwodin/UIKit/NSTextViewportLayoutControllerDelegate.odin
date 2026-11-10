@@ -47,3 +47,4 @@ foreign lib {
     @(objc_type=NSTextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:renderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController_renderingSurfaceForTextLayoutFragment")
     NSTextViewportLayoutControllerDelegate_textViewportLayoutController_renderingSurfaceForTextLayoutFragment :: proc(self: ^NSTextViewportLayoutControllerDelegate, textViewportLayoutController: ^NSTextViewportLayoutController, textLayoutFragment: ^NSTextLayoutFragment) -> ^NSTextViewportRenderingSurface ---
 }
+

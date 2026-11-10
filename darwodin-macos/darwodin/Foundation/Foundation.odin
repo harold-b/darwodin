@@ -3427,7 +3427,7 @@ XMLNodeKind :: enum cffi.ulong {
     ProcessingInstructionKind = 5,
     CommentKind               = 6,
     TextKind                  = 7,
-    DTDKind                   = 8,
+    NSXMLDTDKind              = 8,
     EntityDeclarationKind     = 9,
     AttributeDeclarationKind  = 10,
     ElementDeclarationKind    = 11,

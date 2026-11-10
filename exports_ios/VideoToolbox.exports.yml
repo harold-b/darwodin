@@ -813,3 +813,4 @@ ConstVars:
     '::kVTExtensionConflictErr': 'VT.kExtensionConflictErr'
     '::kVTVideoEncoderAutoWhiteBalanceNotLockedErr': 'VT.kVideoEncoderAutoWhiteBalanceNotLockedErr'
     '::kVTLogTransferFunctionMismatchErr': 'VT.kLogTransferFunctionMismatchErr'
+

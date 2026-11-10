@@ -47,3 +47,4 @@ AudioSourceNode_initWithFormat :: proc {
     AudioSourceNode_initWithFormat_renderBlock,
     AudioSourceNode_initWithFormat_realtimeSafeRenderBlock,
 }
+

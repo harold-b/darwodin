@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eo pipefail
+cd $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+source ./config
+
+rm -rf definitions/macos/*.json
+rm -rf definitions/ios/*.json
+
+./gen-definitions "$@"

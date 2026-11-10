@@ -27,7 +27,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
-
+    
     UIInputSuggestion.extend(cls, &vt.super)
 
     if vt.init != nil {
@@ -81,3 +81,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("whenValues"), auto_cast whenValues, "^void@:") do panic("Failed to register objC method.")
     }
 }
+

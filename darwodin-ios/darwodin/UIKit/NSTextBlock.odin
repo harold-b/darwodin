@@ -93,3 +93,4 @@ NSTextBlock_setBorderColor :: proc {
     NSTextBlock_setBorderColor_,
     NSTextBlock_setBorderColor_rectEdge,
 }
+

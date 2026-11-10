@@ -50,3 +50,4 @@ foreign lib {
     @(objc_type=TextViewportLayoutControllerDelegate, objc_selector="textViewportLayoutController:renderingSurfaceForTextLayoutFragment:", objc_name="textViewportLayoutController_renderingSurfaceForTextLayoutFragment")
     TextViewportLayoutControllerDelegate_textViewportLayoutController_renderingSurfaceForTextLayoutFragment :: proc(self: ^TextViewportLayoutControllerDelegate, textViewportLayoutController: ^TextViewportLayoutController, textLayoutFragment: ^TextLayoutFragment) -> ^TextViewportRenderingSurface ---
 }
+

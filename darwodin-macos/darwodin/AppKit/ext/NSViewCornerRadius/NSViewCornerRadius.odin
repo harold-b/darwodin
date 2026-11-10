@@ -30,7 +30,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
-
+    
     NSObject.extend(cls, &vt.super)
 
     if vt.fixedRadius != nil {
@@ -84,3 +84,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("containerConcentricRadius"), auto_cast containerConcentricRadius, "@#:") do panic("Failed to register objC method.")
     }
 }
+

@@ -74,3 +74,4 @@ AudioNode_installTapOnBus :: proc {
     AudioNode_installTapOnBus_bufferSize_format_block,
     AudioNode_installTapOnBus_bufferSize_format_error_block,
 }
+

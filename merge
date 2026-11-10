@@ -29,3 +29,20 @@ odiff \
   -m darwodin-macos/darwodin \
   -i darwodin-ios/darwodin \
   darwinkit
+
+
+pushd darwinkit
+
+function mklink() {
+  target=$1
+  link=$2
+
+  if [ ! -e "$link" ] && [ ! -L "$link" ]; then
+    ln -s "$target" "$link"
+  fi
+}
+
+mklink ../libc libc
+mklink ../mach mach
+
+popd

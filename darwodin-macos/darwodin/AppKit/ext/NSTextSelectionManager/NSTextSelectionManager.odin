@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
-
+    
     NSObject.extend(cls, &vt.super)
 
     if vt.textSelectionMode != nil {
@@ -106,3 +106,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gesturesForFailureRequirements"), auto_cast gesturesForFailureRequirements, "^void@:") do panic("Failed to register objC method.")
     }
 }
+

@@ -36,7 +36,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
-
+    
     NSObject.extend(cls, &vt.super)
 
     if vt.beginRefreshing != nil {
@@ -150,3 +150,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
     }
 }
+

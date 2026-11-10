@@ -111,3 +111,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextSelection:"), auto_cast setTextSelection, "v@:@") do panic("Failed to register objC method.")
     }
 }
+

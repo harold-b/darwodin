@@ -833,3 +833,4 @@ OpaqueVTHDRPerFrameMetadataGenerationSession :: struct {}
 
 /// OpaqueVTMotionEstimationSession
 OpaqueVTMotionEstimationSession :: struct {}
+

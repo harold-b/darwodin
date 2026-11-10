@@ -608,3 +608,4 @@ ConstVars:
     '::kCVVersatileBayer_BayerPattern_GRBG': 'CV.kVersatileBayer_BayerPattern_GRBG'
     '::kCVVersatileBayer_BayerPattern_GBRG': 'CV.kVersatileBayer_BayerPattern_GBRG'
     '::kCVVersatileBayer_BayerPattern_BGGR': 'CV.kVersatileBayer_BayerPattern_BGGR'
+

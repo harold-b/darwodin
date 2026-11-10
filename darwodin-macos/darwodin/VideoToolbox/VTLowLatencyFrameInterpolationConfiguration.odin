@@ -66,3 +66,4 @@ foreign lib {
     @(objc_type=LowLatencyFrameInterpolationConfiguration, objc_selector="isSupported", objc_name="isSupported", objc_is_class_method=true)
     LowLatencyFrameInterpolationConfiguration_isSupported :: proc() -> bool ---
 }
+

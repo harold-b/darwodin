@@ -788,3 +788,4 @@ MetalTextureCache :: struct {}
 
 /// __CVMetalBufferCache
 MetalBufferCache :: struct {}
+

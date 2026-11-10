@@ -35,3 +35,4 @@ SceneAccessory_externalNonInteractiveSceneAccessoryWithConfiguration :: proc {
     SceneAccessory_externalNonInteractiveSceneAccessoryWithConfiguration_,
     SceneAccessory_externalNonInteractiveSceneAccessoryWithConfiguration_userInfo,
 }
+

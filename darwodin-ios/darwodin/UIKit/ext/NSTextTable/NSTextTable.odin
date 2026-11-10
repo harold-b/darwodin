@@ -30,7 +30,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     assert(vt != nil);
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
-
+    
     NSTextBlock.extend(cls, &vt.super)
 
     if vt.numberOfColumns != nil {
@@ -114,3 +114,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHidesEmptyCells:"), auto_cast setHidesEmptyCells, "v@:B") do panic("Failed to register objC method.")
     }
 }
+

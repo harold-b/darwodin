@@ -45,3 +45,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("statusItemDidEndExpandedInterfaceSession:animated:"), auto_cast statusItemDidEndExpandedInterfaceSession, "v@:@B") do panic("Failed to register objC method.")
     }
 }
+

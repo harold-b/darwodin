@@ -66,3 +66,4 @@ SceneConfiguration_initWithName :: proc {
     SceneConfiguration_initWithName_sessionRole,
     SceneConfiguration_initWithName_,
 }
+

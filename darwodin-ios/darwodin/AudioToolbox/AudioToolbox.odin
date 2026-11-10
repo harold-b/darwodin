@@ -2878,7 +2878,7 @@ FormatFlag :: enum cffi.uint {
     IsAlignedHigh                    = 4,
     IsNonInterleaved                 = 5,
     IsNonMixable                     = 6,
-    AreAllClear                      = 31,
+    FlagsAreAllClear                 = 31,
     LinearPCMFormatFlagIsFloat       = 0,
     LinearPCMFormatFlagIsBigEndian   = 1,
     LinearPCMFormatFlagIsSignedInteger = 2,

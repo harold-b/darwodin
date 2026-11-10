@@ -20,3 +20,4 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
 }
+

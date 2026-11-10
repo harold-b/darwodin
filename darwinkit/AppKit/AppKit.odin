@@ -4623,8 +4623,8 @@ WritingDirectionFormatType :: enum cffi.long {
 }
 
 TextScalingType :: enum cffi.long {
-	Standard = 0,
-	iOS      = 1,
+	Standard   = 0,
+	ScalingiOS = 1,
 }
 
 SpellingState :: enum cffi.long {
@@ -5018,11 +5018,11 @@ DrawerState :: enum cffi.ulong {
 }
 
 OpenGLGlobalOption :: enum cffi.uint {
-	GOFormatCacheSize  = 501,
-	GOClearFormatCache = 502,
-	GORetainRenderers  = 503,
-	GOUseBuildCache    = 506,
-	GOResetLibrary     = 504,
+	GLGOFormatCacheSize  = 501,
+	GLGOClearFormatCache = 502,
+	GLGORetainRenderers  = 503,
+	GLGOUseBuildCache    = 506,
+	GLGOResetLibrary     = 504,
 }
 
 OpenGLContextParameter :: enum cffi.long {
@@ -5188,8 +5188,8 @@ AttributeType :: enum cffi.ulong {
 	BooleanAttributeType       = 800,
 	DateAttributeType          = 900,
 	BinaryDataAttributeType    = 1000,
-	UUIDAttributeType          = 1100,
-	URIAttributeType           = 1200,
+	NSUUIDAttributeType        = 1100,
+	NSURIAttributeType         = 1200,
 	TransformableAttributeType = 1800,
 	ObjectIDAttributeType      = 2000,
 	CompositeAttributeType     = 2100,

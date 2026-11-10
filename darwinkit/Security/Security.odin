@@ -3946,9 +3946,9 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 
 when ODIN_PLATFORM_SUBTARGET == .Default {
 	CSSM_X509EXT_DATA_FORMAT :: enum cffi.uint {
-		ENCODED = 0,
-		PARSED  = 1,
-		PAIR    = 2,
+		DATAFORMAT_ENCODED = 0,
+		DATAFORMAT_PARSED  = 1,
+		DATAFORMAT_PAIR    = 2,
 	}
 
 	CE_GeneralNameType :: enum cffi.uint {
@@ -4241,10 +4241,10 @@ SSLCiphersuiteGroup :: enum cffi.int {
 }
 
 tls_protocol_version_t :: enum cffi.ushort {
-	LSv10   = 769,
-	LSv11   = 770,
-	LSv12   = 771,
-	LSv13   = 772,
+	TLSv10  = 769,
+	TLSv11  = 770,
+	TLSv12  = 771,
+	TLSv13  = 772,
 	DTLSv10 = 65279,
 	DTLSv12 = 65277,
 }

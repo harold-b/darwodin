@@ -50,3 +50,4 @@ foreign lib {
     @(objc_type=TextSelectionManagerDelegate, objc_selector="setTextSelection:", objc_name="setTextSelection")
     TextSelectionManagerDelegate_setTextSelection :: proc(self: ^TextSelectionManagerDelegate, textSelection: ^TextSelection) ---
 }
+

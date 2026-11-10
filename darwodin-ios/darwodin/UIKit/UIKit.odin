@@ -1465,8 +1465,8 @@ NSWritingDirectionFormatType :: enum cffi.long {
 
 /// NSTextScalingType
 NSTextScalingType :: enum cffi.long {
-    Standard = 0,
-    iOS      = 1,
+    Standard   = 0,
+    ScalingiOS = 1,
 }
 
 /// NSTextWritingDirection

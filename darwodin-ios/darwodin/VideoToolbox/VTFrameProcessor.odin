@@ -49,3 +49,4 @@ FrameProcessor_processWithParameters :: proc {
     FrameProcessor_processWithParameters_completionHandler,
     FrameProcessor_processWithParameters_frameOutputHandler,
 }
+

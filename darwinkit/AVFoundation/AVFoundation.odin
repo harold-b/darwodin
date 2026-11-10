@@ -4675,7 +4675,7 @@ AudioSessionInterruptionType :: enum cffi.ulong {
 }
 
 AudioSessionInterruptionOption :: enum cffi.ulong {
-	ShouldResume = 0,
+	OptionShouldResume = 0,
 }
 
 AudioSessionInterruptionOptions :: bit_set[AudioSessionInterruptionOption; cffi.ulong]

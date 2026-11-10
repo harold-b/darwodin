@@ -3958,12 +3958,12 @@ LocaleLanguageDirection :: enum cffi.long {
 
 /// CFGregorianUnitFlags
 GregorianUnitFlag :: enum cffi.ulong {
-    Years   = 0,
-    Months  = 1,
-    Days    = 2,
-    Hours   = 3,
-    Minutes = 4,
-    Seconds = 5,
+    UnitsYears   = 0,
+    UnitsMonths  = 1,
+    UnitsDays    = 2,
+    UnitsHours   = 3,
+    UnitsMinutes = 4,
+    UnitsSeconds = 5,
 }
 GregorianUnitFlags :: bit_set[GregorianUnitFlag; cffi.ulong]
 
@@ -4156,9 +4156,9 @@ NumberFormatterPadPosition :: enum cffi.long {
 
 /// CFURLPathStyle
 URLPathStyle :: enum cffi.long {
-    POSIXPathStyle   = 0,
-    HFSPathStyle     = 1,
-    WindowsPathStyle = 2,
+    CFURLPOSIXPathStyle = 0,
+    CFURLHFSPathStyle   = 1,
+    WindowsPathStyle    = 2,
 }
 
 /// CFURLComponentType
