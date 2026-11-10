@@ -46,6 +46,54 @@ foreign lib {
 
 STR :: StringMakeConstantString
 
+dispatch_get_main_queue :: proc "c" () -> dispatch_queue_main_t {
+    return &_dispatch_main_q
+}
+
+DISPATCH_QUEUE_PRIORITY_LOW        :: -2
+DISPATCH_QUEUE_PRIORITY_BACKGROUND :: -32768
+
+DISPATCH_APPLY_AUTO              := dispatch_queue_t(nil)
+DISPATCH_QUEUE_SERIAL            := dispatch_queue_attr_t(nil)
+DISPATCH_TARGET_QUEUE_DEFAULT    := dispatch_queue_t(nil)
+DISPATCH_CURRENT_QUEUE_LABEL     := dispatch_queue_t(nil)
+DISPATCH_DATA_DESTRUCTOR_DEFAULT := dispatch_block_t(nil)
+
+DISPATCH_QUEUE_CONCURRENT := &_dispatch_queue_attr_concurrent
+dispatch_data_empty       := &_dispatch_data_empty
+
+DISPATCH_SOURCE_TYPE_DATA_ADD       := &_dispatch_source_type_data_add
+DISPATCH_SOURCE_TYPE_DATA_OR        := &_dispatch_source_type_data_or
+DISPATCH_SOURCE_TYPE_DATA_REPLACE   := &_dispatch_source_type_data_replace
+DISPATCH_SOURCE_TYPE_MACH_SEND      := &_dispatch_source_type_mach_send
+DISPATCH_SOURCE_TYPE_MACH_RECV      := &_dispatch_source_type_mach_recv
+DISPATCH_SOURCE_TYPE_MEMORYPRESSURE := &_dispatch_source_type_memorypressure
+DISPATCH_SOURCE_TYPE_PROC           := &_dispatch_source_type_proc
+DISPATCH_SOURCE_TYPE_READ           := &_dispatch_source_type_read
+DISPATCH_SOURCE_TYPE_SIGNAL         := &_dispatch_source_type_signal
+DISPATCH_SOURCE_TYPE_TIMER          := &_dispatch_source_type_timer
+DISPATCH_SOURCE_TYPE_VNODE          := &_dispatch_source_type_vnode
+DISPATCH_SOURCE_TYPE_WRITE          := &_dispatch_source_type_write
+
+DISPATCH_DATA_DESTRUCTOR_FREE   := _dispatch_data_destructor_free
+DISPATCH_DATA_DESTRUCTOR_MUNMAP := _dispatch_data_destructor_munmap
+
+DISPATCH_QUEUE_SERIAL_INACTIVE :: proc "c" () -> dispatch_queue_attr_t {
+    return dispatch_queue_attr_make_initially_inactive(DISPATCH_QUEUE_SERIAL)
+}
+
+DISPATCH_QUEUE_CONCURRENT_INACTIVE :: proc "c" () -> dispatch_queue_attr_t {
+    return dispatch_queue_attr_make_initially_inactive(DISPATCH_QUEUE_CONCURRENT)
+}
+
+DISPATCH_QUEUE_SERIAL_WITH_AUTORELEASE_POOL :: proc "c" () -> dispatch_queue_attr_t {
+    return dispatch_queue_attr_make_with_autorelease_frequency(DISPATCH_QUEUE_SERIAL, .WORK_ITEM)
+}
+
+DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL :: proc "c" () -> dispatch_queue_attr_t {
+    return dispatch_queue_attr_make_with_autorelease_frequency(DISPATCH_QUEUE_CONCURRENT, .WORK_ITEM)
+}
+
 StringCopyToOdinString :: proc( theString: StringRef, allocator := context.allocator ) -> (str: string, ok: bool) #optional_ok {
     length := StringGetLength(theString)
     max    := StringGetMaximumSizeForEncoding(length, StringEncoding(StringBuiltInEncodings.UTF8))
@@ -66,6 +114,34 @@ when ODIN_PLATFORM_SUBTARGET == .Default { XMLParserOptions_AllOptions :: transm
 
 // -user-text-end
 
+NSEC_PER_USEC                    :: 1000
+USEC_PER_SEC                     :: 1000000
+NSEC_PER_SEC                     :: 1000000000
+NSEC_PER_MSEC                    :: 1000000
+MSEC_PER_SEC                     :: 1000
+DISPATCH_QUEUE_PRIORITY_HIGH     :: 2
+DISPATCH_QUEUE_PRIORITY_DEFAULT  :: 0
+DISPATCH_MACH_SEND_DEAD          :: 1
+DISPATCH_MEMORYPRESSURE_NORMAL   :: 1
+DISPATCH_MEMORYPRESSURE_WARN     :: 2
+DISPATCH_MEMORYPRESSURE_CRITICAL :: 4
+DISPATCH_PROC_EXIT               :: 2147483648
+DISPATCH_PROC_FORK               :: 1073741824
+DISPATCH_PROC_EXEC               :: 536870912
+DISPATCH_PROC_SIGNAL             :: 134217728
+DISPATCH_VNODE_DELETE            :: 1
+DISPATCH_VNODE_WRITE             :: 2
+DISPATCH_VNODE_EXTEND            :: 4
+DISPATCH_VNODE_ATTRIB            :: 8
+DISPATCH_VNODE_LINK              :: 16
+DISPATCH_VNODE_RENAME            :: 32
+DISPATCH_VNODE_REVOKE            :: 64
+DISPATCH_VNODE_FUNLOCK           :: 256
+DISPATCH_TIMER_STRICT            :: 1
+DISPATCH_IO_STREAM               :: 0
+DISPATCH_IO_RANDOM               :: 1
+DISPATCH_IO_STOP                 :: 1
+DISPATCH_IO_STRICT_INTERVAL      :: 1
 
 OSUnknownByteOrder                          :: 0
 OSLittleEndian                              :: 1
@@ -430,6 +506,23 @@ foreign lib {
     @(link_name="kCFSocketErrorKey") kSocketErrorKey: StringRef
     @(link_name="kCFSocketRegisterCommand") kSocketRegisterCommand: StringRef
     @(link_name="kCFSocketRetrieveCommand") kSocketRetrieveCommand: StringRef
+    @(link_name="_dispatch_main_q") _dispatch_main_q: dispatch_queue_s
+    @(link_name="_dispatch_queue_attr_concurrent") _dispatch_queue_attr_concurrent: dispatch_queue_attr_s
+    @(link_name="_dispatch_source_type_data_add") _dispatch_source_type_data_add: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_data_or") _dispatch_source_type_data_or: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_data_replace") _dispatch_source_type_data_replace: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_mach_send") _dispatch_source_type_mach_send: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_mach_recv") _dispatch_source_type_mach_recv: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_memorypressure") _dispatch_source_type_memorypressure: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_proc") _dispatch_source_type_proc: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_read") _dispatch_source_type_read: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_signal") _dispatch_source_type_signal: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_timer") _dispatch_source_type_timer: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_vnode") _dispatch_source_type_vnode: dispatch_source_type_s
+    @(link_name="_dispatch_source_type_write") _dispatch_source_type_write: dispatch_source_type_s
+    @(link_name="_dispatch_data_empty") _dispatch_data_empty: dispatch_data_s
+    @(link_name="_dispatch_data_destructor_free") _dispatch_data_destructor_free: dispatch_block_t
+    @(link_name="_dispatch_data_destructor_munmap") _dispatch_data_destructor_munmap: dispatch_block_t
     @(link_name="kCFStreamPropertyDataWritten") kStreamPropertyDataWritten: StreamPropertyKey
     @(link_name="kCFStreamPropertyAppendToFile") kStreamPropertyAppendToFile: StreamPropertyKey
     @(link_name="kCFStreamPropertyFileCurrentOffset") kStreamPropertyFileCurrentOffset: StreamPropertyKey
@@ -2289,7 +2382,7 @@ foreign lib {
 
     dispatch_io_set_low_water :: proc(channel: dispatch_io_t, low_water: cffi.size_t) ---
 
-    dispatch_io_set_interval :: proc(channel: dispatch_io_t, interval: cffi.uint64_t, flags: cffi.ulong) ---
+    dispatch_io_set_interval :: proc(channel: dispatch_io_t, interval: cffi.uint64_t, flags: dispatch_io_interval_flags_t) ---
 
     dispatch_workloop_create :: proc(label: cstring) -> dispatch_workloop_t ---
 
@@ -3752,6 +3845,9 @@ dispatch_io_handler_t :: ^Objc_Block(proc "c" ( done: cffi.bool, data: dispatch_
 
 /// dispatch_io_close_flags_t
 dispatch_io_close_flags_t :: cffi.ulong
+
+/// dispatch_io_interval_flags_t
+dispatch_io_interval_flags_t :: cffi.ulong
 
 /// dispatch_workloop_t
 dispatch_workloop_t :: dispatch_queue_t
