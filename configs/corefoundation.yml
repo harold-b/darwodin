@@ -106,9 +106,14 @@ Cpp:
     - ^OS_dispatch
     - ^CFStringEncoding$
 
-  # IgnoreMethods:
+  IgnoreMethods:
     # - ^::CFStringGetBytes # Conflicts with sys/darwin/core_foundation
 
+    # These functions are declared in the C headers but not exported by the dynamic library
+    - ^::dispatch_cancel$
+    - ^::dispatch_notify$
+    - ^::dispatch_testcancel$
+    - ^::dispatch_wait$
 
 Odin:
   Emit           : true
@@ -223,6 +228,27 @@ Odin:
 
           DISPATCH_QUEUE_CONCURRENT_WITH_AUTORELEASE_POOL :: proc "c" () -> dispatch_queue_attr_t {
               return dispatch_queue_attr_make_with_autorelease_frequency(DISPATCH_QUEUE_CONCURRENT, .WORK_ITEM)
+          }
+
+          dispatch_cancel :: proc{
+              dispatch_block_cancel,
+              dispatch_source_cancel,
+          }
+
+          dispatch_notify :: proc{
+              dispatch_block_notify,
+              dispatch_group_notify,
+          }
+
+          dispatch_testcancel :: proc{
+              dispatch_block_testcancel,
+              dispatch_source_testcancel,
+          }
+
+          dispatch_wait :: proc{
+              dispatch_block_wait,
+              dispatch_group_wait,
+              dispatch_semaphore_wait,
           }
 
           StringCopyToOdinString :: proc( theString: StringRef, allocator := context.allocator ) -> (str: string, ok: bool) #optional_ok {
